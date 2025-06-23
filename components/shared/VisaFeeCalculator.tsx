@@ -1,165 +1,100 @@
 "use client";
 
-import React, { useState } from "react";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { COUNTRIES_DATA } from "@/lib/constants";// Assuming this function is defined in utils
+import { useState } from "react";
+import { COUNTRIES } from "@/lib/countries";
+import { Country } from "@/lib/countries/type";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
-interface VisaFeeCalculatorProps {
-  country: {
-    code: string;
+export default function VisaPriceCalculator() {
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [selectedVisaType, setSelectedVisaType] = useState<{
     name: string;
-    govFee: 49;
-    touristVisa: number;
-    businessVisa: number;
-    serviceFee: number;
+    govFee: number;
+  } | null>(null);
+
+  const handleCountryChange = (code: string) => {
+    const country = COUNTRIES.find((c) => c.code === code);
+    setSelectedCountry(country || null);
+    setSelectedVisaType(null);
   };
-}
 
-const visaTypes = [
-  { label: "Tourist Visa", value: "tourist", time: "3-5 days" },
-  { label: "Business Visa", value: "business", time: "5-7 days" },
-];
-
-export default function VisaFeeCalculator({ country }: VisaFeeCalculatorProps) {
-  const [numVisas, setNumVisas] = useState(1);
-  const [visaType, setVisaType] = useState("tourist");
-  const [nationality, setNationality] = useState("");
-
-  const govFee = country.govFee;
-  const serviceFee = country.serviceFee;
-  const visaFee = visaType === "tourist" ? country.touristVisa : country.businessVisa;
-
-  const totalFee = ((govFee + visaFee) * numVisas + serviceFee)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const isValidCountry = COUNTRIES_DATA.find((c) => c.code === nationality);
-    if (!isValidCountry) {
-      alert("Please select a valid country for nationality.");
-      return;
+  const handleVisaTypeChange = (type: string) => {
+    if (!selectedCountry) return;
+    const visa = selectedCountry.etaInfo.visaTypes.find((v) => v.type === type);
+    if (visa) {
+      setSelectedVisaType({ name: visa.name, govFee: visa.govFee });
     }
-
-    alert(`Proceed to apply for a visa to ${country.name}`);
   };
+
+  const serviceFee = selectedCountry?.etaInfo.serviceFee
+    ? Number(selectedCountry.etaInfo.serviceFee)
+    : 0;
+
+  const totalFee = selectedVisaType ? selectedVisaType.govFee + serviceFee : 0;
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-8 border border-gray-200 rounded-lg shadow-lg bg-white">
-      <h2 className="text-2xl font-manrope font-bold uppercase mb-8 text-center text-[#16610E]">
-        Visa Fee Calculator for {country.name}
-      </h2>
-      <form className="space-y-4 grid grid-cols-4 max-md:grid-cols-1 gap-4" onSubmit={handleSubmit}>
+    <div className="bg-white shadow rounded p-6 space-y-4 max-w-xl mx-auto">
+      <h2 className="text-xl font-semibold text-[#16610E]">Visa Price Calculator</h2>
+
+      {/* Country Selector */}
+      <div>
+        <label className="block font-medium mb-1">Select Country</label>
+        <Select onValueChange={handleCountryChange}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Choose a country" />
+          </SelectTrigger>
+          <SelectContent>
+            {COUNTRIES.map((c) => (
+              <SelectItem key={c.code} value={c.code}>
+                {c.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Visa Type Selector */}
+      {selectedCountry && (
         <div>
-          <label htmlFor="numVisas" className="block mb-2 font-manrope font-medium text-gray-700">
-            Number of Visas
-          </label>
-          <div className="flex items-center space-x-2">
-            <Button
-              type="button"
-              variant="outline"
-              className="px-3 py-1"
-              onClick={() => setNumVisas((prev) => Math.max(1, prev - 1))}
-              aria-label="Decrease number of visas"
-            >
-              -
-            </Button>
-            <Input
-              id="numVisas"
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              value={numVisas}
-              onChange={(e) => {
-                const val = e.target.value.replace(/\D/g, "");
-                setNumVisas(val === "" ? 1 : Math.max(1, Number(val)));
-              }}
-              className="w-full text-center border-gray-200 focus:border-[#16610E] focus:ring-[#16610E] appearance-none"
-              autoComplete="off"
-            />
-            <Button
-              type="button"
-              variant="outline"
-              className="px-3 py-1"
-              onClick={() => setNumVisas((prev) => prev + 1)}
-              aria-label="Increase number of visas"
-            >
-              +
-            </Button>
-          </div>
-        </div>
-        <div>
-          <label className="block mb-2 font-manrope font-medium text-gray-700">Type of Visa</label>
-          <Select value={visaType} onValueChange={setVisaType}>
-            <SelectTrigger className="w-full border-gray-200 focus:border-[#16610E] focus:ring-[#16610E]">
-              <SelectValue placeholder="Select visa type" />
+          <label className="block font-medium mb-1">Select Visa Type</label>
+          <Select onValueChange={handleVisaTypeChange}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Choose a visa type" />
             </SelectTrigger>
             <SelectContent>
-              {visaTypes.map((type) => (
-                <SelectItem key={type.value} value={type.value} className="font-manrope">
-                  {type.label}
+              {selectedCountry.etaInfo.visaTypes.map((v) => (
+                <SelectItem key={v.type} value={v.type}>
+                  {v.name} ({v.type})
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
+      )}
 
-        <div>
-            <label className="block mb-2 font-manrope font-medium text-gray-700">Processing Time</label>
-            <div className="font-inter px-3 py-1.75 bg-gray-50 rounded-md border border-gray-200 text-sm font-semibold text-[#16610E]">
-              {
-                visaTypes.find((type) => type.value === visaType)?.time
-              }
-            </div>
-          </div>
-
-        <div>
-          <label className="block mb-2 font-manrope font-medium text-gray-700">Nationality</label>
-          <Select value={nationality} onValueChange={setNationality}>
-            <SelectTrigger className="w-full border-gray-200 focus:border-[#16610E] focus:ring-[#16610E]">
-              <SelectValue placeholder="Select nationality" />
-            </SelectTrigger>
-            <SelectContent>
-              {COUNTRIES_DATA.map((c) => (
-                <SelectItem key={c.code} value={c.code} className="font-manrope">
-                  {c.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="pt-6 border-t border-gray-200 col-span-full">
-          <p className="text-lg font-inter font-semibold text-[#16610E] mb-4">
-            Estimated Total Fee
+      {/* Fee Display */}
+      {selectedVisaType && (
+        <div className="mt-4 border-t pt-4 space-y-2">
+          <p className="text-sm">
+            <strong>Visa Type:</strong> {selectedVisaType.name}
           </p>
-          <div className="flex flex-col space-y-2 text-sm font-manrope">
-            <div className="flex justify-between border-b-1 border-gray-200 pb-2">
-              <span className="text-gray-600">Government Fee</span>
-              <span className="font-medium">${govFee}</span>
-            </div>
-            <div className="flex justify-between border-b-1 border-gray-200 pb-2">
-              <span className="text-gray-600">Visa Fee</span>
-              <span className="font-medium">${visaFee}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Service Fee</span>
-              <span className="font-medium">${serviceFee}</span>
-            </div>
-            <div className="flex justify-between pt-2 border-t border-gray-200">
-              <span className="font-semibold text-lg text-[#16610E]">Total Fee</span>
-              <span className="font-bold text-[#16610E] text-lg">${totalFee}</span>
-            </div>
-          </div>
-          <Button
-            type="submit"
-            className="mt-6 mx-auto w-1/2 relative flex h-[50px] items-center justify-center overflow-hidden bg-[#16610E] cursor-pointer rounded-lg text-white shadow-lg transition-all before:absolute before:h-0 before:w-0 before:rounded-lg before:bg-[#CB6601] hover:bg-[#16610E]/90 before:duration-1200 before:ease-out hover:before:h-56 hover:before:w-full"
-          >
-            <span className="relative z-10 font-manrope font-medium">Apply Now</span>
-          </Button>
+          <p className="text-sm">
+            <strong>Government Fee:</strong> ${selectedVisaType.govFee.toFixed(2)}
+          </p>
+          <p className="text-sm">
+            <strong>Service Fee:</strong> ${serviceFee.toFixed(2)}
+          </p>
+          <p className="text-md font-semibold text-[#16610E]">
+            Total: ${totalFee.toFixed(2)}
+          </p>
         </div>
-      </form>
+      )}
     </div>
   );
 }

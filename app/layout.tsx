@@ -4,7 +4,7 @@ import "./globals.css";
 import TopBanner from "./components/TopBanner";
 import Navbar from "./components/Navbar";
 import { Footer } from "./components/Footer";
-import Sticky from "./components/Sticky";
+import { Providers } from "./providers"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +16,10 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
-  const petrona = Petrona({
-    variable: "--font-petrona",
-    subsets: ["latin"],
-  });
+const petrona = Petrona({
+  variable: "--font-petrona",
+  subsets: ["latin"],
+});
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -51,10 +51,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${roboto.variable} ${petrona.variable} ${manrope.variable} antialiased bg-[#FAF6E9]`}
       >
-        <TopBanner />
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <TopBanner />
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

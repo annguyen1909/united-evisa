@@ -1,0 +1,44 @@
+import { NextRequest, NextResponse } from "next/server"
+import { hash } from "bcryptjs"
+import { PrismaClient } from "@/lib/generated/prisma"
+
+const prisma = new PrismaClient()
+
+export async function POST(req: NextRequest) {
+  try {
+    const { email, password, fullName, areaCode, phoneNumber, gender } = await req.json()
+
+    // Basic check
+    if (!email || !password || !fullName || !phoneNumber || !gender) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    }
+
+    const existingAccount = await prisma.account.findFirst({
+      where: { email, websiteCreatedAt: "srilanka-evisa" },
+    })
+
+    if (existingAccount) {
+      return NextResponse.json({ error: "Account already exists." }, { status: 400 })
+    }
+
+    const hashedPassword = await hash(password, 10)
+
+    const account = await prisma.account.create({
+      data: {
+        id: crypto.randomUUID(),
+        email,
+        password: hashedPassword,
+        fullName,
+        areaCode,
+        phoneNumber,
+        gender,
+        websiteCreatedAt: "United Evisa",
+      },
+    })
+
+    return NextResponse.json({ message: "Account created", account })
+  } catch (error) {
+    console.error("Signup error:", error)
+    return NextResponse.json({ error: "Server error" }, { status: 500 })
+  }
+}

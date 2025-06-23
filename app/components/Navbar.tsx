@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronRight } from "lucide-react";
 import {
@@ -21,10 +22,10 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <nav className="w-full sticky z-20 top-0 bg-white shadow-md px-2 py-4 md:p-4 flex justify-between items-center border-b lg:justify-evenly max-md:justify-between">
-      {/* Logo */}
       <Link href="/" className="w-42 md:mr-12 h-10">
         <div className="relative w-full h-full z-20 gap-2 flex items-center">
           <Image
@@ -52,24 +53,50 @@ export default function Navbar() {
           <NavigationMenuList>
             {navItems.map((item) => (
               <NavigationMenuItem key={item.label}>
-                <NavigationMenuLink href={item.href} className="relative overflow-hidden px-4 py-4 text-md cursor-pointer transition-all duration-300 bg-white
-               before:absolute before:inset-0 before:bg-[#16610E]
-               before:w-0 before:h-full before:transition-all before:duration-300 before:z-0 before:pointer-events-none 
-               hover:before:w-full hover:text-white
-               ">
-                  <div className="relative z-10 font-manrope hover:border-[#16610E] whitespace-nowrap text-lg xl:text-xl">
+                <NavigationMenuLink
+                  href={item.href}
+                  className="relative overflow-hidden px-4 py-4 text-md cursor-pointer transition-all duration-300 bg-white
+                    before:absolute before:inset-0 before:bg-[#16610E]
+                    before:w-0 before:h-full before:transition-all before:duration-300 before:z-0 before:pointer-events-none 
+                    hover:before:w-full hover:text-white"
+                >
+                  <div className="relative z-10 font-manrope text-lg xl:text-xl">
                     {item.label}
                   </div>
                 </NavigationMenuLink>
-
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-        <Button className="bg-[#16610E] hover:bg-[#16610E]/80 text-white cursor-pointer px-6 py-7 text-lg">Apply Now</Button>
+
+        {session?.user ? (
+          <>
+            <Link href="/profile" className="text-[#16610E] font-semibold px-4">
+              My Profile
+            </Link>
+            <Button
+              variant="outline"
+              className="border-[#16610E] text-[#16610E]"
+              onClick={() => signOut({ callbackUrl: "/login" })}
+            >
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <Link href="/login">
+              <Button variant="ghost">Login</Button>
+            </Link>
+            <Link href="/signup">
+              <Button className="bg-[#16610E] hover:bg-[#16610E]/80 text-white px-6">
+                Sign up
+              </Button>
+            </Link>
+          </>
+        )}
       </div>
 
-      {/* Mobile menu button */}
+      {/* Mobile Button */}
       <button
         className="lg:hidden ml-4 text-gray-700"
         onClick={() => setIsOpen(!isOpen)}
@@ -85,10 +112,8 @@ export default function Navbar() {
           <nav className="flex flex-col bg-gray-100 rounded-lg p-4 space-y-3">
             {navItems.map((item) => (
               <div key={item.label} className="flex flex-col gap-1">
-
                 <div className="flex justify-between items-center">
                   <Link
-
                     href={item.href}
                     className="text-gray-600 p-1 font-semibold uppercase hover:text-primary transition"
                     onClick={() => setIsOpen(false)}
@@ -100,9 +125,39 @@ export default function Navbar() {
                 <hr className="mt-1 w-full" />
               </div>
             ))}
-            <div className="flex justify-center">
-              <Button className="bg-[#16610E] hover:bg-[#16610E]/80 text-white mt-1 py-6 w-1/3" onClick={() => setIsOpen(false)}>Apply</Button>
-            </div>
+
+            {session?.user ? (
+              <>
+                <Link
+                  href="/profile"
+                  className="text-[#16610E] font-semibold"
+                  onClick={() => setIsOpen(false)}
+                >
+                  My Profile
+                </Link>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setIsOpen(false);
+                    signOut({ callbackUrl: "/login" });
+                  }}
+                  className="mt-2 border-[#16610E] text-[#16610E]"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link href="/login" onClick={() => setIsOpen(false)}>
+                  <Button variant="ghost">Login</Button>
+                </Link>
+                <Link href="/signup" onClick={() => setIsOpen(false)}>
+                  <Button className="bg-[#16610E] hover:bg-[#16610E]/80 text-white mt-1 py-6 w-full">
+                    Sign up
+                  </Button>
+                </Link>
+              </>
+            )}
           </nav>
         </div>
       )}

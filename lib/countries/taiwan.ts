@@ -1,6 +1,4 @@
-// lib/countries/kenya.ts
-
-import { Country } from "./type"; // optional type if you're using centralized types
+import { Country } from "./type";
 
 const taiwan: Country = {
   slug: 'taiwan',
@@ -10,11 +8,10 @@ const taiwan: Country = {
   flagUrl: '/images/country/taiwan/taiwan-square.png',
   imageUrl: '/images/country/taiwan/taiwan-bg.jpg',
   roundedFlagUrl: '/images/country/taiwan/taiwan-rounded.png',
-  description: `A Vietnamese visa is a type of travel document issued by Vietnamese officials that allows you to travel to and enter Vietnam with tourism and business intentions.`,
-  welcomeMessage: `Vietnam - A captivating Southeast Asian country renowned for its breathtaking landscapes, rich history, and vibrant culture. Explore the bustling streets of Hanoi, the capital city, where traditional architecture blends with modern influences, and indulge in the flavors of Vietnamese street food. Immerse yourself in the natural beauty of Halong Bay, with its towering limestone islands and emerald waters, or venture into the lush rice terraces of Sapa. Discover the ancient wonders of Hue's Imperial City or the charming lantern-lit streets of Hoi An.`,
+  description: `In 2016, the Ministry of Foreign Affairs (MOFA) of the Republic of China (Taiwan) launched the Taiwan eVisa program. This visa allows travelers to visit Taiwan for both tourism and business purposes.`,
+  welcomeMessage: `Welcome to Taiwan! Enjoy the bustling streets of Taipei, the beauty of Sun Moon Lake, and the delicious local cuisine.`,
   welcomeImgUrl: '/images/country/taiwan/taiwan-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
@@ -26,35 +23,34 @@ const taiwan: Country = {
     },
     visaTypes: [
       {
-        type: 'Tourist ETA',
-        description: 'Single Entry for 90 days',
+        name: 'Tourist Evisa(Single Entry for 30 days)',
+        type: 'Tourist Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
-        visaValidity: '60 days',
+        visaValidity: '180 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 50,
+        allowedNationalities: [
+          // Add allowed country codes here if needed
+        ],
       },
       {
-        type: 'Business ETA',
-        description: 'Single Entry for 90 days',
+        name: 'Business Evisa(Single Entry for 30 days)',
+        type: 'Business Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
-        visaValidity: '60 days',
+        visaValidity: '180 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
-      },
-      {
-        type: 'Transit ETA',
-        description: 'Single Entry for 72 hours',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
-        expectedProcessingTime: '2 days',
-        govFee: 12
-      },
+        govFee: 50,
+        allowedNationalities: [
+          // Add allowed country codes here if needed
+        ],
+      }
     ],
-    requiredFor: '194 nationalities are required to obtain a Tourist ETA.',
-    governmentFee: 95,
-    serviceFee: 'See more', // or use a number if fixed
+    serviceFee: 49.99,
   },
-
   visaServicePackage: [
     'Entry visa for a short period',
     'Application form filling assistance',
@@ -63,13 +59,6 @@ const taiwan: Country = {
     '24/7 online support team for any issues',
     'Urgent case support, with added fees',
   ],
-
-  howToApply: [
-    'Fill in the online form on our website.',
-    'Pay the eTA fee online via credit card, debit card, PayPal, or bank transfer.',
-    'Get your eTA sent to your email.',
-  ],
-
   gvcSupport: {
     description: 'Apply Visa at GVC — with many years of experience, GVC simplifies the process.',
     services: [
@@ -81,49 +70,10 @@ const taiwan: Country = {
     ],
     note: 'You can also apply on your own through the government website to save your budget.',
   },
-
-  recommendedInsurance: {
-    name: 'Covid-19 Insurance',
-    price: 299,
-    benefits: [
-      'Maximum Benefit up to US$ 50,000.00',
-      'Covering Covid-19 Treatment Expense',
-      'Medical Payments Coverage',
-      'Trip Delay, Trip Interruption, Lost Baggage',
-      'An advantage condition for your visa approval',
-    ],
-  },
-
   info: {
-    climate: 'Humid, tropical',
-    language: 'Vietnam, English',
-    currency: 'Vietnam Dong (VND)',
+    climate: 'Subtropical, humid',
+    language: 'Mandarin Chinese',
+    currency: 'New Taiwan Dollar (TWD)',
   },
-
-  visaTabs: [
-    {
-      value: "tourist",
-      color: "#065BB9",
-      title: "Tourism",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Tourist ETA",
-    },
-    {
-      value: "business",
-      color: "#CB6601",
-      title: "Business",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Business ETA",
-    },
-    {
-      value: "medical",
-      color: "#16610E",
-      title: "Medical",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Medical ETA",
-    },
-  ],
-  eligibleCountries: ["AE", "BA", "BF", "BH", "CO", "DM", "EC", "KI", "KW", "ME", "MU", "OM", "PA", "PE", "QA", "SA", "SB", "TR", "XK"]
 };
-
 export default taiwan;

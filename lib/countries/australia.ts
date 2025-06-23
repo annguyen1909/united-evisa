@@ -10,11 +10,10 @@ const australia: Country = {
   flagUrl: '/images/country/australia/australia-square.png',
   imageUrl: '/images/country/australia/australia-bg.jpg',
   roundedFlagUrl: '/images/country/australia/australia-rounded.png',
-  description: `Australia, the Land Down Under, is famous for its diverse landscapes, unique wildlife, and vibrant cities. From the Great Barrier Reef to the Outback, Australia offers adventure, culture, and natural beauty for every traveler.`,
+  description: `In 1996, the Electronic Travel Authority system (ETA or e-Visa) was introduced, making Australia the first nation to launch electronic visas in the world. An ETA is designed to serve short-term stays in Australia for activities related to tourism (Tourist e-Visa) or business (Business e-Visa).`,
   welcomeMessage: `Welcome to Australia! Explore the cosmopolitan cities of Sydney and Melbourne, relax on the golden beaches of the Gold Coast, or marvel at the natural wonders of Uluru and the Great Barrier Reef. Experience the rich Aboriginal heritage and enjoy world-class food and wine in this vast and friendly country.`,
   welcomeImgUrl: '/images/country/australia/australia-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
@@ -29,6 +28,7 @@ const australia: Country = {
         name: 'Tourist Evisa (Multiple Entries for 1 year)',
         type: 'Tourist Evisa',
         description: 'Multiple Entries for 1 year',
+        entry: 'Multiple Entries',
         visaDuration: '1 year',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
@@ -39,6 +39,7 @@ const australia: Country = {
         name: 'Business Evisa (Multiple Entries for 1 year)',
         type: 'Business Evisa',
         description: 'Multiple Entries for 1 year',
+        entry: 'Multiple Entries',
         visaDuration: '1 year',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
@@ -46,7 +47,7 @@ const australia: Country = {
         allowedNationalities: ["AD", "AT", "BE", "BG", "BN", "CA", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HK", "HR", "HU", "IE", "IS", "IT", "JP", "KR", "LI", "LT", "LU", "LV", "MC", "MT", "NL", "NO", "PL", "PT", "RO", "SE", "SG", "SI", "SK", "SM", "TW", "US", "VA"]
       }
     ],
-    serviceFee: 'See more', // or use a number if fixed
+    serviceFee: 49.99 // or use a number if fixed
   },
 
   visaServicePackage: [

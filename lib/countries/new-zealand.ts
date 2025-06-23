@@ -10,11 +10,10 @@ const newzealand: Country = {
   flagUrl: '/images/country/new-zealand/new-zealand-square.png',
   imageUrl: '/images/country/new-zealand/new-zealand-bg.jpg',
   roundedFlagUrl: '/images/country/new-zealand/new-zealand-rounded.png',
-  description: `New Zealand is renowned for its stunning natural beauty, from snow-capped mountains to pristine beaches. It is a land of adventure, Maori culture, and friendly locals.`,
+  description: `New Zealand introduced the Electronic Travel Authority (ETA) system in July 2019, allowing eligible travelers to conveniently obtain an eVisa online without the need to visit an embassy.`,
   welcomeMessage: `Welcome to New Zealand! Explore the dramatic landscapes of the South Island, visit the vibrant city of Auckland, and experience Maori traditions. Enjoy outdoor adventures like hiking, skiing, and bungee jumping in this breathtaking country.`,
   welcomeImgUrl: '/images/country/new-zealand/new-zealand-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
@@ -26,33 +25,41 @@ const newzealand: Country = {
     },
     visaTypes: [
       {
-        type: 'Tourist ETA',
-        description: 'Single Entry for 90 days',
-        visaDuration: '30 days',
+        name: 'Tourist Evisa (Multiple Entries for 2 years)',
+        type: 'Tourist Evisa',
+        description: 'Multiple Entries for 2 years',
+        entry: 'Multiple Entries',
+        visaDuration: '2 years',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 90,
+        allowedNationalities: ["AD", "AG", "AL", "AM", "AO", "BA", "BB", "BG", "BI", "BJ", "BN", "BO", "BS", "BT", "BW", "BZ", "CD", "CG", "CI", "CN", "CO", "CR", "CU", "CV", "DJ", "DM", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GQ", "GT", "GW", "GY", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KW", "LC", "LS", "MD", "ME", "MG", "MH", "MK", "MR", "MU", "MW", "MX", "MZ", "NA", "NI", "NP", "NR", "PA", "PG", "PW", "PY", "RW", "SA", "SB", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TG", "TL", "TO", "TT", "TV", "TW", "TZ", "UG", "VA", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM", "ZW"]
       },
       {
-        type: 'Business ETA',
-        description: 'Single Entry for 90 days',
-        visaDuration: '30 days',
+        name: 'Business Evisa (Multiple Entries for 2 years)',
+        type: 'Business Evisa',
+        description: 'Multiple Entries for 2 years',
+        entry: 'Multiple Entries',
+        visaDuration: '2 years',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 90,
+        allowedNationalities: ["AD", "AE", "AR", "AT", "BE", "BG", "BH", "BN", "BR", "CA", "CH", "CL", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HK", "HR", "HU", "IE", "IL", "IO", "IS", "IT", "JP", "KR", "KW", "LI", "LT", "LU", "LV", "MC", "MO", "MT", "MU", "MX", "MY", "NL", "NO", "OM", "PL", "PT", "QA", "RO", "SA", "SC", "SE", "SG", "SI", "SK", "SM", "TW", "US", "UY", "VA"]
       },
       {
-        type: 'Transit ETA',
-        description: 'Single Entry for 72 hours',
-        visaDuration: '30 days',
+        name: 'Transit Evisa (Multiple Entries for 2 years)',
+        type: 'Transit Evisa',
+        description: 'Multiple Entries for 2 years',
+        entry: 'Multiple Entries',
+        visaDuration: '2 years',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
-      },
+        govFee: 90,
+        allowedNationalities: ["AD", "AE", "AR", "AT", "BE", "BG", "BH", "BN", "BR", "CA", "CH", "CL", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HK", "HR", "HU", "IE", "IL", "IO", "IS", "IT", "JP", "KR", "KW", "LI", "LT", "LU", "LV", "MC", "MO", "MT", "MU", "MX", "MY", "NL", "NO", "OM", "PL", "PT", "QA", "RO", "SA", "SC", "SE", "SG", "SI", "SK", "SM", "TW", "US", "UY", "VA"]
+      }
+
     ],
-    requiredFor: '194 nationalities are required to obtain a Tourist ETA.',
-    governmentFee: 95,
-    serviceFee: 'See more', // or use a number if fixed
+    serviceFee: 49.99, // or use a number if fixed
   },
 
   visaServicePackage: [
@@ -63,13 +70,6 @@ const newzealand: Country = {
     '24/7 online support team for any issues',
     'Urgent case support, with added fees',
   ],
-
-  howToApply: [
-    'Fill in the online form on our website.',
-    'Pay the eTA fee online via credit card, debit card, PayPal, or bank transfer.',
-    'Get your eTA sent to your email.',
-  ],
-
   gvcSupport: {
     description: 'Apply Visa at GVC — with many years of experience, GVC simplifies the process.',
     services: [
@@ -81,49 +81,11 @@ const newzealand: Country = {
     ],
     note: 'You can also apply on your own through the government website to save your budget.',
   },
-
-  recommendedInsurance: {
-    name: 'Covid-19 Insurance',
-    price: 299,
-    benefits: [
-      'Maximum Benefit up to US$ 50,000.00',
-      'Covering Covid-19 Treatment Expense',
-      'Medical Payments Coverage',
-      'Trip Delay, Trip Interruption, Lost Baggage',
-      'An advantage condition for your visa approval',
-    ],
-  },
-
   info: {
     climate: 'Temperate, with mild winters and warm summers',
     language: 'English, Maori',
     currency: 'New Zealand Dollar (NZD)',
   },
-
-  visaTabs: [
-    {
-      value: "tourist",
-      color: "#065BB9",
-      title: "Tourism",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Tourist ETA",
-    },
-    {
-      value: "business",
-      color: "#CB6601",
-      title: "Business",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Business ETA",
-    },
-    {
-      value: "medical",
-      color: "#16610E",
-      title: "Medical",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Medical ETA",
-    },
-  ],
-  eligibleCountries: ["AD", "AE", "AR", "AT", "BE", "BG", "BH", "BN", "BR", "CA", "CH", "CL", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HK", "HR", "HU", "IE", "IL", "IO", "IS", "IT", "JP", "KR", "KW", "LI", "LT", "LU", "LV", "MC", "MO", "MT", "MU", "MX", "MY", "NL", "NO", "OM", "PL", "PT", "QA", "RO", "SA", "SC", "SE", "SG", "SI", "SK", "SM", "TW", "US", "UY", "VA"]
 };
 
 export default newzealand;

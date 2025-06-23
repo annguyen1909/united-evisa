@@ -14,7 +14,6 @@ const angola: Country = {
   welcomeMessage: `A vibrant Southern African nation known for its diverse landscapes, rich cultural heritage, and emerging travel opportunities.Discover the dynamic capital city of Luanda, where modern high-rises overlook the Atlantic coast and local markets pulse with energy. Explore the dramatic beauty of Kalandula Falls, one of Africa’s largest waterfalls, or venture through the wild expanses of Kissama National Park.Step back in time at the historic town of M'banza-Kongo, a UNESCO World Heritage Site, and unwind on the serene beaches of Benguela.`,
   welcomeImgUrl: '/images/country/angola/angola-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
@@ -29,6 +28,7 @@ const angola: Country = {
         name: 'Tourist Evisa (Single Entry for 30 days)',
         type: 'Tourist Evisa',
         description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
@@ -39,6 +39,7 @@ const angola: Country = {
         name: 'Business Evisa (Single Entry for 30 days)',
         type: 'Business Evisa',
         description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',

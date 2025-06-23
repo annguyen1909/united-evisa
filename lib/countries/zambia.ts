@@ -1,6 +1,4 @@
-// lib/countries/kenya.ts
-
-import { Country } from "./type"; // optional type if you're using centralized types
+import { Country } from "./type";
 
 const zambia: Country = {
   slug: 'zambia',
@@ -10,51 +8,111 @@ const zambia: Country = {
   flagUrl: '/images/country/zambia/zambia-square.png',
   imageUrl: '/images/country/zambia/zambia-bg.jpg',
   roundedFlagUrl: '/images/country/zambia/zambia-rounded.png',
-  description: `A Vietnamese visa is a type of travel document issued by Vietnamese officials that allows you to travel to and enter Vietnam with tourism and business intentions.`,
-  welcomeMessage: `Vietnam - A captivating Southeast Asian country renowned for its breathtaking landscapes, rich history, and vibrant culture. Explore the bustling streets of Hanoi, the capital city, where traditional architecture blends with modern influences, and indulge in the flavors of Vietnamese street food. Immerse yourself in the natural beauty of Halong Bay, with its towering limestone islands and emerald waters, or venture into the lush rice terraces of Sapa. Discover the ancient wonders of Hue's Imperial City or the charming lantern-lit streets of Hoi An.`,
+  description: `In 2014, the Government of Zambia introduced the eVisa system as a convenient way for travelers to obtain the necessary visa for entry, whether for tourism, business, or other permitted purposes.`,
+  welcomeMessage: `Welcome to Zambia! Experience the awe of Victoria Falls, explore the wilds of South Luangwa National Park, and enjoy the warmth of Zambian hospitality.`,
   welcomeImgUrl: '/images/country/zambia/zambia-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
         'Fill in the online form on our website.',
-        'Pay the eTA fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eTA sent to your email.',
+        'Pay the eVisa fee online — via credit card, debit card, PayPal, or bank transfer.',
+        'Get your eVisa sent to your email.',
       ],
       urgentProcessing: 'As soon as 1 Day',
     },
     visaTypes: [
       {
-        type: 'Tourist ETA',
-        description: 'Single Entry for 90 days',
+        name: 'Tourist Evisa (Single Entry for 30 days)',
+        type: 'Tourist Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
-        visaValidity: '60 days',
+        visaValidity: '90 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 45,
+        allowedNationalities: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
       },
       {
-        type: 'Business ETA',
-        description: 'Single Entry for 90 days',
+        name: 'Tourist Evisa (Double Entries for 30 days)',
+        type: 'Tourist Evisa',
+        description: 'Double Entries for 30 days',
+        entry: 'Double Entries',
         visaDuration: '30 days',
-        visaValidity: '60 days',
+        visaValidity: '90 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 50,
+        allowedNationalities: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
       },
       {
-        type: 'Transit ETA',
-        description: 'Single Entry for 72 hours',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
+        name: 'Tourist Evisa (Multiple Entries for 90 days)',
+        type: 'Tourist Evisa',
+        description: 'Multiple Entries for 90 days',
+        entry: 'Multiple Entries',
+        visaDuration: '90 days',
+        visaValidity: '90 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 95,
+        allowedNationalities: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
+      },
+      {
+        name: 'Business Evisa (Single Entry for 30 days)',
+        type: 'Business Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
+        visaDuration: '30 days',
+        visaValidity: '90 days',
+        expectedProcessingTime: '2 days',
+        govFee: 45,
+        allowedNationalities: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
+      },
+      {
+        name: 'Business Evisa (Double Entries for 30 days)',
+        type: 'Business Evisa',
+        description: 'Double Entries for 30 days',
+        entry: 'Double Entries',
+        visaDuration: '30 days',
+        visaValidity: '90 days',
+        expectedProcessingTime: '2 days',
+        govFee: 50,
+        allowedNationalities: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
+      },
+      {
+        name: 'Business Evisa (Multiple Entries for 90 days)',
+        type: 'Business Evisa',
+        description: 'Multiple Entries for 90 days',
+        entry: 'Multiple Entries',
+        visaDuration: '90 days',
+        visaValidity: '90 days',
+        expectedProcessingTime: '2 days',
+        govFee: 95,
+        allowedNationalities: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
+      },
+      {
+        name: 'Kaza Univisa (Multiple Entries for 90 days)',
+        type: 'Kaza Univisa',
+        description: 'Multiple Entries for 90 days',
+        entry: 'Multiple Entries',
+        visaDuration: '90 days',
+        visaValidity: '7 days',
+        expectedProcessingTime: '2 days',
+        govFee: 70,
+        allowedNationalities: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
+      },
+      {
+        name: 'Transit Evisa (Single Entry for 7 days)',
+        type: 'Transit Evisa',
+        description: 'Single Entry for 7 days',
+        entry: 'Single Entry',
+        visaDuration: '7 days',
+        visaValidity: '7 days',
+        expectedProcessingTime: '2 days',
+        govFee: 45,
+        allowedNationalities: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
       },
     ],
-    requiredFor: '194 nationalities are required to obtain a Tourist ETA.',
-    governmentFee: 95,
-    serviceFee: 'See more', // or use a number if fixed
+    serviceFee: 49.99,
   },
-
   visaServicePackage: [
     'Entry visa for a short period',
     'Application form filling assistance',
@@ -63,13 +121,6 @@ const zambia: Country = {
     '24/7 online support team for any issues',
     'Urgent case support, with added fees',
   ],
-
-  howToApply: [
-    'Fill in the online form on our website.',
-    'Pay the eTA fee online via credit card, debit card, PayPal, or bank transfer.',
-    'Get your eTA sent to your email.',
-  ],
-
   gvcSupport: {
     description: 'Apply Visa at GVC — with many years of experience, GVC simplifies the process.',
     services: [
@@ -81,49 +132,11 @@ const zambia: Country = {
     ],
     note: 'You can also apply on your own through the government website to save your budget.',
   },
-
-  recommendedInsurance: {
-    name: 'Covid-19 Insurance',
-    price: 299,
-    benefits: [
-      'Maximum Benefit up to US$ 50,000.00',
-      'Covering Covid-19 Treatment Expense',
-      'Medical Payments Coverage',
-      'Trip Delay, Trip Interruption, Lost Baggage',
-      'An advantage condition for your visa approval',
-    ],
-  },
-
   info: {
-    climate: 'Humid, tropical',
-    language: 'Vietnam, English',
-    currency: 'Vietnam Dong (VND)',
+    climate: 'Tropical, with a rainy season and a dry season',
+    language: 'English',
+    currency: 'Zambian Kwacha (ZMW)',
   },
-
-  visaTabs: [
-    {
-      value: "tourist",
-      color: "#065BB9",
-      title: "Tourism",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Tourist ETA",
-    },
-    {
-      value: "business",
-      color: "#CB6601",
-      title: "Business",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Business ETA",
-    },
-    {
-      value: "medical",
-      color: "#16610E",
-      title: "Medical",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Medical ETA",
-    },
-  ],
-  eligibleCountries: ["AD", "AF", "AL", "AM", "AR", "AS", "AW", "AZ", "BA", "BD", "BF", "BI", "BJ", "BN", "BO", "BR", "BT", "BY", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CU", "CV", "DJ", "DOM", "DZ", "EC", "EG", "ER", "ET", "FM", "GA", "GE", "GH", "GL", "GM", "GN", "GQ", "GT", "GW", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IR", "IS", "JO", "KG", "KH", "KM", "KP", "KZ", "LA", "LB", "LI", "LK", "LR", "MA", "MC", "MD", "MG", "MK", "ML", "MN", "MO", "MR", "MX", "NE", "NG", "NI", "NP", "PA", "PE", "PG", "PH", "PK", "PR", "PS", "PW", "PY", "RS", "RU", "RW", "SL", "SM", "SN", "SO", "SR", "ST", "SV", "SY", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TR", "TW", "UA", "UY", "UZ", "VA", "VE", "VN", "YE"]
 };
 
 export default zambia;

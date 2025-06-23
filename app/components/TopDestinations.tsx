@@ -16,26 +16,31 @@ const destinations = [
     name: "Sri Lanka",
     link: "sri-lanka",
     image: "/images/country/sri-lanka/sri-lanka-bg.jpg",
+    code: 'lk'
   },
   {
     name: "Vietnam",
     link: "vietnam",
     image: "/images/country/vietnam/vietnam-bg.jpg",
+    code: 'vn'
   },
   {
     name: "Kenya",
     link: "kenya",
     image: "/images/country/kenya/kenya-bg.jpg",
+    code: 'ke'
   },
   {
     name: "Malaysia",
     link: "malaysia",
     image: "/images/country/malaysia/malaysia-bg.jpg",
+    code: 'my'
   },
   {
     name: "Cambodia",
     link: "cambodia",
     image: "/images/country/cambodia/cambodia-bg.jpg",
+    code: 'kh'
   },
 ];
 
@@ -49,7 +54,7 @@ export default function TopDestinationsCarousel() {
         className="w-full"
       >
         <CarouselContent className="">
-          {destinations.map(({ name, link, image }) => (
+          {destinations.map(({ name, link, image, code }) => (
             <CarouselItem
               key={name}
               className="md:basis-1/3 lg:basis-2/9 hover:scale-101 transition-all duration-300"
@@ -66,8 +71,15 @@ export default function TopDestinationsCarousel() {
                     height={300}
                     className="w-full object-cover h-36 max-md:h-72"
                   />
-                  <CardHeader className="text-center">
-                    <CardTitle className="text-md uppercase mt-4">{name}</CardTitle>
+                  <CardHeader className="flex items-center justify-center space-x-2">
+                    <Image
+                      src={`https://flagcdn.com/${code}.svg`}
+                      alt={`${name} flag`}
+                      width={48}
+                      height={32}
+                      className="object-cover mt-4 h-8 w-12"
+                    />
+                    <CardTitle className="text-md mt-4 uppercase">{name}</CardTitle>
                   </CardHeader>
                 </Link>
               </Card>

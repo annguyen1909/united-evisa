@@ -10,11 +10,10 @@ const armenia: Country = {
   flagUrl: '/images/country/armenia/armenia-square.png',
   imageUrl: '/images/country/armenia/armenia-bg.jpg',
   roundedFlagUrl: '/images/country/armenia/armenia-rounded.png',
-  description: `Armenia is a land of ancient monasteries, rugged mountains, and rich traditions. It is one of the world's oldest countries, with a unique alphabet and deep Christian heritage.`,
+  description: `Armenia eVisa is a single-entry electronic travel document for visitors to enter Armenia freely in an amount of time. This kind of eVisa was introduced and applied on January 1st, 2019 for a number of nationalities to obtain one in a few days. Travelers can use Armenia eVisa for different purposes including business and tourism.`,
   welcomeMessage: `Welcome to Armenia! Visit the ancient churches of Echmiadzin, hike the scenic trails of Dilijan, and explore the vibrant capital Yerevan. Experience Armenian hospitality and culture.`,
   welcomeImgUrl: '/images/country/armenia/armenia-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
@@ -29,6 +28,7 @@ const armenia: Country = {
         name: 'Tourist Evisa (Single Entry for 21 days)',
         type: 'Tourist Evisa',
         description: 'Single Entry for 21 days',
+        entry: 'Single Entry',
         visaDuration: '21 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
@@ -39,6 +39,7 @@ const armenia: Country = {
         name: 'Tourist Evisa (Single Entry for 120 days)',
         type: 'Tourist Evisa',
         description: 'Single Entry for 120 days',
+        entry: 'Single Entry',
         visaDuration: '120 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
@@ -47,6 +48,7 @@ const armenia: Country = {
       },
       {
         name: 'Business Evisa (Single Entry for 21 days)',
+        entry: 'Single Entry',
         type: 'Business Evisa',
         description: 'Single Entry for 21 days',
         visaDuration: '30 days',
@@ -57,6 +59,7 @@ const armenia: Country = {
       },
       {
         name: 'Business Evisa (Single Entry for 120 days)',
+        entry: 'Single Entry',
         type: 'Business Evisa',
         description: 'Single Entry for 120 days',
         visaDuration: '30 days',

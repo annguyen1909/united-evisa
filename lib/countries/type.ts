@@ -10,7 +10,6 @@ export type Country = {
   welcomeImgUrl?: string;
   region?: string;
   etaInfo: {
-    intro: string;
     processing: {
       summary: string;
       steps: string[];
@@ -19,6 +18,7 @@ export type Country = {
     visaTypes: {
       name: string;
       type: string;
+      entry: string;
       description: string;
       visaValidity: string;
       visaDuration: string;

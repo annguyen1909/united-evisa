@@ -97,7 +97,7 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
             >
                 <div className="w-full md:w-5/6 flex flex-col items-center">
                     <Image
-                        src={`${country.roundedFlagUrl}`}
+                        src={`https://hatscripts.github.io/circle-flags/flags/${country.code}.svg`}
                         alt={`${country.name} Flag`}
                         width={50}
                         height={50}
@@ -232,14 +232,19 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
                                             </div>
                                         ))}
                                     </div>
-
                                     {/* ETA INFORMATION */}
                                     <div className='flex flex-col gap-2 border-1 border-gray-200 rounded-lg p-4'>
                                         <h2 className='text-lg font-semibold'>ETA INFORMATION</h2>
                                         <ul className='list-disc list-inside'>
-                                            <li className='font-manrope'>Single Entry</li>
-                                            <li className='font-manrope'>Stay duration: {visa.visaDuration}</li>
-                                            <li className='font-manrope'>Government & Admin fee: US$ {visa.govFee.toFixed(2)}</li>
+                                            {visa.entry && (
+                                                <li className='font-manrope'>{visa.entry}</li>
+                                            )}
+                                            {visa.visaDuration && (
+                                                <li className='font-manrope'>Stay duration: {visa.visaDuration}</li>
+                                            )}
+                                            <li className='font-manrope'>
+                                                Government & Admin fee: US$ {visa.govFee.toFixed(2)}
+                                            </li>
                                             <li className='font-manrope'>
                                                 Service fee:
                                                 <button className="p-0 ml-2 bg-transparent border-none text-md underline text-blue-600 hover:text-blue-800 cursor-pointer">
@@ -248,10 +253,9 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
                                             </li>
                                         </ul>
                                     </div>
-
                                     {/* HOW TO APPLY */}
                                     <div id='steps' className='flex flex-col gap-2'>
-                                        <p className='font-semibold uppercase text-lg'>HOW TO APPLY FOR {country.name} {visa.type.toUpperCase()} ETA?</p>
+                                        <p className='font-semibold uppercase text-lg'>HOW TO APPLY FOR {country.name} {visa.type.toUpperCase()} ?</p>
                                         <p className='font-manrope mb-4'>
                                             Fantastic! {country.name} allows you to apply for an eTA (Electronic Travel Authorization) and now, you can easily apply for this eTA through our website following 3 simple steps below:
                                         </p>

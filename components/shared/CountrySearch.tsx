@@ -19,7 +19,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-import { COUNTRIES_DATA } from "@/lib/constants"
+import { COUNTRIES } from "@/lib/countries"
 
 interface CountrySearchProps {
   value: string
@@ -35,7 +35,7 @@ export default function CountrySearch({
   const [open, setOpen] = React.useState(false)
   const [query, setQuery] = React.useState("")
 
-  const filteredCountries = COUNTRIES_DATA.filter((country) =>
+  const filteredCountries = COUNTRIES.filter((country) =>
     country.name.toLowerCase().includes(query.toLowerCase())
   )
 
@@ -49,7 +49,7 @@ export default function CountrySearch({
           className="w-[470px] max-md:w-[270px] justify-between"
         >
           {value
-            ? COUNTRIES_DATA.find((c) => c.name === value)?.name
+            ? COUNTRIES.find((c) => c.name === value)?.name
             : placeholder}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>

@@ -1,8 +1,6 @@
-// lib/countries/kenya.ts
+import { Country } from "./type";
 
-import { Country } from "./type"; // optional type if you're using centralized types
-
-const unitedkingdom: Country = {
+const unitedKingdom: Country = {
   slug: 'united-kingdom',
   name: 'United Kingdom',
   code: 'gb',
@@ -10,51 +8,67 @@ const unitedkingdom: Country = {
   flagUrl: '/images/country/united-kingdom/united-kingdom-square.png',
   imageUrl: '/images/country/united-kingdom/united-kingdom-bg.jpg',
   roundedFlagUrl: '/images/country/united-kingdom/united-kingdom-rounded.png',
-  description: `A Vietnamese visa is a type of travel document issued by Vietnamese officials that allows you to travel to and enter Vietnam with tourism and business intentions.`,
-  welcomeMessage: `Vietnam - A captivating Southeast Asian country renowned for its breathtaking landscapes, rich history, and vibrant culture. Explore the bustling streets of Hanoi, the capital city, where traditional architecture blends with modern influences, and indulge in the flavors of Vietnamese street food. Immerse yourself in the natural beauty of Halong Bay, with its towering limestone islands and emerald waters, or venture into the lush rice terraces of Sapa. Discover the ancient wonders of Hue's Imperial City or the charming lantern-lit streets of Hoi An.`,
+  description: `In 2021, the United Kingdom introduced an eVisa system for travelers who require a visa to enter the country. The Electronic Travel Authorization (ETA) acts as a travel permit and is digitally linked to the traveler’s passport information.`,
+  welcomeMessage: `Welcome to the United Kingdom! Explore historic castles, world-class museums, and beautiful countryside.`,
   welcomeImgUrl: '/images/country/united-kingdom/united-kingdom-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
         'Fill in the online form on our website.',
-        'Pay the eTA fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eTA sent to your email.',
+        'Pay the eVisa fee online — via credit card, debit card, PayPal, or bank transfer.',
+        'Get your eVisa sent to your email.',
       ],
       urgentProcessing: 'As soon as 1 Day',
     },
     visaTypes: [
       {
-        type: 'Tourist ETA',
-        description: 'Single Entry for 90 days',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
+        name: 'Tourist Evisa (Single Entry for 6 months)',
+        type: 'Tourist Evisa',
+        description: 'Single Entry for 6 months',
+        entry: 'Single Entry',
+        visaDuration: '6 months',
+        visaValidity: '180 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 67,
+        allowedNationalities: ["AE", "BH", "KW", "OM", "QA", "SA"]
       },
       {
-        type: 'Business ETA',
-        description: 'Single Entry for 90 days',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
+        name: 'Business Evisa (Single Entry for 6 months)',
+        type: 'Business Evisa',
+        description: 'Single Entry for 6 months',
+        entry: 'Single Entry',
+        visaDuration: '6 months',
+        visaValidity: '180 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 67,
+        allowedNationalities: ["AE", "BH", "KW", "OM", "QA", "SA"]
       },
       {
-        type: 'Transit ETA',
-        description: 'Single Entry for 72 hours',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
+        name: 'Study Evisa (Single Entry for 6 months)',
+        type: 'Study Evisa',
+        description: 'Single Entry for 6 months',
+        entry: 'Single Entry',
+        visaDuration: '6 months',
+        visaValidity: '180 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 67,
+        allowedNationalities: ["AE", "BH", "KW", "OM", "QA", "SA"]
+      },
+      {
+        name: 'Medical Evisa Treatment (Single Entry for 6 months)',
+        type: 'Medical Evisa Treatment',
+        description: 'Single Entry for 6 months',
+        entry: 'Single Entry',
+        visaDuration: '6 months',
+        visaValidity: '180 days',
+        expectedProcessingTime: '2 days',
+        govFee: 67,
+        allowedNationalities: ["AE", "BH", "KW", "OM", "QA", "SA"]
       },
     ],
-    requiredFor: '194 nationalities are required to obtain a Tourist ETA.',
-    governmentFee: 95,
-    serviceFee: 'See more', // or use a number if fixed
+    serviceFee: 49.99,
   },
-
   visaServicePackage: [
     'Entry visa for a short period',
     'Application form filling assistance',
@@ -63,13 +77,6 @@ const unitedkingdom: Country = {
     '24/7 online support team for any issues',
     'Urgent case support, with added fees',
   ],
-
-  howToApply: [
-    'Fill in the online form on our website.',
-    'Pay the eTA fee online via credit card, debit card, PayPal, or bank transfer.',
-    'Get your eTA sent to your email.',
-  ],
-
   gvcSupport: {
     description: 'Apply Visa at GVC — with many years of experience, GVC simplifies the process.',
     services: [
@@ -81,49 +88,11 @@ const unitedkingdom: Country = {
     ],
     note: 'You can also apply on your own through the government website to save your budget.',
   },
-
-  recommendedInsurance: {
-    name: 'Covid-19 Insurance',
-    price: 299,
-    benefits: [
-      'Maximum Benefit up to US$ 50,000.00',
-      'Covering Covid-19 Treatment Expense',
-      'Medical Payments Coverage',
-      'Trip Delay, Trip Interruption, Lost Baggage',
-      'An advantage condition for your visa approval',
-    ],
-  },
-
   info: {
-    climate: 'Humid, tropical',
-    language: 'Vietnam, English',
-    currency: 'Vietnam Dong (VND)',
+    climate: 'Temperate, with mild summers and cool winters',
+    language: 'English',
+    currency: 'Pound Sterling (GBP)',
   },
-
-  visaTabs: [
-    {
-        value: "tourist",
-        color: "#065BB9",
-        title: "Tourism",
-        subtitle: "Single Entry for 90 days",
-        visaType: "Tourist ETA",
-    },
-    {
-        value: "business",
-        color: "#CB6601",
-        title: "Business",
-        subtitle: "Single Entry for 90 days",
-        visaType: "Business ETA",
-    },
-    {
-        value: "medical",
-        color: "#16610E",
-        title: "Medical",
-        subtitle: "Single Entry for 90 days",
-        visaType: "Medical ETA",
-    },
-  ],
-  eligibleCountries: ["AE", "BH", "KW", "OM", "QA", "SA"]
 };
 
-export default unitedkingdom;
+export default unitedKingdom

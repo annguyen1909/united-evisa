@@ -7,14 +7,13 @@ const kazakhstan: Country = {
   name: 'Kazakhstan',
   region: 'Asia Pacific',
   code: 'kz',
-  flagUrl:'/images/country/kazakhstan/kazakhstan-square.png',
+  flagUrl: '/images/country/kazakhstan/kazakhstan-square.png',
   imageUrl: '/images/country/kazakhstan/kazakhstan-bg.jpg',
   roundedFlagUrl: '/images/country/kazakhstan/kazakhstan-rounded.png',
-  description: `Kazakhstan is the world's largest landlocked country, known for its vast steppes, modern cities, and nomadic heritage. It offers a unique blend of ancient traditions and futuristic architecture.`,
+  description: `In 2019, the Government of Kazakhstan launched a streamlined and user-friendly electronic visa system for business, tourism, and medical travel. Citizens from 103 countries can obtain these e-visas via the migration service units under the Ministry of Internal Affairs. Entry and exit using an electronic visa are permitted only through designated checkpoints at Kazakhstan’s international airports.`,
   welcomeMessage: `Welcome to Kazakhstan! Discover the cosmopolitan city of Almaty, the futuristic capital of Astana (Nur-Sultan), and the breathtaking landscapes of the Altai Mountains and Charyn Canyon. Experience Kazakh hospitality and rich cultural traditions.`,
   welcomeImgUrl: '/images/country/kazakhstan/kazakhstan-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
@@ -26,35 +25,41 @@ const kazakhstan: Country = {
     },
     visaTypes: [
       {
-        type: 'Tourist ETA',
-        description: 'Single Entry for 90 days',
+        name: 'Tourist Evisa (Single Entry for 30 days)',
+        type: 'Tourist Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 90,
+        allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
       },
       {
-        type: 'Business ETA',
-        description: 'Single Entry for 90 days',
+        name: 'Tourist Evisa (Single Entry for 30 days)',
+        type: 'Tourist Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 110,
+        allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
       },
       {
-        type: 'Transit ETA',
-        description: 'Single Entry for 72 hours',
+        name: 'Treatment Evisa (Single Entry for 30 days)',
+        type: 'Treatment Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 110,
+        allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
       },
     ],
-    requiredFor: '194 nationalities are required to obtain a Tourist ETA.',
-    governmentFee: 95,
-    serviceFee: 'See more', // or use a number if fixed
+    serviceFee: 49.99, // or use a number if fixed
   },
-
   visaServicePackage: [
     'Entry visa for a short period',
     'Application form filling assistance',
@@ -63,13 +68,6 @@ const kazakhstan: Country = {
     '24/7 online support team for any issues',
     'Urgent case support, with added fees',
   ],
-
-  howToApply: [
-    'Fill in the online form on our website.',
-    'Pay the eTA fee online via credit card, debit card, PayPal, or bank transfer.',
-    'Get your eTA sent to your email.',
-  ],
-
   gvcSupport: {
     description: 'Apply Visa at GVC — with many years of experience, GVC simplifies the process.',
     services: [
@@ -81,49 +79,11 @@ const kazakhstan: Country = {
     ],
     note: 'You can also apply on your own through the government website to save your budget.',
   },
-
-  recommendedInsurance: {
-    name: 'Covid-19 Insurance',
-    price: 299,
-    benefits: [
-      'Maximum Benefit up to US$ 50,000.00',
-      'Covering Covid-19 Treatment Expense',
-      'Medical Payments Coverage',
-      'Trip Delay, Trip Interruption, Lost Baggage',
-      'An advantage condition for your visa approval',
-    ],
-  },
-
   info: {
     climate: 'Continental, with hot summers and cold winters',
     language: 'Kazakh, Russian',
     currency: 'Tenge (KZT)',
   },
-
-  visaTabs: [
-    {
-      value: "tourist",
-      color: "#065BB9",
-      title: "Tourism",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Tourist ETA",
-    },
-    {
-      value: "business",
-      color: "#CB6601",
-      title: "Business",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Business ETA",
-    },
-    {
-      value: "medical",
-      color: "#16610E",
-      title: "Medical",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Medical ETA",
-    },
-  ],
-  eligibleCountries: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
 };
 
 export default kazakhstan;

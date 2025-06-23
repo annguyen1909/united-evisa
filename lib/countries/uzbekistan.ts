@@ -1,60 +1,96 @@
-// lib/countries/kenya.ts
-
-import { Country } from "./type"; // optional type if you're using centralized types
+import { Country } from "./type";
 
 const uzbekistan: Country = {
   slug: 'uzbekistan',
   name: 'Uzbekistan',
   code: 'uz',
+  region: 'Middle East',
   flagUrl: '/images/country/uzbekistan/uzbekistan-square.png',
   imageUrl: '/images/country/uzbekistan/uzbekistan-bg.jpg',
   roundedFlagUrl: '/images/country/uzbekistan/uzbekistan-rounded.png',
-  region: 'Middle East',
-  description: `Uzbekistan is a Silk Road country known for its ancient cities, stunning Islamic architecture, and vibrant bazaars. It is a crossroads of cultures and history.`,
+  description: `The Uzbekistan eVisa system was introduced in July 2018 by the Uzbekistani government, allowing citizens of 101 countries to apply online. This digital visa is issued for purposes of tourism or business activities.`,
   welcomeMessage: `Welcome to Uzbekistan! Wander the blue-tiled streets of Samarkand, explore the old city of Bukhara, and experience the hospitality of the Uzbek people. Discover the legacy of the Silk Road.`,
   welcomeImgUrl: '/images/country/uzbekistan/uzbekistan-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
         'Fill in the online form on our website.',
-        'Pay the eTA fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eTA sent to your email.',
+        'Pay the eVisa fee online — via credit card, debit card, PayPal, or bank transfer.',
+        'Get your eVisa sent to your email.',
       ],
       urgentProcessing: 'As soon as 1 Day',
     },
     visaTypes: [
       {
-        type: 'Tourist ETA',
-        description: 'Single Entry for 90 days',
+        name: 'Tourist Evisa (Single Entry for 30 days)',
+        type: 'Tourist Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
         visaDuration: '30 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 50,
+        allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
       },
       {
-        type: 'Business ETA',
-        description: 'Single Entry for 90 days',
+        name: 'Tourist Evisa (Double Entries for 30 days)',
+        type: 'Tourist Evisa',
+        description: 'Double Entries for 30 days',
+        entry: 'Double Entries',
         visaDuration: '30 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 65,
+        allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
       },
       {
-        type: 'Transit ETA',
-        description: 'Single Entry for 72 hours',
+        name: 'Tourist Evisa (Multiple Entries for 30 days)',
+        type: 'Tourist Evisa',
+        description: 'Multiple Entries for 30 days',
+        entry: 'Multiple Entries',
         visaDuration: '30 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 80,
+        allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
+      },
+      {
+        name: 'Business Evisa (Single Entry for 30 days)',
+        type: 'Business Evisa',
+        description: 'Single Entry for 30 days',
+        entry: 'Single Entry',
+        visaDuration: '30 days',
+        visaValidity: '60 days',
+        expectedProcessingTime: '2 days',
+        govFee: 50,
+        allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
+      },
+      {
+        name: 'Business Evisa (Double Entries for 30 days)',
+        type: 'Business Evisa',
+        description: 'Double Entries for 30 days',
+        entry: 'Double Entries',
+        visaDuration: '30 days',
+        visaValidity: '60 days',
+        expectedProcessingTime: '2 days',
+        govFee: 65,
+        allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
+      },
+      {
+        name: 'Business Evisa (Multiple Entries for 30 days)',
+        type: 'Business Evisa',
+        description: 'Multiple Entries for 30 days',
+        entry: 'Multiple Entries',
+        visaDuration: '30 days',
+        visaValidity: '60 days',
+        expectedProcessingTime: '2 days',
+        govFee: 80,
+        allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
       },
     ],
-    requiredFor: '194 nationalities are required to obtain a Tourist ETA.',
-    governmentFee: 95,
-    serviceFee: 'See more', // or use a number if fixed
+    serviceFee: 49.99,
   },
-
   visaServicePackage: [
     'Entry visa for a short period',
     'Application form filling assistance',
@@ -63,13 +99,6 @@ const uzbekistan: Country = {
     '24/7 online support team for any issues',
     'Urgent case support, with added fees',
   ],
-
-  howToApply: [
-    'Fill in the online form on our website.',
-    'Pay the eTA fee online via credit card, debit card, PayPal, or bank transfer.',
-    'Get your eTA sent to your email.',
-  ],
-
   gvcSupport: {
     description: 'Apply Visa at GVC — with many years of experience, GVC simplifies the process.',
     services: [
@@ -81,49 +110,11 @@ const uzbekistan: Country = {
     ],
     note: 'You can also apply on your own through the government website to save your budget.',
   },
-
-  recommendedInsurance: {
-    name: 'Covid-19 Insurance',
-    price: 299,
-    benefits: [
-      'Maximum Benefit up to US$ 50,000.00',
-      'Covering Covid-19 Treatment Expense',
-      'Medical Payments Coverage',
-      'Trip Delay, Trip Interruption, Lost Baggage',
-      'An advantage condition for your visa approval',
-    ],
-  },
-
   info: {
     climate: 'Continental, with hot summers and cold winters',
     language: 'Uzbek',
     currency: 'Uzbekistani Som (UZS)',
   },
-
-  visaTabs: [
-    {
-      value: "tourist",
-      color: "#065BB9",
-      title: "Tourism",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Tourist ETA",
-    },
-    {
-      value: "business",
-      color: "#CB6601",
-      title: "Business",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Business ETA",
-    },
-    {
-      value: "medical",
-      color: "#16610E",
-      title: "Medical",
-      subtitle: "Single Entry for 90 days",
-      visaType: "Medical ETA",
-    },
-  ],
-  eligibleCountries: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
 };
 
-export default uzbekistan;
+export default uzbekistan

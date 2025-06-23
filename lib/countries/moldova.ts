@@ -7,14 +7,13 @@ const Moldova: Country = {
   name: 'Moldova',
   region: 'Europe',
   code: 'md',
-  flagUrl:'/images/country/moldova/moldova-square.png',
+  flagUrl: '/images/country/moldova/moldova-square.png',
   imageUrl: '/images/country/moldova/moldova-bg.jpg',
   roundedFlagUrl: '/images/country/moldova/moldova-rounded.png',
-  description: `A Vietnamese visa is a type of travel document issued by Vietnamese officials that allows you to travel to and enter Vietnam with tourism and business intentions.`,
-  welcomeMessage: `Vietnam - A captivating Southeast Asian country renowned for its breathtaking landscapes, rich history, and vibrant culture. Explore the bustling streets of Hanoi, the capital city, where traditional architecture blends with modern influences, and indulge in the flavors of Vietnamese street food. Immerse yourself in the natural beauty of Halong Bay, with its towering limestone islands and emerald waters, or venture into the lush rice terraces of Sapa. Discover the ancient wonders of Hue's Imperial City or the charming lantern-lit streets of Hoi An.`,
+  description: `The Moldova eVisa, introduced by the government in 2015, is a multi-entry electronic visa that permits eligible travelers to visit Moldova for tourism and business purposes.`,
+  welcomeMessage: `Moldova is a captivating Eastern European destination known for its scenic rural landscapes, rich winemaking traditions, and deep-rooted cultural heritage. Visitors can tour the country’s charming vineyards and sample its famous wines, while exploring Chisinau—the capital—renowned for its historic architecture, lively markets, and cultural institutions. Moldova offers a distinctive mix of Romanian and Russian influences that contribute to its unique character.`,
   welcomeImgUrl: '/images/country/moldova/moldova-welcome.jpg',
   etaInfo: {
-    intro: `In January 2024, The Kenya Government replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), for which citizens of all countries are eligible to apply.`,
     processing: {
       summary: 'Apply Online In 3 Steps',
       steps: [
@@ -26,33 +25,29 @@ const Moldova: Country = {
     },
     visaTypes: [
       {
-        type: 'Tourist ETA',
-        description: 'Single Entry for 90 days',
-        visaDuration: '30 days',
+        name: 'Tourist Evisa (Multiple Entries for 90 days)',
+        type: 'Tourist Evisa',
+        description: 'Multiple Entries for 90 days',
+        entry: 'Multiple Entries',
+        visaDuration: '90 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
+        govFee: 73,
+        allowedNationalities: ["AF", "AO", "BD", "BF", "BH", "BI", "BJ", "BO", "BT", "BW", "BZ", "CD", "CG", "CI", "CM", "CN", "CV", "DJ", "DM", "DZ", "EG", "ER", "ET", "FJ", "GA", "GH", "GM", "GN", "GQ", "GW", "GY", "HK", "HT", "HU", "ID", "IN", "IQ", "IR", "JM", "JO", "KE", "KH", "KM", "KP", "KW", "LA", "LB", "LK", "LR", "LS", "MA", "MG", "ML", "MN", "MR", "MV", "MW", "MZ", "NA", "NE", "NG", "NP", "NR", "OM", "PG", "PH", "PK", "PS", "QA", "RW", "SA", "SL", "SN", "SO", "SR", "ST", "SY", "SZ", "TD", "TG", "TH", "TM", "TN", "TZ", "UG", "VN", "YE", "ZA", "ZM", "ZW"]
       },
       {
-        type: 'Business ETA',
-        description: 'Single Entry for 90 days',
-        visaDuration: '30 days',
+        name: 'Business Evisa (Multiple Entries for 90 days)',
+        type: 'Business Evisa',
+        description: 'Multiple Entries for 90 days',
+        entry: 'Multiple Entries',
+        visaDuration: '90 days',
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
-        govFee: 12
-      },
-      {
-        type: 'Transit ETA',
-        description: 'Single Entry for 72 hours',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
-        expectedProcessingTime: '2 days',
-        govFee: 12
-      },
+        govFee: 73,
+        allowedNationalities: ["AF", "AO", "BD", "BF", "BH", "BI", "BJ", "BO", "BT", "BW", "BZ", "CD", "CG", "CI", "CM", "CN", "CV", "DJ", "DM", "DZ", "EG", "ER", "ET", "FJ", "GA", "GH", "GM", "GN", "GQ", "GW", "GY", "HK", "HT", "HU", "ID", "IN", "IQ", "IR", "JM", "JO", "KE", "KH", "KM", "KP", "KW", "LA", "LB", "LK", "LR", "LS", "MA", "MG", "ML", "MN", "MR", "MV", "MW", "MZ", "NA", "NE", "NG", "NP", "NR", "OM", "PG", "PH", "PK", "PS", "QA", "RW", "SA", "SL", "SN", "SO", "SR", "ST", "SY", "SZ", "TD", "TG", "TH", "TM", "TN", "TZ", "UG", "VN", "YE", "ZA", "ZM", "ZW"]
+      }
     ],
-    requiredFor: '194 nationalities are required to obtain a Tourist ETA.',
-    governmentFee: 95,
-    serviceFee: 'See more', // or use a number if fixed
+    serviceFee: 49.99, // or use a number if fixed
   },
 
   visaServicePackage: [
@@ -63,13 +58,6 @@ const Moldova: Country = {
     '24/7 online support team for any issues',
     'Urgent case support, with added fees',
   ],
-
-  howToApply: [
-    'Fill in the online form on our website.',
-    'Pay the eTA fee online via credit card, debit card, PayPal, or bank transfer.',
-    'Get your eTA sent to your email.',
-  ],
-
   gvcSupport: {
     description: 'Apply Visa at GVC — with many years of experience, GVC simplifies the process.',
     services: [
@@ -81,49 +69,11 @@ const Moldova: Country = {
     ],
     note: 'You can also apply on your own through the government website to save your budget.',
   },
-
-  recommendedInsurance: {
-    name: 'Covid-19 Insurance',
-    price: 299,
-    benefits: [
-      'Maximum Benefit up to US$ 50,000.00',
-      'Covering Covid-19 Treatment Expense',
-      'Medical Payments Coverage',
-      'Trip Delay, Trip Interruption, Lost Baggage',
-      'An advantage condition for your visa approval',
-    ],
-  },
-
   info: {
-    climate: 'Humid, tropical',
-    language: 'Vietnam, English',
-    currency: 'Vietnam Dong (VND)',
+    climate: 'Temperate, continental',
+    language: 'Moldovan, Russian, English',
+    currency: 'Mondovan Leu (MDL)',
   },
-
-  visaTabs: [
-    {
-        value: "tourist",
-        color: "#065BB9",
-        title: "Tourism",
-        subtitle: "Single Entry for 90 days",
-        visaType: "Tourist ETA",
-    },
-    {
-        value: "business",
-        color: "#CB6601",
-        title: "Business",
-        subtitle: "Single Entry for 90 days",
-        visaType: "Business ETA",
-    },
-    {
-        value: "medical",
-        color: "#16610E",
-        title: "Medical",
-        subtitle: "Single Entry for 90 days",
-        visaType: "Medical ETA",
-    },
-  ],
-  eligibleCountries: ["AF", "AO", "BD", "BF", "BH", "BI", "BJ", "BO", "BT", "BW", "BZ", "CD", "CG", "CI", "CM", "CN", "CV", "DJ", "DM", "DZ", "EG", "ER", "ET", "FJ", "GA", "GH", "GM", "GN", "GQ", "GW", "GY", "HK", "HT", "HU", "ID", "IN", "IQ", "IR", "JM", "JO", "KE", "KH", "KM", "KP", "KW", "LA", "LB", "LK", "LR", "LS", "MA", "MG", "ML", "MN", "MR", "MV", "MW", "MZ", "NA", "NE", "NG", "NP", "NR", "OM", "PG", "PH", "PK", "PS", "QA", "RW", "SA", "SL", "SN", "SO", "SR", "ST", "SY", "SZ", "TD", "TG", "TH", "TM", "TN", "TZ", "UG", "VN", "YE", "ZA", "ZM", "ZW"]
 };
 
 export default Moldova;

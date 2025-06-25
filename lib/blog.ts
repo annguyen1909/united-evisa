@@ -5,6 +5,7 @@ import { remark } from "remark";
 import remarkRehype from "remark-rehype";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm"; // <-- Add this import
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -34,7 +35,9 @@ export function getAllPosts(): BlogPostMeta[] {
     });
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPostMeta & { contentHtml: string } | null> {
+export async function getPostBySlug(
+  slug: string
+): Promise<(BlogPostMeta & { contentHtml: string }) | null> {
   const filePath = path.join(postsDirectory, `${slug}.md`);
   if (!fs.existsSync(filePath)) return null;
 
@@ -42,6 +45,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPostMeta & { cont
   const { data, content } = matter(fileContents);
 
   const processedContent = await remark()
+    .use(remarkGfm) // <-- Add this line
     .use(remarkRehype)
     .use(rehypeSlug) // Adds IDs to headings like <h2 id="your-heading">
     .use(rehypeStringify)

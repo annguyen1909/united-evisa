@@ -2,32 +2,17 @@
 
 import { useState } from "react";
 import CountrySearch from "@/components/shared/CountrySearch";
-import VisaFeeCalculator from "@/components/shared/VisaFeeCalculator";
-import { COUNTRIES } from "@/lib/countries"; // Refactored country data with visaTypes
+import { COUNTRIES } from "@/lib/countries";
 import CustomAccordion from "@/components/shared/CustomAccordion";
 import { Button } from "@/components/ui/button";
 import FeeGuarantee from "../components/FeeGuarantee";
 import CustomerSupport from "../components/CustomerSupport";
-
-type VisaType = {
-  type: "Tourist" | "Business" | "Transit" | string;
-  govFee: number;
-  serviceFee: number;
-  description?: string;
-  duration?: string;
-};
-
-type Country = {
-  code: string;
-  name: string;
-  flag: string;
-  visaTypes: VisaType[];
-};
+import { Country } from "@/lib/countries/type"; // Use your type definition
 
 export default function PricingPage() {
   const [searchCountry, setSearchCountry] = useState("");
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
-  const [showCalculator, setShowCalculator] = useState(false);
+  const [showFee, setShowFee] = useState(false);
 
   function handleCheckNow() {
     const inputLower = searchCountry?.toLowerCase?.() || "";
@@ -35,13 +20,14 @@ export default function PricingPage() {
       (country) => country.name.toLowerCase() === inputLower
     );
     if (foundCountry) {
-      setShowCalculator(true);
+      setShowFee(true);
       setSelectedCountry(foundCountry ?? null);
     } else {
-      setShowCalculator(false);
+      setShowFee(false);
       alert("Please select a valid country from the list");
     }
   }
+
   const accordionItems = COUNTRIES.map((country) => ({
     id: country.code,
     trigger: (
@@ -67,14 +53,13 @@ export default function PricingPage() {
               eVisa.
             </p>
           </div>
-          {country.visaTypes.map((visa) => (
-            <div key={visa.type}>
+          {country.etaInfo?.visaTypes?.map((visa) => (
+            <div key={visa.name}>
               <p className="font-semibold text-xl mb-1 text-[#16610E]">
-                {visa.type} eVisa {visa.description ? `– ${visa.description}` : ""}
+                {visa.type} {visa.description ? `– ${visa.description}` : ""}
               </p>
-              <p>Government Fee: US ${visa.govFee.toFixed(2)}</p>
-              <p>Service Fee: US ${visa.serviceFee.toFixed(2)}</p>
-              {visa.duration && <p>Duration: {visa.duration}</p>}
+              <p>Government Fee: US ${visa.govFee?.toFixed(2) ?? "N/A"}</p>
+              {visa.visaDuration && <p>Duration: {visa.visaDuration}</p>}
             </div>
           ))}
 
@@ -110,17 +95,18 @@ export default function PricingPage() {
             </ul>
           </div>
 
-          <Button
-            className="w-full bg-[#16610E] text-white font-semibold rounded-lg py-2 mt-4 hover:bg-[#16610E]/90 transition"
-            onClick={() => alert(`Apply Now for ${country.name}`)}
-          >
-            Apply Now
-          </Button>
+          <div className="flex justify-center">
+            <Button
+              className="w-1/3 bg-[#16610E] text-white text-xl font-semibold rounded-lg py-6 mt-4 hover:bg-[#16610E]/90 transition"
+              onClick={() => alert(`Apply Now for ${country.name}`)}
+            >
+              Apply Now
+            </Button>
+          </div>
         </div>
       </div>
     ),
   }));
-
   return (
     <main className="w-full mx-auto py-12">
       {/* Hero Section */}
@@ -162,9 +148,40 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Visa Fee Calculator */}
-      {showCalculator && selectedCountry && (
-        <VisaFeeCalculator country={selectedCountry} />
+      {/* Fee Display */}
+      {showFee && selectedCountry && (
+        <section className="max-w-2xl mx-auto my-8">
+          <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-6 text-base sm:text-lg font-manrope text-gray-800">
+            <div className="flex items-center gap-4 mb-4">
+              <img
+                src={`https://flagcdn.com/${selectedCountry.code.toLowerCase()}.svg`}
+                alt={selectedCountry.name}
+                className="w-12 h-8 object-contain"
+              />
+              <h2 className="text-2xl font-bold text-[#16610E]">{selectedCountry.name}</h2>
+            </div>
+            <div>
+              <p className="font-semibold text-xl mb-1 text-[#16610E]">
+                Government & Admin Fee
+              </p>
+              <p>
+                The Government & Admin Fee is an obligated fee, which is the amount
+                that the applicant has to pay for the Immigration Department to process
+                eVisa.
+              </p>
+            </div>
+            {selectedCountry.etaInfo?.visaTypes?.map((visa) => (
+              <div key={visa.type} className="mt-4">
+                <p className="font-semibold text-lg mb-1 text-[#16610E]">
+                  {visa.type} {visa.description ? `– ${visa.description}` : ""}
+                </p>
+                <p>Government Fee: US ${visa.govFee?.toFixed(2) ?? "N/A"}</p>
+                <p>Service Fee: US ${selectedCountry.etaInfo?.serviceFee?.toFixed(2) ?? "N/A"}</p>
+                {visa.visaDuration && <p>Duration: {visa.visaDuration}</p>}
+              </div>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* Accordion Section */}

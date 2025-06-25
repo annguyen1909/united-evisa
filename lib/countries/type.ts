@@ -1,4 +1,5 @@
 export type Country = {
+  visaTypes: any;
   slug: string;
   name: string;
   code: string;
@@ -26,7 +27,7 @@ export type Country = {
       govFee: number;
       allowedNationalities: string[];
     }[];
-    serviceFee: string | number;
+    serviceFee: number;
   };
   visaServicePackage: string[];
   gvcSupport: {

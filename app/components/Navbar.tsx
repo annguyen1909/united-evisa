@@ -16,7 +16,7 @@ import {
 const navItems = [
   { label: "Get Your eVisa", href: "/apply" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Info Center", href: "/" },
+  { label: "Info Center", href: "/blog" },
   { label: "Contact Our Expert", href: "/" },
 ];
 

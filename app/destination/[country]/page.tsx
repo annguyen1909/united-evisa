@@ -69,7 +69,8 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out -z-10"
                     style={{ backgroundImage: `url(/images/country/${country.name}/${country.name}-bg.jpg)` }}
                 />
-
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/20 -z-10" />
                 <div className="flex flex-col max-w-5xl md:max-w-7xl w-2/3 max-md:items-center gap-2">
                     <Image
                         src={`https://flagcdn.com/${country.code}.svg`}

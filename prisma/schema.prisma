@@ -33,7 +33,7 @@ model Account {
 }
 
 model Application {
-  id        String   @id @default(uuid())
+  id                  String                @id @default(uuid())
   destinationId       String
   visaTypeId          String
   status              String
@@ -57,10 +57,10 @@ model Application {
   ApplicationDocument ApplicationDocument[]
   CardHolder          CardHolder?
   Case                Case[]
+  CustomRequirement   CustomRequirement[]
   Passenger           Passenger[]
   Risk                Risk[]
   StripeActivity      StripeActivity[]
-  Task                Task[]
 
   @@index([applicationId])
 }
@@ -76,10 +76,13 @@ model ApplicationDocument {
   uploadedBy      String?
   createdAt       DateTime         @default(now())
   updatedAt       DateTime
+  caseId          String?
   Application     Application      @relation(fields: [applicationId], references: [id])
+  Case            Case?            @relation(fields: [caseId], references: [id])
   DocumentMapping DocumentMapping?
 
   @@index([applicationId])
+  @@index([caseId])
 }
 
 model Attachment {
@@ -105,22 +108,23 @@ model CardHolder {
 }
 
 model Case {
-  id               String        @id
-  gmailThreadId    String?       @unique
-  email            String
-  subject          String
-  status           String        @default("Open")
-  lastUpdate       DateTime      @default(now())
-  websiteCreatedAt String
-  accountId        String?
-  applicationId    String?
-  assignedTo       String?
-  topic            String?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime
-  Account          Account?      @relation(fields: [accountId], references: [id])
-  Application      Application?  @relation(fields: [applicationId], references: [id])
-  EmailThread      EmailThread[]
+  id                  String                @id
+  gmailThreadId       String?               @unique
+  email               String
+  subject             String
+  status              String                @default("Open")
+  lastUpdate          DateTime              @default(now())
+  websiteCreatedAt    String
+  accountId           String?
+  applicationId       String?
+  assignedTo          String?
+  topic               String?
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime
+  ApplicationDocument ApplicationDocument[]
+  Account             Account?              @relation(fields: [accountId], references: [id])
+  Application         Application?          @relation(fields: [applicationId], references: [id])
+  EmailThread         EmailThread[]
 
   @@index([assignedTo])
   @@index([email])
@@ -135,11 +139,12 @@ model CaseSequence {
 }
 
 model CustomRequirement {
-  id            String   @id
+  id            String      @id
   applicationId String
   passengerId   String
   title         String
-  createdAt     DateTime @default(now())
+  createdAt     DateTime    @default(now())
+  Application   Application @relation(fields: [applicationId], references: [id])
 }
 
 model Destination {
@@ -159,6 +164,7 @@ model DocumentMapping {
   isInvalid           Boolean             @default(false)
   createdAt           DateTime            @default(now())
   updatedAt           DateTime
+  mappedAtStatus      String?
   ApplicationDocument ApplicationDocument @relation(fields: [documentId], references: [id])
 
   @@index([documentId])
@@ -200,19 +206,16 @@ model Passenger {
   id             String      @id
   applicationId  String
   createdAt      DateTime    @default(now())
-  name           String?
   passportNumber String?
   updatedAt      DateTime?
   dateOfBirth    DateTime?
   fullName       String?
   gender         String?
   nationality    String?
-  passportId     String?
   status         String?
   Application    Application @relation(fields: [applicationId], references: [id])
 
   @@index([fullName])
-  @@index([passportId])
 }
 
 model Risk {
@@ -281,14 +284,16 @@ model Task {
   dueDate         DateTime?
   taskType        String?
   status          String         @default("Active")
-  applicationId   String
   createdAt       DateTime       @default(now())
   updatedAt       DateTime
   taskId          String         @unique
-  Application     Application    @relation(fields: [applicationId], references: [id])
+  entityType      String?
+  entityId        String?
+  submittedBy     String         @default("ee397d6b-60aa-447f-afde-94446e32b0f5")
   TaskActivity    TaskActivity[]
 
-  @@index([applicationId])
+  @@index([entityType, entityId])
+  @@index([entityType])
 }
 
 model TaskActivity {
@@ -342,4 +347,26 @@ model sessions {
   expiresAt DateTime
   createdAt DateTime @default(now())
   Account   Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
+}
+
+model WebsiteHealthCheck {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  url       String
+  status    String
+  code      Int?
+  latency   Int?
+  checkedAt DateTime @default(now()) @db.Timestamptz(6)
+  error     String?
+}
+
+model systemhealthincident {
+  id           Int       @id @default(autoincrement())
+  service_name String    @db.VarChar(255)
+  incident_id  String    @db.VarChar(255)
+  started_at   DateTime  @default(now()) @db.Timestamp(6)
+  resolved_at  DateTime? @db.Timestamp(6)
+  last_status  String    @db.VarChar(16)
+
+  @@unique([service_name, incident_id])
 }

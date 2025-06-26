@@ -5,7 +5,11 @@ import { COUNTRIES } from "@/lib/countries";
 import { Country } from "@/lib/countries/type";
 import { useRouter } from "next/navigation";
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar"; // shadcn calendar
 import moment from "moment";
 import {
@@ -15,7 +19,6 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -27,55 +30,66 @@ export default function ApplyPage() {
   const [stayingStart, setStayingStart] = useState("");
   const [stayingEnd, setStayingEnd] = useState("");
   const [formValid, setFormValid] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const newErrors: { [key: string]: string } = {};
 
-    if (!selectedCountry || !selectedVisaType) {
-      alert("Please select a country and visa type.");
-      return;
-    }
+    if (!selectedCountry) newErrors.country = "Please select a country.";
+    if (!selectedVisaType) newErrors.visaType = "Please select a visa type.";
+    if (!passengerCount)
+      newErrors.passengerCount = "Please select passenger count.";
+    if (!stayingStart) newErrors.stayingStart = "Please select start date.";
+    if (!stayingEnd) newErrors.stayingEnd = "Please select end date.";
 
-    const visa = selectedCountry.etaInfo.visaTypes.find((v) => v.name === selectedVisaType);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
+
+    const visa = selectedCountry?.etaInfo.visaTypes.find(
+      (v) => v.name === selectedVisaType
+    );
     if (!visa) {
-      alert("Invalid visa type selected.");
+      setErrors({ visaType: "Invalid visa type selected." });
       return;
     }
-    router.push("/apply/passengers");
-    const res = await fetch("/api/apply", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        destinationId: selectedCountry.code,
-        visaTypeId: visa.type,
-        passengerCount: Number(passengerCount),
+
+    // Save to sessionStorage
+    sessionStorage.setItem(
+      "evisa-apply-step1",
+      JSON.stringify({
+        selectedCountry,
+        selectedVisaType,
+        passengerCount,
         stayingStart,
         stayingEnd,
-      }),
-    });
-
-    const data = await res.json();
-    if (res.ok) {
-      alert(`Application submitted: ${data.application.applicationId}`);
-    } else {
-      alert(data.error || "Something went wrong");
-    }
+      })
+    );
+    router.push(`/apply/passengers?count=${passengerCount}`);
   };
 
-
   return (
-    <div className="min-h-screen justify-center py-10 px-4">
-      <h1 className="text-2xl font-bold text-center text-[#16610E]">Apply for Your eVisa</h1>
+    <div className="min-h-screen justify-center pb-10 px-4">
+      <h1 className="text-2xl font-bold text-center text-[#16610E]">
+        Apply for Your eVisa
+      </h1>
       <div className="max-w-3xl p-4 lg:max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8">
-        <form onSubmit={handleSubmit} className="space-y-4 col-span-3 border bg-white rounded-lg p-4 shadow-sm">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 col-span-3 border bg-white rounded-lg p-4 shadow-sm"
+        >
           {/* Country */}
           <div>
-            <label className="block font-medium mb-1">Destination Country</label>
+            <label className="block font-medium mb-1">
+              Destination Country
+            </label>
             <Select
               onValueChange={(code) => {
                 const country = COUNTRIES.find((c) => c.code === code);
                 setSelectedCountry(country || null);
                 setSelectedVisaType("");
+                setErrors((prev) => ({ ...prev, country: "" }));
               }}
             >
               <SelectTrigger className="w-full">
@@ -89,6 +103,9 @@ export default function ApplyPage() {
                 ))}
               </SelectContent>
             </Select>
+            {errors.country && (
+              <p className="text-red-600 text-xs mt-1">{errors.country}</p>
+            )}
           </div>
 
           {/* Visa Type */}
@@ -97,7 +114,10 @@ export default function ApplyPage() {
               <label className="block font-medium mb-1">Visa Type</label>
               <Select
                 value={selectedVisaType}
-                onValueChange={(v) => setSelectedVisaType(v)}
+                onValueChange={(v) => {
+                  setSelectedVisaType(v);
+                  setErrors((prev) => ({ ...prev, visaType: "" }));
+                }}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a visa type" />
@@ -110,79 +130,123 @@ export default function ApplyPage() {
                   ))}
                 </SelectContent>
               </Select>
+              {errors.visaType && (
+                <p className="text-red-600 text-xs mt-1">{errors.visaType}</p>
+              )}
             </div>
           )}
 
           {/* Passenger Count */}
           <div>
             <label className="block font-medium mb-1">Passenger Count</label>
-            <Input
-              type="number"
+            <Select
               value={passengerCount}
-              onChange={(e) => setPassengerCount(e.target.value)}
-              min={1}
-              required
-            />
+              onValueChange={(v) => {
+                setPassengerCount(v);
+                setErrors((prev) => ({ ...prev, passengerCount: "" }));
+              }}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select number of passengers" />
+              </SelectTrigger>
+              <SelectContent>
+                {Array.from({ length: 15 }, (_, i) => (
+                  <SelectItem key={i + 1} value={String(i + 1)}>
+                    {i + 1}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.passengerCount && (
+              <p className="text-red-600 text-xs mt-1">
+                {errors.passengerCount}
+              </p>
+            )}
           </div>
-          <label className="block font-medium mb-1">Staying Until</label>
+
           {/* Dates */}
+          <label className="block font-medium mb-1">Staying Until</label>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
-            <Popover>
-              <PopoverTrigger asChild>
-                <button
-                  type="button"
-                  className={cn(
-                    "w-full flex items-center justify-between rounded-md border px-3 py-2 bg-background text-left text-sm shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
-                    !stayingStart && "text-muted-foreground"
-                  )}
+            <div>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className={cn(
+                      "w-full flex items-center justify-between rounded-md border px-3 py-2 bg-background text-left text-sm shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+                      !stayingStart && "text-muted-foreground"
+                    )}
+                  >
+                    {stayingStart
+                      ? moment(stayingStart).format("DD/MM/YYYY")
+                      : "Select date"}
+                    <CalendarIcon className="ml-2 h-4 w-4 text-muted-foreground" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto p-0"
+                  align="start"
+                  sideOffset={8}
                 >
-                  {stayingStart
-                    ? moment(stayingStart).format("DD/MM/YYYY")
-                    : "Select date"}
-                  <CalendarIcon className="ml-2 h-4 w-4 text-muted-foreground" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start" sideOffset={8}>
-                <Calendar
-                  mode="single"
-                  selected={stayingStart ? new Date(stayingStart) : undefined}
-                  onSelect={(date) =>
-                    setStayingStart(date ? moment(date).format("YYYY-MM-DD") : "")
-                  }
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
-            <Popover>
-              <PopoverTrigger asChild>
-                <button
-                  type="button"
-                  className={cn(
-                    "w-full flex items-center justify-between rounded-md border px-3 py-2 bg-background text-left text-sm shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
-                    !stayingEnd && "text-muted-foreground"
-                  )}
+                  <Calendar
+                    mode="single"
+                    selected={stayingStart ? new Date(stayingStart) : undefined}
+                    onSelect={(date) =>
+                      setStayingStart(
+                        date ? moment(date).format("YYYY-MM-DD") : ""
+                      )
+                    }
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+              {errors.stayingStart && (
+                <p className="text-red-600 text-xs mt-1">
+                  {errors.stayingStart}
+                </p>
+              )}
+            </div>
+            <div>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className={cn(
+                      "w-full flex items-center justify-between rounded-md border px-3 py-2 bg-background text-left text-sm shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+                      !stayingEnd && "text-muted-foreground"
+                    )}
+                  >
+                    {stayingEnd
+                      ? moment(stayingEnd).format("DD/MM/YYYY")
+                      : "Select date"}
+                    <CalendarIcon className="ml-2 h-4 w-4 text-muted-foreground" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto p-0"
+                  align="start"
+                  sideOffset={8}
                 >
-                  {stayingEnd
-                    ? moment(stayingEnd).format("DD/MM/YYYY")
-                    : "Select date"}
-                  <CalendarIcon className="ml-2 h-4 w-4 text-muted-foreground" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start" sideOffset={8}>
-                <Calendar
-                  mode="single"
-                  selected={stayingEnd ? new Date(stayingEnd) : undefined}
-                  onSelect={(date) =>
-                    setStayingEnd(date ? moment(date).format("YYYY-MM-DD") : "")
-                  }
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
+                  <Calendar
+                    mode="single"
+                    selected={stayingEnd ? new Date(stayingEnd) : undefined}
+                    onSelect={(date) =>
+                      setStayingEnd(
+                        date ? moment(date).format("YYYY-MM-DD") : ""
+                      )
+                    }
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+              {errors.stayingEnd && (
+                <p className="text-red-600 text-xs mt-1">{errors.stayingEnd}</p>
+              )}
+            </div>
             {selectedCountry && (
               <div className="col-span-full flex items-start bg-white rounded-md">
                 <div className="text-sm text-black italic whitespace-pre-line">
-                  `Time at ${selectedCountry.name} Date: ---`
+                  {`Time at ${selectedCountry.name} Date: ---`}
                 </div>
               </div>
             )}
@@ -192,31 +256,45 @@ export default function ApplyPage() {
             type="submit"
             className="bg-[#16610E] hover:bg-[#16610E]/80 text-white w-full mt-6"
           >
-            Submit Application
+            Approve to next step
           </Button>
         </form>
 
         {/* Order Summary Card */}
         <div className="bg-white border rounded-lg p-4 max-md:col-span-3 col-span-2 shadow-sm space-y-2 h-fit w-full max-w-xl max-md:max-w-2xl mx-auto">
-          <h2 className="text-lg font-semibold mb-2 text-center">Order Summary</h2>
+          <h2 className="text-lg font-semibold mb-2 text-center">
+            Order Summary
+          </h2>
 
           {(() => {
             const destination = selectedCountry?.name ?? "---";
 
-            const visa = selectedCountry?.etaInfo.visaTypes.find((v) => v.name === selectedVisaType);
+            const visa = selectedCountry?.etaInfo.visaTypes.find(
+              (v) => v.name === selectedVisaType
+            );
             const visaName = visa?.name ?? "---";
             const govFee = visa?.govFee ?? 0;
-            const serviceFee = selectedCountry ? Number(selectedCountry.etaInfo.serviceFee) : 0;
+            const serviceFee = selectedCountry
+              ? Number(selectedCountry.etaInfo.serviceFee)
+              : 0;
             const passenger = Number(passengerCount) || 1;
             const total = visa ? (govFee + serviceFee) * passenger : 0;
 
             const isDateValid = stayingStart && stayingEnd;
-            const formattedStart = isDateValid ? moment(stayingStart).format("DD/MM/YYYY") : "---";
-            const formattedEnd = isDateValid ? moment(stayingEnd).format("DD/MM/YYYY") : "---";
+            const formattedStart = isDateValid
+              ? moment(stayingStart).format("DD/MM/YYYY")
+              : "---";
+            const formattedEnd = isDateValid
+              ? moment(stayingEnd).format("DD/MM/YYYY")
+              : "---";
             const durationInMs = isDateValid
-              ? new Date(stayingEnd).getTime() - new Date(stayingStart).getTime()
+              ? new Date(stayingEnd).getTime() -
+                new Date(stayingStart).getTime()
               : null;
-            const days = durationInMs !== null ? Math.floor(durationInMs / (1000 * 60 * 60 * 24)) : "---";
+            const days =
+              durationInMs !== null
+                ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
+                : "---";
 
             return (
               <div className="text-sm rounded-xl bg-white space-y-4">
@@ -228,7 +306,9 @@ export default function ApplyPage() {
                   </div>
                   <div className="text-right">
                     <p className="font-semibold">Staying Time</p>
-                    <p className="text-gray-700">{formattedStart} - {formattedEnd}</p>
+                    <p className="text-gray-700">
+                      {formattedStart} - {formattedEnd}
+                    </p>
                     <p className="text-xs text-gray-700">({days} days)</p>
                   </div>
                 </div>
@@ -246,11 +326,15 @@ export default function ApplyPage() {
                   <p className="font-semibold">Visa Fees</p>
                   <div className="flex justify-between">
                     <p className="text-gray-700">Government Fee</p>
-                    <p className="text-gray-700">{visa ? `$${govFee.toFixed(2)}` : "---"}</p>
+                    <p className="text-gray-700">
+                      {visa ? `$${govFee.toFixed(2)}` : "---"}
+                    </p>
                   </div>
                   <div className="flex justify-between">
                     <p className="text-gray-700">Visa Fee</p>
-                    <p className="text-gray-700">{selectedCountry ? `$${serviceFee.toFixed(2)}` : "---"}</p>
+                    <p className="text-gray-700">
+                      {selectedCountry ? `$${serviceFee.toFixed(2)}` : "---"}
+                    </p>
                   </div>
                 </div>
 
@@ -258,7 +342,9 @@ export default function ApplyPage() {
 
                 {/* Total */}
                 <div className="flex justify-between items-center">
-                  <p className="text-base font-semibold text-green-800">Total Fees</p>
+                  <p className="text-base font-semibold text-green-800">
+                    Total Fees
+                  </p>
                   <p className="text-base font-bold text-green-800">
                     {visa ? `$${total.toFixed(2)}` : "---"}
                   </p>
@@ -268,6 +354,6 @@ export default function ApplyPage() {
           })()}
         </div>
       </div>
-    </div >
+    </div>
   );
 }

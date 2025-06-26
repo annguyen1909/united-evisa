@@ -16,7 +16,7 @@ interface Post {
   tags: string[];
 }
 
-const BLOGS_PER_PAGE = 10;
+const BLOGS_PER_PAGE = 13;
 
 export default function BlogSearch({ posts }: { posts: Post[] }) {
   const router = useRouter();
@@ -60,7 +60,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
   }, [query, filtered.length]);
 
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative w-full">
       <div className="relative w-full h-48 sm:h-64 flex items-center justify-center mb-2 max-md:mb-0 overflow-hidden shadow-sm">
         <img
           src="/images/faq/faq-bg.jpg" // <-- Place your image in public/images/faq-bg.jpg or adjust the path
@@ -117,10 +117,10 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                   <Card className="relative w-full max-w-3xl mx-auto p-0 cursor-pointer bg-white/80 shadow-sm rounded-md border border-primary/20 hover:scale-[1.01] hover:shadow-lg transition-all overflow-hidden min-h-0">
                     {/* Subtle, small gradient bar */}
                     <div className="absolute left-0 top-0 h-2.5 w-32 bg-gradient-to-r from-[#16601E]/90 to-[#16601E]/70 rounded-tl-md rounded-br-md" />
-                    <CardContent className="flex flex-col gap-2 p-5 pt-5 pr-16 relative">
-                      <h3 className="text-lg font-semibold text-primary transition-colors duration-300 group-hover:text-[#16601E] line-clamp-2">
+                    <CardContent className="flex flex-col gap-2 p-4.5 pr-16 relative">
+                        <h3 className="text-md relative top-1 font-medium text-primary transition-colors duration-300 group-hover:text-[#16601E] line-clamp-2">
                         {post.title}
-                      </h3>
+                        </h3>
                       {/* Arrow Icon */}
                       <span className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center">
                         <svg
@@ -147,7 +147,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
           {/* Pagination Controls */}
           {totalPages > 1 && (
             <nav
-              className="flex flex-wrap justify-center items-center gap-2 pt-8"
+              className="flex flex-wrap justify-center items-center gap-2"
               aria-label="Pagination"
             >
               <Button

@@ -56,7 +56,7 @@ export default function Navbar() {
                 <NavigationMenuLink
                   href={item.href}
                   className="relative flex items-center h-full w-full cursor-pointer transition-all duration-300 bg-white
-            before:absolute before:inset-0 before:bg-[#16610E] rounded-none
+            before:absolute before:inset-0 before:bg-[#16610E] rounded-sm
             before:w-0 before:h-full before:transition-all before:duration-300 before:z-0 before:pointer-events-none 
             hover:before:w-full hover:text-white overflow-hidden"
                   style={{ minHeight: "56px" }} // Ensures full nav height (adjust as needed)

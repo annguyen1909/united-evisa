@@ -110,7 +110,7 @@ export default async function BlogDetail({ params }: Props) {
         {/* Main Content Area */}
         <div className="space-y-10">
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight text-primary mb-2 drop-shadow-sm">
+          <h1 className="text-4xl sm:text-5xl font-extrabold font-manrope leading-tight text-primary mb-2 drop-shadow-sm">
             {post.title}
           </h1>
 

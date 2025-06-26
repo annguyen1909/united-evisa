@@ -21,7 +21,7 @@ export default function SupportSidebar() {
                         </div>
                     </div>
                 </div>
-                <CardContent className="space-y-4 pt-6">
+                <CardContent className="space-y-4">
                     <div className="bg-[#16601E]/10 text-sm p-3 rounded-md text-black">
                         Our visa experts are here to help you 24/7. Fill out the form below and we'll get back to you as soon as possible.
                     </div>
@@ -30,7 +30,7 @@ export default function SupportSidebar() {
                         <Input type="email" placeholder="Email Address *" required />
                         <Input type="tel" placeholder="Phone Number *" required />
                         <Textarea placeholder="Your Question *" rows={4} required />
-                        <Button type="submit" className="w-full">
+                        <Button type="submit" className="w-full bg-[#16601E] hover:bg-[#16601E]/90 transition-bg duration-300">
                             Send Message →
                         </Button>
                     </form>

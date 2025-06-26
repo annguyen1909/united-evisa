@@ -5,10 +5,11 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 export default function TopBanner() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  if (status === "loading") return null;
 
   return (
-    <div className="w-full bg-[#16610E] flex justify-between items-center px-6 py-1.5 border-b max-md:hidden">
+    <div className="w-full bg-[#16610E] flex justify-around items-center px-6 py-1.5 border-b max-md:hidden">
       <div className="text-sm flex gap-8 text-white">
         <p>
           We are available <span className="text-[#FED16A]">24/7</span> at + 1 888 888 888

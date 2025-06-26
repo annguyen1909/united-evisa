@@ -50,7 +50,7 @@ function extractHeadingsWithNumbers(html: string) {
 }
 
 // Inject IDs into headings
-function injectNumberedHeadingIds(html: string) {
+function injectNumberedHeadingIds(html: string, mainHeadingsCount: number) {
   const headingRegex = /<h([1-4])([^>]*)>(.*?)<\/h\1>/gi;
   const headings: { level: number; content: string }[] = [];
 
@@ -66,7 +66,6 @@ function injectNumberedHeadingIds(html: string) {
     while (numbers.length < level) numbers.push(0);
     numbers.length = level;
     numbers[level - 1]++;
-    // Remove any leading zero
     return numbers.slice(numbers.findIndex((n) => n !== 0)).join(".");
   });
 
@@ -78,8 +77,14 @@ function injectNumberedHeadingIds(html: string) {
       .toLowerCase()
       .replace(/[^\w]+/g, "-")
       .replace(/^-+|-+$/g, "");
-    const numberPrefix = numberedHeadings[index++];
-    return `<h${level}${attrs} id="${id}" class="scroll-mt-26"><span class="mr-2 font-semibold text-primary">${numberPrefix}.</span>${content}</h${level}>`;
+    // Only show number if more than one main heading
+    const numberPrefix =
+      mainHeadingsCount > 1
+        ? `<span class="mr-2 font-semibold text-primary">${
+            numberedHeadings[index++]
+          }.</span>`
+        : "";
+    return `<h${level}${attrs} id="${id}" class="scroll-mt-26">${numberPrefix}${content}</h${level}>`;
   });
 }
 
@@ -91,32 +96,23 @@ export default async function BlogDetail({ params }: Props) {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
 
-  const contentWithIds = injectNumberedHeadingIds(post.contentHtml);
   const headings = extractHeadingsWithNumbers(post.contentHtml);
+  const mainHeadingsCount = headings.filter((h) => h.level === 2).length;
+  const contentWithIds = injectNumberedHeadingIds(
+    post.contentHtml,
+    mainHeadingsCount
+  );
 
   return (
     <div className="relative min-h-screen w-full bg-gradient-to-br from-primary/10 via-white to-blue-50 dark:from-primary/20 dark:to-gray-900">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 grid grid-cols-1 xl:grid-cols-[3fr_1fr] gap-10">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-10">
         {/* Main Content Area */}
         <div className="space-y-10">
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight text-primary mb-2 drop-shadow-sm">
             {post.title}
           </h1>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags.map((tag: string) => (
-              <Badge
-                key={tag}
-                variant="outline"
-                className="text-sm text-primary border-primary/30 bg-primary/10"
-              >
-                #{tag}
-              </Badge>
-            ))}
-          </div>
 
           {/* Mobile TOC */}
           <div className="xl:hidden mb-6">
@@ -144,7 +140,10 @@ export default async function BlogDetail({ params }: Props) {
                           )}
                         >
                           <a href={`#${h.id}`}>
-                            <span className="text-primary">{h.number}. </span>
+                            {/* Only show number if more than one main heading */}
+                            {mainHeadingsCount > 1 ? (
+                              <span className="text-primary">{h.number}. </span>
+                            ) : null}
                             {h.text}
                           </a>
                         </li>
@@ -159,7 +158,7 @@ export default async function BlogDetail({ params }: Props) {
           {/* Blog Content */}
           <article className="relative bg-white/80 dark:bg-gray-900/80 shadow-xl rounded-2xl px-4 sm:px-8 md:px-12 py-8 border border-primary/10 backdrop-blur-md transition-all">
             {/* Decorative gradient bar */}
-            <div className="absolute left-0 top-0 h-2 w-full bg-gradient-to-r from-primary via-blue-400 to-cyan-400 rounded-t-2xl" />
+            <div className="absolute left-0 top-0 h-5 w-full bg-gradient-to-r from-[#16601E]/90 to-[#16601E]/70 rounded-t-md" />{" "}
             <div
               className="prose prose-neutral max-w-none prose-headings:text-primary prose-a:text-blue-700 hover:prose-a:text-blue-900"
               dangerouslySetInnerHTML={{ __html: contentWithIds }}
@@ -223,7 +222,10 @@ export default async function BlogDetail({ params }: Props) {
                         )}
                       >
                         <a href={`#${h.id}`}>
-                          <span className="text-primary">{h.number}. </span>
+                          {/* Only show number if more than one main heading */}
+                          {mainHeadingsCount > 1 ? (
+                            <span className="text-primary">{h.number}. </span>
+                          ) : null}
                           {h.text}
                         </a>
                       </li>

@@ -17,7 +17,7 @@ const navItems = [
   { label: "Get Your eVisa", href: "/apply" },
   { label: "Pricing", href: "/pricing" },
   { label: "Info Center", href: "/blog" },
-  { label: "Contact Our Expert", href: "/" },
+  { label: "Support", href: "/" },
 ];
 
 export default function Navbar() {
@@ -25,7 +25,7 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <nav className="w-full sticky z-20 top-0 bg-white shadow-md px-2 py-4 md:p-4 flex justify-between items-center border-b lg:justify-evenly max-md:justify-between">
+    <nav className="w-full sticky z-20 top-0 bg-white h-17 shadow-md p-0 flex justify-between items-center lg:justify-evenly max-md:justify-between">
       <Link href="/" className="w-42 md:mr-12 h-10">
         <div className="relative w-full h-full z-20 gap-2 flex items-center">
           <Image
@@ -48,19 +48,20 @@ export default function Navbar() {
       </Link>
 
       {/* Desktop Menu */}
-      <div className="hidden lg:flex items-center gap-6">
+      <div className="hidden whitespace-nowrap lg:flex items-center gap-6">
         <NavigationMenu>
           <NavigationMenuList>
             {navItems.map((item) => (
-              <NavigationMenuItem key={item.label}>
+              <NavigationMenuItem key={item.label} className="h-full">
                 <NavigationMenuLink
                   href={item.href}
-                  className="relative overflow-hidden px-4 py-4 text-md cursor-pointer transition-all duration-300 bg-white
-                    before:absolute before:inset-0 before:bg-[#16610E]
-                    before:w-0 before:h-full before:transition-all before:duration-300 before:z-0 before:pointer-events-none 
-                    hover:before:w-full hover:text-white"
+                  className="relative flex items-center h-full w-full cursor-pointer transition-all duration-300 bg-white
+            before:absolute before:inset-0 before:bg-[#16610E] rounded-none
+            before:w-0 before:h-full before:transition-all before:duration-300 before:z-0 before:pointer-events-none 
+            hover:before:w-full hover:text-white overflow-hidden"
+                  style={{ minHeight: "56px" }} // Ensures full nav height (adjust as needed)
                 >
-                  <div className="relative z-10 font-manrope text-lg xl:text-xl">
+                  <div className="relative z-10 font-manrope text-lg xl:text-xl w-full px-4 my-auto flex items-center justify-center">
                     {item.label}
                   </div>
                 </NavigationMenuLink>

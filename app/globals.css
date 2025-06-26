@@ -223,3 +223,125 @@ article a {
 .prose tr:nth-child(even) {
   @apply bg-primary/5;
 }
+/* Modern Markdown (prose) styles */
+.prose {
+  @apply max-w-3xl mx-auto text-base leading-relaxed text-foreground;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  @apply font-extrabold text-primary tracking-tight;
+}
+
+.prose h1 {
+  @apply text-3xl sm:text-4xl mt-8 mb-4;
+}
+
+.prose h2 {
+  @apply text-2xl sm:text-3xl mt-8 mb-3 border-b border-primary/20 pb-1;
+}
+
+.prose h3 {
+  @apply text-xl sm:text-2xl mt-6 mb-2;
+}
+
+.prose h4 {
+  @apply text-lg sm:text-xl mt-4 mb-2;
+}
+
+.prose p {
+  @apply mb-5 text-[1.08rem] text-foreground/90;
+}
+
+.prose ul,
+.prose ol {
+  @apply pl-6 mb-5;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose ol {
+  @apply list-decimal;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose a {
+  @apply text-blue-700 underline underline-offset-2 hover:text-primary transition;
+  word-break: break-word;
+}
+
+.prose strong {
+  @apply font-semibold text-primary;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary/40 bg-primary/5 px-5 py-3 my-6 italic text-primary rounded-r-lg;
+}
+
+.prose code {
+  @apply bg-primary/10 text-primary px-1.5 py-0.5 rounded font-mono text-sm;
+}
+
+.prose pre {
+  @apply bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto my-6;
+}
+
+.prose pre code {
+  @apply bg-transparent text-inherit p-0;
+}
+
+.prose hr {
+  @apply border-t border-primary/20 my-8;
+}
+
+.prose img {
+  @apply rounded-lg shadow-md mx-auto my-6 max-w-full;
+}
+
+.prose table {
+  @apply w-full border border-primary/20 rounded-lg my-8;
+  border-collapse: collapse;
+}
+
+.prose thead {
+  @apply bg-primary/10 text-primary;
+}
+
+.prose th,
+.prose td {
+  @apply border border-primary/20 px-4 py-2;
+}
+
+.prose tr:nth-child(even) {
+  @apply bg-primary/5;
+}
+
+.prose caption {
+  @apply text-center text-sm text-muted-foreground mt-2;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .prose {
+    @apply px-2;
+  }
+  .prose h1 {
+    @apply text-2xl;
+  }
+  .prose h2 {
+    @apply text-xl;
+  }
+  .prose h3 {
+    @apply text-lg;
+  }
+  .prose h4 {
+    @apply text-base;
+  }
+}

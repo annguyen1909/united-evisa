@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -18,8 +19,25 @@ interface Post {
 const BLOGS_PER_PAGE = 10;
 
 export default function BlogSearch({ posts }: { posts: Post[] }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  // Get page from URL, default to 1
+  const pageFromUrl = parseInt(searchParams.get("page") || "1", 10);
   const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(pageFromUrl);
+
+  // Sync page state with URL
+  useEffect(() => {
+    setPage(pageFromUrl);
+  }, [pageFromUrl]);
+
+  // Update URL when page changes
+  const handlePageChange = (newPage: number) => {
+    const params = new URLSearchParams(Array.from(searchParams.entries()));
+    params.set("page", newPage.toString());
+    router.push(`?${params.toString()}`);
+    // setPage(newPage); // Not needed, will update via useEffect
+  };
 
   const filtered = posts.filter(
     (post) =>
@@ -34,19 +52,41 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
   );
 
   // Reset to first page when query changes
-  if (page !== 1 && filtered.length <= (page - 1) * BLOGS_PER_PAGE) {
-    setPage(1);
-  }
+  useEffect(() => {
+    if (page !== 1 && filtered.length <= (page - 1) * BLOGS_PER_PAGE) {
+      handlePageChange(1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, filtered.length]);
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-br from-primary/10 via-white to-blue-50 dark:from-primary/20 dark:to-gray-900">
+    <div className="relative min-h-screen w-full">
+      <div className="relative w-full h-48 sm:h-64 flex items-center justify-center mb-2 max-md:mb-0 overflow-hidden shadow-sm">
+        <img
+          src="/images/faq/faq-bg.jpg" // <-- Place your image in public/images/faq-bg.jpg or adjust the path
+          alt="FAQs background"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+
+        <div className="relative z-10 text-center">
+          <h1 className="text-4xl sm:text-5xl font-extrabold font-manrope text-white drop-shadow-lg tracking-tight">
+            Blogs
+          </h1>
+          <p className="mt-2 text-lg text-white/90 font-medium drop-shadow-sm hidden sm:block mx-auto max-w-2xl">
+            Explore answers to the most common questions about eVisas, travel
+            tips for over 40 countries.
+          </p>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent" />
+      </div>
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-12 grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-10">
         {/* Blog List Main Content */}
         <div className="space-y-10">
           {/* Search Bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-primary drop-shadow-sm">
+            <h1 className="text-3xl sm:text-4xl font-extrabold font-manrope text-primary drop-shadow-sm">
               Blog Posts
             </h1>
             <Input
@@ -55,14 +95,14 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value);
-                setPage(1); // Reset to first page on search
+                handlePageChange(Math.max(1, page - 1));
               }}
               className="w-full sm:w-80 bg-white shadow"
             />
           </div>
 
           {/* Blog Cards Grid */}
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 gap-2">
             {paginated.length === 0 ? (
               <div className="col-span-full text-center text-muted-foreground py-12">
                 No blog posts found.
@@ -74,24 +114,29 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                   href={`/blog/${post.slug}`}
                   className="group"
                 >
-                  <Card className="relative w-full max-w-3xl mx-auto p-0 cursor-pointer bg-white/80 dark:bg-gray-900/80 shadow-xl rounded-xl border border-primary/10 hover:scale-[1.01] hover:shadow-2xl transition-all overflow-hidden min-h-0">
-                    {/* Decorative gradient bar */}
-                    <div className="absolute left-0 top-0 h-2 w-full bg-gradient-to-r from-[#16601E] via-green-400 to-green-200" />
-                    <CardContent className="flex flex-col gap-3 p-8 pt-7">
-                      <h3 className="text-xl font-semibold text-primary group-hover:underline transition line-clamp-2">
+                  <Card className="relative w-full max-w-3xl mx-auto p-0 cursor-pointer bg-white/80 shadow-sm rounded-md border border-primary/20 hover:scale-[1.01] hover:shadow-lg transition-all overflow-hidden min-h-0">
+                    {/* Subtle, small gradient bar */}
+                    <div className="absolute left-0 top-0 h-2.5 w-32 bg-gradient-to-r from-[#16601E]/90 to-[#16601E]/70 rounded-tl-md rounded-br-md" />
+                    <CardContent className="flex flex-col gap-2 p-5 pt-5 pr-16 relative">
+                      <h3 className="text-lg font-semibold text-primary transition-colors duration-300 group-hover:text-[#16601E] line-clamp-2">
                         {post.title}
                       </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {post.tags.map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="outline"
-                            className="text-xs border-primary/30 text-primary bg-primary/10"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
+                      {/* Arrow Icon */}
+                      <span className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center">
+                        <svg
+                          className="w-7 h-7 text-primary/60 group-hover:text-primary group-hover:translate-x-2 transition-all duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M9 5l7 7-7 7"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
                     </CardContent>
                   </Card>
                 </Link>
@@ -108,7 +153,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                onClick={() => handlePageChange(Math.max(1, page - 1))}
                 disabled={page === 1}
                 className={cn(
                   "rounded-full border-primary/30 text-primary bg-white transition",
@@ -133,7 +178,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                   key={idx}
                   variant={page === idx + 1 ? "default" : "outline"}
                   size="icon"
-                  onClick={() => setPage(idx + 1)}
+                  onClick={() => handlePageChange(idx + 1)}
                   className={cn(
                     "rounded-full border-primary/30 cursor-pointer",
                     page === idx + 1
@@ -148,7 +193,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                onClick={() => handlePageChange(Math.min(totalPages, page + 1))}
                 disabled={page === totalPages}
                 className={cn(
                   "rounded-full border-primary/30 text-primary bg-white transition",
@@ -173,7 +218,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
         </div>
 
         {/* Right Sidebar */}
-        <aside className="hidden xl:flex flex-col gap-6 sticky top-28 h-fit">
+        <aside className="hidden xl:flex flex-col gap-6 top-28 h-fit">
           <SupportSidebar />
           {/* You can add more modern widgets or info here if desired */}
         </aside>

@@ -41,30 +41,61 @@ export default function PricingPage() {
       </>
     ),
     content: (
-      <div className="relative bg-white rounded-xl shadow-xl border border-gray-200 p-6 text-base sm:text-lg font-manrope text-gray-800 overflow-hidden transition-all duration-500">
+      <div className="relative bg-white rounded-xl shadow-xl border border-gray-200 p-12 px-24 text-base sm:text-lg font-manrope text-gray-800 overflow-hidden transition-all duration-500">
         <div className="relative z-10 space-y-6">
           <div>
             <p className="font-semibold text-2xl mb-1 text-[#16610E]">
               Government & Admin Fee to {country.name}
             </p>
             <p>
-              The Government & Admin Fee is an obligated fee, which is the amount
-              that the applicant has to pay for the Immigration Department to process
-              eVisa.
+              The Government & Admin Fee is an obligated fee, which is the
+              amount that the applicant has to pay for the Immigration
+              Department to process eVisa.
             </p>
           </div>
-          {country.etaInfo?.visaTypes?.map((visa) => (
-            <div key={visa.name}>
-              <p className="font-semibold text-xl mb-1 text-[#16610E]">
-                {visa.type} {visa.description ? `– ${visa.description}` : ""}
-              </p>
-              <p>Government Fee: US ${visa.govFee?.toFixed(2) ?? "N/A"}</p>
-              {visa.visaDuration && <p>Duration: {visa.visaDuration}</p>}
+          {country.etaInfo?.visaTypes?.length ? (
+            <div className="overflow-x-auto mt-4">
+              <table className="min-w-full border border-primary/20 rounded-lg">
+                <thead className="bg-primary/10 text-primary">
+                  <tr>
+                    <th className="px-4 py-2 text-left">Visa Type</th>
+                    <th className="px-4 py-2 text-left">Description</th>
+                    <th className="px-4 py-2 text-left">Duration</th>
+                    <th className="px-4 py-2 text-left">Gov. Fee (USD)</th>
+                    <th className="px-4 py-2 text-left">Service Fee (USD)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {country.etaInfo.visaTypes.map((visa) => (
+                    <tr key={visa.name} className="even:bg-primary/5">
+                      <td className="px-4 py-2 font-semibold">{visa.type}</td>
+                      <td className="px-4 py-2">{visa.description || "-"}</td>
+                      <td className="px-4 py-2">{visa.visaDuration || "-"}</td>
+                      <td className="px-4 py-2">
+                        {visa.govFee !== undefined
+                          ? `US $${visa.govFee.toFixed(2)}`
+                          : "N/A"}
+                      </td>
+                      <td className="px-4 py-2">
+                        {typeof country.etaInfo?.serviceFee === "number"
+                          ? `US $${country.etaInfo.serviceFee.toFixed(2)}`
+                          : "N/A"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          ))}
+          ) : (
+            <p className="mt-4 text-muted-foreground">
+              No visa types available.
+            </p>
+          )}
 
           <div>
-            <p className="font-semibold mb-1 text-xl text-[#16610E]">Service Overview</p>
+            <p className="font-semibold mb-1 text-xl text-[#16610E]">
+              Service Overview
+            </p>
             <p>
               This fee covers eVisa consulting, personal info checking, status
               updates, collection & delivery of eVisa.
@@ -80,14 +111,19 @@ export default function PricingPage() {
           </div>
 
           <div>
-            <p className="font-semibold mb-1 text-xl text-[#16610E]">Tour & Group Support</p>
+            <p className="font-semibold mb-1 text-xl text-[#16610E]">
+              Tour & Group Support
+            </p>
             <p>
-              Travel agents can contact us for discounted group tour visa pricing.
+              Travel agents can contact us for discounted group tour visa
+              pricing.
             </p>
           </div>
 
           <div>
-            <p className="font-semibold mb-1 text-xl text-[#16610E]">Emergency Support</p>
+            <p className="font-semibold mb-1 text-xl text-[#16610E]">
+              Emergency Support
+            </p>
             <p>Need a visa urgently?</p>
             <ul className="mt-1 list-disc list-inside">
               <li>Urgent (24h) – Plus US$ 79.00/person</li>
@@ -108,23 +144,27 @@ export default function PricingPage() {
     ),
   }));
   return (
-    <main className="w-full mx-auto py-12">
+    <main className="w-full mx-auto">
       {/* Hero Section */}
-      <section
-        id="country-hero"
-        className="w-full min-h-[25vh] lg:min-h-[30vh] relative bg-cover bg-center bg-no-repeat p-2 sm:p-16 flex flex-col justify-center text-white"
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out -z-10"
-          style={{ backgroundImage: `url('/images/country/kenya/kenya-bg.jpg')` }}
-        />
-        <div className="w-full items-center text-center gap-2">
-          <h2 className="text-2xl font-manrope sm:text-3xl md:text-3xl">
-            eVisa Pricing List
-          </h2>
-          <h1 className="text-3xl font-manrope sm:text-4xl md:text-4xl uppercase font-semibold">
-            Find Out How Much You Will Pay Your Fees
-          </h1>
+      <section id="country-hero" className="w-full flex justify-center mb-10">
+        <div className="relative w-full h-48 sm:h-64 flex items-center justify-center overflow-hidden shadow-lg">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out"
+            style={{
+              backgroundImage: `url('/images/country/kenya/kenya-bg.jpg')`,
+            }}
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent" />
+          <div className="relative z-10 w-full text-center px-4">
+            <h1 className="text-4xl sm:text-5xl font-extrabold font-manrope text-white drop-shadow-lg tracking-tight">
+              Pricing
+            </h1>
+            <p className="mt-2 text-lg text-white/90 font-medium drop-shadow-sm hidden sm:block mx-auto max-w-2xl">
+              Find out how much you pay your fees
+            </p>
+          </div>
         </div>
       </section>
 
@@ -158,28 +198,62 @@ export default function PricingPage() {
                 alt={selectedCountry.name}
                 className="w-12 h-8 object-contain"
               />
-              <h2 className="text-2xl font-bold text-[#16610E]">{selectedCountry.name}</h2>
+              <h2 className="text-2xl font-bold text-[#16610E]">
+                {selectedCountry.name}
+              </h2>
             </div>
             <div>
               <p className="font-semibold text-xl mb-1 text-[#16610E]">
                 Government & Admin Fee
               </p>
               <p>
-                The Government & Admin Fee is an obligated fee, which is the amount
-                that the applicant has to pay for the Immigration Department to process
-                eVisa.
+                The Government & Admin Fee is an obligated fee, which is the
+                amount that the applicant has to pay for the Immigration
+                Department to process eVisa.
               </p>
             </div>
-            {selectedCountry.etaInfo?.visaTypes?.map((visa) => (
-              <div key={visa.type} className="mt-4">
-                <p className="font-semibold text-lg mb-1 text-[#16610E]">
-                  {visa.type} {visa.description ? `– ${visa.description}` : ""}
-                </p>
-                <p>Government Fee: US ${visa.govFee?.toFixed(2) ?? "N/A"}</p>
-                <p>Service Fee: US ${selectedCountry.etaInfo?.serviceFee?.toFixed(2) ?? "N/A"}</p>
-                {visa.visaDuration && <p>Duration: {visa.visaDuration}</p>}
+            {selectedCountry.etaInfo?.visaTypes?.length ? (
+              <div className="overflow-x-auto mt-4">
+                <table className="min-w-full border border-primary/20 rounded-lg">
+                  <thead className="bg-primary/10 text-primary">
+                    <tr>
+                      <th className="px-4 py-2 text-left">Visa Type</th>
+                      <th className="px-4 py-2 text-left">Description</th>
+                      <th className="px-4 py-2 text-left">Duration</th>
+                      <th className="px-4 py-2 text-left">Gov. Fee (USD)</th>
+                      <th className="px-4 py-2 text-left">Service Fee (USD)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {selectedCountry.etaInfo.visaTypes.map((visa) => (
+                      <tr key={visa.name} className="even:bg-primary/5">
+                        <td className="px-4 py-2 font-semibold">{visa.type}</td>
+                        <td className="px-4 py-2">{visa.description || "-"}</td>
+                        <td className="px-4 py-2">
+                          {visa.visaDuration || "-"}
+                        </td>
+                        <td className="px-4 py-2">
+                          {visa.govFee !== undefined
+                            ? `US $${visa.govFee.toFixed(2)}`
+                            : "N/A"}
+                        </td>
+                        <td className="px-4 py-2">
+                          {selectedCountry.etaInfo?.serviceFee !== undefined
+                            ? `US $${selectedCountry.etaInfo.serviceFee.toFixed(
+                                2
+                              )}`
+                            : "N/A"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            ))}
+            ) : (
+              <p className="mt-4 text-muted-foreground">
+                No visa types available.
+              </p>
+            )}
           </div>
         </section>
       )}

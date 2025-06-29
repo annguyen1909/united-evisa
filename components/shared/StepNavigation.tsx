@@ -7,7 +7,7 @@ import React from "react";
 const steps = [
   { step: 1, label: "Apply", href: "/apply" },
   { step: 2, label: "Passengers", href: "/apply/passengers" },
-  { step: 3, label: "Review & Submit", href: "/apply/review" },
+  { step: 3, label: "Secure Payment", href: "/apply/payment" },
 ];
 
 export default function StepNavigation() {
@@ -17,7 +17,7 @@ export default function StepNavigation() {
   let currentStepIndex = 0;
   if (cleanPath === "/apply") currentStepIndex = 0;
   else if (cleanPath === "/apply/passengers") currentStepIndex = 1;
-  else if (cleanPath === "/apply/review") currentStepIndex = 2;
+  else if (cleanPath === "/apply/payment") currentStepIndex = 2;
   console.log("cleanPath:", cleanPath);
   console.log("currentStepIndex:", currentStepIndex, "cleanPath:", cleanPath);
 

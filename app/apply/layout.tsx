@@ -8,7 +8,7 @@ export default function ApplyLayout({
   return (
     <div className="w-full mx-auto">
       {/* Hero Section */}
-      <div className="relative w-full h-48 md:h-64 flex items-center justify-center mb-2 max-md:mb-0 overflow-hidden mb-6 shadow-sm">
+      <div className="relative w-full h-48 md:h-64 flex items-center justify-center max-md:mb-0 overflow-hidden mb-6 shadow-sm">
         <img
           src="/images/apply/apply-bg.jpg" // <-- Place your image in public/images/apply-hero.jpg or adjust the path
           alt="Apply background"

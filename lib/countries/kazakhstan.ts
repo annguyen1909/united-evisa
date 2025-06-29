@@ -13,6 +13,44 @@ const kazakhstan: Country = {
   description: `In 2019, the Government of Kazakhstan launched a streamlined and user-friendly electronic visa system for business, tourism, and medical travel. Citizens from 103 countries can obtain these e-visas via the migration service units under the Ministry of Internal Affairs. Entry and exit using an electronic visa are permitted only through designated checkpoints at Kazakhstan’s international airports.`,
   welcomeMessage: `Welcome to Kazakhstan! Discover the cosmopolitan city of Almaty, the futuristic capital of Astana (Nur-Sultan), and the breathtaking landscapes of the Altai Mountains and Charyn Canyon. Experience Kazakh hospitality and rich cultural traditions.`,
   welcomeImgUrl: '/images/country/kazakhstan/kazakhstan-welcome.jpg',
+  visaTypes: [
+    {
+      id: "kazakhstan-business-single-30-days",
+      name: 'Business Evisa (Single Entry for 30 days)',
+      type: 'Business Evisa',
+      description: 'Single Entry for 30 days',
+      entry: 'Single Entry',
+      visaDuration: '30 days',
+      visaValidity: '60 days',
+      expectedProcessingTime: '2 days',
+      govFee: 90,
+      allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
+    },
+    {
+      id: "kazakhstan-tourist-single-30-days",
+      name: 'Tourist Evisa (Single Entry for 30 days)',
+      type: 'Tourist Evisa',
+      description: 'Single Entry for 30 days',
+      entry: 'Single Entry',
+      visaDuration: '30 days',
+      visaValidity: '60 days',
+      expectedProcessingTime: '2 days',
+      govFee: 110,
+      allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
+    },
+    {
+      id: "kazakhstan-treatment-single-30-days",
+      name: 'Treatment Evisa (Single Entry for 30 days)',
+      type: 'Treatment Evisa',
+      description: 'Single Entry for 30 days',
+      entry: 'Single Entry',
+      visaDuration: '30 days',
+      visaValidity: '60 days',
+      expectedProcessingTime: '2 days',
+      govFee: 110,
+      allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
+    },
+  ],
   etaInfo: {
     processing: {
       summary: 'Apply Online In 3 Steps',
@@ -23,61 +61,7 @@ const kazakhstan: Country = {
       ],
       urgentProcessing: 'As soon as 1 Day',
     },
-    visaTypes: [
-      {
-        name: 'Tourist Evisa (Single Entry for 30 days)',
-        type: 'Tourist Evisa',
-        description: 'Single Entry for 30 days',
-        entry: 'Single Entry',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
-        expectedProcessingTime: '2 days',
-        govFee: 90,
-        allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
-      },
-      {
-        name: 'Tourist Evisa (Single Entry for 30 days)',
-        type: 'Tourist Evisa',
-        description: 'Single Entry for 30 days',
-        entry: 'Single Entry',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
-        expectedProcessingTime: '2 days',
-        govFee: 110,
-        allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
-      },
-      {
-        name: 'Treatment Evisa (Single Entry for 30 days)',
-        type: 'Treatment Evisa',
-        description: 'Single Entry for 30 days',
-        entry: 'Single Entry',
-        visaDuration: '30 days',
-        visaValidity: '60 days',
-        expectedProcessingTime: '2 days',
-        govFee: 110,
-        allowedNationalities: ["AD", "AG", "AO", "BA", "BB", "BD", "BF", "BI", "BJ", "BN", "BO", "BT", "BW", "BZ", "CG", "CI", "CM", "CN", "CR", "CU", "DJ", "DM", "DO", "DZ", "EG", "ER", "ET", "FJ", "FM", "GA", "GD", "GH", "GM", "GN", "GW", "GY", "HK", "HN", "HT", "IN", "JM", "KE", "KH", "KI", "KM", "KN", "KP", "LA", "LB", "LC", "LK", "LR", "LS", "MA", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MU", "MV", "MW", "MZ", "NA", "NE", "NG", "NI", "NP", "NR", "PA", "PE", "PG", "PW", "PY", "RW", "SC", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TM", "TN", "TO", "TT", "TV", "TZ", "UG", "UY", "VE", "VU", "WS", "ZA", "ZM", "ZW"]
-      },
-    ],
     serviceFee: 49.99, // or use a number if fixed
-  },
-  visaServicePackage: [
-    'Entry visa for a short period',
-    'Application form filling assistance',
-    'Travel insurance consultant',
-    'Portal for real-time visa updates',
-    '24/7 online support team for any issues',
-    'Urgent case support, with added fees',
-  ],
-  gvcSupport: {
-    description: 'Apply Visa at GVC — with many years of experience, GVC simplifies the process.',
-    services: [
-      'Consulting about the eVisa',
-      "Receiving & checking the applicant's information",
-      'Informing the status and results',
-      'Collecting the eVisa from the authorities',
-      'Sending it to the applicant',
-    ],
-    note: 'You can also apply on your own through the government website to save your budget.',
   },
   info: {
     climate: 'Continental, with hot summers and cold winters',

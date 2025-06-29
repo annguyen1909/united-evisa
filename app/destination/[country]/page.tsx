@@ -185,9 +185,9 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
                 >
                     Visa Types for {country.name}
                 </h2>
-                <Tabs defaultValue={country.etaInfo.visaTypes[0]?.name} className="w-full">
+                <Tabs defaultValue={country.visaTypes[0]?.name} className="w-full">
                     <TabsList className="flex mx-auto flex-wrap gap-2">
-                        {country.etaInfo.visaTypes.map((tab, index) => {
+                        {country.visaTypes.map((tab, index) => {
                             const color = tabColors[index % tabColors.length]; // loop if more than 7
                             return (
                                 <TabsTrigger
@@ -206,7 +206,7 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
                             );
                         })}
                     </TabsList>
-                    {country.etaInfo.visaTypes.map((visa) => (
+                    {country.visaTypes.map((visa) => (
                         <TabsContent key={visa.name} value={visa.name} className="mt-6">
                             <div className="flex flex-col lg:flex-row gap-6 items-center">
                                 <div className="max-w-4xl mx-auto flex flex-col gap-2 text-md sm:text-xl space-y-4" style={{ fontFamily: 'Roboto' }}>
@@ -303,21 +303,6 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
                     ))}
                 </Tabs>
             </section>
-            <section id='gvc-support' className='w-full bg-white p-8 rounded-lg max-w-5xl md:max-w-7xl mt-12 mx-auto flex flex-col gap-8 px-4 sm:px-8'>
-                <h2 className='text-xl sm:text-3xl font-bold uppercase text-center' style={{ fontFamily: 'Roboto' }}>
-                    GVC Support
-                </h2>
-                <p className='text-md sm:text-xl max-w-5xl md:max-w-7xl'>
-                    {country.gvcSupport.description}
-                </p>
-                <div className='flex flex-col gap-2'>
-                    <div className='flex gap-2'>
-                        <SquareCheckBig className='w-6 h-6 text-[#16610E]' />
-                        <p>{country.gvcSupport.services[0]}</p>
-                    </div>
-                </div>
-            </section>
-
         </div>
     );
 }

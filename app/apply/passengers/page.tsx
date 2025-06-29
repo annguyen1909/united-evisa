@@ -1,14 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import CustomerSupport from "@/components/shared/SupportSidebar"; // Adjust path if needed
 import SupportSidebar from "@/components/shared/SupportSidebar";
+import moment from "moment";
+import { COUNTRIES } from "@/lib/countries"; // adjust path as needed
+import { Country } from "@/lib/countries/type";
+import { useSession } from "next-auth/react";
+
+
 
 type Passenger = {
   fullName: string;
@@ -27,9 +32,11 @@ type PassengerError = {
 };
 
 export default function PassengersPage() {
+  const { data: session } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
   const passengerCount = Number(searchParams.get("count")) || 1;
+  const [step1, setStep1] = useState<any>(null);
   const [passengers, setPassengers] = useState<Passenger[]>(
     Array.from({ length: passengerCount }, () => ({
       fullName: "",
@@ -44,12 +51,22 @@ export default function PassengersPage() {
   );
 
   // For order summary
-  const [step1, setStep1] = useState<any>(null);
-
   useEffect(() => {
-    const s1 = sessionStorage.getItem("evisa-apply-step1");
-    if (s1) setStep1(JSON.parse(s1));
+    const stored = sessionStorage.getItem("evisa-apply-step1");
+    if (stored) setStep1(JSON.parse(stored));
   }, []);
+  // Rehydrate country and visa objects from COUNTRIES using stored IDs
+  const country: Country | undefined =
+    step1 &&
+    COUNTRIES.find(
+      (c) =>
+        c.slug === step1.selectedCountry?.slug ||
+        c.code === step1.selectedCountry?.code
+    );
+  const visa =
+    country?.visaTypes?.find(
+      (v) => v.name === step1.selectedVisaType?.name
+    );
 
   const updatePassenger = (
     index: number,
@@ -98,34 +115,64 @@ export default function PassengersPage() {
     return valid;
   };
 
-  const handleNext = async () => {
+  async function handleNextStep() {
     if (!validate()) return;
 
-    // Prepare data for backend (convert dateOfBirth to ISO string)
-    const payload = passengers.map((p) => ({
-      ...p,
-      dateOfBirth: new Date(p.dateOfBirth).toISOString(),
-    }));
+    const step1 = JSON.parse(sessionStorage.getItem("evisa-apply-step1") || "{}");
+    const email = session?.user?.email; // or whatever field is available
 
-    // Save to sessionStorage as step 2
-    sessionStorage.setItem("evisa-apply-step2", JSON.stringify(payload));
 
-    router.push("/apply/review");
-  };
+    const res = await fetch("/api/apply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        destinationId: step1.selectedCountry?.slug,
+        destinationCode: step1.selectedCountry?.code,
+        visaTypeId: step1.selectedVisaType?.id,
+        passengerCount: step1.passengerCount,
+        stayingStart: step1.stayingStart,
+        stayingEnd: step1.stayingEnd,
+        total: step1.total,
+        email, // send email instead of accountId
+        // accountId: ... // if needed
+      }),
+    });
 
-  // Order summary logic (same as step 1)
+    const data = await res.json();
+    if (res.ok) {
+      // Store applicationId for payment step
+      sessionStorage.setItem("evisa-application-id", data.applicationId);
+      sessionStorage.setItem("evisa-application-db-id", data.id);
+      router.push("/apply/payment");
+    } else {
+      alert(data.error || "Failed to create application");
+    }
+  }
+
+  // Order summary logic
   let orderSummary = null;
   if (step1) {
-    const destination = step1.selectedCountry?.name ?? "---";
-    const visa = step1.selectedCountry?.etaInfo?.visaTypes?.find(
-      (v: any) => v.name === step1.selectedVisaType
-    );
+    const destination = country?.name ?? "---";
     const visaName = visa?.name ?? "---";
     const govFee = visa?.govFee ?? 0;
-    const serviceFee = step1.selectedCountry
-      ? Number(step1.selectedCountry.etaInfo.serviceFee)
-      : 0;
+    const serviceFee = country && country.etaInfo ? Number(country.etaInfo.serviceFee) : 0;
     const passenger = Number(step1.passengerCount) || 1;
+    const stayingStart = step1.stayingStart;
+    const stayingEnd = step1.stayingEnd;
+    const isDateValid = stayingStart && stayingEnd;
+    const formattedStart = isDateValid
+      ? moment(stayingStart).format("DD/MM/YYYY")
+      : "---";
+    const formattedEnd = isDateValid
+      ? moment(stayingEnd).format("DD/MM/YYYY")
+      : "---";
+    const durationInMs = isDateValid
+      ? new Date(stayingEnd).getTime() - new Date(stayingStart).getTime()
+      : null;
+    const days =
+      durationInMs !== null
+        ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
+        : "---";
     const total = visa ? (govFee + serviceFee) * passenger : 0;
 
     orderSummary = (
@@ -142,8 +189,9 @@ export default function PassengersPage() {
             <div className="text-right">
               <p className="font-semibold">Staying Time</p>
               <p className="text-gray-700">
-                {step1.stayingStart} - {step1.stayingEnd}
+                {formattedStart} - {formattedEnd}
               </p>
+              <p className="text-xs text-gray-700">({days} days)</p>
             </div>
           </div>
           <div>
@@ -162,7 +210,7 @@ export default function PassengersPage() {
             <div className="flex justify-between">
               <p className="text-gray-700">Visa Fee</p>
               <p className="text-gray-700">
-                {step1.selectedCountry ? `$${serviceFee.toFixed(2)}` : "---"}
+                {country && country.etaInfo ? `$${serviceFee.toFixed(2)}` : "---"}
               </p>
             </div>
           </div>
@@ -305,8 +353,12 @@ export default function PassengersPage() {
             ))}
           </div>
           <div className="flex justify-end mt-8">
-            <Button size="lg" className="px-8" onClick={handleNext}>
-              Continue to Review
+            <Button
+              size="lg"
+              className="px-8 bg-gradient-to-r from-[#16601E] to-green-600 bg-[length:200%_100%] bg-left hover:bg-right cursor-pointer transition-all duration-500 text-white"
+              onClick={handleNextStep}
+            >
+              Continue to Payment
             </Button>
           </div>
         </div>

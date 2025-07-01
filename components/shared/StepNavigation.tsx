@@ -8,6 +8,7 @@ const steps = [
   { step: 1, label: "Apply", href: "/apply" },
   { step: 2, label: "Passengers", href: "/apply/passengers" },
   { step: 3, label: "Secure Payment", href: "/apply/payment" },
+  { step: 4, label: "Review", href: "/apply/review" }
 ];
 
 export default function StepNavigation() {
@@ -18,11 +19,12 @@ export default function StepNavigation() {
   if (cleanPath === "/apply") currentStepIndex = 0;
   else if (cleanPath === "/apply/passengers") currentStepIndex = 1;
   else if (cleanPath === "/apply/payment") currentStepIndex = 2;
+  else if (cleanPath === "/apply/review") currentStepIndex = 3;
   console.log("cleanPath:", cleanPath);
   console.log("currentStepIndex:", currentStepIndex, "cleanPath:", cleanPath);
 
   return (
-    <div className="flex items-center justify-between max-w-4xl mx-auto mb-8">
+    <div className="flex items-center bg-[#16601E]/30 rounded-lg justify-between max-md:pt-4 p-2 max-w-4xl mx-auto mb-8">
       {steps.map((step, i) => {
         const isCurrent = i === currentStepIndex;
         const isCompleted = i < currentStepIndex;

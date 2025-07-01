@@ -18,7 +18,11 @@ export default function TopBanner() {
       </div>
 
       <div className="flex gap-3">
-        <Button variant="secondary">Check Visa Status</Button>
+        <Button variant="secondary">
+          <Link href="/list">
+            Check Visa Status
+          </Link>
+        </Button>
 
         {!session?.user && (
           <Button className="bg-[#D9D9D966] hover:bg-[#b6b6b666] transition-all duration-300">

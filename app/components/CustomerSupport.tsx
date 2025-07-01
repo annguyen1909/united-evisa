@@ -39,9 +39,9 @@ export default function CustomerSupport() {
               className="w-10 h-10"
             />
           </div>
-          <p className="text-[#16610E] text-base sm:text-lg font-medium mb-6 max-w-xl">
+          <p className="text-gray-700 sm:text-md mb-6 max-w-xl">
             Need help? Our visa experts are available 24/7. Fast, friendly, and
-            expert support — anytime, anywhere. Reach out via call, live chat,
+            expert support anytime, anywhere. Reach out via call, live chat,
             or email, or use the quick contact form.
           </p>
           <ul className="list-disc pl-5 text-gray-700 text-sm space-y-2">
@@ -51,8 +51,8 @@ export default function CustomerSupport() {
           </ul>
         </div>
         {/* Contact Methods Card moved here */}
-        <div className="shadow-lg border border-border bg-white/90 backdrop-blur-md rounded-xl p-5 space-y-4 max-w-xl">
-          <div className="grid grid-cols-3 gap-3">
+        <div className="shadow-lg border border-border mx-auto bg-white/90 backdrop-blur-md py-4 rounded-xl w-6/7">
+          <div className="flex flex-row justify-evenly">
             {/* Call */}
             <div className="flex items-center gap-3">
               <Image
@@ -60,7 +60,7 @@ export default function CustomerSupport() {
                 alt="Call Support"
                 width={36}
                 height={36}
-                className="w-9 h-9"
+                className="w-10 h-10"
               />
               <div>
                 <div className="font-semibold text-[#16610E]">Call Us</div>
@@ -74,7 +74,7 @@ export default function CustomerSupport() {
                 alt="Live Chat"
                 width={36}
                 height={36}
-                className="w-9 h-9"
+                className="w-12 h-12"
               />
               <div>
                 <div className="font-semibold text-[#16610E]">Live Chat</div>
@@ -88,7 +88,7 @@ export default function CustomerSupport() {
                 alt="Email Support"
                 width={36}
                 height={36}
-                className="w-9 h-9"
+                className="w-12 h-12"
               />
               <div>
                 <div className="font-semibold text-[#16610E]">Email Us</div>
@@ -97,7 +97,7 @@ export default function CustomerSupport() {
             </div>
           </div>
           <div className="justify-center items-center text-center">
-            <Button className="w-1/3 mt-2 bg-[#16610E] hover:bg-[#16610E]/80 text-white text-sm">
+            <Button className="w-1/3 mt-4 bg-[#16610E] hover:bg-[#16610E]/80 text-white text-sm">
               Contact Support
             </Button>
           </div>
@@ -123,7 +123,7 @@ export default function CustomerSupport() {
                 placeholder="Your Name"
                 value={form.name}
                 onChange={handleChange}
-                className="border border-gray-300 rounded px-2 py-1 text-sm"
+                className="border border-gray-300 rounded-md p-2 text-sm"
                 required
               />
               <input
@@ -132,7 +132,7 @@ export default function CustomerSupport() {
                 placeholder="Your Email"
                 value={form.email}
                 onChange={handleChange}
-                className="border border-gray-300 rounded px-2 py-1 text-sm"
+                className="border border-gray-300 rounded-md p-2 text-sm"
                 required
               />
               <textarea
@@ -140,7 +140,7 @@ export default function CustomerSupport() {
                 placeholder="How can we help you?"
                 value={form.message}
                 onChange={handleChange}
-                className="border border-gray-300 rounded px-2 py-1 text-sm"
+                className="border border-gray-300 rounded-md p-2 text-sm"
                 rows={2}
                 required
               />

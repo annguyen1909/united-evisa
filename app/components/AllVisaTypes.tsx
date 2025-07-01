@@ -21,9 +21,9 @@ const visaTypes: VisaType[] = [
       "This type of visa is used for the purpose of travelling to a country. It is also the most popular visa type that we help our customers to apply for.",
     color: "#16610E",
     favorites: [
-      { name: "Kenya", img: "/images/flags/kenya.png" },
-      { name: "Cambodia", img: "/images/flags/cambodia.png" },
-      { name: "Sri Lanka", img: "/images/flags/sri-lanka.png" },
+      { name: "Kenya", img: "https://hatscripts.github.io/circle-flags/flags/ke.svg" },
+      { name: "Cambodia", img: "https://hatscripts.github.io/circle-flags/flags/kh.svg" },
+      { name: "Sri Lanka", img: "https://hatscripts.github.io/circle-flags/flags/lk.svg" },
     ],
     icon: Backpack
   },
@@ -33,9 +33,9 @@ const visaTypes: VisaType[] = [
       "This visa is issued to travelers transiting through a country en route elsewhere. It’s short-term, and many countries waive the need for it.",
     color: "#065BB9",
     favorites: [
-      { name: "Azerbaijan", img: "/images/flags/azerbaijan.png" },
-      { name: "Bahrain", img: "/images/flags/bahrain.png" },
-      { name: "India", img: "/images/flags/india.png" },
+      { name: "Azerbaijan", img: "https://hatscripts.github.io/circle-flags/flags/az.svg" },
+      { name: "Bahrain", img: "https://hatscripts.github.io/circle-flags/flags/bh.svg" },
+      { name: "India", img: "https://hatscripts.github.io/circle-flags/flags/in.svg" },
     ],
     icon: BriefcaseBusiness
   },
@@ -45,9 +45,9 @@ const visaTypes: VisaType[] = [
       "Medical visa is used for travelers who want to be treated under the system of medicine of a country. It is used by just governments.",
     color: "#CB6601",
     favorites: [
-      { name: "Singapore", img: "/images/flags/singapore.png" },
-      { name: "Rwanda", img: "/images/flags/rwanda.png" },
-      { name: "Tanzania", img: "/images/flags/tanzania.png" },
+      { name: "Singapore", img: "https://hatscripts.github.io/circle-flags/flags/sg.svg" },
+      { name: "Rwanda", img: "https://hatscripts.github.io/circle-flags/flags/rw.svg" },
+      { name: "Tanzania", img: "https://hatscripts.github.io/circle-flags/flags/tz.svg" },
     ],
     icon: Plane
   },
@@ -57,9 +57,9 @@ const visaTypes: VisaType[] = [
       "Issued for patients seeking treatment abroad, this visa helps you access world-class healthcare while ensuring compliance with local laws.",
     color: "#FED16A",
     favorites: [
-      { name: "Thailand", img: "/images/flags/thailand.png" },
-      { name: "Malaysia", img: "/images/flags/malaysia.png" },
-      { name: "UK", img: "/images/flags/united-kingdom.png" },
+      { name: "Thailand", img: "https://hatscripts.github.io/circle-flags/flags/th.svg" },
+      { name: "Malaysia", img: "https://hatscripts.github.io/circle-flags/flags/my.svg" },
+      { name: "UK", img: "https://hatscripts.github.io/circle-flags/flags/uk.svg" },
     ],
     icon: BriefcaseMedical
   },
@@ -82,7 +82,7 @@ export default function AllVisaTypes() {
             <CardHeader className="rounded-t-xl pt-4 pb-2" style={{ backgroundColor: color }}>
               <div className="flex items-center justify-center gap-2">
                 {icon && React.createElement(icon, { size: 32, color: "#fff", strokeWidth: "1.5px" })}
-                <CardTitle className="font-semibold text-white text-lg pt-0.75 sm:text-2xl text-center">
+                <CardTitle className="font-semibold text-white text-lg pt-0.75 sm:text-xl text-center">
                   {name}
                 </CardTitle>
               </div>

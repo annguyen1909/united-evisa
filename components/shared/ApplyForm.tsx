@@ -269,7 +269,7 @@ export default function ApplyForm({ user }: { user: any }) {
 
                     {/* Contact Information */}
                     <div className="mt-8">
-                        <h3 className="text-lg font-semibold mb-2 text-[#16610E]">
+                        <h3 className="text-lg font-manrope font-semibold mb-2 text-[#16610E]">
                             Contact Information
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -348,16 +348,18 @@ export default function ApplyForm({ user }: { user: any }) {
                             <div>
                                 <label className="block font-medium mb-1">Gender</label>
                                 <select
-                                    className={cn(
-                                        "w-full border rounded px-3 py-2",
-                                        isLoggedIn && "bg-gray-100 text-gray-500 cursor-not-allowed"
-                                    )}
+                                    className={`w-full border rounded-md px-3 py-2 appearance-none ${isLoggedIn ? "bg-gray-100 text-gray-500" : ""} ${isLoggedIn ? "hide-chevron" : ""}`}
                                     value={isLoggedIn ? user?.gender ?? "" : contact.gender}
+                                    onChange={e => setContact(c => ({ ...c, gender: e.target.value }))}
                                     disabled={isLoggedIn}
-                                    onChange={(e) =>
-                                        setContact((c) => ({ ...c, gender: e.target.value }))
-                                    }
-                                    required
+                                    style={{
+                                        backgroundImage: isLoggedIn
+                                            ? "none"
+                                            : "url(\"data:image/svg+xml,%3Csvg fill='none' stroke='gray' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E\")",
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundPosition: "right 0.75rem center",
+                                        backgroundSize: "1em 1em"
+                                    }}
                                 >
                                     <option value="">Select Gender</option>
                                     <option value="Male">Male</option>

@@ -28,26 +28,45 @@ export default function ThankYouPage() {
       return;
     }
 
-    // Fetch the application data to display details
+    let attempts = 0;
+    let interval: NodeJS.Timeout;
+
     async function fetchApplicationData() {
       try {
         const response = await fetch(`/api/applications/${applicationId}`);
-
         if (response.ok) {
           const data = await response.json();
           setApplicationData(data);
+
+          // Stop polling if status is updated
+          if (data.status === "Collecting Documents" || attempts >= 5) {
+            clearInterval(interval);
+            setIsLoading(false);
+          }
         } else {
           throw new Error("Failed to load application data");
         }
       } catch (error) {
-        console.error("Error fetching application:", error);
         setError("Could not load your application details");
-      } finally {
+        clearInterval(interval);
         setIsLoading(false);
       }
     }
 
+    // Initial fetch
     fetchApplicationData();
+
+    // Poll every 2 seconds, up to 5 times
+    interval = setInterval(() => {
+      attempts += 1;
+      fetchApplicationData();
+      if (attempts >= 5) {
+        clearInterval(interval);
+        setIsLoading(false);
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, [searchParams]);
 
   if (isLoading) {
@@ -79,6 +98,8 @@ export default function ThankYouPage() {
   const formattedDate = applicationData?.createdAt
     ? moment(applicationData.createdAt).format("MMMM D, YYYY")
     : "recent";
+
+
 
   return (
     <div className="max-w-4xl mx-auto p-4 py-12">

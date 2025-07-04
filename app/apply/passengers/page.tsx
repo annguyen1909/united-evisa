@@ -11,7 +11,9 @@ import SupportSidebar from "@/components/shared/SupportSidebar";
 import moment from "moment";
 import { Country } from "@/lib/countries/type";
 import { useSession } from "next-auth/react";
-import { COUNTRIES } from "@/lib/countries";
+import { NATIONALITIES } from "@/lib/nationalities";
+import { COUNTRIES } from "@/lib/countries/index";
+
 import { Users, AlertCircle, Check } from "lucide-react";
 import {
   Select,
@@ -130,25 +132,25 @@ export default function PassengersPage() {
   }, [country, applicationData]);
 
   // Get allowed nationalities from the visa type
-  const allowedNationalities = useMemo(() => {
-    if (!visa || !visa.allowedNationalities) {
-      return COUNTRIES;
-    }
+const allowedNationalities = useMemo(() => {
+  if (!visa || !visa.allowedNationalities) {
+    return NATIONALITIES;
+  }
 
-    if (Array.isArray(visa.allowedNationalities)) {
-      if (visa.allowedNationalities.length === 0) {
-        return COUNTRIES;
-      }
-      const allowedCodes = visa.allowedNationalities.map(code =>
-        code.toUpperCase()
-      );
-      return COUNTRIES.filter((c: { code: string; }) =>
-        allowedCodes.includes(c.code.toUpperCase())
-      );
+  if (Array.isArray(visa.allowedNationalities)) {
+    if (visa.allowedNationalities.length === 0) {
+      return NATIONALITIES;
     }
+    const allowedCodes = visa.allowedNationalities.map(code =>
+      code.toUpperCase()
+    );
+    return NATIONALITIES.filter((c: { code: string; }) =>
+      allowedCodes.includes(c.code.toUpperCase())
+    );
+  }
 
-    return COUNTRIES;
-  }, [visa]);
+  return NATIONALITIES;
+}, [visa]);
 
   const updatePassenger = (
     index: number,
@@ -352,6 +354,7 @@ export default function PassengersPage() {
       </div>
     );
   }
+  console.log("Allowed Nationalities:", allowedNationalities);
 
   return (
     <div className="min-h-screen bg-slate-50 pb-16">

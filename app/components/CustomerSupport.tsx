@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
+import { PhoneCall, MessageSquare, Mail, Shield, Clock, Globe } from "lucide-react";
 
 export default function CustomerSupport() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -19,165 +20,236 @@ export default function CustomerSupport() {
     setSubmitted(true);
     // Here you would send the form data to your backend or service
   }
+
   return (
-    <section className="w-full max-w-6xl mx-auto py-8 px-2 sm:px-6 grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 bg-gradient-to-r from-[#FED16A]/50 to-[#FFF085]/50">
-      {/* Left: Main Info + Contact Methods */}
-      <div className="flex flex-col justify-center h-full gap-6">
-        <div>
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-[#CB6601] font-bold text-2xl sm:text-3xl">
-              24/7
-            </span>
-            <span className="text-[#16610E] text-2xl sm:text-3xl font-bold">
-              Customer Support
-            </span>
-            <Image
-              src="/images/logo.png"
-              alt="Customer Support"
-              width={48}
-              height={48}
-              className="w-10 h-10"
-            />
+    <section className="w-full max-w-6xl mx-auto py-12 px-4 sm:px-8 rounded-2xl shadow-lg bg-gradient-to-r from-emerald-50 to-amber-50 border border-amber-100/50">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.8fr_1fr] gap-10">
+        {/* Left: Main Content */}
+        <div className="flex flex-col gap-8">
+          {/* Header */}
+          <div className="space-y-6">
+            <div className="flex items-center">
+              <div className="mr-4">
+                <span className="bg-amber-500 text-white font-bold text-lg px-3 py-1 rounded-lg shadow-sm">24/7</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-emerald-800">
+                Customer Support Center
+              </h2>
+            </div>
+
+            <p className="text-slate-700 text-lg max-w-2xl">
+              Our visa experts are ready to assist you <span className="font-semibold text-emerald-700">anytime, anywhere</span>.
+              Get fast, personalized support through multiple channels - all designed to make your visa application process smooth and stress-free.
+            </p>
+
+            <div className="flex flex-wrap gap-x-8 gap-y-3">
+              <div className="flex items-center gap-2 text-slate-700">
+                <Globe className="h-5 w-5 text-emerald-600" />
+                <span>Support in 40+ languages</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-700">
+                <Clock className="h-5 w-5 text-emerald-600" />
+                <span>Response in <strong>under 1 hour</strong></span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-700">
+                <Shield className="h-5 w-5 text-emerald-600" />
+                <span>No additional support fees</span>
+              </div>
+            </div>
           </div>
-          <p className="text-gray-700 sm:text-md mb-6 max-w-xl">
-            Need help? Our visa experts are available 24/7. Fast, friendly, and
-            expert support anytime, anywhere. Reach out via call, live chat,
-            or email, or use the quick contact form.
-          </p>
-          <ul className="list-disc pl-5 text-gray-700 text-sm space-y-2">
-            <li>Multilingual support for 40+ countries</li>
-            <li>Average response time: under 1 hour</li>
-            <li>No extra fee for customer support</li>
-          </ul>
+
+          {/* Contact Options */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 transition-all duration-300 hover:shadow-md hover:border-emerald-200 flex flex-col">
+              <div>
+                <div className="flex items-center mb-4">
+                  <div className="bg-emerald-100 p-3 rounded-full mr-3">
+                    <PhoneCall className="h-5 w-5 text-emerald-700" />
+                  </div>
+                  <h3 className="font-semibold text-slate-800">Call Support</h3>
+                </div>
+                <p className="text-sm text-slate-600 mb-3">
+                  Speak directly with a visa expert for immediate assistance.
+                </p>
+              </div>
+              <div className="mt-auto flex flex-col gap-2 items-center">
+                <span className="text-xs text-slate-500">Available 24/7</span>
+                <Button variant="outline" size="sm" className="border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+                  +1 800 123 4567
+                </Button>
+              </div>
+            </div>
+
+            {/* Live Chat Option */}
+            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 transition-all duration-300 hover:shadow-md hover:border-emerald-200 flex flex-col">
+              <div>
+                <div className="flex items-center mb-4">
+                  <div className="bg-blue-100 p-3 rounded-full mr-3">
+                    <MessageSquare className="h-5 w-5 text-blue-700" />
+                  </div>
+                  <h3 className="font-semibold text-slate-800">Live Chat</h3>
+                </div>
+                <p className="text-sm text-slate-600 mb-3">
+                  Connect instantly with our support team through live chat.
+                </p>
+              </div>
+              <div className="mt-auto flex flex-col gap-2 items-center">
+                <span className="text-xs text-slate-500">Response in minutes</span>
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                  Start Chat
+                </Button>
+              </div>
+            </div>
+
+            {/* Email Option */}
+            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 transition-all duration-300 hover:shadow-md hover:border-emerald-200 flex flex-col">
+              <div>
+                <div className="flex items-center mb-4">
+                  <div className="bg-amber-100 p-3 rounded-full mr-3">
+                    <Mail className="h-5 w-5 text-amber-700" />
+                  </div>
+                  <h3 className="font-semibold text-slate-800">Email Support</h3>
+                </div>
+                <p className="text-sm text-slate-600 mb-3">
+                  Send detailed inquiries for thorough assistance.
+                </p>
+              </div>
+              <div className="mt-auto flex flex-col gap-2 items-center">
+                <span className="text-xs text-slate-500">Reply within 1 hour</span>
+                <Button variant="outline" size="sm" className="border-amber-200 text-amber-700 hover:bg-amber-50">
+                  support@evisa.com
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonials */}
+          <div className="bg-white/70 rounded-xl p-5 border border-slate-200">
+            <h3 className="text-slate-800 font-medium mb-3 flex items-center">
+              <span className="text-amber-500 mr-2">★★★★★</span>
+              Customer Satisfaction
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                "Incredible service! They helped me get my visa in record time when I had an urgent trip."
+                <div className="mt-1 text-xs text-slate-500">- Sarah M., United States</div>
+              </div>
+              <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                "The support team answered all my questions promptly. Very professional and helpful."
+                <div className="mt-1 text-xs text-slate-500">- Ahmed K., UAE</div>
+              </div>
+            </div>
+          </div>
         </div>
-        {/* Contact Methods Card moved here */}
-        <div className="shadow-lg border border-border mx-auto bg-white/90 backdrop-blur-md py-4 rounded-xl w-6/7">
-          <div className="flex flex-row justify-evenly">
-            {/* Call */}
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/support/call-us.png"
-                alt="Call Support"
-                width={36}
-                height={36}
-                className="w-10 h-10"
-              />
-              <div>
-                <div className="font-semibold text-[#16610E]">Call Us</div>
-                <div className="text-xs text-gray-600">24/7 by phone</div>
+
+        {/* Right: Contact Form & FAQ */}
+        <div className="flex flex-col gap-6">
+          {/* Quick Contact Form */}
+          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <h3 className="font-bold text-lg text-emerald-700 mb-4 flex items-center gap-2">
+              <MessageSquare className="h-5 w-5" />
+              Quick Contact
+            </h3>
+
+            {submitted ? (
+              <div className="bg-emerald-50 text-emerald-700 p-4 rounded-lg border border-emerald-100 text-center">
+                <svg className="mx-auto h-12 w-12 text-emerald-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="font-medium">Thank you for your message!</p>
+                <p className="text-sm mt-1">We'll get back to you shortly.</p>
               </div>
-            </div>
-            {/* Live Chat */}
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/support/live-chat.png"
-                alt="Live Chat"
-                width={36}
-                height={36}
-                className="w-12 h-12"
-              />
-              <div>
-                <div className="font-semibold text-[#16610E]">Live Chat</div>
-                <div className="text-xs text-gray-600">24/7 instant chat</div>
-              </div>
-            </div>
-            {/* Email */}
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/support/email.png"
-                alt="Email Support"
-                width={36}
-                height={36}
-                className="w-12 h-12"
-              />
-              <div>
-                <div className="font-semibold text-[#16610E]">Email Us</div>
-                <div className="text-xs text-gray-600">24/7 by email</div>
-              </div>
-            </div>
+            ) : (
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="name" className="text-xs font-medium text-slate-600 mb-1 block">
+                    Your Name
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    value={form.name}
+                    onChange={handleChange}
+                    className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="text-xs font-medium text-slate-600 mb-1 block">
+                    Email Address
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value={form.email}
+                    onChange={handleChange}
+                    className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="text-xs font-medium text-slate-600 mb-1 block">
+                    Your Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="How can we help you?"
+                    value={form.message}
+                    onChange={handleChange}
+                    className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
+                    rows={3}
+                    required
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 rounded-md transition-colors"
+                >
+                  Send Message
+                </Button>
+              </form>
+            )}
           </div>
-          <div className="justify-center items-center text-center">
-            <Button className="w-1/3 mt-4 bg-[#16610E] hover:bg-[#16610E]/80 text-white text-sm">
-              Contact Support
-            </Button>
+
+          {/* FAQ */}
+          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <h3 className="font-bold text-lg text-emerald-700 mb-4">
+              Frequently Asked Questions
+            </h3>
+
+            <div className="space-y-4">
+              <div className="border-b border-slate-100 pb-3">
+                <h4 className="font-semibold text-slate-800 mb-1">How fast will I get a response?</h4>
+                <p className="text-sm text-slate-600">
+                  Our team responds within 1 hour for most inquiries, 24/7, 365 days a year.
+                </p>
+              </div>
+
+              <div className="border-b border-slate-100 pb-3">
+                <h4 className="font-semibold text-slate-800 mb-1">Can I get support in my language?</h4>
+                <p className="text-sm text-slate-600">
+                  Yes, we offer multilingual support for 40+ languages covering most countries.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-slate-800 mb-1">Is there a fee for customer support?</h4>
+                <p className="text-sm text-slate-600">
+                  No, all customer support is completely free of charge for all our users.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Right: Sidebar Card */}
-      <aside className="flex flex-col gap-6">
-        {/* Quick Contact Form */}
-        <div className="shadow-lg border border-border bg-white/90 backdrop-blur-md rounded-xl p-5">
-          <h3 className="text-[#16610E] font-bold text-base mb-2">
-            Quick Contact
-          </h3>
-          {submitted ? (
-            <p className="text-green-700 font-semibold text-sm">
-              Thank you! We have received your message.
-            </p>
-          ) : (
-            <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={form.name}
-                onChange={handleChange}
-                className="border border-gray-300 rounded-md p-2 text-sm"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={form.email}
-                onChange={handleChange}
-                className="border border-gray-300 rounded-md p-2 text-sm"
-                required
-              />
-              <textarea
-                name="message"
-                placeholder="How can we help you?"
-                value={form.message}
-                onChange={handleChange}
-                className="border border-gray-300 rounded-md p-2 text-sm"
-                rows={2}
-                required
-              />
-              <Button
-                type="submit"
-                className="bg-[#16610E] hover:bg-[#16610E]/80 text-white text-xs w-full"
-              >
-                Send Message
-              </Button>
-            </form>
-          )}
-        </div>
-
-        {/* Mini FAQ */}
-        <div className="shadow-lg border border-border bg-white/90 backdrop-blur-md rounded-xl p-5">
-          <h3 className="text-[#16610E] font-bold text-base mb-2">
-            Frequently Asked Questions
-          </h3>
-          <ul className="space-y-1 text-gray-700 text-xs">
-            <li>
-              <strong>How fast will I get a response?</strong>
-              <br />
-              Our team replies within a few hours, 24/7.
-            </li>
-            <li>
-              <strong>Can I get support in my language?</strong>
-              <br />
-              Yes, we offer multilingual support for most countries.
-            </li>
-            <li>
-              <strong>Is there a fee for support?</strong>
-              <br />
-              No, all customer support is free of charge.
-            </li>
-          </ul>
-        </div>
-      </aside>
     </section>
   );
 }

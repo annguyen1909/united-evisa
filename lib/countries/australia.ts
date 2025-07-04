@@ -15,6 +15,7 @@ const australia: Country = {
   welcomeImgUrl: '/images/country/australia/australia-welcome.jpg',
   visaTypes: [
     {
+      id: 'australia-tourist-evisa-multiple-1-year',
       name: 'Tourist Evisa (Multiple Entries for 1 year)',
       type: 'Tourist Evisa',
       description: 'Multiple Entries for 1 year',
@@ -26,6 +27,7 @@ const australia: Country = {
       allowedNationalities: ["AD", "AT", "BE", "BG", "BN", "CA", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HK", "HR", "HU", "IE", "IS", "IT", "JP", "KR", "LI", "LT", "LU", "LV", "MC", "MT", "NL", "NO", "PL", "PT", "RO", "SE", "SG", "SI", "SK", "SM", "TW", "US", "VA"]
     },
     {
+      id: 'australia-business-evisa-multiple-1-year',
       name: 'Business Evisa (Multiple Entries for 1 year)',
       type: 'Business Evisa',
       description: 'Multiple Entries for 1 year',

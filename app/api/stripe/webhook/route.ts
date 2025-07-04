@@ -25,27 +25,34 @@ export async function POST(req: NextRequest) {
 
     if (event.type === "payment_intent.succeeded") {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        // You should store applicationId in paymentIntent.metadata when creating the PaymentIntent
         const applicationId = paymentIntent.metadata?.applicationId;
 
-        if (applicationId) {
-            await prisma.application.update({
+        // Find the Application by your custom applicationId
+        const app = await prisma.application.findFirst({ where: { applicationId } });
+
+        if (app) {
+            // Update paymentStatus using the custom applicationId
+            await prisma.application.updateMany({
                 where: { applicationId },
                 data: { paymentStatus: "success" },
             });
+
+            // Create StripeActivity using the UUID id as the foreign key
             await prisma.stripeActivity.create({
                 data: {
-                    title: "Payment Success",
-                    amount: paymentIntent.amount_received / 100, // Stripe amount is in cents
+                    title: "Payment",
+                    amount: paymentIntent.amount_received / 100,
                     status: "success",
                     type: "payment",
-                    applicationId: applicationId,
+                    applicationId: app.id, // Use the UUID id here!
                     description: "Payment completed via Stripe",
                     timestamp: new Date(),
                     transactionId: paymentIntent.id,
                     id: crypto.randomUUID(), // Add this line to provide a unique id
                 },
             });
+        } else {
+            console.error("No Application found with applicationId:", applicationId);
         }
     }
 

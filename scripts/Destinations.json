@@ -1,0 +1,217 @@
+[
+  {
+    "country": "Angola",
+    "code": "ao",
+    "slug": "angola"
+  },
+  {
+    "country": "Armenia",
+    "code": "am",
+    "slug": "armenia"
+  },
+  {
+    "country": "Azerbaijan",
+    "code": "az",
+    "slug": "azerbaijan"
+  },
+  {
+    "country": "Australia",
+    "code": "au",
+    "slug": "australia"
+  },
+  {
+    "country": "Bahrain",
+    "code": "bh",
+    "slug": "bahrain"
+  },
+  {
+    "country": "Benin",
+    "code": "bj",
+    "slug": "benin"
+  },
+  {
+    "country": "Cambodia",
+    "code": "kh",
+    "slug": "cambodia"
+  },
+  {
+    "country": "Canada",
+    "code": "ca",
+    "slug": "canada"
+  },
+  {
+    "country": "Djibouti",
+    "code": "dj",
+    "slug": "djibouti"
+  },
+  {
+    "country": "Egypt",
+    "code": "eg",
+    "slug": "egypt"
+  },
+  {
+    "country": "Ethiopia",
+    "code": "et",
+    "slug": "ethiopia"
+  },
+  {
+    "country": "Gabon",
+    "code": "ga",
+    "slug": "gabon"
+  },
+  {
+    "country": "Georgia",
+    "code": "ge",
+    "slug": "georgia"
+  },
+  {
+    "country": "Hong Kong",
+    "code": "hk",
+    "slug": "hong-kong"
+  },
+  {
+    "country": "Indonesia",
+    "code": "id",
+    "slug": "indonesia"
+  },
+  {
+    "country": "India",
+    "code": "in",
+    "slug": "india"
+  },
+  {
+    "country": "Kazakhstan",
+    "code": "kz",
+    "slug": "kazakhstan"
+  },
+  {
+    "country": "Kenya",
+    "code": "ke",
+    "slug": "kenya"
+  },
+  {
+    "country": "Kuwait",
+    "code": "kw",
+    "slug": "kuwait"
+  },
+  {
+    "country": "Kyrgyzstan",
+    "code": "kg",
+    "slug": "kyrgyzstan"
+  },
+  {
+    "country": "Laos",
+    "code": "la",
+    "slug": "laos"
+  },
+  {
+    "country": "Malawi",
+    "code": "mw",
+    "slug": "malawi"
+  },
+  {
+    "country": "Malaysia",
+    "code": "my",
+    "slug": "malaysia"
+  },
+  {
+    "country": "Moldova",
+    "code": "md",
+    "slug": "moldova"
+  },
+  {
+    "country": "Mongolia",
+    "code": "mn",
+    "slug": "mongolia"
+  },
+  {
+    "country": "New Zealand",
+    "code": "nz",
+    "slug": "new-zealand"
+  },
+  {
+    "country": "Oman",
+    "code": "om",
+    "slug": "oman"
+  },
+  {
+    "country": "Pakistan",
+    "code": "pk",
+    "slug": "pakistan"
+  },
+  {
+    "country": "Qatar",
+    "code": "qa",
+    "slug": "qatar"
+  },
+  {
+    "country": "Rwanda",
+    "code": "rw",
+    "slug": "rwanda"
+  },
+  {
+    "country": "Saint Helena",
+    "code": "sh",
+    "slug": "saint-helena"
+  },
+  {
+    "country": "Saudi Arabia",
+    "code": "sa",
+    "slug": "saudi-arabia"
+  },
+  {
+    "country": "South Africa",
+    "code": "za",
+    "slug": "south-africa"
+  },
+  {
+    "country": "Sri Lanka",
+    "code": "lk",
+    "slug": "sri-lanka"
+  },
+  {
+    "country": "Taiwan",
+    "code": "tw",
+    "slug": "taiwan"
+  },
+  {
+    "country": "Tajikistan",
+    "code": "tj",
+    "slug": "tajikistan"
+  },
+  {
+    "country": "Tanzania",
+    "code": "tz",
+    "slug": "tanzania"
+  },
+  {
+    "country": "Uganda",
+    "code": "ug",
+    "slug": "uganda"
+  },
+  {
+    "country": "United Kingdom",
+    "code": "gb",
+    "slug": "united-kingdom"
+  },
+  {
+    "country": "Uzbekistan",
+    "code": "uz",
+    "slug": "uzbekistan"
+  },
+  {
+    "country": "Vietnam",
+    "code": "vn",
+    "slug": "vietnam"
+  },
+  {
+    "country": "Zambia",
+    "code": "zm",
+    "slug": "zambia"
+  },
+  {
+    "country": "Zimbabwe",
+    "code": "zw",
+    "slug": "zimbabwe"
+  }
+]

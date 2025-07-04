@@ -15,6 +15,7 @@ const azerbaijan: Country = {
   welcomeImgUrl: '/images/country/azerbaijan/azerbaijan-welcome.jpg',
   visaTypes: [
     {
+      id: 'azerbaijan-tourist-evisa-single-30-days',
       name: 'Tourist Evisa (Single Entry for 30 days)',
       type: 'Tourist Evisa',
       description: 'Single Entry for 30 days',
@@ -26,6 +27,7 @@ const azerbaijan: Country = {
       allowedNationalities: ["AD", "AL", "AR", "AT", "AU", "BA", "BB", "BE", "BG", "BH", "BN", "BO", "BR", "BS", "CA", "CH", "CL", "CN", "CO", "CR", "CU", "CY", "CZ", "DE", "DJ", "DK", "DZ", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IR", "IS", "IT", "JM", "JO", "JP", "KR", "KW", "LI", "LK", "LT", "LU", "LV", "MA", "MC", "ME", "MK", "MN", "MT", "MU", "MV", "MX", "MY", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PK", "PL", "PT", "PY", "RO", "RS", "SA", "SC", "SE", "SG", "SI", "SK", "SM", "TH", "TM", "TT", "US", "VA", "VN", "ZA"]
     },
     {
+      id: 'azerbaijan-business-evisa-single-30-days',
       name: 'Business Evisa (Single Entry for 30 days)',
       entry: 'Single Entry',
       type: 'Business Evisa',
@@ -37,6 +39,7 @@ const azerbaijan: Country = {
       allowedNationalities: ["AD", "AL", "AR", "AT", "AU", "BA", "BB", "BE", "BG", "BH", "BN", "BO", "BR", "BS", "CA", "CH", "CL", "CN", "CO", "CR", "CU", "CY", "CZ", "DE", "DJ", "DK", "DZ", "EC", "EE", "ES", "FI", "FR", "GB", "GR", "GT", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IR", "IS", "IT", "JM", "JO", "JP", "KR", "KW", "LI", "LK", "LT", "LU", "LV", "MA", "MC", "ME", "MK", "MN", "MT", "MU", "MV", "MX", "MY", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PK", "PL", "PT", "PY", "RO", "RS", "SA", "SC", "SE", "SG", "SI", "SK", "SM", "TH", "TM", "TT", "US", "VA", "VN", "ZA"]
     },
     {
+      id: 'azerbaijan-treatment-evisa-single-30-days',
       name: 'Treatment Evisa (Single Entry for 30 days)',
       entry: 'Single Entry',
       type: 'Treatment Evisa',

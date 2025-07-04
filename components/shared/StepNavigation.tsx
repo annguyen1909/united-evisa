@@ -1,14 +1,15 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
 import React from "react";
+import { Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const steps = [
   { step: 1, label: "Apply", href: "/apply" },
   { step: 2, label: "Passengers", href: "/apply/passengers" },
-  { step: 3, label: "Secure Payment", href: "/apply/payment" },
-  { step: 4, label: "Review", href: "/apply/review" }
+  { step: 3, label: "Payment", href: "/apply/payment" },
+  { step: 4, label: "Documents & Submit", href: "/apply/documents" }
 ];
 
 export default function StepNavigation() {
@@ -19,53 +20,134 @@ export default function StepNavigation() {
   if (cleanPath === "/apply") currentStepIndex = 0;
   else if (cleanPath === "/apply/passengers") currentStepIndex = 1;
   else if (cleanPath === "/apply/payment") currentStepIndex = 2;
-  else if (cleanPath === "/apply/review") currentStepIndex = 3;
-  console.log("cleanPath:", cleanPath);
-  console.log("currentStepIndex:", currentStepIndex, "cleanPath:", cleanPath);
-
+  else if (cleanPath === "/apply/documents") currentStepIndex = 3;
+  else if (cleanPath === "/apply/thank-you") currentStepIndex = 4; // Past all steps
+  
   return (
-    <div className="flex items-center bg-[#16601E]/30 rounded-lg justify-between max-md:pt-4 p-2 max-w-4xl mx-auto mb-8">
-      {steps.map((step, i) => {
-        const isCurrent = i === currentStepIndex;
-        const isCompleted = i < currentStepIndex;
+    <div className="max-w-4xl mx-auto mb-8 px-4">
+      {/* For larger screens - horizontal steps */}
+      <div className="hidden sm:flex items-center justify-between bg-slate-50 rounded-xl p-4 border border-slate-200 shadow-sm">
+        {steps.map((step, i) => {
+          const isCurrent = i === currentStepIndex;
+          const isCompleted = i < currentStepIndex;
+          const isLast = i === steps.length - 1;
 
-        return (
-          <React.Fragment key={i}>
-            {/* Step icon + label */}
-            <div className="flex items-center space-x-2">
-              <div
-                className={clsx(
-                  "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold",
-                  isCompleted
-                    ? "bg-[#16601E] text-white"
-                    : isCurrent
-                      ? "bg-[#16601E] text-white"
-                      : "bg-gray-300 text-gray-700"
-                )}
-              >
-                {step.step}
+          return (
+            <React.Fragment key={i}>
+              {/* Step item */}
+              <div className="flex flex-col items-center space-y-1">
+                {/* Step circle */}
+                <div
+                  className={cn(
+                    "w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200",
+                    isCompleted
+                      ? "bg-emerald-600 text-white"
+                      : isCurrent
+                        ? "bg-emerald-600 text-white ring-4 ring-emerald-100"
+                        : "bg-slate-200 text-slate-600"
+                  )}
+                >
+                  {isCompleted ? (
+                    <Check className="h-5 w-5" />
+                  ) : (
+                    step.step
+                  )}
+                </div>
+                
+                {/* Step label */}
+                <span
+                  className={cn(
+                    "text-sm whitespace-nowrap",
+                    isCurrent
+                      ? "font-semibold text-slate-900"
+                      : isCompleted
+                        ? "font-medium text-emerald-700"
+                        : "text-slate-500"
+                  )}
+                >
+                  {step.label}
+                </span>
               </div>
-              <span
-                className={clsx(
-                  "text-sm",
-                  isCurrent
-                    ? "font-bold text-black"
-                    : isCompleted
-                      ? "text-gray-700"
-                      : "text-gray-600"
-                )}
-              >
-                {step.label}
-              </span>
-            </div>
 
-            {/* Stretching divider line */}
-            {i < steps.length - 1 && (
-              <div className="flex-1 h-px bg-gray-300 mx-2" />
-            )}
-          </React.Fragment>
-        );
-      })}
+              {/* Connecting line */}
+              {!isLast && (
+                <div className="flex-1 mx-2 relative">
+                  <div className="absolute top-1/2 transform -translate-y-1/2 left-0 right-0 h-0.5 bg-slate-200">
+                    {/* Progress indicator */}
+                    <div 
+                      className="h-full bg-emerald-600 transition-all duration-500"
+                      style={{ width: isCompleted ? '100%' : '0%' }}
+                    ></div>
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
+      
+      {/* For mobile - simpler vertical steps with labels on right */}
+      <div className="sm:hidden bg-slate-50 rounded-xl p-4 border border-slate-200">
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-slate-200"></div>
+          
+          {steps.map((step, i) => {
+            const isCurrent = i === currentStepIndex;
+            const isCompleted = i < currentStepIndex;
+            const isLast = i === steps.length - 1;
+            
+            return (
+              <div key={i} className={cn("flex items-center py-3", !isLast && "pb-5")}>
+                {/* Step circle */}
+                <div
+                  className={cn(
+                    "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium z-10",
+                    isCompleted
+                      ? "bg-emerald-600 text-white"
+                      : isCurrent
+                        ? "bg-emerald-600 text-white ring-4 ring-emerald-100"
+                        : "bg-slate-200 text-slate-600"
+                  )}
+                >
+                  {isCompleted ? (
+                    <Check className="h-4 w-4" />
+                  ) : (
+                    step.step
+                  )}
+                </div>
+                
+                {/* Step label */}
+                <span
+                  className={cn(
+                    "text-sm ml-3",
+                    isCurrent
+                      ? "font-semibold text-slate-900"
+                      : isCompleted
+                        ? "font-medium text-emerald-700"
+                        : "text-slate-500"
+                  )}
+                >
+                  {step.label}
+                </span>
+                
+                {/* Progress indicator for vertical line */}
+                {!isLast && (
+                  <div 
+                    className={cn(
+                      "absolute left-4 w-0.5 bg-emerald-600 transition-all duration-500",
+                    )}
+                    style={{ 
+                      top: `${8 * (i+1) + 12 + i * 20}px`,
+                      height: isCompleted ? '20px' : '0px'
+                    }}
+                  ></div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

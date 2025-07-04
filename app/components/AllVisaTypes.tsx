@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Backpack, BriefcaseBusiness, Plane, BriefcaseMedical } from "lucide-react";
 import React from "react";
 
@@ -30,7 +30,7 @@ const visaTypes: VisaType[] = [
   {
     name: "BUSINESS VISA",
     description:
-      "This visa is issued to travelers transiting through a country en route elsewhere. It’s short-term, and many countries waive the need for it.",
+      "This visa is issued to travelers transiting through a country en route elsewhere. It's short-term, and many countries waive the need for it.",
     color: "#065BB9",
     favorites: [
       { name: "Azerbaijan", img: "https://hatscripts.github.io/circle-flags/flags/az.svg" },
@@ -67,75 +67,93 @@ const visaTypes: VisaType[] = [
 
 export default function AllVisaTypes() {
   return (
-    <section className="w-full max-w-7xl mx-auto py-6 px-4">
-      <h2 className="text-2xl sm:text-3xl font-manrope font-bold mb-2 text-center text-[#16610E]">
-        All eVisa Types. One Place.
-      </h2>
-      <h2 className="text-sm sm:text-lg text-gray-600 mb-6 text-center">Explore and apply for all available eVisa types in one convenient platform — fast, secure, and hassle-free.</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
-        {visaTypes.map(({ name, description, color, favorites, icon }) => (
-          <Card
-            key={name}
-            className="flex flex-col h-full justify-between transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-            style={{}}
-          >
-            <CardHeader className="rounded-t-xl pt-4 pb-2" style={{ backgroundColor: color }}>
-              <div className="flex items-center justify-center gap-2">
-                {icon && React.createElement(icon, { size: 32, color: "#fff", strokeWidth: "1.5px" })}
-                <CardTitle className="font-semibold text-white text-lg pt-0.75 sm:text-xl text-center">
-                  {name}
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 text-sm text-center leading-relaxed">
-                {description}
-              </p>
-            </CardContent>
-
-            <hr
-              className="h-px p-[0.5px] mx-2 rounded-xl bg-gray-200 border-0"
-              style={{ background: color }}
-            />
-
-            {favorites && (
-              <CardContent className="text-center">
-                <p className="font-bold mb-2" style={{ color }}>
-                  Favorite Destinations
-                </p>
-
-                <div className="flex justify-center gap-2 pt-2 flex-wrap">
-                  {favorites.map(({ name, img }) => (
-                    <div
-                      key={name}
-                      className="flex flex-col items-center space-y-1 min-w-[64px]"
-                    >
-                      <Image
-                        src={img}
-                        width={56}
-                        height={40}
-                        className="w-14 h-10 object-contain"
-                        alt={`${name} flag`}
-                      />
-                      <span className="text-sm font-medium text-gray-600 whitespace-nowrap">
-                        {name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            )}
-
-            <div className="flex justify-center mb-0">
-              <Button
-                className="text-white w-4/5 sm:w-3/5 py-6 rounded-xl hover:opacity-90 transition"
+    <section className="w-full bg-slate-50 py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[#16610E]">
+            All eVisa Types. One Place.
+          </h2>
+          <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">
+            Explore and apply for all available eVisa types in one convenient platform — fast, secure, and hassle-free.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {visaTypes.map(({ name, description, color, favorites, icon }) => (
+            <Card
+              key={name}
+              className="flex flex-col h-full bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+            >
+              {/* Card Header with Icon */}
+              <CardHeader 
+                className="p-4 relative" 
                 style={{ backgroundColor: color }}
               >
-                Apply Now
-              </Button>
-            </div>
-          </Card>
-        ))}
+                <div className="absolute top-0 right-0 w-20 h-20 opacity-10">
+                  {icon && React.createElement(icon, { size: 80, strokeWidth: "1px" })}
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="bg-white/20 p-2 rounded-full">
+                    {icon && React.createElement(icon, { size: 24, color: "#fff", strokeWidth: "1px" })}
+                  </div>
+                  <CardTitle className="font-bold text-white text-xl m-0">
+                    {name}
+                  </CardTitle>
+                </div>
+              </CardHeader>
+              
+              {/* Card Description */}
+              <CardContent className="flex-grow p-5">
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {description}
+                </p>
+              </CardContent>
+
+              {/* Favorite Destinations */}
+              {favorites && (
+                <div className="px-5 pb-4">
+                  <div className="rounded-lg bg-slate-50 p-3 border border-slate-100">
+                    <p className="font-semibold text-sm mb-3 text-center" style={{ color }}>
+                      Popular Destinations
+                    </p>
+
+                    <div className="flex justify-center gap-4">
+                      {favorites.map(({ name, img }) => (
+                        <div
+                          key={name}
+                          className="flex flex-col items-center gap-1"
+                        >
+                          <div className="p-1 bg-white rounded-full shadow-sm border border-slate-100">
+                            <Image
+                              src={img}
+                              width={32}
+                              height={32}
+                              className="w-8 h-8 rounded-full object-cover"
+                              alt={`${name} flag`}
+                            />
+                          </div>
+                          <span className="text-xs font-medium text-slate-700">
+                            {name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Apply Button */}
+              <CardFooter className="p-5 pt-2">
+                <Button
+                  className="w-full py-5 font-medium text-white rounded-lg transition-all duration-300 hover:opacity-90 hover:shadow-md"
+                  style={{ backgroundColor: color }}
+                >
+                  Apply Now
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );

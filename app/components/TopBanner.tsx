@@ -3,34 +3,70 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { PhoneCall, MessageSquare, Clock, ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function TopBanner() {
   const { data: session, status } = useSession();
-  if (status === "loading") return null;
+  const [isVisible, setIsVisible] = useState(true);
+  
+  // Optional: Add ability to dismiss the banner with localStorage memory
+  const handleDismiss = () => {
+    setIsVisible(false);
+    localStorage.setItem("topBannerDismissed", "true");
+  };
+
+  // Check if banner was previously dismissed
+  useEffect(() => {
+    const dismissed = localStorage.getItem("topBannerDismissed") === "true";
+    if (dismissed) {
+      setIsVisible(false);
+    }
+  }, []);
+
+  if (status === "loading" || !isVisible) return null;
 
   return (
-    <div className="w-full bg-[#16610E] flex justify-around items-center px-6 py-1.5 border-b max-md:hidden">
-      <div className="text-sm flex gap-8 text-white">
-        <p>
-          We are available <span className="text-[#FED16A]">24/7</span> at + 1 888 888 888
-        </p>
-        <p>Chat with Our Experts</p>
-      </div>
-
-      <div className="flex gap-3">
-        <Button variant="secondary">
-          <Link href="/list">
-            Check Visa Status
+    <div className="w-full bg-emerald-800 px-4 py-1.5 border-b border-emerald-700 max-md:hidden">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="text-sm flex gap-8 text-white">
+          <div className="flex items-center gap-1.5">
+            <Clock className="h-3.5 w-3.5 text-amber-300" />
+            <p>
+              We are available <span className="text-amber-300 font-medium">24/7</span>
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-1.5">
+            <PhoneCall className="h-3.5 w-3.5 text-amber-300" />
+            <p>+ 1 888 888 8888</p>
+          </div>
+          
+          <Link href="/support" className="flex items-center gap-1.5 hover:text-amber-300 transition-colors">
+            <MessageSquare className="h-3.5 w-3.5 text-amber-300" />
+            <p>Chat with Our Experts</p>
           </Link>
-        </Button>
+        </div>
 
-        {!session?.user && (
-          <Button className="bg-[#D9D9D966] hover:bg-[#b6b6b666] transition-all duration-300">
-            <Link href="/login" className="text-white">
-              Log In
+        <div className="flex gap-3">
+          <Link href="/list">
+            <Button variant="secondary" size="sm" className="bg-white text-emerald-800 hover:bg-amber-50 flex gap-1.5 h-8">
+              <ExternalLink className="h-3.5 w-3.5" />
+              Check Visa Status
+            </Button>
+          </Link>
+
+          {!session?.user && (
+            <Link href="/login">
+              <Button 
+                size="sm"
+                className="bg-white/20 hover:bg-white/30 text-white h-8"
+              >
+                Log In
+              </Button>
             </Link>
-          </Button>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

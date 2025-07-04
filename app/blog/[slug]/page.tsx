@@ -80,9 +80,8 @@ function injectNumberedHeadingIds(html: string, mainHeadingsCount: number) {
     // Only show number if more than one main heading
     const numberPrefix =
       mainHeadingsCount > 1
-        ? `<span class="mr-2 font-semibold text-primary">${
-            numberedHeadings[index++]
-          }.</span>`
+        ? `<span class="mr-2 font-semibold text-primary">${numberedHeadings[index++]
+        }.</span>`
         : "";
     return `<h${level}${attrs} id="${id}" class="scroll-mt-26">${numberPrefix}${content}</h${level}>`;
   });
@@ -116,14 +115,14 @@ export default async function BlogDetail({ params }: Props) {
 
           {/* Mobile TOC */}
           <div className="xl:hidden mb-6">
-            <Card className="shadow border border-border bg-white/80 backdrop-blur-md rounded-xl">
+            <Card className="shadow-sm border border-border bg-white/80 backdrop-blur-md rounded-xl">
               <CardContent className="py-5 px-4">
                 <h2 className="text-lg font-bold text-gray-800 mb-3">
                   🔢 Table of Contents
                 </h2>
                 <Separator className="mb-4" />
                 <ScrollArea className="max-h-[300px] pr-2">
-                  <ul className="space-y-2 text-sm text-gray-700">
+                  <ul className="space-y-2 text-sm text-gray-800">
                     {headings.length === 0 ? (
                       <li className="italic text-muted-foreground">
                         No headings found
@@ -133,16 +132,15 @@ export default async function BlogDetail({ params }: Props) {
                         <li
                           key={h.id}
                           className={cn(
-                            "hover:underline transition-colors",
-                            h.level === 2 && "pl-2 font-semibold",
-                            h.level === 3 && "pl-4",
-                            h.level === 4 && "pl-6"
+                            "hover:text-emerald-700 transition-colors",
+                            h.level === 2 && "pl-2 font-medium text-slate-700",
+                            h.level === 3 && "pl-4 text-slate-600",
+                            h.level === 4 && "pl-6 text-slate-500"
                           )}
                         >
-                          <a href={`#${h.id}`}>
-                            {/* Only show number if more than one main heading */}
+                          <a href={`#${h.id}`} className="block py-1">
                             {mainHeadingsCount > 1 ? (
-                              <span className="text-primary">{h.number}. </span>
+                              <span className="text-emerald-600 font-medium">{h.number}. </span>
                             ) : null}
                             {h.text}
                           </a>
@@ -204,10 +202,10 @@ export default async function BlogDetail({ params }: Props) {
                 🔢 Table of Contents
               </h2>
               <Separator className="mb-4" />
-              <ScrollArea className="max-h-[400px] pr-2">
-                <ul className="space-y-2 text-sm text-gray-700">
+              <ScrollArea className="max-h-[500px] pr-2">
+                <ul className="space-y-2 text-sm">
                   {headings.length === 0 ? (
-                    <li className="italic text-muted-foreground">
+                    <li className="italic text-slate-400">
                       No headings found
                     </li>
                   ) : (
@@ -215,16 +213,15 @@ export default async function BlogDetail({ params }: Props) {
                       <li
                         key={h.id}
                         className={cn(
-                          "hover:underline transition-colors",
-                          h.level === 2 && "pl-2 font-semibold",
-                          h.level === 3 && "pl-4",
-                          h.level === 4 && "pl-6"
+                          "hover:text-emerald-700 transition-colors",
+                          h.level === 2 && "pl-2 font-medium text-slate-700",
+                          h.level === 3 && "pl-4 text-slate-600",
+                          h.level === 4 && "pl-6 text-slate-500"
                         )}
                       >
-                        <a href={`#${h.id}`}>
-                          {/* Only show number if more than one main heading */}
+                        <a href={`#${h.id}`} className="block py-1">
                           {mainHeadingsCount > 1 ? (
-                            <span className="text-primary">{h.number}. </span>
+                            <span className="text-emerald-600 font-medium">{h.number}. </span>
                           ) : null}
                           {h.text}
                         </a>

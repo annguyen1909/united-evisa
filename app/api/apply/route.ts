@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
 
     const app = await prisma.application.create({
       data: {
-      status: "pending",
+      status: "Not Finished",
       accountId: account.id, // use the id from DB
       createdAt: new Date(),
       updatedAt: new Date(),

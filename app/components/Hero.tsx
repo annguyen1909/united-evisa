@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import CheckEligibility from "../../components/shared/CheckEligibility";
 import { motion } from "framer-motion";
-
+import { CheckCheck, GlobeLock, Map, Clock } from "lucide-react";
 
 export default function Hero() {
   const backgroundImages = [
@@ -12,8 +12,8 @@ export default function Hero() {
     '/images/hero/hero3.jpg',
     '/images/hero/hero4.jpg',
   ];
-  const [currentImageIndex, setCurrentImageIndex] = useState(-1); // Start with no image
-
+  const [currentImageIndex, setCurrentImageIndex] = useState(-1);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const preloadImages = () => {
@@ -27,71 +27,128 @@ export default function Hero() {
       firstImg.src = backgroundImages[0];
       firstImg.onload = () => {
         setCurrentImageIndex(0);
+        setIsLoaded(true);
       };
     };
 
     preloadImages();
   }, []);
 
-
-
   useEffect(() => {
+    if (!isLoaded) return;
+    
     const timer = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 4000); // Change image every 4 seconds
+    }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isLoaded]);
+
+  const handleDotClick = (index: number) => {
+    setCurrentImageIndex(index);
+  };
 
   return (
-    <section
-      style={{
-
-      }}
-      className="w-full overflow-hidden relative bg-cover bg-center bg-no-repeat p-14 z-0 text-center flex flex-col items-center gap-24 max-md:gap-12 max-md:p-16 text-white transition-all duration-1000 ease-in-out"
-    >
+    <section className="w-full relative overflow-hidden min-h-[600px] z-0 flex flex-col items-center justify-center">
+      {/* Background Images with Overlay */}
       {backgroundImages.map((src, index) => (
         <div
           key={src}
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100" : "opacity-0"
-            }`}
-          style={{ backgroundImage: `url(${src})`, zIndex: -1 }}
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1500 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ backgroundImage: `url(${src})`, zIndex: -2 }}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent"
-        style={{ zIndex: -1 }} />
-      <motion.div
-        className="backdrop-blur-[64px] bg-white/40 p-8 rounded-2xl max-w-7xl shadow-xl z-10"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
-          Welcome to <span className="font-extrabold bg-gradient-to-r from-[#16610E]/40 to-[#16610E]/90 bg-clip-text text-transparent">UNITED</span><span className="bg-gradient-to-r from-[#CB6601]/70 to-[#CB6601]/90 bg-clip-text text-transparent">eVisa</span>
-        </h1>
-        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
-          Trusted Global Visa Assistant
-        </h1>
-        <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-          Simplify the way you get a visa — fast, reliable, and stress-free
-        </p>
-      </motion.div>
-      <div className="">
-        <CheckEligibility />
+      
+      {/* Dark Gradient Overlay */}
+      <div 
+        className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-800/40 to-slate-900/70"
+        style={{ zIndex: -1 }}
+      />
+      
+      <div className="w-full max-w-6xl mx-auto px-4 py-16 md:py-24 flex flex-col items-center">
+        {/* Hero Content */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <div className="inline-block bg-slate-800/50 backdrop-blur-lg px-3 py-1 rounded-full text-amber-400 text-sm font-medium mb-4">
+            Fast, Reliable, and Trusted
+          </div>
+          
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
+            Welcome to <span className="font-extrabold bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">UNITED</span>
+            <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">eVisa</span>
+          </h1>
+          
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 drop-shadow-lg max-w-4xl mx-auto">
+            Your Trusted Global Visa Assistant
+          </h2>
+          
+          <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
+            Simplify the way you get a visa — fast, reliable, and stress-free
+          </p>
+          
+          {/* Benefits Icons */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8">
+            <div className="flex items-center gap-2 text-white">
+              <div className="bg-emerald-500/20 p-2 rounded-full">
+                <CheckCheck className="h-5 w-5 text-emerald-400" />
+              </div>
+              <span className="text-sm md:text-base">Fast Approval</span>
+            </div>
+            
+            <div className="flex items-center gap-2 text-white">
+              <div className="bg-emerald-500/20 p-2 rounded-full">
+                <GlobeLock className="h-5 w-5 text-emerald-400" />
+              </div>
+              <span className="text-sm md:text-base">Secure Processing</span>
+            </div>
+            
+            <div className="flex items-center gap-2 text-white">
+              <div className="bg-emerald-500/20 p-2 rounded-full">
+                <Map className="h-5 w-5 text-emerald-400" />
+              </div>
+              <span className="text-sm md:text-base">40+ Countries</span>
+            </div>
+            
+            <div className="flex items-center gap-2 text-white">
+              <div className="bg-emerald-500/20 p-2 rounded-full">
+                <Clock className="h-5 w-5 text-emerald-400" />
+              </div>
+              <span className="text-sm md:text-base">24/7 Support</span>
+            </div>
+          </div>
+        </motion.div>
+        
+        {/* Check Eligibility Component */}
+        <motion.div
+          className="w-full z-10"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+        >
+          <CheckEligibility />
+        </motion.div>
       </div>
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+      
+      {/* Image Navigation Dots */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
         {backgroundImages.map((_, index) => (
           <button
             key={index}
-            className={`h-3 rounded-full mx-1 transition-all duration-300 ease-in-out transform 
-      ${index === currentImageIndex
-                ? 'w-10 scale-110 bg-gray-300 border-gray-300 border-2'
-                : 'w-3 scale-100 bg-transparent border-gray-300 border-2'
+            onClick={() => handleDotClick(index)}
+            className={`h-2.5 rounded-full transition-all duration-300 ease-in-out 
+              ${index === currentImageIndex
+                ? 'w-10 bg-white'
+                : 'w-2.5 bg-white/50 hover:bg-white/70'
               }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
-
       </div>
     </section>
   );

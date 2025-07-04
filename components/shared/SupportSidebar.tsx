@@ -1,18 +1,69 @@
 "use client";
 
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { Mail, CheckCircle, Sun } from "lucide-react";
+import { 
+  Mail, 
+  CheckCircle, 
+  Sun, 
+  Phone, 
+  Globe, 
+  Send, 
+  ShieldCheck,
+  Clock,
+  CreditCard,
+  RefreshCcw
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export default function SupportSidebar() {
+    const [formState, setFormState] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormState(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Show success state
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        
+        // Reset after 5 seconds
+        setTimeout(() => {
+            setIsSubmitted(false);
+            setFormState({
+                name: "",
+                email: "",
+                phone: "",
+                message: ""
+            });
+        }, 5000);
+    };
+
     return (
         <div className="space-y-6">
             {/* Contact Form */}
-            <Card className="rounded-2xl shadow-md border bg-card text-foreground">
-                <div className="bg-gradient-to-r from-primary to-[#16601E] text-white px-6 py-5 rounded-t-2xl">
+            <Card className="rounded-xl overflow-hidden shadow-md border-slate-200">
+                <div className="bg-gradient-to-r from-emerald-700 to-emerald-800 text-white px-6 py-5">
                     <div className="flex items-start gap-3">
                         <Mail className="w-6 h-6 mt-1" />
                         <div>
@@ -21,74 +72,206 @@ export default function SupportSidebar() {
                         </div>
                     </div>
                 </div>
-                <CardContent className="space-y-4">
-                    <div className="bg-[#16601E]/10 text-sm p-3 rounded-md text-black">
+                <CardContent className="p-6 space-y-4">
+                    <div className="bg-emerald-50 text-emerald-800 text-sm p-3 rounded-md border border-emerald-100">
                         Our visa experts are here to help you 24/7. Fill out the form below and we'll get back to you as soon as possible.
                     </div>
-                    <form className="space-y-3">
-                        <Input placeholder="Full Name *" required />
-                        <Input type="email" placeholder="Email Address *" required />
-                        <Input type="tel" placeholder="Phone Number *" required />
-                        <Textarea placeholder="Your Question *" rows={4} required />
-                        <Button type="submit" className="w-full bg-[#16601E] hover:bg-[#16601E]/90 transition-bg duration-300">
-                            Send Message →
-                        </Button>
-                    </form>
+                    
+                    {isSubmitted ? (
+                        <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="bg-green-50 border border-green-200 rounded-md p-4 text-center"
+                        >
+                            <div className="flex flex-col items-center gap-2">
+                                <div className="bg-green-100 rounded-full p-2">
+                                    <CheckCircle className="h-6 w-6 text-green-600" />
+                                </div>
+                                <h4 className="font-medium text-green-800">Message Sent!</h4>
+                                <p className="text-sm text-green-700">
+                                    We'll get back to you as soon as possible.
+                                </p>
+                            </div>
+                        </motion.div>
+                    ) : (
+                        <form className="space-y-4" onSubmit={handleSubmit}>
+                            <div className="space-y-2">
+                                <Input 
+                                    name="name"
+                                    placeholder="Full Name *" 
+                                    value={formState.name}
+                                    onChange={handleChange}
+                                    required 
+                                    className="border-slate-200 focus:border-emerald-500"
+                                />
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <Input 
+                                    name="email"
+                                    type="email" 
+                                    placeholder="Email Address *" 
+                                    value={formState.email}
+                                    onChange={handleChange}
+                                    required 
+                                    className="border-slate-200 focus:border-emerald-500"
+                                />
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <Input 
+                                    name="phone"
+                                    type="tel" 
+                                    placeholder="Phone Number *" 
+                                    value={formState.phone}
+                                    onChange={handleChange}
+                                    required 
+                                    className="border-slate-200 focus:border-emerald-500"
+                                />
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <Textarea 
+                                    name="message"
+                                    placeholder="Your Question *" 
+                                    rows={4} 
+                                    value={formState.message}
+                                    onChange={handleChange}
+                                    required 
+                                    className="resize-none border-slate-200 focus:border-emerald-500"
+                                />
+                            </div>
+                            
+                            <Button 
+                                type="submit" 
+                                className={cn(
+                                    "w-full bg-emerald-700 hover:bg-emerald-800 transition-colors flex items-center justify-center gap-2",
+                                    isSubmitting && "opacity-80 pointer-events-none"
+                                )}
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? (
+                                    <>
+                                        <RefreshCcw className="h-4 w-4 animate-spin" />
+                                        Sending...
+                                    </>
+                                ) : (
+                                    <>
+                                        Send Message
+                                        <Send className="h-4 w-4 ml-1" />
+                                    </>
+                                )}
+                            </Button>
+                        </form>
+                    )}
                 </CardContent>
             </Card>
 
             {/* Expert Info */}
-            <Card className="rounded-2xl shadow-sm border bg-card text-foreground">
-                <CardContent className="pt-6 space-y-4">
-                    <div className="flex items-center gap-2 text-primary font-semibold">
-                        <Sun className="w-4 h-4" />
+            <Card className="rounded-xl shadow-sm border-slate-200 overflow-hidden">
+                <div className="bg-slate-50 px-6 py-5 border-b border-slate-200">
+                    <div className="flex items-center gap-2 text-emerald-700 font-semibold">
+                        <Sun className="w-5 h-5" />
                         <span>EXPERTS AVAILABLE 24/7</span>
                     </div>
-                    <div className="text-sm flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-muted-foreground" />
-                        <a href="mailto:Visa@SriLanka-Immigration.com" className="text-[#16601E] hover:underline">
+                </div>
+                <CardContent className="p-6 space-y-4">
+                    <div className="flex items-center gap-3">
+                        <div className="bg-emerald-100 p-2 rounded-full">
+                            <Mail className="w-4 h-4 text-emerald-700" />
+                        </div>
+                        <a 
+                            href="mailto:support@unitedevisa.com" 
+                            className="text-emerald-700 hover:underline transition-colors"
+                        >
                             support@unitedevisa.com
                         </a>
                     </div>
-                    <Separator />
-                    <div className="text-sm space-y-1">
-                        <p><strong>US:</strong> +1 555 000 0000</p>
-                        <p><strong>UK:</strong> +44 5555 000000</p>
-                        <a href="#" className="text-[#16601E] hover:underline">Worldwide phone support</a>
+                    
+                    <Separator className="my-3" />
+                    
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-slate-100 p-2 rounded-full">
+                                <Phone className="w-4 h-4 text-slate-700" />
+                            </div>
+                            <div>
+                                <p className="text-slate-700"><strong>US:</strong> +1 555 000 0000</p>
+                            </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                            <div className="bg-slate-100 p-2 rounded-full">
+                                <Phone className="w-4 h-4 text-slate-700" />
+                            </div>
+                            <div>
+                                <p className="text-slate-700"><strong>UK:</strong> +44 5555 000000</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="pt-2">
+                        <a 
+                            href="#" 
+                            className="flex items-center text-emerald-700 hover:text-emerald-800 transition-colors text-sm font-medium"
+                        >
+                            <Globe className="w-4 h-4 mr-1.5" />
+                            View worldwide phone support
+                        </a>
                     </div>
                 </CardContent>
             </Card>
 
             {/* Confidence Checklist */}
-            <Card className="rounded-2xl shadow-sm border bg-card text-foreground">
-                <CardContent className="pt-6 space-y-4">
-                    <h4 className="text-md font-semibold text-primary">APPLY WITH CONFIDENCE</h4>
-                    <ul className="space-y-3 text-sm text-muted-foreground">
+            <Card className="rounded-xl shadow-sm border-slate-200 overflow-hidden">
+                <div className="bg-emerald-50 px-6 py-5 border-b border-emerald-100">
+                    <div className="flex items-center gap-2">
+                        <ShieldCheck className="w-5 h-5 text-emerald-700" />
+                        <h4 className="font-semibold text-emerald-800">APPLY WITH CONFIDENCE</h4>
+                    </div>
+                </div>
+                <CardContent className="p-6">
+                    <ul className="space-y-3 text-sm">
                         {[
-                            "Fast, secure, and reliable visa processing",
-                            "Safe online payment—no hidden fees",
-                            "Most visas approved within 3 working days",
-                            "All applications processed urgently—no extra rush fees",
-                            "Transparent pricing, no surprises",
-                            "100% Service Fees Returned if Rejected",
-                        ].map((text, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                                <svg
-                                    className="text-green-600 w-5 h-5 mt-[2px] shrink-0"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span className={text.includes("100%") ? "font-semibold text-black" : "text-gray-700"}>
-                                    {text}
+                            { 
+                                text: "Fast, secure, and reliable visa processing",
+                                icon: <Clock className="w-4 h-4 text-emerald-600" />
+                            },
+                            { 
+                                text: "Safe online payment—no hidden fees",
+                                icon: <CreditCard className="w-4 h-4 text-emerald-600" />
+                            },
+                            { 
+                                text: "Most visas approved within 3 working days",
+                                icon: <CheckCircle className="w-4 h-4 text-emerald-600" />
+                            },
+                            { 
+                                text: "All applications processed urgently—no extra rush fees",
+                                icon: <CheckCircle className="w-4 h-4 text-emerald-600" />
+                            },
+                            { 
+                                text: "Transparent pricing, no surprises",
+                                icon: <CheckCircle className="w-4 h-4 text-emerald-600" />
+                            },
+                            { 
+                                text: "100% Service Fees Returned if Rejected",
+                                icon: <ShieldCheck className="w-4 h-4 text-emerald-600" />,
+                                highlight: true
+                            },
+                        ].map((item, idx) => (
+                            <li key={idx} className="flex items-start gap-3">
+                                <div className="mt-0.5 shrink-0">
+                                    {item.icon}
+                                </div>
+                                <span className={cn(
+                                    "text-slate-700",
+                                    item.highlight && "font-semibold text-emerald-800"
+                                )}>
+                                    {item.text}
                                 </span>
                             </li>
                         ))}
                     </ul>
-
                 </CardContent>
             </Card>
         </div>

@@ -53,7 +53,7 @@ export default function PricingPage() {
               Department to process eVisa.
             </p>
           </div>
-          {country.etaInfo?.visaTypes?.length ? (
+          {country.visaTypes?.length ? (
             <div className="overflow-x-auto mt-4">
               <table className="min-w-full border border-primary/20 rounded-lg">
                 <thead className="bg-primary/10 text-primary">
@@ -66,7 +66,7 @@ export default function PricingPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {country.etaInfo.visaTypes.map((visa) => (
+                  {country.visaTypes.map((visa) => (
                     <tr key={visa.name} className="even:bg-primary/5">
                       <td className="px-4 py-2 font-semibold">{visa.type}</td>
                       <td className="px-4 py-2">{visa.description || "-"}</td>
@@ -212,7 +212,7 @@ export default function PricingPage() {
                 Department to process eVisa.
               </p>
             </div>
-            {selectedCountry.etaInfo?.visaTypes?.length ? (
+            {selectedCountry.visaTypes?.length ? (
               <div className="overflow-x-auto mt-4">
                 <table className="min-w-full border border-primary/20 rounded-lg">
                   <thead className="bg-primary/10 text-primary">
@@ -225,7 +225,7 @@ export default function PricingPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {selectedCountry.etaInfo.visaTypes.map((visa) => (
+                    {selectedCountry.visaTypes.map((visa) => (
                       <tr key={visa.name} className="even:bg-primary/5">
                         <td className="px-4 py-2 font-semibold">{visa.type}</td>
                         <td className="px-4 py-2">{visa.description || "-"}</td>

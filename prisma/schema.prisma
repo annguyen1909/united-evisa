@@ -49,15 +49,16 @@ model Destination {
 }
 
 model VisaType {
-  id                   String        @id @default(uuid())
-  name                 String
-  waitTime             String?
-  fees                 Float?
-  requiredDocuments    String?
-  allowedNationalities Json?
-  destinationId        String
-  applications         Application[]
-  destination          Destination   @relation(fields: [destinationId], references: [id])
+  id                      String                    @id @default(uuid())
+  name                    String
+  waitTime                String?
+  fees                    Float?
+  requiredDocuments       String?
+  allowedNationalities    Json?
+  destinationId           String
+  applications            Application[]
+  destination             Destination               @relation(fields: [destinationId], references: [id])
+  VisaTypeNationalityFees VisaTypeNationalityFees[]
 
   @@unique([name, destinationId])
   @@index([name])
@@ -372,19 +373,19 @@ model SystemHealthIncident {
 }
 
 model ChatSession {
-  id                    String        @id @default(uuid())
-  status                String        @default("active")
-  siteId                String
-  handled               Boolean       @default(false)
-  friendlyId            String?       @unique
-  visitorName           String?
-  createdAt             DateTime      @default(now())
-  hidden                Boolean       @default(false)
-  updatedAt             DateTime      @updatedAt
-  visitorId             String
-  lastVisitorMessageAt  DateTime?
-  lastAgentMessageAt    DateTime?
-  messages              ChatMessage[]
+  id                   String        @id @default(uuid())
+  status               String        @default("active")
+  siteId               String
+  handled              Boolean       @default(false)
+  friendlyId           String?       @unique
+  visitorName          String?
+  createdAt            DateTime      @default(now())
+  hidden               Boolean       @default(false)
+  updatedAt            DateTime      @updatedAt
+  visitorId            String
+  lastVisitorMessageAt DateTime?
+  lastAgentMessageAt   DateTime?
+  messages             ChatMessage[]
 
   @@index([status])
   @@index([visitorId])
@@ -423,4 +424,18 @@ model ChatAttachment {
   message   ChatMessage? @relation(fields: [messageId], references: [id], onDelete: Cascade)
 
   @@index([messageId])
+}
+
+model VisaTypeNationalityFees {
+  id             String   @id
+  visaTypeId     String
+  nationality    String
+  governmentFees Decimal  @db.Decimal(10, 2)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now())
+  VisaType       VisaType @relation(fields: [visaTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([visaTypeId, nationality])
+  @@index([nationality])
+  @@index([visaTypeId])
 }

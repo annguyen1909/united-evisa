@@ -1,0 +1,304 @@
+[
+  {
+    "country": "Angola",
+    "visaTypeIds": [
+      "angola-tourist-single-30-days",
+      "angola-business-single-30-days"
+    ]
+  },
+  {
+    "country": "Armenia",
+    "visaTypeIds": [
+      "armenia-tourist-single-21-days",
+      "armenia-tourist-single-120-days",
+      "armenia-business-single-21-days",
+      "armenia-business-single-120-days"
+    ]
+  },
+  {
+    "country": "Benin",
+    "visaTypeIds": [
+      "benin-tourist-single-30-days",
+      "benin-tourist-multiple-30-days",
+      "benin-tourist-multiple-90-days"
+    ]
+  },
+  {
+    "country": "Cambodia",
+    "visaTypeIds": [
+      "cambodia-tourist-single-1-month"
+    ]
+  },
+  {
+    "country": "Canada",
+    "visaTypeIds": [
+      "canada-tourist-multiple-5-years"
+    ]
+  },
+  {
+    "country": "Djibouti",
+    "visaTypeIds": [
+      "djibouti-tourist-single-90-days",
+      "djibouti-business-business-90-days",
+      "djibouti-transit-single-14-days"
+    ]
+  },
+  {
+    "country": "Egypt",
+    "visaTypeIds": [
+      "egypt-tourist-single-30-days",
+      "egypt-tourist-multiple-30-days"
+    ]
+  },
+  {
+    "country": "Ethiopia",
+    "visaTypeIds": [
+      "ethiopia-tourist-single-30-days"
+    ]
+  },
+  {
+    "country": "Gabon",
+    "visaTypeIds": [
+      "gabon-tourist-single-1-month",
+      "gabon-tourist-multiple-6-months",
+      "gabon-tourist-single-2-months",
+      "gabon-tourist-single-3-months",
+      "gabon-business-single-1-month",
+      "gabon-business-single-2-months",
+      "gabon-business-single-3-months",
+      "gabon-business-multiple-6-months"
+    ]
+  },
+  {
+    "country": "Georgia",
+    "visaTypeIds": [
+      "georgia-tourist-multiple-30-days",
+      "georgia-business-multiple-30-days"
+    ]
+  },
+  {
+    "country": "Indonesia",
+    "visaTypeIds": [
+      "indonesia-tourist-single-30-days",
+      "indonesia-tourist-single-60-days"
+    ]
+  },
+  {
+    "country": "Kazakhstan",
+    "visaTypeIds": [
+      "kazakhstan-business-single-30-days",
+      "kazakhstan-tourist-single-30-days",
+      "kazakhstan-treatment-single-30-days"
+    ]
+  },
+  {
+    "country": "Kenya",
+    "visaTypeIds": [
+      "kenya-tourist-single-90-days",
+      "kenya-business-single-90-days",
+      "kenya-transit-single-72-hours"
+    ]
+  },
+  {
+    "country": "Kuwait",
+    "visaTypeIds": [
+      "kuwait-tourist-single-90-days"
+    ]
+  },
+  {
+    "country": "Kyrgyzstan",
+    "visaTypeIds": [
+      "kyrgyzstan-tourist-single-30-days",
+      "kyrgyzstan-tourist-single-60-days",
+      "kyrgyzstan-transit-single-5-days"
+    ]
+  },
+  {
+    "country": "Laos",
+    "visaTypeIds": [
+      "laos-tourist-single-30-days"
+    ]
+  },
+  {
+    "country": "Malawi",
+    "visaTypeIds": [
+      "malawi-tourist-single-90-days",
+      "malawi-tourist-multiple-6-months",
+      "malawi-tourist-multiple-12-months",
+      "malawi-transit-single-7-days"
+    ]
+  },
+  {
+    "country": "Malaysia",
+    "visaTypeIds": [
+      "malaysia-tourist-single-30-days",
+      "malaysia-student-single-3-months",
+      "malaysia-expatriate-single-3-months",
+      "malaysia-medical-single-3-months"
+    ]
+  },
+  {
+    "country": "Moldova",
+    "visaTypeIds": [
+      "moldova-tourist-multiple-90-days",
+      "moldova-business-multiple-90-days"
+    ]
+  },
+  {
+    "country": "Mongolia",
+    "visaTypeIds": [
+      "mongolia-tourist-single-30-days",
+      "mongolia-transit-single-2-days"
+    ]
+  },
+  {
+    "country": "New Zealand",
+    "visaTypeIds": [
+      "new-zealand-tourist-multiple-2-years",
+      "new-zealand-business-multiple-2-years",
+      "new-zealand-transit-multiple-2-years"
+    ]
+  },
+  {
+    "country": "Oman",
+    "visaTypeIds": [
+      "oman-tourist"
+    ]
+  },
+  {
+    "country": "Pakistan",
+    "visaTypeIds": [
+      "pakistan-tourist-single-3-months",
+      "pakistan-business-single-3-months",
+      "pakistan-business-multiple-1-year"
+    ]
+  },
+  {
+    "country": "Qatar",
+    "visaTypeIds": [
+      "qatar-tourist-single-30-days"
+    ]
+  },
+  {
+    "country": "Rwanda",
+    "visaTypeIds": [
+      "rwanda-tourist-single-30-days",
+      "rwanda-tourist-multiple-90-days",
+      "rwanda-conference-single-30-days",
+      "rwanda-transit-single-3-days"
+    ]
+  },
+  {
+    "country": "Saint Helena",
+    "visaTypeIds": [
+      "saint-helena-evisa-single-183-days",
+      "saint-helena-evisa-multiple-183-days"
+    ]
+  },
+  {
+    "country": "Saudi Arabia",
+    "visaTypeIds": [
+      "saudi-arabia-tourist-multiple-3-months"
+    ]
+  },
+  {
+    "country": "South Africa",
+    "visaTypeIds": [
+      "south-africa-tourist-single-90-days",
+      "south-africa-business-single-90-days"
+    ]
+  },
+  {
+    "country": "Sri Lanka",
+    "visaTypeIds": [
+      "sri-lanka-tourist-double",
+      "sri-lanka-business-multiple-30-days",
+      "sri-lanka-transit-single-48-hours"
+    ]
+  },
+  {
+    "country": "Taiwan",
+    "visaTypeIds": [
+      "taiwan-tourist-single-30-days",
+      "taiwan-business-single-30-days"
+    ]
+  },
+  {
+    "country": "Tajikistan",
+    "visaTypeIds": [
+      "tajikistan-tourist-gbao-single-60-days",
+      "tajikistan-tourist-gbao-multiple-60-days",
+      "tajikistan-tourist-single-60-days",
+      "tajikistan-tourist-multiple-60-days"
+    ]
+  },
+  {
+    "country": "Tanzania",
+    "visaTypeIds": [
+      "tanzania-tourist-single-90-days",
+      "tanzania-tourist-multiple-1-year",
+      "tanzania-transit-single-7-days",
+      "tanzania-business-single-90-days"
+    ]
+  },
+  {
+    "country": "Uganda",
+    "visaTypeIds": [
+      "uganda-tourist-single-90-days",
+      "uganda-east-africa-multiple-90-days",
+      "uganda-transit-single-7-days"
+    ]
+  },
+  {
+    "country": "United Kingdom",
+    "visaTypeIds": [
+      "united-kingdom-tourist-single-6-months",
+      "united-kingdom-business-single-6-months",
+      "united-kingdom-study-single-6-months",
+      "united-kingdom-medical-single-6-months"
+    ]
+  },
+  {
+    "country": "Uzbekistan",
+    "visaTypeIds": [
+      "uzbekistan-tourist-single-30-days",
+      "uzbekistan-tourist-double-30-days",
+      "uzbekistan-tourist-multiple-30-days",
+      "uzbekistan-business-single-30-days",
+      "uzbekistan-business-double-30-days",
+      "uzbekistan-business-multiple-30-days"
+    ]
+  },
+  {
+    "country": "Vietnam",
+    "visaTypeIds": [
+      "vietname-tourist-single-90-days",
+      "vietname-tourist-multiple-90-days",
+      "vietname-business-single-90-days",
+      "vietname-business-multiple-90-days"
+    ]
+  },
+  {
+    "country": "Zambia",
+    "visaTypeIds": [
+      "zambia-tourist-single-30-days",
+      "zambia-tourist-double-30-days",
+      "zambia-tourist-multiple-90-days",
+      "zambia-business-single-30-days",
+      "zambia-business-double-30-days",
+      "zambia-business-multiple-90-days",
+      "zambia-kaza-multiple-90-days",
+      "zambia-transit-single-7-days"
+    ]
+  },
+  {
+    "country": "Zimbabwe",
+    "visaTypeIds": [
+      "zimbabwe-tourist-single-30-days",
+      "zimbabwe-tourist-double-30-days",
+      "zimbabwe-business-single-30-days",
+      "zimbabwe-business-double-30-days",
+      "zimbabwe-kaza-multiple-90-days"
+    ]
+  }
+]

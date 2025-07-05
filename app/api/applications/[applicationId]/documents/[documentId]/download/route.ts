@@ -19,12 +19,12 @@ export async function GET(
     const document = await prisma.applicationDocument.findFirst({
       where: {
         id: documentId,
-        application: {
+        Application: {
           applicationId
         }
       },
       include: {
-        application: {
+        Application: {
           select: {
             accountId: true
           }
@@ -44,10 +44,10 @@ export async function GET(
           websiteCreatedAt: "United Evisa" 
         }
       },
-      select: { id: true, role: true },
+      select: { id: true},
     });
     
-    if (!account || (account.id !== document.application.accountId && account.role !== 'ADMIN')) {
+    if (!account || (account.id !== document.Application.accountId)) {
       return NextResponse.json({ error: "Unauthorized to download this document" }, { status: 403 });
     }
     

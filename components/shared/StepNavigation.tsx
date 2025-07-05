@@ -20,9 +20,11 @@ export default function StepNavigation() {
   if (cleanPath === "/apply") currentStepIndex = 0;
   else if (cleanPath === "/apply/passengers") currentStepIndex = 1;
   else if (cleanPath === "/apply/payment") currentStepIndex = 2;
-  else if (cleanPath === "/apply/documents") currentStepIndex = 3;
-  else if (cleanPath === "/apply/thank-you") currentStepIndex = 4; // Past all steps
-  
+  else if (
+    cleanPath === "/apply/documents" ||
+    cleanPath === "/apply/confirmation"
+  ) currentStepIndex = 3; // Both are step 4
+
   return (
     <div className="max-w-4xl mx-auto mb-8 px-4">
       {/* For larger screens - horizontal steps */}
@@ -53,7 +55,7 @@ export default function StepNavigation() {
                     step.step
                   )}
                 </div>
-                
+
                 {/* Step label */}
                 <span
                   className={cn(
@@ -74,7 +76,7 @@ export default function StepNavigation() {
                 <div className="flex-1 mx-2 relative">
                   <div className="absolute top-1/2 transform -translate-y-1/2 left-0 right-0 h-0.5 bg-slate-200">
                     {/* Progress indicator */}
-                    <div 
+                    <div
                       className="h-full bg-emerald-600 transition-all duration-500"
                       style={{ width: isCompleted ? '100%' : '0%' }}
                     ></div>
@@ -85,18 +87,18 @@ export default function StepNavigation() {
           );
         })}
       </div>
-      
+
       {/* For mobile - simpler vertical steps with labels on right */}
       <div className="sm:hidden bg-slate-50 rounded-xl p-4 border border-slate-200">
         <div className="relative">
           {/* Vertical line */}
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-slate-200"></div>
-          
+
           {steps.map((step, i) => {
             const isCurrent = i === currentStepIndex;
             const isCompleted = i < currentStepIndex;
             const isLast = i === steps.length - 1;
-            
+
             return (
               <div key={i} className={cn("flex items-center py-3", !isLast && "pb-5")}>
                 {/* Step circle */}
@@ -116,7 +118,7 @@ export default function StepNavigation() {
                     step.step
                   )}
                 </div>
-                
+
                 {/* Step label */}
                 <span
                   className={cn(
@@ -130,15 +132,15 @@ export default function StepNavigation() {
                 >
                   {step.label}
                 </span>
-                
+
                 {/* Progress indicator for vertical line */}
                 {!isLast && (
-                  <div 
+                  <div
                     className={cn(
                       "absolute left-4 w-0.5 bg-emerald-600 transition-all duration-500",
                     )}
-                    style={{ 
-                      top: `${8 * (i+1) + 12 + i * 20}px`,
+                    style={{
+                      top: `${8 * (i + 1) + 12 + i * 20}px`,
                       height: isCompleted ? '20px' : '0px'
                     }}
                   ></div>

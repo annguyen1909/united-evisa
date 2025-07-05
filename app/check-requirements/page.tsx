@@ -231,9 +231,9 @@ export default function CheckRequirementsPage() {
 
                             <CardFooter className="pt-2 pb-6">
                                 {visa.isEligible ? (
-                                    <Link href={`/apply?country=${destinationName.toLowerCase()}&type=${encodeURIComponent(visa.type || visa.name)}&nationality=${nationalitySlug}`} className="w-full">
+                                    <Link href={`/apply?country=${destinationName.toLowerCase()}&type=${encodeURIComponent(visa.id)}&nationality=${nationalitySlug}`} className="w-full">
                                         <Button
-                                            className="w-full bg-emerald-600 hover:bg-emerald-700"
+                                            className="w-full cursor-pointer bg-emerald-600 hover:bg-emerald-700"
                                         >
                                             Apply Now
                                             <ArrowRight className="ml-2 h-4 w-4" />
@@ -284,7 +284,7 @@ export default function CheckRequirementsPage() {
                     </Link>
                 </div>
                 {/* Visa Process Steps */}
-                <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-12">
+                <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm my-12">
                     <h2 className="text-xl font-bold text-slate-800 mb-6">Visa Application Process</h2>
                     <VisaSteps />
                 </div>

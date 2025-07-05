@@ -65,7 +65,7 @@ export default function ApplyForm({ user }: { user: any }) {
                 setSelectedCountry(country);
                 if (typeParam) {
                     const visaType = country.visaTypes.find(
-                        v => v.type?.toLowerCase() === typeParam.toLowerCase()
+                        v => v.id?.toLowerCase() === typeParam.toLowerCase()
                     );
                     if (visaType) setSelectedVisaType(visaType.name);
                 } else if (country.visaTypes.length > 0) {

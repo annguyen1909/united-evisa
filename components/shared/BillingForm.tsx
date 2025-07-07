@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { AlertCircle } from 'lucide-react';
+import { NATIONALITIES } from '@/lib/nationalities';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { cn } from '@/lib/utils';
 
 interface BillingFormProps {
   onBillingInfoChange: (billingInfo: BillingInfo, valid: boolean) => void;
@@ -54,6 +56,10 @@ export function BillingForm({
   const zipcode = watch("zipcode");
   const city = watch("city");
   const state = watch("state");
+  const nationalitySelect = NATIONALITIES.map((n) => ({
+  value: n.name,
+  label: n.code,
+}));
 
 
   useEffect(() => {
@@ -122,14 +128,24 @@ export function BillingForm({
         )}
       </div>
       <div>
-        <Label htmlFor="zipcode">Country</Label>
-        <Input
-          id="zipcode"
-          placeholder="Country"
-          {...register("country", { required: "Country is required" })}
-          className={errors.country ? "border-red-500" : ""}
-          disabled={isProcessing}
-        />
+        <Label htmlFor="country">Country</Label>
+        <Select
+          value={nationalitySelect.find(n => n.value === country?.toLowerCase())?.value || ""}
+          onValueChange={(value) => register("country", { required: "Country is required" }).onChange({ target: { value } })}
+        >
+          <SelectTrigger className={cn(
+            errors.country && "border-red-500 focus:ring-red-500"
+          )}>
+            <SelectValue placeholder="Select Nationality" />
+          </SelectTrigger>
+          <SelectContent className="max-h-[300px]">
+            {nationalitySelect.map((nationality) => (
+              <SelectItem key={nationality.value} value={nationality.value}>
+                {nationality.value}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         {errors.country && (
           <p className="text-red-500 text-sm mt-1 flex items-center">
             <AlertCircle className="h-4 w-4 mr-1" /> {errors.country.message}

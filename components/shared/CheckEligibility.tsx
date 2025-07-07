@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsDown, Search, Globe, ChevronRight } from "lucide-react";
+import { Check, ChevronDown, Search, Globe, ChevronRight } from "lucide-react";
 import { COUNTRIES } from '@/lib/countries';
 import { NATIONALITIES } from '@/lib/nationalities';
 import { cn } from "@/lib/utils";
@@ -96,7 +96,7 @@ function ComboBox({
                 {selected ? selected.label : placeholder || `Select ${label.toLowerCase()}...`}
               </span>
             </div>
-            <ChevronsDown className="h-4 w-4 shrink-0 opacity-50" />
+            <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[300px] p-0 shadow-lg border-slate-200">

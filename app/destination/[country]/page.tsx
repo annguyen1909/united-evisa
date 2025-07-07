@@ -314,10 +314,10 @@ export default function CountryPage({ params }: { params: { country: string } })
                         <div className="w-full md:w-1/2 order-1 md:order-2">
                             <div className="relative rounded-xl overflow-hidden shadow-lg">
                                 <Image
-                                    src={country.welcomeImgUrl}
+                                    src={country.welcomeImgUrl || "/images/default-welcome.jpg"}
                                     alt={`${country.name} Welcome`}
                                     width={600}
-                                    height={400}
+                                    height={400} 
                                     className="w-full h-auto object-cover rounded-xl"
                                 />
                                 <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full">

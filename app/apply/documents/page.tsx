@@ -63,6 +63,7 @@ export default function DocumentsPage() {
     const [documentRequirements, setDocumentRequirements] = useState<DocumentRequirement[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const { data: session } = useSession();
+    
     useEffect(() => {
         const fetchApplicationData = async () => {
             if (!applicationId) {
@@ -221,17 +222,19 @@ export default function DocumentsPage() {
     };
 
     // Authentication error case
-    if (uploadError && typeof uploadError === 'object' && 'type' in uploadError && uploadError.type === 'AUTH') {
+      if (!session?.user?.email) {
         return (
             <div className="min-h-screen bg-slate-50 py-10">
                 <div className="max-w-4xl mx-auto px-4">
                     <Card className="bg-white shadow-sm border border-slate-200">
                         <CardHeader className="pb-3">
-                            <CardTitle className="text-2xl font-bold text-slate-800">Secure Document Upload</CardTitle>
+                            <CardTitle className="text-2xl font-bold pt-5 text-slate-800">Secure Document Upload</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
-                            <p className="text-slate-600">{uploadError.message}</p>
-
+                            <p className="text-slate-600">
+                                For your security, document uploads are only available through our secure portal when you're logged in.
+                                We've automatically created an account for you using the email you provided in Step 1.
+                            </p>
                             <ol className="space-y-2 text-slate-700">
                                 <li className="flex gap-2">
                                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">1</span>
@@ -250,29 +253,26 @@ export default function DocumentsPage() {
                                     <span>Once logged in, return to your application to upload documents</span>
                                 </li>
                             </ol>
-
                             <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
                                 <h3 className="font-semibold text-blue-800 mb-2">Alternative: Email Submission</h3>
                                 <p className="text-blue-700">
                                     You can also email your documents directly to{' '}
-                                    <a href={`mailto:Visa@Srilanka-Immigration.com?subject=Documents for Application ${uploadError.applicationId}`} className="text-blue-600 underline">
-                                        Visa@Srilanka-Immigration.com
+                                    <a href={`mailto:Visa@Srilanka-Immigration.com?subject=Documents for Application ${applicationId}`} className="text-blue-600 underline">
+                                        UnitedEvisa@immigration.com
                                     </a>{' '}
-                                    with the subject line: <span className="font-semibold">Documents for Application {uploadError.applicationId}</span>
+                                    with the subject line: <span className="font-semibold">Documents for Application {applicationId}</span>
                                 </p>
                             </div>
-
                             <p className="text-slate-600">
                                 At any point, you can log in to our portal to track your documents and application status.
                             </p>
-
                             <div className="flex flex-col sm:flex-row gap-3 pt-4">
                                 <Link href="/login">
                                     <Button className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700">
                                         Login Now
                                     </Button>
                                 </Link>
-                                <Link href={`mailto:Visa@Srilanka-Immigration.com?subject=Documents for Application ${uploadError.applicationId}`}>
+                                <Link href={`mailto:Visa@Srilanka-Immigration.com?subject=Documents for Application ${applicationId}`}>
                                     <Button variant="outline" className="w-full sm:w-auto">
                                         Email Documents
                                     </Button>

@@ -9,14 +9,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
-import { FaGoogle, FaFacebook } from 'react-icons/fa' 
+import { FaGoogle, FaFacebook } from 'react-icons/fa'
 import { AlertCircle } from 'lucide-react'
+import ResetPasswordForm from "@/components/shared/ResetPasswordForm"
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+  const [showReset, setShowReset] = useState(false)
+  const [resetUserId, setResetUserId] = useState<string | null>(null)
+  const [hasPassword, setHasPassword] = useState<boolean>(true)
+
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,6 +41,35 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
       setError(res.error || "Login failed")
     } else {
       router.push("/profile") // or your desired page after login
+    }
+  }
+
+  // Handler for forgot password
+  const handleForgotPassword = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    setError("")
+    setShowReset(false)
+    // Try to find userId by email
+    if (!email) {
+      setError("Please enter your email first")
+      return
+    }
+    try {
+      const res = await fetch("/api/user/by-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data.userId) {
+        setError("No account found for this email")
+        return
+      }
+      setResetUserId(data.userId)
+      setHasPassword(!!data.hasPassword)
+      setShowReset(true)
+    } catch {
+      setError("Failed to start password reset")
     }
   }
 
@@ -59,89 +93,97 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               </div>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="p-6 md:p-10 w-full">
-            <div className="flex flex-col gap-6">
-              <div className="flex flex-col items-center text-center mb-4">
-                <h1 className="text-2xl font-bold text-slate-800">Welcome Back</h1>
-                <p className="text-slate-500 mt-1">Sign in to your account</p>
-              </div>
-              
-              {error && (
-                <div className="bg-red-50 text-red-700 p-3 rounded-md flex items-center gap-2 text-sm border border-red-100">
-                  <AlertCircle className="h-4 w-4" />
-                  <span>{error}</span>
+          <div className="p-6 md:p-10 w-full">
+            {!showReset ? (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <div className="flex flex-col items-center text-center mb-4">
+                  <h1 className="text-2xl font-bold text-slate-800">Welcome Back</h1>
+                  <p className="text-slate-500 mt-1">Sign in to your account</p>
                 </div>
-              )}
-              
-              <div className="grid gap-2">
-                <Label htmlFor="email" className="text-slate-700 font-medium">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  placeholder="you@example.com"
-                  className="focus:ring-emerald-500"
-                />
-              </div>
-              
-              <div className="grid gap-2">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="password" className="text-slate-700 font-medium">Password</Label>
-                  <a
-                    href="#"
-                    className="text-emerald-600 text-sm hover:text-emerald-700 hover:underline"
-                  >
-                    Forgot password?
+
+                {error && (
+                  <div className="bg-red-50 text-red-700 p-3 rounded-md flex items-center gap-2 text-sm border border-red-100">
+                    <AlertCircle className="h-4 w-4" />
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                <div className="grid gap-2">
+                  <Label htmlFor="email" className="text-slate-700 font-medium">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    placeholder="you@example.com"
+                    className="focus:ring-emerald-500"
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="password" className="text-slate-700 font-medium">Password</Label>
+                    <button
+                      type="button"
+                      className="text-emerald-600 text-sm hover:text-emerald-700 hover:underline"
+                      onClick={handleForgotPassword}
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="focus:ring-emerald-500"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 mt-2"
+                  disabled={loading}
+                >
+                  {loading ? "Signing in..." : "Sign in"}
+                </Button>
+
+                <div className="relative my-2">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-slate-200"></div>
+                  </div>
+                  <div className="relative flex justify-center">
+                    <span className="bg-white px-4 text-sm text-slate-500">Or continue with</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <Button variant="outline" type="button" className="w-full border-slate-300 hover:bg-slate-50 text-slate-800">
+                    <FaGoogle className="mr-2 h-4 w-4 text-red-500" />
+                    Google
+                  </Button>
+                  <Button variant="outline" type="button" className="w-full border-slate-300 hover:bg-slate-50 text-slate-800">
+                    <FaFacebook className="mr-2 h-4 w-4 text-blue-600" />
+                    Facebook
+                  </Button>
+                </div>
+
+                <div className="text-center text-slate-600 text-sm pt-2">
+                  Don&apos;t have an account?{" "}
+                  <a href="/signup" className="text-emerald-600 font-medium hover:underline">
+                    Create account
                   </a>
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="focus:ring-emerald-500"
+              </form>
+            ) : (
+              resetUserId && (
+                <ResetPasswordForm
                 />
-              </div>
-              
-              <Button 
-                type="submit" 
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 mt-2" 
-                disabled={loading}
-              >
-                {loading ? "Signing in..." : "Sign in"}
-              </Button>
-              
-              <div className="relative my-2">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-slate-200"></div>
-                </div>
-                <div className="relative flex justify-center">
-                  <span className="bg-white px-4 text-sm text-slate-500">Or continue with</span>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <Button variant="outline" type="button" className="w-full border-slate-300 hover:bg-slate-50 text-slate-800">
-                  <FaGoogle className="mr-2 h-4 w-4 text-red-500" />
-                  Google
-                </Button>
-                <Button variant="outline" type="button" className="w-full border-slate-300 hover:bg-slate-50 text-slate-800">
-                  <FaFacebook className="mr-2 h-4 w-4 text-blue-600" />
-                  Facebook
-                </Button>
-              </div>
-              
-              <div className="text-center text-slate-600 text-sm pt-2">
-                Don&apos;t have an account?{" "}
-                <a href="/signup" className="text-emerald-600 font-medium hover:underline">
-                  Create account
-                </a>
-              </div>
-            </div>
-          </form>
+              )
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -12,7 +12,10 @@ export async function GET(
 
     const session = await getServerSession();
     if (!session?.user?.email) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({
+        type: "AUTH",
+        message: "For your security, please log in to upload documents. We have created an account for you using your email from Step 1."
+      }, { status: 401 });
     }
 
     // Find the application

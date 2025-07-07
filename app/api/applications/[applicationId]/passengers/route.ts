@@ -13,9 +13,12 @@ export async function GET(
     const { applicationId } = await params;
 
     const session = await getServerSession();
-    if (!session?.user?.email) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    let account;
+    let accountId: string | undefined;
+    let contactInfo: any = {};
+    // if (!session?.user?.email) {
+    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // }
 
     // Fix 2: Try a different approach to avoid name field issue
     const application = await prisma.application.findUnique({
@@ -23,7 +26,6 @@ export async function GET(
       include: {
         VisaType: true,
         Destination: true,
-        // Use select instead of true
         Passenger: {
           select: {
             id: true,
@@ -49,18 +51,38 @@ export async function GET(
     }
 
     // Verify ownership
-    const account = await prisma.account.findUnique({
-      where: {
-        email_websiteCreatedAt: {
-          email: session.user.email,
-          websiteCreatedAt: "United Evisa"
-        }
-      },
-      select: { id: true },
-    });
+    if (session?.user?.email) {
+      // Logged in: find account by email
+      account = await prisma.account.findUnique({
+        where: {
+          email_websiteCreatedAt: {
+            email: session.user.email,
+            websiteCreatedAt: "United Evisa"
+          }
+        },
+        select: { id: true, fullName: true, email: true, phoneNumber: true, areaCode: true, gender: true },
+      });
+      accountId = account?.id;
+      contactInfo = account;
+      if (!account) {
+        return NextResponse.json({ error: "Account not found for this application" }, { status: 404 });
+      }
+    } else {
+      // Not logged in: use accountId from application
+      account = await prisma.account.findUnique({
+        where: { id: application.accountId },
+        select: { id: true, fullName: true, email: true, phoneNumber: true, areaCode: true, gender: true },
+      });
+      accountId = account?.id;
+      contactInfo = account;
+      // Optionally, you can check if account exists and handle errors
+      if (!account) {
+        return NextResponse.json({ error: "Account not found for this application" }, { status: 404 });
+      }
+    }
 
-    if (!account || (account.id !== application.accountId)) {
-      return NextResponse.json({ error: "Unauthorized to view this application" }, { status: 403 });
+    if (!account) {
+      return NextResponse.json({ error: "Account not found for this application" }, { status: 404 });
     }
 
     // Get passengers separately to work around the issue

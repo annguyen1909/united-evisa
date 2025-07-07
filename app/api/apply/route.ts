@@ -29,10 +29,22 @@ export async function POST(req: NextRequest) {
     // });
 
     // If you only have the email, consider using findFirst instead:
-    const account = await prisma.account.findFirst({
+    let account = await prisma.account.findFirst({
       where: { email },
       select: { id: true },
     });
+
+    if (!account) {
+      account = await prisma.account.create({
+        data: {
+          id: crypto.randomUUID(), // generate a unique id
+          email,
+          // add other required fields here, e.g. websiteCreatedAt, name, etc.
+          websiteCreatedAt: "United Evisa", // or your default value
+        },
+        select: { id: true },
+      });
+    }
 
     if (
       !destinationId ||
@@ -63,17 +75,17 @@ export async function POST(req: NextRequest) {
 
     const app = await prisma.application.create({
       data: {
-      status: "Not Finished",
-      accountId: account.id, // use the id from DB
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      applicationId,
-      passengerCount: Number(passengerCount),
-      stayingStart: new Date(stayingStart),
-      stayingEnd: new Date(stayingEnd),
-      total: Number(Number(total).toFixed(2)),
-      destinationId: destinationId,
-      visaTypeId: visaTypeId,
+        status: "Not Finished",
+        accountId: account.id, // use the id from DB
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        applicationId,
+        passengerCount: Number(passengerCount),
+        stayingStart: new Date(stayingStart),
+        stayingEnd: new Date(stayingEnd),
+        total: Number(Number(total).toFixed(2)),
+        destinationId: destinationId,
+        visaTypeId: visaTypeId,
       },
     });
     console.log("Creating application with visaTypeId:", visaTypeId);

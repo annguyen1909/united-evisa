@@ -14,6 +14,7 @@ import { ArrowRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+const isLargeScreen = typeof window !== "undefined" && window.innerWidth >= 1024;
 const destinations = [
   {
     name: "Sri Lanka",
@@ -49,35 +50,35 @@ const destinations = [
     image: "/images/country/cambodia/cambodia-bg.jpg",
     code: 'kh',
     tagline: "Kingdom of Wonder"
-  },
+  }
 ];
 
 export default function TopDestinationsCarousel() {
   return (
-    <section className="w-full bg-slate-50 pt-12 px-4">
+    <section className="w-full bg-slate-50 pt-12 px-4 overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-emerald-800">
+          <h2 className="text-3xl sm:text-4xl font-manrope mb-4 text-emerald-800">
             Top Destinations
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">
             Explore the most popular countries with fast and easy eVisa access — your next adventure starts here.
           </p>
         </div>
-        
+
         <div className="relative">
           <Carousel
             opts={{
               align: "start",
-              loop: true,
+              loop: !isLargeScreen,
             }}
-            className="w-full"
+            className="w-full overflow-hidden"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {destinations.map(({ name, link, image, code, tagline }) => (
                 <CarouselItem
                   key={name}
-                  className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
+                  className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
                 >
                   <Link href={`/destination/${link}`}>
                     <Card className="overflow-hidden rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full">
@@ -91,7 +92,7 @@ export default function TopDestinationsCarousel() {
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/80"></div>
-                        
+
                         {/* Country name overlay */}
                         <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                           <div className="flex items-center gap-2">
@@ -109,7 +110,7 @@ export default function TopDestinationsCarousel() {
                           )}
                         </div>
                       </div>
-                      
+
                       {/* Card content */}
                       <CardContent className="p-4 bg-white">
                         <div className="flex items-center justify-between">
@@ -133,11 +134,11 @@ export default function TopDestinationsCarousel() {
               ))}
             </CarouselContent>
             <div className="hidden md:block">
-              <CarouselPrevious className="left-0 bg-white/80 hover:bg-white border border-slate-200" />
-              <CarouselNext className="right-0 bg-white/80 hover:bg-white border border-slate-200" />
+              <CarouselPrevious className="left-2 top-10 bg-white/80 hover:bg-white border border-slate-200" />
+              <CarouselNext className="right-2 top-10 bg-white/80 hover:bg-white border border-slate-200" />
             </div>
           </Carousel>
-          
+
           <div className="mt-8 flex justify-center">
             <Link href="/destination">
               <Button

@@ -7,51 +7,50 @@ import crypto from 'crypto';
 // GET - Get a single application by ID
 export async function GET(request: NextRequest) {
   try {
-    // Remove this line - there are no params in the base applications route!
-    // const { applicationId } = await params;  <- DELETE THIS
-
     const session = await getServerSession();
-    if (!session?.user?.email) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
 
-    // Find account by email
-    const account = await prisma.account.findUnique({
-      where: {
-        email_websiteCreatedAt: {
-          email: session.user.email,
-          websiteCreatedAt: "United Evisa"
-        }
-      }
-    });
-
-    if (!account) {
-      return NextResponse.json({ error: "Account not found" }, { status: 404 });
-    }
-
-    // Find all applications for this account
-    const applications = await prisma.application.findMany({
-      where: { accountId: account.id },
-      include: {
-        VisaType: true,
-        // Use select for Passenger to avoid the name field issue
-        Passenger: {
-          select: {
-            id: true,
-            fullName: true,
-            nationality: true,
-            passportNumber: true,
-            dateOfBirth: true,
-            gender: true,
-            status: true
+    if (session?.user?.email) {
+      // Logged in: show only this user's applications
+      const account = await prisma.account.findUnique({
+        where: {
+          email_websiteCreatedAt: {
+            email: session.user.email,
+            websiteCreatedAt: "United Evisa"
           }
-        },
-        Destination: true
-      },
-      orderBy: { createdAt: "desc" },
-    });
+        }
+      });
 
-    return NextResponse.json({ applications });
+      if (!account) {
+        return NextResponse.json({ applications: [] });
+      }
+
+      const applications = await prisma.application.findMany({
+        where: { accountId: account.id },
+        include: {
+          VisaType: true,
+          Passenger: {
+            select: {
+              id: true,
+              fullName: true,
+              nationality: true,
+              passportNumber: true,
+              dateOfBirth: true,
+              gender: true,
+              status: true
+            }
+          },
+          Destination: true
+        },
+        orderBy: { createdAt: "desc" },
+      });
+
+      return NextResponse.json({ applications });
+    } else {
+      // Not logged in: return empty array or a message
+      return NextResponse.json({ applications: [] });
+      // Or, if you want to show a message:
+      // return NextResponse.json({ error: "Not logged in", applications: [] });
+    }
   } catch (error) {
     console.error('Error fetching applications:', error);
     return NextResponse.json({ error: 'Failed to fetch applications' }, { status: 500 });
@@ -62,10 +61,6 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession();
-    if (!session?.user?.email) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const body = await request.json();
     const {
       destinationId,
@@ -73,7 +68,10 @@ export async function POST(request: NextRequest) {
       passengerCount,
       stayingStart,
       stayingEnd,
-      total
+      total,
+      // Add these fields for not-logged-in users:
+      email,
+      fullName,
     } = body;
 
     // Validate required fields
@@ -83,11 +81,19 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Find or create account based on session email
+    // Determine account info
+    let accountEmail = session?.user?.email || email;
+    let accountName = session?.user?.name || fullName || "Unknown";
+
+    if (!accountEmail) {
+      return NextResponse.json({ error: "Missing email for account" }, { status: 400 });
+    }
+
+    // Find or create account
     let account = await prisma.account.findUnique({
       where: {
         email_websiteCreatedAt: {
-          email: session.user.email,
+          email: accountEmail,
           websiteCreatedAt: "United Evisa"
         }
       },
@@ -97,8 +103,8 @@ export async function POST(request: NextRequest) {
       account = await prisma.account.create({
         data: {
           id: crypto.randomUUID(),
-          email: session.user.email,
-          fullName: session.user.name || "Unknown",
+          email: accountEmail,
+          fullName: accountName,
           websiteCreatedAt: "United Evisa",
         }
       });

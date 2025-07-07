@@ -9,12 +9,8 @@ export async function GET(
 ) {
   try {
     const { applicationId } = params;
-    
     const session = await getServerSession();
-    if (!session?.user?.email) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-    
+
     const application = await prisma.application.findUnique({
       where: { applicationId },
       include: {
@@ -32,33 +28,34 @@ export async function GET(
             gender: true,
             nationality: true,
             status: true
-            // Only include fields that actually exist in your database
           }
         },
         CardHolder: true,
         ApplicationDocument: true
       }
     });
-    
+
     if (!application) {
       return NextResponse.json({ error: "Application not found" }, { status: 404 });
     }
-    
-    // Verify ownership (only if not an admin)
-    const account = await prisma.account.findUnique({
-      where: { 
-        email_websiteCreatedAt: { 
-          email: session.user.email, 
-          websiteCreatedAt: "United Evisa" 
-        }
-      },
-      select: { id: true},
-    });
-    
-    if (!account || (account.id !== application.accountId)) {
-      return NextResponse.json({ error: "Unauthorized to view this application" }, { status: 403 });
+
+    if (session?.user?.email) {
+      // Logged in: verify ownership
+      const account = await prisma.account.findUnique({
+        where: {
+          email_websiteCreatedAt: {
+            email: session.user.email,
+            websiteCreatedAt: "United Evisa"
+          }
+        },
+        select: { id: true },
+      });
+      if (!account || (account.id !== application.accountId)) {
+        return NextResponse.json({ error: "Unauthorized to view this application" }, { status: 403 });
+      }
     }
-    
+    // If not logged in, allow access
+
     return NextResponse.json(application);
   } catch (error) {
     console.error('Error fetching application:', error);

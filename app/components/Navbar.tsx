@@ -197,7 +197,7 @@ export default function Navbar() {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                      <Link href="/applications" className="cursor-pointer">
+                      <Link href="/list" className="cursor-pointer">
                         <FileText className="mr-2 h-4 w-4" />
                         <span>My Applications</span>
                       </Link>

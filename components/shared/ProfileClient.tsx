@@ -256,7 +256,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                                 </CardHeader>
 
                                 <CardContent className="pt-6">
-                                    <ResetPasswordForm userId={user.id} />
+                                    <ResetPasswordForm/>
 
                                     <div className="mt-8 pt-8 border-t border-slate-100">
                                         <h3 className="font-medium text-slate-800 mb-4 flex items-center gap-2">

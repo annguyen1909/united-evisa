@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 
 // GET - Get a single application by ID
 export async function GET(
-  request: NextRequest,
   { params }: { params: { applicationId: string } }
 ) {
   try {

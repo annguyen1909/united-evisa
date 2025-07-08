@@ -42,4 +42,6 @@ next-env.d.ts
 # prisma
 /prisma/migrations
 /prisma/dev.db
+
+# Prisma generated client
 /lib/generated/prisma/

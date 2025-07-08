@@ -14,8 +14,6 @@ export async function GET(
 
     const session = await getServerSession();
     let account;
-    let accountId: string | undefined;
-    let contactInfo: any = {};
     // if (!session?.user?.email) {
     //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     // }
@@ -62,7 +60,6 @@ export async function GET(
         },
         select: { id: true, fullName: true, email: true, phoneNumber: true, areaCode: true, gender: true },
       });
-      contactInfo = account;
       if (!account) {
         return NextResponse.json({ error: "Account not found for this application" }, { status: 404 });
       }

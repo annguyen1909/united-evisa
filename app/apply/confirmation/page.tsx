@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,7 +9,7 @@ import moment from "moment";
 import Link from "next/link";
 import PaymentSuccess from "@/components/shared/PaymentSuccess";
 
-export default function ThankYouPage() {
+function ConfirmationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [applicationData, setApplicationData] = useState<any>(null);
@@ -252,5 +252,18 @@ export default function ThankYouPage() {
         </div>
       </Card>
     </div>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={
+      <div className="max-w-3xl mx-auto p-8 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500 mx-auto"></div>
+        <p className="mt-4 text-gray-600">Loading your confirmation...</p>
+      </div>
+    }>
+      <ConfirmationContent />
+    </Suspense>
   );
 }

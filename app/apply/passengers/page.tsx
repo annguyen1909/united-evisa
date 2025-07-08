@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, Suspense } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -39,7 +39,7 @@ type PassengerError = {
   nationality?: string;
 };
 
-export default function PassengersPage() {
+function PassengersContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [applicationId, setApplicationId] = useState<string | null>(null);
@@ -556,5 +556,20 @@ const allowedNationalities = useMemo(() => {
         )}
       </div>
     </div>
+  );
+}
+
+export default function PassengersPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600 mb-4"></div>
+          <p className="text-slate-700 font-medium">Loading passengers...</p>
+        </div>
+      </div>
+    }>
+      <PassengersContent />
+    </Suspense>
   );
 }

@@ -9,8 +9,6 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import SupportSidebar from "@/components/shared/SupportSidebar";
 import moment from "moment";
-import { Country } from "@/lib/countries/type";
-import { useSession } from "next-auth/react";
 import { NATIONALITIES } from "@/lib/nationalities";
 import { COUNTRIES } from "@/lib/countries/index";
 

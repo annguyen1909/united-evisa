@@ -9,7 +9,6 @@ import { COUNTRIES } from "@/lib/countries";
 import { Country } from "@/lib/countries/type";
 import SupportSidebar from "@/components/shared/SupportSidebar";
 import moment from "moment";
-import StepNavigation from "@/components/shared/StepNavigation";
 import { DollarSign, CreditCard, Calendar, Map, CheckCircle, AlertCircle } from "lucide-react";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);

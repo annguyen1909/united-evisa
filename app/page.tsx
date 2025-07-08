@@ -4,8 +4,6 @@ import AllVisaTypes from "./components/AllVisaTypes";
 import VisaSteps from "./components/VisaSteps";
 import CustomerSupport from "./components/CustomerSupport";
 import FeeGuarantee from "./components/FeeGuarantee";
-import { ChevronUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 
 export default function LandingPage() {

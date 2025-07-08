@@ -6,14 +6,12 @@ import { use } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getCountryBySlug } from '@/lib/countries';
 import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { notFound, useRouter } from 'next/navigation';
 import { 
-  Cloud, Earth, CircleDollarSign, SquareCheckBig, Timer, Dock, Send, 
-  Clock, Calendar, ArrowRight, PlaneTakeoff, Check, Info, MapPin
+  Cloud, Earth, CircleDollarSign, Timer, Dock, Send, 
+  Clock, ArrowRight, PlaneTakeoff, Check, Info, MapPin
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { motion } from 'framer-motion';
 // Only import for India
 import { FeeModal } from '@/components/shared/IndiaFee';

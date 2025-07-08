@@ -2,13 +2,12 @@
 
 import { useState } from "react"
 import {
-    User, Settings, Key, Clock, LogOut,
-    CreditCard, ChevronRight, MapPin, FileText,
+    User, Key, LogOut,
+     ChevronRight, FileText,
     Shield, CheckCircle, AlertCircle, Calendar, Phone
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { signOut } from "next-auth/react"
 import { format } from "date-fns"
 import ResetPasswordForm from "./ResetPasswordForm"

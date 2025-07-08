@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function PaymentSuccess() {
   const searchParams = useSearchParams();
-  const [statusUpdated, setStatusUpdated] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -32,7 +31,6 @@ export default function PaymentSuccess() {
       });
       
       if (response.ok) {
-        setStatusUpdated(true);
         console.log("Application status updated to Processing");
       } else {
         setError("Failed to update application status");

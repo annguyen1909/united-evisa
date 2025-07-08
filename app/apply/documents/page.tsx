@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -51,7 +51,7 @@ interface UploadedDocument {
 
 type UploadError = string | null | { type: 'AUTH'; message: string; applicationId: string };
 
-export default function DocumentsPage() {
+function DocumentsContent() {
     const searchParams = useSearchParams();
     const applicationId = searchParams.get('applicationId');
 
@@ -577,5 +577,20 @@ export default function DocumentsPage() {
                 </Card>
             </div>
         </div>
+    );
+}
+
+export default function DocumentsPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+                <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600 mb-4"></div>
+                    <p className="text-slate-700 font-medium">Loading documents...</p>
+                </div>
+            </div>
+        }>
+            <DocumentsContent />
+        </Suspense>
     );
 }

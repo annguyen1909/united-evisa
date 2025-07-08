@@ -177,7 +177,10 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
             address: 'never'
           }
         },
-        paymentMethodOrder: ['card'] // <-- Only show card, hide Link
+        paymentMethodOrder: ['card'], // <-- Only show card, hide Link
+        wallets: {
+          link: 'never'
+        }
       }} />
 
       {isCardComplete && (

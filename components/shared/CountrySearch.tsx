@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { CheckIcon, ChevronsUpDownIcon } from "lucide-react"
+import { CheckIcon, ChevronsUpDownIcon, Search } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -46,23 +46,40 @@ export default function CountrySearch({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[470px] max-md:w-[270px] justify-between"
+          className="w-[470px] max-md:w-[270px] justify-between border-slate-300 hover:border-[#16610E] transition-colors bg-white text-slate-700 font-medium"
         >
-          {value
-            ? COUNTRIES.find((c) => c.name === value)?.name
-            : placeholder}
+          <div className="flex items-center gap-2 overflow-hidden">
+            {value && COUNTRIES.find((c) => c.name === value) ? (
+              <>
+                <img
+                  src={`https://flagcdn.com/${COUNTRIES.find((c) => c.name === value)?.code.toLowerCase()}.svg`}
+                  alt={value}
+                  className="h-4 w-6 object-cover rounded"
+                />
+                <span className="truncate">{value}</span>
+              </>
+            ) : (
+              <div className="flex items-center gap-2 text-slate-500">
+                <Search className="h-4 w-4" />
+                <span>{placeholder}</span>
+              </div>
+            )}
+          </div>
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[470px] max-md:w-[270px] p-0">
-        <Command>
+      <PopoverContent className="w-[470px] max-md:w-[270px] p-0 border-slate-200 shadow-lg">
+        <Command className="rounded-lg border border-slate-200">
           <CommandInput
             placeholder="Search country..."
             value={query}
             onValueChange={setQuery}
+            className="border-b border-slate-100"
           />
-          <CommandList>
-            <CommandEmpty>No country found.</CommandEmpty>
+          <CommandList className="max-h-[300px] overflow-auto">
+            <CommandEmpty className="py-4 text-center text-sm text-slate-500">
+              No country found.
+            </CommandEmpty>
             <CommandGroup>
               {filteredCountries.map((country) => {
                 const matchIndex = country.name
@@ -85,28 +102,35 @@ export default function CountrySearch({
                       setQuery("")
                       requestAnimationFrame(() => setOpen(false))
                     }}
+                    className="flex items-center gap-2 py-2.5 px-3 cursor-pointer hover:bg-[#f0f8f0]"
                   >
+                    <div className="flex items-center gap-2 flex-1">
+                      <img
+                        src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
+                        alt={country.name}
+                        className="h-4 w-6 object-cover rounded"
+                      />
+                      <span>
+                        {matchIndex >= 0 ? (
+                          <>
+                            {beforeMatch}
+                            <span className="font-medium text-[#16610E]">{matchText}</span>
+                            {afterMatch}
+                          </>
+                        ) : (
+                          country.name
+                        )}
+                      </span>
+                    </div>
                     <CheckIcon
                       className={cn(
-                        "mr-2 h-4 w-4",
+                        "h-4 w-4 text-[#16610E]",
                         value === country.name ? "opacity-100" : "opacity-0"
                       )}
                     />
-                    <span>
-                      {matchIndex >= 0 ? (
-                        <>
-                          {beforeMatch}
-                          <span className="font-medium text-blue-500">{matchText}</span>
-                          {afterMatch}
-                        </>
-                      ) : (
-                        country.name
-                      )}
-                    </span>
                   </CommandItem>
                 )
               })}
-
             </CommandGroup>
           </CommandList>
         </Command>

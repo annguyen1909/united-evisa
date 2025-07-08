@@ -54,13 +54,31 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
   const handleCardChange = (event: any) => {
     setIsCardComplete(event.complete);
 
+    let detectedType = "unknown";
+    let last4 = "";
+
     if (event.complete && event.value) {
-      // Access the card brand and last 4 digits if available
-      const brand = event.value.brand || "unknown";
-      const last4 = event.value.last4 || "0000";
+      // Stripe's PaymentElement event.value.type gives the payment method
+      switch (event.value.type) {
+        case "card":
+          detectedType = event.value.brand || "Card";
+          last4 = event.value.last4 || "";
+          break;
+        case "amazon_pay":
+          detectedType = "Amazon Pay";
+          last4 = "";
+          break;
+        case "cashapp":
+          detectedType = "Cash App Pay";
+          last4 = "";
+          break;
+        default:
+          detectedType = event.value.type || "unknown";
+          last4 = "";
+      }
 
       setCardDetails({
-        cardType: brand,
+        cardType: detectedType,
         lastFourDigits: last4
       });
     }
@@ -110,15 +128,13 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
       }
 
       if (paymentIntent && paymentIntent.status === "succeeded") {
-        // Process cardholder, risk and stripe activity
+        // Only send billing info and paymentIntentId; card details are handled by the backend webhook
         await saveCardholderAndRiskData({
           name: billingInfo.name,
           address: billingInfo.address,
           zipcode: billingInfo.zipcode,
-          cardNumber: billingInfo.lastFourDigits,
-          cardType: billingInfo.cardType,
-          applicationId: applicationId,
           paymentIntentId: paymentIntent.id,
+          applicationId: applicationId,
           amount: amount
         });
 
@@ -136,10 +152,8 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
     name: string;
     address: string;
     zipcode: string;
-    cardNumber: string;
-    cardType: string;
-    applicationId: string;
     paymentIntentId: string;
+    applicationId: string;
     amount: number;
   }) => {
     try {
@@ -188,8 +202,7 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
           onBillingInfoChange={(info, valid) => {
             setBillingInfo(info);
             setBillingValid(valid);
-          }} lastFourDigits={cardDetails?.lastFourDigits}
-          cardType={cardDetails?.cardType}
+          }}
           isProcessing={isLoading}
         />
       )}

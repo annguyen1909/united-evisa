@@ -47,6 +47,7 @@ function PassengersContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [passengers, setPassengers] = useState<Passenger[]>([]);
   const [errors, setErrors] = useState<PassengerError[]>([]);
+  const [stepNotAllowed, setStepNotAllowed] = useState(false);
 
   useEffect(() => {
     // Always prioritize URL parameter
@@ -77,6 +78,12 @@ function PassengersContent() {
       if (response.ok) {
         const data = await response.json();
         setApplicationData(data);
+
+        // Check if previous step is completed (customize this check as needed)
+        if (!data.destination || !data.visaType) {
+          setStepNotAllowed(true);
+          return;
+        }
 
         // Initialize passengers based on application data
         const passengerCount = data.passengerCount || 1;
@@ -117,38 +124,38 @@ function PassengersContent() {
 
   // Rehydrate country and visa objects from COUNTRIES using stored IDs
   const country = useMemo(() => {
-    if (!applicationData?.Destination?.code) return null;
+    if (!applicationData?.destination?.code) return null;
     return COUNTRIES.find(c =>
-      c.code === applicationData.Destination.code ||
-      c.slug === applicationData.Destination.id
+      c.code === applicationData.destination.code ||
+      c.slug === applicationData.destination.id
     );
   }, [applicationData]);
-  
+
   const visa = useMemo(() => {
-    if (!country || !applicationData?.VisaType?.id) return null;
-    return country.visaTypes?.find(v => v.id === applicationData.VisaType.id);
+    if (!country || !applicationData?.visaType?.id) return null;
+    return country.visaTypes?.find(v => v.id === applicationData.visaType.id);
   }, [country, applicationData]);
 
   // Get allowed nationalities from the visa type
-const allowedNationalities = useMemo(() => {
-  if (!visa || !visa.allowedNationalities) {
-    return NATIONALITIES;
-  }
-
-  if (Array.isArray(visa.allowedNationalities)) {
-    if (visa.allowedNationalities.length === 0) {
+  const allowedNationalities = useMemo(() => {
+    if (!visa || !visa.allowedNationalities) {
       return NATIONALITIES;
     }
-    const allowedCodes = visa.allowedNationalities.map(code =>
-      code.toUpperCase()
-    );
-    return NATIONALITIES.filter((c: { code: string; }) =>
-      allowedCodes.includes(c.code.toUpperCase())
-    );
-  }
 
-  return NATIONALITIES;
-}, [visa]);
+    if (Array.isArray(visa.allowedNationalities)) {
+      if (visa.allowedNationalities.length === 0) {
+        return NATIONALITIES;
+      }
+      const allowedCodes = visa.allowedNationalities.map(code =>
+        code.toUpperCase()
+      );
+      return NATIONALITIES.filter((c: { code: string; }) =>
+        allowedCodes.includes(c.code.toUpperCase())
+      );
+    }
+
+    return NATIONALITIES;
+  }, [visa]);
 
   const updatePassenger = (
     index: number,
@@ -260,12 +267,11 @@ const allowedNationalities = useMemo(() => {
       setIsLoading(false);
     }
   }
-
   // Order summary
   let orderSummary = null;
   if (applicationData) {
-    const destination = applicationData.Destination?.name ?? "---";
-    const visaName = applicationData.VisaType?.name ?? "---";
+    const destination = applicationData.destination?.name ?? "---";
+    const visaName = applicationData.visaType?.name ?? "---";
     const govFee = visa?.govFee ?? 0;
     const serviceFee = country && country.etaInfo ? Number(country.etaInfo.serviceFee) : 0;
     const passenger = applicationData.passengerCount || 1;
@@ -286,79 +292,101 @@ const allowedNationalities = useMemo(() => {
         ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
         : "---";
     const total = visa ? (govFee + serviceFee) * passenger : 0;
-
     orderSummary = (
-      <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5 w-full sticky top-6">
-        <h2 className="text-lg font-semibold mb-2 text-slate-800 text-center pb-2 border-b border-slate-100">
+      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
+        <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
           Order Summary
         </h2>
-        <div className="text-sm space-y-5">
-          {applicationId && (
-            <div className="flex justify-between items-center bg-emerald-50 p-3 rounded-lg border border-emerald-100">
-              <p className="font-medium text-slate-700">Application ID:</p>
-              <p className="font-bold text-emerald-700">{applicationId}</p>
-            </div>
-          )}
-          
-          <div className="flex flex-col gap-4">
-            <div>
-              <p className="font-medium text-slate-700">Destination</p>
-              <p className="text-slate-800">{destination}</p>
-            </div>
-            <div>
-              <p className="font-medium text-slate-700">Staying Time</p>
-              <p className="text-slate-800">
-                {formattedStart} - {formattedEnd}
-              </p>
-              <p className="text-xs text-slate-500">({days} days)</p>
-            </div>
-            <div>
-              <p className="font-medium text-slate-700">Type of Visa</p>
-              <p className="text-slate-800">{visaName}</p>
-            </div>
+        <div className="space-y-4 text-sm">
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Destination</span>
+            <span className="font-medium text-emerald-700">{destination}</span>
           </div>
-          
-          <hr className="border-slate-100" />
-          
-          <div className="space-y-2">
-            <p className="font-medium text-slate-700">Visa Fees</p>
-            <div className="flex justify-between">
-              <p className="text-slate-600">Government Fee</p>
-              <p className="text-slate-800">
-                {visa ? `$${govFee.toFixed(2)}` : "---"}
-              </p>
-            </div>
-            <div className="flex justify-between">
-              <p className="text-slate-600">Service Fee</p>
-              <p className="text-slate-800">
-                {country && country.etaInfo ? `$${serviceFee.toFixed(2)}` : "---"}
-              </p>
-            </div>
-            <div className="flex justify-between">
-              <p className="text-slate-600">Travelers</p>
-              <p className="text-slate-800">{passenger}</p>
-            </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Type of Visa</span>
+            <span className="text-slate-800">{visaName}</span>
           </div>
-          
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Travelers</span>
+            <span className="text-slate-800">{passenger}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Staying Time</span>
+            <span className="text-slate-800">{formattedStart} - {formattedEnd}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Duration</span>
+            <span className="text-slate-800">{days} days</span>
+          </div>
           <hr className="border-slate-100" />
-          
-          <div className="flex justify-between items-center pt-1">
-            <p className="font-semibold text-base text-slate-800">Total</p>
-            <p className="font-bold text-lg text-emerald-700">
-              {visa ? `$${total.toFixed(2)}` : "---"}
-            </p>
+          <div className="flex items-center justify-between">
+            <span className="text-slate-600">Government Fee</span>
+            <span className="text-slate-800">{visa ? `$${govFee.toFixed(2)}` : "---"}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-slate-600">Service Fee</span>
+            <span className="text-slate-800">{country && country.etaInfo ? `$${serviceFee.toFixed(2)}` : "---"}</span>
+          </div>
+          <hr className="border-slate-100" />
+          <div className="flex items-center justify-between pt-1">
+            <span className="font-semibold text-base text-slate-800">Total</span>
+            <span className="font-bold text-lg text-emerald-700">{visa ? `$${total.toFixed(2)}` : "---"}</span>
           </div>
         </div>
       </div>
     );
   }
+  // Prevent editing passengers if payment is completed
+  if (applicationData && applicationData.paymentStatus === "Completed") {
+    return (
+      <div className="min-h-screen bg-slate-50 pb-16">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center min-h-[60vh]">
+          <div className="bg-green-50 border border-green-100 rounded-lg p-8 text-center">
+            <div className="flex justify-center mb-4">
+              <Check className="h-10 w-10 text-green-500" />
+            </div>
+            <h2 className="text-2xl font-bold text-green-700 mb-2">Passenger Information Already Submitted</h2>
+            <p className="text-green-600 mb-4">
+              You have already completed this step and payment is completed for this application.
+            </p>
+            <Button
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 mt-2"
+              onClick={() => router.push(`/apply/payment?applicationId=${applicationId}`)}
+            >
+              Go to Payment Summary
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (stepNotAllowed) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-8 text-center">
+          <h2 className="text-xl font-bold text-yellow-700 mb-2">Step Not Allowed</h2>
+          <p className="text-yellow-600 mb-4">
+            You cannot access this step until you have completed the previous step.
+          </p>
+          <Button
+            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 mt-2"
+            onClick={() => router.push("/apply")}
+          >
+            Go Back to Start
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-6 text-center">
           Traveler Information
         </h1>
-        
+
         {isLoading && !applicationData ? (
           <div className="flex flex-col items-center justify-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-emerald-600"></div>
@@ -369,7 +397,7 @@ const allowedNationalities = useMemo(() => {
             {/* Left: Passengers Forms (2 columns) */}
             <div className="lg:col-span-2 space-y-8">
               {passengers.map((passenger, index) => (
-                <Card 
+                <Card
                   key={index}
                   className="bg-white overflow-hidden shadow-sm border border-slate-200"
                 >
@@ -381,15 +409,15 @@ const allowedNationalities = useMemo(() => {
                       <h3 className="text-lg font-medium text-slate-800">
                         Traveler {index + 1}
                       </h3>
-                      {Object.keys(errors[index] || {}).length === 0 && 
-                       Object.values(passenger).every(val => val !== "") && (
-                        <span className="ml-auto flex items-center text-xs bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full border border-emerald-100">
-                          <Check className="w-3 h-3 mr-1" /> Complete
-                        </span>
-                      )}
+                      {Object.keys(errors[index] || {}).length === 0 &&
+                        Object.values(passenger).every(val => val !== "") && (
+                          <span className="ml-auto flex items-center text-xs bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full border border-emerald-100">
+                            <Check className="w-3 h-3 mr-1" /> Complete
+                          </span>
+                        )}
                     </div>
                   </div>
-                  
+
                   <CardContent className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Full Name */}
@@ -419,8 +447,8 @@ const allowedNationalities = useMemo(() => {
                       {/* Gender */}
                       <div className="space-y-1.5">
                         <Label htmlFor={`gender-${index}`} className="text-sm font-medium">Gender</Label>
-                        <Select 
-                          value={passenger.gender} 
+                        <Select
+                          value={passenger.gender}
                           onValueChange={(value) => updatePassenger(index, "gender", value)}
                         >
                           <SelectTrigger className={cn(

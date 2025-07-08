@@ -62,6 +62,7 @@ function DocumentsContent() {
     const [uploadError, setUploadError] = useState<UploadError>(null);
     const [documentRequirements, setDocumentRequirements] = useState<DocumentRequirement[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [stepNotAllowed, setStepNotAllowed] = useState(false);
     const { data: session } = useSession();
     
     useEffect(() => {
@@ -76,9 +77,14 @@ function DocumentsContent() {
                 const response = await fetch(`/api/applications/${applicationId}`);
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data); // <-- Add this to see the structure
-
                     setApplicationData(data);
+
+                    // Check if previous step is completed (customize this check as needed)
+                    if (!data.paymentStatus || data.paymentStatus !== 'Completed') {
+                        setStepNotAllowed(true);
+                        setIsLoading(false);
+                        return;
+                    }
 
                     // Load document requirements
                     const requirementsResponse = await fetch(`/api/applications/${applicationId}/document-requirements`);
@@ -294,6 +300,32 @@ function DocumentsContent() {
                         <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-emerald-600"></div>
                         <span className="mt-4 text-slate-600">Loading application data...</span>
                     </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Step not allowed warning (displayed in main content area)
+    if (stepNotAllowed) {
+        return (
+            <div className=" bg-slate-50 py-10">
+                <div className="max-w-4xl mx-auto px-4">
+                    <Card className="bg-yellow-50 border border-yellow-200 rounded p-8 text-center">
+                        <CardHeader>
+                            <CardTitle className="text-xl font-bold text-yellow-700 mb-2">Step Not Allowed</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-yellow-600 mb-4">
+                                You cannot access this step until you have completed the previous step <span className='text-emerald-700'>(Payment)</span>.
+                            </p>
+                            <Button
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 mt-2"
+                                onClick={() => window.location.href = `/apply/payment?applicationId=${applicationId}`}
+                            >
+                                Go Back to Payment
+                            </Button>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         );

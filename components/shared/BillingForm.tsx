@@ -10,8 +10,6 @@ import { Card, CardContent } from '@/components/ui/card';
 
 interface BillingFormProps {
   onBillingInfoChange: (billingInfo: BillingInfo, valid: boolean) => void;
-  lastFourDigits?: string;
-  cardType?: string;
   isProcessing: boolean;
 }
 
@@ -22,14 +20,10 @@ export interface BillingInfo {
   state: string;
   city: string;
   zipcode: string;
-  cardType: string;
-  lastFourDigits: string;
 }
 
 export function BillingForm({
   onBillingInfoChange,
-  lastFourDigits,
-  cardType,
   isProcessing,
 }: BillingFormProps) {
   const {
@@ -46,8 +40,6 @@ export function BillingForm({
       state: "",
       city: "",
       country: "",
-      cardType: cardType || "",
-      lastFourDigits: lastFourDigits || "",
     },
   });
 
@@ -72,13 +64,11 @@ export function BillingForm({
         state,
         country,
         city,
-        cardType: cardType || "",
-        lastFourDigits: lastFourDigits || "",
       },
       isValid
     );
     // Only run when these values or validity change
-  }, [name, address, zipcode, country, city, state, cardType, lastFourDigits, isValid, ]);
+  }, [name, address, zipcode, country, city, state, isValid]);
 
   return (
     <Card className="shadow-sm border-slate-200">

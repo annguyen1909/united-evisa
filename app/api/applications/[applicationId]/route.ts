@@ -31,7 +31,17 @@ export async function GET(
           }
         },
         cardHolder: true,
-        applicationDocuments: true
+        applicationDocuments: true,
+        account: {
+          select: {
+            id: true,
+            fullName: true,
+            email: true,
+            areaCode: true,
+            phoneNumber: true,
+            gender: true
+          }
+        }
       }
     });
 

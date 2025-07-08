@@ -54,7 +54,6 @@ export default function ApplyForm({ user }: { user: any }) {
     // Update your useEffect for URL handling:
     useEffect(() => {
         if (!COUNTRIES || COUNTRIES.length === 0) return; // Wait until COUNTRIES is loaded
-        console.log("COUNTRIES at render:", COUNTRIES);
         const countryParam = searchParams.get('country');
         const typeParam = searchParams.get('type');
         if (countryParam) {

@@ -18,7 +18,7 @@ interface Application {
     name: string;
     fees: number;
   };
-  Passenger?: Array<{
+  passengers?: Array<{
     fullName: string;
   }>;
 }
@@ -298,14 +298,14 @@ export default function ApplicationsPage() {
                       </div>
                     </div>
                     
-                    {application.Passenger && application.Passenger.length > 0 && (
+                    {application.passengers && application.passengers.length > 0 && (
                       <div className="mb-5">
                         <div className="flex items-center text-slate-500 text-sm mb-2">
                           <Users className="w-4 h-4 mr-1.5" />
                           <span>Passengers</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
-                          {application.Passenger.map((passenger, index) => (
+                          {application.passengers.map((passenger, index) => (
                             <span
                               key={index}
                               className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-md text-xs font-medium"

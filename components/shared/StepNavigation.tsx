@@ -9,7 +9,7 @@ const steps = [
   { step: 1, label: "Apply", href: "/apply" },
   { step: 2, label: "Passengers", href: "/apply/passengers" },
   { step: 3, label: "Payment", href: "/apply/payment" },
-  { step: 4, label: "Documents & Submit", href: "/apply/documents" }
+  { step: 4, label: "Documents", href: "/apply/documents" }
 ];
 
 export default function StepNavigation() {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { v4 as uuidv4 } from 'uuid';
+import { stripe } from '@/lib/stripe';
 
 export async function POST(
   request: NextRequest,
@@ -12,11 +13,29 @@ export async function POST(
       name,
       address,
       zipcode,
-      cardNumber,
-      cardType,
       paymentIntentId,
       amount
     } = await request.json();
+
+    // Fetch payment intent from Stripe to get card details
+    let cardType = "unknown";
+    let lastFourDigits = "0000";
+    try {
+      const paymentIntent: any = await stripe.paymentIntents.retrieve(paymentIntentId);
+      if (paymentIntent.payment_method) {
+        try {
+          const paymentMethod = await stripe.paymentMethods.retrieve(
+            paymentIntent.payment_method as string
+          );
+          lastFourDigits = paymentMethod.card?.last4 || "0000";
+          cardType = paymentMethod.card?.brand || "unknown";
+        } catch (error) {
+          console.error('Error retrieving payment method:', error);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to fetch card details from Stripe:", err);
+    }
 
     // Find the application
     const application = await prisma.application.findUnique({
@@ -33,17 +52,17 @@ export async function POST(
     }
 
     // Save cardholder information
-    // const cardHolder = await prisma.cardHolder.create({
-    //   data: {
-    //     id: uuidv4(),
-    //     name,
-    //     cardType,
-    //     cardNumber: `xxxx-xxxx-xxxx-${cardNumber}`,
-    //     address,
-    //     zipcode,
-    //     applicationId: application.id
-    //   }
-    // });
+    await prisma.cardHolder.create({
+      data: {
+        id: uuidv4(),
+        name,
+        cardType: cardType || "unknown",
+        cardNumber: `xxxx-xxxx-xxxx-${lastFourDigits || "0000"}`,
+        address,
+        zipcode,
+        applicationId: application.id
+      }
+    });
 
     // Determine if risk is passed
     // 1. Check if cardholder name matches any passenger name
@@ -52,14 +71,14 @@ export async function POST(
         typeof passenger.fullName === 'string' &&
         passenger.fullName.toLowerCase().includes(name.toLowerCase())
     );
-    
+
     // 2. Check if amount is less than $900
     const amountLessThan900 = amount < 900;
-    
+
     // Risk is passed only if both conditions are true
     const isPassed = nameMatch && amountLessThan900;
     const riskStatus = isPassed ? "Passed" : "Not Passed";
-    
+
     // Create Risk record
     const risk = await prisma.risk.create({
       data: {
@@ -77,7 +96,7 @@ export async function POST(
         riskId: risk.id,
         title: `Risk - ${riskStatus}`,
         type: "Payment Risk",
-        description: isPassed 
+        description: isPassed
           ? "Payment passed automatic risk verification"
           : "Payment requires manual risk review",
         details: JSON.stringify({
@@ -114,7 +133,7 @@ export async function POST(
       }
     });
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       success: true,
       message: "Payment data processed successfully",
       risk: {

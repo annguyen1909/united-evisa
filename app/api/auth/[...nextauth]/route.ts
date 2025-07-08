@@ -41,7 +41,7 @@ export const authOptions = {
     strategy: "jwt" as SessionStrategy,
   },
   callbacks: {
-    async jwt({ token, user }: { token: any; user?: any }) {
+    async jwt({ token, user }: { token: import("next-auth/jwt").JWT; user?: import("next-auth").User }) {
       if (user) {
         token.id = user.id
         token.name = user.name
@@ -49,9 +49,9 @@ export const authOptions = {
       }
       return token
     },
-    async session({ session, token }: { session: any; token: any }) {
-      if (token) {
-        session.user.id = token.id
+    async session({ session, token }: { session: import("next-auth").Session; token: import("next-auth/jwt").JWT }) {
+      if (token && session.user) {
+        (session.user as { id?: string }).id = (token as { id?: string }).id;
       }
       return session
     },

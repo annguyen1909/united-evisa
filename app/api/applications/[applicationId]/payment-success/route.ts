@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
-import { getServerSession } from 'next-auth';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function POST(
@@ -34,17 +33,17 @@ export async function POST(
     }
 
     // Save cardholder information
-    const cardHolder = await prisma.cardHolder.create({
-      data: {
-        id: uuidv4(),
-        name,
-        cardType,
-        cardNumber: `xxxx-xxxx-xxxx-${cardNumber}`,
-        address,
-        zipcode,
-        applicationId: application.id
-      }
-    });
+    // const cardHolder = await prisma.cardHolder.create({
+    //   data: {
+    //     id: uuidv4(),
+    //     name,
+    //     cardType,
+    //     cardNumber: `xxxx-xxxx-xxxx-${cardNumber}`,
+    //     address,
+    //     zipcode,
+    //     applicationId: application.id
+    //   }
+    // });
 
     // Determine if risk is passed
     // 1. Check if cardholder name matches any passenger name

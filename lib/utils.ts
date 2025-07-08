@@ -45,7 +45,7 @@ export function generateApplicationId(destinationId: string): string {
   const randomOffset = Math.floor(Math.random() * 1000); // Add some randomness
   
   // Combine timestamp and random offset, ensuring it's 6 digits with leading zeros
-  let uniqueNum = (lastSixOfTimestamp + randomOffset) % 1000000;
+  const uniqueNum = (lastSixOfTimestamp + randomOffset) % 1000000;
   const uniqueNumStr = uniqueNum.toString().padStart(6, '0');
   
   // Combine to create the application ID

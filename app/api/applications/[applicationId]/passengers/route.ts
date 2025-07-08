@@ -62,7 +62,6 @@ export async function GET(
         },
         select: { id: true, fullName: true, email: true, phoneNumber: true, areaCode: true, gender: true },
       });
-      accountId = account?.id;
       contactInfo = account;
       if (!account) {
         return NextResponse.json({ error: "Account not found for this application" }, { status: 404 });
@@ -73,8 +72,6 @@ export async function GET(
         where: { id: application.accountId },
         select: { id: true, fullName: true, email: true, phoneNumber: true, areaCode: true, gender: true },
       });
-      accountId = account?.id;
-      contactInfo = account;
       // Optionally, you can check if account exists and handle errors
       if (!account) {
         return NextResponse.json({ error: "Account not found for this application" }, { status: 404 });

@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth';
 
 // GET - List documents for an application
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: { applicationId: string } }
 ) {
   try {
@@ -136,7 +136,7 @@ export async function POST(
     });
 
     // Return the document without the content field
-    const { content, ...documentWithoutContent } = document;
+    const { ...documentWithoutContent } = document;
 
     return NextResponse.json({
       message: 'Document uploaded successfully',

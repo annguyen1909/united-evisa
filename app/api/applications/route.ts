@@ -5,7 +5,7 @@ import { generateApplicationId } from '@/lib/utils';
 import crypto from 'crypto';
 
 // GET - Get a single application by ID
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await getServerSession();
 
@@ -82,8 +82,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Determine account info
-    let accountEmail = session?.user?.email || email;
-    let accountName = session?.user?.name || fullName || "Unknown";
+    const accountEmail = session?.user?.email || email;
+    const accountName = session?.user?.name || fullName || "Unknown";
 
     if (!accountEmail) {
       return NextResponse.json({ error: "Missing email for account" }, { status: 400 });

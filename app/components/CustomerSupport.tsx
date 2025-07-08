@@ -159,7 +159,7 @@ export default function CustomerSupport() {
                 <p className="text-sm mt-1">We'll get back to you shortly.</p>
               </div>
             ) : (
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form className="space-y-4" onSubmit={handleSubmit} suppressHydrationWarning>
                 <div>
                   <label htmlFor="name" className="text-xs font-medium text-slate-600 mb-1 block">
                     Your Name
@@ -173,6 +173,7 @@ export default function CustomerSupport() {
                     onChange={handleChange}
                     className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
                     required
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -189,6 +190,7 @@ export default function CustomerSupport() {
                     onChange={handleChange}
                     className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
                     required
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -205,6 +207,7 @@ export default function CustomerSupport() {
                     className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
                     rows={3}
                     required
+                    suppressHydrationWarning
                   />
                 </div>
 

@@ -4,12 +4,10 @@ import { getServerSession } from 'next-auth';
 import { v4 as uuidv4 } from 'uuid'; // Import at top level
 
 // GET - Get document requirements for an application
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { applicationId: string } }
-) {
+export async function GET(request: NextRequest) {
   try {
-    const { applicationId } = params;
+    const url = new URL(request.url);
+    const applicationId = url.pathname.split("/").at(-2);
 
     const session = await getServerSession();
     if (!session?.user?.email) {
@@ -20,10 +18,10 @@ export async function GET(
     const application = await prisma.application.findUnique({
       where: { applicationId },
       include: {
-        VisaType: true,       
-        Account: true,          
-        CardHolder: true, 
-        Passenger: {             
+        VisaType: true,
+        Account: true,
+        CardHolder: true,
+        Passenger: {
           select: {
             id: true,
             fullName: true,
@@ -32,9 +30,9 @@ export async function GET(
         },
       }
     });
-    
+
     console.log('Fetched application keys:', application && Object.keys(application));
-    
+
     if (!application) {
       return NextResponse.json({ error: "Application not found" }, { status: 404 });
     }

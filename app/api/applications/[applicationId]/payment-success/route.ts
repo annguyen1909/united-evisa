@@ -48,7 +48,7 @@ export async function POST(
     // Determine if risk is passed
     // 1. Check if cardholder name matches any passenger name
     const nameMatch = application.Passenger.some(
-      passenger => passenger.fullName && passenger.fullName.toLowerCase().includes(name.toLowerCase())
+      (      passenger: { fullName: string; }) => passenger.fullName && passenger.fullName.toLowerCase().includes(name.toLowerCase())
     );
     
     // 2. Check if amount is less than $900

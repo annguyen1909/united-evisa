@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/app/api/auth/authOptions"
 import { redirect } from "next/navigation"
 import { prisma } from "@/lib/db"
 import ProfileClient from "@/components/shared/ProfileClient"
@@ -25,15 +25,15 @@ export default async function ProfilePage() {
       phoneNumber: true,
       gender: true,
       createdAt: true,
-      Application: {
+      applications: {
         select: {
           id: true,
           applicationId: true,
           status: true,
-          Destination: {
+          destination: {
             select: { name: true }
           },
-          VisaType: {
+          visaType: {
             select: { name: true }
           },
           createdAt: true,
@@ -50,17 +50,17 @@ export default async function ProfilePage() {
     redirect("/login")
   }
 
-  // Map 'Application' to 'applications' to match ProfileClientProps
+  // Map 'applications' to match ProfileClientProps
   const userWithApplications = user
     ? {
         ...user,
-        applications: user.Application.map(app => ({
+        applications: user.applications.map(app => ({
           id: app.id,
           applicationId: app.applicationId,
           status: app.status,
           createdAt: app.createdAt,
-          destination: app.Destination,
-          visaType: app.VisaType,
+          destination: app.destination,
+          visaType: app.visaType,
         })),
       }
     : null;

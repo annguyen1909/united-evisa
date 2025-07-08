@@ -18,10 +18,10 @@ export async function GET(request: NextRequest) {
     const application = await prisma.application.findUnique({
       where: { applicationId },
       include: {
-        VisaType: true,
-        Account: true,
-        CardHolder: true,
-        Passenger: {
+        visaType: true,
+        account: true,
+        cardHolder: true,
+        passengers: {
           select: {
             id: true,
             fullName: true,
@@ -53,14 +53,14 @@ export async function GET(request: NextRequest) {
     }
 
     // Get standard document requirements from visa type
-    const standardRequirements = application.VisaType && application.VisaType.requiredDocuments
-      ? JSON.parse(application.VisaType.requiredDocuments as string)
+    const standardRequirements = application.visaType && application.visaType.requiredDocuments
+      ? JSON.parse(application.visaType.requiredDocuments as string)
       : [];
 
 
     return NextResponse.json({
       standardRequirements,
-      passengers: application.Passenger
+      passengers: application.passengers
     });
   } catch (error) {
     console.error('Error fetching document requirements:', error);
@@ -71,10 +71,10 @@ export async function GET(request: NextRequest) {
 // POST - Add custom document requirement
 export async function POST(
   request: NextRequest,
-  { params }: { params: { applicationId: string } }
+  { params }: { params: Promise<{ applicationId: string }> }
 ) {
   try {
-    const { applicationId } = params;
+    const { applicationId } = await params;
     const body = await request.json();
     const { passengerId, title } = body;
 

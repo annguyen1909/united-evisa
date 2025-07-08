@@ -28,6 +28,18 @@ export type Country = {
       urgentProcessing: string;
     };
     serviceFee: number;
+    visaTypes?: {
+      id: string;
+      name: string;
+      type: string;
+      entry: string;
+      description: string;
+      visaValidity: string;
+      visaDuration: string;
+      expectedProcessingTime: string;
+      govFee: number;
+      allowedNationalities: string[];
+    }[];
   };
   info: {
     climate: string;

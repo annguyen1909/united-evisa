@@ -1,4 +1,4 @@
-import { PrismaClient } from '../lib/generated/prisma/client.js';
+import { PrismaClient } from '@prisma/client';
 import { COUNTRIES } from '../lib/countries';
 
 const prisma = new PrismaClient();

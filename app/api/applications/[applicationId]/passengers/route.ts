@@ -6,10 +6,10 @@ import crypto from 'crypto'; // Add this import for UUID generation
 
 // GET - List passengers for an application
 export async function GET(
+  request: NextRequest,
   { params }: { params: Promise<{ applicationId: string }> }
 ) {
   try {
-    // Fix 1: Await the params object - this line needs to change!
     const { applicationId } = await params;
 
     const session = await getServerSession();
@@ -22,9 +22,9 @@ export async function GET(
     const application = await prisma.application.findUnique({
       where: { applicationId },
       include: {
-        VisaType: true,
-        Destination: true,
-        Passenger: {
+        visaType: true,
+        destination: true,
+        passengers: {
           select: {
             id: true,
             applicationId: true,
@@ -36,11 +36,10 @@ export async function GET(
             gender: true,
             nationality: true,
             status: true
-            // Don't include name or passportId
           }
         },
-        CardHolder: true,
-        ApplicationDocument: true
+        cardHolder: true,
+        applicationDocuments: true
       }
     });
 

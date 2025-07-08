@@ -20,7 +20,7 @@ export async function GET() {
   const applications = await prisma.application.findMany({
     where: { accountId: account.id },
     include: {
-      VisaType: true,  // Add this to include the VisaType relation  // Also include Passengers as defined in your interface
+      visaType: true,  // Add this to include the VisaType relation  // Also include Passengers as defined in your interface
     },
     orderBy: { createdAt: "desc" },
   });

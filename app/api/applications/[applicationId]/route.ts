@@ -4,18 +4,19 @@ import { getServerSession } from 'next-auth';
 
 // GET - Get a single application by ID
 export async function GET(
-  { params }: { params: { applicationId: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ applicationId: string }> }
 ) {
   try {
-    const { applicationId } = params;
+    const { applicationId } = await params;
     const session = await getServerSession();
 
     const application = await prisma.application.findUnique({
       where: { applicationId },
       include: {
-        VisaType: true,
-        Destination: true,
-        Passenger: {
+        visaType: true,
+        destination: true,
+        passengers: {
           select: {
             id: true,
             applicationId: true,
@@ -29,8 +30,8 @@ export async function GET(
             status: true
           }
         },
-        CardHolder: true,
-        ApplicationDocument: true
+        cardHolder: true,
+        applicationDocuments: true
       }
     });
 
@@ -65,10 +66,10 @@ export async function GET(
 // PATCH - Update application details
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { applicationId: string } }
+  { params }: { params: Promise<{ applicationId: string }> }
 ) {
   try {
-    const { applicationId } = params;
+    const { applicationId } = await params;
     const body = await request.json();
     
     const session = await getServerSession();
@@ -79,7 +80,7 @@ export async function PATCH(
     // Find application first
     const application = await prisma.application.findUnique({
       where: { applicationId },
-      include: { Account: true }
+      include: { account: true }
     });
     
     if (!application) {
@@ -116,9 +117,9 @@ export async function PATCH(
         updatedAt: new Date()
       },
       include: {
-        VisaType: true,
-        Destination: true,
-        Passenger: true
+        visaType: true,
+        destination: true,
+        passengers: true
       }
     });
     
@@ -132,10 +133,10 @@ export async function PATCH(
 // DELETE - Submit a cancellation request
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { applicationId: string } }
+  { params }: { params: Promise<{ applicationId: string }> }
 ) {
   try {
-    const { applicationId } = params;
+    const { applicationId } = await params;
     const { reason, details } = await request.json();
     
     const session = await getServerSession();

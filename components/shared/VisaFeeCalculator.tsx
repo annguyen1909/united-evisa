@@ -25,7 +25,7 @@ export default function VisaPriceCalculator() {
   };
 
   const handleVisaTypeChange = (type: string) => {
-    if (!selectedCountry) return;
+    if (!selectedCountry || !selectedCountry.etaInfo.visaTypes) return;
     const visa = selectedCountry.etaInfo.visaTypes.find((v) => v.type === type);
     if (visa) {
       setSelectedVisaType({ name: visa.name, govFee: visa.govFee });
@@ -60,7 +60,7 @@ export default function VisaPriceCalculator() {
       </div>
 
       {/* Visa Type Selector */}
-      {selectedCountry && (
+      {selectedCountry && selectedCountry.etaInfo.visaTypes && (
         <div>
           <label className="block font-medium mb-1">Select Visa Type</label>
           <Select onValueChange={handleVisaTypeChange}>

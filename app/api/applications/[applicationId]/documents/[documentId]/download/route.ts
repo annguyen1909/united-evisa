@@ -5,10 +5,10 @@ import { getServerSession } from 'next-auth';
 // GET - Download document content
 export async function GET(
   request: NextRequest,
-  { params }: { params: { applicationId: string, documentId: string } }
+  { params }: { params: Promise<{ applicationId: string, documentId: string }> }
 ) {
   try {
-    const { applicationId, documentId } = params;
+    const { applicationId, documentId } = await params;
     
     const session = await getServerSession();
     if (!session?.user?.email) {
@@ -19,12 +19,12 @@ export async function GET(
     const document = await prisma.applicationDocument.findFirst({
       where: {
         id: documentId,
-        Application: {
+        application: {
           applicationId
         }
       },
       include: {
-        Application: {
+        application: {
           select: {
             accountId: true
           }
@@ -47,7 +47,7 @@ export async function GET(
       select: { id: true},
     });
     
-    if (!account || (account.id !== document.Application.accountId)) {
+    if (!account || (account.id !== document.application.accountId)) {
       return NextResponse.json({ error: "Unauthorized to download this document" }, { status: 403 });
     }
     

@@ -88,11 +88,12 @@ function injectNumberedHeadingIds(html: string, mainHeadingsCount: number) {
 }
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function BlogDetail({ params }: Props) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
   if (!post) return notFound();
 
   const headings = extractHeadingsWithNumbers(post.contentHtml);

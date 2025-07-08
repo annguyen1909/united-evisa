@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { use } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getCountryBySlug } from '@/lib/countries';
 import Image from 'next/image';
@@ -22,6 +21,15 @@ type Steps = {
     title: string;
     description: string;
     image?: string;
+};
+
+type VisaType = {
+  name: string;
+  type: string;
+  entry?: string;
+  visaDuration?: string;
+  allowedNationalities?: string[];
+  [key: string]: any;
 };
 
 const tabColors = {
@@ -58,21 +66,22 @@ const visaSteps: Steps[] = [
     },
 ];
 
-export default function CountryPage({ params }: { params: { country: string } }) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedVisaType, setSelectedVisaType] = useState<string | null>(null);
-    const router = useRouter();
-    
-    // Add type assertion for both params and the result
-    const unwrappedParams = use(params as any) as { country: string };
-    const countrySlug = unwrappedParams.country;
+export default async function CountryPage({ params }: { params: Promise<{ country: string }> }) {
+    const { country: countrySlug } = await params;
     const country = getCountryBySlug(countrySlug);
 
     if (!country) {
         notFound();
     }
 
-    // Rest of your component remains the same
+    return <CountryPageClient country={country} />;
+}
+
+function CountryPageClient({ country }: { country: any }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedVisaType, setSelectedVisaType] = useState<string | null>(null);
+    const router = useRouter();
+    
     const handleOpenModal = (visaType: string) => {
         setSelectedVisaType(visaType);
         setIsModalOpen(true);
@@ -351,7 +360,7 @@ export default function CountryPage({ params }: { params: { country: string } })
                     
                     <Tabs defaultValue={country.visaTypes[0]?.name} className="w-full">
                         <TabsList className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-1 bg-slate-100/80 w-full max-w-5xl mx-auto">
-                            {country.visaTypes.map((tab) => {
+                            {country.visaTypes.map((tab: VisaType) => {
                                 const color = getTabColor(tab.type);
                                 return (
                                     <TabsTrigger
@@ -370,7 +379,7 @@ export default function CountryPage({ params }: { params: { country: string } })
                         </TabsList>
                         
                         <div className="mt-8">
-                            {country.visaTypes.map((visa) => (
+                            {country.visaTypes.map((visa: VisaType) => (
                                 <TabsContent key={visa.name} value={visa.name} className="animate-in fade-in-50">
                                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
                                         {/* Left Column - Visa Info */}

@@ -5,10 +5,10 @@ import { getServerSession } from 'next-auth';
 // GET - List documents for an application
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { applicationId: string } }
+  { params }: { params: Promise<{ applicationId: string }> }
 ) {
   try {
-    const { applicationId } = params;
+    const { applicationId } = await params;
 
     const session = await getServerSession();
     if (!session?.user?.email) {
@@ -68,10 +68,10 @@ export async function GET(
 // POST - Upload a new document
 export async function POST(
   request: NextRequest,
-  { params }: { params: { applicationId: string } }
+  { params }: { params: Promise<{ applicationId: string }> }
 ) {
   try {
-    const { applicationId } = params;
+    const { applicationId } = await params;
 
     const session = await getServerSession();
     if (!session?.user?.email) {

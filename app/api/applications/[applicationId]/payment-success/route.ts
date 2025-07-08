@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { applicationId: string } }
+  { params }: { params: Promise<{ applicationId: string }> }
 ) {
   try {
-    const { applicationId } = params;
+    const { applicationId } = await params;
     const {
       name,
       address,
@@ -22,9 +22,9 @@ export async function POST(
     const application = await prisma.application.findUnique({
       where: { applicationId },
       include: {
-        Passenger: {
-      select: { fullName: true } // ❌ This will fail if 'name' does not exist
-    }
+        passengers: {
+          select: { fullName: true }
+        }
       }
     });
 
@@ -47,8 +47,10 @@ export async function POST(
 
     // Determine if risk is passed
     // 1. Check if cardholder name matches any passenger name
-    const nameMatch = application.Passenger.some(
-      (      passenger: { fullName: string; }) => passenger.fullName && passenger.fullName.toLowerCase().includes(name.toLowerCase())
+    const nameMatch = application.passengers.some(
+      (passenger: { fullName: string | null }) =>
+        typeof passenger.fullName === 'string' &&
+        passenger.fullName.toLowerCase().includes(name.toLowerCase())
     );
     
     // 2. Check if amount is less than $900

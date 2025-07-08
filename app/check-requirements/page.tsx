@@ -1,7 +1,7 @@
 'use client';
 
 import { notFound, useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { getCountryBySlug } from '@/lib/countries';
 import { getNationalityByCode } from '@/lib/nationalities';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -15,7 +15,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 
-export default function CheckRequirementsPage() {
+function CheckRequirementsContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const nationalitySlug = searchParams.get('n');
@@ -290,5 +290,20 @@ export default function CheckRequirementsPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function CheckRequirementsPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+                <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600 mb-4"></div>
+                    <p className="text-slate-700 font-medium">Loading...</p>
+                </div>
+            </div>
+        }>
+            <CheckRequirementsContent />
+        </Suspense>
     );
 }

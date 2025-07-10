@@ -13,6 +13,9 @@ const kyrgyzstan: Country = {
   description: `The Kyrgyzstan visa is a single-entry permit intended solely for tourism, available to citizens of eligible countries. Applicants can receive their travel authorization within a few days, without the need to visit an embassy or consulate in person.`,
   welcomeMessage: `Welcome to Kyrgyzstan! Trek through the Tien Shan mountains, experience traditional yurt stays, and explore the vibrant city of Bishkek. Discover the warmth of Kyrgyz hospitality and the country's rich traditions.`,
   welcomeImgUrl: '/images/country/kyrgyzstan/kyrgyzstan-welcome.jpg',
+  processingTime: {
+    normal: '5 working days',
+  },
   visaTypes: [
     {
       id: "kyrgyzstan-tourist-single-30-days",
@@ -22,7 +25,6 @@ const kyrgyzstan: Country = {
       entry: 'Single Entry',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 82,
       allowedNationalities: ["BD", "DZ", "EG", "IN", "JO", "LB", "LK", "MA", "NP", "PK", "TN", "VE", "ZA"]
     },
@@ -34,7 +36,6 @@ const kyrgyzstan: Country = {
       entry: 'Single Entry',
       visaDuration: 60,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 92,
       allowedNationalities: ["BD", "DZ", "EG", "IN", "JO", "LB", "LK", "MA", "NP", "PK", "TN", "VE", "ZA"]
     },
@@ -46,23 +47,10 @@ const kyrgyzstan: Country = {
       entry: 'Single Entry',
       visaDuration: 5,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 56,
       allowedNationalities: ["BD", "DZ", "EG", "IN", "JO", "LB", "LK", "MA", "NP", "PK", "TN", "VE", "ZA"]
     }
   ],
-  etaInfo: {
-    processing: {
-      summary: 'Apply Online In 3 Steps',
-      steps: [
-        'Fill in the online form on our website.',
-        'Pay the eTA fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eTA sent to your email.',
-      ],
-      urgentProcessing: 'As soon as 1 Day',
-    },
-    serviceFee: 49.99, // or use a number if fixed
-  },
   info: {
     climate: 'Continental, with cold winters and hot summers',
     language: 'Kyrgyz, Russian',

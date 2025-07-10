@@ -63,9 +63,41 @@ export async function GET(
       if (!account || (account.id !== application.accountId)) {
         return NextResponse.json({ error: "Unauthorized to view this application" }, { status: 403 });
       }
+    } else {
+      // Not logged in: check guest applicationId and email from cookie
+      const cookieHeader = request.headers.get('cookie');
+      let guestMap: Record<string, string> = {};
+      let guestEmail = undefined;
+      if (cookieHeader) {
+        // guestApplications is a JSON object: { [applicationId]: email }
+        const match = cookieHeader.match(/guestApplications=([^;]+)/);
+        if (match && match[1]) {
+          try {
+            guestMap = JSON.parse(decodeURIComponent(match[1]));
+          } catch (e) {
+            guestMap = {};
+          }
+        }
+        // Try to get guestEmail cookie (optional, for extra check)
+        const emailMatch = cookieHeader.match(/guestEmail=([^;]+)/);
+        if (emailMatch && emailMatch[1]) {
+          try {
+            guestEmail = decodeURIComponent(emailMatch[1]);
+          } catch (e) {
+            guestEmail = undefined;
+          }
+        }
+      }
+      // Check if applicationId is in guestApplications and email matches
+      const appEmail = guestMap[applicationId];
+      if (!appEmail) {
+        return NextResponse.json({ error: "Unauthorized (guest)" }, { status: 401 });
+      }
+      // If guestEmail cookie is set, require it to match as well
+      if (guestEmail && appEmail !== guestEmail) {
+        return NextResponse.json({ error: "Unauthorized (guest-email)" }, { status: 401 });
+      }
     }
-    // If not logged in, allow access
-
     return NextResponse.json(application);
   } catch (error) {
     console.error('Error fetching application:', error);
@@ -81,37 +113,37 @@ export async function PATCH(
   try {
     const { applicationId } = await params;
     const body = await request.json();
-    
+
     const session = await getServerSession();
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    
+
     // Find application first
     const application = await prisma.application.findUnique({
       where: { applicationId },
       include: { account: true }
     });
-    
+
     if (!application) {
       return NextResponse.json({ error: "Application not found" }, { status: 404 });
     }
-    
+
     // Verify ownership (only if not an admin)
     const account = await prisma.account.findUnique({
-      where: { 
-        email_websiteCreatedAt: { 
-          email: session.user.email, 
-          websiteCreatedAt: "United Evisa" 
+      where: {
+        email_websiteCreatedAt: {
+          email: session.user.email,
+          websiteCreatedAt: "United Evisa"
         }
       },
-      select: { id: true},
+      select: { id: true },
     });
-    
+
     if (!account || (account.id !== application.accountId)) {
       return NextResponse.json({ error: "Unauthorized to update this application" }, { status: 403 });
     }
-    
+
     // Update the application
     const updatedApplication = await prisma.application.update({
       where: { id: application.id },
@@ -132,7 +164,7 @@ export async function PATCH(
         passengers: true
       }
     });
-    
+
     return NextResponse.json(updatedApplication);
   } catch (error) {
     console.error('Error updating application:', error);
@@ -148,36 +180,36 @@ export async function DELETE(
   try {
     const { applicationId } = await params;
     const { reason, details } = await request.json();
-    
+
     const session = await getServerSession();
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    
+
     // Find application first
     const application = await prisma.application.findUnique({
       where: { applicationId }
     });
-    
+
     if (!application) {
       return NextResponse.json({ error: "Application not found" }, { status: 404 });
     }
-    
+
     // Verify ownership - simple check that this user owns the application
     const account = await prisma.account.findUnique({
-      where: { 
-        email_websiteCreatedAt: { 
-          email: session.user.email, 
-          websiteCreatedAt: "United Evisa" 
+      where: {
+        email_websiteCreatedAt: {
+          email: session.user.email,
+          websiteCreatedAt: "United Evisa"
         }
       },
       select: { id: true },
     });
-    
+
     if (!account || account.id !== application.accountId) {
       return NextResponse.json({ error: "Unauthorized to request cancellation for this application" }, { status: 403 });
     }
-    
+
     // Submit cancellation request (not actually cancelling)
     const updatedApplication = await prisma.application.update({
       where: { id: application.id },
@@ -187,8 +219,8 @@ export async function DELETE(
         cancellationDetails: details || "",
       }
     });
-    
-    return NextResponse.json({ 
+
+    return NextResponse.json({
       message: "Cancellation request submitted successfully",
       application: updatedApplication
     });

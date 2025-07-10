@@ -7,11 +7,10 @@ import { Label } from "@/components/ui/label"
 import { AlertCircle, CheckCircle } from "lucide-react"
 
 export default function ResetPasswordForm() {
-  const [step, setStep] = useState<"email" | "reset" | "success">("email")
+  const [step, setStep] = useState<"email" | "otp" | "success">("email")
   const [email, setEmail] = useState("")
-  const [userId, setUserId] = useState<string | null>(null)
-  const [hasPassword, setHasPassword] = useState<boolean>(true)
-  const [currentPassword, setCurrentPassword] = useState("")
+  const [otp, setOtp] = useState("")
+  const [jwtToken, setJwtToken] = useState<string | null>(null)
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
@@ -42,73 +41,56 @@ export default function ResetPasswordForm() {
     }
   }
 
-  // Step 1: Lookup user by email
+  // Step 1: Request OTP
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setLoading(true)
     try {
-      const res = await fetch("/api/user/by-email", {
+      const res = await fetch("/api/user/request-reset-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       })
       const data = await res.json()
-      if (!res.ok || !data.userId) {
-        setError("No account found for this email")
+      if (!res.ok || !data.jwtToken) {
+        setError(data.error || "No account found for this email")
         setLoading(false)
         return
       }
-      setUserId(data.userId)
-      setHasPassword(!!data.hasPassword)
-      setStep("reset")
+      setJwtToken(data.jwtToken)
+      setStep("otp")
     } catch {
-      setError("Failed to lookup user")
+      setError("Failed to send OTP. Please try again.")
     } finally {
       setLoading(false)
     }
   }
 
-  // Step 2: Reset or set password
-  const handleResetSubmit = async (e: React.FormEvent) => {
+  // Step 2: Submit OTP + new password
+  const handleOtpSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setSuccess(null)
-
-    if (hasPassword && !currentPassword) {
-      return setError("Please enter your current password")
-    }
-    if (!newPassword) {
-      return setError("Please enter a new password")
-    }
-    if (newPassword !== confirmPassword) {
-      return setError("New passwords do not match")
-    }
-    if (newPassword.length < 8) {
-      return setError("Password should be at least 8 characters")
-    }
-    if (strength.score < 3) {
-      return setError("Please use a stronger password")
-    }
-
+    if (!otp) return setError("Please enter the OTP sent to your email")
+    if (!newPassword) return setError("Please enter a new password")
+    if (newPassword !== confirmPassword) return setError("New passwords do not match")
+    if (newPassword.length < 8) return setError("Password should be at least 8 characters")
+    if (strength.score < 3) return setError("Please use a stronger password")
     setLoading(true)
     try {
-      let response
-      response = await fetch('/api/user/set-password', {
+      const res = await fetch('/api/user/verify-reset-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          newPassword
-        }),
+        body: JSON.stringify({ email, otp, newPassword, jwtToken }),
       })
-      const data = await response.json()
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to update password')
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to reset password')
       }
-      setSuccess(hasPassword ? "Password changed successfully!" : "Password set successfully!")
+      setSuccess("Password reset successfully!")
       setStep("success")
-      setCurrentPassword("")
+      setOtp("")
       setNewPassword("")
       setConfirmPassword("")
     } catch (err: any) {
@@ -142,7 +124,7 @@ export default function ResetPasswordForm() {
         <div className="space-y-1">
           <h3 className="font-medium text-slate-800">Reset Password</h3>
           <p className="text-sm text-slate-500">
-            Enter your email to reset or set your password.
+            Enter your email to receive a one-time password (OTP) for password reset.
           </p>
         </div>
         {error && (
@@ -167,102 +149,101 @@ export default function ResetPasswordForm() {
           className="bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
           disabled={loading}
         >
-          {loading ? "Checking..." : "Continue"}
+          {loading ? "Sending..." : "Send OTP"}
         </Button>
       </form>
     )
   }
 
-  // Step 2: Password reset/set form
-  return (
-    <form onSubmit={handleResetSubmit} className="space-y-6">
-      <div className="space-y-1">
-        <h3 className="font-medium text-slate-800">
-          {hasPassword ? "Change Password" : "Set Password"}
-        </h3>
-        <p className="text-sm text-slate-500">
-          {hasPassword
-            ? "Update your password to keep your account secure"
-            : "Your account does not have a password set. Please create one."}
-        </p>
-      </div>
-      {error && (
-        <div className="p-3 rounded-md bg-red-50 border border-red-100 text-sm flex items-center gap-2">
-          <AlertCircle className="h-4 w-4 text-red-500" />
-          <span className="text-red-700">{error}</span>
+  // Step 2: OTP + new password form
+  if (step === "otp") {
+    return (
+      <form onSubmit={handleOtpSubmit} className="space-y-6">
+        <div className="space-y-1">
+          <h3 className="font-medium text-slate-800">Enter OTP & New Password</h3>
+          <p className="text-sm text-slate-500">
+            Please check your email for the OTP. Enter it below along with your new password.
+          </p>
         </div>
-      )}
-      {hasPassword && (
-        <div className="space-y-2">
-          <Label htmlFor="currentPassword">Current Password</Label>
-          <Input
-            id="currentPassword"
-            type="password"
-            value={currentPassword}
-            onChange={e => setCurrentPassword(e.target.value)}
-            className="border-slate-200 focus:ring-emerald-500"
-          />
-        </div>
-      )}
-      <div className="space-y-2">
-        <Label htmlFor="newPassword">New Password</Label>
-        <Input
-          id="newPassword"
-          type="password"
-          value={newPassword}
-          onChange={e => setNewPassword(e.target.value)}
-          className="border-slate-200 focus:ring-emerald-500"
-        />
-        {newPassword && (
-          <div className="mt-1">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-xs text-slate-500">Password strength:</span>
-              <span className={`text-xs font-medium ${strength.score <= 2 ? 'text-red-600' :
-                  strength.score === 3 ? 'text-yellow-600' : 'text-green-600'
-                }`}>
-                {strength.text}
-              </span>
-            </div>
-            <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
-              <div
-                className={`h-full ${getStrengthColor()}`}
-                style={{ width: `${(strength.score / 5) * 100}%` }}
-              />
-            </div>
+        {error && (
+          <div className="p-3 rounded-md bg-red-50 border border-red-100 text-sm flex items-center gap-2">
+            <AlertCircle className="h-4 w-4 text-red-500" />
+            <span className="text-red-700">{error}</span>
           </div>
         )}
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="confirmPassword">Confirm New Password</Label>
-        <Input
-          id="confirmPassword"
-          type="password"
-          value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
-          className={`border-slate-200 focus:ring-emerald-500 ${confirmPassword && newPassword !== confirmPassword ? 'border-red-300' : ''
-            }`}
-        />
-        {confirmPassword && newPassword !== confirmPassword && (
-          <p className="text-xs text-red-600 mt-1">Passwords do not match</p>
-        )}
-      </div>
-      <Button
-        type="submit"
-        className="bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
-        disabled={loading}
-      >
-        {loading
-          ? (hasPassword ? "Updating..." : "Setting...")
-          : (hasPassword ? "Update Password" : "Set Password")}
-      </Button>
-      <Button
-        type="button"
-        variant="outline"
-        className="w-full sm:w-auto"
-        onClick={() => setStep("email")}
-      >
-        Back
-      </Button>
-    </form>
-  )
+        <div className="space-y-2">
+          <Label htmlFor="otp">OTP</Label>
+          <Input
+            id="otp"
+            type="text"
+            value={otp}
+            onChange={e => setOtp(e.target.value)}
+            required
+            className="border-slate-200 focus:ring-emerald-500"
+            maxLength={6}
+            pattern="[0-9]{6}"
+            inputMode="numeric"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="newPassword">New Password</Label>
+          <Input
+            id="newPassword"
+            type="password"
+            value={newPassword}
+            onChange={e => setNewPassword(e.target.value)}
+            className="border-slate-200 focus:ring-emerald-500"
+          />
+          {newPassword && (
+            <div className="mt-1">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs text-slate-500">Password strength:</span>
+                <span className={`text-xs font-medium ${strength.score <= 2 ? 'text-red-600' :
+                    strength.score === 3 ? 'text-yellow-600' : 'text-green-600'
+                  }`}>
+                  {strength.text}
+                </span>
+              </div>
+              <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                <div
+                  className={`h-full ${getStrengthColor()}`}
+                  style={{ width: `${(strength.score / 5) * 100}%` }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="confirmPassword">Confirm New Password</Label>
+          <Input
+            id="confirmPassword"
+            type="password"
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+            className={`border-slate-200 focus:ring-emerald-500 ${confirmPassword && newPassword !== confirmPassword ? 'border-red-300' : ''}`}
+          />
+          {confirmPassword && newPassword !== confirmPassword && (
+            <p className="text-xs text-red-600 mt-1">Passwords do not match</p>
+          )}
+        </div>
+        <Button
+          type="submit"
+          className="bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
+          disabled={loading}
+        >
+          {loading ? "Resetting..." : "Reset Password"}
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full sm:w-auto"
+          onClick={() => setStep("email")}
+        >
+          Back
+        </Button>
+      </form>
+    )
+  }
+
+  return null
 }

@@ -11,7 +11,10 @@ const unitedKingdom: Country = {
   description: `In 2021, the United Kingdom introduced an eVisa system for travelers who require a visa to enter the country. The Electronic Travel Authorization (ETA) acts as a travel permit and is digitally linked to the traveler’s passport information.`,
   welcomeMessage: `Welcome to the United Kingdom! Explore historic castles, world-class museums, and beautiful countryside.`,
   welcomeImgUrl: '/images/country/united-kingdom/united-kingdom-welcome.jpg',
-
+  processingTime: {
+    normal: '3 working days',
+    superUrgent: '2 working days',
+  },
   visaTypes: [
     {
       id: "united-kingdom-tourist-single-6-months",
@@ -21,7 +24,6 @@ const unitedKingdom: Country = {
       entry: 'Single Entry',
       visaDuration: 6 * 30,
       visaValidity: '180 days',
-      expectedProcessingTime: '2 days',
       govFee: 67,
       allowedNationalities: ["AE", "BH", "KW", "OM", "QA", "SA"]
     },
@@ -33,7 +35,6 @@ const unitedKingdom: Country = {
       entry: 'Single Entry',
       visaDuration: 6 * 30,
       visaValidity: '180 days',
-      expectedProcessingTime: '2 days',
       govFee: 67,
       allowedNationalities: ["AE", "BH", "KW", "OM", "QA", "SA"]
     },
@@ -45,7 +46,6 @@ const unitedKingdom: Country = {
       entry: 'Single Entry',
       visaDuration: 6 * 30,
       visaValidity: '180 days',
-      expectedProcessingTime: '2 days',
       govFee: 67,
       allowedNationalities: ["AE", "BH", "KW", "OM", "QA", "SA"]
     },
@@ -57,23 +57,10 @@ const unitedKingdom: Country = {
       entry: 'Single Entry',
       visaDuration: 6 * 30,
       visaValidity: '180 days',
-      expectedProcessingTime: '2 days',
       govFee: 67,
       allowedNationalities: ["AE", "BH", "KW", "OM", "QA", "SA"]
     },
   ],
-  etaInfo: {
-    processing: {
-      summary: 'Apply Online In 3 Steps',
-      steps: [
-        'Fill in the online form on our website.',
-        'Pay the eVisa fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eVisa sent to your email.',
-      ],
-      urgentProcessing: 'As soon as 1 Day',
-    },
-    serviceFee: 49.99,
-  },
   info: {
     climate: 'Temperate, with mild summers and cool winters',
     language: 'English',

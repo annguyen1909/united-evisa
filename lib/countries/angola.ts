@@ -14,8 +14,8 @@ const angola: Country = {
   welcomeMessage: `A vibrant Southern African nation known for its diverse landscapes, rich cultural heritage, and emerging travel opportunities.Discover the dynamic capital city of Luanda, where modern high-rises overlook the Atlantic coast and local markets pulse with energy. Explore the dramatic beauty of Kalandula Falls, one of Africa’s largest waterfalls, or venture through the wild expanses of Kissama National Park.Step back in time at the historic town of M'banza-Kongo, a UNESCO World Heritage Site, and unwind on the serene beaches of Benguela.`,
   welcomeImgUrl: '/images/country/angola/angola-welcome.jpg',
   processingTime: {
-    normal: '3 days',
-    superUrgent: '24 hours',
+    normal: '5 working days',
+    superUrgent: '1 working day',
   },
   visaTypes: [
     {

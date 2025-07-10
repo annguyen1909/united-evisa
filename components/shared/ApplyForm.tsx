@@ -135,6 +135,10 @@ export default function ApplyForm({ user }: { user: any }) {
                     stayingEnd,
                     total,
                     email: isLoggedIn ? user?.email : contact.email,
+                    fullName: isLoggedIn ? user?.fullName : contact.fullName,
+                    areaCode: isLoggedIn ? user?.areaCode : contact.countryCode,
+                    phoneNumber: isLoggedIn ? user?.phoneNumber : contact.phone,
+                    gender: isLoggedIn ? user?.gender : contact.gender,
                 }),
             });
 
@@ -147,6 +151,23 @@ export default function ApplyForm({ user }: { user: any }) {
             // Navigate to passengers page with applicationId as URL parameter
             router.push(`/apply/passengers?applicationId=${appData.applicationId}`);
 
+            // If the user is not logged in, store the applicationId and contact info in cookies
+            if (!isLoggedIn && appData.applicationId) {
+                // Store applicationId in guestApplicationIds cookie
+                let guestIds = [];
+                try {
+                    const raw = decodeURIComponent(document.cookie.split('; ').find(row => row.startsWith('guestApplicationIds='))?.split('=')[1] || '[]');
+                    guestIds = JSON.parse(raw);
+                } catch (e) {
+                    guestIds = [];
+                }
+                if (!guestIds.includes(appData.applicationId)) {
+                    guestIds.push(appData.applicationId);
+                    document.cookie = `guestApplicationIds=${encodeURIComponent(JSON.stringify(guestIds))}; path=/; max-age=2592000`;
+                }
+                // Store contact info in a cookie for confirmation page (expires in 30 days)
+                document.cookie = `guestContact_${appData.applicationId}=${encodeURIComponent(JSON.stringify(contact))}; path=/; max-age=2592000`;
+            }
         } catch (error) {
             console.error("Error creating application:", error);
             alert(error instanceof Error ? error.message : "An error occurred while creating your application");

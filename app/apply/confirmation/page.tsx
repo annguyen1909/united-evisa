@@ -131,13 +131,35 @@ function ConfirmationContent() {
   const paymentAmount = stripeActivity?.amount || applicationData?.total || 0;
 
   // Contact info extraction - Get from account data, not cardHolder
-  const account = applicationData?.account || {};
-  const contact = {
+  let account = applicationData?.account || {};
+  let contact = {
     fullName: account.fullName || applicationData?.cardHolder?.name || "-",
     email: account.email || "-", 
     phone: account.areaCode && account.phoneNumber ? `${account.areaCode} ${account.phoneNumber}` : "-",
     gender: account.gender || "-"
   };
+
+  // If not logged in and no account info, try to get contact info from cookie
+  if (!account.email) {
+    try {
+      const cookieKey = `guestContact_${applicationId}`;
+      const cookies = document.cookie.split(';').map(c => c.trim());
+      const found = cookies.find(c => c.startsWith(cookieKey + '='));
+      if (found) {
+        const value = decodeURIComponent(found.split('=')[1]);
+        const guestContact = JSON.parse(value);
+        contact = {
+          fullName: guestContact.fullName || '-',
+          email: guestContact.email || '-',
+          phone: (guestContact.countryCode ? guestContact.countryCode + ' ' : '') + (guestContact.phone || '-'),
+          gender: guestContact.gender || '-'
+        };
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
   // Passengers extraction (try both .passengers and .Passenger for compatibility)
   const passengers = applicationData?.passengers || applicationData?.Passenger || [];
   return (

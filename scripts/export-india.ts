@@ -1,33 +1,40 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { pathToFileURL } from 'url';
+import { writeFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import india from "../lib/countries/india";
 
-// Directory containing country files
-const countriesDir = path.join(process.cwd(), 'lib', 'countries', 'india.ts');
+// ESM __dirname workaround
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-async function main() {
-  const result: Record<string, any[]> = {};
+// Number of groups (update if more groups are added in indiaVisaFeeTable)
+const GROUP_COUNT = 9;
 
-  // Only process india.ts file
-  const file = 'india.ts';
-  const slug = file.replace(/\.(ts|js)$/, '');
-
-  // Dynamic import using file URL
-  const fileUrl = pathToFileURL(path.join(countriesDir, file)).href;
-  const countryModule = await import(fileUrl);
-  const country = countryModule.default;
-  
-  if (country && Array.isArray(country.visaTypes)) {
-    // Only export ayush evisa and group-1 variant for testing
-    result[slug] = country.visaTypes.filter((vt: any) =>
-      vt.id === 'india-ayush-evisa' || vt.id === 'india-ayush-evisa-group-1'
-    );
+(async () => {
+  const result: { [key: string]: any[] } = {};
+  try {
+    if (india && Array.isArray(india.visaTypes)) {
+      const allVisaTypes: any[] = [];
+      for (const vt of india.visaTypes) {
+        // Add the base visa type
+        allVisaTypes.push(vt);
+        // Add group variants
+        for (let i = 1; i <= GROUP_COUNT; i++) {
+          allVisaTypes.push({
+            ...vt,
+            id: `${vt.id}-group-${i}`,
+            group: i
+          });
+        }
+      }
+      result["india"] = allVisaTypes;
+    }
+  } catch (err) {
+    console.error(`Error processing india visa types:`, err);
   }
 
-  // Write to JSON file
-  const outPath = path.join(process.cwd(), 'visaTypes-india.json');
-  await fs.writeFile(outPath, JSON.stringify(result, null, 2), 'utf-8');
-  console.log('India visa types exported to visaTypes-india.json');
-}
-
-main().catch(console.error);
+  // Write result to a JSON file
+  const outputPath = join(__dirname, "visaTypes-india.json");
+  writeFileSync(outputPath, JSON.stringify(result, null, 2), "utf-8");
+  console.log(`Result written to ${outputPath}`);
+})();

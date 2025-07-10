@@ -13,6 +13,10 @@ const australia: Country = {
   description: `In 1996, the Electronic Travel Authority system (ETA or e-Visa) was introduced, making Australia the first nation to launch electronic visas in the world. An ETA is designed to serve short-term stays in Australia for activities related to tourism (Tourist e-Visa) or business (Business e-Visa).`,
   welcomeMessage: `Welcome to Australia! Explore the cosmopolitan cities of Sydney and Melbourne, relax on the golden beaches of the Gold Coast, or marvel at the natural wonders of Uluru and the Great Barrier Reef. Experience the rich Aboriginal heritage and enjoy world-class food and wine in this vast and friendly country.`,
   welcomeImgUrl: '/images/country/australia/australia-welcome.jpg',
+  processingTime: {
+    normal: '7 working days',
+    superUrgent: '2 working day',
+  },
   visaTypes: [
     {
       id: 'australia-tourist-evisa-multiple-1-year',
@@ -22,7 +26,6 @@ const australia: Country = {
       entry: 'Multiple Entries',
       visaDuration: 365,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 150,
       allowedNationalities: ["AD", "AT", "BE", "BG", "BN", "CA", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HK", "HR", "HU", "IE", "IS", "IT", "JP", "KR", "LI", "LT", "LU", "LV", "MC", "MT", "NL", "NO", "PL", "PT", "RO", "SE", "SG", "SI", "SK", "SM", "TW", "US", "VA"]
     },
@@ -34,23 +37,10 @@ const australia: Country = {
       entry: 'Multiple Entries',
       visaDuration: 365,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 150,
       allowedNationalities: ["AD", "AT", "BE", "BG", "BN", "CA", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GB", "GR", "HK", "HR", "HU", "IE", "IS", "IT", "JP", "KR", "LI", "LT", "LU", "LV", "MC", "MT", "NL", "NO", "PL", "PT", "RO", "SE", "SG", "SI", "SK", "SM", "TW", "US", "VA"]
     }
   ],
-  etaInfo: {
-    processing: {
-      summary: 'Apply Online In 3 Steps',
-      steps: [
-        'Fill in the online form on our website.',
-        'Pay the eTA fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eTA sent to your email.',
-      ],
-      urgentProcessing: 'As soon as 1 Day',
-    },
-    serviceFee: 49.99 // or use a number if fixed
-  },
   info: {
     climate: 'Varied: tropical in the north, temperate in the south',
     language: 'English',

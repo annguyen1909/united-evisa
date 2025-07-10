@@ -1,8 +1,16 @@
 "use client";
 
 import SignupForm from "@/components/shared/Signup";
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/api/auth/authOptions"
+import { redirect } from "next/navigation"
 
-export default function SignupPage() {
+export default async function SignupPage() {
+  const session = await getServerSession(authOptions)
+
+  if (session?.user) {
+    redirect("/profile") // or "/" or whatever page you want
+  }
   return (
     <div
       className="bg-cover bg-center bg-no-repeat flex items-center justify-center p-6 md:p-10"

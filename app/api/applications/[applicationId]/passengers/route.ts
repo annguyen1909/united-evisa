@@ -14,9 +14,25 @@ export async function GET(
 
     const session = await getServerSession();
     let account;
-    // if (!session?.user?.email) {
-    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
+
+    // Guest access check (like in application API)
+    if (!session?.user?.email) {
+      const cookieHeader = request.headers.get('cookie');
+      let guestIds: string[] = [];
+      if (cookieHeader) {
+        const match = cookieHeader.match(/guestApplicationIds=([^;]+)/);
+        if (match && match[1]) {
+          try {
+            guestIds = JSON.parse(decodeURIComponent(match[1]));
+          } catch (e) {
+            guestIds = [];
+          }
+        }
+      }
+      if (!guestIds.includes(applicationId)) {
+        return NextResponse.json({ error: "Unauthorized (guest)" }, { status: 401 });
+      }
+    }
 
     // Fix 2: Try a different approach to avoid name field issue
     const application = await prisma.application.findUnique({

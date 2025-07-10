@@ -19,9 +19,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [showReset, setShowReset] = useState(false)
-  const [resetUserId, setResetUserId] = useState<string | null>(null)
-  const [hasPassword, setHasPassword] = useState<boolean>(true)
-
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,32 +42,9 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   }
 
   // Handler for forgot password
-  const handleForgotPassword = async (e: React.MouseEvent) => {
-    e.preventDefault()
-    setError("")
-    setShowReset(false)
-    // Try to find userId by email
-    if (!email) {
-      setError("Please enter your email first")
-      return
-    }
-    try {
-      const res = await fetch("/api/user/by-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      })
-      const data = await res.json()
-      if (!res.ok || !data.userId) {
-        setError("No account found for this email")
-        return
-      }
-      setResetUserId(data.userId)
-      setHasPassword(!!data.hasPassword)
-      setShowReset(true)
-    } catch {
-      setError("Failed to start password reset")
-    }
+  const handleForgotPassword = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowReset(true);
   }
 
   return (
@@ -178,10 +152,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                 </div>
               </form>
             ) : (
-              resetUserId && (
-                <ResetPasswordForm
-                />
-              )
+              <ResetPasswordForm />
             )}
           </div>
         </CardContent>

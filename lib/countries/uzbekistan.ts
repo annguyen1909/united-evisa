@@ -11,7 +11,10 @@ const uzbekistan: Country = {
   description: `The Uzbekistan eVisa system was introduced in July 2018 by the Uzbekistani government, allowing citizens of 101 countries to apply online. This digital visa is issued for purposes of tourism or business activities.`,
   welcomeMessage: `Welcome to Uzbekistan! Wander the blue-tiled streets of Samarkand, explore the old city of Bukhara, and experience the hospitality of the Uzbek people. Discover the legacy of the Silk Road.`,
   welcomeImgUrl: '/images/country/uzbekistan/uzbekistan-welcome.jpg',
-
+  processingTime: {
+    normal: '5 working days',
+    superUrgent: '2 working days',
+  },
   visaTypes: [
     {
       id: "uzbekistan-tourist-single-30-days",
@@ -21,7 +24,6 @@ const uzbekistan: Country = {
       entry: 'Single Entry',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 50,
       allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
     },
@@ -33,7 +35,6 @@ const uzbekistan: Country = {
       entry: 'Double Entries',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 65,
       allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
     },
@@ -45,7 +46,6 @@ const uzbekistan: Country = {
       entry: 'Multiple Entries',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 80,
       allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
     },
@@ -57,7 +57,6 @@ const uzbekistan: Country = {
       entry: 'Single Entry',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 50,
       allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
     },
@@ -69,7 +68,6 @@ const uzbekistan: Country = {
       entry: 'Double Entries',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 65,
       allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
     },
@@ -81,23 +79,10 @@ const uzbekistan: Country = {
       entry: 'Multiple Entries',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 80,
       allowedNationalities: ["AL", "AO", "BD", "BH", "BO", "BT", "CI", "CN", "CO", "DZ", "EC", "EG", "FJ", "FM", "GW", "GY", "HK", "IN", "IR", "JO", "KH", "KI", "KP", "KW", "LA", "LB", "LK", "MA", "MH", "MK", "MU", "MV", "NP", "NR", "OM", "PE", "PH", "PW", "PY", "QA", "SA", "SB", "SC", "SR", "TH", "TN", "TO", "US", "UY", "VE", "VN", "VU", "WS"]
     },
   ],
-  etaInfo: {
-    processing: {
-      summary: 'Apply Online In 3 Steps',
-      steps: [
-        'Fill in the online form on our website.',
-        'Pay the eVisa fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eVisa sent to your email.',
-      ],
-      urgentProcessing: 'As soon as 1 Day',
-    },
-    serviceFee: 49.99,
-  },
   info: {
     climate: 'Continental, with hot summers and cold winters',
     language: 'Uzbek',

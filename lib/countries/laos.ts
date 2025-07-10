@@ -13,6 +13,9 @@ const laos: Country = {
   description: `Laos launched its eVisa system in July 2019, enabling travelers to apply for and receive a visa online prior to their visit. This electronic visa is available to citizens of eligible countries intending to travel to Laos for tourism purposes.`,
   welcomeMessage: `Welcome to Laos! Explore the ancient city of Luang Prabang, cruise the Mekong, and visit the mysterious Plain of Jars. Experience the serenity and traditions of Lao culture.`,
   welcomeImgUrl: '/images/country/laos/laos-welcome.jpg',
+  processingTime: {
+    normal: '5 working days',
+  },
   visaTypes: [
     {
       id: "laos-tourist-single-30-days",
@@ -22,23 +25,10 @@ const laos: Country = {
       entry: 'Single Entry',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 81,
       allowedNationalities: ["AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BE", "BF", "BG", "BH", "BJ", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CH", "CL", "CN", "CO", "CR", "CU", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "EC", "EE", "EG", "ER", "ES", "ET", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GM", "GQ", "GR", "GT", "GY", "HK", "HN", "HR", "HT", "HU", "IE", "IL", "IN", "IS", "IT", "JM", "JP", "KE", "KG", "KI", "KM", "KN", "KP", "KW", "KZ", "LC", "LI", "LK", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "NA", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PG", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SI", "SK", "SM", "SO", "ST", "SV", "TD", "TG", "TJ", "TL", "TM", "TN", "TR", "TT", "TV", "TW", "TZ", "UA", "US", "UY", "UZ", "VC", "VE", "VU", "WS", "XK", "YE", "ZA"]
     }
   ],
-  etaInfo: {
-    processing: {
-      summary: 'Apply Online In 3 Steps',
-      steps: [
-        'Fill in the online form on our website.',
-        'Pay the eTA fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eTA sent to your email.',
-      ],
-      urgentProcessing: 'As soon as 1 Day',
-    },
-    serviceFee: 49.99, // or use a number if fixed
-  },
   info: {
     climate: 'Tropical monsoon, with a rainy and dry season',
     language: 'Lao',

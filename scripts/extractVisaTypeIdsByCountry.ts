@@ -41,7 +41,7 @@ const countryFiles = fs
   }
 
   // Write result to a JSON file
-  const outputPath = path.join(__dirname, "visaTypeIdsByCountry.json");
+  const outputPath = path.join(__dirname, "visaTypeIdsByCountry2.json");
   fs.writeFileSync(outputPath, JSON.stringify(result, null, 2), "utf-8");
   console.log(`Result written to ${outputPath}`);
 })();

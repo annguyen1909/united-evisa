@@ -19,6 +19,10 @@ export async function POST(req: NextRequest) {
       stayingEnd,
       total,
       email, // get email from body
+      fullName, // new
+      areaCode, // new
+      phoneNumber, // new
+      gender, // new
     } = body;
 
     // You may need to provide the correct compound unique key fields here.
@@ -39,7 +43,10 @@ export async function POST(req: NextRequest) {
         data: {
           id: crypto.randomUUID(), // generate a unique id
           email,
-          // add other required fields here, e.g. websiteCreatedAt, name, etc.
+          fullName: fullName || "Unknown",
+          areaCode: areaCode || "+1",
+          phoneNumber: phoneNumber || "Unknown",
+          gender: gender || "Unknown",
           websiteCreatedAt: "United Evisa", // or your default value
         },
         select: { id: true },

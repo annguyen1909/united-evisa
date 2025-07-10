@@ -13,6 +13,10 @@ const oman: Country = {
   description: `The Oman eVisa program, introduced in 2018 by the Royal Oman Police, was designed to simplify the online visa application process. It allows international travelers to enter Oman for tourism purposes.`,
   welcomeMessage: `Welcome to Oman! Wander the souks of Muscat, explore the dunes of the Wahiba Sands, and relax on the beaches of Salalah. Discover the beauty and traditions of this peaceful Gulf nation.`,
   welcomeImgUrl: '/images/country/oman/oman-welcome.jpg',
+  processingTime: {
+    normal: '3 working days',
+    superUrgent: '1 working day',
+  },
     visaTypes: [
       {
         id: "oman-tourist",
@@ -22,23 +26,10 @@ const oman: Country = {
         entry: '',
         visaDuration: 30,
         visaValidity: '60 days',
-        expectedProcessingTime: '2 days',
         govFee: 82,
         allowedNationalities: ["AD", "AF", "AG", "AL", "AM", "AO", "AR", "AS", "AT", "AU", "AZ", "BA", "BE", "BF", "BG", "BN", "BO", "BR", "BT", "BY", "CA", "CH", "CL", "CN", "CO", "CR", "CU", "CZ", "DE", "DK", "DM", "DZ", "EC", "EE", "ES", "FI", "FR", "GB", "GE", "GN", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IR", "IS", "IT", "JP", "KZ", "LA", "LB", "LI", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "MK", "ML", "MT", "MV", "MX", "MY", "NA", "NE", "NI", "NL", "NO", "NR", "NZ", "PA", "PE", "PL", "PT", "PY", "RO", "SC", "SE", "SG", "SI", "SK", "SM", "SN", "SR", "SV", "TH", "TJ", "TM", "TR", "TW", "US", "UY", "UZ", "VA", "VE", "VN", "ZA"]
       }
     ],
-  etaInfo: {
-    processing: {
-      summary: 'Apply Online In 3 Steps',
-      steps: [
-        'Fill in the online form on our website.',
-        'Pay the eTA fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eTA sent to your email.',
-      ],
-      urgentProcessing: 'As soon as 1 Day',
-    },
-    serviceFee: 49.99, // or use a number if fixed
-  },
   info: {
     climate: 'Arid, hot summers and mild winters',
     language: 'Arabic',

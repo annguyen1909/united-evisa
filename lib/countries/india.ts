@@ -228,8 +228,8 @@ const india: Country = {
   welcomeMessage: `Welcome to India! Visit the Taj Mahal, explore the palaces of Rajasthan, and experience the spiritual city of Varanasi. Enjoy the flavors of Indian cuisine and the warmth of its people.`,
   welcomeImgUrl: '/images/country/india/india-welcome.jpg',
   processingTime: {
-    normal: '3-5 business days',
-    superUrgent: '24 hours',
+    normal: '3 working days',
+    superUrgent: '1 working day',
   },
   visaTypes,
   info: {

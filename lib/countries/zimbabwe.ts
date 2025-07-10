@@ -11,7 +11,9 @@ const zimbabwe: Country = {
   description: `Zimbabwe is known for its dramatic landscapes, diverse wildlife, and the iconic Victoria Falls. It offers rich history, adventure, and vibrant culture.`,
   welcomeMessage: `Welcome to Zimbabwe! Marvel at the thundering Victoria Falls, go on safari in Hwange National Park, and explore the ancient ruins of Great Zimbabwe. Experience the friendliness and resilience of the Zimbabwean people.`,
   welcomeImgUrl: '/images/country/zimbabwe/zimbabwe-welcome.jpg',
-
+  processingTime: {
+    normal: '5 working days',
+  },
   visaTypes: [
     {
       id: "zimbabwe-tourist-single-30-days",
@@ -21,7 +23,6 @@ const zimbabwe: Country = {
       entry: 'Single Entry',
       visaDuration: 30,
       visaValidity: '90 days',
-      expectedProcessingTime: '2 days',
       govFee: 60,
       allowedNationalities: ["AF", "AI", "BD", "BF", "BJ", "BO", "CD", "CG", "CI", "CM", "CO", "DJ", "ER", "GA", "GM", "GW", "IQ", "JO", "KH", "LA", "LB", "LK", "LR", "MA", "ME", "MK", "ML", "MN", "MR", "NE", "NG", "NP", "OM", "PH", "PK", "QA", "SA", "SL", "SO", "SY", "TD", "TG", "TH", "TL", "TN", "TW", "VN", "XK", "YE"]
     },
@@ -33,7 +34,6 @@ const zimbabwe: Country = {
       entry: 'Double Entries',
       visaDuration: 30,
       visaValidity: '90 days',
-      expectedProcessingTime: '2 days',
       govFee: 75,
       allowedNationalities: ["AF", "AI", "BD", "BF", "BJ", "BO", "CD", "CG", "CI", "CM", "CO", "DJ", "ER", "GA", "GM", "GW", "IQ", "JO", "KH", "LA", "LB", "LK", "LR", "MA", "ME", "MK", "ML", "MN", "MR", "NE", "NG", "NP", "OM", "PH", "PK", "QA", "SA", "SL", "SO", "SY", "TD", "TG", "TH", "TL", "TN", "TW", "VN", "XK", "YE"]
     },
@@ -46,7 +46,6 @@ const zimbabwe: Country = {
       entry: 'Single Entry',
       visaDuration: 30,
       visaValidity: '90 days',
-      expectedProcessingTime: '2 days',
       govFee: 60,
       allowedNationalities: ["AF", "AI", "BD", "BF", "BJ", "BO", "CD", "CG", "CI", "CM", "CO", "DJ", "ER", "GA", "GM", "GW", "IQ", "JO", "KH", "LA", "LB", "LK", "LR", "MA", "ME", "MK", "ML", "MN", "MR", "NE", "NG", "NP", "OM", "PH", "PK", "QA", "SA", "SL", "SO", "SY", "TD", "TG", "TH", "TL", "TN", "TW", "VN", "XK", "YE"]
     },
@@ -58,7 +57,6 @@ const zimbabwe: Country = {
       entry: 'Double Entries',
       visaDuration: 30,
       visaValidity: '90 days',
-      expectedProcessingTime: '2 days',
       govFee: 75,
       allowedNationalities: ["AF", "AI", "BD", "BF", "BJ", "BO", "CD", "CG", "CI", "CM", "CO", "DJ", "ER", "GA", "GM", "GW", "IQ", "JO", "KH", "LA", "LB", "LK", "LR", "MA", "ME", "MK", "ML", "MN", "MR", "NE", "NG", "NP", "OM", "PH", "PK", "QA", "SA", "SL", "SO", "SY", "TD", "TG", "TH", "TL", "TN", "TW", "VN", "XK", "YE"]
     },
@@ -70,23 +68,10 @@ const zimbabwe: Country = {
       entry: 'Multiple Entries',
       visaDuration: 90,
       visaValidity: '7 days',
-      expectedProcessingTime: '2 days',
       govFee: 80,
       allowedNationalities: ["AF", "AI", "BD", "BF", "BJ", "BO", "CD", "CG", "CI", "CM", "CO", "DJ", "ER", "GA", "GM", "GW", "IQ", "JO", "KH", "LA", "LB", "LK", "LR", "MA", "ME", "MK", "ML", "MN", "MR", "NE", "NG", "NP", "OM", "PH", "PK", "QA", "SA", "SL", "SO", "SY", "TD", "TG", "TH", "TL", "TN", "TW", "VN", "XK", "YE"]
     }
   ],
-  etaInfo: {
-    processing: {
-      summary: 'Apply Online In 3 Steps',
-      steps: [
-        'Fill in the online form on our website.',
-        'Pay the eVisa fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eVisa sent to your email.',
-      ],
-      urgentProcessing: 'As soon as 1 Day',
-    },
-    serviceFee: 49.99,
-  },
   info: {
     climate: 'Tropical, moderated by altitude',
     language: 'English, Shona, Sindebele',

@@ -13,6 +13,10 @@ const benin: Country = {
   description: `The Benin e-visa system aims to simplify the visa application process for international travelers in 2018. The Benin e-visa allows individuals to apply for a visa online with simple documents, reducing the need for in-person visits to embassies. This digital platform is convenient for visitors to obtain the necessary travel authorization for exploring the diverse attractions and experiences in Benin.`,
   welcomeMessage: `Welcome to Benin! Explore the Royal Palaces of Abomey, relax on the beaches of Grand-Popo, and experience the unique traditions of Vodun. Discover the warmth and hospitality of the Beninese people.`,
   welcomeImgUrl: '/images/country/benin/benin-welcome.jpg',
+  processingTime: {
+    normal: '3 working days',
+    superUrgent: '5 hours',
+  },
   visaTypes: [
     {
       id: "benin-tourist-single-30-days",
@@ -22,7 +26,6 @@ const benin: Country = {
       entry: 'Single Entry',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 85,
       allowedNationalities: ["AD", "AE", "AF", "AG", "AL", "AM", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BG", "BH", "BN", "BO", "BR", "BS", "BT", "BY", "BZ", "CA", "CH", "CL", "CN", "CO", "CR", "CU", "CZ", "DE", "DK", "DM", "DOM", "EC", "EE", "ES", "FI", "FJ", "FR", "GA", "GB", "GD", "GE", "GL", "GM", "GR", "GT", "GY", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IR", "IS", "IT", "JM", "JO", "JP", "KG", "KH", "KI", "KN", "KP", "KR", "KZ", "LA", "LB", "LC", "LI", "LK", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MH", "MK", "MN", "MO", "MT", "MV", "MX", "MY", "MZ", "NA", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PR", "PS", "PT", "PW", "PY", "QA", "RE", "RO", "RU", "RW", "SA", "SB", "SE", "SG", "SI", "SK", "SM", "SR", "SV", "SY", "SZ", "TH", "TJ", "TM", "TO", "TR", "TT", "TV", "TW", "TZ", "US", "UY", "UZ", "VA", "VC", "VE", "VN", "VU", "WS", "YE"]
     },
@@ -34,7 +37,6 @@ const benin: Country = {
       entry: 'Multiple Entries',
       visaDuration: 30,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 112,
       allowedNationalities: ["AD", "AE", "AF", "AG", "AL", "AM", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BG", "BH", "BN", "BO", "BR", "BS", "BT", "BY", "BZ", "CA", "CH", "CL", "CN", "CO", "CR", "CU", "CZ", "DE", "DK", "DM", "DOM", "EC", "EE", "ES", "FI", "FJ", "FR", "GA", "GB", "GD", "GE", "GL", "GM", "GR", "GT", "GY", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IR", "IS", "IT", "JM", "JO", "JP", "KG", "KH", "KI", "KN", "KP", "KR", "KZ", "LA", "LB", "LC", "LI", "LK", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MH", "MK", "MN", "MO", "MT", "MV", "MX", "MY", "MZ", "NA", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PR", "PS", "PT", "PW", "PY", "QA", "RE", "RO", "RU", "RW", "SA", "SB", "SE", "SG", "SI", "SK", "SM", "SR", "SV", "SY", "SZ", "TH", "TJ", "TM", "TO", "TR", "TT", "TV", "TW", "TZ", "US", "UY", "UZ", "VA", "VC", "VE", "VN", "VU", "WS", "YE"]
     },
@@ -46,24 +48,10 @@ const benin: Country = {
       entry: 'Multiple Entries',
       visaDuration: 90,
       visaValidity: '60 days',
-      expectedProcessingTime: '2 days',
       govFee: 140,
       allowedNationalities: ["AD", "AE", "AF", "AG", "AL", "AM", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BG", "BH", "BN", "BO", "BR", "BS", "BT", "BY", "BZ", "CA", "CH", "CL", "CN", "CO", "CR", "CU", "CZ", "DE", "DK", "DM", "DOM", "EC", "EE", "ES", "FI", "FJ", "FR", "GA", "GB", "GD", "GE", "GL", "GM", "GR", "GT", "GY", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IR", "IS", "IT", "JM", "JO", "JP", "KG", "KH", "KI", "KN", "KP", "KR", "KZ", "LA", "LB", "LC", "LI", "LK", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MH", "MK", "MN", "MO", "MT", "MV", "MX", "MY", "MZ", "NA", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PR", "PS", "PT", "PW", "PY", "QA", "RE", "RO", "RU", "RW", "SA", "SB", "SE", "SG", "SI", "SK", "SM", "SR", "SV", "SY", "SZ", "TH", "TJ", "TM", "TO", "TR", "TT", "TV", "TW", "TZ", "US", "UY", "UZ", "VA", "VC", "VE", "VN", "VU", "WS", "YE"]
     },
   ],
-  etaInfo: {
-    processing: {
-      summary: 'Apply Online In 3 Steps',
-      steps: [
-        'Fill in the online form on our website.',
-        'Pay the eTA fee online — via credit card, debit card, PayPal, or bank transfer.',
-        'Get your eTA sent to your email.',
-      ],
-      urgentProcessing: 'As soon as 1 Day',
-    },
-
-    serviceFee: 49.99, // or use a number if fixed
-  },
   info: {
     climate: 'Tropical, hot and humid',
     language: 'French',

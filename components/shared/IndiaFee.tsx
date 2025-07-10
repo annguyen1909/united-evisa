@@ -13,7 +13,10 @@ interface FeeModalProps {
 export function FeeModal({ open, onOpenChange, visaType, feeTable }: FeeModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent
+        className="w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-6xl min-h-[30vh] max-h-[90vh] overflow-y-auto"
+        style={{ width: "100%" }}
+      >
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">
             Government & admin fee for {visaType}
@@ -23,7 +26,7 @@ export function FeeModal({ open, onOpenChange, visaType, feeTable }: FeeModalPro
             The amount of the government fee depends on the country you are a citizen of as well as the type of e-visa you apply for, as shown below.
           </DialogDescription>
         </DialogHeader>
-        
+
         <div className="mt-4">
           <Table>
             <TableHeader>
@@ -42,13 +45,13 @@ export function FeeModal({ open, onOpenChange, visaType, feeTable }: FeeModalPro
                   <TableCell className="font-medium align-top">
                     {group.name.replace(/Group \d+: /, '')}
                   </TableCell>
-                  <TableCell className="text-center">US$ {group.fees["30_days_tourist"]}</TableCell>
-                  <TableCell className="text-center">US$ {group.fees["1_year_tourist"]}</TableCell>
+                  <TableCell className="text-center">US$ {group.govFee["30_days_tourist"]}</TableCell>
+                  <TableCell className="text-center">US$ {group.govFee["1_year_tourist"]}</TableCell>
                   <TableCell className="text-center">
-                    {group.fees["5_years_tourist"] === null ? "Not applicable" : `US$ ${group.fees["5_years_tourist"]}`}
+                    {group.govFee["5_years_tourist"] === null ? "Not applicable" : `US$ ${group.govFee["5_years_tourist"]}`}
                   </TableCell>
-                  <TableCell className="text-center">US$ {group.fees["1_year_business"]}</TableCell>
-                  <TableCell className="text-center">US$ {group.fees["other_visa"]}</TableCell>
+                  <TableCell className="text-center">US$ {group.govFee["1_year_business"]}</TableCell>
+                  <TableCell className="text-center">US$ {group.govFee["other_visa"]}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

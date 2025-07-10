@@ -20,7 +20,7 @@ const oman: Country = {
         type: 'Tourist Evisa',
         description: '',
         entry: '',
-        visaDuration: '',
+        visaDuration: 30,
         visaValidity: '60 days',
         expectedProcessingTime: '2 days',
         govFee: 82,

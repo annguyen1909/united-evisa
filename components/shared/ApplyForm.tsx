@@ -25,6 +25,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
+// Fixed service fee for all countries
+const FIXED_SERVICE_FEE = 59.99;
+
 export default function ApplyForm({ user }: { user: any }) {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -80,12 +83,15 @@ export default function ApplyForm({ user }: { user: any }) {
     if (!hydrated) return null; // or a loading spinner
     const isLoggedIn = !!user;
 
+    // Special case: hide gov fee in order summary if India
+    const isIndia = selectedCountry?.code?.toLowerCase() === "in";
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const newErrors: { [key: string]: string } = {};
 
         if (!selectedCountry) newErrors.country = "Please select a country.";
-        if (!selectedVisaType) newErrors.visaType = "Please select a visa type.";
+        if (!selectedVisaType && !isIndia) newErrors.visaType = "Please select a visa type.";
         if (!passengerCount) newErrors.passengerCount = "Please select passenger count.";
         if (!stayingStart) newErrors.stayingStart = "Please select start date.";
         if (!stayingEnd) newErrors.stayingEnd = "Please select end date.";
@@ -94,14 +100,25 @@ export default function ApplyForm({ user }: { user: any }) {
 
         if (Object.keys(newErrors).length > 0) return;
 
-        const visa = selectedCountry?.visaTypes.find(
-            (v) => v.name === selectedVisaType
-        );
+        // For India, send a generic visaTypeId like ayush-evisa-india, etc.
+        let visa = null;
+        let visaTypeIdToSend = undefined;
+        if (isIndia) {
+            // Find the selected visa type by name (should always exist)
+            const visaType = selectedCountry?.visaTypes.find(
+                (v) => v.name === selectedVisaType
+            );
+            visaTypeIdToSend = visaType?.id || undefined;
+        } else {
+            visa = selectedCountry?.visaTypes.find(
+                (v) => v.name === selectedVisaType
+            );
+            visaTypeIdToSend = visa?.id;
+        }
 
-        const total =
-            visa && selectedCountry
-                ? (visa.govFee + Number(selectedCountry.etaInfo.serviceFee)) * Number(passengerCount)
-                : 0;
+        const total = visa && selectedCountry && !isIndia
+            ? (visa.govFee + FIXED_SERVICE_FEE) * Number(passengerCount)
+            : FIXED_SERVICE_FEE * Number(passengerCount);
 
         try {
             setIsSubmitting(true);
@@ -112,7 +129,7 @@ export default function ApplyForm({ user }: { user: any }) {
                 body: JSON.stringify({
                     destinationId: selectedCountry?.slug,
                     destinationCode: selectedCountry?.code,
-                    visaTypeId: visa?.id,
+                    visaTypeId: visaTypeIdToSend,
                     passengerCount: Number(passengerCount),
                     stayingStart,
                     stayingEnd,
@@ -137,6 +154,17 @@ export default function ApplyForm({ user }: { user: any }) {
             setIsSubmitting(false);
         }
     };
+
+    // Calculate total for order summary
+    let total = 0;
+    if (isIndia) {
+        total = FIXED_SERVICE_FEE * Number(passengerCount);
+    } else {
+        const visa = selectedCountry?.visaTypes.find(v => v.name === selectedVisaType);
+        total = visa && selectedCountry
+            ? (visa.govFee + FIXED_SERVICE_FEE) * Number(passengerCount)
+            : 0;
+    }
 
     return (
         <div className="min-h-screen justify-center pb-10 px-4 bg-slate-50">
@@ -550,115 +578,64 @@ export default function ApplyForm({ user }: { user: any }) {
                         </Button>
                     </form>
 
-                    {/* Order Summary Card */}
-                    <div className="col-span-1">
+                    {/* Order Summary */}
+                    <div className="space-y-6">
                         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
                             <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
                                 Order Summary
                             </h2>
+                            <div className="space-y-4 text-sm">
+                                <div className="flex items-center justify-between">
+                                    <span className="font-medium text-slate-700">Destination</span>
+                                    <span className="font-medium text-emerald-700">{selectedCountry?.name ?? "---"}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="font-medium text-slate-700">Type of Visa</span>
+                                    <span className="text-slate-800">{isIndia ? "To be selected after passenger info" : selectedVisaType || "---"}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="font-medium text-slate-700">Travelers</span>
+                                    <span className="text-slate-800">{passengerCount}</span>
+                                </div>
 
-                            {(() => {
-                                const destination = selectedCountry?.name ?? "---";
-                                const visa = selectedCountry?.visaTypes.find(
-                                    (v) => v.name === selectedVisaType
-                                );
-                                const visaName = visa?.name ?? "---";
-                                const govFee = visa?.govFee ?? 0;
-                                const serviceFee = selectedCountry
-                                    ? Number(selectedCountry.etaInfo.serviceFee)
-                                    : 0;
-                                const passenger = Number(passengerCount) || 1;
-                                const total = visa ? (govFee + serviceFee) * passenger : 0;
-
-                                const isDateValid = stayingStart && stayingEnd;
-                                const formattedStart = isDateValid
-                                    ? moment(stayingStart).format("DD/MM/YYYY")
-                                    : "---";
-                                const formattedEnd = isDateValid
-                                    ? moment(stayingEnd).format("DD/MM/YYYY")
-                                    : "---";
-                                const durationInMs = isDateValid
-                                    ? new Date(stayingEnd).getTime() - new Date(stayingStart).getTime()
-                                    : null;
-                                const days =
-                                    durationInMs !== null
-                                        ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
-                                        : "---";
-
-                                return (
-                                    <div className="text-sm space-y-5">
-                                        {/* Header */}
-                                        <div className="flex flex-col gap-1.5">
-                                            <div className="flex items-center justify-between">
-                                                <span className="font-medium text-slate-700">Destination</span>
-                                                <span className="font-medium text-emerald-700">{destination}</span>
-                                            </div>
-
-                                            <div className="flex items-start justify-between">
-                                                <span className="font-medium text-slate-700">Travel Period</span>
-                                                <span className="flex flex-col items-end">
-                                                    <span className="text-slate-700 leading-tight">
-                                                        {formattedStart} - {formattedEnd}
-                                                    </span>
-                                                    <span className="text-xs text-slate-500">({days} days)</span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        {/* Visa Type */}
-                                        <div className="flex items-center justify-between py-2 border-t border-b border-slate-100">
-                                            <span className="font-medium text-slate-700">Type of Visa</span>
-                                            <span className="text-slate-800">{visaName}</span>
-                                        </div>
-
-                                        {/* Fees */}
-                                        <div className="space-y-2">
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-slate-600">Government Fee</span>
-                                                <span className="text-slate-800">
-                                                    {visa ? `$${govFee.toFixed(2)}` : "---"}
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-slate-600">Service Fee</span>
-                                                <span className="text-slate-800">
-                                                    {selectedCountry ? `$${serviceFee.toFixed(2)}` : "---"}
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-slate-600">Travelers</span>
-                                                <span className="text-slate-800">{passenger}</span>
-                                            </div>
-                                        </div>
-
-                                        {/* Total */}
-                                        <div className="flex justify-between items-center pt-3 mt-2 border-t border-slate-200">
-                                            <p className="font-semibold text-slate-800">Total</p>
-                                            <p className="font-bold text-lg text-emerald-700">
-                                                {visa ? `$${total.toFixed(2)}` : "---"}
-                                            </p>
-                                        </div>
-
-                                        {/* Secure payment indicator */}
-                                        {selectedCountry && (
-                                            <div className="flex flex-col gap-3 mt-3 pt-3 border-t border-slate-100">
-                                                <div className="flex items-center text-xs text-slate-500">
-                                                    <ShieldCheck className="w-4 h-4 text-slate-400 mr-1.5" />
-                                                    Secure SSL encrypted payment
-                                                </div>
-                                                <div className="bg-emerald-50 border border-emerald-100 rounded-md p-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-                                                        <span className="text-xs text-emerald-800">
-                                                            100% Service Fee Refund Guarantee if your visa is rejected
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )}
+                                {/* Hide Government Fee for India */}
+                                {!isIndia && (
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-slate-600">Government Fee</span>
+                                        <span className="text-slate-800">{selectedCountry && selectedVisaType ? `$${(selectedCountry.visaTypes.find(v => v.name === selectedVisaType)?.govFee ?? 0).toFixed(2)}` : "---"}</span>
                                     </div>
-                                );
-                            })()}
+                                )}
+                                <div className="flex items-center justify-between">
+                                    <span className="text-slate-600">Service Fee</span>
+                                    <span className="text-slate-800">${FIXED_SERVICE_FEE.toFixed(2)}</span>
+                                </div>
+
+                                {/* Total */}
+                                <div className="flex justify-between items-center pt-3 mt-2 border-t border-slate-200">
+                                    <p className="font-semibold text-slate-800">Total</p>
+                                    <p className="font-bold text-lg text-emerald-700">
+                                        {`$${total.toFixed(2)}`}
+                                    </p>
+                                </div>
+
+                                {/* Secure payment indicator */}
+                                {selectedCountry && (
+                                    <div className="flex flex-col gap-3 mt-3 pt-3 border-t border-slate-100">
+                                        <div className="flex items-center text-xs text-slate-500">
+                                            <ShieldCheck className="w-4 h-4 text-slate-400 mr-1.5" />
+                                            Secure SSL encrypted payment
+                                        </div>
+                                        <div className="bg-emerald-50 border border-emerald-100 rounded-md p-3">
+                                            <div className="flex items-center gap-2">
+                                                <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                                                <span className="text-xs text-emerald-800">
+                                                    100% Service Fee Refund Guarantee if your visa is rejected
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ const ethiopia: Country = {
       type: 'Tourist Evisa',
       description: 'Single Entry for 30 days',
       entry: 'Single Entry',
-      visaDuration: '30 days',
+      visaDuration: 30,
       visaValidity: '60 days',
       expectedProcessingTime: '2 days',
       govFee: 112,

@@ -49,7 +49,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="w-full relative overflow-hidden min-h-[600px] z-0 flex flex-col items-center justify-center border-b-4 border-emerald-700">
+    <section className="w-full relative min-h-[600px] z-0 flex flex-col items-center justify-center border-b-4 border-emerald-700">
       {/* Background Images with Overlay */}
       {backgroundImages.map((src, index) => (
         <div

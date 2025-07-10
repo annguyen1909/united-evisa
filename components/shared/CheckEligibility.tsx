@@ -1,16 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronDown, Search, Globe, ChevronRight } from "lucide-react";
+import { Check, Globe, ChevronRight } from "lucide-react";
 import { COUNTRIES } from '@/lib/countries';
 import { NATIONALITIES } from '@/lib/nationalities';
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -21,6 +19,7 @@ import {
 } from "@/components/ui/popover";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 // Transform countries into ComboBox format
 const countryOptions = COUNTRIES.map((country) => ({
@@ -42,109 +41,104 @@ function ComboBox({
   value,
   onChange,
   placeholder,
-  variant,
   icon,
+  className,
+  focused,
+  setFocused,
 }: {
   label: string;
   options: { value: string; label: string; flag?: string }[];
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  variant?: "left" | "right";
   icon?: React.ReactNode;
+  className?: string;
+  focused?: boolean;
+  setFocused?: (v: boolean) => void;
 }) {
-  const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
+  const [internalFocused, internalSetFocused] = React.useState(false);
+  const isFocused = typeof focused === 'boolean' ? focused : internalFocused;
+  const handleSetFocused = setFocused || internalSetFocused;
+  // Track if mouse is down in dropdown
+  const mouseDownRef = React.useRef(false);
+
+  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    // If mouse is down in dropdown, don't close
+    if (mouseDownRef.current) {
+      // Wait for mouse up, then refocus input
+      setTimeout(() => {
+        if (e.target) (e.target as HTMLInputElement).focus();
+      }, 0);
+      return;
+    }
+    handleSetFocused(false);
+  };
+
+  const filtered = options.filter(opt =>
+    opt.label.toLowerCase().includes(search.toLowerCase())
+  );
   const selected = options.find((opt) => opt.value === value);
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
-  
-  const variantClasses =
-    variant === "left"
-      ? "rounded-l-xl rounded-r-none max-md:rounded-xl"
-      : variant === "right"
-        ? "rounded-none border-l-0 max-md:rounded-xl max-md:border-l max-md:mt-4"
-        : "rounded-xl";
 
   return (
     <div className="w-full md:w-auto md:flex-1">
       <label className="block mb-1.5 font-medium text-sm text-slate-700">{label}</label>
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            className={cn(
-              "w-full justify-between text-slate-800 border-slate-300 bg-white hover:bg-slate-50",
-              "h-[50px] px-4 transition-all shadow-sm",
-              variantClasses
-            )}
+      <div className="relative w-full">
+        <div className={cn("flex items-center h-[50px] border px-3 py-2 bg-white border-slate-300 shadow-sm", className)}>
+          {icon && <div className="text-slate-400 mr-1">{icon}</div>}
+          <input
+            type="text"
+            className="flex-1 outline-none border-0 bg-transparent text-slate-800 placeholder:text-slate-400"
+            placeholder={placeholder || `Search ${label.toLowerCase()}...`}
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            onFocus={() => handleSetFocused(true)}
+            onBlur={handleInputBlur}
+            autoComplete="off"
+          />
+        </div>
+        {isFocused && (
+          <div
+            className="absolute left-0 right-0 mt-1 bg-white border border-slate-200 rounded-xl shadow-lg z-50"
+            style={{maxHeight: 320, overflowY: 'auto'}}
+            onMouseDown={() => { mouseDownRef.current = true; }}
+            onMouseUp={() => { mouseDownRef.current = false; }}
+            onMouseLeave={() => { mouseDownRef.current = false; }}
           >
-            <div className="flex items-center gap-2 truncate">
-              {icon && <div className="text-slate-400 mr-1">{icon}</div>}
-              
-              {selected && selected.flag && (
-                <div className="h-4 w-6 overflow-hidden rounded-sm mr-1.5 flex-shrink-0">
-                  <img 
-                    src={selected.flag} 
-                    alt="" 
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              )}
-              
-              <span className="truncate">
-                {selected ? selected.label : placeholder || `Select ${label.toLowerCase()}...`}
-              </span>
-            </div>
-            <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[300px] p-0 shadow-lg border-slate-200">
-          <Command>
-            <div className="flex items-center border-b px-3">
-              <Search className="h-4 w-4 shrink-0 text-slate-400" />
-              <CommandInput
-                placeholder={`Search ${label.toLowerCase()}...`}
-                onFocus={() => inputRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" })}
-                className="h-9 border-0 focus:ring-0"
-              />
-            </div>
-            <CommandList className="max-h-[300px]">
-              <CommandEmpty>No {label.toLowerCase()} found.</CommandEmpty>
-              <CommandGroup>
-                {options.map((opt) => (
-                  <CommandItem
-                    key={opt.value}
-                    value={opt.label.toLowerCase()}
-                    onSelect={() => {
-                      onChange(opt.value);
-                      setOpen(false);
-                    }}
-                    className="flex items-center gap-2 px-4 py-2.5"
-                  >
-                    {opt.flag && (
-                      <div className="h-4 w-6 overflow-hidden rounded-sm flex-shrink-0">
-                        <img 
-                          src={opt.flag} 
-                          alt="" 
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                    )}
-                    <span className="flex-1 truncate">{opt.label}</span>
-                    <Check
-                      className={cn(
-                        "ml-auto h-4 w-4 text-emerald-600",
-                        value === opt.value ? "opacity-100" : "opacity-0"
+            <Command>
+              <CommandList>
+                {filtered.length === 0 && (
+                  <CommandEmpty>No {label.toLowerCase()} found.</CommandEmpty>
+                )}
+                <CommandGroup>
+                  {filtered.map((opt) => (
+                    <CommandItem
+                      key={opt.value}
+                      value={opt.label.toLowerCase()}
+                      onSelect={() => {
+                        onChange(opt.value);
+                        setSearch(opt.label); // show selected in input
+                        handleSetFocused(false);
+                      }}
+                      className="flex items-center gap-2 px-4 py-2.5 cursor-pointer"
+                    >
+                      {opt.flag && (
+                        <div className="h-4 w-6 overflow-hidden rounded-sm flex-shrink-0">
+                          <img src={opt.flag} alt="" className="h-full w-full object-cover" />
+                        </div>
                       )}
-                    />
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </PopoverContent>
-      </Popover>
+                      <span className="flex-1 truncate">{opt.label}</span>
+                      {value === opt.value && (
+                        <Check className="ml-auto h-4 w-4 text-emerald-600" />
+                      )}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -154,6 +148,7 @@ export default function CheckEligibility() {
   const [nationality, setNationality] = React.useState("");
   const [destination, setDestination] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const [openCombo, setOpenCombo] = React.useState<string | null>(null); // Track which ComboBox is open
   const router = useRouter();
 
   const onCheck = async () => {
@@ -222,8 +217,10 @@ export default function CheckEligibility() {
               value={nationality}
               onChange={setNationality}
               placeholder="Select nationality"
-              variant="left"
               icon={<Globe className="h-4 w-4" />}
+              className="rounded-l-xl rounded-r-none"
+              focused={openCombo === 'nationality'}
+              setFocused={(v: boolean) => setOpenCombo(v ? 'nationality' : null)}
             />
             <ComboBox
               label="Your Destination"
@@ -231,8 +228,10 @@ export default function CheckEligibility() {
               value={destination}
               onChange={setDestination}
               placeholder="Select destination"
-              variant="right"
               icon={<Globe className="h-4 w-4" />}
+              className="rounded-l-none"
+              focused={openCombo === 'destination'}
+              setFocused={(v: boolean) => setOpenCombo(v ? 'destination' : null)}
             />
             <div className="w-full md:w-auto md:ml-0 max-md:mt-4">
               <Button

@@ -78,6 +78,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${inter.variable} ${geistMono.variable} font-sans antialiased bg-white text-slate-900`}
+        style={{ position: 'relative', zIndex: 0 }}
       >
         <Providers>
           <TopBanner />

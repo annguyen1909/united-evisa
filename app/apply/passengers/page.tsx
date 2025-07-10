@@ -11,6 +11,7 @@ import SupportSidebar from "@/components/shared/SupportSidebar";
 import moment from "moment";
 import { NATIONALITIES } from "@/lib/nationalities";
 import { COUNTRIES } from "@/lib/countries/index";
+import { calculateIndiaVisaFee } from "@/lib/countries/india";
 
 import { Users, AlertCircle, Check } from "lucide-react";
 import {
@@ -20,6 +21,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
+const FIXED_SERVICE_FEE = 59.99;
+
 
 type Passenger = {
   id?: string;
@@ -272,8 +276,17 @@ function PassengersContent() {
   if (applicationData) {
     const destination = applicationData.destination?.name ?? "---";
     const visaName = applicationData.visaType?.name ?? "---";
-    const govFee = visa?.govFee ?? 0;
-    const serviceFee = country && country.etaInfo ? Number(country.etaInfo.serviceFee) : 0;
+    let govFee = 0;
+    if (country?.code?.toLowerCase() === "in" && visa && passengers.length > 0) {
+      // Sum govFee for each passenger's nationality
+      govFee = passengers.reduce((sum, p) => {
+        const fee = calculateIndiaVisaFee(visa.id, p.nationality);
+        return sum + (fee || 0);
+      }, 0) / passengers.length; // average per passenger for display
+    } else {
+      govFee = visa?.govFee ?? 0;
+    }
+    const serviceFee = FIXED_SERVICE_FEE;
     const passenger = applicationData.passengerCount || 1;
     const stayingStart = applicationData.stayingStart;
     const stayingEnd = applicationData.stayingEnd;
@@ -325,7 +338,7 @@ function PassengersContent() {
           </div>
           <div className="flex items-center justify-between">
             <span className="text-slate-600">Service Fee</span>
-            <span className="text-slate-800">{country && country.etaInfo ? `$${serviceFee.toFixed(2)}` : "---"}</span>
+            <span className="text-slate-800">${FIXED_SERVICE_FEE.toFixed(2)}</span>
           </div>
           <hr className="border-slate-100" />
           <div className="flex items-center justify-between pt-1">

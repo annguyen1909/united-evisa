@@ -20,7 +20,7 @@ const kuwait: Country = {
       type: 'Tourist Evisa',
       description: 'Single Entry for 90 days',
       entry: 'Single Entry',
-      visaDuration: '90 days',
+      visaDuration: 30,
       visaValidity: '60 days',
       expectedProcessingTime: '2 days',
       govFee: 30,

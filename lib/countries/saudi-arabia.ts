@@ -19,7 +19,7 @@ const saudiArabia: Country = {
       type: 'Tourist eVisa',
       description: 'Multiple Entries for 3 months',
       entry: 'Multiple Entries',
-      visaDuration: '3 months',
+      visaDuration: 3 * 30,
       visaValidity: '3 months',
       expectedProcessingTime: '1-2 days',
       govFee: 129,

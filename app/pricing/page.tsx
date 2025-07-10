@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import CountrySearch from "@/components/shared/CountrySearch";
+import VisaFeeCalculator from "@/components/shared/VisaFeeCalculator";
+import SupportSidebar from "@/components/shared/SupportSidebar";
 import { COUNTRIES } from "@/lib/countries";
 import CustomAccordion from "@/components/shared/CustomAccordion";
 import { Button } from "@/components/ui/button";
@@ -73,7 +75,7 @@ export default function PricingPage() {
                     <tr key={visa.name} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
                       <td className="px-6 py-4 font-medium text-emerald-600">{visa.type}</td>
                       <td className="px-6 py-4">{visa.description || "-"}</td>
-                      <td className="px-6 py-4">{visa.visaDuration || "-"}</td>
+                      <td className="px-6 py-4">{visa.visaDuration ? visa.visaDuration + ' days' : '-'}</td>
                       <td className="px-6 py-4 font-semibold">
                         {visa.govFee !== undefined
                           ? `$${visa.govFee.toFixed(2)}`
@@ -227,88 +229,21 @@ export default function PricingPage() {
 
       {/* Fee Display */}
       {showFee && selectedCountry && (
-        <section className="max-w-3xl mx-auto my-12 px-4 sm:px-0">
-          <div className="bg-white rounded-xl shadow-xl border border-slate-200 p-6 text-base sm:text-lg font-manrope text-slate-700">
-            <div className="flex items-center gap-4 mb-6 pb-4 border-b border-slate-100">
-              <div className="flex-shrink-0 bg-slate-50 p-2 rounded-lg border border-slate-200">
-                <img
-                  src={`https://flagcdn.com/${selectedCountry.code.toLowerCase()}.svg`}
-                  alt={selectedCountry.name}
-                  className="w-14 h-10 object-contain"
-                />
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-emerald-700">
-                  {selectedCountry.name}
-                </h2>
-                <p className="text-slate-500 text-sm">Visa Fee Information</p>
-              </div>
-            </div>
-            <div className="mb-6">
-              <h3 className="font-semibold text-xl mb-3 text-emerald-700 flex items-center gap-2">
-                <DollarSign className="h-5 w-5" />
-                Government & Admin Fee
-              </h3>
-              <p className="text-slate-600">
-                The Government & Admin Fee is an obligated fee, which is the
-                amount that the applicant has to pay for the Immigration
-                Department to process eVisa.
-              </p>
-            </div>
-            {selectedCountry.visaTypes?.length ? (
-              <div className="overflow-x-auto mt-6 border border-slate-200 rounded-lg">
-                <table className="min-w-full">
-                  <thead className="bg-emerald-50 text-emerald-700">
-                    <tr>
-                      <th className="px-6 py-3 text-left font-semibold">Visa Type</th>
-                      <th className="px-6 py-3 text-left font-semibold">Description</th>
-                      <th className="px-6 py-3 text-left font-semibold">Duration</th>
-                      <th className="px-6 py-3 text-left font-semibold">Gov. Fee</th>
-                      <th className="px-6 py-3 text-left font-semibold">Service Fee</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {selectedCountry.visaTypes.map((visa, idx) => (
-                      <tr key={visa.name} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
-                        <td className="px-6 py-4 font-medium text-emerald-700">{visa.type}</td>
-                        <td className="px-6 py-4">{visa.description || "-"}</td>
-                        <td className="px-6 py-4">{visa.visaDuration || "-"}</td>
-                        <td className="px-6 py-4 font-semibold">
-                          {visa.govFee !== undefined
-                            ? `$${visa.govFee.toFixed(2)}`
-                            : "N/A"}
-                        </td>
-                        <td className="px-6 py-4 font-semibold">
-                          {selectedCountry.etaInfo?.serviceFee !== undefined
-                            ? `$${selectedCountry.etaInfo.serviceFee.toFixed(2)}`
-                            : "N/A"}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <div className="mt-4 text-slate-500 bg-slate-50 p-4 rounded-lg border border-slate-200 text-center">
-                No visa types currently available for {selectedCountry.name}.
-              </div>
-            )}
-
-            <div className="flex justify-center mt-8">
-              <Button
-                className="px-8 bg-emerald-600 text-white font-semibold rounded-lg py-5 hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-md"
-                onClick={() => alert(`Apply Now for ${selectedCountry.name}`)}
-              >
-                Apply for Visa <ArrowRight className="h-5 w-5" />
-              </Button>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+          <div className="lg:col-span-2">
+            <VisaFeeCalculator selectedCountry={selectedCountry} />
+          </div>
+          <div className="lg:col-span-1">
+            <div className="sticky top-6">
+              <SupportSidebar />
             </div>
           </div>
-        </section>
+        </div>
       )}
 
       {/* Accordion Section */}
       <section className="mt-16 mb-16 max-w-7xl px-4 mx-auto text-center">
-        <h2 className="text-emerald-700 font-manrope text-3xl font-bold mb-4">
+        <h2 className="text-emerald-600 font-manrope text-3xl font-bold mb-4">
           Comprehensive Visa Fee Information
         </h2>
         <p className="text-slate-600 max-w-3xl mx-auto mb-10">

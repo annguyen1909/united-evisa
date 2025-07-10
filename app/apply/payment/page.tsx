@@ -13,6 +13,9 @@ import { DollarSign, CreditCard, Calendar, Map, CheckCircle, AlertCircle } from 
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
+// Fixed service fee for all countries
+const FIXED_SERVICE_FEE = 59.99;
+
 function PaymentContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -74,9 +77,9 @@ function PaymentContent() {
                 setVisa(visa || null);
                 
                 const govFee = visa?.govFee ?? 0;
-                const serviceFee = country?.etaInfo ? Number(country.etaInfo.serviceFee) : 0;
                 const passengerCount = data.passengerCount || 1;
-                const total = (govFee + serviceFee) * passengerCount;
+                // Use fixed service fee
+                const total = (govFee + FIXED_SERVICE_FEE) * passengerCount;
                 
                 setTotalAmount(total);
                 
@@ -122,7 +125,6 @@ function PaymentContent() {
         const destination = country?.name ?? applicationData.destination?.name ?? "---";
         const visaName = visa?.name ?? applicationData.visaType?.name ?? "---";
         const govFee = visa?.govFee ?? 0;
-        const serviceFee = country && country.etaInfo ? Number(country.etaInfo.serviceFee) : 0;
         const passenger = applicationData.passengerCount || 1;
         const stayingStart = applicationData.stayingStart;
         const stayingEnd = applicationData.stayingEnd;
@@ -140,7 +142,8 @@ function PaymentContent() {
             durationInMs !== null
                 ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
                 : "---";
-        const total = visa ? (govFee + serviceFee) * passenger : applicationData.total || 0;
+        // Use fixed service fee and total
+        const total = visa ? (govFee + FIXED_SERVICE_FEE) * passenger : applicationData.total || 0;
 
         orderSummary = (
             <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
@@ -175,7 +178,7 @@ function PaymentContent() {
                     </div>
                     <div className="flex items-center justify-between">
                         <span className="text-slate-600">Service Fee</span>
-                        <span className="text-slate-800">{country && country.etaInfo ? `$${serviceFee.toFixed(2)}` : "---"}</span>
+                        <span className="text-slate-800">${FIXED_SERVICE_FEE.toFixed(2)}</span>
                     </div>
                     <hr className="border-slate-100" />
                     <div className="flex items-center justify-between pt-1">

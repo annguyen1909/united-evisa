@@ -20,7 +20,7 @@ const cambodia: Country = {
       type: 'Tourist Evisa',
       description: 'Single Entry for 1 month',
       entry: 'Single Entry',
-      visaDuration: '1 month',
+      visaDuration: 30,
       visaValidity: '60 days',
       expectedProcessingTime: '2 days',
       govFee: 66,

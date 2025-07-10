@@ -9,6 +9,10 @@ export type Country = {
   imageUrl?: string;
   welcomeImgUrl?: string;
   region?: string;
+  processingTime?: {
+    normal?: string; // e.g. '3 days'
+    superUrgent?: string; // e.g. '24 hours'
+  };
   visaTypes: {
     id: string;
     name: string;
@@ -16,31 +20,14 @@ export type Country = {
     entry: string;
     description: string;
     visaValidity: string;
-    visaDuration: string;
-    expectedProcessingTime: string;
+    visaDuration: number;
+    processingTimes?: {
+      normal?: string; // e.g. '3 days'
+      superUrgent?: string; // e.g. '24 hours'
+    };
     govFee: number;
     allowedNationalities: string[];
   }[];
-  etaInfo: {
-    processing: {
-      summary: string;
-      steps: string[];
-      urgentProcessing: string;
-    };
-    serviceFee: number;
-    visaTypes?: {
-      id: string;
-      name: string;
-      type: string;
-      entry: string;
-      description: string;
-      visaValidity: string;
-      visaDuration: string;
-      expectedProcessingTime: string;
-      govFee: number;
-      allowedNationalities: string[];
-    }[];
-  };
   info: {
     climate: string;
     language: string;

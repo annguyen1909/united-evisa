@@ -202,7 +202,7 @@ function CheckRequirementsContent() {
                                         <Calendar className="h-4 w-4 text-slate-400 mt-0.5" />
                                         <div>
                                             <p className="text-slate-600 font-medium">Duration</p>
-                                            <p className="text-slate-800">{visa.visaDuration || "Not specified"}</p>
+                                            <p className="text-slate-800">{visa.visaDuration ? visa.visaDuration + ' days' : 'Not specified'}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-2">

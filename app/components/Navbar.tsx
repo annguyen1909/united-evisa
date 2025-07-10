@@ -76,10 +76,10 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "w-full sticky z-40 top-0 transition-all duration-200",
+        "w-full sticky z-40 top-0 transition-all duration-200 min-h-[64px]", // Set min-h for consistent height
         isScrolled
-          ? "bg-white shadow-md py-2"
-          : "bg-white/95 backdrop-blur-md py-3"
+          ? "bg-white shadow-md py-3" // Use same py value for both states
+          : "bg-white/95 py-3" // Removed backdrop-blur-md from here
       )}
     >
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
@@ -340,9 +340,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {
         isOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-slate-900/20 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
+          <div className="lg:hidden fixed left-0 right-0 top-0 bottom-0 z-[9999] bg-slate-900/20 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
             <div
-              className="absolute top-0 right-0 w-full max-w-sm h-full bg-white shadow-xl"
+              className="absolute top-0 right-0 w-full max-w-sm h-[calc(100vh)] bg-white shadow-xl z-[10000]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center p-4 border-b">

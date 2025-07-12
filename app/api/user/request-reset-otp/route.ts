@@ -17,11 +17,12 @@ async function sendOtpEmail(email: string, otp: string) {
       pass: process.env.SMTP_PASS,
     },
   });
+  const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/reset-password?token=${otp}`;
   await transporter.sendMail({
     from: process.env.SMTP_FROM || 'no-reply@evisa.com',
     to: email,
-    subject: "United eVisa - Your Password Reset OTP",
-    text: `Your OTP code is: ${otp}. It will expire in ${OTP_EXPIRES_MINUTES} minutes.`,
+    subject: "United eVisa - Password Reset Link",
+    text: `Click the link below to reset your password. This link will expire in ${OTP_EXPIRES_MINUTES} minutes.\n\n${resetLink}`,
     html: `
       <div style="font-family: Arial, sans-serif; color: #222; max-width: 480px; margin: 0 auto;">
         <div style="text-align:center; margin-bottom: 24px;">
@@ -29,9 +30,9 @@ async function sendOtpEmail(email: string, otp: string) {
           <h2 style="color: #059669; margin: 0;">United eVisa</h2>
         </div>
         <p>Hello,</p>
-        <p>Your OTP code for password reset is:</p>
-        <div style="font-size: 2rem; font-weight: bold; color: #059669; margin: 16px 0; letter-spacing: 2px;">${otp}</div>
-        <p>This code will expire in <b>${OTP_EXPIRES_MINUTES} minutes</b>.</p>
+        <p>Click the link below to reset your password:</p>
+        <div style="margin: 16px 0;"><a href="${resetLink}" style="font-size: 1.2rem; color: #059669; font-weight: bold;">Reset Password</a></div>
+        <p>This link will expire in <b>${OTP_EXPIRES_MINUTES} minutes</b>.</p>
         <p>If you did not request this, please ignore this email.</p>
         <br>
         <p style="font-size: 0.9em; color: #888;">United eVisa Support</p>
@@ -62,10 +63,7 @@ export async function POST(request: NextRequest) {
       },
       data: { used: true },
     });
-    // Generate OTP
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpHash = await bcrypt.hash(otp, 10);
-    // Generate JWT
+    // Generate secure token (JWT)
     const jwtToken = jwt.sign(
       { email, type: "reset-password", exp: Math.floor(Date.now() / 1000) + OTP_EXPIRES_MINUTES * 60 },
       JWT_SECRET
@@ -79,12 +77,11 @@ export async function POST(request: NextRequest) {
         token: jwtToken,
         expiresAt,
         used: false,
-        // Store OTP hash in a custom field if you add it, or in the token field (not recommended for prod)
       }
     });
-    // Send OTP to email
-    await sendOtpEmail(email, otp);
-    return NextResponse.json({ jwtToken });
+    // Send reset link to email
+    await sendOtpEmail(email, jwtToken);
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Failed to process password reset" }, { status: 500 })

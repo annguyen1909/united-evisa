@@ -1,16 +1,17 @@
 "use client"
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import CheckEligibility from "../../components/shared/CheckEligibility";
 import { motion } from "framer-motion";
 import { CheckCheck, GlobeLock, Map, Clock } from "lucide-react";
 
 export default function Hero() {
   const backgroundImages = [
-    '/images/hero/hero.jpg',
-    '/images/hero/hero2.jpg',
-    '/images/hero/hero3.jpg',
-    '/images/hero/hero4.jpg',
+    '/images/hero/hero.webp',
+    '/images/hero/hero2.webp',
+    '/images/hero/hero3.webp',
+    '/images/hero/hero4.webp',
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(-1);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,7 +24,7 @@ export default function Hero() {
       });
 
       // Once the first image is loaded, show it
-      const firstImg = new Image();
+      const firstImg = new window.Image();
       firstImg.src = backgroundImages[0];
       firstImg.onload = () => {
         setCurrentImageIndex(0);
@@ -50,23 +51,27 @@ export default function Hero() {
 
   return (
     <section className="w-full relative min-h-[600px] z-0 flex flex-col items-center justify-center border-b-4 border-emerald-700">
-      {/* Background Images with Overlay */}
-      {backgroundImages.map((src, index) => (
-        <div
-          key={src}
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1500 ${
-            index === currentImageIndex ? "opacity-100" : "opacity-0"
-          }`}
-          style={{ backgroundImage: `url(${src})`, zIndex: -2 }}
-        />
-      ))}
-      
+      {/* Next.js Image for Background, only current image rendered for LCP */}
+      <div className="absolute inset-0 w-full h-full" style={{ zIndex: -2 }}>
+        {isLoaded && currentImageIndex >= 0 && (
+          <Image
+            src={backgroundImages[currentImageIndex]}
+            alt="Hero background"
+            fill
+            priority={currentImageIndex === 0}
+            sizes="100vw"
+            className="object-cover object-center transition-opacity duration-1000 opacity-100"
+            style={{ willChange: "opacity" }}
+          />
+        )}
+      </div>
+
       {/* Dark Gradient Overlay */}
       <div 
         className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-800/40 to-slate-900/70"
         style={{ zIndex: -1 }}
       />
-      
+
       <div className="w-full max-w-6xl mx-auto px-4 py-16 md:py-24 flex flex-col items-center">
         {/* Hero Content */}
         <motion.div

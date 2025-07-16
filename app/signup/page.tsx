@@ -1,5 +1,3 @@
-"use client";
-
 import SignupForm from "@/components/shared/Signup";
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/authOptions"

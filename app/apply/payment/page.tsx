@@ -10,6 +10,7 @@ import { Country } from "@/lib/countries/type";
 import SupportSidebar from "@/components/shared/SupportSidebar";
 import moment from "moment";
 import { DollarSign, CreditCard, Calendar, Map, CheckCircle, AlertCircle } from "lucide-react";
+import { calculateIndiaVisaFee } from "@/lib/countries/india";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -122,10 +123,32 @@ function PaymentContent() {
     // Order summary using database data instead of sessionStorage
     let orderSummary = null;
     if (applicationData) {
+        let passengersArr = Array.isArray(applicationData.passengers) && applicationData.passengers.length > 0
+            ? applicationData.passengers
+            : (Array.isArray(applicationData.Passenger) && applicationData.Passenger.length > 0 ? applicationData.Passenger : []);
+        const passenger = applicationData.passengerCount || passengersArr.length || 1;
+        const serviceFee = FIXED_SERVICE_FEE * passenger;
+        let govFee: number | null = null;
+        // Log the calculated government and service fees on load
+        console.log('[OrderSummary] Calculated govFee:', govFee, 'serviceFee:', serviceFee, 'passenger:', passenger);
         const destination = country?.name ?? applicationData.destination?.name ?? "---";
-        const visaName = visa?.name ?? applicationData.visaType?.name ?? "---";
-        const govFee = visa?.govFee ?? 0;
-        const passenger = applicationData.passengerCount || 1;
+        let visaName = visa?.name ?? applicationData.visaType?.name ?? "---";
+        if (country?.code?.toLowerCase() === "in" && visa && passengersArr.length > 0) {
+            // Use canonical visa id for India and calculate based on each passenger's nationality
+            const canonicalId = visa.id.split('-group-')[0];
+            const fees = passengersArr.map((p: any) => calculateIndiaVisaFee(canonicalId, p.nationality));
+            const validFees = fees.filter((fee: any) => typeof fee === 'number' && !isNaN(fee));
+            console.log('[India govFee debug - payment step]', { canonicalId, passengersArr, applicationDataPassengers: applicationData.passengers, applicationDataPassenger: applicationData.Passenger, fees, validFees });
+            if (validFees.length > 0) {
+                govFee = validFees.reduce((sum: number, fee: number) => sum + fee, 0);
+            } else {
+                govFee = null;
+            }
+        } else {
+            // For non-India, multiply visa.govFee by passenger count
+            const passengerCount = applicationData.passengerCount || passengersArr.length || 1;
+            govFee = typeof visa?.govFee === 'number' ? visa.govFee * passengerCount : null;
+        }
         const stayingStart = applicationData.stayingStart;
         const stayingEnd = applicationData.stayingEnd;
         const isDateValid = stayingStart && stayingEnd;
@@ -142,8 +165,19 @@ function PaymentContent() {
             durationInMs !== null
                 ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
                 : "---";
+
+        // For India, use canonical visa name for display
+        if (country?.code?.toLowerCase() === "in" && visa) {
+            const canonicalId = visa.id.split('-group-')[0];
+            const indiaConfig = COUNTRIES.find(c => c.code === 'in');
+            const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
+            if (canonicalVisa) {
+                visaName = canonicalVisa.name;
+            }
+        }
+
         // Use fixed service fee and total
-        const total = visa ? (govFee + FIXED_SERVICE_FEE) * passenger : applicationData.total || 0;
+        const total = typeof applicationData.total === 'number' ? applicationData.total : (visa && typeof govFee === 'number' ? (govFee + serviceFee) : 0);
 
         orderSummary = (
             <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
@@ -174,16 +208,16 @@ function PaymentContent() {
                     <hr className="border-slate-100" />
                     <div className="flex items-center justify-between">
                         <span className="text-slate-600">Government Fee</span>
-                        <span className="text-slate-800">{visa ? `$${govFee.toFixed(2)}` : "---"}</span>
+                        <span className="text-slate-800">{govFee !== null ? `$${govFee.toFixed(2)}` : "---"}</span>
                     </div>
                     <div className="flex items-center justify-between">
                         <span className="text-slate-600">Service Fee</span>
-                        <span className="text-slate-800">${FIXED_SERVICE_FEE.toFixed(2)}</span>
+                        <span className="text-slate-800">${serviceFee.toFixed(2)}</span>
                     </div>
                     <hr className="border-slate-100" />
                     <div className="flex items-center justify-between pt-1">
                         <span className="font-semibold text-base text-slate-800">Total</span>
-                        <span className="font-bold text-lg text-emerald-700">{visa ? `$${total.toFixed(2)}` : `$${applicationData.total?.toFixed(2)}`}</span>
+                        <span className="font-bold text-lg text-emerald-700">{`$${total.toFixed(2)}`}</span>
                     </div>
                 </div>
             </div>

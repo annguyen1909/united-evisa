@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useCallback } from "react";
 import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,27 @@ import { BillingForm, BillingInfo } from "./BillingForm";
 import { CheckCircle, Loader2 } from "lucide-react";
 
 export default function CheckoutForm({ amount, applicationId }: { amount: number, applicationId: string }) {
+  // For India, always fetch the latest total from the backend
+  const [actualAmount, setActualAmount] = useState<number>(amount);
+
+  const fetchLatestTotal = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/applications/${applicationId}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.destination?.code?.toLowerCase() === 'in' && typeof data.total === 'number') {
+          setActualAmount(data.total);
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, [applicationId]);
+
+  useEffect(() => {
+    fetchLatestTotal();
+    // Optionally, you could poll or refetch on mount only
+  }, [fetchLatestTotal]);
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -135,7 +157,7 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
           zipcode: billingInfo.zipcode,
           paymentIntentId: paymentIntent.id,
           applicationId: applicationId,
-          amount: amount
+          amount: actualAmount
         });
 
         // Redirect to confirmation page
@@ -210,7 +232,7 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
       <Button
         disabled={!stripe || !elements || isLoading || !billingInfo || !isCardComplete}
         id="submit"
-        className="w-full"
+        className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-2.5"
       >
         {isLoading ? (
           <span className="flex items-center gap-2">
@@ -218,7 +240,7 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
           </span>
         ) : (
           <span className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4" /> Pay ${amount.toFixed(2)}
+            <CheckCircle className="h-4 w-4" /> Pay ${actualAmount.toFixed(2)}
           </span>
         )}
       </Button>

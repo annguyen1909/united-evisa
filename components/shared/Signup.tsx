@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { AlertCircle } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { signIn } from "next-auth/react"
 
 export default function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
   const [loading, setLoading] = useState(false)
@@ -39,13 +40,26 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
       })
 
       const data = await res.json()
-      setLoading(false)
 
       if (!res.ok) {
+        setLoading(false)
         setError(data.error || "Signup failed")
       } else {
-        // Success handling
-        window.location.href = "/login?registered=true"
+        // Account created successfully, now sign in the user
+        const signInResult = await signIn("credentials", {
+          email: payload.email,
+          password: payload.password,
+          redirect: false,
+        })
+
+        setLoading(false)
+
+        if (signInResult?.error) {
+          setError("Account created but login failed. Please try logging in manually.")
+        } else {
+          // Successfully signed in, redirect to profile
+          window.location.href = "/profile"
+        }
       }
     } catch (err) {
       setLoading(false)

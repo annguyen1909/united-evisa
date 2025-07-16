@@ -1,4 +1,5 @@
 import StepNavigation from "@/components/shared/StepNavigation";
+import Image from "next/image";
 
 export default function ApplyLayout({
   children,
@@ -9,10 +10,12 @@ export default function ApplyLayout({
     <div className="w-full mx-auto">
       {/* Hero Section */}
       <div className="relative w-full h-48 md:h-64 flex items-center justify-center max-md:mb-0 overflow-hidden mb-6 shadow-sm">
-        <img
-          src="/images/apply/apply-bg.jpg" // <-- Place your image in public/images/apply-hero.jpg or adjust the path
+        <Image
+          src="/images/apply/apply-bg.jpg"
           alt="Apply background"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
+          fill
+          className="object-cover object-center opacity-90"
+          priority
         />
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 text-center">

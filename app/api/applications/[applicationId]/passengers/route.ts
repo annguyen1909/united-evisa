@@ -1,3 +1,27 @@
+// POST /api/applications/[applicationId]/passengers/total - Update total for application (guest or logged in)
+export async function POST_total(
+  request: NextRequest,
+  { params }: { params: Promise<{ applicationId: string }> }
+) {
+  try {
+    const { applicationId } = await params;
+    const body = await request.json();
+    const { total } = body;
+    if (typeof total !== 'number' || isNaN(total)) {
+      return NextResponse.json({ error: 'Invalid total' }, { status: 400 });
+    }
+    // Update the total for the application (no auth, guest allowed)
+    const updated = await prisma.application.update({
+      where: { applicationId },
+      data: { total },
+      select: { applicationId: true, total: true }
+    });
+    return NextResponse.json(updated);
+  } catch (error) {
+    console.error('Error updating total:', error);
+    return NextResponse.json({ error: 'Failed to update total' }, { status: 500 });
+  }
+}
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { getServerSession } from 'next-auth';
@@ -70,7 +94,7 @@ export async function GET(
         where: {
           email_websiteCreatedAt: {
             email: session.user.email,
-            websiteCreatedAt: "United Evisa"
+            websiteCreatedAt: "United eVisa Site"
           }
         },
         select: { id: true, fullName: true, email: true, phoneNumber: true, areaCode: true, gender: true },
@@ -128,7 +152,7 @@ export async function POST(
   try {
     const { applicationId } = await params;
     const body = await request.json();
-    const { passengers } = body;
+    const { passengers, total } = body;
 
     if (!passengers || !Array.isArray(passengers)) {
       return NextResponse.json(
@@ -200,17 +224,20 @@ export async function POST(
 
     const updatedPassengers = await Promise.all(passengerPromises);
 
-    // Update application status to "Waiting for Payment"
+    // Update application status to "Waiting for Payment" and total if provided
+    const updateData: any = { status: 'Waiting for Payment' };
+    if (typeof total === 'number' && !isNaN(total)) {
+      updateData.total = total;
+    }
     await prisma.application.update({
       where: { id: application.id },
-      data: {
-        status: 'Waiting for Payment'
-      }
+      data: updateData
     });
 
     return NextResponse.json({
       message: 'Passengers saved successfully',
-      passengers: updatedPassengers
+      passengers: updatedPassengers,
+      ...(typeof total === 'number' && !isNaN(total) ? { total } : {})
     });
   } catch (error) {
     console.error('Error processing passengers:', error);

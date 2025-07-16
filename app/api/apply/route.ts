@@ -23,7 +23,17 @@ export async function POST(req: NextRequest) {
       areaCode, // new
       phoneNumber, // new
       gender, // new
+      portType, // new
+      portName, // new
     } = body;
+    // Validate port options for India using india.ts portType structure
+    if (destinationCode?.toLowerCase() === "in") {
+      const { default: india } = await import("@/lib/countries/india");
+      const portTypeObj = india.portType?.find((pt: any) => pt.type === portType);
+      if (!portTypeObj || !portTypeObj.port.includes(portName)) {
+        return NextResponse.json({ error: `Invalid port of arrival (${portType})` }, { status: 400 });
+      }
+    }
 
     // You may need to provide the correct compound unique key fields here.
     // For example, if your unique key is email + websiteCreatedAt:
@@ -47,7 +57,7 @@ export async function POST(req: NextRequest) {
           areaCode: areaCode || "+1",
           phoneNumber: phoneNumber || "Unknown",
           gender: gender || "Unknown",
-          websiteCreatedAt: "United Evisa", // or your default value
+          websiteCreatedAt: "United eVisa Site", // or your default value
         },
         select: { id: true },
       });
@@ -61,7 +71,8 @@ export async function POST(req: NextRequest) {
       !stayingStart ||
       !stayingEnd ||
       !total ||
-      !account // must be found!
+      !account ||
+      (destinationCode?.toLowerCase() === "in" && (!portType || !portName))
     ) {
       console.log("Missing required fields", {
         destinationId,
@@ -73,6 +84,8 @@ export async function POST(req: NextRequest) {
         total,
         email,
         account,
+        portType,
+        portName,
         body,
       });
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -80,6 +93,23 @@ export async function POST(req: NextRequest) {
 
     const applicationId = generateAppId(destinationCode);
 
+    let canonicalGroupPrice = null;
+    if (destinationCode?.toLowerCase() === "in") {
+      // Use local indiaVisaFeeTable for performance
+      // Dynamically import indiaVisaFeeTable and visaTypes
+      const { indiaVisaFeeTable } = await import("@/lib/countries/india");
+      // Map visaTypeId to feeKey
+      let feeKey: keyof typeof indiaVisaFeeTable[0]["govFee"] = "other_visa";
+      if (visaTypeId.includes("tourist-double-30-days")) feeKey = "30_days_tourist";
+      else if (visaTypeId.includes("tourist-multiple-1-year")) feeKey = "1_year_tourist";
+      else if (visaTypeId.includes("tourist-multiple-5-years")) feeKey = "5_years_tourist";
+      else if (visaTypeId.includes("business-multiple-1-year")) feeKey = "1_year_business";
+      // Find the max fee for this visa type across all groups
+      const fees = indiaVisaFeeTable.map(group => (group.govFee as Record<string, number | null>)[feeKey]).filter(fee => typeof fee === "number");
+      if (fees.length > 0) {
+        canonicalGroupPrice = Math.max(...(fees as number[]));
+      }
+    }
     const app = await prisma.application.create({
       data: {
         status: "Not Finished",
@@ -93,6 +123,9 @@ export async function POST(req: NextRequest) {
         total: Number(Number(total).toFixed(2)),
         destinationId: destinationId,
         visaTypeId: visaTypeId,
+        portType: portType || null,
+        portName: portName || null,
+        // canonicalGroupPrice is available for further use in step 2
       },
     });
     console.log("Creating application with visaTypeId:", visaTypeId);

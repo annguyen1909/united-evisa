@@ -16,7 +16,6 @@ import {
   FileText,
   ShieldCheck,
   HelpCircle,
-  Search
 } from "lucide-react";
 import {
   NavigationMenu,
@@ -134,10 +133,6 @@ export default function Navbar() {
               className="text-slate-600 hover:text-emerald-700 hover:bg-slate-100 rounded-full"
               asChild
             >
-              <Link href="/search">
-                <Search className="h-5 w-5" />
-                <span className="sr-only">Search</span>
-              </Link>
             </Button>
 
             {session?.user ? (
@@ -253,10 +248,6 @@ export default function Navbar() {
             className="text-slate-600 hover:text-emerald-700 hover:bg-slate-100 rounded-full"
             asChild
           >
-            <Link href="/search">
-              <Search className="h-5 w-5" />
-              <span className="sr-only">Search</span>
-            </Link>
           </Button>
 
           {session?.user && (

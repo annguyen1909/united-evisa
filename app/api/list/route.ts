@@ -9,7 +9,7 @@ export async function GET() {
   }
   
   const account = await prisma.account.findUnique({
-    where: { email_websiteCreatedAt: { email: session.user.email, websiteCreatedAt: "United Evisa" } },
+    where: { email_websiteCreatedAt: { email: session.user.email, websiteCreatedAt: "United eVisa Site" } },
     select: { id: true },
   });
   

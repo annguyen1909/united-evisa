@@ -47,7 +47,7 @@ export default function PricingPage() {
       <div className="relative bg-white rounded-xl shadow-xl border border-slate-200 p-6 md:p-10 text-base sm:text-lg font-manrope text-slate-700 overflow-hidden transition-all duration-500">
         <div className="relative z-10 space-y-8">
           <div className="border-b border-slate-100 pb-4">
-            <h3 className="font-semibold text-2xl mb-3 text-emerald-700 flex items-center gap-2">
+            <h3 className="font-semibold text-2xl mb-3 text-emerald-600 flex items-center gap-2">
               <Globe className="h-5 w-5" />
               Government & Admin Fee to {country.name}
             </h3>
@@ -61,13 +61,12 @@ export default function PricingPage() {
           {country.visaTypes?.length ? (
             <div className="overflow-x-auto mt-4">
               <table className="min-w-full border border-slate-200 rounded-lg overflow-hidden">
-                <thead className="bg-emerald-50 text-emerald-700">
+                <thead className="bg-emerald-50 text-emerald-600">
                   <tr>
                     <th className="px-6 py-3 text-left font-semibold">Visa Type</th>
                     <th className="px-6 py-3 text-left font-semibold">Description</th>
                     <th className="px-6 py-3 text-left font-semibold">Duration</th>
                     <th className="px-6 py-3 text-left font-semibold">Gov. Fee (USD)</th>
-                    <th className="px-6 py-3 text-left font-semibold">Service Fee (USD)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -79,11 +78,6 @@ export default function PricingPage() {
                       <td className="px-6 py-4 font-semibold">
                         {visa.govFee !== undefined
                           ? `$${visa.govFee.toFixed(2)}`
-                          : "N/A"}
-                      </td>
-                      <td className="px-6 py-4 font-semibold">
-                        {typeof country.etaInfo?.serviceFee === "number"
-                          ? `$${country.etaInfo.serviceFee.toFixed(2)}`
                           : "N/A"}
                       </td>
                     </tr>

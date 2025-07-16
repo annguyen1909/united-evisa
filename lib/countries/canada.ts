@@ -24,7 +24,7 @@ const canada: Country = {
       type: 'Tourist Evisa',
       description: 'Multiple Entries for 5 years',
       entry: 'Multiple Entries',
-      visaDuration: 30,
+      visaDuration: 365 * 5,
       visaValidity: '60 days',
       govFee: 20,
       allowedNationalities: ["AD", "AE", "AI", "AT", "AU", "BB", "BE", "BG", "BM", "BN", "BS", "CH", "CL", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FK", "FR", "GI", "GR", "HK", "HR", "HU", "IE", "IL", "IO", "IS", "IT", "JP", "KR", "KY", "LI", "LT", "LU", "LV", "MC", "MS", "MT", "NL", "NO", "NZ", "PG", "PL", "PN", "PT", "RO", "SB", "SE", "SG", "SH", "SI", "SK", "SM", "TC", "TW", "VA", "VG", "WS"]

@@ -343,11 +343,6 @@ function ConfirmationContent() {
                       View All Applications
                     </Button>
                   </Link>
-                  <Link href={`/apply/status?applicationId=${applicationId}`} className="inline-block">
-                    <Button className="bg-green-700 hover:bg-green-800">
-                      Check Status
-                    </Button>
-                  </Link>
                   <Link href={`/apply/documents?applicationId=${applicationId}`} className="inline-block">
                     <Button className="bg-green-700 hover:bg-green-800">
                       Upload Documents

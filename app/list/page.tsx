@@ -147,6 +147,8 @@ export default function ApplicationsPage() {
         break;
       case "Collecting Documents":
       case "Document Review":
+      case "Processing":
+        // If status is Processing, go to upload documents
         router.push(`/apply/documents?applicationId=${applicationId}`);
         break;
       case "Completed":
@@ -162,6 +164,8 @@ export default function ApplicationsPage() {
         router.push(`/apply/passengers?applicationId=${applicationId}`);
     }
   }
+
+  // Note: If you manually change the URL to /confirmation, the information may be wrong if that page relies on state or query params that are not set by navigation. Always use the app's navigation buttons to ensure correct data is loaded.
 
   return (
     <div className="min-h-screen bg-slate-50">

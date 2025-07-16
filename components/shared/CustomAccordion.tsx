@@ -32,7 +32,7 @@ export default function CustomAccordion({ items, className }: CustomAccordionPro
             className={cn(
               "flex flex-col items-center gap-3 p-5 border border-slate-200 rounded-xl bg-white",
               "transition-all duration-300 hover:shadow-md relative group",
-              "hover:border-emerald-600",
+              "hover:border-emerald-400",
               openId === item.id && "ring-2 ring-emerald-600 border-emerald-600 shadow-lg bg-emerald-50"
             )}
           >

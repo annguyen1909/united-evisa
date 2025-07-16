@@ -28,6 +28,10 @@ export type Country = {
     govFee: number;
     allowedNationalities: string[];
   }[];
+  portType: {
+    type: string;
+    port: string[];
+  }[];
   info: {
     climate: string;
     language: string;

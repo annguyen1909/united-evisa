@@ -136,8 +136,21 @@ function PassengersContent() {
   }, [applicationData]);
 
   const visa = useMemo(() => {
-    if (!country || !applicationData?.visaType?.id) return null;
-    return country.visaTypes?.find(v => v.id === applicationData.visaType.id);
+    if (!country || !applicationData?.visaType?.id) {
+      console.log('[visa debug] country or visaType.id missing', { country, applicationData });
+      return null;
+    }
+    // Always use canonical id for lookup (strip -group-...)
+    const canonicalId = applicationData.visaType.id.split('-group-')[0];
+    const foundVisa = country.visaTypes?.find(v => v.id === canonicalId);
+    if (!foundVisa) {
+      console.log('[visa debug] visa not found in country.visaTypes', {
+        visaTypeId: applicationData.visaType.id,
+        canonicalId,
+        countryVisaTypes: country.visaTypes?.map(v => v.id)
+      });
+    }
+    return foundVisa;
   }, [country, applicationData]);
 
   // Get allowed nationalities from the visa type
@@ -250,10 +263,20 @@ function PassengersContent() {
         throw new Error("Application ID not found");
       }
 
+      // Calculate total (same logic as order summary)
+      const passengerCount = applicationData?.passengerCount || 1;
+      const serviceFee = FIXED_SERVICE_FEE;
+      let total = 0;
+      if (visa && typeof govFee === 'number') {
+        total = (govFee + serviceFee) * passengerCount;
+      }
+
+
+      // Save passengers and total in one request
       const passengersRes = await fetch(`/api/applications/${applicationId}/passengers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ passengers }),
+        body: JSON.stringify({ passengers, total }),
       });
 
       const passengersData = await passengersRes.json();
@@ -271,23 +294,45 @@ function PassengersContent() {
       setIsLoading(false);
     }
   }
+  // Memoized govFee calculation for India, updates when passengers, country, or visa change
+  const govFee = useMemo(() => {
+    if (country?.code?.toLowerCase() === "in" && visa && passengers.length > 0) {
+      const canonicalId = visa.id.split('-group-')[0];
+      const fees = passengers.map((p) => calculateIndiaVisaFee(canonicalId, p.nationality));
+      const validFees = fees.filter((fee): fee is number => typeof fee === 'number' && !isNaN(fee));
+      console.log('[India govFee debug]', { canonicalId, passengers, fees, validFees });
+      if (validFees.length === 0) {
+        return null;
+      } else {
+        // Return the total sum for all passengers
+        return validFees.reduce((sum, fee) => sum + fee, 0);
+      }
+    } else {
+      console.log('[govFee debug] Not India or no visa/passengers', { country, visa, passengers });
+      // For non-India, multiply visa.govFee by passenger count
+      return typeof visa?.govFee === 'number' ? visa.govFee * passengers.length : null;
+    }
+  }, [country, visa, passengers]);
+
   // Order summary
   let orderSummary = null;
   if (applicationData) {
     const destination = applicationData.destination?.name ?? "---";
-    const visaName = applicationData.visaType?.name ?? "---";
-    let govFee = 0;
-    if (country?.code?.toLowerCase() === "in" && visa && passengers.length > 0) {
-      // Sum govFee for each passenger's nationality
-      govFee = passengers.reduce((sum, p) => {
-        const fee = calculateIndiaVisaFee(visa.id, p.nationality);
-        return sum + (fee || 0);
-      }, 0) / passengers.length; // average per passenger for display
-    } else {
-      govFee = visa?.govFee ?? 0;
+    // Always show canonical visa name (no group or suffix)
+    let visaName = applicationData.visaType?.name ?? "---";
+    if (country?.code?.toLowerCase() === "in" && visa) {
+      // For India, get the canonical visa type name from the config (by id)
+      // The canonical visa type id is the part before any '-group-' in the id
+      const canonicalId = visa.id.split('-group-')[0];
+      // Find the canonical visa type in the India config
+      const indiaConfig = COUNTRIES.find(c => c.code === 'in');
+      const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
+      if (canonicalVisa) {
+        visaName = canonicalVisa.name;
+      }
     }
-    const serviceFee = FIXED_SERVICE_FEE;
     const passenger = applicationData.passengerCount || 1;
+    const serviceFee = FIXED_SERVICE_FEE * passenger;
     const stayingStart = applicationData.stayingStart;
     const stayingEnd = applicationData.stayingEnd;
     const isDateValid = stayingStart && stayingEnd;
@@ -304,7 +349,7 @@ function PassengersContent() {
       durationInMs !== null
         ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
         : "---";
-    const total = visa ? (govFee + serviceFee) * passenger : 0;
+    const total = visa && typeof govFee === 'number' ? (govFee + serviceFee) : 0;
     orderSummary = (
       <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
         <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
@@ -317,7 +362,7 @@ function PassengersContent() {
           </div>
           <div className="flex items-center justify-between">
             <span className="font-medium text-slate-700">Type of Visa</span>
-            <span className="text-slate-800">{visaName}</span>
+            <span className="text-slate-800 text-xs">{visaName}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="font-medium text-slate-700">Travelers</span>
@@ -334,16 +379,16 @@ function PassengersContent() {
           <hr className="border-slate-100" />
           <div className="flex items-center justify-between">
             <span className="text-slate-600">Government Fee</span>
-            <span className="text-slate-800">{visa ? `$${govFee.toFixed(2)}` : "---"}</span>
+            <span className="text-slate-800">{visa && typeof govFee === 'number' ? `$${govFee.toFixed(2)}` : "---"}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-slate-600">Service Fee</span>
-            <span className="text-slate-800">${FIXED_SERVICE_FEE.toFixed(2)}</span>
+            <span className="text-slate-800">${serviceFee.toFixed(2)}</span>
           </div>
           <hr className="border-slate-100" />
           <div className="flex items-center justify-between pt-1">
             <span className="font-semibold text-base text-slate-800">Total</span>
-            <span className="font-bold text-lg text-emerald-700">{visa ? `$${total.toFixed(2)}` : "---"}</span>
+            <span className="font-bold text-lg text-emerald-700">{visa && typeof govFee === 'number' ? `$${total.toFixed(2)}` : "---"}</span>
           </div>
         </div>
       </div>

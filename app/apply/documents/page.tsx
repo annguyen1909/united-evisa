@@ -2,7 +2,6 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -51,7 +50,8 @@ interface UploadedDocument {
 
 type UploadError = string | null | { type: 'AUTH'; message: string; applicationId: string };
 
-function DocumentsContent() {
+// Accept user prop
+function DocumentsContent({ user }: { user: any }) {
     const searchParams = useSearchParams();
     const applicationId = searchParams.get('applicationId');
 
@@ -63,7 +63,15 @@ function DocumentsContent() {
     const [documentRequirements, setDocumentRequirements] = useState<DocumentRequirement[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [stepNotAllowed, setStepNotAllowed] = useState(false);
-    const { data: session } = useSession();
+    // Step 1 logic: isLoggedIn and user/contact
+    const isLoggedIn = !!user;
+    const contact = {
+        fullName: applicationData.fullName,
+        email: applicationData.email,
+        countryCode: applicationData.areaCode,
+        phone: applicationData.phoneNumber,
+        gender: applicationData.gender,
+    };
     
     useEffect(() => {
         const fetchApplicationData = async () => {
@@ -227,69 +235,7 @@ function DocumentsContent() {
         }
     };
 
-    // Authentication error case
-      if (!session?.user?.email) {
-        return (
-            <div className="min-h-screen bg-slate-50 py-10">
-                <div className="max-w-4xl mx-auto px-4">
-                    <Card className="bg-white shadow-sm border border-slate-200">
-                        <CardHeader className="pb-3">
-                            <CardTitle className="text-2xl font-bold pt-5 text-slate-800">Secure Document Upload</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            <p className="text-slate-600">
-                                For your security, document uploads are only available through our secure portal when you're logged in.
-                                We've automatically created an account for you using the email you provided in Step 1.
-                            </p>
-                            <ol className="space-y-2 text-slate-700">
-                                <li className="flex gap-2">
-                                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">1</span>
-                                    <span>Click <span className="font-semibold">Login Now</span> below</span>
-                                </li>
-                                <li className="flex gap-2">
-                                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">2</span>
-                                    <span>Use your email from Step 1</span>
-                                </li>
-                                <li className="flex gap-2">
-                                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">3</span>
-                                    <span>Click <span className="font-semibold">Forgot Password</span> to set up your account password</span>
-                                </li>
-                                <li className="flex gap-2">
-                                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">4</span>
-                                    <span>Once logged in, return to your application to upload documents</span>
-                                </li>
-                            </ol>
-                            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
-                                <h3 className="font-semibold text-blue-800 mb-2">Alternative: Email Submission</h3>
-                                <p className="text-blue-700">
-                                    You can also email your documents directly to{' '}
-                                    <a href={`mailto:Visa@Srilanka-Immigration.com?subject=Documents for Application ${applicationId}`} className="text-blue-600 underline">
-                                        UnitedEvisa@immigration.com
-                                    </a>{' '}
-                                    with the subject line: <span className="font-semibold">Documents for Application {applicationId}</span>
-                                </p>
-                            </div>
-                            <p className="text-slate-600">
-                                At any point, you can log in to our portal to track your documents and application status.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                                <Link href="/login">
-                                    <Button className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700">
-                                        Login Now
-                                    </Button>
-                                </Link>
-                                <Link href={`mailto:Visa@Srilanka-Immigration.com?subject=Documents for Application ${applicationId}`}>
-                                    <Button variant="outline" className="w-full sm:w-auto">
-                                        Email Documents
-                                    </Button>
-                                </Link>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-            </div>
-        );
-    }
+    // No authentication check here; assume user prop is always present
 
     // Loading state
     if (isLoading) {
@@ -344,91 +290,7 @@ function DocumentsContent() {
                     </CardHeader>
 
                     <CardContent className="space-y-8">
-                        {/* Application Information */}
-                        <div>
-                            <button
-                                onClick={() => setIsApplicationInfoExpanded(!isApplicationInfoExpanded)}
-                                className="w-full flex items-center justify-between p-4 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 transition"
-                            >
-                                <span className="font-medium text-slate-800">Application Information</span>
-                                {isApplicationInfoExpanded ? (
-                                    <ChevronUp className="h-5 w-5 text-slate-500" />
-                                ) : (
-                                    <ChevronDown className="h-5 w-5 text-slate-500" />
-                                )}
-                            </button>
 
-                            {isApplicationInfoExpanded && (
-                                <div className="mt-4 p-5 rounded-lg border border-slate-200 bg-slate-50">
-                                    <div className="space-y-6">
-                                        {/* Contact & Visa Details */}
-                                        <div>
-                                            <h3 className="text-lg font-semibold text-slate-800 mb-3">Contact & Visa Details</h3>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                <div>
-                                                    <p className="text-sm text-slate-500">Full Name</p>
-                                                    <p className="font-medium text-slate-800">{applicationData.fullName || 'Not provided'}</p>
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm text-slate-500">Email</p>
-                                                    <p className="font-medium text-slate-800">{applicationData.email || 'Not provided'}</p>
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm text-slate-500">Phone</p>
-                                                    <p className="font-medium text-slate-800">
-                                                        {applicationData.areaCode} {applicationData.phoneNumber}
-                                                    </p>
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm text-slate-500">Travel Dates</p>
-                                                    <p className="font-medium text-slate-800">
-                                                        {applicationData.stayingStart ? new Date(applicationData.stayingStart).toLocaleDateString() : 'Not set'}
-                                                        {' to '}
-                                                        {applicationData.stayingEnd ? new Date(applicationData.stayingEnd).toLocaleDateString() : 'Not set'}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <Separator />
-
-                                        {/* Passenger Information */}
-                                        <div>
-                                            <h3 className="text-lg font-semibold text-slate-800 mb-3">Passenger Information</h3>
-                                            <div className="space-y-4">
-                                                {applicationData.passengers?.map((passenger, index) => (
-                                                    <Card key={passenger.id || index} className="bg-white">
-                                                        <CardContent className="p-4">
-                                                            <h4 className="font-medium text-slate-700 mb-2">Passenger {index + 1}</h4>
-                                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                                                <div>
-                                                                    <p className="text-slate-500">Full Name</p>
-                                                                    <p className="font-medium text-slate-800">{passenger.fullName}</p>
-                                                                </div>
-                                                                <div>
-                                                                    <p className="text-slate-500">Date of Birth</p>
-                                                                    <p className="font-medium text-slate-800">
-                                                                        {passenger.dateOfBirth ? new Date(passenger.dateOfBirth).toLocaleDateString() : 'Not provided'}
-                                                                    </p>
-                                                                </div>
-                                                                <div>
-                                                                    <p className="text-slate-500">Nationality</p>
-                                                                    <p className="font-medium text-slate-800">{passenger.nationality || 'Not provided'}</p>
-                                                                </div>
-                                                                <div>
-                                                                    <p className="text-slate-500">Passport Number</p>
-                                                                    <p className="font-medium text-slate-800">{passenger.passportNumber || 'Not provided'}</p>
-                                                                </div>
-                                                            </div>
-                                                        </CardContent>
-                                                    </Card>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
 
                         {/* Required Documents */}
                         <div>
@@ -593,8 +455,8 @@ function DocumentsContent() {
                         {/* Support Contact */}
                         <div className="mt-8 p-4 bg-blue-50 border border-blue-100 rounded-lg">
                             <div className="flex gap-3">
-                                <div className="p-2 rounded-full bg-blue-100 text-blue-700">
-                                    <Check className="h-4 w-4" />
+                                <div className="p-2 rounded-lg bg-blue-100 text-blue-700">
+                                    <Check className="h-8 w-8" />
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-blue-800 mb-1">Need Assistance?</h3>
@@ -612,7 +474,14 @@ function DocumentsContent() {
     );
 }
 
+
 export default function DocumentsPage() {
+    // Replace this with your actual user fetching logic
+    const [user, setUser] = useState<any>(null);
+    useEffect(() => {
+        // Example: fetch user from API or context
+        setUser({ fullName: 'John Doe', email: 'john@example.com', areaCode: '+1', phoneNumber: '123456789', gender: 'Male' });
+    }, []);
     return (
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
@@ -622,7 +491,7 @@ export default function DocumentsPage() {
                 </div>
             </div>
         }>
-            <DocumentsContent />
+            <DocumentsContent user={user} />
         </Suspense>
     );
 }

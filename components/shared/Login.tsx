@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
 import { FaGoogle, FaFacebook } from 'react-icons/fa'
-import { AlertCircle } from 'lucide-react'
+import { AlertCircle, Loader2 } from 'lucide-react'
 import ResetPasswordForm from "@/components/shared/ResetPasswordForm"
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
@@ -121,7 +121,14 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                   className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 mt-2"
                   disabled={loading}
                 >
-                  {loading ? "Signing in..." : "Sign in"}
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Signing in...
+                    </>
+                  ) : (
+                    "Sign in"
+                  )}
                 </Button>
 
                 <div className="relative my-2">

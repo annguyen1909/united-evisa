@@ -41,7 +41,7 @@ export async function GET(
       where: { 
         email_websiteCreatedAt: { 
           email: session.user.email, 
-          websiteCreatedAt: "United Evisa" 
+          websiteCreatedAt: "United eVisa Site" 
         }
       },
       select: { id: true},

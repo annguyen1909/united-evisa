@@ -45,7 +45,7 @@ const armenia: Country = {
       entry: 'Single Entry',
       type: 'Business Evisa',
       description: 'Single Entry for 21 days',
-      visaDuration: 30,
+      visaDuration: 21,
       visaValidity: '60 days',
       govFee: 30,
       allowedNationalities: ["AG", "BA", "BB", "BH", "BN", "BO", "BS", "BT", "BZ", "CA", "CL", "CO", "CR", "CU", "DM", "DOM", "DZ", "EG", "FJ", "FM", "GD", "GT", "GY", "HN", "HT", "ID", "IL", "IN", "IQ", "JM", "JO", "KH", "KI", "KN", "KP", "LA", "LB", "LC", "MA", "MH", "MK", "MN", "MV", "MX", "MY", "NI", "NR", "OM", "PA", "PE", "PG", "PH", "PW", "PY", "SA", "SB", "SR", "SV", "TH", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "VC", "VE", "VN", "VU", "WS", "ZA"]
@@ -56,7 +56,7 @@ const armenia: Country = {
       entry: 'Single Entry',
       type: 'Business Evisa',
       description: 'Single Entry for 120 days',
-      visaDuration: 30,
+      visaDuration: 120,
       visaValidity: '60 days',
       govFee: 30,
       allowedNationalities: ["AG", "BA", "BB", "BH", "BN", "BO", "BS", "BT", "BZ", "CA", "CL", "CO", "CR", "CU", "DM", "DOM", "DZ", "EG", "FJ", "FM", "GD", "GT", "GY", "HN", "HT", "ID", "IL", "IN", "IQ", "JM", "JO", "KH", "KI", "KN", "KP", "LA", "LB", "LC", "MA", "MH", "MK", "MN", "MV", "MX", "MY", "NI", "NR", "OM", "PA", "PE", "PG", "PH", "PW", "PY", "SA", "SB", "SR", "SV", "TH", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "VC", "VE", "VN", "VU", "WS", "ZA"]

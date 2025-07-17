@@ -1,5 +1,23 @@
+'use client';
 import StepNavigation from "@/components/shared/StepNavigation";
 import Image from "next/image";
+import { useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
+
+
+function StepNavWrapper() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  // Hide on /apply/deferred, /apply/processing, /apply/result
+  const hideStepNav =
+    pathname?.includes('/apply/deferred') ||
+    pathname?.includes('/apply/processing') ||
+    pathname?.includes('/apply/result') ||
+    ['deferred', 'processing', 'result'].includes(searchParams.get('status')?.toLowerCase() || '');
+  if (hideStepNav) return null;
+  return <StepNavigation />;
+}
 
 export default function ApplyLayout({
   children,
@@ -28,7 +46,9 @@ export default function ApplyLayout({
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent" />
       </div>
-      <StepNavigation />
+      <Suspense>
+        <StepNavWrapper />
+      </Suspense>
       {children}
     </div>
   );

@@ -146,10 +146,16 @@ export default function ApplicationsPage() {
         router.push(`/apply/payment?applicationId=${applicationId}`);
         break;
       case "Collecting Documents":
-      case "Document Review":
-      case "Processing":
-        // If status is Processing, go to upload documents
         router.push(`/apply/documents?applicationId=${applicationId}`);
+        break;
+      case "Processing":
+        router.push(`/apply/processing?applicationId=${applicationId}`);
+        break;
+      case "Deferred":
+        router.push(`/apply/deferred?applicationId=${applicationId}`);
+        break;
+      case "Visa Result Sent":
+        router.push(`/apply/result?applicationId=${applicationId}`);
         break;
       case "Completed":
       case "Approved":

@@ -28,7 +28,7 @@ export type Country = {
     govFee: number;
     allowedNationalities: string[];
   }[];
-  portType: {
+  portType?: {
     type: string;
     port: string[];
   }[];

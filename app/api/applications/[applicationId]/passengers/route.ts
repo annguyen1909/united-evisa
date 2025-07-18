@@ -201,8 +201,11 @@ export async function POST(
 
     const updatedPassengers = await Promise.all(passengerPromises);
 
-    // Update application status to "Waiting for Payment" and total if provided
-    const updateData: any = { status: 'Waiting for Payment' };
+    // Update application status to "Waiting for Payment" and payment status to "Payment Required"
+    const updateData: any = { 
+      status: 'Waiting for Payment',
+      paymentStatus: 'Payment Required'
+    };
     if (typeof total === 'number' && !isNaN(total)) {
       updateData.total = total;
     }
@@ -267,11 +270,12 @@ export async function PUT(
 
     const newPassengers = await Promise.all(passengerPromises);
 
-    // Update application status to "Waiting for Payment"
+    // Update application status to "Waiting for Payment" and payment status to "Payment Required"
     await prisma.application.update({
       where: { id: application.id },
       data: {
         status: 'Waiting for Payment',
+        paymentStatus: 'Payment Required',
         passengerCount: passengers.length
       }
     });

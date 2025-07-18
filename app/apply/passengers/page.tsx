@@ -94,27 +94,66 @@ function PassengersContent() {
         console.log('Passengers page - passengerCount from DB:', passengerCount);
         console.log('Passengers page - existing passengers:', data.passengers);
 
-        // Use existing passengers or create empty ones
-        if (data.passengers && data.passengers.length > 0) {
+        // Check for cached passenger data first
+        const cachedPassengerData = loadCachedPassengerData(appId);
+        
+        if (cachedPassengerData && cachedPassengerData.length > 0) {
+          console.log('Using cached passenger data');
+          
+          // Check if passenger count changed
+          if (cachedPassengerData.length !== passengerCount) {
+            if (cachedPassengerData.length < passengerCount) {
+              // Passenger count increased, add empty passengers to existing cache
+              const additionalPassengers = Array.from({ length: passengerCount - cachedPassengerData.length }, () => ({
+                fullName: "",
+                gender: "",
+                dateOfBirth: "",
+                passportNumber: "",
+                nationality: ""
+              }));
+              const updatedPassengers = [...cachedPassengerData, ...additionalPassengers];
+              setPassengers(updatedPassengers);
+              // Update cache with new passenger count
+              savePassengerDataToCache(appId, updatedPassengers);
+              console.log('Added empty passengers to existing cache');
+            } else {
+              // Passenger count decreased, truncate existing cache
+              const truncatedPassengers = cachedPassengerData.slice(0, passengerCount);
+              setPassengers(truncatedPassengers);
+              // Update cache with truncated data
+              savePassengerDataToCache(appId, truncatedPassengers);
+              console.log('Truncated existing cache to match new passenger count');
+            }
+          } else {
+            // Passenger count unchanged, use cached data as is
+            setPassengers(cachedPassengerData);
+          }
+        } else if (data.passengers && data.passengers.length > 0) {
           console.log('Using existing passengers from DB');
-          setPassengers(data.passengers.map((p: any) => ({
+          const dbPassengers = data.passengers.map((p: any) => ({
             id: p.id,
             fullName: p.fullName || "",
             nationality: p.nationality || "",
             passportNumber: p.passportNumber || "",
             dateOfBirth: p.dateOfBirth ? moment(p.dateOfBirth).format("YYYY-MM-DD") : "",
             gender: p.gender || ""
-          })));
+          }));
+          setPassengers(dbPassengers);
+          // Save DB data to cache for future use
+          savePassengerDataToCache(appId, dbPassengers);
         } else {
           console.log('Creating empty passenger forms based on count:', passengerCount);
           // Create empty passenger forms based on count
-          setPassengers(Array.from({ length: passengerCount }, () => ({
+          const emptyPassengers = Array.from({ length: passengerCount }, () => ({
             fullName: "",
             gender: "",
             dateOfBirth: "",
             passportNumber: "",
             nationality: ""
-          })));
+          }));
+          setPassengers(emptyPassengers);
+          // Save empty data to cache
+          savePassengerDataToCache(appId, emptyPassengers);
         }
 
         // Initialize errors array with same length
@@ -181,6 +220,13 @@ function PassengersContent() {
     updated[index] = { ...updated[index], [field]: value };
     setPassengers(updated);
 
+    // Save to cache whenever passenger data changes
+    if (applicationId) {
+      const cacheKey = `passenger-data-${applicationId}`;
+      sessionStorage.setItem(cacheKey, JSON.stringify(updated));
+      console.log('Saved passenger data to cache:', cacheKey);
+    }
+
     // Clear error for this field
     const updatedErrors = [...errors];
     if (updatedErrors[index]) {
@@ -188,6 +234,54 @@ function PassengersContent() {
     }
     setErrors(updatedErrors);
   };
+
+  // Load cached passenger data
+  const loadCachedPassengerData = (appId: string) => {
+    try {
+      const cacheKey = `passenger-data-${appId}`;
+      const cachedData = sessionStorage.getItem(cacheKey);
+      if (cachedData) {
+        const parsedData = JSON.parse(cachedData);
+        console.log('Loaded cached passenger data:', parsedData);
+        return parsedData;
+      }
+    } catch (error) {
+      console.error('Error loading cached passenger data:', error);
+    }
+    return null;
+  };
+
+  // Save passenger data to cache
+  const savePassengerDataToCache = (appId: string, passengerData: Passenger[]) => {
+    try {
+      const cacheKey = `passenger-data-${appId}`;
+      sessionStorage.setItem(cacheKey, JSON.stringify(passengerData));
+      console.log('Saved passenger data to cache:', cacheKey);
+    } catch (error) {
+      console.error('Error saving passenger data to cache:', error);
+    }
+  };
+
+  // Clear passenger data from cache
+  const clearPassengerDataFromCache = (appId: string) => {
+    try {
+      const cacheKey = `passenger-data-${appId}`;
+      sessionStorage.removeItem(cacheKey);
+      console.log('Cleared passenger data from cache:', cacheKey);
+    } catch (error) {
+      console.error('Error clearing passenger data from cache:', error);
+    }
+  };
+
+  // Cleanup function to clear cache when component unmounts
+  useEffect(() => {
+    return () => {
+      // Clear cache when component unmounts if payment is completed
+      if (applicationId && applicationData?.paymentStatus === "Completed") {
+        clearPassengerDataFromCache(applicationId);
+      }
+    };
+  }, [applicationId, applicationData?.paymentStatus]);
 
   // Validate function
   function validate(): boolean {
@@ -263,10 +357,10 @@ function PassengersContent() {
 
       // Calculate total (same logic as order summary)
       const passengerCount = applicationData?.passengerCount || 1;
-      const serviceFee = FIXED_SERVICE_FEE;
+      const serviceFee = FIXED_SERVICE_FEE * passengerCount;
       let total = 0;
       if (visa && typeof govFee === 'number') {
-        total = (govFee + serviceFee) * passengerCount;
+        total = govFee + serviceFee;
       }
 
 
@@ -281,6 +375,12 @@ function PassengersContent() {
 
       if (!passengersRes.ok) {
         throw new Error(passengersData.error || "Failed to save passenger information");
+      }
+
+      // Save passenger data to cache after successful submission
+      if (applicationId) {
+        savePassengerDataToCache(applicationId, passengers);
+        console.log('Saved passenger data to cache after successful submission');
       }
 
       // Navigate to payment step

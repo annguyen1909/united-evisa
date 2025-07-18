@@ -609,6 +609,16 @@ export default function ApplyForm({ user }: { user: any }) {
         // Clear cache when application is updated to ensure fresh data
         sessionStorage.removeItem('cached-form-data');
         console.log('Cleared cache due to application update');
+        
+        // Only clear passenger cache if passenger count decreased
+        if (appData.applicationId && appData.passengerCount && appData.passengerCount < passengerCount) {
+          const passengerCacheKey = `passenger-data-${appData.applicationId}`;
+          sessionStorage.removeItem(passengerCacheKey);
+          console.log('Cleared passenger cache due to passenger count decrease:', passengerCacheKey);
+        } else if (appData.applicationId && appData.passengerCount && appData.passengerCount > passengerCount) {
+          // If passenger count increased, keep existing cache but add empty passengers
+          console.log('Passenger count increased, keeping existing cache and adding empty passengers');
+        }
       } else {
         // New application created, store the application ID and destination ID
         sessionStorage.setItem('current-application-id', appData.applicationId);
@@ -733,9 +743,6 @@ export default function ApplyForm({ user }: { user: any }) {
                 )}
                 {destinations.length === 0 && (
                   <p className="text-sm text-slate-500 mt-2">No destinations available</p>
-                )}
-                {destinations.length > 0 && (
-                  <p className="text-sm text-slate-500 mt-2">Found {destinations.length} destinations</p>
                 )}
                 {errors.country && (
                   <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">

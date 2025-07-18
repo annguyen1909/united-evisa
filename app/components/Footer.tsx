@@ -45,9 +45,10 @@ const defaultSections = [
             { name: "Terms Of Service", href: "/terms" },
             { name: "Legal Agreements", href: "/legal" },
             { name: "Privacy Policy", href: "/privacy" },
+            { name: "Refund Policy", href: "/refund-policy" },
             { name: "Disclaimers", href: "/disclaimers" },
-            { name: "Cookie Policy", href: "/cookies" },
-            { name: "Digital Services Act", href: "/dsa" },
+            { name: "Cookie Policy", href: "/cookie-policy" },
+            { name: "Digital Services Act", href: "/digital-services-act" },
         ],
     },
     {
@@ -97,9 +98,13 @@ const defaultPaymentLinks = [
 ];
 
 const defaultLegalLinks = [
-    { name: "Terms and Conditions", href: "/terms" },
+    { name: "Terms of Service", href: "/terms" },
     { name: "Privacy Policy", href: "/privacy" },
-    { name: "Sitemap", href: "/sitemap" },
+    { name: "Refund Policy", href: "/refund-policy" },
+    { name: "Legal Agreements", href: "/legal" },
+    { name: "Disclaimers", href: "/disclaimers" },
+    { name: "Cookie Policy", href: "/cookie-policy" },
+    { name: "Digital Services Act", href: "/digital-services-act" },
 ];
 
 export function Footer({

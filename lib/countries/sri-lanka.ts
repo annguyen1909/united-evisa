@@ -8,8 +8,8 @@ const sriLanka: Country = {
   flagUrl: '/images/country/sri-lanka/sri-lanka-square.png',
   imageUrl: '/images/country/sri-lanka/sri-lanka-bg.jpg',
   roundedFlagUrl: '/images/country/sri-lanka/sri-lanka-rounded.png',
-  description: `The Sri Lanka eVisa was introduced by the government in 2012 to help travelers apply quickly and easily. It is available for tourism, business, and transit purposes and can be obtained using any electronic device.`,
-  welcomeMessage: `Welcome to Sri Lanka! Discover the beauty of Sigiriya, the beaches of Mirissa, and the tea plantations of Nuwara Eliya.`,
+  description: `Apply for your Sri Lanka eVisa online with United eVisa. Fast, secure, and convenient visa application for Sri Lanka travel. Get your Sri Lanka visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Sri Lanka's ancient temples, tea plantations, and beautiful beaches. From Sigiriya to the beaches of Galle, Sri Lanka is a paradise for travelers.`,
   welcomeImgUrl: '/images/country/sri-lanka/sri-lanka-welcome.jpg',
   processingTime: {
     normal: '3 working days',

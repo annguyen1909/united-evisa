@@ -8,8 +8,8 @@ const vietnam: Country = {
   flagUrl: '/images/country/vietnam/vietnam-square.png',
   imageUrl: '/images/country/vietnam/vietnam-bg.jpg',
   roundedFlagUrl: '/images/country/vietnam/vietnam-rounded.png',
-  description: `A Vietnamese visa is an official travel document issued by Vietnamese authorities that permits entry into Vietnam for purposes such as tourism or business.`,
-  welcomeMessage: `Vietnam - A captivating Southeast Asian country renowned for its breathtaking landscapes, rich history, and vibrant culture. Explore the bustling streets of Hanoi, the capital city, where traditional architecture blends with modern influences, and indulge in the flavors of Vietnamese street food. Immerse yourself in the natural beauty of Halong Bay, with its towering limestone islands and emerald waters, or venture into the lush rice terraces of Sapa. Discover the ancient wonders of Hue's Imperial City or the charming lantern-lit streets of Hoi An.`,
+  description: `Apply for your Vietnam eVisa online with United eVisa. Fast, secure, and convenient visa application for Vietnam travel. Get your Vietnam visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Vietnam's stunning landscapes, vibrant cities, and rich culture. From Hanoi's old quarter to Halong Bay, Vietnam is a captivating destination for travelers.`,
   welcomeImgUrl: '/images/country/vietnam/vietnam-welcome.jpg',
   processingTime: {
     normal: '3 days',

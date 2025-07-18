@@ -10,8 +10,8 @@ const egypt: Country = {
   flagUrl: '/images/country/egypt/egypt-square.png',
   imageUrl: '/images/country/egypt/egypt-bg.jpg',
   roundedFlagUrl: '/images/country/egypt/egypt-rounded.png',
-  description: `The Egyptian government launched an electronic visa system on December 3, 2017, to simplify the travel process for tourists.`,
-  welcomeMessage: `Welcome to Egypt! Explore the treasures of Cairo, cruise the Nile to Luxor and Aswan, and marvel at the temples of Abu Simbel. Experience the hospitality and rich traditions of the Egyptian people.`,
+  description: `Apply for your Egypt eVisa online with United eVisa. Fast, secure, and convenient visa application for Egypt travel. Get your Egypt visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Egypt's ancient wonders, from the Pyramids of Giza to the Nile River. Discover vibrant cities, rich history, and unforgettable adventures in Egypt.`,
   welcomeImgUrl: '/images/country/egypt/egypt-welcome.jpg',
   processingTime: {
     normal: '5 working days',

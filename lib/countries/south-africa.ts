@@ -8,8 +8,8 @@ const southafrica: Country = {
   flagUrl: '/images/country/south-africa/south-africa-square.png',
   imageUrl: '/images/country/south-africa/south-africa-bg.jpg',
   roundedFlagUrl: '/images/country/south-africa/south-africa-rounded.png',
-  description: `The South African eVisa service offers a convenient and secure way to apply through the Department of Home Affairs. This visa is issued for tourism or business visits and is valid for up to 90 days.`,
-  welcomeMessage: `Welcome to South Africa! Explore Cape Town and Johannesburg, go on safari, and visit the historic Robben Island. Experience the Rainbow Nation's culture, cuisine, and breathtaking landscapes.`,
+  description: `Apply for your South Africa eVisa online with United eVisa. Fast, secure, and convenient visa application for South Africa travel. Get your South Africa visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore South Africa's diverse landscapes, wildlife, and vibrant cities. From Cape Town to Kruger National Park, South Africa is a must-visit destination for travelers.`,
   welcomeImgUrl: '/images/country/south-africa/south-africa-welcome.jpg',
   processingTime: {
     normal: '3 working days',

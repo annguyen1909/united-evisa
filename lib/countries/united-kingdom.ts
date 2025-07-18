@@ -8,8 +8,8 @@ const unitedKingdom: Country = {
   flagUrl: '/images/country/united-kingdom/united-kingdom-square.png',
   imageUrl: '/images/country/united-kingdom/united-kingdom-bg.jpg',
   roundedFlagUrl: '/images/country/united-kingdom/united-kingdom-rounded.png',
-  description: `In 2021, the United Kingdom introduced an eVisa system for travelers who require a visa to enter the country. The Electronic Travel Authorization (ETA) acts as a travel permit and is digitally linked to the traveler’s passport information.`,
-  welcomeMessage: `Welcome to the United Kingdom! Explore historic castles, world-class museums, and beautiful countryside.`,
+  description: `Apply for your United Kingdom eVisa online with United eVisa. Fast, secure, and convenient visa application for UK travel. Get your UK visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience the United Kingdom's rich history, vibrant cities, and stunning landscapes. From London's iconic landmarks to Scotland's Highlands, the UK offers unforgettable adventures for travelers.`,
   welcomeImgUrl: '/images/country/united-kingdom/united-kingdom-welcome.jpg',
   processingTime: {
     normal: '3 working days',

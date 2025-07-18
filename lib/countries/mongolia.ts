@@ -10,8 +10,8 @@ const mongolia: Country = {
   flagUrl: '/images/country/mongolia/mongolia-square.png',
   imageUrl: '/images/country/mongolia/mongolia-bg.jpg',
   roundedFlagUrl: '/images/country/mongolia/mongolia-rounded.png',
-  description: `The Mongolia eVisa has been available since June 1, 2021, offering travelers from over 98 countries the convenience of applying online to visit the country.`,
-  welcomeMessage: `Welcome to Mongolia! Experience the hospitality of nomadic herders, ride horses across endless grasslands, and discover the ancient capital of Karakorum. Marvel at the sand dunes of the Gobi Desert and the pristine beauty of Lake Khövsgöl.`,
+  description: `Apply for your Mongolia eVisa online with United eVisa. Fast, secure, and convenient visa application for Mongolia travel. Get your Mongolia visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Mongolia's vast steppes, nomadic culture, and stunning landscapes. From Ulaanbaatar to the Gobi Desert, Mongolia is an adventure traveler's dream.`,
   welcomeImgUrl: '/images/country/mongolia/mongolia-welcome.jpg',
   processingTime: {
     normal: '5 working days',

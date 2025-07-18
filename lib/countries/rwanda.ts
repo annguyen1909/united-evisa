@@ -8,8 +8,8 @@ const rwanda: Country = {
   flagUrl: '/images/country/rwanda/rwanda-square.png',
   imageUrl: '/images/country/rwanda/rwanda-bg.jpg',
   roundedFlagUrl: '/images/country/rwanda/rwanda-rounded.png',
-  description: `Since 2018, travelers have been able to apply for a Rwanda eVisa online, eliminating the need to visit embassies. This electronic travel permit replaces the traditional paper visa and can typically be obtained within a few days.`,
-  welcomeMessage: `Welcome to Rwanda! Trek through Volcanoes National Park to see gorillas, visit the vibrant capital Kigali, and relax on the shores of Lake Kivu. Experience the resilience and warmth of the Rwandan people.`,
+  description: `Apply for your Rwanda eVisa online with United eVisa. Fast, secure, and convenient visa application for Rwanda travel. Get your Rwanda visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Rwanda's breathtaking landscapes, wildlife, and vibrant culture. From gorilla trekking in Volcanoes National Park to Kigali's modern city life, Rwanda is a must-visit destination.`,
   welcomeImgUrl: '/images/country/rwanda/rwanda-welcome.jpg',
   processingTime: {
     normal: '5 working days',

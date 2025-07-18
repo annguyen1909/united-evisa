@@ -10,8 +10,8 @@ const australia: Country = {
   flagUrl: '/images/country/australia/australia-square.png',
   imageUrl: '/images/country/australia/australia-bg.jpg',
   roundedFlagUrl: '/images/country/australia/australia-rounded.png',
-  description: `In 1996, the Electronic Travel Authority system (ETA or e-Visa) was introduced, making Australia the first nation to launch electronic visas in the world. An ETA is designed to serve short-term stays in Australia for activities related to tourism (Tourist e-Visa) or business (Business e-Visa).`,
-  welcomeMessage: `Welcome to Australia! Explore the cosmopolitan cities of Sydney and Melbourne, relax on the golden beaches of the Gold Coast, or marvel at the natural wonders of Uluru and the Great Barrier Reef. Experience the rich Aboriginal heritage and enjoy world-class food and wine in this vast and friendly country.`,
+  description: `Apply for your Australia eVisa online with United eVisa. Fast, secure, and convenient visa application for Australia travel. Get your Australia visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Australia's iconic cities, stunning beaches, and unique wildlife. From the Great Barrier Reef to Sydney Opera House, Australia offers unforgettable adventures for every traveler.`,
   welcomeImgUrl: '/images/country/australia/australia-welcome.jpg',
   processingTime: {
     normal: '7 working days',

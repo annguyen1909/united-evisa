@@ -10,8 +10,8 @@ const kazakhstan: Country = {
   flagUrl: '/images/country/kazakhstan/kazakhstan-square.png',
   imageUrl: '/images/country/kazakhstan/kazakhstan-bg.jpg',
   roundedFlagUrl: '/images/country/kazakhstan/kazakhstan-rounded.png',
-  description: `In 2019, the Government of Kazakhstan launched a streamlined and user-friendly electronic visa system for business, tourism, and medical travel. Citizens from 103 countries can obtain these e-visas via the migration service units under the Ministry of Internal Affairs. Entry and exit using an electronic visa are permitted only through designated checkpoints at Kazakhstan’s international airports.`,
-  welcomeMessage: `Welcome to Kazakhstan! Discover the cosmopolitan city of Almaty, the futuristic capital of Astana (Nur-Sultan), and the breathtaking landscapes of the Altai Mountains and Charyn Canyon. Experience Kazakh hospitality and rich cultural traditions.`,
+  description: `Apply for your Kazakhstan eVisa online with United eVisa. Fast, secure, and convenient visa application for Kazakhstan travel. Get your Kazakhstan visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Kazakhstan's vast steppes, modern cities, and unique culture. From Almaty to the Charyn Canyon, Kazakhstan offers adventure and beauty for every traveler.`,
   welcomeImgUrl: '/images/country/kazakhstan/kazakhstan-welcome.jpg',
   processingTime: {
     normal: '3 working days',

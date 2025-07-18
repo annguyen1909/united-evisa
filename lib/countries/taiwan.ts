@@ -8,8 +8,8 @@ const taiwan: Country = {
   flagUrl: '/images/country/taiwan/taiwan-square.png',
   imageUrl: '/images/country/taiwan/taiwan-bg.jpg',
   roundedFlagUrl: '/images/country/taiwan/taiwan-rounded.png',
-  description: `In 2016, the Ministry of Foreign Affairs (MOFA) of the Republic of China (Taiwan) launched the Taiwan eVisa program. This visa allows travelers to visit Taiwan for both tourism and business purposes.`,
-  welcomeMessage: `Welcome to Taiwan! Enjoy the bustling streets of Taipei, the beauty of Sun Moon Lake, and the delicious local cuisine.`,
+  description: `Apply for your Taiwan eVisa online with United eVisa. Fast, secure, and convenient visa application for Taiwan travel. Get your Taiwan visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Taiwan's vibrant culture, modern cities, and stunning landscapes. From Taipei's night markets to Taroko Gorge, Taiwan is a must-visit destination for travelers.`,
   welcomeImgUrl: '/images/country/taiwan/taiwan-welcome.jpg',
   processingTime: {
     normal: '5 working days',

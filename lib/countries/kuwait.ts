@@ -10,8 +10,8 @@ const kuwait: Country = {
   flagUrl: '/images/flags/vietnam.png',
   imageUrl: '/images/country/kuwait/kuwait-bg.jpg',
   roundedFlagUrl: '/images/flags/vietnam.png',
-  description: `The Kuwait eVisa is a digital travel authorization that eligible travelers can obtain by completing a straightforward online application. This system has simplified the visa process by removing the need to visit a Kuwaiti embassy or consulate.`,
-  welcomeMessage: `Welcome to Kuwait! Visit the iconic Kuwait Towers, explore the Grand Mosque, and stroll along the Corniche. Experience Kuwaiti hospitality and culture.`,
+  description: `Apply for your Kuwait eVisa online with United eVisa. Fast, secure, and convenient visa application for Kuwait travel. Get your Kuwait visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Kuwait's modern skyline, rich history, and vibrant culture. From the Grand Mosque to the Arabian Gulf, Kuwait is a unique destination for travelers.`,
   welcomeImgUrl: '/images/country/kenya-welcome.jpg',
   processingTime: {
     normal: '3 working days',

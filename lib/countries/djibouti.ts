@@ -10,8 +10,8 @@ const djibouti: Country = {
   flagUrl: '/images/country/djibouti/djibouti-square.png',
   imageUrl: '/images/country/djibouti/djibouti-bg.jpg',
   roundedFlagUrl: '/images/country/djibouti/djibouti-rounded.png',
-  description: `The Djibouti eVisa is an electronic travel authorization introduced in 2018 to streamline the visa application process. It permits eligible foreign travelers to enter Djibouti for tourism, business, or transit purposes in a more convenient and efficient way.`,
-  welcomeMessage: `Djibouti is a fascinating nation located in the Horn of Africa, celebrated for its dramatic scenery, cultural richness, and thriving marine biodiversity. Discover the surreal beauty of Lake Assal—one of the saltiest lakes in the world—or hike through the majestic Goda Mountains for awe-inspiring vistas. Dive into the turquoise waters of the Gulf of Tadjoura, teeming with vibrant coral reefs and marine life.`,
+  description: `Apply for your Djibouti eVisa online with United eVisa. Fast, secure, and convenient visa application for Djibouti travel. Get your Djibouti visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Djibouti's unique landscapes, from Lake Assal to volcanic formations and beautiful beaches. Experience the vibrant culture and warm hospitality of Djibouti.`,
   welcomeImgUrl: '/images/country/djibouti/djibouti-welcome.jpg',
   processingTime: {
     normal: '3 working days',

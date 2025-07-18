@@ -10,8 +10,8 @@ const newzealand: Country = {
   flagUrl: '/images/country/new-zealand/new-zealand-square.png',
   imageUrl: '/images/country/new-zealand/new-zealand-bg.jpg',
   roundedFlagUrl: '/images/country/new-zealand/new-zealand-rounded.png',
-  description: `New Zealand introduced the Electronic Travel Authority (ETA) system in July 2019, allowing eligible travelers to conveniently obtain an eVisa online without the need to visit an embassy.`,
-  welcomeMessage: `Welcome to New Zealand! Explore the dramatic landscapes of the South Island, visit the vibrant city of Auckland, and experience Maori traditions. Enjoy outdoor adventures like hiking, skiing, and bungee jumping in this breathtaking country.`,
+  description: `Apply for your New Zealand eVisa online with United eVisa. Fast, secure, and convenient visa application for New Zealand travel. Get your New Zealand visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore New Zealand's breathtaking landscapes, adventure sports, and Maori culture. From the Southern Alps to vibrant Auckland, New Zealand is a dream destination for travelers.`,
   welcomeImgUrl: '/images/country/new-zealand/new-zealand-welcome.jpg',
   processingTime: {
     normal: '3 working days',

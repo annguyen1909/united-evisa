@@ -8,8 +8,8 @@ const tajikistan: Country = {
   flagUrl: '/images/country/tajikistan/tajikistan-square.png',
   imageUrl: '/images/country/tajikistan/tajikistan-bg.jpg',
   roundedFlagUrl: '/images/country/tajikistan/tajikistan-rounded.png',
-  description: `The Tajikistan eVisa, introduced in 2016, is an official travel authorization that allows visitors to enter and travel within the country for tourism purposes.`,
-  welcomeMessage: `Welcome to Tajikistan! Trek the Pamir Mountains, explore the ancient city of Khujand, and experience the vibrant culture of Dushanbe.`,
+  description: `Apply for your Tajikistan eVisa online with United eVisa. Fast, secure, and convenient visa application for Tajikistan travel. Get your Tajikistan visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Tajikistan's stunning mountains, ancient Silk Road sites, and rich culture. From the Pamir Mountains to Dushanbe, Tajikistan is an adventure traveler's dream.`,
   welcomeImgUrl: '/images/country/tajikistan/tajikistan-welcome.jpg',
   processingTime: {
     normal: '5 working days',

@@ -8,8 +8,8 @@ const uganda: Country = {
   flagUrl: '/images/country/uganda/uganda-square.png',
   imageUrl: '/images/country/uganda/uganda-bg.jpg',
   roundedFlagUrl: '/images/country/uganda/uganda-rounded.png',
-  description: `The Government of Uganda introduced the Uganda eVisa in 2016 to simplify the visa application process for international travelers. This system enables applicants to easily obtain a visa online through a convenient digital platform.`,
-  welcomeMessage: `Welcome to Uganda! Trek mountain gorillas in Bwindi, cruise along the Nile, and explore the vibrant capital Kampala. Experience the beauty and hospitality of Uganda.`,
+  description: `Apply for your Uganda eVisa online with United eVisa. Fast, secure, and convenient visa application for Uganda travel. Get your Uganda visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Uganda's diverse wildlife, stunning landscapes, and rich culture. From gorilla trekking to the source of the Nile, Uganda is a nature lover's paradise.`,
   welcomeImgUrl: '/images/country/uganda/uganda-welcome.jpg',
   processingTime: {
     normal: '5 working days',

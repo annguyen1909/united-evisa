@@ -10,8 +10,8 @@ const canada: Country = {
   flagUrl: '/images/country/canada/canada-square.png',
   imageUrl: '/images/country/canada/canada-bg.jpg',
   roundedFlagUrl: '/images/country/canada/canada-rounded.png',
-  description: `On August 1, 2015, Canada eVisa was introduced by the government which allows travelers to travel to Canada with an online travel permit document. Only for tourism purposes, travelers no longer arrange a visit to the Embassy, it is now taking a few days to obtain an e-visa and start your journey in Canada.`,
-  welcomeMessage: `Welcome to Canada! Explore the vibrant cities of Toronto and Vancouver, marvel at the beauty of Banff National Park, and experience French culture in Montreal and Quebec City. Enjoy outdoor adventures and Canadian hospitality.`,
+  description: `Apply for your Canada eVisa online with United eVisa. Fast, secure, and convenient visa application for Canada travel. Get your Canada visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Canada's breathtaking natural wonders, vibrant cities, and multicultural charm. From Niagara Falls to the Rockies and cosmopolitan Toronto, Canada is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/canada/canada-welcome.jpg',
   processingTime: {
     normal: '3 working days',

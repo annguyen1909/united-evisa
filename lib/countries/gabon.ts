@@ -8,8 +8,8 @@ const gabon: Country = {
   flagUrl: '/images/country/gabon/gabon-square.png',
   imageUrl: '/images/country/gabon/gabon-bg.jpg',
   roundedFlagUrl: '/images/country/gabon/gabon-rounded.png',
-  description: `In 2015, the Gabonese government launched the eVisa system to streamline the visa application process, allowing travelers to avoid long queues at arrival or visits to consulates for traditional visa submissions.`,
-  welcomeMessage: `Welcome to Gabon! Explore Loango National Park, see gorillas and elephants in the wild, and relax on pristine beaches. Discover the natural beauty and biodiversity of Gabon.`,
+  description: `Apply for your Gabon eVisa online with United eVisa. Fast, secure, and convenient visa application for Gabon travel. Get your Gabon visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Gabon's lush rainforests, diverse wildlife, and beautiful Atlantic coastline. From Loango National Park to Libreville, Gabon offers unforgettable adventures for travelers.`,
   welcomeImgUrl: '/images/country/gabon/gabon-welcome.jpg',
   processingTime: {
     normal: '3 working days',

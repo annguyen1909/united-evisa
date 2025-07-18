@@ -10,8 +10,8 @@ const kenya: Country = {
   flagUrl: '/images/flags/kenya-square.png',
   roundedFlagUrl: '/images/flags/kenya.png',
   imageUrl: '/images/country/kenya/kenya-bg.jpg',
-  description: `As of January 2024, the Government of Kenya replaced the eVisa with the Electronic Travel Authorization (Kenya ETA), allowing citizens of all countries to apply. Under this new system, tourists no longer need a visa; instead, they can complete the ETA application in just a few minutes and receive approval within a maximum of three business days.`,
-  welcomeMessage: `A captivating East African nation teeming with diverse wildlife and awe-inspiring landscapes. Embark on thrilling safaris in renowned national parks, such as the Maasai Mara, and witness the breathtaking beauty of the Great Rift Valley. Immerse yourself in the vibrant culture and warm hospitality of Kenya's diverse communities, making unforgettable memories in this extraordinary destination.`,
+  description: `Apply for your Kenya eVisa online with United eVisa. Fast, secure, and convenient visa application for Kenya travel. Get your Kenya visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Kenya's world-famous safaris, breathtaking landscapes, and vibrant culture. From the Maasai Mara to the Great Rift Valley, Kenya is an unforgettable destination for travelers.`,
   welcomeImgUrl: '/images/country/kenya/kenya-welcome.jpg',
   processingTime: {
     normal: '3 working days',

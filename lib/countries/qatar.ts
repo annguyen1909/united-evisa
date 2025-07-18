@@ -10,8 +10,8 @@ const qatar: Country = {
   flagUrl: '/images/country/qatar/qatar-square.png',
   imageUrl: '/images/country/qatar/qatar-bg.jpg',
   roundedFlagUrl: '/images/country/qatar/qatar-rounded.png',
-  description: `The Government of Qatar introduced the Qatar eVisa on June 23, 2017, allowing citizens of various countries to apply for a visa online for tourism purposes. The entire application process is digital, and the eVisa is typically issued within a few days.`,
-  welcomeMessage: `Qatar is a captivating Middle Eastern country known for its striking modern skyline, deep-rooted cultural heritage, and exceptional hospitality. Discover the dynamic city of Doha, where futuristic skyscrapers stand alongside lively souks and upscale shopping malls. Experience the country's rich culture through landmarks like the Museum of Islamic Art and the historic pearl diving traditions at the Pearl-Qatar. Savor the bold flavors of Qatari cuisine—from grilled meats to aromatic spices—while taking in scenic views along the picturesque Corniche.`,
+  description: `Apply for your Qatar eVisa online with United eVisa. Fast, secure, and convenient visa application for Qatar travel. Get your Qatar visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Qatar's modern skyline, cultural heritage, and desert adventures. From Doha's museums to the Inland Sea, Qatar is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/qatar/qatar-welcome.jpg',
   processingTime: {
     normal: '3 working days',

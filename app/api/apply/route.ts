@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import crypto from "crypto";
 
 function generateAppId(destinationCode: string) {
   const random = Math.floor(100000 + Math.random() * 900000);

@@ -10,8 +10,8 @@ const cambodia: Country = {
   flagUrl: '/images/flags/vietnam.png',
   imageUrl: '/images/country/vietnam-bg.jpg',
   roundedFlagUrl: '/images/flags/vietnam.png',
-  description: `The Cambodia eVisa, often known as an electronic visa, was established in April 2006 by the Ministry of Foreign Affairs and International Cooperation. Eligible countries can apply for this type of visa for tourist purposes only. Within a few days, travelers can have a travel permit without visiting the Embassy or Consulates.`,
-  welcomeMessage: `Vietnam - A captivating Southeast Asian country renowned for its breathtaking landscapes, rich history, and vibrant culture. Explore the bustling streets of Hanoi, the capital city, where traditional architecture blends with modern influences, and indulge in the flavors of Vietnamese street food. Immerse yourself in the natural beauty of Halong Bay, with its towering limestone islands and emerald waters, or venture into the lush rice terraces of Sapa. Discover the ancient wonders of Hue's Imperial City or the charming lantern-lit streets of Hoi An.`,
+  description: `Apply for your Cambodia eVisa online with United eVisa. Fast, secure, and convenient visa application for Cambodia travel. Get your Cambodia visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Cambodia's ancient temples, lush landscapes, and vibrant cities. From the iconic Angkor Wat to the lively streets of Phnom Penh, Cambodia is a must-visit destination for travelers.`,
   welcomeImgUrl: '/images/country/kenya-welcome.jpg',
   processingTime: {
     normal: '5 working days',

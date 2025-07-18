@@ -10,8 +10,8 @@ const malaysia: Country = {
   flagUrl: '/images/country/malaysia/malaysia-square.png',
   imageUrl: '/images/country/malaysia/malaysia-bg.jpg',
   roundedFlagUrl: '/images/country/malaysia/malaysia-rounded.png',
-  description: `In 2017, the Malaysian government launched the eVisa system, allowing tourists from around the world to apply online and visit the country for various purposes.`,
-  welcomeMessage: `Welcome to Malaysia! Visit the iconic Petronas Towers in Kuala Lumpur, relax on the beaches of Langkawi, and explore the ancient rainforests of Borneo. Savor the diverse flavors of Malaysian cuisine and experience its multicultural heritage.`,
+  description: `Apply for your Malaysia eVisa online with United eVisa. Fast, secure, and convenient visa application for Malaysia travel. Get your Malaysia visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Malaysia's diverse culture, modern cities, and natural beauty. From Kuala Lumpur's skyline to Borneo's rainforests, Malaysia is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/malaysia/malaysia-welcome.jpg',
   processingTime: {
     normal: '5 working days',

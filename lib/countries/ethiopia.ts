@@ -10,8 +10,8 @@ const ethiopia: Country = {
   flagUrl: '/images/country/ethiopia/ethiopia-square.png',
   imageUrl: '/images/country/ethiopia/ethiopia-bg.jpg',
   roundedFlagUrl: '/images/country/ethiopia/ethiopia-rounded.png',
-  description: `Ethiopia launched its electronic visa portal on June 12, 2017, allowing citizens from all countries to apply for a tourist eVisa, which permits entry into Ethiopia solely for tourism purposes.`,
-  welcomeMessage: `Welcome to Ethiopia! Visit the rock churches of Lalibela, trek the Simien Mountains, and experience the vibrant city of Addis Ababa. Discover the origins of coffee and the warmth of Ethiopian hospitality.`,
+  description: `Apply for your Ethiopia eVisa online with United eVisa. Fast, secure, and convenient visa application for Ethiopia travel. Get your Ethiopia visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Ethiopia's rich history, stunning landscapes, and vibrant culture. From the rock-hewn churches of Lalibela to the Simien Mountains, Ethiopia is a unique destination for travelers.`,
   welcomeImgUrl: '/images/country/ethiopia/ethiopia-welcome.jpg',
   processingTime: {
     normal: '3 working days',

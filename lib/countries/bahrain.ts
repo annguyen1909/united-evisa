@@ -10,8 +10,8 @@ const bahrain: Country = {
   flagUrl: '/images/flags/vietnam.png',
   imageUrl: '/images/country/vietnam-bg.jpg',
   roundedFlagUrl: '/images/flags/vietnam.png',
-  description: `In October 2014, Bahrain implemented an online visa system known as the Bahrain eVisa, which enables citizens of qualifying countries to apply for and receive an electronic visa for Bahrain before their trip, without the need to visit a Bahraini embassy or consulate in person. With this type of eVisa, travelers can enter Bahrain with tourist and business intentions.`,
-  welcomeMessage: `Welcome to Bahrain! Visit the Bahrain Fort, explore the Manama Souq, and enjoy the lively Corniche. Experience the blend of tradition and modernity in Bahrain.`,
+  description: `Apply for your Bahrain eVisa online with United eVisa. Fast, secure, and convenient visa application for Bahrain travel. Get your Bahrain visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Bahrain's rich history, modern skyline, and vibrant culture. From ancient forts to luxury shopping and beautiful beaches, Bahrain is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/kenya-welcome.jpg',
   processingTime: {
     normal: '3 working days',

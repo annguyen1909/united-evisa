@@ -10,8 +10,8 @@ const armenia: Country = {
   flagUrl: '/images/country/armenia/armenia-square.png',
   imageUrl: '/images/country/armenia/armenia-bg.jpg',
   roundedFlagUrl: '/images/country/armenia/armenia-rounded.png',
-  description: `Armenia eVisa is a single-entry electronic travel document for visitors to enter Armenia freely in an amount of time. This kind of eVisa was introduced and applied on January 1st, 2019 for a number of nationalities to obtain one in a few days. Travelers can use Armenia eVisa for different purposes including business and tourism.`,
-  welcomeMessage: `Welcome to Armenia! Visit the ancient churches of Echmiadzin, hike the scenic trails of Dilijan, and explore the vibrant capital Yerevan. Experience Armenian hospitality and culture.`,
+  description: `Apply for your Armenia eVisa online with United eVisa. Fast, secure, and convenient visa application for Armenia travel. Get your Armenia visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Armenia's rich history, breathtaking landscapes, and vibrant culture. From ancient monasteries to the lively capital Yerevan, Armenia is a must-visit destination for every traveler.`,
   welcomeImgUrl: '/images/country/armenia/armenia-welcome.jpg',
   processingTime: {
     normal: '5 working days',

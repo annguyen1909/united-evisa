@@ -10,8 +10,8 @@ const benin: Country = {
   flagUrl: '/images/country/benin/benin-square.png',
   imageUrl: '/images/country/benin/benin-bg.jpg',
   roundedFlagUrl: '/images/country/benin/benin-rounded.png',
-  description: `The Benin e-visa system aims to simplify the visa application process for international travelers in 2018. The Benin e-visa allows individuals to apply for a visa online with simple documents, reducing the need for in-person visits to embassies. This digital platform is convenient for visitors to obtain the necessary travel authorization for exploring the diverse attractions and experiences in Benin.`,
-  welcomeMessage: `Welcome to Benin! Explore the Royal Palaces of Abomey, relax on the beaches of Grand-Popo, and experience the unique traditions of Vodun. Discover the warmth and hospitality of the Beninese people.`,
+  description: `Apply for your Benin eVisa online with United eVisa. Fast, secure, and convenient visa application for Benin travel. Get your Benin visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Benin's fascinating history, vibrant markets, and stunning national parks. From the UNESCO-listed city of Ouidah to Pendjari National Park, Benin offers unique adventures for every traveler.`,
   welcomeImgUrl: '/images/country/benin/benin-welcome.jpg',
   processingTime: {
     normal: '3 working days',

@@ -8,8 +8,8 @@ const zimbabwe: Country = {
   flagUrl: '/images/country/zimbabwe/zimbabwe-square.png',
   imageUrl: '/images/country/zimbabwe/zimbabwe-bg.jpg',
   roundedFlagUrl: '/images/country/zimbabwe/zimbabwe-rounded.png',
-  description: `Zimbabwe is known for its dramatic landscapes, diverse wildlife, and the iconic Victoria Falls. It offers rich history, adventure, and vibrant culture.`,
-  welcomeMessage: `Welcome to Zimbabwe! Marvel at the thundering Victoria Falls, go on safari in Hwange National Park, and explore the ancient ruins of Great Zimbabwe. Experience the friendliness and resilience of the Zimbabwean people.`,
+  description: `Apply for your Zimbabwe eVisa online with United eVisa. Fast, secure, and convenient visa application for Zimbabwe travel. Get your Zimbabwe visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Zimbabwe's stunning landscapes, incredible wildlife, and rich culture. From Victoria Falls to Hwange National Park, Zimbabwe is an unforgettable destination for travelers.`,
   welcomeImgUrl: '/images/country/zimbabwe/zimbabwe-welcome.jpg',
   processingTime: {
     normal: '5 working days',

@@ -10,8 +10,8 @@ const kyrgyzstan: Country = {
   flagUrl: '/images/country/kyrgyzstan/kyrgyzstan-square.png',
   imageUrl: '/images/country/kyrgyzstan/kyrgyzstan-bg.jpg',
   roundedFlagUrl: '/images/country/kyrgyzstan/kyrgyzstan-rounded.png',
-  description: `The Kyrgyzstan visa is a single-entry permit intended solely for tourism, available to citizens of eligible countries. Applicants can receive their travel authorization within a few days, without the need to visit an embassy or consulate in person.`,
-  welcomeMessage: `Welcome to Kyrgyzstan! Trek through the Tien Shan mountains, experience traditional yurt stays, and explore the vibrant city of Bishkek. Discover the warmth of Kyrgyz hospitality and the country's rich traditions.`,
+  description: `Apply for your Kyrgyzstan eVisa online with United eVisa. Fast, secure, and convenient visa application for Kyrgyzstan travel. Get your Kyrgyzstan visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Kyrgyzstan's stunning mountains, nomadic culture, and scenic lakes. From Issyk-Kul to the Tien Shan, Kyrgyzstan is an adventure traveler's paradise.`,
   welcomeImgUrl: '/images/country/kyrgyzstan/kyrgyzstan-welcome.jpg',
   processingTime: {
     normal: '5 working days',

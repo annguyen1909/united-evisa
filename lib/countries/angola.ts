@@ -10,8 +10,8 @@ const angola: Country = {
   flagUrl: '/images/country/angola/angola-square.png',
   imageUrl: '/images/country/angola/angola-bg.jpg',
   roundedFlagUrl: '/images/country/angola/angola-rounded.png',
-  description: `Since March 2018, Angola has introduced the eVisa system to streamline the visa application process for travelers from over 60 countries. This digital solution allows eligible visitors to apply online, eliminating the need to visit an embassy. Once approved, the eVisa can be presented at any international airport in Angola, making travel more convenient and promoting tourism.`,
-  welcomeMessage: `A vibrant Southern African nation known for its diverse landscapes, rich cultural heritage, and emerging travel opportunities.Discover the dynamic capital city of Luanda, where modern high-rises overlook the Atlantic coast and local markets pulse with energy. Explore the dramatic beauty of Kalandula Falls, one of Africa’s largest waterfalls, or venture through the wild expanses of Kissama National Park.Step back in time at the historic town of M'banza-Kongo, a UNESCO World Heritage Site, and unwind on the serene beaches of Benguela.`,
+  description: `Apply for your Angola eVisa online with United eVisa. Fast, secure, and convenient visa application for Angola travel. Get your Angola visa in 5 working days with our expert assistance.`,
+  welcomeMessage: `Discover Angola's stunning landscapes, rich culture, and vibrant cities. From the modern capital Luanda to the majestic Kalandula Falls and historic M'banza-Kongo UNESCO site, Angola offers unforgettable travel experiences.`,
   welcomeImgUrl: '/images/country/angola/angola-welcome.jpg',
   processingTime: {
     normal: '5 working days',

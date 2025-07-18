@@ -10,8 +10,8 @@ const pakistan: Country = {
   flagUrl: '/images/country/pakistan/pakistan-square.png',
   imageUrl: '/images/country/pakistan/pakistan-bg.jpg',
   roundedFlagUrl: '/images/country/pakistan/pakistan-rounded.png',
-  description: `Established in 2019, the Pakistan eVisa system was designed to simplify the visa application and entry process for visitors. Travelers can conveniently apply for and receive the eVisa online without needing to leave their homes.`,
-  welcomeMessage: `Welcome to Pakistan! Discover the ancient city of Lahore, marvel at the beauty of Hunza Valley, and experience the vibrant bazaars of Karachi. Enjoy traditional Pakistani cuisine and the warmth of its people.`,
+  description: `Apply for your Pakistan eVisa online with United eVisa. Fast, secure, and convenient visa application for Pakistan travel. Get your Pakistan visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Pakistan's majestic mountains, ancient cities, and vibrant culture. From Lahore's heritage to the Karakoram Highway, Pakistan is an adventure traveler's dream.`,
   welcomeImgUrl: '/images/country/pakistan/pakistan-welcome.jpg',
   processingTime: {
     normal: '5 working days',

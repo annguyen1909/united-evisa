@@ -10,8 +10,8 @@ const hongkong: Country = {
   flagUrl: '/images/country/hong-kong/hong-kong-square.png',
   imageUrl: '/images/country/hong-kong/hong-kong-bg.jpg',
   roundedFlagUrl: '/images/country/hong-kong/hong-kong-rounded.png',
-  description: `As of December 28, 2021, the Hong Kong Immigration Department introduced an electronic visa (eVisa) system for all visa applications. This streamlined process allows eligible applicants to submit their applications online in just a few minutes.`,
-  welcomeMessage: `Welcome to Hong Kong! Explore the lively streets of Kowloon, take in panoramic views from Victoria Peak, and enjoy world-class shopping and dining. Experience the fusion of tradition and modernity in this dynamic city.`,
+  description: `Apply for your Hong Kong eVisa online with United eVisa. Fast, secure, and convenient visa application for Hong Kong travel. Get your Hong Kong visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Hong Kong's dynamic city life, world-class cuisine, and stunning harbor views. From Victoria Peak to vibrant markets, Hong Kong is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/hong-kong/hong-kong-welcome.jpg',
   processingTime: {
     normal: '3 working days',

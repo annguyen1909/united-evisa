@@ -115,6 +115,15 @@ export default function ApplyForm({ user }: { user: any }) {
     if (!stayingStart) newErrors.stayingStart = "Please select start date.";
     if (!stayingEnd) newErrors.stayingEnd = "Please select end date.";
 
+    // Validate contact information for non-logged-in users
+    if (!isLoggedIn) {
+      if (!contact.fullName?.trim()) newErrors.fullName = "Full name is required.";
+      if (!contact.email?.trim()) newErrors.email = "Email address is required.";
+      if (!contact.phone?.trim()) newErrors.phone = "Phone number is required.";
+      if (!contact.countryCode?.trim()) newErrors.countryCode = "Country code is required.";
+      if (!contact.gender) newErrors.gender = "Gender is required.";
+    }
+
     // Calculate travel duration in days
     let travelDays = 0;
     if (stayingStart && stayingEnd) {
@@ -144,6 +153,12 @@ export default function ApplyForm({ user }: { user: any }) {
       newErrors.stayingEnd = `Your travel duration (${travelDays} days) exceeds the allowed visa duration (${visaDurationDays} days).`;
     }
 
+    // For India, require portType and portName
+    if (isIndia) {
+      if (!portType) newErrors.portType = "Please select port type.";
+      if (!portName) newErrors.portName = "Please select port name.";
+    }
+
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) return;
@@ -167,9 +182,6 @@ export default function ApplyForm({ user }: { user: any }) {
       } else {
         govFeeToSend = canonicalVisaType?.govFee;
       }
-      // Require portType and portName
-      if (!portType) newErrors.portType = "Please select port type.";
-      if (!portName) newErrors.portName = "Please select port name.";
     } else {
       visa = selectedCountry?.visaTypes.find(
         (v) => v.name === selectedVisaType
@@ -420,6 +432,12 @@ export default function ApplyForm({ user }: { user: any }) {
                               </div>
                             ))}
                           </div>
+                          {errors.portType && (
+                            <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                              <XCircle className="h-3.5 w-3.5" />
+                              <span>{errors.portType}</span>
+                            </div>
+                          )}
                         </div>
                         <div>
                           <label className="text-xs font-medium text-blue-700 mb-1 block">Port Name</label>
@@ -427,7 +445,10 @@ export default function ApplyForm({ user }: { user: any }) {
                             value={portName}
                             onValueChange={(v) => setPortName(v)}
                           >
-                            <SelectTrigger className="w-full border-blue-300 focus:ring-blue-500 text-blue-900 bg-white">
+                            <SelectTrigger className={cn(
+                              "w-full border-blue-300 focus:ring-blue-500 text-blue-900 bg-white",
+                              errors.portName && "border-red-500 focus:ring-red-500"
+                            )}>
                               <SelectValue placeholder="Select Port" />
                             </SelectTrigger>
                             <SelectContent>
@@ -438,6 +459,12 @@ export default function ApplyForm({ user }: { user: any }) {
                               ))}
                             </SelectContent>
                           </Select>
+                          {errors.portName && (
+                            <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                              <XCircle className="h-3.5 w-3.5" />
+                              <span>{errors.portName}</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
@@ -790,7 +817,8 @@ export default function ApplyForm({ user }: { user: any }) {
                     type="text"
                     className={cn(
                       "focus:ring-emerald-500",
-                      isLoggedIn && "bg-slate-50 text-slate-500"
+                      isLoggedIn && "bg-slate-50 text-slate-500",
+                      errors.fullName && "border-red-500 focus:ring-red-500"
                     )}
                     value={isLoggedIn ? user?.fullName ?? "" : contact.fullName}
                     readOnly={isLoggedIn}
@@ -800,6 +828,12 @@ export default function ApplyForm({ user }: { user: any }) {
                     required
                   />
                   <p className="text-xs text-slate-500">As shown on passport</p>
+                  {errors.fullName && (
+                    <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                      <XCircle className="h-3.5 w-3.5" />
+                      <span>{errors.fullName}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Email */}
@@ -809,7 +843,8 @@ export default function ApplyForm({ user }: { user: any }) {
                     type="email"
                     className={cn(
                       "focus:ring-emerald-500",
-                      isLoggedIn && "bg-slate-50 text-slate-500"
+                      isLoggedIn && "bg-slate-50 text-slate-500",
+                      errors.email && "border-red-500 focus:ring-red-500"
                     )}
                     value={isLoggedIn ? user?.email ?? "" : contact.email}
                     readOnly={isLoggedIn}
@@ -821,6 +856,12 @@ export default function ApplyForm({ user }: { user: any }) {
                   <p className="text-xs text-slate-500">
                     Your eVisa will be sent to this email
                   </p>
+                  {errors.email && (
+                    <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                      <XCircle className="h-3.5 w-3.5" />
+                      <span>{errors.email}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Phone */}
@@ -831,7 +872,8 @@ export default function ApplyForm({ user }: { user: any }) {
                       type="text"
                       className={cn(
                         "focus:ring-emerald-500",
-                        isLoggedIn && "bg-slate-50 text-slate-500"
+                        isLoggedIn && "bg-slate-50 text-slate-500",
+                        errors.countryCode && "border-red-500 focus:ring-red-500"
                       )}
                       value={
                         isLoggedIn ? user?.areaCode ?? "" : contact.countryCode
@@ -846,6 +888,12 @@ export default function ApplyForm({ user }: { user: any }) {
                       placeholder="+1"
                       required
                     />
+                    {errors.countryCode && (
+                      <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                        <XCircle className="h-3.5 w-3.5" />
+                        <span>{errors.countryCode}</span>
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-1.5 col-span-2">
                     <Label className="text-sm font-medium">Phone Number</Label>
@@ -853,7 +901,8 @@ export default function ApplyForm({ user }: { user: any }) {
                       type="tel"
                       className={cn(
                         "focus:ring-emerald-500",
-                        isLoggedIn && "bg-slate-50 text-slate-500"
+                        isLoggedIn && "bg-slate-50 text-slate-500",
+                        errors.phone && "border-red-500 focus:ring-red-500"
                       )}
                       value={
                         isLoggedIn ? user?.phoneNumber ?? "" : contact.phone
@@ -865,6 +914,12 @@ export default function ApplyForm({ user }: { user: any }) {
                       placeholder="123456789"
                       required
                     />
+                    {errors.phone && (
+                      <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                        <XCircle className="h-3.5 w-3.5" />
+                        <span>{errors.phone}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -881,7 +936,8 @@ export default function ApplyForm({ user }: { user: any }) {
                     <SelectTrigger
                       className={cn(
                         "focus:ring-emerald-500",
-                        isLoggedIn && "bg-slate-50 text-slate-500"
+                        isLoggedIn && "bg-slate-50 text-slate-500",
+                        errors.gender && "border-red-500 focus:ring-red-500"
                       )}
                     >
                       <SelectValue placeholder="Select gender" />
@@ -895,6 +951,12 @@ export default function ApplyForm({ user }: { user: any }) {
                   <p className="text-xs text-slate-500">
                     As shown on official documents
                   </p>
+                  {errors.gender && (
+                    <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                      <XCircle className="h-3.5 w-3.5" />
+                      <span>{errors.gender}</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

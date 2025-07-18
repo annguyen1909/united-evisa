@@ -458,8 +458,8 @@ const india: Country = {
   flagUrl: "/images/country/india/india-square.png",
   imageUrl: "/images/country/india/india-bg.jpg",
   roundedFlagUrl: "/images/country/india/india-rounded.png",
-  description: `India is a vast and diverse country, known for its rich history, vibrant culture, and incredible landscapes. From the Himalayas to the beaches of Goa, India offers a unique experience for every traveler.`,
-  welcomeMessage: `Welcome to India! Visit the Taj Mahal, explore the palaces of Rajasthan, and experience the spiritual city of Varanasi. Enjoy the flavors of Indian cuisine and the warmth of its people.`,
+  description: `Apply for your India eVisa online with United eVisa. Fast, secure, and convenient visa application for India travel. Get your India visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover India's incredible heritage, vibrant cities, and breathtaking landscapes. From the Taj Mahal to Kerala's backwaters, India offers unforgettable experiences for every traveler.`,
   welcomeImgUrl: "/images/country/india/india-welcome.jpg",
   processingTime: {
     normal: "3 working days",

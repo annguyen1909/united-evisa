@@ -10,8 +10,8 @@ const Moldova: Country = {
   flagUrl: '/images/country/moldova/moldova-square.png',
   imageUrl: '/images/country/moldova/moldova-bg.jpg',
   roundedFlagUrl: '/images/country/moldova/moldova-rounded.png',
-  description: `The Moldova eVisa, introduced by the government in 2015, is a multi-entry electronic visa that permits eligible travelers to visit Moldova for tourism and business purposes.`,
-  welcomeMessage: `Moldova is a captivating Eastern European destination known for its scenic rural landscapes, rich winemaking traditions, and deep-rooted cultural heritage. Visitors can tour the country’s charming vineyards and sample its famous wines, while exploring Chisinau—the capital—renowned for its historic architecture, lively markets, and cultural institutions. Moldova offers a distinctive mix of Romanian and Russian influences that contribute to its unique character.`,
+  description: `Apply for your Moldova eVisa online with United eVisa. Fast, secure, and convenient visa application for Moldova travel. Get your Moldova visa quickly with our expert assistance.`,
+  welcomeMessage: `Discover Moldova's charming villages, vineyards, and rich history. From Chisinau to the Orheiul Vechi Monastery, Moldova is a hidden gem for travelers.`,
   welcomeImgUrl: '/images/country/moldova/moldova-welcome.jpg',
   processingTime: {
     normal: '5 working days',

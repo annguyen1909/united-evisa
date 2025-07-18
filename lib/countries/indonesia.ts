@@ -10,8 +10,8 @@ const indonesia: Country = {
   flagUrl: '/images/country/indonesia/indonesia-square.png',
   imageUrl: '/images/country/indonesia/indonesia-bg.jpg',
   roundedFlagUrl: '/images/country/indonesia/indonesia-rounded.png',
-  description: `In 2020, Indonesia’s Ministry of Law and Human Rights launched the electronic visa (eVisa) system, allowing eligible travelers to apply online for short-term tourism, visiting family or friends, or attending meetings as participants.`,
-  welcomeMessage: `Welcome to Indonesia! Dive into the turquoise waters of Bali, trek through the jungles of Sumatra, or explore the ancient temples of Yogyakarta. Enjoy delicious cuisine, traditional dances, and the warmth of Indonesian hospitality.`,
+  description: `Apply for your Indonesia eVisa online with United eVisa. Fast, secure, and convenient visa application for Indonesia travel. Get your Indonesia visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Indonesia's tropical islands, vibrant culture, and stunning natural beauty. From Bali's beaches to ancient temples, Indonesia is a dream destination for travelers.`,
   welcomeImgUrl: '/images/country/indonesia/indonesia-welcome.jpg',
   processingTime: {
     normal: '2 working days',

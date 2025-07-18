@@ -8,8 +8,8 @@ const saudiArabia: Country = {
   flagUrl: '/images/country/saudi-arabia/saudi-arabia-square.png',
   imageUrl: '/images/country/saudi-arabia/saudi-arabia-bg.jpg',
   roundedFlagUrl: '/images/country/saudi-arabia/saudi-arabia-rounded.png',
-  description: `The Kingdom of Saudi Arabia introduced the eVisa system in September 2019, enabling eligible nationalities to enter the country for tourism purposes.`,
-  welcomeMessage: `Welcome to Saudi Arabia! Visit the ancient Nabatean city of AlUla, experience the vibrant city life of Riyadh and Jeddah, and discover the Red Sea’s pristine beaches.`,
+  description: `Apply for your Saudi Arabia eVisa online with United eVisa. Fast, secure, and convenient visa application for Saudi Arabia travel. Get your Saudi Arabia visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Saudi Arabia's rich heritage, modern cities, and sacred sites. From Mecca to Riyadh's skyline, Saudi Arabia offers unique cultural experiences for travelers.`,
   welcomeImgUrl: '/images/country/saudi-arabia/saudi-arabia-welcome.jpg',
   processingTime: {
     normal: '3 working days',

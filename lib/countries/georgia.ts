@@ -10,8 +10,8 @@ const georgia: Country = {
   flagUrl: '/images/country/georgia/georgia-square.png',
   imageUrl: '/images/country/georgia/georgia-bg.jpg',
   roundedFlagUrl: '/images/country/georgia/georgia-rounded.png',
-  description: `Introduced in 2015, Georgia’s eVisa system was created to simplify the visa application process. It allows eligible foreign nationals to apply online for short-term stays (up to 90 days) for tourism or other non-paid activities within the country.`,
-  welcomeMessage: `Welcome to Georgia! Wander the cobbled streets of Tbilisi, hike the majestic Caucasus Mountains, and savor traditional Georgian cuisine and wine. Experience the warmth of Georgian hospitality and the country's rich cultural heritage.`,
+  description: `Apply for your Georgia eVisa online with United eVisa. Fast, secure, and convenient visa application for Georgia travel. Get your Georgia visa quickly with our expert assistance.`,
+  welcomeMessage: `Explore Georgia's breathtaking mountains, ancient cities, and vibrant culture. From Tbilisi's old town to the Caucasus peaks, Georgia is a hidden gem for travelers.`,
   welcomeImgUrl: '/images/country/georgia/georgia-welcome.jpg',
   processingTime: {
     normal: '3 working days',

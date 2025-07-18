@@ -8,8 +8,8 @@ const zambia: Country = {
   flagUrl: '/images/country/zambia/zambia-square.png',
   imageUrl: '/images/country/zambia/zambia-bg.jpg',
   roundedFlagUrl: '/images/country/zambia/zambia-rounded.png',
-  description: `In 2014, the Government of Zambia introduced the eVisa system as a convenient way for travelers to obtain the necessary visa for entry, whether for tourism, business, or other permitted purposes.`,
-  welcomeMessage: `Welcome to Zambia! Experience the awe of Victoria Falls, explore the wilds of South Luangwa National Park, and enjoy the warmth of Zambian hospitality.`,
+  description: `Apply for your Zambia eVisa online with United eVisa. Fast, secure, and convenient visa application for Zambia travel. Get your Zambia visa quickly with our expert assistance.`,
+  welcomeMessage: `Experience Zambia's incredible wildlife, stunning waterfalls, and vibrant culture. From Victoria Falls to South Luangwa National Park, Zambia is a nature lover's paradise.`,
   welcomeImgUrl: '/images/country/zambia/zambia-welcome.jpg',
   processingTime: {
     normal: '5 working days',

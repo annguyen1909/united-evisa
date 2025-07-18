@@ -335,8 +335,8 @@ function VisaResultContent() {
                                     <Mail className="h-5 w-5 text-emerald-600" />
                                     <div>
                                         <p className="font-medium text-slate-800">Email Support</p>
-                                        <a href="mailto:support@unitedevisa.com" className="text-emerald-600 hover:underline text-sm">
-                                            support@unitedevisa.com
+                                        <a href="mailto:visa@unitedevisa.com" className="text-emerald-600 hover:underline text-sm">
+                                            visa@unitedevisa.com
                                         </a>
                                     </div>
                                 </div>
@@ -344,8 +344,8 @@ function VisaResultContent() {
                                     <Phone className="h-5 w-5 text-emerald-600" />
                                     <div>
                                         <p className="font-medium text-slate-800">Phone Support</p>
-                                        <a href="tel:+1-800-VISA-HELP" className="text-emerald-600 hover:underline text-sm">
-                                            +1 (800) VISA-HELP
+                                        <a href="tel:+1-323-286-4541" className="text-emerald-600 hover:underline text-sm">
+                                            +1 323 286 4541
                                         </a>
                                     </div>
                                 </div>

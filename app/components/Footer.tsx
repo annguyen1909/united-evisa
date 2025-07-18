@@ -226,13 +226,13 @@ export function Footer({
                                 <li className="flex items-center gap-3">
                                     <Phone className="h-5 w-5 text-emerald-500" />
                                     <span className="text-slate-400 text-sm">
-                                        +1 234 567 8990
+                                        +1 323 286 4541
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">
                                     <Mail className="h-5 w-5 text-emerald-500" />
                                     <span className="text-slate-400 text-sm">
-                                        support@unitedevisa.com
+                                        visa@unitedevisa.com
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">

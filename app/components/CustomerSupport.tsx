@@ -74,7 +74,7 @@ export default function CustomerSupport() {
               <div className="mt-auto flex flex-col gap-2 items-center">
                 <span className="text-xs text-slate-500">Available 24/7</span>
                 <Button variant="outline" size="sm" className="border-emerald-200 text-emerald-700 hover:bg-emerald-50">
-                  +1 800 123 4567
+                  +1 323 286 4541
                 </Button>
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function CustomerSupport() {
               <div className="mt-auto flex flex-col gap-2 items-center">
                 <span className="text-xs text-slate-500">Reply within 1 hour</span>
                 <Button variant="outline" size="sm" className="border-amber-200 text-amber-700 hover:bg-amber-50">
-                  support@evisa.com
+                  visa@unitedevisa.com
                 </Button>
               </div>
             </div>

@@ -181,10 +181,10 @@ export default function SupportSidebar() {
                             <Mail className="w-4 h-4 text-emerald-700" />
                         </div>
                         <a 
-                            href="mailto:support@unitedevisa.com" 
+                            href="mailto:visa@unitedevisa.com" 
                             className="text-emerald-700 hover:underline transition-colors"
                         >
-                            support@unitedevisa.com
+                            visa@unitedevisa.com
                         </a>
                     </div>
                     
@@ -196,7 +196,7 @@ export default function SupportSidebar() {
                                 <Phone className="w-4 h-4 text-slate-700" />
                             </div>
                             <div>
-                                <p className="text-slate-700"><strong>US:</strong> +1 555 000 0000</p>
+                                <p className="text-slate-700"><strong>US:</strong> +1 323 286 4541</p>
                             </div>
                         </div>
                         
@@ -205,7 +205,7 @@ export default function SupportSidebar() {
                                 <Phone className="w-4 h-4 text-slate-700" />
                             </div>
                             <div>
-                                <p className="text-slate-700"><strong>UK:</strong> +44 5555 000000</p>
+                                <p className="text-slate-700"><strong>UK:</strong> +1 323 286 4541</p>
                             </div>
                         </div>
                     </div>

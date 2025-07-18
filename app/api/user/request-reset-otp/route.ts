@@ -19,7 +19,7 @@ async function sendOtpEmail(email: string, otp: string) {
   });
   const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/reset-password?token=${otp}`;
   await transporter.sendMail({
-    from: process.env.SMTP_FROM || 'no-reply@evisa.com',
+    from: process.env.SMTP_FROM || 'visa@unitedevisa.com',
     to: email,
     subject: "United eVisa - Password Reset Link",
     text: `Click the link below to reset your password. This link will expire in ${OTP_EXPIRES_MINUTES} minutes.\n\n${resetLink}`,

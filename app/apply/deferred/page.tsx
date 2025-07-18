@@ -289,9 +289,9 @@ function DeferredContent() {
                                         <p className="font-medium text-slate-800">Email Submission (Recommended)</p>
                                         <p className="text-sm text-slate-600">
                                             Send documents to{' '}
-                                            <a href={`mailto:support@unitedevisa.com?subject=Deferred Application ${applicationData.applicationId}`} 
+                                            <a href={`mailto:visa@unitedevisa.com?subject=Deferred Application ${applicationData.applicationId}`} 
                                                className="text-emerald-600 underline">
-                                                support@unitedevisa.com
+                                                visa@unitedevisa.com
                                             </a>{' '}
                                             with subject: "Deferred Application {applicationData.applicationId}"
                                         </p>
@@ -371,9 +371,9 @@ function DeferredContent() {
                                     <Mail className="h-5 w-5 text-emerald-600" />
                                     <div>
                                         <p className="font-medium text-slate-800">Email Support</p>
-                                        <a href={`mailto:support@unitedevisa.com?subject=Deferred Application ${applicationData.applicationId}`} 
+                                        <a href={`mailto:visa@unitedevisa.com?subject=Deferred Application ${applicationData.applicationId}`} 
                                            className="text-emerald-600 hover:underline text-sm">
-                                            support@unitedevisa.com
+                                            visa@unitedevisa.com
                                         </a>
                                     </div>
                                 </div>
@@ -381,8 +381,8 @@ function DeferredContent() {
                                     <Phone className="h-5 w-5 text-emerald-600" />
                                     <div>
                                         <p className="font-medium text-slate-800">Phone Support</p>
-                                        <a href="tel:+1-800-VISA-HELP" className="text-emerald-600 hover:underline text-sm">
-                                            +1 (800) VISA-HELP
+                                        <a href="tel:+1-323-286-4541" className="text-emerald-600 hover:underline text-sm">
+                                            +1 323 286 4541
                                         </a>
                                     </div>
                                 </div>

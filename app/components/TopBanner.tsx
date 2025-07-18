@@ -39,7 +39,7 @@ export default function TopBanner() {
           
           <div className="flex items-center gap-1.5">
             <PhoneCall className="h-3.5 w-3.5 text-amber-300" />
-            <p>+ 1 888 888 8888</p>
+            <p>+1 323 286 4541</p>
           </div>
           
           <Link href="/support" className="flex items-center gap-1.5 hover:text-amber-300 transition-colors">

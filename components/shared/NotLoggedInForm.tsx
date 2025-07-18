@@ -20,13 +20,13 @@ export default function NotLoggedInInstructions({ applicationId, email }: { appl
         <div className="mb-4 text-center">
           <span className="font-semibold">Alternative: Email Submission</span>
           <br />
-          You can also email your documents directly to <a href="mailto:Visa@YourDomain.com" className="text-blue-600 underline">Visa@YourDomain.com</a> with the subject line: <b>Documents for Application {applicationId}</b>
+                          You can also email your documents directly to <a href="mailto:visa@unitedevisa.com" className="text-blue-600 underline">visa@unitedevisa.com</a> with the subject line: <b>Documents for Application {applicationId}</b>
         </div>
         <div className="flex justify-center gap-4 mt-6">
           <Link href={`/login${email ? `?email=${encodeURIComponent(email)}` : ""}`}>
             <Button>Login Now</Button>
           </Link>
-          <a href={`mailto:Visa@YourDomain.com?subject=Documents for Application ${applicationId}`}>
+                          <a href={`mailto:visa@unitedevisa.com?subject=Documents for Application ${applicationId}`}>
             <Button variant="outline">Email Documents</Button>
           </a>
         </div>

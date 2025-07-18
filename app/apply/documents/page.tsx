@@ -462,7 +462,7 @@ function DocumentsContent({ user }: { user: any }) {
                                     <h3 className="font-semibold text-blue-800 mb-1">Need Assistance?</h3>
                                     <p className="text-sm text-blue-700">
                                         Our support team is available to help with your document upload.
-                                        Contact us at <a href="mailto:support@unitedevisa.com" className="font-medium underline">support@unitedevisa.com</a>
+                                        Contact us at <a href="mailto:visa@unitedevisa.com" className="font-medium underline">visa@unitedevisa.com</a>
                                     </p>
                                 </div>
                             </div>

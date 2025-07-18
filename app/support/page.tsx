@@ -70,24 +70,24 @@ export default function SupportPage() {
           country: "USA",
           flag: "🇺🇸",
           address: "123 Business Ave, Suite 100, New York, NY 10001",
-          phone: "+1 800 123 4567",
-          email: "support-us@unitedvisa.com",
+          phone: "+1 323 286 4541",
+          email: "visa@unitedevisa.com",
           hours: "24/7"
         },
         {
           country: "Canada", 
           flag: "🇨🇦",
           address: "789 Commerce Blvd, Toronto, ON M5H 3M7",
-          phone: "+1 416 123 4567", 
-          email: "support-ca@unitedvisa.com",
+          phone: "+1 323 286 4541", 
+          email: "visa@unitedevisa.com",
           hours: "24/7"
         },
         {
           country: "Brazil",
           flag: "🇧🇷", 
           address: "Av. Paulista 1000, São Paulo, SP 01310-100",
-          phone: "+55 11 1234 5678",
-          email: "support-br@unitedvisa.com", 
+          phone: "+1 323 286 4541",
+          email: "visa@unitedevisa.com", 
           hours: "Mon-Fri 8AM-6PM"
         }
       ]
@@ -99,24 +99,24 @@ export default function SupportPage() {
           country: "UK",
           flag: "🇬🇧",
           address: "45 Business Street, London, SW1A 1AA",
-          phone: "+44 20 7123 4567",
-          email: "support-uk@unitedvisa.com",
+          phone: "+1 323 286 4541",
+          email: "visa@unitedevisa.com",
           hours: "24/7"
         },
         {
           country: "Germany",
           flag: "🇩🇪",
           address: "Friedrichstraße 123, 10117 Berlin",
-          phone: "+49 30 1234 5678",
-          email: "support-de@unitedvisa.com",
+          phone: "+1 323 286 4541",
+          email: "visa@unitedevisa.com",
           hours: "Mon-Fri 9AM-6PM"
         },
         {
           country: "UAE",
           flag: "🇦🇪",
           address: "Sheikh Zayed Road, Dubai",
-          phone: "+971 4 123 4567",
-          email: "support-ae@unitedvisa.com",
+          phone: "+1 323 286 4541",
+          email: "visa@unitedevisa.com",
           hours: "Sun-Thu 9AM-6PM"
         }
       ]
@@ -128,24 +128,24 @@ export default function SupportPage() {
           country: "Australia",
           flag: "🇦🇺", 
           address: "321 Corporate Plaza, Sydney, NSW 2000",
-          phone: "+61 2 9123 4567",
-          email: "support-au@unitedvisa.com",
+          phone: "+1 323 286 4541",
+          email: "visa@unitedevisa.com",
           hours: "Mon-Fri 9AM-5PM"
         },
         {
           country: "Singapore",
           flag: "🇸🇬",
           address: "1 Marina Bay, Singapore 018989",
-          phone: "+65 6123 4567",
-          email: "support-sg@unitedvisa.com", 
+          phone: "+1 323 286 4541",
+          email: "visa@unitedevisa.com", 
           hours: "Mon-Fri 9AM-6PM"
         },
         {
           country: "Japan",
           flag: "🇯🇵",
           address: "Tokyo Station, Tokyo 100-0005",
-          phone: "+81 3 1234 5678",
-          email: "support-jp@unitedvisa.com",
+          phone: "+1 323 286 4541",
+          email: "visa@unitedevisa.com",
           hours: "Mon-Fri 9AM-6PM"
         }
       ]
@@ -314,11 +314,11 @@ export default function SupportPage() {
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
                         <span className="text-xs">🇺🇸</span>
-                        <span className="text-sm font-medium">+1 800 123 4567</span>
+                        <span className="text-sm font-medium">+1 323 286 4541</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <Mail className="h-3 w-3 text-slate-400" />
-                        <span className="text-sm">support@unitedvisa.com</span>
+                        <span className="text-sm">visa@unitedevisa.com</span>
                       </div>
                     </div>
                   </div>
@@ -337,11 +337,11 @@ export default function SupportPage() {
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
                         <span className="text-xs">🇺🇸</span>
-                        <span className="text-sm font-medium">+1 800 987 6543</span>
+                        <span className="text-sm font-medium">+1 323 286 4541</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <Mail className="h-3 w-3 text-slate-400" />
-                        <span className="text-sm">feedback@unitedvisa.com</span>
+                        <span className="text-sm">visa@unitedevisa.com</span>
                       </div>
                     </div>
                   </div>

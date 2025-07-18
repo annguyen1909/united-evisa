@@ -5,6 +5,7 @@ import TopBanner from "./components/TopBanner";
 import Navbar from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Providers } from "./providers";
+import ContactWidget from "../components/ui/ContactWidget";
 
 // Primary fonts
 const geistSans = Geist({
@@ -85,6 +86,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <ContactWidget />
         </Providers>
       </body>
     </html>

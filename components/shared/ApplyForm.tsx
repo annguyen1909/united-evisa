@@ -38,6 +38,101 @@ import SupportSidebar from "./SupportSidebar";
 // Fixed service fee for all countries
 const FIXED_SERVICE_FEE = 59.99;
 
+// Comprehensive country codes with flags
+const COUNTRY_CODES = [
+  { code: "+1", country: "United States", flag: "🇺🇸" },
+  { code: "+44", country: "United Kingdom", flag: "🇬🇧" },
+  { code: "+61", country: "Australia", flag: "🇦🇺" },
+  { code: "+91", country: "India", flag: "🇮🇳" },
+  { code: "+81", country: "Japan", flag: "🇯🇵" },
+  { code: "+49", country: "Germany", flag: "🇩🇪" },
+  { code: "+33", country: "France", flag: "🇫🇷" },
+  { code: "+39", country: "Italy", flag: "🇮🇹" },
+  { code: "+86", country: "China", flag: "🇨🇳" },
+  { code: "+7", country: "Russia", flag: "🇷🇺" },
+  { code: "+34", country: "Spain", flag: "🇪🇸" },
+  { code: "+55", country: "Brazil", flag: "🇧🇷" },
+  { code: "+27", country: "South Africa", flag: "🇿🇦" },
+  { code: "+82", country: "South Korea", flag: "🇰🇷" },
+  { code: "+65", country: "Singapore", flag: "🇸🇬" },
+  { code: "+62", country: "Indonesia", flag: "🇮🇩" },
+  { code: "+60", country: "Malaysia", flag: "🇲🇾" },
+  { code: "+63", country: "Philippines", flag: "🇵🇭" },
+  { code: "+66", country: "Thailand", flag: "🇹🇭" },
+  { code: "+84", country: "Vietnam", flag: "🇻🇳" },
+  { code: "+20", country: "Egypt", flag: "🇪🇬" },
+  { code: "+234", country: "Nigeria", flag: "🇳🇬" },
+  { code: "+92", country: "Pakistan", flag: "🇵🇰" },
+  { code: "+880", country: "Bangladesh", flag: "🇧🇩" },
+  { code: "+351", country: "Portugal", flag: "🇵🇹" },
+  { code: "+90", country: "Turkey", flag: "🇹🇷" },
+  { code: "+31", country: "Netherlands", flag: "🇳🇱" },
+  { code: "+32", country: "Belgium", flag: "🇧🇪" },
+  { code: "+46", country: "Sweden", flag: "🇸🇪" },
+  { code: "+47", country: "Norway", flag: "🇳🇴" },
+  { code: "+358", country: "Finland", flag: "🇫🇮" },
+  { code: "+43", country: "Austria", flag: "🇦🇹" },
+  { code: "+420", country: "Czech Republic", flag: "🇨🇿" },
+  { code: "+421", country: "Slovakia", flag: "🇸🇰" },
+  { code: "+48", country: "Poland", flag: "🇵🇱" },
+  { code: "+36", country: "Hungary", flag: "🇭🇺" },
+  { code: "+40", country: "Romania", flag: "🇷🇴" },
+  { code: "+386", country: "Slovenia", flag: "🇸🇮" },
+  { code: "+385", country: "Croatia", flag: "🇭🇷" },
+  { code: "+381", country: "Serbia", flag: "🇷🇸" },
+  { code: "+380", country: "Ukraine", flag: "🇺🇦" },
+  { code: "+994", country: "Azerbaijan", flag: "🇦🇿" },
+  { code: "+995", country: "Georgia", flag: "🇬🇪" },
+  { code: "+972", country: "Israel", flag: "🇮🇱" },
+  { code: "+98", country: "Iran", flag: "🇮🇷" },
+  { code: "+964", country: "Iraq", flag: "🇮🇶" },
+  { code: "+962", country: "Jordan", flag: "🇯🇴" },
+  { code: "+961", country: "Lebanon", flag: "🇱🇧" },
+  { code: "+965", country: "Kuwait", flag: "🇰🇼" },
+  { code: "+968", country: "Oman", flag: "🇴🇲" },
+  { code: "+974", country: "Qatar", flag: "🇶🇦" },
+  { code: "+966", country: "Saudi Arabia", flag: "🇸🇦" },
+  { code: "+971", country: "United Arab Emirates", flag: "🇦🇪" },
+  { code: "+973", country: "Bahrain", flag: "🇧🇭" },
+  { code: "+961", country: "Lebanon", flag: "🇱🇧" },
+  { code: "+94", country: "Sri Lanka", flag: "🇱🇰" },
+  { code: "+880", country: "Bangladesh", flag: "🇧🇩" },
+  { code: "+856", country: "Laos", flag: "🇱🇦" },
+  { code: "+855", country: "Cambodia", flag: "🇰🇭" },
+  { code: "+95", country: "Myanmar", flag: "🇲🇲" },
+  { code: "+65", country: "Singapore", flag: "🇸🇬" },
+  { code: "+64", country: "New Zealand", flag: "🇳🇿" },
+  { code: "+675", country: "Papua New Guinea", flag: "🇵🇬" },
+  { code: "+679", country: "Fiji", flag: "🇫🇯" },
+  { code: "+682", country: "Cook Islands", flag: "🇨🇰" },
+  { code: "+685", country: "Samoa", flag: "🇼🇸" },
+  { code: "+686", country: "Kiribati", flag: "🇰🇮" },
+  { code: "+691", country: "Micronesia", flag: "🇫🇲" },
+  { code: "+692", country: "Marshall Islands", flag: "🇲🇭" },
+  { code: "+64", country: "New Zealand", flag: "🇳🇿" },
+  { code: "+61", country: "Australia", flag: "🇦🇺" },
+  { code: "+672", country: "Antarctica", flag: "🇦🇶" },
+  { code: "+1-268", country: "Antigua and Barbuda", flag: "🇦🇬" },
+  { code: "+1-242", country: "Bahamas", flag: "🇧🇸" },
+  { code: "+1-246", country: "Barbados", flag: "🇧🇧" },
+  { code: "+1-441", country: "Bermuda", flag: "🇧🇲" },
+  { code: "+1-284", country: "British Virgin Islands", flag: "🇻🇬" },
+  { code: "+1-345", country: "Cayman Islands", flag: "🇰🇾" },
+  { code: "+1-767", country: "Dominica", flag: "🇩🇲" },
+  { code: "+1-809", country: "Dominican Republic", flag: "🇩🇴" },
+  { code: "+1-473", country: "Grenada", flag: "🇬🇩" },
+  { code: "+1-876", country: "Jamaica", flag: "🇯🇲" },
+  { code: "+1-664", country: "Montserrat", flag: "🇲🇸" },
+  { code: "+1-869", country: "Saint Kitts and Nevis", flag: "🇰🇳" },
+  { code: "+1-758", country: "Saint Lucia", flag: "🇱🇨" },
+  { code: "+1-784", country: "Saint Vincent and the Grenadines", flag: "🇻🇨" },
+  { code: "+1-721", country: "Sint Maarten", flag: "🇸🇽" },
+  { code: "+1-868", country: "Trinidad and Tobago", flag: "🇹🇹" },
+  { code: "+1-649", country: "Turks and Caicos Islands", flag: "🇹🇨" },
+  { code: "+1-340", country: "U.S. Virgin Islands", flag: "🇻🇮" },
+  // ... (add more as needed for full coverage)
+];
+
 export default function ApplyForm({ user }: { user: any }) {
   console.log('ApplyForm user:', user);
   console.log('ApplyForm isLoggedIn:', !!user);
@@ -55,7 +150,7 @@ export default function ApplyForm({ user }: { user: any }) {
     fullName: "",
     email: "",
     phone: "",
-    countryCode: "",
+    countryCode: "+1", // Default to +1
     gender: "",
   });
   // Application-level port state
@@ -64,6 +159,14 @@ export default function ApplyForm({ user }: { user: any }) {
   const [hydrated, setHydrated] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
   const [countryName, setCountryName] = useState("");
+  
+  // Date picker popover states
+  const [startDateOpen, setStartDateOpen] = useState(false);
+  const [endDateOpen, setEndDateOpen] = useState(false);
+  
+  // Country code dropdown state
+  const [countryCodeOpen, setCountryCodeOpen] = useState(false);
+  const [countryCodeSearch, setCountryCodeSearch] = useState("");
 
   useEffect(() => {
     if (COUNTRIES && COUNTRIES.length > 0) setHydrated(true);
@@ -567,7 +670,7 @@ export default function ApplyForm({ user }: { user: any }) {
                     <Label className="text-xs text-slate-500 mb-1 block">
                       From
                     </Label>
-                    <Popover>
+                    <Popover open={startDateOpen} onOpenChange={setStartDateOpen}>
                       <PopoverTrigger asChild>
                         <button
                           type="button"
@@ -600,6 +703,7 @@ export default function ApplyForm({ user }: { user: any }) {
                               ? moment(date).format("YYYY-MM-DD")
                               : "";
                             setStayingStart(newStart);
+                            setStartDateOpen(false); // Close popover
                             // Validate travel duration if both dates are set
                             if (newStart && stayingEnd) {
                               const travelDays = Math.floor(
@@ -659,7 +763,7 @@ export default function ApplyForm({ user }: { user: any }) {
                     <Label className="text-xs text-slate-500 mb-1 block">
                       To
                     </Label>
-                    <Popover>
+                    <Popover open={endDateOpen} onOpenChange={setEndDateOpen}>
                       <PopoverTrigger asChild>
                         <button
                           type="button"
@@ -692,6 +796,7 @@ export default function ApplyForm({ user }: { user: any }) {
                               ? moment(date).format("YYYY-MM-DD")
                               : "";
                             setStayingEnd(newEnd);
+                            setEndDateOpen(false); // Close popover
                             // Validate travel duration if both dates are set
                             if (stayingStart && newEnd) {
                               const travelDays = Math.floor(
@@ -868,26 +973,64 @@ export default function ApplyForm({ user }: { user: any }) {
                 <div className="grid grid-cols-3 gap-2">
                   <div className="space-y-1.5">
                     <Label className="text-sm font-medium">Country Code</Label>
-                    <Input
-                      type="text"
-                      className={cn(
-                        "focus:ring-emerald-500",
-                        isLoggedIn && "bg-slate-50 text-slate-500",
-                        errors.countryCode && "border-red-500 focus:ring-red-500"
-                      )}
-                      value={
-                        isLoggedIn ? user?.areaCode ?? "" : contact.countryCode
-                      }
-                      readOnly={isLoggedIn}
-                      onChange={(e) =>
-                        setContact((c) => ({
-                          ...c,
-                          countryCode: e.target.value,
-                        }))
-                      }
-                      placeholder="+1"
-                      required
-                    />
+                    <Popover open={countryCodeOpen} onOpenChange={setCountryCodeOpen}>
+                      <PopoverTrigger asChild>
+                        <button
+                          type="button"
+                          className={cn(
+                            "w-full flex items-center justify-between rounded-md border px-3 py-2 bg-white text-left text-sm shadow-sm transition-colors focus:outline-none focus:ring-1",
+                            isLoggedIn && "bg-slate-50 text-slate-500",
+                            errors.countryCode && "border-red-500 focus:ring-red-500"
+                          )}
+                          disabled={isLoggedIn}
+                        >
+                          <span className="flex items-center gap-2">
+                            {COUNTRY_CODES.find(c => c.code === (isLoggedIn ? user?.areaCode ?? "+1" : contact.countryCode))?.flag || ""}
+                            {isLoggedIn ? user?.areaCode ?? "+1" : contact.countryCode}
+                          </span>
+                          <span className="ml-2 text-xs text-slate-400">▼</span>
+                        </button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-64 p-2">
+                        <Input
+                          placeholder="Search country or code"
+                          value={countryCodeSearch}
+                          onChange={e => setCountryCodeSearch(e.target.value)}
+                          className="mb-2"
+                          autoFocus
+                        />
+                        <div className="max-h-48 overflow-y-auto">
+                          {COUNTRY_CODES.filter(c =>
+                            c.country.toLowerCase().includes(countryCodeSearch.toLowerCase()) ||
+                            c.code.includes(countryCodeSearch)
+                          ).map((c, i) => (
+                            <button
+                              key={`${c.code}-${c.country}-${i}`}
+                              type="button"
+                              className={cn(
+                                "w-full flex items-center gap-2 px-2 py-1 rounded hover:bg-emerald-50 text-left",
+                                contact.countryCode === c.code && "bg-emerald-100 font-semibold"
+                              )}
+                              onClick={() => {
+                                setContact(prev => ({ ...prev, countryCode: c.code }));
+                                setCountryCodeOpen(false);
+                                setCountryCodeSearch("");
+                              }}
+                            >
+                              <span className="text-lg">{c.flag}</span>
+                              <span className="flex-1">{c.country}</span>
+                              <span className="text-xs text-slate-500">{c.code}</span>
+                            </button>
+                          ))}
+                          {COUNTRY_CODES.filter(c =>
+                            c.country.toLowerCase().includes(countryCodeSearch.toLowerCase()) ||
+                            c.code.includes(countryCodeSearch)
+                          ).length === 0 && (
+                            <div className="text-xs text-slate-400 px-2 py-1">No results</div>
+                          )}
+                        </div>
+                      </PopoverContent>
+                    </Popover>
                     {errors.countryCode && (
                       <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
                         <XCircle className="h-3.5 w-3.5" />
@@ -982,7 +1125,7 @@ export default function ApplyForm({ user }: { user: any }) {
 
           {/* Order Summary */}
           <div className="space-y-6">
-            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
+            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
                 Order Summary
               </h2>

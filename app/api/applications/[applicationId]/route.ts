@@ -66,16 +66,16 @@ export async function GET(
     } else {
       // Not logged in: check guest applicationId and email from cookie
       const cookieHeader = request.headers.get('cookie');
-      let guestMap: Record<string, string> = {};
+      let guestIds: string[] = [];
       let guestEmail = undefined;
       if (cookieHeader) {
-        // guestApplications is a JSON object: { [applicationId]: email }
-        const match = cookieHeader.match(/guestApplications=([^;]+)/);
+        // guestApplicationIds is a JSON array of application IDs
+        const match = cookieHeader.match(/guestApplicationIds=([^;]+)/);
         if (match && match[1]) {
           try {
-            guestMap = JSON.parse(decodeURIComponent(match[1]));
+            guestIds = JSON.parse(decodeURIComponent(match[1]));
           } catch (e) {
-            guestMap = {};
+            guestIds = [];
           }
         }
         // Try to get guestEmail cookie (optional, for extra check)
@@ -88,14 +88,9 @@ export async function GET(
           }
         }
       }
-      // Check if applicationId is in guestApplications and email matches
-      const appEmail = guestMap[applicationId];
-      if (!appEmail) {
+      // Check if applicationId is in guestApplicationIds
+      if (!guestIds.includes(applicationId)) {
         return NextResponse.json({ error: "Unauthorized (guest)" }, { status: 401 });
-      }
-      // If guestEmail cookie is set, require it to match as well
-      if (guestEmail && appEmail !== guestEmail) {
-        return NextResponse.json({ error: "Unauthorized (guest-email)" }, { status: 401 });
       }
     }
     return NextResponse.json(application);

@@ -136,6 +136,8 @@ function DocumentsContent({ user }: { user: any }) {
 
         const maxFileSize = 20 * 1024 * 1024; // 20MB
         const maxFiles = 15 * (applicationData.passengers?.length || 1);
+        console.log('Documents page - passengers length:', applicationData.passengers?.length);
+        console.log('Documents page - maxFiles:', maxFiles);
         const allowedTypes = [
             'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp',
             'application/pdf', 'text/plain', 'application/msword',

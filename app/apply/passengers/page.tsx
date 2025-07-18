@@ -91,10 +91,13 @@ function PassengersContent() {
 
         // Initialize passengers based on application data
         const passengerCount = data.passengerCount || 1;
+        console.log('Passengers page - passengerCount from DB:', passengerCount);
+        console.log('Passengers page - existing passengers:', data.passengers);
 
         // Use existing passengers or create empty ones
-        if (data.Passenger && data.Passenger.length > 0) {
-          setPassengers(data.Passenger.map((p: any) => ({
+        if (data.passengers && data.passengers.length > 0) {
+          console.log('Using existing passengers from DB');
+          setPassengers(data.passengers.map((p: any) => ({
             id: p.id,
             fullName: p.fullName || "",
             nationality: p.nationality || "",
@@ -103,6 +106,7 @@ function PassengersContent() {
             gender: p.gender || ""
           })));
         } else {
+          console.log('Creating empty passenger forms based on count:', passengerCount);
           // Create empty passenger forms based on count
           setPassengers(Array.from({ length: passengerCount }, () => ({
             fullName: "",
@@ -126,52 +130,46 @@ function PassengersContent() {
     }
   }
 
-  // Rehydrate country and visa objects from COUNTRIES using stored IDs
-  const country = useMemo(() => {
-    if (!applicationData?.destination?.code) return null;
-    return COUNTRIES.find(c =>
-      c.code === applicationData.destination.code ||
-      c.slug === applicationData.destination.id
-    );
-  }, [applicationData]);
-
+  // Get visa type from database (applicationData includes visaType and destination)
   const visa = useMemo(() => {
-    if (!country || !applicationData?.visaType?.id) {
-      console.log('[visa debug] country or visaType.id missing', { country, applicationData });
+    if (!applicationData?.visaType) {
+      console.log('[visa debug] visaType missing from applicationData', { applicationData });
       return null;
     }
-    // Always use canonical id for lookup (strip -group-...)
-    const canonicalId = applicationData.visaType.id.split('-group-')[0];
-    const foundVisa = country.visaTypes?.find(v => v.id === canonicalId);
-    if (!foundVisa) {
-      console.log('[visa debug] visa not found in country.visaTypes', {
-        visaTypeId: applicationData.visaType.id,
-        canonicalId,
-        countryVisaTypes: country.visaTypes?.map(v => v.id)
-      });
-    }
-    return foundVisa;
-  }, [country, applicationData]);
+    return applicationData.visaType;
+  }, [applicationData]);
 
-  // Get allowed nationalities from the visa type
+  // Get allowed nationalities from the database visa type
   const allowedNationalities = useMemo(() => {
     if (!visa || !visa.allowedNationalities) {
+      console.log('[nationality debug] No allowedNationalities found, using all nationalities');
       return NATIONALITIES;
     }
 
-    if (Array.isArray(visa.allowedNationalities)) {
-      if (visa.allowedNationalities.length === 0) {
+    // Parse the allowedNationalities JSON if it's a string
+    let allowedCodes: string[] = [];
+    if (typeof visa.allowedNationalities === 'string') {
+      try {
+        allowedCodes = JSON.parse(visa.allowedNationalities);
+      } catch (e) {
+        console.error('Error parsing allowedNationalities:', e);
         return NATIONALITIES;
       }
-      const allowedCodes = visa.allowedNationalities.map(code =>
-        code.toUpperCase()
-      );
-      return NATIONALITIES.filter((c: { code: string; }) =>
-        allowedCodes.includes(c.code.toUpperCase())
-      );
+    } else if (Array.isArray(visa.allowedNationalities)) {
+      allowedCodes = visa.allowedNationalities;
     }
 
+    if (allowedCodes.length === 0) {
+      console.log('[nationality debug] Empty allowedNationalities, using all nationalities');
     return NATIONALITIES;
+    }
+
+    console.log('[nationality debug] Filtering nationalities by:', allowedCodes);
+    const filtered = NATIONALITIES.filter((c: { code: string; }) =>
+      allowedCodes.includes(c.code.toUpperCase())
+    );
+    console.log('[nationality debug] Filtered nationalities count:', filtered.length);
+    return filtered;
   }, [visa]);
 
   const updatePassenger = (
@@ -294,9 +292,9 @@ function PassengersContent() {
       setIsLoading(false);
     }
   }
-  // Memoized govFee calculation for India, updates when passengers, country, or visa change
+  // Memoized govFee calculation for India, updates when passengers or visa change
   const govFee = useMemo(() => {
-    if (country?.code?.toLowerCase() === "in" && visa && passengers.length > 0) {
+    if (applicationData?.destination?.code?.toLowerCase() === "in" && visa && passengers.length > 0) {
       const canonicalId = visa.id.split('-group-')[0];
       const fees = passengers.map((p) => calculateIndiaVisaFee(canonicalId, p.nationality));
       const validFees = fees.filter((fee): fee is number => typeof fee === 'number' && !isNaN(fee));
@@ -308,11 +306,15 @@ function PassengersContent() {
         return validFees.reduce((sum, fee) => sum + fee, 0);
       }
     } else {
-      console.log('[govFee debug] Not India or no visa/passengers', { country, visa, passengers });
-      // For non-India, multiply visa.govFee by passenger count
-      return typeof visa?.govFee === 'number' ? visa.govFee * passengers.length : null;
+      console.log('[govFee debug] Not India or no visa/passengers', { 
+        destination: applicationData?.destination, 
+        visa, 
+        passengers 
+      });
+      // For non-India, multiply visa.fees by passenger count
+      return typeof visa?.fees === 'number' ? visa.fees * passengers.length : null;
     }
-  }, [country, visa, passengers]);
+  }, [applicationData?.destination, visa, passengers]);
 
   // Order summary
   let orderSummary = null;
@@ -320,7 +322,7 @@ function PassengersContent() {
     const destination = applicationData.destination?.name ?? "---";
     // Always show canonical visa name (no group or suffix)
     let visaName = applicationData.visaType?.name ?? "---";
-    if (country?.code?.toLowerCase() === "in" && visa) {
+    if (applicationData?.destination?.code?.toLowerCase() === "in" && visa) {
       // For India, get the canonical visa type name from the config (by id)
       // The canonical visa type id is the part before any '-group-' in the id
       const canonicalId = visa.id.split('-group-')[0];

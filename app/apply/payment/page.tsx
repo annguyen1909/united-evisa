@@ -66,6 +66,12 @@ function PaymentContent() {
                     return;
                 }
                 
+                // Check if application status allows payment (like Sri Lanka)
+                if (data.status !== 'Waiting for Payment' && data.status !== 'Lead Open') {
+                    setStepNotAllowed(true);
+                    return;
+                }
+                
                 // Process data for display and payment
                 const country = COUNTRIES.find(c => 
                     c.code === data.destination?.code || 
@@ -125,7 +131,7 @@ function PaymentContent() {
     if (applicationData) {
         let passengersArr = Array.isArray(applicationData.passengers) && applicationData.passengers.length > 0
             ? applicationData.passengers
-            : (Array.isArray(applicationData.Passenger) && applicationData.Passenger.length > 0 ? applicationData.Passenger : []);
+            : [];
         const passenger = applicationData.passengerCount || passengersArr.length || 1;
         const serviceFee = FIXED_SERVICE_FEE * passenger;
         let govFee: number | null = null;
@@ -138,7 +144,7 @@ function PaymentContent() {
             const canonicalId = visa.id.split('-group-')[0];
             const fees = passengersArr.map((p: any) => calculateIndiaVisaFee(canonicalId, p.nationality));
             const validFees = fees.filter((fee: any) => typeof fee === 'number' && !isNaN(fee));
-            console.log('[India govFee debug - payment step]', { canonicalId, passengersArr, applicationDataPassengers: applicationData.passengers, applicationDataPassenger: applicationData.Passenger, fees, validFees });
+            console.log('[India govFee debug - payment step]', { canonicalId, passengersArr, applicationDataPassengers: applicationData.passengers, fees, validFees });
             if (validFees.length > 0) {
                 govFee = validFees.reduce((sum: number, fee: number) => sum + fee, 0);
             } else {

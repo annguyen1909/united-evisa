@@ -72,7 +72,7 @@ export default function ContactWidget() {
   // Check if we should show agent image or 24/7 support bubble based on current page
   useEffect(() => {
     const hideAgentPages = ['/apply', '/contact', '/applications', '/embassy'];
-    const hideAgentPatterns = ['/faq/', '/check-requirement/', '/profile/'];
+    const hideAgentPatterns = ['/faq/', '/check-requirement/', '/profile/', '/apply/'];
 
     const shouldHideAgent =
       hideAgentPages.includes(pathname) ||
@@ -618,57 +618,57 @@ export default function ContactWidget() {
       {/* Contact Widget - Fixed positioning with proper z-index */}
       <div className="fixed bottom-2 right-2 z-[9999] sm:bottom-4 sm:right-4 md:bottom-4 md:left-4 md:right-auto pointer-events-none">
         <div className="pointer-events-auto">
-          {/* Desktop: Show agent image or 24/7 support bubble based on page and state */}
-          {!open && showAgentImage && (
-            <div
+        {/* Desktop: Show agent image or 24/7 support bubble based on page and state */}
+        {!open && showAgentImage && (
+          <div
               className="hidden md:block fixed left-4 bottom-16 z-[40] select-none"
-              style={{ width: 320, height: 380 }}
-            >
-              {/* ExpertAgent PNG, directly behind button, but moved down */}
-              <div
+            style={{ width: 320, height: 380 }}
+          >
+            {/* ExpertAgent PNG, directly behind button, but moved down */}
+            <div
                 className="absolute left-1/2 -translate-x-1/2 bottom-1 z-10 cursor-pointer"
-                style={{ width: 240, height: 320 }}
-                onClick={handleAgentClick}
-              >
-                <Image
+              style={{ width: 240, height: 320 }}
+              onClick={handleAgentClick}
+            >
+              <Image
                   src="/images/ExpertAgent.png"
                   alt="United eVisa Expert Agent - 24/7 Live Support"
-                  width={240}
-                  height={320}
-                  priority
-                  draggable={false}
-                  className="drop-shadow-2xl agent-blur"
-                />
-              </div>
+                width={240}
+                height={320}
+                priority
+                draggable={false}
+                className="drop-shadow-2xl agent-blur"
+              />
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Desktop: Show 24/7 support bubble when agent is hidden or on specific pages */}
-          {!open && !showAgentImage && (
+        {/* Desktop: Show 24/7 support bubble when agent is hidden or on specific pages */}
+        {!open && !showAgentImage && (
             <div className="hidden md:block mb-2 ml-2 animate-fade-in">
-              <div className="bg-white text-[#0A284B] px-4 py-2 rounded-xl shadow-lg border border-blue-100 text-xs sm:text-sm font-semibold flex items-center gap-2">
-                <span role="img" aria-label="chat">
-                  💬
-                </span>{' '}
-                Real human support 24/7!
-              </div>
+            <div className="bg-white text-[#0A284B] px-4 py-2 rounded-xl shadow-lg border border-blue-100 text-xs sm:text-sm font-semibold flex items-center gap-2">
+              <span role="img" aria-label="chat">
+                💬
+              </span>{' '}
+              Real human support 24/7!
             </div>
-          )}
+          </div>
+        )}
 
           {/* Mobile: Simplified bubble */}
-          {!open && (
+        {!open && (
             <div className="block md:hidden mb-1 animate-fade-in">
               <div className="bg-white text-[#0A284B] px-2 py-1 rounded-lg shadow-lg border border-blue-100 text-xs font-semibold flex items-center gap-1">
-                <span role="img" aria-label="chat">
-                  💬
-                </span>{' '}
+              <span role="img" aria-label="chat">
+                💬
+              </span>{' '}
                 24/7
-              </div>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Floating Button (Mobile) */}
-          {!open && (
+        {/* Floating Button (Mobile) */}
+        {!open && (
             <button
               onClick={() => setOpen(true)}
               className="block md:hidden flex items-center gap-1 px-2 py-2 rounded-full shadow-lg bg-gradient-to-r from-[#0A284B] to-[#1E3A8A] text-white font-medium hover:scale-105 transition-all focus:outline-none animate-shake"
@@ -678,287 +678,287 @@ export default function ContactWidget() {
               <FiMessageCircle className="w-4 h-4" />
               <span className="text-xs">Chat</span>
             </button>
-          )}
+        )}
           
           {/* Floating Button (Desktop) */}
-          {!open && (
-            <button
-              onClick={() => setOpen(true)}
-              className="hidden md:flex items-center gap-2 px-4 py-3 rounded-full shadow-lg bg-gradient-to-r from-[#0A284B] to-[#1E3A8A] text-white font-semibold hover:scale-105 transition-all focus:outline-none animate-shake"
-              aria-label="Open live chat"
-              style={{ minWidth: 56 }}
-            >
-              <FiMessageCircle className="w-6 h-6" />
-              <span className="hidden xs:inline-block sm:inline-block">
-                Live Chat • 24/7 Human Help
-              </span>
-            </button>
-          )}
+        {!open && (
+          <button
+            onClick={() => setOpen(true)}
+            className="hidden md:flex items-center gap-2 px-4 py-3 rounded-full shadow-lg bg-gradient-to-r from-[#0A284B] to-[#1E3A8A] text-white font-semibold hover:scale-105 transition-all focus:outline-none animate-shake"
+            aria-label="Open live chat"
+            style={{ minWidth: 56 }}
+          >
+            <FiMessageCircle className="w-6 h-6" />
+            <span className="hidden xs:inline-block sm:inline-block">
+              Live Chat • 24/7 Human Help
+            </span>
+          </button>
+        )}
 
-          {/* Chat Box */}
-          {open && !sessionId && (
+        {/* Chat Box */}
+        {open && !sessionId && (
             <div className="fixed inset-4 max-w-[95vw] sm:relative sm:inset-auto sm:w-[90vw] sm:max-w-xs md:max-w-sm lg:max-w-md bg-white rounded-2xl shadow-2xl border border-gray-200 p-3 sm:p-4 md:p-6 animate-fade-in flex flex-col z-[9999]">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-base sm:text-lg font-bold text-[#0A284B]">Start a Live Chat</h3>
-                <button onClick={handleCloseChat} className="text-gray-400 hover:text-gray-700">
-                  <FiX className="w-6 h-6" />
-                </button>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-[#0A284B] mb-1">
-                  Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your full name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-lg border-2 border-gray-200 px-3 py-2 text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-all duration-200"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-[#0A284B] mb-1">
-                  Email <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-lg border-2 border-gray-200 px-3 py-2 text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-all duration-200"
-                  required
-                />
-              </div>
-              {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
-              <button
-                className="w-full py-3 rounded-lg font-bold text-white bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] hover:from-[#1d4ed8] hover:to-[#1e40af] transition-all duration-200 mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
-                onClick={handleStartChat}
-                disabled={loading || !name.trim() || !email.trim()}
-              >
-                {loading ? 'Starting...' : 'Start Chat'}
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-base sm:text-lg font-bold text-[#0A284B]">Start a Live Chat</h3>
+              <button onClick={handleCloseChat} className="text-gray-400 hover:text-gray-700">
+                <FiX className="w-6 h-6" />
               </button>
             </div>
-          )}
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-[#0A284B] mb-1">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter your full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full rounded-lg border-2 border-gray-200 px-3 py-2 text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-all duration-200"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-[#0A284B] mb-1">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full rounded-lg border-2 border-gray-200 px-3 py-2 text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-all duration-200"
+                required
+              />
+            </div>
+            {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
+            <button
+              className="w-full py-3 rounded-lg font-bold text-white bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] hover:from-[#1d4ed8] hover:to-[#1e40af] transition-all duration-200 mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+              onClick={handleStartChat}
+              disabled={loading || !name.trim() || !email.trim()}
+            >
+              {loading ? 'Starting...' : 'Start Chat'}
+            </button>
+          </div>
+        )}
 
-          {/* Full Chat Interface */}
-          {open && sessionId && (
+        {/* Full Chat Interface */}
+        {open && sessionId && (
             <div className="fixed inset-4 max-w-[95vw] h-[calc(100vh-2rem)] sm:relative sm:inset-auto sm:w-[90vw] sm:max-w-xs sm:h-[500px] md:max-w-sm lg:max-w-md bg-white rounded-2xl shadow-2xl border border-gray-200 animate-fade-in flex flex-col z-[9999]">
-              {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                <h3 className="text-base sm:text-lg font-bold text-[#0A284B]">Live Chat</h3>
-                <button onClick={handleCloseChat} className="text-gray-400 hover:text-gray-700">
-                  <FiX className="w-6 h-6" />
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <h3 className="text-base sm:text-lg font-bold text-[#0A284B]">Live Chat</h3>
+              <button onClick={handleCloseChat} className="text-gray-400 hover:text-gray-700">
+                <FiX className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Messages Area */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+              {messages.length === 0 ? (
+                <div className="text-center text-gray-500 py-8">
+                  <p>Chat started! An agent will join shortly...</p>
+                </div>
+              ) : (
+                messages.map((message) => (
+                  <div key={message.id}>
+                    {message.type === 'system' ? (
+                      // System message - centered, gray
+                      <div className="flex justify-center my-2">
+                        <div className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">
+                          <span className="font-medium">{message.content}</span>
+                          <span className="ml-2 text-gray-500">{formatTime(message.sentAt)}</span>
+                        </div>
+                      </div>
+                    ) : message.senderType === 'visitor' ? (
+                      // Visitor message - right side, blue
+                      <div className="flex justify-end">
+                        <div className="max-w-[80%]">
+                          <div className="bg-[#2563eb] text-white px-3 py-2 rounded-lg rounded-br-md">
+                            <p className="text-sm">{message.content}</p>
+                            {(() => {
+                              const parsedAttachments = parseAttachments(message.attachments);
+                              if (parsedAttachments.length > 0) {
+                                return (
+                                  <div className="mt-2 space-y-1">
+                                    {parsedAttachments.map((att, index) => {
+                                      if (!att || !att.id || !att.filename) return null;
+                                      return (
+                                        <div
+                                          key={att.id || index}
+                                          className="flex items-center gap-2 text-xs"
+                                        >
+                                          {getFileIcon(att.type || 'unknown', 'white')}
+                                          <a
+                                            href={`${BASE_BUDPAL_API}/api/chat/attachment/${att.id}`}
+                                            download={att.filename}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-white hover:underline font-medium truncate max-w-[120px]"
+                                          >
+                                            {att.filename}
+                                          </a>
+                                          <span className="text-gray-200">
+                                            ({Math.round((att.size || 0) / 1024)} KB)
+                                          </span>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                );
+                              }
+                              return null;
+                            })()}
+                          </div>
+                          <div className="text-xs text-gray-500 text-right mt-1">
+                            {formatTime(message.sentAt)}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // Agent message - left side, gray
+                      <div className="flex justify-start">
+                        <div className="max-w-[80%]">
+                          <div className="bg-gray-200 text-gray-800 px-3 py-2 rounded-lg rounded-bl-md">
+                            <p className="text-sm">{message.content}</p>
+                            {(() => {
+                              const parsedAttachments = parseAttachments(message.attachments);
+                              if (parsedAttachments.length > 0) {
+                                return (
+                                  <div className="mt-2 space-y-1">
+                                    {parsedAttachments.map((att, index) => {
+                                      if (!att || !att.id || !att.filename) return null;
+                                      return (
+                                        <div
+                                          key={att.id || index}
+                                          className="flex items-center gap-2 text-xs"
+                                        >
+                                          {getFileIcon(att.type || 'unknown', '#1e293b')}
+                                          <a
+                                            href={`${BASE_BUDPAL_API}/api/chat/attachment/${att.id}`}
+                                            download={att.filename}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-gray-800 hover:underline font-medium truncate max-w-[120px]"
+                                          >
+                                            {att.filename}
+                                          </a>
+                                          <span className="text-gray-500">
+                                            ({Math.round((att.size || 0) / 1024)} KB)
+                                          </span>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                );
+                              }
+                              return null;
+                            })()}
+                          </div>
+                          <div className="text-xs text-gray-500 text-left mt-1 flex items-center gap-1">
+                            <span>{formatTime(message.sentAt)}</span>
+                            {message.senderName && (
+                              <span className="text-[#2563eb] font-medium">
+                                • {message.senderName}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
+
+              {/* Typing Indicator */}
+              {getTypingIndicatorText() && (
+                <div className="flex justify-start">
+                  <div className="max-w-[80%]">
+                    <div className="bg-gray-100 text-gray-600 px-3 py-2 rounded-lg rounded-bl-md">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs">{getTypingIndicatorText()}</span>
+                        <div className="flex gap-1">
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: '0ms' }}
+                          ></div>
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: '150ms' }}
+                          ></div>
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: '300ms' }}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Message Input */}
+            <div className="p-4 border-t border-gray-200">
+              {/* Show selected attachments */}
+              {attachments.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {attachments.map((att, index) => (
+                    <div
+                      key={att.id || index}
+                      className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded text-xs"
+                    >
+                      {getFileIcon(att.type || 'unknown')}
+                      <span className="truncate max-w-[80px] text-gray-800">{att.filename}</span>
+                      <span className="text-gray-400">
+                        ({Math.round((att.size || 0) / 1024)} KB)
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="p-2 text-gray-500 hover:text-blue-600 transition-colors"
+                  title="Attach file"
+                >
+                  <FiPaperclip className="w-5 h-5" />
+                </button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  style={{ display: 'none' }}
+                  onChange={handleFileChange}
+                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif"
+                />
+                <textarea
+                  value={newMessage}
+                  onChange={(e) => {
+                    setNewMessage(e.target.value);
+                    handleTyping(); // Trigger typing event
+                  }}
+                  onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
+                  placeholder="Type your message..."
+                  className="flex-1 rounded-lg border-2 border-gray-200 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-all duration-200 resize-none"
+                  rows={3}
+                  disabled={sending}
+                  style={{ minHeight: '72px' }}
+                />
+                <button
+                  onClick={handleSendMessage}
+                  disabled={(!newMessage.trim() && attachments.length === 0) || sending}
+                  className="bg-[#2563eb] text-white p-2 rounded-lg hover:bg-[#1d4ed8] transition-colors disabled:opacity-50 disabled:cursor-not-allowed self-end"
+                >
+                  <FiSend className="w-4 h-4" />
                 </button>
               </div>
-
-              {/* Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-3">
-                {messages.length === 0 ? (
-                  <div className="text-center text-gray-500 py-8">
-                    <p>Chat started! An agent will join shortly...</p>
-                  </div>
-                ) : (
-                  messages.map((message) => (
-                    <div key={message.id}>
-                      {message.type === 'system' ? (
-                        // System message - centered, gray
-                        <div className="flex justify-center my-2">
-                          <div className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">
-                            <span className="font-medium">{message.content}</span>
-                            <span className="ml-2 text-gray-500">{formatTime(message.sentAt)}</span>
-                          </div>
-                        </div>
-                      ) : message.senderType === 'visitor' ? (
-                        // Visitor message - right side, blue
-                        <div className="flex justify-end">
-                          <div className="max-w-[80%]">
-                            <div className="bg-[#2563eb] text-white px-3 py-2 rounded-lg rounded-br-md">
-                              <p className="text-sm">{message.content}</p>
-                              {(() => {
-                                const parsedAttachments = parseAttachments(message.attachments);
-                                if (parsedAttachments.length > 0) {
-                                  return (
-                                    <div className="mt-2 space-y-1">
-                                      {parsedAttachments.map((att, index) => {
-                                        if (!att || !att.id || !att.filename) return null;
-                                        return (
-                                          <div
-                                            key={att.id || index}
-                                            className="flex items-center gap-2 text-xs"
-                                          >
-                                            {getFileIcon(att.type || 'unknown', 'white')}
-                                            <a
-                                              href={`${BASE_BUDPAL_API}/api/chat/attachment/${att.id}`}
-                                              download={att.filename}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="text-white hover:underline font-medium truncate max-w-[120px]"
-                                            >
-                                              {att.filename}
-                                            </a>
-                                            <span className="text-gray-200">
-                                              ({Math.round((att.size || 0) / 1024)} KB)
-                                            </span>
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
-                                  );
-                                }
-                                return null;
-                              })()}
-                            </div>
-                            <div className="text-xs text-gray-500 text-right mt-1">
-                              {formatTime(message.sentAt)}
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        // Agent message - left side, gray
-                        <div className="flex justify-start">
-                          <div className="max-w-[80%]">
-                            <div className="bg-gray-200 text-gray-800 px-3 py-2 rounded-lg rounded-bl-md">
-                              <p className="text-sm">{message.content}</p>
-                              {(() => {
-                                const parsedAttachments = parseAttachments(message.attachments);
-                                if (parsedAttachments.length > 0) {
-                                  return (
-                                    <div className="mt-2 space-y-1">
-                                      {parsedAttachments.map((att, index) => {
-                                        if (!att || !att.id || !att.filename) return null;
-                                        return (
-                                          <div
-                                            key={att.id || index}
-                                            className="flex items-center gap-2 text-xs"
-                                          >
-                                            {getFileIcon(att.type || 'unknown', '#1e293b')}
-                                            <a
-                                              href={`${BASE_BUDPAL_API}/api/chat/attachment/${att.id}`}
-                                              download={att.filename}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="text-gray-800 hover:underline font-medium truncate max-w-[120px]"
-                                            >
-                                              {att.filename}
-                                            </a>
-                                            <span className="text-gray-500">
-                                              ({Math.round((att.size || 0) / 1024)} KB)
-                                            </span>
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
-                                  );
-                                }
-                                return null;
-                              })()}
-                            </div>
-                            <div className="text-xs text-gray-500 text-left mt-1 flex items-center gap-1">
-                              <span>{formatTime(message.sentAt)}</span>
-                              {message.senderName && (
-                                <span className="text-[#2563eb] font-medium">
-                                  • {message.senderName}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ))
-                )}
-
-                {/* Typing Indicator */}
-                {getTypingIndicatorText() && (
-                  <div className="flex justify-start">
-                    <div className="max-w-[80%]">
-                      <div className="bg-gray-100 text-gray-600 px-3 py-2 rounded-lg rounded-bl-md">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs">{getTypingIndicatorText()}</span>
-                          <div className="flex gap-1">
-                            <div
-                              className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                              style={{ animationDelay: '0ms' }}
-                            ></div>
-                            <div
-                              className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                              style={{ animationDelay: '150ms' }}
-                            ></div>
-                            <div
-                              className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                              style={{ animationDelay: '300ms' }}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div ref={messagesEndRef} />
-              </div>
-
-              {/* Message Input */}
-              <div className="p-4 border-t border-gray-200">
-                {/* Show selected attachments */}
-                {attachments.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {attachments.map((att, index) => (
-                      <div
-                        key={att.id || index}
-                        className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded text-xs"
-                      >
-                        {getFileIcon(att.type || 'unknown')}
-                        <span className="truncate max-w-[80px] text-gray-800">{att.filename}</span>
-                        <span className="text-gray-400">
-                          ({Math.round((att.size || 0) / 1024)} KB)
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="p-2 text-gray-500 hover:text-blue-600 transition-colors"
-                    title="Attach file"
-                  >
-                    <FiPaperclip className="w-5 h-5" />
-                  </button>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    style={{ display: 'none' }}
-                    onChange={handleFileChange}
-                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif"
-                  />
-                  <textarea
-                    value={newMessage}
-                    onChange={(e) => {
-                      setNewMessage(e.target.value);
-                      handleTyping(); // Trigger typing event
-                    }}
-                    onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
-                    placeholder="Type your message..."
-                    className="flex-1 rounded-lg border-2 border-gray-200 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-all duration-200 resize-none"
-                    rows={3}
-                    disabled={sending}
-                    style={{ minHeight: '72px' }}
-                  />
-                  <button
-                    onClick={handleSendMessage}
-                    disabled={(!newMessage.trim() && attachments.length === 0) || sending}
-                    className="bg-[#2563eb] text-white p-2 rounded-lg hover:bg-[#1d4ed8] transition-colors disabled:opacity-50 disabled:cursor-not-allowed self-end"
-                  >
-                    <FiSend className="w-4 h-4" />
-                  </button>
-                </div>
-                {error && <div className="text-red-600 text-xs mt-2">{error}</div>}
-              </div>
+              {error && <div className="text-red-600 text-xs mt-2">{error}</div>}
             </div>
-          )}
+          </div>
+        )}
         </div>
       </div>
 

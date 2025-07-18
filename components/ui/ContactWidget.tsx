@@ -28,10 +28,11 @@ interface TypingUser {
   timestamp: Date;
 }
 
-// Get BudPal API base URL from env
-const BASE_BUDPAL_API = process.env.NEXT_PUBLIC_BASE_BUDPAL_API || '';
+// Use local API endpoints that proxy to BudPal API
+const BASE_BUDPAL_API = '';
 
 export default function ContactWidget() {
+  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -54,6 +55,11 @@ export default function ContactWidget() {
   });
   const [showAgentImage, setShowAgentImage] = useState(true);
   const pathname = usePathname();
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Check if user has already made cookie choice
   useEffect(() => {
@@ -558,6 +564,11 @@ export default function ContactWidget() {
       }
     }
   }, [open]);
+
+  // Don't render until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>

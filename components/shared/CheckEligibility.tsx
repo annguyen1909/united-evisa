@@ -151,6 +151,11 @@ export default function CheckEligibility() {
   const [openCombo, setOpenCombo] = React.useState<string | null>(null); // Track which ComboBox is open
   const router = useRouter();
 
+  // Reset loading state when component mounts or when URL changes
+  React.useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
   const onCheck = async () => {
     if (!nationality || !destination) {
       alert("Please select both nationality and destination.");
@@ -188,6 +193,7 @@ export default function CheckEligibility() {
         return;
       }
 
+      // Navigate to new page, component will unmount and loading state will reset
       router.push(`/check-requirements?n=${nationality}&d=${destination}`);
     } catch (error) {
       console.error("Failed to load destination data:", error);

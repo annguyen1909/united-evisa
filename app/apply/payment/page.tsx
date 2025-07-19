@@ -135,16 +135,26 @@ function PaymentContent() {
         const passenger = applicationData.passengerCount || passengersArr.length || 1;
         const serviceFee = FIXED_SERVICE_FEE * passenger;
         let govFee: number | null = null;
-        // Log the calculated government and service fees on load
-        console.log('[OrderSummary] Calculated govFee:', govFee, 'serviceFee:', serviceFee, 'passenger:', passenger);
         const destination = country?.name ?? applicationData.destination?.name ?? "---";
         let visaName = visa?.name ?? applicationData.visaType?.name ?? "---";
+        // Always show canonical visa type name for India
+        if (country?.code?.toLowerCase() === "in" && visa) {
+            // Find canonical visa type by removing group suffix from id
+            const canonicalId = visa.id.split('-group-')[0];
+            const indiaConfig = COUNTRIES.find(c => c.code === 'in');
+            const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
+            if (canonicalVisa) {
+                visaName = canonicalVisa.name;
+            } else {
+                // Fallback: remove group suffix from name if present
+                visaName = visa.name.split(' - Group')[0];
+            }
+        }
+        // Calculate govFee for India per passenger nationality
         if (country?.code?.toLowerCase() === "in" && visa && passengersArr.length > 0) {
-            // Use canonical visa id for India and calculate based on each passenger's nationality
             const canonicalId = visa.id.split('-group-')[0];
             const fees = passengersArr.map((p: any) => calculateIndiaVisaFee(canonicalId, p.nationality));
             const validFees = fees.filter((fee: any) => typeof fee === 'number' && !isNaN(fee));
-            console.log('[India govFee debug - payment step]', { canonicalId, passengersArr, applicationDataPassengers: applicationData.passengers, fees, validFees });
             if (validFees.length > 0) {
                 govFee = validFees.reduce((sum: number, fee: number) => sum + fee, 0);
             } else {
@@ -171,20 +181,8 @@ function PaymentContent() {
             durationInMs !== null
                 ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
                 : "---";
-
-        // For India, use canonical visa name for display
-        if (country?.code?.toLowerCase() === "in" && visa) {
-            const canonicalId = visa.id.split('-group-')[0];
-            const indiaConfig = COUNTRIES.find(c => c.code === 'in');
-            const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
-            if (canonicalVisa) {
-                visaName = canonicalVisa.name;
-            }
-        }
-
         // Use fixed service fee and total
         const total = typeof applicationData.total === 'number' ? applicationData.total : (visa && typeof govFee === 'number' ? (govFee + serviceFee) : 0);
-
         orderSummary = (
             <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
                 <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">

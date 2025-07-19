@@ -113,7 +113,7 @@ export async function POST(
     await prisma.stripeActivity.create({
       data: {
         id: uuidv4(),
-        title: "Payment Processed",
+        title: "Payment",
         amount: amount,
         status: "Completed",
         type: "Charge",

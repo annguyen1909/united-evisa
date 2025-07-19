@@ -7,13 +7,14 @@ import { getNationalityByCode } from '@/lib/nationalities';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import {
     CheckCircle, XCircle, ArrowRight, Calendar, Clock, CreditCard,
-    Globe, ArrowLeftRight, BadgeInfo, User, Info
+    Globe, ArrowLeftRight, BadgeInfo, User, Info, Search, Sparkles
 } from 'lucide-react';
 import VisaSteps from '../components/VisaSteps';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
+import CheckEligibility from '@/components/shared/CheckEligibility';
 
 function CheckRequirementsContent() {
     const searchParams = useSearchParams();
@@ -105,59 +106,89 @@ function CheckRequirementsContent() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 py-10 px-4">
-            <div className="max-w-6xl mx-auto">
-                {/* Header */}
-                <div className="mb-10 text-center">
-                    <h1 className="text-3xl md:text-4xl font-bold mb-3 text-slate-800">
-                        Visa Eligibility <span className="text-emerald-700">Results</span>
-                    </h1>
-                    <p className="text-slate-600 max-w-2xl mx-auto">
-                        Review your visa eligibility status and requirements for traveling from {nationalityName} to {destinationName}.
-                    </p>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+            {/* Header Section with Background */}
+            <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
+                <div className="absolute inset-0 bg-black/10"></div>
+                <div className="absolute inset-0 opacity-20">
+                    <div style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                        backgroundRepeat: 'repeat'
+                    }} className="w-full h-full" />
+                </div>
+                <div className="relative max-w-6xl mx-auto px-4 py-16">
+                    <div className="text-center">
+                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                            <Sparkles className="h-4 w-4" />
+                            <span className="text-sm font-medium">Visa Eligibility Check</span>
+                        </div>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                            Your Visa <span className="text-emerald-200">Results</span>
+                        </h1>
+                        <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
+                            Review your visa eligibility status and requirements for traveling from <span className="font-semibold text-white">{nationalityName}</span> to <span className="font-semibold text-white">{destinationName}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="max-w-6xl mx-auto px-4 py-12">
+                {/* Current Results Header */}
+                <div className="mb-8">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-4 text-center">
+                        Your Visa Eligibility Results
+                    </h2>
                 </div>
 
                 {/* Nationality and Destination */}
-                <Card className="mb-10 border border-slate-200 shadow-sm">
-                    <CardContent className="p-6">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-6">
+                <Card className="mb-10 border-0 shadow-lg bg-white/70 backdrop-blur-sm">
+                    <CardContent className="p-8">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-8">
                             {/* Nationality */}
-                            <div className="flex items-center gap-3 bg-slate-50 p-3 px-4 rounded-lg border border-slate-100">
-                                <img
-                                    src={`https://flagcdn.com/${nationalitySlug?.toLowerCase()}.svg`}
-                                    alt={nationalityName || ''}
-                                    className="w-10 h-10 rounded-full border shadow-sm object-cover bg-white"
-                                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                                />
+                            <div className="flex items-center gap-4 bg-gradient-to-r from-emerald-50 to-teal-50 p-4 px-6 rounded-xl border border-emerald-100/50 shadow-sm">
+                                <div className="relative">
+                                    <img
+                                        src={`https://flagcdn.com/${nationalitySlug?.toLowerCase()}.svg`}
+                                        alt={nationalityName || ''}
+                                        className="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover bg-white"
+                                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                    />
+                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white"></div>
+                                </div>
                                 <div>
-                                    <p className="text-xs text-slate-500 font-medium">From</p>
-                                    <p className="text-base font-semibold text-slate-800">{nationalityName}</p>
+                                    <p className="text-xs text-emerald-600 font-semibold uppercase tracking-wide">From</p>
+                                    <p className="text-lg font-bold text-slate-800">{nationalityName}</p>
                                 </div>
                             </div>
 
                             {/* Arrow */}
                             <div className="hidden sm:flex items-center justify-center">
-                                <ArrowLeftRight className="h-6 w-6 text-slate-400" />
+                                <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-3 rounded-full shadow-lg">
+                                    <ArrowLeftRight className="h-6 w-6 text-white" />
+                                </div>
                             </div>
 
                             {/* Arrow for mobile */}
                             <div className="flex sm:hidden items-center justify-center">
-                                <div className="rotate-90">
-                                    <ArrowLeftRight className="h-6 w-6 text-slate-400" />
+                                <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-3 rounded-full shadow-lg rotate-90">
+                                    <ArrowLeftRight className="h-6 w-6 text-white" />
                                 </div>
                             </div>
 
                             {/* Destination */}
-                            <div className="flex items-center gap-3 bg-slate-50 p-3 px-4 rounded-lg border border-slate-100">
-                                <img
-                                    src={`https://flagcdn.com/${destinationSlug?.toLowerCase()}.svg`}
-                                    alt={destinationName || ''}
-                                    className="w-10 h-10 rounded-full border shadow-sm object-cover bg-white"
-                                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                                />
+                            <div className="flex items-center gap-4 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 px-6 rounded-xl border border-blue-100/50 shadow-sm">
+                                <div className="relative">
+                                    <img
+                                        src={`https://flagcdn.com/${destinationSlug?.toLowerCase()}.svg`}
+                                        alt={destinationName || ''}
+                                        className="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover bg-white"
+                                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                    />
+                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full border-2 border-white"></div>
+                                </div>
                                 <div>
-                                    <p className="text-xs text-slate-500 font-medium">To</p>
-                                    <p className="text-base font-semibold text-slate-800">{destinationName}</p>
+                                    <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide">To</p>
+                                    <p className="text-lg font-bold text-slate-800">{destinationName}</p>
                                 </div>
                             </div>
                         </div>
@@ -165,84 +196,84 @@ function CheckRequirementsContent() {
                 </Card>
 
                 {/* Results Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     {visaTypeResults.map((visa, index) => (
-                        <Card key={index} className={`overflow-hidden border shadow-sm hover:shadow-md transition-all duration-300 ${visa.isEligible ? 'border-emerald-200' : 'border-red-200'}`}>
-                            <div className={`h-2 w-full ${visa.isEligible ? 'bg-emerald-600' : 'bg-red-500'}`} />
-                            <CardHeader className="pt-6 pb-4">
-                                <div className="flex items-start gap-3">
-                                    <div className={`p-2 rounded-full ${visa.isEligible ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-600'}`}>
+                        <Card key={index} className={`overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/80 backdrop-blur-sm ${visa.isEligible ? 'ring-2 ring-emerald-200' : 'ring-2 ring-red-200'}`}>
+                            <div className={`h-1 w-full ${visa.isEligible ? 'bg-gradient-to-r from-emerald-500 to-teal-500' : 'bg-gradient-to-r from-red-500 to-pink-500'}`} />
+                            <CardHeader className="pt-8 pb-6">
+                                <div className="flex items-start gap-4">
+                                    <div className={`p-3 rounded-xl shadow-lg ${visa.isEligible ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white' : 'bg-gradient-to-r from-red-500 to-pink-500 text-white'}`}>
                                         {visa.isEligible ? (
-                                            <CheckCircle className="h-5 w-5" />
+                                            <CheckCircle className="h-6 w-6" />
                                         ) : (
-                                            <XCircle className="h-5 w-5" />
+                                            <XCircle className="h-6 w-6" />
                                         )}
                                     </div>
-                                    <div>
-                                        <CardTitle className="text-lg font-bold text-slate-800">
+                                    <div className="flex-1">
+                                        <CardTitle className="text-xl font-bold text-slate-800 mb-2">
                                             {visa.name}
                                         </CardTitle>
-                                        <CardDescription className="mt-1">
-                                            <span className={`font-medium ${visa.isEligible ? 'text-emerald-700' : 'text-red-600'}`}>
-                                                {visa.isEligible ? 'Eligible' : 'Not Eligible'}
-                                            </span>
-                                        </CardDescription>
+                                        <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${visa.isEligible ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}`}>
+                                            {visa.isEligible ? '✓ Eligible' : '✗ Not Eligible'}
+                                        </div>
                                     </div>
                                 </div>
                             </CardHeader>
-                            <CardContent className="pb-4">
-                                <p className="text-slate-600 mb-4 text-sm">
+                            <CardContent className="pb-6">
+                                <p className="text-slate-600 mb-6 text-sm leading-relaxed">
                                     {visa.description || `This visa allows ${nationalityName} citizens to visit ${destinationName} for ${visa.type?.toLowerCase() || 'specific purposes'}.`}
                                 </p>
 
-                                <Separator className="mb-4" />
-
-                                <div className="grid grid-cols-2 gap-y-3 text-sm">
-                                    <div className="flex items-start gap-2">
-                                        <Calendar className="h-4 w-4 text-slate-400 mt-0.5" />
-                                        <div>
-                                            <p className="text-slate-600 font-medium">Duration</p>
-                                            <p className="text-slate-800">{visa.visaDuration ? visa.visaDuration + ' days' : 'Not specified'}</p>
+                                <div className="space-y-4">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="bg-slate-50/80 p-3 rounded-lg border border-slate-100">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <Calendar className="h-4 w-4 text-emerald-600" />
+                                                <span className="text-xs font-medium text-slate-600 uppercase tracking-wide">Duration</span>
+                                            </div>
+                                            <p className="text-sm font-semibold text-slate-800">{visa.visaDuration ? visa.visaDuration + ' days' : 'Not specified'}</p>
+                                        </div>
+                                        <div className="bg-slate-50/80 p-3 rounded-lg border border-slate-100">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <Clock className="h-4 w-4 text-blue-600" />
+                                                <span className="text-xs font-medium text-slate-600 uppercase tracking-wide">Processing</span>
+                                            </div>
+                                            <p className="text-sm font-semibold text-slate-800">{visa.expectedProcessingTime || "3-5 days"}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-start gap-2">
-                                        <Clock className="h-4 w-4 text-slate-400 mt-0.5" />
-                                        <div>
-                                            <p className="text-slate-600 font-medium">Processing</p>
-                                            <p className="text-slate-800">{visa.expectedProcessingTime || "3-5 days"}</p>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="bg-slate-50/80 p-3 rounded-lg border border-slate-100">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <Globe className="h-4 w-4 text-purple-600" />
+                                                <span className="text-xs font-medium text-slate-600 uppercase tracking-wide">Validity</span>
+                                            </div>
+                                            <p className="text-sm font-semibold text-slate-800">{visa.visaValidity || "Not specified"}</p>
                                         </div>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <Globe className="h-4 w-4 text-slate-400 mt-0.5" />
-                                        <div>
-                                            <p className="text-slate-600 font-medium">Validity</p>
-                                            <p className="text-slate-800">{visa.visaValidity || "Not specified"}</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <CreditCard className="h-4 w-4 text-slate-400 mt-0.5" />
-                                        <div>
-                                            <p className="text-slate-600 font-medium">Gov. Fee</p>
-                                            <p className="text-slate-800 font-semibold">${visa.govFee || "Varies"}</p>
+                                        <div className="bg-slate-50/80 p-3 rounded-lg border border-slate-100">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <CreditCard className="h-4 w-4 text-orange-600" />
+                                                <span className="text-xs font-medium text-slate-600 uppercase tracking-wide">Gov. Fee</span>
+                                            </div>
+                                            <p className="text-sm font-bold text-emerald-600">${visa.govFee || "Varies"}</p>
                                         </div>
                                     </div>
                                 </div>
                             </CardContent>
 
-                            <CardFooter className="pt-2 pb-6">
+                            <CardFooter className="pt-4 pb-8">
                                 {visa.isEligible ? (
                                     <Link href={`/apply?country=${destinationName.toLowerCase()}&type=${encodeURIComponent(visa.id)}&nationality=${nationalitySlug}`} className="w-full">
                                         <Button
-                                            className="w-full cursor-pointer bg-emerald-600 hover:bg-emerald-700"
+                                            className="w-full cursor-pointer bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300"
                                         >
                                             Apply Now
-                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                            <ArrowRight className="ml-2 h-5 w-5" />
                                         </Button>
                                     </Link>
                                 ) : (
                                     <Button
                                         variant="outline"
-                                        className="w-full text-slate-600 border-slate-300"
+                                        className="w-full text-slate-500 border-slate-200 bg-slate-50 cursor-not-allowed font-semibold py-3"
                                         disabled
                                     >
                                         Not Available
@@ -254,39 +285,62 @@ function CheckRequirementsContent() {
                 </div>
 
                 {/* Helpful Information */}
-                <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 mb-10">
-                    <div className="flex items-start gap-3">
-                        <div className="p-2 rounded-full bg-blue-100 text-blue-700">
-                            <BadgeInfo className="h-5 w-5" />
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 rounded-2xl p-8 mb-12 shadow-lg">
+                    <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg">
+                            <BadgeInfo className="h-6 w-6" />
                         </div>
-                        <div>
-                            <h3 className="text-lg font-semibold text-blue-800 mb-1">Important Information</h3>
-                            <p className="text-blue-700 text-sm">
-                                Visa eligibility is subject to change based on immigration policies. We recommend checking with the embassy or consulate for the most up-to-date requirements.
-                            </p>
+                        <div className="flex-1">
+                            <h3 className="text-xl font-bold text-blue-800 mb-3">Important Information</h3>
+                            <div className="space-y-2 text-blue-700">
+                                <p className="leading-relaxed">
+                                    Visa eligibility is subject to change based on immigration policies. We recommend checking with the embassy or consulate for the most up-to-date requirements.
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div className="bg-white/60 p-4 rounded-lg border border-blue-100">
+                                        <h4 className="font-semibold text-blue-800 mb-2">Additional Requirements</h4>
+                                        <p className="text-sm text-blue-600">Some visas may require additional documentation or interviews.</p>
+                                    </div>
+                                    <div className="bg-white/60 p-4 rounded-lg border border-blue-100">
+                                        <h4 className="font-semibold text-blue-800 mb-2">Processing Times</h4>
+                                        <p className="text-sm text-blue-600">Times may vary during peak seasons or due to application volume.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                {/* Visa Process Steps */}
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl border-0 p-8 shadow-xl mb-12">
+                    <h2 className="text-2xl font-bold text-slate-800 mb-8 text-center">Visa Application Process</h2>
+                    <VisaSteps />
+                </div>
+
+                {/* Search Again Section */}
+                <div className="mb-12">
+                    <div className="text-center mb-8">
+                        <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 mb-4 border border-white/30">
+                            <Search className="h-4 w-4 text-emerald-600" />
+                            <span className="text-sm font-medium text-slate-700">Check Another Destination</span>
+                        </div>
+                        <h2 className="text-2xl font-bold text-slate-800 mb-2">
+                            Want to Check Another Country?
+                        </h2>
+                        <p className="text-slate-600">
+                            Easily check visa requirements for different destinations
+                        </p>
+                    </div>
+                    <CheckEligibility key={`${nationalitySlug}-${destinationSlug}`} />
+                </div>
+
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button
-                        variant="outline"
-                        onClick={() => router.back()}
-                        className="border-slate-300"
-                    >
-                        Back to Search
-                    </Button>
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
                     <Link href="/apply">
-                        <Button className="bg-emerald-600 hover:bg-emerald-700">
+                        <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                             Start New Application
                         </Button>
                     </Link>
-                </div>
-                {/* Visa Process Steps */}
-                <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm my-12">
-                    <h2 className="text-xl font-bold text-slate-800 mb-6">Visa Application Process</h2>
-                    <VisaSteps />
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ export async function GET(
   try {
     const { destinationId } = await params;
 
-    const visaTypes = await prisma.visaType.findMany({
+    let visaTypes = await prisma.visaType.findMany({
       where: {
         destinationId: destinationId,
       },
@@ -17,11 +17,38 @@ export async function GET(
         name: true,
         fees: true,
         allowedNationalities: true,
+        visaDuration: true,
       },
       orderBy: {
         name: 'asc',
       },
     });
+
+    // If India, group by canonical name and select the most expensive group variant for each
+    const indiaIds = ["IN", "in", "India", "india"];
+    if (indiaIds.includes(destinationId)) {
+      // Map canonical name to most expensive variant
+      const canonicalMap = new Map();
+      visaTypes.forEach(v => {
+        const canonicalName = v.name.replace(/\s*-\s*Group\s*\d+$/i, "");
+        if (!canonicalMap.has(canonicalName)) {
+          canonicalMap.set(canonicalName, v);
+        } else {
+          const current = canonicalMap.get(canonicalName);
+          if (typeof v.fees === 'number' && typeof current.fees === 'number' && v.fees > current.fees) {
+            canonicalMap.set(canonicalName, v);
+          }
+        }
+      });
+      visaTypes = Array.from(canonicalMap.entries()).map(([canonicalName, v]) => ({
+        id: v.id,
+        name: canonicalName,
+        fees: v.fees,
+        allowedNationalities: v.allowedNationalities,
+        visaDuration: v.visaDuration,
+      }));
+      console.log('[VisaTypeAPI] India visaTypes returned:', visaTypes);
+    }
 
     return NextResponse.json(visaTypes);
   } catch (error) {

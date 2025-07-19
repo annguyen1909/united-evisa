@@ -178,14 +178,44 @@ function PassengersContent() {
     return applicationData.visaType;
   }, [applicationData]);
 
-  // Get allowed nationalities from the database visa type
+  // Always use canonical allowedNationalities for India
   const allowedNationalities = useMemo(() => {
     if (!visa || !visa.allowedNationalities) {
       console.log('[nationality debug] No allowedNationalities found, using all nationalities');
       return NATIONALITIES;
     }
 
-    // Parse the allowedNationalities JSON if it's a string
+    // For India, get canonical allowedNationalities
+    if (applicationData?.destination?.code?.toLowerCase() === 'in') {
+      const canonicalId = visa.id.split('-group-')[0];
+      const indiaConfig = COUNTRIES.find(c => c.code === 'in');
+      const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
+      let allowedCodes: string[] = [];
+      if (canonicalVisa && canonicalVisa.allowedNationalities) {
+        if (typeof canonicalVisa.allowedNationalities === 'string') {
+          try {
+            allowedCodes = JSON.parse(canonicalVisa.allowedNationalities);
+          } catch (e) {
+            console.error('Error parsing canonical allowedNationalities:', e);
+            return NATIONALITIES;
+          }
+        } else if (Array.isArray(canonicalVisa.allowedNationalities)) {
+          allowedCodes = canonicalVisa.allowedNationalities;
+        }
+      }
+      if (allowedCodes.length === 0) {
+        console.log('[nationality debug] Empty canonical allowedNationalities, using all nationalities');
+        return NATIONALITIES;
+      }
+      console.log('[nationality debug] Filtering nationalities by canonical:', allowedCodes);
+      const filtered = NATIONALITIES.filter((c: { code: string; }) =>
+        allowedCodes.includes(c.code.toUpperCase())
+      );
+      console.log('[nationality debug] Filtered nationalities count:', filtered.length);
+      return filtered;
+    }
+
+    // For non-India, use visa.allowedNationalities
     let allowedCodes: string[] = [];
     if (typeof visa.allowedNationalities === 'string') {
       try {
@@ -197,19 +227,17 @@ function PassengersContent() {
     } else if (Array.isArray(visa.allowedNationalities)) {
       allowedCodes = visa.allowedNationalities;
     }
-
     if (allowedCodes.length === 0) {
       console.log('[nationality debug] Empty allowedNationalities, using all nationalities');
-    return NATIONALITIES;
+      return NATIONALITIES;
     }
-
     console.log('[nationality debug] Filtering nationalities by:', allowedCodes);
     const filtered = NATIONALITIES.filter((c: { code: string; }) =>
       allowedCodes.includes(c.code.toUpperCase())
     );
     console.log('[nationality debug] Filtered nationalities count:', filtered.length);
     return filtered;
-  }, [visa]);
+  }, [visa, applicationData?.destination]);
 
   const updatePassenger = (
     index: number,
@@ -363,12 +391,37 @@ function PassengersContent() {
         total = govFee + serviceFee;
       }
 
+      // --- India promotionAmount logic ---
+      let promotionAmount = 0;
+      let passengersWithPromotion = passengers;
+      if (applicationData?.destination?.code?.toLowerCase() === 'in' && visa) {
+        const canonicalId = visa.id.split('-group-')[0];
+        // Find highest group fee (step 1: canonicalVisa)
+        const indiaConfig = COUNTRIES.find(c => c.code === 'in');
+        const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
+        let highestFee = 0;
+        if (typeof canonicalVisa?.govFee === 'number') {
+          highestFee = canonicalVisa.govFee;
+        }
+        // For each passenger, calculate their fee and promotionAmount
+        promotionAmount = passengers.reduce((sum, p) => {
+          const nationalityFee = calculateIndiaVisaFee(canonicalId, p.nationality);
+          if (typeof nationalityFee === 'number' && !isNaN(nationalityFee)) {
+            return sum + (highestFee - nationalityFee);
+          }
+          return sum;
+        }, 0);
+      }
+      // --- End India promotionAmount logic ---
 
       // Save passengers and total in one request
+      const body = applicationData?.destination?.code?.toLowerCase() === 'in'
+        ? { passengers, total, promotionAmount }
+        : { passengers, total };
       const passengersRes = await fetch(`/api/applications/${applicationId}/passengers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ passengers, total }),
+        body: JSON.stringify(body),
       });
 
       const passengersData = await passengersRes.json();

@@ -56,6 +56,7 @@ model VisaType {
   requiredDocuments       String?
   allowedNationalities    Json?
   destinationId           String
+  visaDuration            Int?
   applications            Application[]
   destination             Destination               @relation(fields: [destinationId], references: [id])
   VisaTypeNationalityFees VisaTypeNationalityFees[]
@@ -96,6 +97,9 @@ model Application {
   paymentStatus        String?
   portType             String?
   portName             String?
+  promotionAmount      Float?                @default(0)
+  accessToken          String?               @unique @db.VarChar(255)
+  accessTokenExpiresAt DateTime?             @db.Timestamp(6)
   account              Account               @relation(fields: [accountId], references: [id])
   destination          Destination           @relation(fields: [destinationId], references: [id])
   visaType             VisaType              @relation(fields: [visaTypeId], references: [id])

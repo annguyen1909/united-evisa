@@ -19,7 +19,7 @@ const visaTypes: VisaType[] = [
     name: "TOURIST VISA",
     description:
       "This type of visa is used for the purpose of travelling to a country. It is also the most popular visa type that we help our customers to apply for.",
-    color: "#16610E",
+    color: "#10B981", // emerald-500
     favorites: [
       { name: "Kenya", img: "https://hatscripts.github.io/circle-flags/flags/ke.svg" },
       { name: "Cambodia", img: "https://hatscripts.github.io/circle-flags/flags/kh.svg" },
@@ -31,7 +31,7 @@ const visaTypes: VisaType[] = [
     name: "BUSINESS VISA",
     description:
       "This visa is issued to travelers transiting through a country en route elsewhere. It's short-term, and many countries waive the need for it.",
-    color: "#065BB9",
+    color: "#3B82F6", // blue-500
     favorites: [
       { name: "Azerbaijan", img: "https://hatscripts.github.io/circle-flags/flags/az.svg" },
       { name: "Bahrain", img: "https://hatscripts.github.io/circle-flags/flags/bh.svg" },
@@ -43,7 +43,7 @@ const visaTypes: VisaType[] = [
     name: "TRANSIT VISA",
     description:
       "Medical visa is used for travelers who want to be treated under the system of medicine of a country. It is used by just governments.",
-    color: "#CB6601",
+    color: "#F59E42", // orange-500
     favorites: [
       { name: "Singapore", img: "https://hatscripts.github.io/circle-flags/flags/sg.svg" },
       { name: "Rwanda", img: "https://hatscripts.github.io/circle-flags/flags/rw.svg" },
@@ -55,7 +55,7 @@ const visaTypes: VisaType[] = [
     name: "MEDICAL VISA",
     description:
       "Issued for patients seeking treatment abroad, this visa helps you access world-class healthcare while ensuring compliance with local laws.",
-    color: "#FED16A",
+    color: "#0EA5E9", // yellow-200
     favorites: [
       { name: "Thailand", img: "https://hatscripts.github.io/circle-flags/flags/th.svg" },
       { name: "Malaysia", img: "https://hatscripts.github.io/circle-flags/flags/my.svg" },
@@ -67,85 +67,82 @@ const visaTypes: VisaType[] = [
 
 export default function AllVisaTypes() {
   return (
-    <section className="w-full bg-slate-50 py-16 px-4">
+    <section className="w-full bg-slate-50 pt-6 pb-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[#16610E]">
+        <div className="text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-manrope mb-6 text-emerald-700">
             All eVisa Types. One Place.
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 max-w-5xl mx-auto leading-relaxed">
             Explore and apply for all available eVisa types in one convenient platform — fast, secure, and hassle-free.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {visaTypes.map(({ name, description, color, favorites, icon }) => (
             <Card
               key={name}
-              className="flex flex-col h-full bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+              className="group flex flex-col h-full bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
             >
               {/* Card Header with Icon */}
               <CardHeader 
-                className="p-4 relative" 
+                className="p-6 relative" 
                 style={{ backgroundColor: color }}
               >
-                <div className="absolute top-0 right-0 w-20 h-20 opacity-10">
-                  {icon && React.createElement(icon, { size: 80, strokeWidth: "1px" })}
+                <div className="absolute top-0 right-0 w-24 h-24 opacity-10 overflow-hidden">
+                  {icon && React.createElement(icon, { size: 96, strokeWidth: "1px" })}
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="bg-white/20 p-2 rounded-full">
-                    {icon && React.createElement(icon, { size: 24, color: "#fff", strokeWidth: "1px" })}
+                <div className="flex items-center gap-4 relative z-10">
+                  <div className="bg-white/20 p-3 rounded-full">
+                    {icon && React.createElement(icon, { size: 28, color: "#fff", strokeWidth: "1.5px" })}
                   </div>
-                  <CardTitle className="font-bold text-white text-xl m-0">
+                  <CardTitle className="font-bold text-white text-xl leading-tight m-0">
                     {name}
                   </CardTitle>
                 </div>
               </CardHeader>
-              
-              {/* Card Description */}
-              <CardContent className="flex-grow p-5">
-                <p className="text-slate-600 text-sm leading-relaxed">
+
+              {/* Card Content */}
+              <CardContent className="p-6 flex-grow flex flex-col">
+                <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
                   {description}
                 </p>
-              </CardContent>
 
-              {/* Favorite Destinations */}
-              {favorites && (
-                <div className="px-5 pb-4">
-                  <div className="rounded-lg bg-slate-50 p-3 border border-slate-100">
-                    <p className="font-semibold text-sm mb-3 text-center" style={{ color }}>
-                      Popular Destinations
-                    </p>
-
-                    <div className="flex justify-center gap-4">
-                      {favorites.map(({ name, img }) => (
+                {/* Popular Countries */}
+                {favorites && (
+                  <div className="mt-auto">
+                    <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-4">
+                      Popular Countries
+                    </h4>
+                    <div className="flex justify-center gap-6">
+                      {favorites.map(({ name: countryName, img }) => (
                         <div
-                          key={name}
-                          className="flex flex-col items-center gap-1"
+                          key={countryName}
+                          className="flex flex-col items-center gap-2"
                         >
-                          <div className="p-1 bg-white rounded-full shadow-sm border border-slate-100">
+                          <div className="p-1 bg-white rounded-full shadow-md border border-slate-100 transition-transform duration-200 hover:scale-110">
                             <Image
                               src={img}
-                              width={32}
-                              height={32}
-                              className="w-8 h-8 rounded-full object-cover"
-                              alt={`${name} flag`}
+                              width={36}
+                              height={36}
+                              className="w-9 h-9 rounded-full object-cover"
+                              alt={`${countryName} flag`}
                             />
                           </div>
                           <span className="text-xs font-medium text-slate-700">
-                            {name}
+                            {countryName}
                           </span>
                         </div>
                       ))}
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </CardContent>
 
               {/* Apply Button */}
-              <CardFooter className="p-5 pt-2">
+              <CardFooter className="p-6 pt-0">
                 <Button
-                  className="w-full py-5 font-medium text-white rounded-lg transition-all duration-300 hover:opacity-90 hover:shadow-md"
+                  className="w-full py-3 font-semibold text-white rounded-lg transition-all duration-300 hover:opacity-90 hover:shadow-lg transform group-hover:scale-105"
                   style={{ backgroundColor: color }}
                 >
                   Apply Now

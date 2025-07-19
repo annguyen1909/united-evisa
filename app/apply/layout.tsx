@@ -11,11 +11,8 @@ function StepNavWrapper() {
   const pathname = usePathname();
   // Hide on /apply/deferred, /apply/processing, /apply/result
   const hideStepNav =
-    pathname?.includes('/apply/deferred') ||
-    pathname?.includes('/apply/processing') ||
-    pathname?.includes('/apply/result') ||
-    ['deferred', 'processing', 'result'].includes(searchParams.get('status')?.toLowerCase() || '');
-  if (hideStepNav) return null;
+    pathname?.includes('/apply/status')
+      if (hideStepNav) return null;
   return <StepNavigation />;
 }
 

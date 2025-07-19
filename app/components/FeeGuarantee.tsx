@@ -31,23 +31,23 @@ export default function FeeGuarantee() {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="bg-emerald-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 h-full border border-slate-100 flex flex-col"
+            className="bg-amber-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 h-full border border-slate-100 flex flex-col"
           >
             <div className="flex-1">
               <div className="bg-white w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="text-xl font-bold text-emerald-700">1</span>
+                <span className="text-xl font-bold text-amber-700">1</span>
               </div>
               <h3 className="text-lg font-bold text-slate-800 mb-3">
                 Government Fees
               </h3>
-              <div className="h-1 w-12 bg-emerald-200 mx-auto mb-4 rounded-full"></div>
+              <div className="h-1 w-12 bg-amber-200 mx-auto mb-4 rounded-full"></div>
               <p className="text-slate-600 mb-6">
                 This fee covers the cost of your eVisa application, as required
                 by the government of your chosen destination.
               </p>
             </div>
             <Link href="/destination" className="mt-auto">
-              <Button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white">
+              <Button className="w-full bg-amber-600 hover:bg-amber-700 text-white">
                 Check Visa Fees
               </Button>
             </Link>
@@ -55,7 +55,7 @@ export default function FeeGuarantee() {
 
           {/* "+" Symbol */}
           <div className="hidden md:flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-2xl font-bold text-emerald-700">
+            <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-2xl font-bold text-amber-700">
               +
             </div>
           </div>
@@ -102,23 +102,23 @@ export default function FeeGuarantee() {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
-            className="bg-amber-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 h-full border border-amber-100 flex flex-col"
+            className="bg-emerald-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 h-full border border-emerald-100 flex flex-col"
           >
             <div className="flex-1">
               <div className="bg-white w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="text-xl font-bold text-amber-700">$</span>
+                <span className="text-xl font-bold text-emerald-700">$</span>
               </div>
               <h3 className="text-lg font-bold text-slate-800 mb-3">
                 Total Balance
               </h3>
-              <div className="h-1 w-12 bg-amber-200 mx-auto mb-4 rounded-full"></div>
+              <div className="h-1 w-12 bg-emerald-200 mx-auto mb-4 rounded-full"></div>
               <p className="text-slate-600 mb-6">
                 Flat-rate pricing with zero hidden fees — no extra charges for
                 urgency, transparency you can count on.
               </p>
             </div>
             <Link href="/apply" className="mt-auto">
-              <Button className="w-full bg-amber-600 hover:bg-amber-700 text-white">
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
                 Apply Now
               </Button>
             </Link>

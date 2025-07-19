@@ -1092,6 +1092,7 @@ export default function ApplyForm({ user }: { user: any }) {
                             setStayingStart(newStart);
                             setStartDateOpen(false); // Close popover
                             // Validate travel duration if both dates are set
+                            // Check if visa duration is set
                             if (newStart && stayingEnd) {
                               const travelDays = Math.floor(
                                 (new Date(stayingEnd).getTime() -

@@ -135,24 +135,10 @@ export async function POST(
       }
     });
 
-    // Count passengers and documents
-    const passengers = await prisma.passenger.findMany({
-      where: { applicationId: application.id },
-      select: { id: true }
+    await prisma.application.update({
+      where: { id: application.id },
+      data: { status: "Processing" }
     });
-    const passengerCount = passengers.length || 1;
-    const requiredDocumentCount = passengerCount * 2;
-    const uploadedDocumentCount = await prisma.applicationDocument.count({
-      where: { applicationId: application.id }
-    });
-
-    // Only set status to 'Processing' if all required documents are uploaded
-    if (uploadedDocumentCount >= requiredDocumentCount) {
-      await prisma.application.update({
-        where: { id: application.id },
-        data: { status: "Processing" }
-      });
-    }
 
     // Return the document without the content field
     const { ...documentWithoutContent } = document;

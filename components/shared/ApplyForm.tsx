@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import india from "@/lib/countries/india";
 import { useRouter, useSearchParams } from "next/navigation";
 // Remove static imports - we'll fetch from API
 // import { COUNTRIES } from "@/lib/countries";
@@ -22,7 +21,6 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import moment from "moment";
-import OrderSummary from "@/components/shared/OrderSummary";
 import {
   Select,
   SelectTrigger,
@@ -151,34 +149,11 @@ interface VisaType {
   fees: number | null;
   allowedNationalities: string[] | null;
   description?: string;
-  visaDuration?: number | null;
 }
 
 export default function ApplyForm({ user }: { user: any }) {
-  // Handler to reset the form and clear cache
-  const handleStartNewApplication = () => {
-    sessionStorage.removeItem('apply-form-cache');
-    sessionStorage.removeItem('current-application-id');
-    sessionStorage.removeItem('cached-destination-id');
-    setSelectedDestination(null);
-    setSelectedCountry(null);
-    setSelectedVisaType("");
-    setPassengerCount("1");
-    setStayingStart("");
-    setStayingEnd("");
-    setPortType("Air");
-    setPortName("");
-    setContact({ fullName: "", email: "", phone: "", countryCode: "+1", gender: "" });
-    setErrors({});
-    setApplicationExists(false);
-    setContactWasCompleteOnLoad(false);
-    setFormKey(prev => prev + 1); // Force re-render
-    
-    // Refresh the page to ensure completely clean state
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
-  };
+  console.log('ApplyForm user:', user);
+  console.log('ApplyForm isLoggedIn:', !!user);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -219,13 +194,15 @@ export default function ApplyForm({ user }: { user: any }) {
   const [countryCodeOpen, setCountryCodeOpen] = useState(false);
   const [countryCodeSearch, setCountryCodeSearch] = useState("");
 
-  // Visa duration from database
-  const [visaDurationDays, setVisaDurationDays] = useState<number>(0);
-
   // Check if application already exists (for contact field disabling)
   const [applicationExists, setApplicationExists] = useState(false);
   const [contactWasCompleteOnLoad, setContactWasCompleteOnLoad] = useState(false);
   const [formKey, setFormKey] = useState(0); // Add key to force re-render
+  
+  // Debug: Log contact state changes
+  useEffect(() => {
+    console.log('Contact state changed:', contact);
+  }, [contact]);
 
   // Load cached form data after destinations are loaded
   useEffect(() => {
@@ -236,7 +213,7 @@ export default function ApplyForm({ user }: { user: any }) {
         const cached = sessionStorage.getItem('apply-form-cache');
         if (cached) {
           const data = JSON.parse(cached);
-          //
+          console.log('Loading cached form data:', data);
           
           // Restore form state from cache
           if (data.selectedDestination) setSelectedDestination(data.selectedDestination);
@@ -248,7 +225,8 @@ export default function ApplyForm({ user }: { user: any }) {
           if (data.portType) setPortType(data.portType);
           if (data.portName) setPortName(data.portName);
           if (data.contact) {
-            //
+            console.log('Setting contact from cache:', data.contact);
+            console.log('Gender from cache:', data.contact.gender);
             setContact(data.contact);
             
             // Check if contact was complete when loaded from cache
@@ -260,11 +238,11 @@ export default function ApplyForm({ user }: { user: any }) {
             setContactWasCompleteOnLoad(contactComplete);
           }
         } else {
-          //
+          console.log('No cached data found');
           
           // Prefill contact fields with user data if logged in
           if (user) {
-            //
+            console.log('Prefilling contact with user data:', user);
             setContact({
               fullName: user.fullName || "",
               email: user.email || "",
@@ -275,7 +253,7 @@ export default function ApplyForm({ user }: { user: any }) {
           }
         }
       } catch (error) {
-        //
+        console.error('Error loading cached data:', error);
       }
     };
 
@@ -290,14 +268,14 @@ export default function ApplyForm({ user }: { user: any }) {
         const response = await fetch('/api/destinations');
         if (response.ok) {
           const data = await response.json();
-          //
+          console.log('Fetched destinations:', data);
           setDestinations(data);
           setHydrated(true);
         } else {
-          //
+          console.error('Failed to fetch destinations');
         }
       } catch (error) {
-        //
+        console.error('Error fetching destinations:', error);
       } finally {
         setLoadingDestinations(false);
       }
@@ -319,18 +297,13 @@ export default function ApplyForm({ user }: { user: any }) {
         const response = await fetch(`/api/destinations/${selectedDestination.id}/visa-types`);
         if (response.ok) {
           const data = await response.json();
-          //
-          // Log each visa type's visaDuration
-          data.forEach((vt: any, index: number) => {
-            //
-          });
           setVisaTypes(data);
         } else {
-          //
+          console.error('Failed to fetch visa types');
           setVisaTypes([]);
         }
       } catch (error) {
-        //
+        console.error('Error fetching visa types:', error);
         setVisaTypes([]);
       } finally {
         setLoadingVisaTypes(false);
@@ -348,7 +321,7 @@ export default function ApplyForm({ user }: { user: any }) {
     const cached = sessionStorage.getItem('apply-form-cache');
     if (cached) {
       // If we have cached data, don't override with URL parameters
-      //
+      console.log('Skipping URL parameters due to cached data');
       return;
     }
     
@@ -372,15 +345,15 @@ export default function ApplyForm({ user }: { user: any }) {
   // Handle visa type selection when visaTypes change - only apply if no cached data
   useEffect(() => {
     if (!visaTypes || visaTypes.length === 0) return;
-
+    
     // Check if we have cached data
     const cached = sessionStorage.getItem('apply-form-cache');
     if (cached) {
       // If we have cached data, don't override with URL parameters
-      //
+      console.log('Skipping visa type URL parameters due to cached data');
       return;
     }
-
+    
     const typeParam = searchParams.get("type");
     if (typeParam) {
       const visaType = visaTypes.find(
@@ -388,44 +361,9 @@ export default function ApplyForm({ user }: { user: any }) {
       );
       if (visaType) setSelectedVisaType(visaType.name);
     } else {
-      if (selectedCountry?.code?.toLowerCase() === "in" && visaTypes.length > 0) {
-        // For India, select the most expensive group variant for each canonical
-        // Assume visaTypes are deduplicated by canonical name, but you want the most expensive
-        // If visaTypes have a 'groupVariants' array, pick the one with max fees
-        // Otherwise, just pick the one with max fees
-        let maxFeeVisa = visaTypes[0];
-        for (const v of visaTypes) {
-          if (typeof v.fees === 'number' && typeof maxFeeVisa.fees === 'number' && v.fees > maxFeeVisa.fees) {
-            maxFeeVisa = v;
-          }
-        }
-        setSelectedVisaType(maxFeeVisa.name);
-      } else {
-        setSelectedVisaType(visaTypes[0].name);
-      }
+      setSelectedVisaType(visaTypes[0].name);
     }
-  }, [visaTypes, searchParams, selectedCountry]);
-
-  // Fetch visa duration when visa type changes
-  useEffect(() => {
-    //
-    
-    if (selectedDestination && selectedVisaType) {
-      const visaType = visaTypes.find(v => v.name === selectedVisaType);
-      //
-      
-      if (visaType && visaType.visaDuration) {
-        //
-        setVisaDurationDays(visaType.visaDuration);
-      } else {
-        //
-        setVisaDurationDays(0);
-      }
-    } else {
-      //
-      setVisaDurationDays(0);
-    }
-  }, [selectedDestination, selectedVisaType, visaTypes]);
+  }, [visaTypes, searchParams]);
 
   // Function to save form data to cache
   const saveFormToCache = () => {
@@ -442,9 +380,9 @@ export default function ApplyForm({ user }: { user: any }) {
         contact
       };
       sessionStorage.setItem('apply-form-cache', JSON.stringify(formData));
-      //
+      console.log('Saved form data to cache:', formData);
     } catch (error) {
-      //
+      console.error('Error saving form data to cache:', error);
     }
   };
 
@@ -500,8 +438,6 @@ export default function ApplyForm({ user }: { user: any }) {
     // Only allow updates if destination hasn't changed (only visa type, passenger count, dates)
     selectedDestination?.id === sessionStorage.getItem('cached-destination-id')
   ));
-  // Show reset button if form is locked due to cached data
-  const showResetButton = applicationExists || shouldUpdateExisting;
 
   // Calculate total for order summary
   let total = 0;
@@ -548,6 +484,20 @@ export default function ApplyForm({ user }: { user: any }) {
       );
     }
 
+    // Get visa duration in days (assume visa.waitTime is like "30 days" or "90 days")
+    let visaDurationDays = 0;
+    let visaTypeObj = null;
+    if (selectedDestination && selectedVisaType) {
+      visaTypeObj = visaTypes.find(
+        (v) => v.name === selectedVisaType
+      );
+      if (visaTypeObj && visaTypeObj.fees) {
+        const visaDurationStr = String(visaTypeObj.fees);
+        const match = visaDurationStr.match(/(\d+)/);
+        if (match) visaDurationDays = parseInt(match[1], 10);
+      }
+    }
+
     // If travel duration exceeds visa duration, block submission
     if (visaDurationDays > 0 && travelDays > visaDurationDays) {
       newErrors.stayingEnd = `Your travel duration (${travelDays} days) exceeds the allowed visa duration (${visaDurationDays} days).`;
@@ -569,7 +519,6 @@ export default function ApplyForm({ user }: { user: any }) {
     let portTypeToSend = portType;
     let portNameToSend = portName;
     let govFeeToSend = undefined;
-    let promotionAmount = 0;
     if (isIndia) {
       // Find canonical visa type
       const canonicalVisaType = visaTypes.find((vt) => vt.name === selectedVisaType);
@@ -582,17 +531,6 @@ export default function ApplyForm({ user }: { user: any }) {
       } else {
         govFeeToSend = canonicalVisaType?.fees;
       }
-      // Calculate promotionAmount for India
-      // Find the highest fee among all visaTypes
-      let highestFee = 0;
-      for (const vt of visaTypes) {
-        if (typeof vt.fees === 'number' && vt.fees > highestFee) {
-          highestFee = vt.fees;
-        }
-      }
-      // promotionAmount = (highestFee - govFeeToSend) * passengerCount
-      promotionAmount = (highestFee - (govFeeToSend || 0)) * Number(passengerCount);
-      console.log('promotionAmount (India):', promotionAmount, { highestFee, govFeeToSend, passengerCount });
     } else {
       visa = visaTypes.find(
         (v) => v.name === selectedVisaType
@@ -606,7 +544,8 @@ export default function ApplyForm({ user }: { user: any }) {
         ? (govFeeToSend + FIXED_SERVICE_FEE) * Number(passengerCount)
         : FIXED_SERVICE_FEE * Number(passengerCount);
 
-    //
+    console.log('portType:', portType);
+    console.log('portName:', portName);
     
     // Check if there's an existing application to update
     const existingApplicationId = sessionStorage.getItem('current-application-id');
@@ -616,7 +555,11 @@ export default function ApplyForm({ user }: { user: any }) {
     );
     
     // Log the update mode for debugging
-    //
+    if (shouldUpdateExisting) {
+      console.log('Update mode: Will update existing application', existingApplicationId);
+    } else {
+      console.log('Create mode: Will create new application');
+    }
     
     try {
       setIsSubmitting(true);
@@ -653,32 +596,35 @@ export default function ApplyForm({ user }: { user: any }) {
 
       if (appData.updated) {
         // Application was updated, keep the same application ID
-        //
+        console.log('Updated existing application:', appData.applicationId);
+        console.log('Updated passenger count:', appData.passengerCount);
+        console.log('Updated passenger IDs:', appData.passengerIds);
         
         // Update the form with the new passenger count if it changed
         if (appData.passengerCount && appData.passengerCount !== passengerCount) {
           setPassengerCount(appData.passengerCount);
-          //
+          console.log('Updated form passenger count to:', appData.passengerCount);
         }
         
         // Clear cache when application is updated to ensure fresh data
         sessionStorage.removeItem('cached-form-data');
-        //
+        console.log('Cleared cache due to application update');
         
         // Only clear passenger cache if passenger count decreased
         if (appData.applicationId && appData.passengerCount && appData.passengerCount < passengerCount) {
           const passengerCacheKey = `passenger-data-${appData.applicationId}`;
           sessionStorage.removeItem(passengerCacheKey);
-          //
+          console.log('Cleared passenger cache due to passenger count decrease:', passengerCacheKey);
         } else if (appData.applicationId && appData.passengerCount && appData.passengerCount > passengerCount) {
           // If passenger count increased, keep existing cache but add empty passengers
-          //
+          console.log('Passenger count increased, keeping existing cache and adding empty passengers');
         }
       } else {
         // New application created, store the application ID and destination ID
         sessionStorage.setItem('current-application-id', appData.applicationId);
         sessionStorage.setItem('cached-destination-id', selectedDestination?.id || '');
-        //
+        console.log('Created new application:', appData.applicationId);
+        console.log('Created passenger IDs:', appData.passengerIds);
       }
 
       // Navigate to passengers page with applicationId as URL parameter
@@ -716,7 +662,7 @@ export default function ApplyForm({ user }: { user: any }) {
         )}; path=/; max-age=2592000`;
       }
     } catch (error) {
-      //
+      console.error("Error creating application:", error);
       alert(
         error instanceof Error
           ? error.message
@@ -737,28 +683,10 @@ export default function ApplyForm({ user }: { user: any }) {
           <p className="text-slate-500 mt-2">
             Complete the form below to start your visa application process
           </p>
-          {(applicationExists || shouldUpdateExisting) && (
-            <div className="mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
-              <p className="text-emerald-700 text-sm mb-3">
-                {shouldUpdateExisting 
-                  ? "You have an existing application. You can update it or start fresh."
-                  : "This form is pre-filled with your previous application data."}
-              </p>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleStartNewApplication}
-                className="bg-white border-emerald-300 text-emerald-700 hover:bg-emerald-50 text-sm px-4 py-2"
-              >
-                + Create New Application
-              </Button>
-            </div>
-          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <form
-            key={formKey}
             onSubmit={handleSubmit}
             className="space-y-6 col-span-2 bg-white rounded-xl p-6 shadow-sm border border-slate-200"
           >
@@ -786,14 +714,19 @@ export default function ApplyForm({ user }: { user: any }) {
                   }))}
                   value={selectedDestination?.id || ""}
                   onChange={(id) => {
+                    console.log('Selected destination ID:', id);
                     const destination = destinations.find((d) => d.id === id);
+                    console.log('Found destination:', destination);
+                    
                     // Check if destination is changing
                     const currentDestinationId = sessionStorage.getItem('cached-destination-id');
                     if (currentDestinationId && currentDestinationId !== id) {
                       // Destination changed, clear existing application ID since we'll need a new application
                       sessionStorage.removeItem('current-application-id');
                       sessionStorage.removeItem('cached-destination-id');
+                      console.log('Destination changed, cleared existing application ID');
                     }
+                    
                     setSelectedDestination(destination || null);
                     setSelectedCountry(destination || null); // Also update selectedCountry for compatibility
                     setCountryName(destination?.name || "");
@@ -887,14 +820,14 @@ export default function ApplyForm({ user }: { user: any }) {
                       </div>
                     </div>
 
-                    {/* Port of Arrival for India: always use india.portType and india.portName */}
-                    {selectedCountry?.code?.toLowerCase() === "in" ? (
+                    {/* Port of Arrival for countries with portType/port structure */}
+                    {selectedDestination.portType && Array.isArray(selectedDestination.portType) && (
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                         <h4 className="font-semibold text-blue-900 text-sm mb-2">Port of Arrival</h4>
                         <div className="mb-3">
                           <label className="text-xs font-medium text-blue-700 mb-1 block">Port Type</label>
                           <div className="flex gap-4 flex-wrap">
-                            {india.portType?.map((pt: { type: string; port: string[] }) => (
+                            {selectedDestination.portType.map((pt) => (
                               <div className="flex items-center gap-2" key={pt.type}>
                                 <input
                                   type="radio"
@@ -929,7 +862,7 @@ export default function ApplyForm({ user }: { user: any }) {
                               <SelectValue placeholder="Select Port" />
                             </SelectTrigger>
                             <SelectContent>
-                              {(india.portType?.find((pt: { type: string; port: string[] }) => pt.type === portType)?.port || []).map((port: string) => (
+                              {(selectedDestination.portType.find((pt) => pt.type === portType)?.port || []).map((port: string) => (
                                 <SelectItem key={port} value={port}>
                                   {port}
                                 </SelectItem>
@@ -944,64 +877,6 @@ export default function ApplyForm({ user }: { user: any }) {
                           )}
                         </div>
                       </div>
-                    ) : (
-                      selectedDestination.portType && Array.isArray(selectedDestination.portType) && (
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                          <h4 className="font-semibold text-blue-900 text-sm mb-2">Port of Arrival</h4>
-                          <div className="mb-3">
-                            <label className="text-xs font-medium text-blue-700 mb-1 block">Port Type</label>
-                            <div className="flex gap-4 flex-wrap">
-                              {selectedDestination.portType?.map((pt: { type: string; port: string[] }) => (
-                                <div className="flex items-center gap-2" key={pt.type}>
-                                  <input
-                                    type="radio"
-                                    id={`portType-${pt.type}`}
-                                    name="portType"
-                                    value={pt.type}
-                                    checked={portType === pt.type}
-                                    onChange={() => { setPortType(pt.type); setPortName(""); }}
-                                    className="accent-blue-600"
-                                  />
-                                  <label htmlFor={`portType-${pt.type}`} className="text-blue-800 text-sm">{pt.type}</label>
-                                </div>
-                              ))}
-                            </div>
-                            {errors.portType && (
-                              <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
-                                <XCircle className="h-3.5 w-3.5" />
-                                <span>{errors.portType}</span>
-                              </div>
-                            )}
-                          </div>
-                          <div>
-                            <label className="text-xs font-medium text-blue-700 mb-1 block">Port Name</label>
-                            <Select
-                              value={portName}
-                              onValueChange={(v) => setPortName(v)}
-                            >
-                              <SelectTrigger className={cn(
-                                "w-full border-blue-300 focus:ring-blue-500 text-blue-900 bg-white",
-                                errors.portName && "border-red-500 focus:ring-red-500"
-                              )}>
-                                <SelectValue placeholder="Select Port" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {(selectedDestination.portType?.find((pt: { type: string; port: string[] }) => pt.type === portType)?.port || []).map((port: string) => (
-                                  <SelectItem key={port} value={port}>
-                                    {port}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            {errors.portName && (
-                              <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
-                                <XCircle className="h-3.5 w-3.5" />
-                                <span>{errors.portName}</span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      )
                     )}
                   </div>
                 )}
@@ -1137,13 +1012,27 @@ export default function ApplyForm({ user }: { user: any }) {
                             setStayingStart(newStart);
                             setStartDateOpen(false); // Close popover
                             // Validate travel duration if both dates are set
-                            // Check if visa duration is set
                             if (newStart && stayingEnd) {
                               const travelDays = Math.floor(
                                 (new Date(stayingEnd).getTime() -
                                   new Date(newStart).getTime()) /
                                   (1000 * 60 * 60 * 24)
                               );
+                              let visaDurationDays = 0;
+                              let visaTypeObj = null;
+                              if (selectedDestination && selectedVisaType) {
+                                visaTypeObj = visaTypes.find(
+                                  (v) => v.name === selectedVisaType
+                                );
+                                if (visaTypeObj && visaTypeObj.fees) {
+                                  const visaDurationStr = String(
+                                    visaTypeObj.fees
+                                  );
+                                  const match = visaDurationStr.match(/(\d+)/);
+                                  if (match)
+                                    visaDurationDays = parseInt(match[1], 10);
+                                }
+                              }
                               if (
                                 visaDurationDays > 0 &&
                                 travelDays > visaDurationDays
@@ -1222,6 +1111,21 @@ export default function ApplyForm({ user }: { user: any }) {
                                   new Date(stayingStart).getTime()) /
                                   (1000 * 60 * 60 * 24)
                               );
+                              let visaDurationDays = 0;
+                              let visaTypeObj = null;
+                              if (selectedDestination && selectedVisaType) {
+                                visaTypeObj = visaTypes.find(
+                                  (v) => v.name === selectedVisaType
+                                );
+                                if (visaTypeObj && visaTypeObj.fees) {
+                                  const visaDurationStr = String(
+                                    visaTypeObj.fees
+                                  );
+                                  const match = visaDurationStr.match(/(\d+)/);
+                                  if (match)
+                                    visaDurationDays = parseInt(match[1], 10);
+                                }
+                              }
                               if (
                                 visaDurationDays > 0 &&
                                 travelDays > visaDurationDays
@@ -1325,11 +1229,11 @@ export default function ApplyForm({ user }: { user: any }) {
                     type="text"
                     className={cn(
                       "focus:ring-emerald-500",
-                      (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
+                      applicationExists && "bg-slate-50 text-slate-500",
                       errors.fullName && "border-red-500 focus:ring-red-500"
                     )}
                     value={contact.fullName}
-                    readOnly={applicationExists || isLoggedIn}
+                    readOnly={applicationExists}
                     onChange={(e) =>
                       setContact((c) => ({ ...c, fullName: e.target.value }))
                     }
@@ -1351,11 +1255,11 @@ export default function ApplyForm({ user }: { user: any }) {
                     type="email"
                     className={cn(
                       "focus:ring-emerald-500",
-                      (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
+                      applicationExists && "bg-slate-50 text-slate-500",
                       errors.email && "border-red-500 focus:ring-red-500"
                     )}
                     value={contact.email}
-                    readOnly={applicationExists || isLoggedIn}
+                    readOnly={applicationExists}
                     onChange={(e) =>
                       setContact((c) => ({ ...c, email: e.target.value }))
                     }
@@ -1382,10 +1286,10 @@ export default function ApplyForm({ user }: { user: any }) {
                           type="button"
                           className={cn(
                             "w-full flex items-center justify-between rounded-md border px-3 py-2 text-left text-sm shadow-sm transition-colors focus:outline-none focus:ring-1",
-                            (applicationExists || isLoggedIn) ? "bg-slate-50 text-slate-500" : "bg-white",
+                            applicationExists ? "bg-slate-50 text-slate-500" : "bg-white",
                             errors.countryCode && "border-red-500 focus:ring-red-500"
                           )}
-                          disabled={applicationExists || isLoggedIn}
+                          disabled={applicationExists}
                         >
                           <span className="flex items-center gap-2">
                             {COUNTRY_CODES.find(c => c.code === contact.countryCode)?.flag || ""}
@@ -1447,11 +1351,11 @@ export default function ApplyForm({ user }: { user: any }) {
                       type="tel"
                       className={cn(
                         "focus:ring-emerald-500",
-                        (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
+                        applicationExists && "bg-slate-50 text-slate-500",
                         errors.phone && "border-red-500 focus:ring-red-500"
                       )}
                       value={contact.phone}
-                      readOnly={applicationExists || isLoggedIn}
+                      readOnly={applicationExists}
                       onChange={(e) =>
                         setContact((c) => ({ ...c, phone: e.target.value }))
                       }
@@ -1474,16 +1378,15 @@ export default function ApplyForm({ user }: { user: any }) {
                     key={`gender-${contact.gender}`}
                     value={contact.gender || ""}
                     onValueChange={(v) => {
+                      console.log('Gender changed to:', v);
                       setContact((c) => ({ ...c, gender: v }));
                     }}
-                    disabled={applicationExists || isLoggedIn}
+                    disabled={applicationExists}
                   >
                     <SelectTrigger
                       className={cn(
                         "focus:ring-emerald-500",
-                        (applicationExists || isLoggedIn)
-                          ? "bg-slate-100 text-slate-900 border-slate-300"
-                          : "",
+                        applicationExists && "bg-slate-50 text-slate-500",
                         errors.gender && "border-red-500 focus:ring-red-500"
                       )}
                     >
@@ -1534,16 +1437,89 @@ export default function ApplyForm({ user }: { user: any }) {
 
           {/* Order Summary */}
           <div className="space-y-6">
-            <OrderSummary
-              selectedDestination={selectedDestination}
-              selectedVisaType={selectedVisaType}
-              passengerCount={Number(passengerCount)}
-              stayingStart={stayingStart}
-              stayingEnd={stayingEnd}
-              portType={portType}
-              portName={portName}
-              step="apply"
-            />
+            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+              <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
+                Order Summary
+              </h2>
+              <div className="space-y-4 text-sm">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium text-slate-700">
+                    Destination
+                  </span>
+                  <span className="font-medium text-emerald-700">
+                    {selectedDestination?.name ?? "---"}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-medium text-slate-700">
+                    Type of Visa
+                  </span>
+                  <span className="text-slate-800 text-xs">
+                    {(() => {
+                      if (!selectedDestination || !selectedVisaType) return "---";
+                      // Always show canonical visa type name
+                      const canonical = visaTypes.find(
+                        (v) => v.name === selectedVisaType
+                      );
+                      return canonical ? canonical.name : "---";
+                    })()}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-medium text-slate-700">Travelers</span>
+                  <span className="text-slate-800">{passengerCount}</span>
+                </div>
+
+                {/* Hide Government Fee for India */}
+                {!isIndia && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-600">Government Fee</span>
+                    <span className="text-slate-800">
+                      {selectedDestination && selectedVisaType
+                        ? `$${(
+                            visaTypes.find(
+                              (v) => v.name === selectedVisaType
+                            )?.fees ?? 0
+                          ).toFixed(2)}`
+                        : "---"}
+                    </span>
+                  </div>
+                )}
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">Service Fee</span>
+                  <span className="text-slate-800">
+                    ${FIXED_SERVICE_FEE.toFixed(2)}
+                  </span>
+                </div>
+
+                {/* Total */}
+                <div className="flex justify-between items-center pt-3 mt-2 border-t border-slate-200">
+                  <p className="font-semibold text-slate-800">Total</p>
+                  <p className="font-bold text-lg text-emerald-700">
+                    {`$${total.toFixed(2)}`}
+                  </p>
+                </div>
+
+                {/* Secure payment indicator */}
+                {selectedDestination && (
+                  <div className="flex flex-col gap-3 mt-3 pt-3 border-t border-slate-100">
+                    <div className="flex items-center text-xs text-slate-500">
+                      <ShieldCheck className="w-4 h-4 text-slate-400 mr-1.5" />
+                      Secure SSL encrypted payment
+                    </div>
+                    <div className="bg-emerald-50 border border-emerald-100 rounded-md p-3">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                        <span className="text-xs text-emerald-800">
+                          100% Service Fee Refund Guarantee if your visa is
+                          rejected
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
             <SupportSidebar />
           </div>
         </div>

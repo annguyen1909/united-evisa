@@ -13,9 +13,9 @@ export async function POST(req: Request) {
     const amount = body.amount;
     const applicationId = body.applicationId;
 
-    if (!amount || typeof amount !== "number" || !applicationId) {
-      console.warn("Invalid amount or applicationId received:", amount, applicationId);
-      return NextResponse.json({ error: "Invalid amount or applicationId" }, { status: 400 });
+    if (!applicationId) {
+      console.warn("Invalid applicationId received:", applicationId);
+      return NextResponse.json({ error: "Invalid applicationId" }, { status: 400 });
     }
 
     // Get the application to verify it exists and get account email
@@ -27,6 +27,11 @@ export async function POST(req: Request) {
         accountId: true,
         paymentStatus: true,
         status: true,
+        destination: {
+          select: {
+            code: true
+          }
+        }
       },
     });
 
@@ -35,6 +40,25 @@ export async function POST(req: Request) {
         { error: 'Application not found or total not set' },
         { status: 404 }
       );
+    }
+
+    // For India, always use the backend-calculated total
+    // For other countries, use the frontend-provided amount if it's valid
+    let finalAmount: number;
+    const isIndia = application.destination?.code?.toLowerCase() === 'in';
+    
+    if (isIndia) {
+      // For India, always use the backend total (this is how India repo works)
+      finalAmount = application.total;
+      console.log(`[India Payment] Using backend-calculated total: $${finalAmount} for application ${applicationId}`);
+    } else {
+      // For other countries, validate the frontend amount
+      if (!amount || typeof amount !== "number") {
+        console.warn("Invalid amount received for non-India application:", amount);
+        return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
+      }
+      finalAmount = amount;
+      console.log(`[Non-India Payment] Using frontend-provided amount: $${finalAmount} for application ${applicationId}`);
     }
 
     // Prevent creating payment intent if payment is already completed
@@ -60,7 +84,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Account not found' }, { status: 404 });
     }
 
-    const amountInCents = Math.round(amount * 100);
+    const amountInCents = Math.round(finalAmount * 100);
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
@@ -75,11 +99,11 @@ export async function POST(req: Request) {
       data: {
         id: paymentIntent.id,
         applicationId: application.id,
-        amount: amount,
+        amount: finalAmount,
         status: paymentIntent.status,
         type: 'PaymentIntent',
         title: 'Payment Intent Created',
-        description: `Payment intent created for ${account.email}`,
+        description: `Payment intent created for ${account.email} (${isIndia ? 'India' : 'Other'})`,
         timestamp: new Date(paymentIntent.created * 1000),
         transactionId: paymentIntent.id,
       },

@@ -11,6 +11,8 @@ import SupportSidebar from "@/components/shared/SupportSidebar";
 import moment from "moment";
 import { DollarSign, CreditCard, Calendar, Map, CheckCircle, AlertCircle } from "lucide-react";
 import { calculateIndiaVisaFee } from "@/lib/countries/india";
+import { getNationalityByName, NATIONALITIES } from "@/lib/nationalities";
+import { SiStripe } from "react-icons/si";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -29,6 +31,8 @@ function PaymentContent() {
     const [visa, setVisa] = useState<any>(null);
     const [showError, setShowError] = useState(false);
     const [stepNotAllowed, setStepNotAllowed] = useState(false);
+    const [recalculateTrigger, setRecalculateTrigger] = useState(0);
+    const [visaTypes, setVisaTypes] = useState<any[]>([]);
     const paymentIntentCreated = useRef(false);
 
     // Initialize applicationId from URL or session storage
@@ -51,6 +55,27 @@ function PaymentContent() {
             }
         }
     }, [searchParams, router]);
+
+    // Fetch visa types for India (like passengers page)
+    useEffect(() => {
+        const fetchVisaTypes = async () => {
+            try {
+                const response = await fetch('/api/destinations/india/visa-types');
+                if (response.ok) {
+                    const data = await response.json();
+                    setVisaTypes(data);
+                    console.log('[visa types debug] Fetched visa types:', data.length);
+                }
+            } catch (error) {
+                console.error('Failed to fetch visa types:', error);
+            }
+        };
+
+        // Only fetch visa types if destination is India
+        if (applicationData?.destination?.code?.toLowerCase() === "in") {
+            fetchVisaTypes();
+        }
+    }, [applicationData?.destination?.code]);
 
     // Fetch application data from database
     async function fetchApplicationData(appId: string) {
@@ -111,13 +136,20 @@ function PaymentContent() {
     // Create payment intent with the database-sourced data
     async function createPaymentIntent(appId: string, total: number) {
         try {
+            // For India, only send applicationId (backend will use stored total)
+            // For other countries, send both amount and applicationId
+            const isIndia = applicationData?.destination?.code?.toLowerCase() === 'in';
+            
+            const requestBody = isIndia 
+                ? { applicationId: appId }
+                : { amount: total, applicationId: appId };
+            
+            console.log(`[Payment Intent] Creating payment intent for ${isIndia ? 'India' : 'Other'}:`, requestBody);
+            
             const response = await fetch("/api/create-payment-intent", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    amount: Math.round(total * 100), 
-                    applicationId: appId 
-                })
+                body: JSON.stringify(requestBody)
             });
             
             const data = await response.json();
@@ -133,31 +165,47 @@ function PaymentContent() {
     // Order summary using database data instead of sessionStorage
     let orderSummary = null;
     if (applicationData) {
+        // Force recalculation when trigger changes (for India)
+        const _ = recalculateTrigger; // Use trigger to force recalculation
         let passengersArr = Array.isArray(applicationData.passengers) && applicationData.passengers.length > 0
             ? applicationData.passengers
             : [];
         const passenger = applicationData.passengerCount || passengersArr.length || 1;
         const serviceFee = FIXED_SERVICE_FEE * passenger;
         let govFee: number | null = null;
+        
         // Log the calculated government and service fees on load
-        console.log('[OrderSummary] Calculated govFee:', govFee, 'serviceFee:', serviceFee, 'passenger:', passenger);
+        console.log('[OrderSummary] Calculated govFee:', govFee, 'serviceFee:', serviceFee, 'passenger:', passenger, 'passengersArr.length:', passengersArr.length, 'isIndia:', country?.code?.toLowerCase() === "in");
+        
         const destination = country?.name ?? applicationData.destination?.name ?? "---";
         let visaName = visa?.name ?? applicationData.visaType?.name ?? "---";
-        if (country?.code?.toLowerCase() === "in" && visa && passengersArr.length > 0) {
-            // Use canonical visa id for India and calculate based on each passenger's nationality
-            const canonicalId = visa.id.split('-group-')[0];
-            const fees = passengersArr.map((p: any) => calculateIndiaVisaFee(canonicalId, p.nationality));
-            const validFees = fees.filter((fee: any) => typeof fee === 'number' && !isNaN(fee));
-            console.log('[India govFee debug - payment step]', { canonicalId, passengersArr, applicationDataPassengers: applicationData.passengers, fees, validFees });
-            if (validFees.length > 0) {
-                govFee = validFees.reduce((sum: number, fee: number) => sum + fee, 0);
+        
+        // Calculate government fee based on country
+        if (country?.code?.toLowerCase() === "in") {
+            // For India, use the stored total from the application and calculate govFee
+            // This is how the India repo works - we trust the stored total
+            const storedTotal = applicationData.total;
+            const passengerCount = applicationData.passengerCount || passengersArr.length || 1;
+            const totalServiceFee = FIXED_SERVICE_FEE * passengerCount;
+            
+            if (typeof storedTotal === 'number' && storedTotal > 0) {
+                // Calculate govFee by subtracting service fee from total
+                govFee = storedTotal - totalServiceFee;
+                console.log('[India govFee] Using stored total calculation:', {
+                    storedTotal,
+                    totalServiceFee,
+                    calculatedGovFee: govFee,
+                    passengerCount
+                });
             } else {
                 govFee = null;
+                console.log('[India govFee] No valid stored total found');
             }
         } else {
             // For non-India, multiply visa.govFee by passenger count
             const passengerCount = applicationData.passengerCount || passengersArr.length || 1;
             govFee = typeof visa?.govFee === 'number' ? visa.govFee * passengerCount : null;
+            console.log('[Non-India govFee] Calculated:', govFee, 'for passenger count:', passengerCount);
         }
         const stayingStart = applicationData.stayingStart;
         const stayingEnd = applicationData.stayingEnd;
@@ -186,8 +234,29 @@ function PaymentContent() {
             }
         }
 
-        // Use fixed service fee and total
-        const total = typeof applicationData.total === 'number' ? applicationData.total : (visa && typeof govFee === 'number' ? (govFee + serviceFee) : 0);
+        // Calculate total based on current govFee and serviceFee
+        const total = (() => {
+            if (country?.code?.toLowerCase() === "in") {
+                // For India, calculate based on current govFee and serviceFee
+                if (govFee !== null && typeof govFee === 'number') {
+                    return govFee + serviceFee;
+                } else {
+                    // If no valid govFee, return service fee only
+                    return serviceFee;
+                }
+            } else {
+                // For non-India, use the stored total or calculate
+                return typeof applicationData.total === 'number' ? applicationData.total : (visa && typeof govFee === 'number' ? (govFee + serviceFee) : serviceFee);
+            }
+        })();
+        
+        console.log('[Total calculation]', { 
+            isIndia: country?.code?.toLowerCase() === "in",
+            govFee, 
+            serviceFee, 
+            calculatedTotal: total,
+            storedTotal: applicationData.total 
+        });
 
         orderSummary = (
             <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
@@ -218,7 +287,18 @@ function PaymentContent() {
                     <hr className="border-slate-100" />
                     <div className="flex items-center justify-between">
                         <span className="text-slate-600">Government Fee</span>
-                        <span className="text-slate-800">{govFee !== null ? `$${govFee.toFixed(2)}` : "---"}</span>
+                        <span className="text-slate-800">
+                          {(() => {
+                            const isIndia = country?.code?.toLowerCase() === "in";
+                            const hasValidGovFee = govFee !== null && typeof govFee === 'number';
+                            console.log('[GovFee Display Debug]', { 
+                              isIndia, 
+                              govFee, 
+                              hasValidGovFee
+                            });
+                            return hasValidGovFee && govFee !== null ? `$${govFee.toFixed(2)}` : "---";
+                          })()}
+                        </span>
                     </div>
                     <div className="flex items-center justify-between">
                         <span className="text-slate-600">Service Fee</span>
@@ -227,7 +307,20 @@ function PaymentContent() {
                     <hr className="border-slate-100" />
                     <div className="flex items-center justify-between pt-1">
                         <span className="font-semibold text-base text-slate-800">Total</span>
-                        <span className="font-bold text-lg text-emerald-700">{`$${total.toFixed(2)}`}</span>
+                        <span className="font-bold text-lg text-emerald-700">
+                          {(() => {
+                            const isIndia = country?.code?.toLowerCase() === "in";
+                            const hasValidGovFee = govFee !== null && typeof govFee === 'number';
+                            console.log('[Total Display Debug]', { 
+                              isIndia, 
+                              govFee, 
+                              hasValidGovFee, 
+                              serviceFee, 
+                              total 
+                            });
+                            return hasValidGovFee ? `$${total.toFixed(2)}` : `$${serviceFee.toFixed(2)}`;
+                          })()}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -245,6 +338,15 @@ function PaymentContent() {
             if (timeout) clearTimeout(timeout);
         };
     }, [isLoading, clientSecret, applicationData]);
+
+    // Recalculate fees when application data changes (especially for India)
+    useEffect(() => {
+        if (applicationData && country?.code?.toLowerCase() === "in") {
+            console.log('[Payment] Application data changed, recalculating fees for India');
+            // Force re-render by updating trigger
+            setRecalculateTrigger(prev => prev + 1);
+        }
+    }, [applicationData?.passengers, applicationData?.passengerCount, country?.code]);
 
     return (
         <div className="min-h-screen bg-slate-50 pb-16">            
@@ -301,6 +403,49 @@ function PaymentContent() {
                                         </div>
                                     ) : clientSecret ? (
                                         <div className="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                                            {/* Powered by Stripe - Top */}
+                                            <div className="flex items-center justify-center mb-6 p-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-100">
+                                                <div className="flex items-center space-x-3">
+                                                    <span className="text-sm font-medium text-slate-600">Secured by</span>
+                                                    <div className="flex items-center space-x-1">
+                                                        <SiStripe className="h-6 w-6 text-[#635bff]" />
+                                                        <span className="text-lg font-bold text-[#635bff]">Stripe</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Enhanced Security Badges */}
+                                            <div className="mb-6 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl border border-emerald-100">
+                                                <div className="flex items-center justify-center mb-3">
+                                                    <div className="bg-emerald-100 p-2 rounded-full">
+                                                        <svg className="h-6 w-6 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <h3 className="text-center text-lg font-bold text-slate-800 mb-2">🔒 Bank-Level Security</h3>
+                                                <p className="text-center text-sm text-slate-600 mb-4">Your payment is protected with military-grade encryption</p>
+                                                
+                                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                                    <div className="flex items-center justify-center space-x-2 p-2 bg-white rounded-lg shadow-sm">
+                                                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                                        <span className="text-xs font-semibold text-slate-700">SSL Encrypted</span>
+                                                    </div>
+                                                    <div className="flex items-center justify-center space-x-2 p-2 bg-white rounded-lg shadow-sm">
+                                                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                                        <span className="text-xs font-semibold text-slate-700">PCI DSS Level 1</span>
+                                                    </div>
+                                                    <div className="flex items-center justify-center space-x-2 p-2 bg-white rounded-lg shadow-sm">
+                                                        <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                                                        <span className="text-xs font-semibold text-slate-700">SOC 2 Certified</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div className="mt-3 text-center">
+                                                    <p className="text-xs text-slate-500">💳 We never store your card details • 🛡️ Fraud protection included</p>
+                                                </div>
+                                            </div>
+                                            
                                             <Elements options={options} stripe={stripePromise}>
                                                 <CheckoutForm amount={totalAmount} applicationId={applicationId} />
                                             </Elements>

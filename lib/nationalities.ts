@@ -251,3 +251,9 @@ export function getNationalityByCode(code: string) {
     (n) => n.code.toUpperCase() === code.toUpperCase()
   );
 }
+
+export function getNationalityByName(name: string) {
+  return NATIONALITIES.find(
+    (n) => n.name.toLowerCase() === name.toLowerCase()
+  );
+}

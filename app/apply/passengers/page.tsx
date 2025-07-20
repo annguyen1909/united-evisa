@@ -52,6 +52,7 @@ function PassengersContent() {
   const [passengers, setPassengers] = useState<Passenger[]>([]);
   const [errors, setErrors] = useState<PassengerError[]>([]);
   const [stepNotAllowed, setStepNotAllowed] = useState(false);
+  const [visaTypes, setVisaTypes] = useState<any[]>([]);
 
   useEffect(() => {
     // Always prioritize URL parameter
@@ -72,6 +73,27 @@ function PassengersContent() {
       }
     }
   }, [searchParams, router]);
+
+  // Fetch visa types for India (like India repo)
+  useEffect(() => {
+    const fetchVisaTypes = async () => {
+      try {
+        const response = await fetch('/api/destinations/india/visa-types');
+        if (response.ok) {
+          const data = await response.json();
+          setVisaTypes(data);
+          console.log('[visa types debug] Fetched visa types:', data.length);
+        }
+      } catch (error) {
+        console.error('Failed to fetch visa types:', error);
+      }
+    };
+
+    // Only fetch visa types if destination is India
+    if (applicationData?.destination?.code?.toLowerCase() === "in") {
+      fetchVisaTypes();
+    }
+  }, [applicationData?.destination?.code]);
 
   // Fetch application data function
   async function fetchApplicationData(appId: string) {
@@ -178,9 +200,110 @@ function PassengersContent() {
     return applicationData.visaType;
   }, [applicationData]);
 
-  // Get allowed nationalities from the database visa type
+  // Canonical visa types and their display names (copied from India repo)
+  const CANONICAL_VISA_TYPES = [
+    {
+      key: 'tourist-30d',
+      display: 'Tourist e-Visa (Double entries for 30 days)',
+      match: /tourist.*30\s*days/i,
+    },
+    {
+      key: 'tourist-1y',
+      display: 'Tourist e-Visa (Multiple entries for 1 year)',
+      match: /tourist.*1\s*year/i,
+    },
+    {
+      key: 'tourist-5y',
+      display: 'Tourist e-Visa (Multiple entries for 5 years)',
+      match: /tourist.*5\s*years?/i,
+    },
+    {
+      key: 'business',
+      display: 'Business e-Visa (Multiple entries for 1 year)',
+      match: /business.*1\s*year/i,
+    },
+    {
+      key: 'ayush',
+      display: 'Ayush e-Visa (Triple entries for 60 days)',
+      match: /ayush.*60\s*days/i,
+    },
+    {
+      key: 'medical',
+      display: 'Medical e-Visa (Triple entries for 60 days)',
+      match: /medical.*60\s*days/i,
+    },
+    {
+      key: 'conference',
+      display: 'Conference e-Visa (Triple entries for 30 days)',
+      match: /conference.*30\s*days/i,
+    },
+    {
+      key: 'student',
+      display: 'Student e-Visa (Triple entries for 365 days)',
+      match: /student.*365\s*days/i,
+    },
+    {
+      key: 'x-misc',
+      display: 'e-Emergency X-Misc Visa',
+      match: /emergency|x-misc/i,
+    },
+  ];
+
+  // Get allowed nationalities from the database visa type - Updated to match India repo logic
   const allowedNationalities = useMemo(() => {
-    if (!visa || !visa.allowedNationalities) {
+    if (!visa || !visa.name) {
+      console.log('[nationality debug] No visa or visa name found, using all nationalities');
+      return NATIONALITIES;
+    }
+
+    // For India, use the database approach like India repo
+    if (applicationData?.destination?.code?.toLowerCase() === "in") {
+      // Find the canonical config
+      const canonical = CANONICAL_VISA_TYPES.find((c) => c.match.test(visa.name));
+      if (!canonical) {
+        console.log('[nationality debug] No canonical visa type found for:', visa.name);
+        return NATIONALITIES;
+      }
+
+      // Get all visa types for India to compute union
+      const allVisaTypes = visaTypes || [];
+      
+      // Find all matching group-specific visa types
+      const allMatching = allVisaTypes.filter((vt: any) => canonical.match.test(vt.name));
+      
+      // Union of all allowed nationalities from database
+      const allAllowedCodes = new Set<string>();
+      allMatching.forEach((vt: any) => {
+        if (vt.allowedNationalities) {
+          let allowed = vt.allowedNationalities;
+          if (typeof allowed === 'string') {
+            try {
+              allowed = JSON.parse(allowed);
+            } catch {
+              return;
+            }
+          }
+          if (Array.isArray(allowed)) {
+            allowed.forEach((code: string) => allAllowedCodes.add(code.toUpperCase()));
+          }
+        }
+      });
+
+      if (allAllowedCodes.size === 0) {
+        console.log('[nationality debug] No allowed nationalities found in database for India, using all nationalities');
+        return NATIONALITIES;
+      }
+
+      console.log('[nationality debug] India - Database allowed nationalities:', Array.from(allAllowedCodes));
+      const filtered = NATIONALITIES.filter((c: { code: string; }) =>
+        allAllowedCodes.has(c.code.toUpperCase())
+      );
+      console.log('[nationality debug] India - Filtered nationalities count:', filtered.length);
+      return filtered;
+    }
+
+    // For other countries, use the existing logic
+    if (!visa.allowedNationalities) {
       console.log('[nationality debug] No allowedNationalities found, using all nationalities');
       return NATIONALITIES;
     }
@@ -200,7 +323,7 @@ function PassengersContent() {
 
     if (allowedCodes.length === 0) {
       console.log('[nationality debug] Empty allowedNationalities, using all nationalities');
-    return NATIONALITIES;
+      return NATIONALITIES;
     }
 
     console.log('[nationality debug] Filtering nationalities by:', allowedCodes);
@@ -209,7 +332,7 @@ function PassengersContent() {
     );
     console.log('[nationality debug] Filtered nationalities count:', filtered.length);
     return filtered;
-  }, [visa]);
+  }, [visa, applicationData, visaTypes]);
 
   const updatePassenger = (
     index: number,
@@ -481,7 +604,11 @@ function PassengersContent() {
           <hr className="border-slate-100" />
           <div className="flex items-center justify-between">
             <span className="text-slate-600">Government Fee</span>
-            <span className="text-slate-800">{visa && typeof govFee === 'number' ? `$${govFee.toFixed(2)}` : "---"}</span>
+            <span className="text-slate-800">
+              {applicationData?.destination?.code?.toLowerCase() === "in" && passengers.length === 0
+                ? "Pending nationality selection"
+                : (visa && typeof govFee === 'number' ? `$${govFee.toFixed(2)}` : "---")}
+            </span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-slate-600">Service Fee</span>
@@ -490,7 +617,11 @@ function PassengersContent() {
           <hr className="border-slate-100" />
           <div className="flex items-center justify-between pt-1">
             <span className="font-semibold text-base text-slate-800">Total</span>
-            <span className="font-bold text-lg text-emerald-700">{visa && typeof govFee === 'number' ? `$${total.toFixed(2)}` : "---"}</span>
+            <span className="font-bold text-lg text-emerald-700">
+              {applicationData?.destination?.code?.toLowerCase() === "in" && passengers.length === 0
+                ? `${serviceFee.toFixed(2)}+`
+                : (visa && typeof govFee === 'number' ? `$${total.toFixed(2)}` : "---")}
+            </span>
           </div>
         </div>
       </div>
@@ -546,6 +677,8 @@ function PassengersContent() {
         <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-6 text-center">
           Traveler Information
         </h1>
+
+
 
         {isLoading && !applicationData ? (
           <div className="flex flex-col items-center justify-center py-12">
@@ -678,23 +811,22 @@ function PassengersContent() {
                       {/* Nationality */}
                       <div className="md:col-span-2">
                         <Label htmlFor={`nationality-${index}`} className="text-sm font-medium">Nationality *</Label>
-                        <Select
+                        <select
+                          id={`nationality-${index}`}
                           value={passenger.nationality}
-                          onValueChange={(value) => updatePassenger(index, "nationality", value)}
+                          onChange={(e) => updatePassenger(index, "nationality", e.target.value)}
+                          className={cn(
+                            "w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-900",
+                            errors[index]?.nationality ? 'border-red-500' : 'border-slate-300'
+                          )}
                         >
-                          <SelectTrigger className={cn(
-                            errors[index]?.nationality && "border-red-500 focus:ring-red-500"
-                          )}>
-                            <SelectValue placeholder="Select Nationality" />
-                          </SelectTrigger>
-                          <SelectContent className="max-h-[300px]">
-                            {allowedNationalities.map((country) => (
-                              <SelectItem key={country.code} value={country.code}>
-                                {country.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                          <option value="">Select Nationality</option>
+                          {allowedNationalities.map((country) => (
+                            <option key={country.code} value={country.code}>
+                              {country.name}
+                            </option>
+                          ))}
+                        </select>
                         {errors[index]?.nationality && (
                           <div className="flex items-center text-red-500 text-xs mt-1">
                             <AlertCircle className="w-3 h-3 mr-1" />

@@ -296,13 +296,17 @@ export default function OrderSummary({
           </>
         )}
         
-        {/* Step 1: Show estimated total without government fee (hide govFee for India) */}
-        {step === "apply" && selectedDestination && selectedDestination.code?.toLowerCase() !== "in" && (
+        {/* Step 1: Show estimated total */}
+        {step === "apply" && selectedDestination && (
           <>
             <hr className="border-slate-100" />
             <div className="flex items-center justify-between">
               <span className="text-slate-600">Government Fee</span>
-              <span className="text-slate-800">{govFee !== null ? `$${govFee.toFixed(2)}` : "---"}</span>
+              <span className="text-slate-800">
+                {selectedDestination.code?.toLowerCase() === "in" 
+                  ? "Pending nationality selection"
+                  : (govFee !== null ? `$${govFee.toFixed(2)}` : "---")}
+              </span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-slate-600">Service Fee</span>
@@ -312,7 +316,9 @@ export default function OrderSummary({
             <div className="flex items-center justify-between pt-1">
               <span className="font-semibold text-base text-slate-800">Total</span>
               <span className="font-bold text-lg text-slate-700">
-                {govFee !== null ? `$${(govFee + serviceFee).toFixed(2)}` : `${serviceFee.toFixed(2)}+`}
+                {selectedDestination.code?.toLowerCase() === "in"
+                  ? `${serviceFee.toFixed(2)}+`
+                  : (govFee !== null ? `$${(govFee + serviceFee).toFixed(2)}` : `${serviceFee.toFixed(2)}+`)}
               </span>
             </div>
           </>

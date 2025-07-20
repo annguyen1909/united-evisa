@@ -180,7 +180,7 @@ export default function ApplyForm({ user }: { user: any }) {
     gender: "",
   });
   // Application-level port state
-  const [portType, setPortType] = useState<string>("Air");
+  const [portType, setPortType] = useState<string>("");
   const [portName, setPortName] = useState<string>("");
   const [hydrated, setHydrated] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
@@ -520,17 +520,10 @@ export default function ApplyForm({ user }: { user: any }) {
     let portNameToSend = portName;
     let govFeeToSend = undefined;
     if (isIndia) {
-      // Find canonical visa type
-      const canonicalVisaType = visaTypes.find((vt) => vt.name === selectedVisaType);
-      // Use the precomputed property for the most expensive group variant id (e.g. canonical.mostExpensiveGroupId)
-      // Fallback to canonical id if not present
-      visaTypeIdToSend = (canonicalVisaType as any)?.id || undefined;
-      // Find the most expensive group variant's govFee
-      if ((canonicalVisaType as any)?.fees) {
-        govFeeToSend = (canonicalVisaType as any).fees;
-      } else {
-        govFeeToSend = canonicalVisaType?.fees;
-      }
+      // For India, selectedVisaType contains the actual database visa type name
+      const visaType = visaTypes.find((vt) => vt.name === selectedVisaType);
+      visaTypeIdToSend = visaType?.id;
+      govFeeToSend = visaType?.fees;
     } else {
       visa = visaTypes.find(
         (v) => v.name === selectedVisaType
@@ -546,6 +539,12 @@ export default function ApplyForm({ user }: { user: any }) {
 
     console.log('portType:', portType);
     console.log('portName:', portName);
+    console.log('isIndia:', isIndia);
+    console.log('selectedDestination:', selectedDestination);
+    console.log('selectedVisaType:', selectedVisaType);
+    console.log('visaTypeIdToSend:', visaTypeIdToSend);
+    console.log('govFeeToSend:', govFeeToSend);
+    console.log('total calculation:', total);
     
     // Check if there's an existing application to update
     const existingApplicationId = sessionStorage.getItem('current-application-id');
@@ -820,8 +819,184 @@ export default function ApplyForm({ user }: { user: any }) {
                       </div>
                     </div>
 
+                    {/* Port of Arrival for India */}
+                    {isIndia && (
+                      <>
+                        {/* Port Type */}
+                        <div className="space-y-1.5">
+                          <Label className="text-sm font-medium">Port Type *</Label>
+                          <div className="flex gap-4 flex-wrap">
+                            <div className="flex items-center gap-2">
+                              <input
+                                type="radio"
+                                id="portType-Air"
+                                name="portType"
+                                value="Air"
+                                checked={portType === "Air"}
+                                onChange={() => { setPortType("Air"); setPortName(""); }}
+                                className="accent-emerald-600"
+                              />
+                              <label htmlFor="portType-Air" className="text-sm text-slate-700">Airport</label>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <input
+                                type="radio"
+                                id="portType-Seaport"
+                                name="portType"
+                                value="Seaport"
+                                checked={portType === "Seaport"}
+                                onChange={() => { setPortType("Seaport"); setPortName(""); }}
+                                className="accent-emerald-600"
+                              />
+                              <label htmlFor="portType-Seaport" className="text-sm text-slate-700">Seaport</label>
+                            </div>
+                          </div>
+                          {errors.portType && (
+                            <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                              <XCircle className="h-3.5 w-3.5" />
+                              <span>{errors.portType}</span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Port Name */}
+                        <div className="space-y-1.5">
+                          <Label className="text-sm font-medium">Port Name *</Label>
+                          <Select
+                            value={portName}
+                            onValueChange={(v) => setPortName(v)}
+                            disabled={!portType}
+                          >
+                            <SelectTrigger className={cn(
+                              "w-full",
+                              !portType && "bg-slate-50 cursor-not-allowed",
+                              errors.portName && "border-red-500 focus:ring-red-500",
+                              "focus:ring-emerald-500"
+                            )}>
+                              <SelectValue placeholder="Select Port" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {portType === "Air" && (
+                                <>
+                                  <SelectItem value="Chennai - MAA - Chennai - Tamil Nadu">
+                                    Chennai - MAA - Chennai - Tamil Nadu
+                                  </SelectItem>
+                                  <SelectItem value="Indira Gandhi - DEL - Delhi - Delhi">
+                                    Indira Gandhi - DEL - Delhi - Delhi
+                                  </SelectItem>
+                                  <SelectItem value="Netaji Subhash Chandra Bose - CCU - Kolkata - West Bengal">
+                                    Netaji Subhash Chandra Bose - CCU - Kolkata - West Bengal
+                                  </SelectItem>
+                                  <SelectItem value="Chhatrapati Shivaji - BOM - Mumbai - Maharashtra">
+                                    Chhatrapati Shivaji - BOM - Mumbai - Maharashtra
+                                  </SelectItem>
+                                  <SelectItem value="Cochin – COK - Kochi - Kerala">
+                                    Cochin – COK - Kochi - Kerala
+                                  </SelectItem>
+                                  <SelectItem value="Rajiv Gandhi – HYD - Hyderabad - Telangana">
+                                    Rajiv Gandhi – HYD - Hyderabad - Telangana
+                                  </SelectItem>
+                                  <SelectItem value="Kempegowda – BLR - Bangalore - Karnataka">
+                                    Kempegowda – BLR - Bangalore - Karnataka
+                                  </SelectItem>
+                                  <SelectItem value="Goa – GOI – Dabolim – Goa">
+                                    Goa – GOI – Dabolim – Goa
+                                  </SelectItem>
+                                  <SelectItem value="Thiruvananthapuram – TRV - Thiruvananthapuram - Kerala">
+                                    Thiruvananthapuram – TRV - Thiruvananthapuram - Kerala
+                                  </SelectItem>
+                                  <SelectItem value="Sardar Patel - AMD - Ahmedabad - Gujarat">
+                                    Sardar Patel - AMD - Ahmedabad - Gujarat
+                                  </SelectItem>
+                                  <SelectItem value="Sri Guru Ram Dass Jee - ATQ - Amritsar - Punjab">
+                                    Sri Guru Ram Dass Jee - ATQ - Amritsar - Punjab
+                                  </SelectItem>
+                                  <SelectItem value="Gaya - GAY - Gaya - Bihar">
+                                    Gaya - GAY - Gaya - Bihar
+                                  </SelectItem>
+                                  <SelectItem value="Jaipur - JAI - Jaipur - Rajasthan">
+                                    Jaipur - JAI - Jaipur - Rajasthan
+                                  </SelectItem>
+                                  <SelectItem value="Chaudhary Charan Singh - LKO - Lucknow - Uttar Pradesh">
+                                    Chaudhary Charan Singh - LKO - Lucknow - Uttar Pradesh
+                                  </SelectItem>
+                                  <SelectItem value="Varanasi - VNS - Varanasi - Uttar Pradesh">
+                                    Varanasi - VNS - Varanasi - Uttar Pradesh
+                                  </SelectItem>
+                                  <SelectItem value="Tiruchirappalli - TRZ - Tiruchirappalli - Tamil Nadu">
+                                    Tiruchirappalli - TRZ - Tiruchirappalli - Tamil Nadu
+                                  </SelectItem>
+                                  <SelectItem value="Bagdogra - IXB - Bagdogra - West Bengal">
+                                    Bagdogra - IXB - Bagdogra - West Bengal
+                                  </SelectItem>
+                                  <SelectItem value="Calicut - CCJ - Kozhikode - Kerala">
+                                    Calicut - CCJ - Kozhikode - Kerala
+                                  </SelectItem>
+                                  <SelectItem value="Chandigarh- IXC - Chandigarh - Chandigarh">
+                                    Chandigarh- IXC - Chandigarh - Chandigarh
+                                  </SelectItem>
+                                  <SelectItem value="Coimbatore - CJB - Coimbatore - Tamil Nadu">
+                                    Coimbatore - CJB - Coimbatore - Tamil Nadu
+                                  </SelectItem>
+                                  <SelectItem value="Lokpriya Gopinath Bordoloi - GAU - Guwahati - Assam">
+                                    Lokpriya Gopinath Bordoloi - GAU - Guwahati - Assam
+                                  </SelectItem>
+                                  <SelectItem value="Mangalore - IXE - Mangalore - Karnataka">
+                                    Mangalore - IXE - Mangalore - Karnataka
+                                  </SelectItem>
+                                  <SelectItem value="Dr. Babasaheb Ambedkar - NAG - Nagpur - Maharashtra">
+                                    Dr. Babasaheb Ambedkar - NAG - Nagpur - Maharashtra
+                                  </SelectItem>
+                                  <SelectItem value="Pune - PNQ - Pune -Maharashtra">
+                                    Pune - PNQ - Pune -Maharashtra
+                                  </SelectItem>
+                                  <SelectItem value="Madurai - IXM - Madurai - Tamil Nadu">
+                                    Madurai - IXM - Madurai - Tamil Nadu
+                                  </SelectItem>
+                                  <SelectItem value="Bhubaneswar - BBI - Bhubaneswar - Odisha">
+                                    Bhubaneswar - BBI - Bhubaneswar - Odisha
+                                  </SelectItem>
+                                  <SelectItem value="Veer Savarkar - IXZ- Port Blair- Andaman and Nicobar Islands">
+                                    Veer Savarkar - IXZ- Port Blair- Andaman and Nicobar Islands
+                                  </SelectItem>
+                                  <SelectItem value="Visakhapatnam - VTZ – Visakhapatnam – Andhra Pradesh">
+                                    Visakhapatnam - VTZ – Visakhapatnam – Andhra Pradesh
+                                  </SelectItem>
+                                  <SelectItem value="Manohar - GOX - Mopa - Goa">
+                                    Manohar - GOX - Mopa - Goa
+                                  </SelectItem>
+                                  <SelectItem value="Devi Ahilya Bai Holkar - IDR - Indore - Madhya Pradesh">
+                                    Devi Ahilya Bai Holkar - IDR - Indore - Madhya Pradesh
+                                  </SelectItem>
+                                  <SelectItem value="Kannur - CNN - Kannur - Kerala">
+                                    Kannur - CNN - Kannur - Kerala
+                                  </SelectItem>
+                                </>
+                              )}
+                              {portType === "Seaport" && (
+                                <>
+                                  <SelectItem value="Cochin Seaport">Cochin Seaport</SelectItem>
+                                  <SelectItem value="Mangalore Seaport">Mangalore Seaport</SelectItem>
+                                  <SelectItem value="Goa Seaport">Goa Seaport</SelectItem>
+                                  <SelectItem value="Chennai Seaport">Chennai Seaport</SelectItem>
+                                  <SelectItem value="Mumbai Seaport">Mumbai Seaport</SelectItem>
+                                  <SelectItem value="Port Blair Seaport">Port Blair Seaport</SelectItem>
+                                </>
+                              )}
+                            </SelectContent>
+                          </Select>
+                          {errors.portName && (
+                            <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+                              <XCircle className="h-3.5 w-3.5" />
+                              <span>{errors.portName}</span>
+                            </div>
+                          )}
+                        </div>
+                      </>
+                    )}
+
                     {/* Port of Arrival for countries with portType/port structure */}
-                    {selectedDestination.portType && Array.isArray(selectedDestination.portType) && (
+                    {!isIndia && selectedDestination.portType && Array.isArray(selectedDestination.portType) && (
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                         <h4 className="font-semibold text-blue-900 text-sm mb-2">Port of Arrival</h4>
                         <div className="mb-3">
@@ -887,9 +1062,132 @@ export default function ApplyForm({ user }: { user: any }) {
                 <div className="space-y-1.5">
                   <Label className="text-sm font-medium">Visa Type</Label>
                   <Select
-                    value={selectedVisaType}
+                    value={(() => {
+                      if (selectedDestination?.code?.toLowerCase() === "in" && selectedVisaType) {
+                        // For India, show canonical display name
+                        const canonical = [
+                          {
+                            key: 'tourist-30d',
+                            display: 'Tourist e-Visa (Double entries for 30 days)',
+                            match: /tourist.*30\s*days/i,
+                          },
+                          {
+                            key: 'tourist-1y',
+                            display: 'Tourist e-Visa (Multiple entries for 1 year)',
+                            match: /tourist.*1\s*year/i,
+                          },
+                          {
+                            key: 'tourist-5y',
+                            display: 'Tourist e-Visa (Multiple entries for 5 years)',
+                            match: /tourist.*5\s*years?/i,
+                          },
+                          {
+                            key: 'business',
+                            display: 'Business e-Visa (Multiple entries for 1 year)',
+                            match: /business.*1\s*year/i,
+                          },
+                          {
+                            key: 'ayush',
+                            display: 'Ayush e-Visa (Triple entries for 60 days)',
+                            match: /ayush.*60\s*days/i,
+                          },
+                          {
+                            key: 'medical',
+                            display: 'Medical e-Visa (Triple entries for 60 days)',
+                            match: /medical.*60\s*days/i,
+                          },
+                          {
+                            key: 'conference',
+                            display: 'Conference e-Visa (Triple entries for 30 days)',
+                            match: /conference.*30\s*days/i,
+                          },
+                          {
+                            key: 'student',
+                            display: 'Student e-Visa (Triple entries for 365 days)',
+                            match: /student.*365\s*days/i,
+                          },
+                          {
+                            key: 'x-misc',
+                            display: 'e-Emergency X-Misc Visa',
+                            match: /emergency|x-misc/i,
+                          },
+                        ].find((c) => c.match.test(selectedVisaType));
+                        
+                        return canonical ? canonical.key : selectedVisaType;
+                      }
+                      return selectedVisaType;
+                    })()}
                     onValueChange={(v) => {
-                      setSelectedVisaType(v);
+                      if (selectedDestination?.code?.toLowerCase() === "in") {
+                        // For India, handle canonical visa type selection
+                        const canonical = [
+                          {
+                            key: 'tourist-30d',
+                            display: 'Tourist e-Visa (Double entries for 30 days)',
+                            match: /tourist.*30\s*days/i,
+                          },
+                          {
+                            key: 'tourist-1y',
+                            display: 'Tourist e-Visa (Multiple entries for 1 year)',
+                            match: /tourist.*1\s*year/i,
+                          },
+                          {
+                            key: 'tourist-5y',
+                            display: 'Tourist e-Visa (Multiple entries for 5 years)',
+                            match: /tourist.*5\s*years?/i,
+                          },
+                          {
+                            key: 'business',
+                            display: 'Business e-Visa (Multiple entries for 1 year)',
+                            match: /business.*1\s*year/i,
+                          },
+                          {
+                            key: 'ayush',
+                            display: 'Ayush e-Visa (Triple entries for 60 days)',
+                            match: /ayush.*60\s*days/i,
+                          },
+                          {
+                            key: 'medical',
+                            display: 'Medical e-Visa (Triple entries for 60 days)',
+                            match: /medical.*60\s*days/i,
+                          },
+                          {
+                            key: 'conference',
+                            display: 'Conference e-Visa (Triple entries for 30 days)',
+                            match: /conference.*30\s*days/i,
+                          },
+                          {
+                            key: 'student',
+                            display: 'Student e-Visa (Triple entries for 365 days)',
+                            match: /student.*365\s*days/i,
+                          },
+                          {
+                            key: 'x-misc',
+                            display: 'e-Emergency X-Misc Visa',
+                            match: /emergency|x-misc/i,
+                          },
+                        ].find((c) => c.key === v);
+
+                        if (canonical) {
+                          // Find all matching visa types from database
+                          const matching = visaTypes.filter((vt) => canonical.match.test(vt.name));
+                          if (matching.length > 0) {
+                            // Find the most expensive visa type (like India repo)
+                            const mostExpensive = matching.reduce((max, vt) => {
+                              const vtFee = vt.fees ?? 0;
+                              const maxFee = max.fees ?? 0;
+                              return vtFee > maxFee ? vt : max;
+                            }, matching[0]);
+                            
+                            // Set the canonical key for display, but store the actual visa type name
+                            setSelectedVisaType(mostExpensive.name);
+                            console.log('[India visa selection] Selected canonical:', v, '-> Actual visa:', mostExpensive.name, '-> Fee:', mostExpensive.fees);
+                          }
+                        }
+                      } else {
+                        // For other countries, use the visa type name directly
+                        setSelectedVisaType(v);
+                      }
                       setErrors((prev) => ({ ...prev, visaType: "" }));
                     }}
                   >
@@ -904,13 +1202,71 @@ export default function ApplyForm({ user }: { user: any }) {
                       <SelectValue placeholder="Select a visa type" />
                     </SelectTrigger>
                     <SelectContent>
-                      {visaTypes.map((v) => (
-                        <SelectItem key={v.name} value={v.name}>
-                          <div className="flex flex-row items-center justify-between gap-2">
-                            <span>{v.name}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
+                      {selectedDestination?.code?.toLowerCase() === "in" ? (
+                        // For India, use canonical visa types like India repo
+                        [
+                          {
+                            key: 'tourist-30d',
+                            display: 'Tourist e-Visa (Double entries for 30 days)',
+                            match: /tourist.*double.*30.*days/i,
+                          },
+                          {
+                            key: 'tourist-1y',
+                            display: 'Tourist e-Visa (Multiple entries for 1 year)',
+                            match: /tourist.*multiple.*1.*year/i,
+                          },
+                          {
+                            key: 'tourist-5y',
+                            display: 'Tourist e-Visa (Multiple entries for 5 years)',
+                            match: /tourist.*multiple.*5.*years/i,
+                          },
+                          {
+                            key: 'business',
+                            display: 'Business e-Visa (Multiple entries for 1 year)',
+                            match: /business.*multiple.*1.*year/i,
+                          },
+                          {
+                            key: 'ayush',
+                            display: 'Ayush e-Visa (Triple entries for 60 days)',
+                            match: /ayush.*triple.*60.*days/i,
+                          },
+                          {
+                            key: 'medical',
+                            display: 'Medical e-Visa (Triple entries for 60 days)',
+                            match: /medical.*triple.*60.*days/i,
+                          },
+                          {
+                            key: 'conference',
+                            display: 'Conference e-Visa (Triple entries for 30 days)',
+                            match: /conference.*triple.*30.*days/i,
+                          },
+                          {
+                            key: 'student',
+                            display: 'Student e-Visa (Triple entries for 365 days)',
+                            match: /student.*365\s*days/i,
+                          },
+                          {
+                            key: 'x-misc',
+                            display: 'e-Emergency X-Misc Visa',
+                            match: /emergency|x-misc/i,
+                          },
+                        ].map((canonical) => (
+                          <SelectItem key={canonical.key} value={canonical.key}>
+                            <div className="flex flex-row items-center justify-between gap-2">
+                              <span>{canonical.display}</span>
+                            </div>
+                          </SelectItem>
+                        ))
+                      ) : (
+                        // For other countries, show individual visa types
+                        visaTypes.map((v) => (
+                          <SelectItem key={v.name} value={v.name}>
+                            <div className="flex flex-row items-center justify-between gap-2">
+                              <span>{v.name}</span>
+                            </div>
+                          </SelectItem>
+                        ))
+                      )}
                     </SelectContent>
                   </Select>
                   {errors.visaType && (
@@ -1470,21 +1826,21 @@ export default function ApplyForm({ user }: { user: any }) {
                   <span className="text-slate-800">{passengerCount}</span>
                 </div>
 
-                {/* Hide Government Fee for India */}
-                {!isIndia && (
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-600">Government Fee</span>
-                    <span className="text-slate-800">
-                      {selectedDestination && selectedVisaType
+                {/* Government Fee */}
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">Government Fee</span>
+                  <span className="text-slate-800">
+                    {isIndia 
+                      ? "Pending nationality selection"
+                      : (selectedDestination && selectedVisaType
                         ? `$${(
                             visaTypes.find(
                               (v) => v.name === selectedVisaType
                             )?.fees ?? 0
                           ).toFixed(2)}`
-                        : "---"}
-                    </span>
-                  </div>
-                )}
+                        : "---")}
+                  </span>
+                </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Service Fee</span>
                   <span className="text-slate-800">

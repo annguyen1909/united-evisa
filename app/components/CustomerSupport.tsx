@@ -31,7 +31,7 @@ export default function CustomerSupport() {
               <div className="mr-4">
                 <span className="bg-amber-500 text-white font-bold text-lg px-3 py-1 rounded-lg shadow-sm">24/7</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-emerald-800">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope text-emerald-700">
                 Customer Support Center
               </h2>
             </div>

@@ -12,62 +12,149 @@ export const metadata: Metadata = {
 
 export default function LegalPage() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <main className="flex-1">
-        {/* Hero Section */}
-        <div className="bg-white border-b">
-          <div className="container mx-auto px-4 py-16">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Legal Terms & Conditions
-              </h1>
-              <p className="text-xl text-gray-800 mb-8">
-                Comprehensive legal framework governing our United eVisa Immigration
-                Assistance Service
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-                <span>Last Updated: {new Date().toLocaleDateString()}</span>
-                <span>•</span>
-                <span>Version 2.0</span>
+    <>
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        <main className="flex-1">
+          {/* Hero Section */}
+          <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/90 to-indigo-900/90"></div>
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-800/20 via-blue-800/20 to-indigo-800/20" style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+              }}></div>
+            </div>
+            <div className="relative container mx-auto px-4 py-20">
+              <div className="max-w-4xl mx-auto text-center">
+                <div className="flex justify-center mb-6">
+                  <div className="p-3 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
+                    <svg className="w-12 h-12 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                </div>
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent">
+                  Legal Information
+                </h1>
+                <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  Comprehensive terms of service and legal framework for United eVisa Immigration Assistance Service
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-200 mb-8">
+                  <span>Last Updated: {new Date().toLocaleDateString()}</span>
+                  <span>•</span>
+                  <span>Version 2.0</span>
+                  <span>•</span>
+                  <span>Universal Terms Agreement</span>
+                </div>
+                
+                {/* Important Legal Notice */}
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-red-500/20 backdrop-blur-sm border border-red-400/30 rounded-2xl p-8 text-left">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-red-500/30 rounded-full flex items-center justify-center">
+                          <svg className="w-6 h-6 text-red-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-red-100 mb-3">IMPORTANT LEGAL NOTICE</h3>
+                        <p className="text-red-100 leading-relaxed">
+                          PLEASE READ THIS GENERAL TERMS OF SERVICE AGREEMENT CAREFULLY, AS IT CONTAINS
+                          IMPORTANT INFORMATION REGARDING YOUR LEGAL RIGHTS AND REMEDIES. BY USING OUR
+                          SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREED TO BE BOUND
+                          BY THESE TERMS.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </section>
 
-        {/* Legal Content */}
-        <div className="container mx-auto px-4 py-12">
-          <div className="max-w-4xl mx-auto">
-            {/* Important Notice */}
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-8">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-6 w-6 text-red-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
-                    />
-                  </svg>
+          {/* Main Content */}
+          <section className="py-16">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto space-y-8">
+
+                {/* Table of Contents */}
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                  <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-8 py-6 border-b border-gray-100">
+                    <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+                      <div className="w-8 h-8 bg-slate-600 rounded-lg flex items-center justify-center mr-3">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                        </svg>
+                      </div>
+                      Table of Contents
+                    </h2>
+                  </div>
+                  <div className="p-8">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <a href="#overview" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">1</span>
+                          Overview
+                        </a>
+                        <a href="#eligibility" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">2</span>
+                          Eligibility & Authority
+                        </a>
+                        <a href="#accounts" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">3</span>
+                          Accounts & Data Transfer
+                        </a>
+                        <a href="#availability" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">4</span>
+                          Service Availability
+                        </a>
+                        <a href="#conduct" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">5</span>
+                          General Rules of Conduct
+                        </a>
+                        <a href="#rights" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">6</span>
+                          Reservation of Rights
+                        </a>
+                        <a href="#third-party" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">7</span>
+                          Third-Party Links
+                        </a>
+                      </div>
+                      <div className="space-y-3">
+                        <a href="#liability" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">8</span>
+                          Limitation of Liability
+                        </a>
+                        <a href="#fees" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">9</span>
+                          Fees & Payments
+                        </a>
+                        <a href="#indemnity" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">10</span>
+                          Indemnity
+                        </a>
+                        <a href="#visa-specific" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">11</span>
+                          Visa-Specific Terms
+                        </a>
+                        <a href="#government" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">12</span>
+                          Government Relations
+                        </a>
+                        <a href="#compliance" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">13</span>
+                          Legal Compliance
+                        </a>
+                        <a href="#contact" className="flex items-center p-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors">
+                          <span className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs font-semibold text-slate-600 mr-3">14</span>
+                          Contact Information
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="ml-3">
-                  <h3 className="text-lg font-semibold text-red-800 mb-2">
-                    IMPORTANT LEGAL NOTICE
-                  </h3>
-                  <p className="text-red-800">
-                    PLEASE READ THIS GENERAL TERMS OF SERVICE AGREEMENT CAREFULLY, AS IT CONTAINS
-                    IMPORTANT INFORMATION REGARDING YOUR LEGAL RIGHTS AND REMEDIES. BY USING OUR
-                    SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREED TO BE BOUND
-                    BY THESE TERMS.
-                  </p>
-                </div>
-              </div>
-            </div>
 
             {/* Table of Contents */}
             <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
@@ -566,43 +653,87 @@ export default function LegalPage() {
               </section>
 
               {/* Section 10: Indemnity */}
-              <section id="indemnity" className="bg-white rounded-lg shadow-sm border p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">10. INDEMNITY</h2>
-                <div className="prose prose-gray max-w-none">
-                  <p className="mb-4 text-gray-800">
-                    You agree to protect, defend, indemnify and hold harmless United eVisa
-                    Immigration Assistance Service and its officers, directors, employees, agents,
-                    and third party service providers from and against any and all claims, demands,
-                    costs, expenses, losses, liabilities and damages of every kind and nature
-                    (including, without limitation, reasonable attorneys' fees) imposed upon or
-                    incurred by United eVisa Immigration Assistance Service directly or
-                    indirectly arising from:
-                  </p>
-                  <ul className="list-disc pl-6 mb-4 space-y-2 text-gray-800">
-                    <li>Your use of and access to this Site or the Services found at this Site</li>
-                    <li>
-                      Your violation of any provision of this Agreement or the policies incorporated
-                      herein
-                    </li>
-                    <li>
-                      Your violation of any third-party right, including intellectual property
-                      rights
-                    </li>
-                    <li>
-                      Your provision of false, inaccurate, or incomplete information in visa
-                      applications
-                    </li>
-                    <li>Your failure to comply with government visa requirements or regulations</li>
-                    <li>Any travel disruptions or issues related to visa processing</li>
-                  </ul>
-                  <p className="mb-4 text-gray-800">
-                    The indemnification obligations under this section shall survive any termination
-                    or expiration of this Agreement or your use of this Site or the Services found
-                    at this Site.
-                  </p>
+              <section id="indemnity" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-orange-50 to-amber-50 px-8 py-6 border-b border-gray-100">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-shrink-0 w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">10</span>
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900">Indemnification</h2>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <div className="prose prose-gray max-w-none">
+                    <p className="mb-6 text-gray-800 text-lg">
+                      You agree to defend, indemnify, and hold harmless United eVisa Immigration Assistance Service, 
+                      its officers, directors, employees, agents, and third-party service providers from and against any 
+                      and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including 
+                      but not limited to attorney's fees).
+                    </p>
+                    
+                    <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-6">
+                      <h3 className="text-xl font-semibold text-amber-900 mb-4 flex items-center">
+                        <svg className="w-6 h-6 text-amber-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                        Your Indemnification Obligations Include
+                      </h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="space-y-3">
+                          <div className="flex items-start space-x-3">
+                            <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-amber-800 text-sm">Your use or misuse of our Services</span>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-amber-800 text-sm">Your violation of any term of this Agreement</span>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-amber-800 text-sm">Your violation of any third-party right</span>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-amber-800 text-sm">Any false or misleading information provided</span>
+                          </div>
+                        </div>
+                        <div className="space-y-3">
+                          <div className="flex items-start space-x-3">
+                            <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-amber-800 text-sm">Fraudulent visa applications</span>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-amber-800 text-sm">Immigration law violations</span>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-amber-800 text-sm">Unlawful activities during travel</span>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-amber-800 text-sm">Third-party claims arising from your actions</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                      <h4 className="font-semibold text-red-900 mb-3 flex items-center">
+                        <svg className="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                        Important Legal Protection
+                      </h4>
+                      <p className="text-red-800 text-sm leading-relaxed">
+                        This indemnification clause survives termination of this Agreement and your use of our Services. 
+                        You remain responsible for defending us against claims even after you stop using our services, 
+                        if those claims arise from your previous use of our Services.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </section>
-
               {/* Section 11: Visa-Specific Terms */}
               <section id="visa-specific" className="bg-white rounded-lg shadow-sm border p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">11. VISA-SPECIFIC TERMS</h2>
@@ -763,23 +894,40 @@ export default function LegalPage() {
               </section>
             </div>
 
-            {/* Footer Notice */}
-            <div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <div className="text-center">
-                <p className="text-blue-900 font-semibold mb-2">Agreement Acceptance</p>
-                <p className="text-blue-800 text-sm">
-                  By using our services, you acknowledge that you have read, understood, and agreed
-                  to be bound by these Terms of Service. If you do not agree to these terms, please
-                  do not use our services.
-                </p>
-                <p className="text-blue-700 text-xs mt-4">
-                  Last updated: {new Date().toLocaleDateString()} | Version 2.0
-                </p>
+                {/* Footer Notice */}
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-8">
+                  <div className="text-center">
+                    <div className="flex justify-center mb-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Agreement Acceptance</h3>
+                    <p className="text-gray-800 mb-6 max-w-2xl mx-auto">
+                      By using our services, you acknowledge that you have read, understood, and agreed
+                      to be bound by these Terms of Service. If you do not agree to these terms, please
+                      do not use our services.
+                    </p>
+                    <div className="flex items-center justify-center space-x-4 text-blue-700 text-sm">
+                      <a href="/privacy" className="hover:underline font-medium">Privacy Policy</a>
+                      <span>•</span>
+                      <a href="/refund-policy" className="hover:underline font-medium">Refund Policy</a>
+                      <span>•</span>
+                      <a href="/cookie-policy" className="hover:underline font-medium">Cookie Policy</a>
+                    </div>
+                    <p className="text-blue-600 text-sm mt-6 font-medium">
+                      Last updated: {new Date().toLocaleDateString()} | Version 2.0 | Universal Terms Agreement
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
-          </div>
-        </div>
-      </main>
-    </div>
+          </section>
+        </main>
+      </div>
+    </>
   );
 } 

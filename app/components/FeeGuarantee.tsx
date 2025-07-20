@@ -13,7 +13,7 @@ export default function FeeGuarantee() {
 
         {/* Header */}
         <div className="text-center relative mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-emerald-800 mb-3">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-manrope font-semibold text-emerald-800 mb-3">
             No rush fees. No hidden costs.
           </h2>
           <div className="w-20 h-1.5 bg-gradient-to-r from-emerald-500 to-emerald-600 mx-auto mb-6 rounded-full"></div>
@@ -134,7 +134,7 @@ export default function FeeGuarantee() {
               <Shield className="h-8 w-8 text-emerald-600" />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-manrope font-semibold text-slate-800">
                 Rejected? No worries — you get your service fee back.
               </h2>
             </div>

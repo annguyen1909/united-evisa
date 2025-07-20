@@ -70,7 +70,7 @@ export default function AllVisaTypes() {
     <section className="w-full bg-white pt-6 pb-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-manrope mb-6 text-emerald-700">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope mb-6 text-emerald-700">
             All eVisa Types. One Place.
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-5xl mx-auto leading-relaxed">

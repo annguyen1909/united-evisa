@@ -40,12 +40,20 @@ export async function POST(req: NextRequest) {
     }
 
     // If you only have the email, consider using findFirst instead:
-    let account = await prisma.account.findFirst({
-      where: { email },
+    console.log('Apply route - Looking for account with email:', email);
+    let account = await prisma.account.findUnique({
+      where: {
+        email_websiteCreatedAt: {
+          email: email,
+          websiteCreatedAt: "United eVisa Site"
+        }
+      },
       select: { id: true },
     });
+    console.log('Apply route - Found existing account:', account);
 
     if (!account) {
+      console.log('Apply route - Creating new account for email:', email);
       account = await prisma.account.create({
         data: {
           id: crypto.randomUUID(), // generate a unique id
@@ -58,6 +66,7 @@ export async function POST(req: NextRequest) {
         },
         select: { id: true },
       });
+      console.log('Apply route - Created new account:', account);
     }
 
     if (
@@ -88,6 +97,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
+    console.log('Apply route - Account ID being used:', account.id);
+    console.log('Apply route - Account email:', email);
+    console.log('Apply route - Account websiteCreatedAt:', "United eVisa Site");
+    
     // Check if we should update an existing application
     if (updateExisting && existingApplicationId) {
       try {

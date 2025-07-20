@@ -121,15 +121,21 @@ function StatusContent() {
 
     // Determine which status component to render based on application status
     const normalizedStatus = applicationData.status?.toLowerCase();
+    
+    console.log('Status page - Original status:', applicationData.status);
+    console.log('Status page - Normalized status:', normalizedStatus);
 
     switch (normalizedStatus) {
         case 'deferred':
             return <DeferredStatus applicationData={applicationData} onRefresh={handleRefresh} />;
         
         case 'processing':
+        case 'send visa result':
             return <ProcessingStatus applicationData={applicationData} onRefresh={handleRefresh} />;
         
         case 'visa result sent':
+            return <ResultStatus applicationData={applicationData} onRefresh={handleRefresh} />;
+        
         case 'approved':
         case 'completed':
             return <ResultStatus applicationData={applicationData} onRefresh={handleRefresh} />;

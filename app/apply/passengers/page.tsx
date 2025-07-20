@@ -57,17 +57,23 @@ function PassengersContent() {
   useEffect(() => {
     // Always prioritize URL parameter
     const urlApplicationId = searchParams.get("applicationId");
+    console.log('Passengers page - URL application ID:', urlApplicationId);
+    
     if (urlApplicationId) {
       setApplicationId(urlApplicationId);
       fetchApplicationData(urlApplicationId);
     } else {
       // Fall back to session storage if no URL parameter
       const storedAppId = sessionStorage.getItem("evisa-application-id");
+      console.log('Passengers page - Stored application ID:', storedAppId);
+      console.log('Passengers page - Session storage key:', 'evisa-application-id');
+      
       if (storedAppId) {
         setApplicationId(storedAppId);
         fetchApplicationData(storedAppId);
       } else {
         // No application ID found - redirect to first step
+        console.log('Passengers page - No application ID found, redirecting to apply');
         alert("No application found. Please start from the beginning.");
         router.push("/apply");
       }

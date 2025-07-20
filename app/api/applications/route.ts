@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
       where: {
         email_websiteCreatedAt: {
           email: accountEmail,
-          websiteCreatedAt: "United Evisa"
+          websiteCreatedAt: "United eVisa Site"
         }
       },
     });
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
           id: crypto.randomUUID(),
           email: accountEmail,
           fullName: accountName,
-          websiteCreatedAt: "United Evisa",
+          websiteCreatedAt: "United eVisa Site",
         }
       });
     }

@@ -405,7 +405,7 @@ export default function ApplyForm({ user }: { user: any }) {
   useEffect(() => {
     const handleBeforeUnload = () => {
       sessionStorage.removeItem('apply-form-cache');
-      sessionStorage.removeItem('current-application-id');
+      sessionStorage.removeItem('evisa-application-id');
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -433,7 +433,7 @@ export default function ApplyForm({ user }: { user: any }) {
   const isIndia = selectedCountry?.code?.toLowerCase() === "in";
 
   // Check if there's an existing application to update
-  const existingApplicationId = sessionStorage.getItem('current-application-id');
+  const existingApplicationId = sessionStorage.getItem('evisa-application-id');
   const shouldUpdateExisting = !!(existingApplicationId && (
     // Only allow updates if destination hasn't changed (only visa type, passenger count, dates)
     selectedDestination?.id === sessionStorage.getItem('cached-destination-id')
@@ -547,7 +547,7 @@ export default function ApplyForm({ user }: { user: any }) {
     console.log('total calculation:', total);
     
     // Check if there's an existing application to update
-    const existingApplicationId = sessionStorage.getItem('current-application-id');
+    const existingApplicationId = sessionStorage.getItem('evisa-application-id');
     const shouldUpdateExisting = existingApplicationId && (
       // Only allow updates if destination hasn't changed (only visa type, passenger count, dates)
       selectedDestination?.id === sessionStorage.getItem('cached-destination-id')
@@ -620,10 +620,12 @@ export default function ApplyForm({ user }: { user: any }) {
         }
       } else {
         // New application created, store the application ID and destination ID
-        sessionStorage.setItem('current-application-id', appData.applicationId);
+        sessionStorage.setItem('evisa-application-id', appData.applicationId);
         sessionStorage.setItem('cached-destination-id', selectedDestination?.id || '');
         console.log('Created new application:', appData.applicationId);
         console.log('Created passenger IDs:', appData.passengerIds);
+        console.log('Stored application ID in session storage:', appData.applicationId);
+        console.log('Session storage key:', 'evisa-application-id');
       }
 
       // Navigate to passengers page with applicationId as URL parameter
@@ -721,7 +723,7 @@ export default function ApplyForm({ user }: { user: any }) {
                     const currentDestinationId = sessionStorage.getItem('cached-destination-id');
                     if (currentDestinationId && currentDestinationId !== id) {
                       // Destination changed, clear existing application ID since we'll need a new application
-                      sessionStorage.removeItem('current-application-id');
+                      sessionStorage.removeItem('evisa-application-id');
                       sessionStorage.removeItem('cached-destination-id');
                       console.log('Destination changed, cleared existing application ID');
                     }
@@ -1570,7 +1572,7 @@ export default function ApplyForm({ user }: { user: any }) {
                 <h2 className="text-lg font-semibold text-slate-800">
                   Contact Information
                 </h2>
-                {applicationExists && (
+                {(applicationExists || isLoggedIn) && (
                   <span className="ml-auto text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full border border-blue-100">
                     Contact information cannot be changed
                   </span>
@@ -1585,11 +1587,11 @@ export default function ApplyForm({ user }: { user: any }) {
                     type="text"
                     className={cn(
                       "focus:ring-emerald-500",
-                      applicationExists && "bg-slate-50 text-slate-500",
+                      (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                       errors.fullName && "border-red-500 focus:ring-red-500"
                     )}
                     value={contact.fullName}
-                    readOnly={applicationExists}
+                    readOnly={applicationExists || isLoggedIn}
                     onChange={(e) =>
                       setContact((c) => ({ ...c, fullName: e.target.value }))
                     }
@@ -1611,11 +1613,11 @@ export default function ApplyForm({ user }: { user: any }) {
                     type="email"
                     className={cn(
                       "focus:ring-emerald-500",
-                      applicationExists && "bg-slate-50 text-slate-500",
+                      (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                       errors.email && "border-red-500 focus:ring-red-500"
                     )}
                     value={contact.email}
-                    readOnly={applicationExists}
+                    readOnly={applicationExists || isLoggedIn}
                     onChange={(e) =>
                       setContact((c) => ({ ...c, email: e.target.value }))
                     }
@@ -1642,10 +1644,10 @@ export default function ApplyForm({ user }: { user: any }) {
                           type="button"
                           className={cn(
                             "w-full flex items-center justify-between rounded-md border px-3 py-2 text-left text-sm shadow-sm transition-colors focus:outline-none focus:ring-1",
-                            applicationExists ? "bg-slate-50 text-slate-500" : "bg-white",
+                            (applicationExists || isLoggedIn) ? "bg-slate-50 text-slate-500" : "bg-white",
                             errors.countryCode && "border-red-500 focus:ring-red-500"
                           )}
-                          disabled={applicationExists}
+                          disabled={applicationExists || isLoggedIn}
                         >
                           <span className="flex items-center gap-2">
                             {COUNTRY_CODES.find(c => c.code === contact.countryCode)?.flag || ""}
@@ -1705,13 +1707,13 @@ export default function ApplyForm({ user }: { user: any }) {
                     <Label className="text-sm font-medium">Phone Number *</Label>
                     <Input
                       type="tel"
-                      className={cn(
-                        "focus:ring-emerald-500",
-                        applicationExists && "bg-slate-50 text-slate-500",
-                        errors.phone && "border-red-500 focus:ring-red-500"
-                      )}
-                      value={contact.phone}
-                      readOnly={applicationExists}
+                                          className={cn(
+                      "focus:ring-emerald-500",
+                      (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
+                      errors.phone && "border-red-500 focus:ring-red-500"
+                    )}
+                    value={contact.phone}
+                    readOnly={applicationExists || isLoggedIn}
                       onChange={(e) =>
                         setContact((c) => ({ ...c, phone: e.target.value }))
                       }
@@ -1737,12 +1739,12 @@ export default function ApplyForm({ user }: { user: any }) {
                       console.log('Gender changed to:', v);
                       setContact((c) => ({ ...c, gender: v }));
                     }}
-                    disabled={applicationExists}
+                    disabled={applicationExists || isLoggedIn}
                   >
                     <SelectTrigger
                       className={cn(
                         "focus:ring-emerald-500",
-                        applicationExists && "bg-slate-50 text-slate-500",
+                        (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                         errors.gender && "border-red-500 focus:ring-red-500"
                       )}
                     >

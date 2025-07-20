@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -30,6 +30,7 @@ function PaymentContent() {
     const [visa, setVisa] = useState<any>(null);
     const [showError, setShowError] = useState(false);
     const [stepNotAllowed, setStepNotAllowed] = useState(false);
+    const paymentIntentCreated = useRef(false);
 
     // Initialize applicationId from URL or session storage
     useEffect(() => {
@@ -105,9 +106,12 @@ function PaymentContent() {
                 const total = (typeof data.total === "number") ? data.total : govFee + (FIXED_SERVICE_FEE * passengerCount);
                 setTotalAmount(total);
                 
-                // Create payment intent
-                console.log("Creating payment intent for applicationId:", appId);
-                createPaymentIntent(appId, total);
+                // Create payment intent only once
+                if (!paymentIntentCreated.current) {
+                    console.log("Creating payment intent for applicationId:", appId);
+                    paymentIntentCreated.current = true;
+                    createPaymentIntent(appId, total);
+                }
             } else {
                 throw new Error("Failed to load application data");
             }
@@ -211,7 +215,7 @@ function PaymentContent() {
                                             <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-emerald-600"></div>
                                             <span className="mt-4 text-slate-600">Preparing secure payment...</span>
                                         </div>
-                                    ) : applicationData && applicationData.paymentStatus === "Completed" ? (
+                                    ) : applicationData && (applicationData.paymentStatus === "Completed" || applicationData.paymentStatus === "Payment Completed") ? (
                                         <div className="bg-green-50 border border-green-100 rounded-lg p-6 text-center">
                                             <div className="flex justify-center mb-4">
                                                 <CheckCircle className="h-10 w-10 text-green-500" />
@@ -243,7 +247,10 @@ function PaymentContent() {
                                                 We couldn't set up the payment process. This might be due to a temporary issue.
                                             </p>
                                             <button 
-                                                onClick={() => fetchApplicationData(applicationId)}
+                                                onClick={() => {
+                                                    paymentIntentCreated.current = false;
+                                                    fetchApplicationData(applicationId);
+                                                }}
                                                 className="bg-slate-100 hover:bg-slate-200 text-slate-800 px-4 py-2 rounded-lg transition-colors font-medium"
                                             >
                                                 Try Again

@@ -297,7 +297,7 @@ function PassengersContent() {
   useEffect(() => {
     return () => {
       // Clear cache when component unmounts if payment is completed
-      if (applicationId && applicationData?.paymentStatus === "Completed") {
+      if (applicationId && (applicationData?.paymentStatus === "Completed" || applicationData?.paymentStatus === "Payment Completed")) {
         clearPassengerDataFromCache(applicationId);
       }
     };
@@ -496,7 +496,7 @@ function PassengersContent() {
     );
   }
   // Prevent editing passengers if payment is completed
-  if (applicationData && applicationData.paymentStatus === "Completed") {
+  if (applicationData && (applicationData.paymentStatus === "Completed" || applicationData.paymentStatus === "Payment Completed")) {
     return (
       <div className="min-h-screen bg-slate-50 pb-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center min-h-[60vh]">
@@ -582,7 +582,7 @@ function PassengersContent() {
                       {/* Full Name */}
                       <div className="space-y-1.5">
                         <Label htmlFor={`fullName-${index}`} className="text-sm font-medium">
-                          Full Name (as per passport)
+                          Full Name (as per passport) *
                         </Label>
                         <Input
                           id={`fullName-${index}`}
@@ -605,7 +605,7 @@ function PassengersContent() {
 
                       {/* Gender */}
                       <div className="space-y-1.5">
-                        <Label htmlFor={`gender-${index}`} className="text-sm font-medium">Gender</Label>
+                        <Label htmlFor={`gender-${index}`} className="text-sm font-medium">Gender *</Label>
                         <Select
                           value={passenger.gender}
                           onValueChange={(value) => updatePassenger(index, "gender", value)}
@@ -618,7 +618,6 @@ function PassengersContent() {
                           <SelectContent>
                             <SelectItem value="male">Male</SelectItem>
                             <SelectItem value="female">Female</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
                         {errors[index]?.gender && (
@@ -631,7 +630,7 @@ function PassengersContent() {
 
                       {/* Date of Birth */}
                       <div className="space-y-1.5">
-                        <Label htmlFor={`dob-${index}`} className="text-sm font-medium">Date of Birth</Label>
+                        <Label htmlFor={`dob-${index}`} className="text-sm font-medium">Date of Birth *</Label>
                         <Input
                           id={`dob-${index}`}
                           type="date"
@@ -655,7 +654,7 @@ function PassengersContent() {
 
                       {/* Passport Number */}
                       <div className="space-y-1.5">
-                        <Label htmlFor={`passport-${index}`} className="text-sm font-medium">Passport Number</Label>
+                        <Label htmlFor={`passport-${index}`} className="text-sm font-medium">Passport Number *</Label>
                         <Input
                           id={`passport-${index}`}
                           placeholder="Passport Number"
@@ -677,7 +676,7 @@ function PassengersContent() {
 
                       {/* Nationality */}
                       <div className="md:col-span-2">
-                        <Label htmlFor={`nationality-${index}`} className="text-sm font-medium">Nationality</Label>
+                        <Label htmlFor={`nationality-${index}`} className="text-sm font-medium">Nationality *</Label>
                         <Select
                           value={passenger.nationality}
                           onValueChange={(value) => updatePassenger(index, "nationality", value)}

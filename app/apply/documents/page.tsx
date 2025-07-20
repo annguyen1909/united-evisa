@@ -51,6 +51,60 @@ interface UploadedDocument {
 
 type UploadError = string | null | { type: 'AUTH'; message: string; applicationId: string };
 
+// Unauthorized Message Component (Tanzania Style)
+function UnauthorizedMessage({ uploadError }: { uploadError: { type: 'AUTH'; message: string; applicationId: string } }) {
+    return (
+        <div className="min-h-screen bg-slate-50 py-10">
+            <div className="max-w-4xl mx-auto px-4">
+                <Card className="bg-white shadow-sm border border-slate-200 p-6 text-center">
+                    <CardHeader>
+                        <CardTitle className="text-2xl font-bold text-slate-900 mb-4">Secure Document Upload</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-slate-700 mb-4">{uploadError.message}</p>
+                        <ol className="text-left mb-4 text-slate-900">
+                            <li>
+                                1. Click <b>Login Now</b> below
+                            </li>
+                            <li>2. Use your email from Step 1</li>
+                            <li>
+                                3. Click <b>Forgot Password</b> to set up your account password
+                            </li>
+                            <li>4. Once logged in, return to your application to upload documents</li>
+                        </ol>
+                        <p className="text-slate-700 mb-4">
+                            <b>Alternative: Email Submission</b>
+                            <br />
+                            You can also email your documents directly to{' '}
+                            <a href="mailto:visa@unitedevisa.com" className="text-blue-600 underline">
+                                visa@unitedevisa.com
+                            </a>{' '}
+                            with the subject line: <b>Documents for Application {uploadError.applicationId}</b>
+                        </p>
+                        <p className="text-slate-700 mb-6">
+                            At any point, you can log in to our portal to track your documents and application status.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Link
+                                href="/login"
+                                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition"
+                            >
+                                Login Now
+                            </Link>
+                            <a
+                                href={`mailto:visa@unitedevisa.com?subject=Documents for Application ${uploadError.applicationId}`}
+                                className="bg-slate-200 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-300 transition"
+                            >
+                                Email Documents
+                            </a>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+}
+
 // Accept user prop
 function DocumentsContent({ user }: { user: any }) {
     const searchParams = useSearchParams();
@@ -91,7 +145,7 @@ function DocumentsContent({ user }: { user: any }) {
                     setApplicationData(data);
 
                     // Check if previous step is completed (customize this check as needed)
-                    if (!data.paymentStatus || data.paymentStatus !== 'Completed') {
+                    if (!data.paymentStatus || (data.paymentStatus !== 'Completed' && data.paymentStatus !== 'Payment Completed')) {
                         setStepNotAllowed(true);
                         setIsLoading(false);
                         return;
@@ -240,7 +294,10 @@ function DocumentsContent({ user }: { user: any }) {
         }
     };
 
-    // No authentication check here; assume user prop is always present
+    // Render unauthorized message if AUTH error
+    if (uploadError && typeof uploadError === 'object' && 'type' in uploadError && uploadError.type === 'AUTH') {
+        return <UnauthorizedMessage uploadError={uploadError} />;
+    }
 
     // Loading state
     if (isLoading) {

@@ -5,6 +5,13 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { BillingForm, BillingInfo } from "./BillingForm";
 import { CheckCircle, Loader2 } from "lucide-react";
+import { NATIONALITIES } from "@/lib/nationalities";
+
+// Function to convert country name to ISO code
+const getCountryCode = (countryName: string): string => {
+  const country = NATIONALITIES.find(n => n.name === countryName);
+  return country?.code || "US"; // Default to US if not found
+};
 
 export default function CheckoutForm({ amount, applicationId }: { amount: number, applicationId: string }) {
   // For India, always fetch the latest total from the backend
@@ -39,7 +46,7 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
     cardType: string;
   } | null>(null);
   const [billingInfo, setBillingInfo] = useState<BillingInfo | null>(null);
-  const [billingValid, setBillingValid] = useState(false); // <-- ADD THIS LINE
+  const [billingValid, setBillingValid] = useState(false);
   const [isCardComplete, setIsCardComplete] = useState(false);
 
   useEffect(() => {
@@ -110,9 +117,17 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
     e.preventDefault();
 
     if (!stripe || !elements || !billingInfo) {
+      console.error("Missing required data:", { stripe: !!stripe, elements: !!elements, billingInfo });
       return;
     }
 
+    // Validate billing info
+    if (!billingInfo.name || !billingInfo.address || !billingInfo.zipcode || !billingInfo.country) {
+      setMessage("Please fill in all required billing fields");
+      return;
+    }
+
+    console.log("Submitting payment with billing info:", billingInfo);
     setIsLoading(true);
 
     try {
@@ -122,17 +137,17 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
           return_url: `${window.location.origin}/apply/confirmation?applicationId=${applicationId}`,
           payment_method_data: {
             billing_details: {
-              name: billingInfo.name || "",
+              name: billingInfo.name,
+              email: "", // Required when email is set to 'never' in PaymentElement
+              phone: "", // Required when phone is set to 'never' in PaymentElement
               address: {
-                line1: billingInfo.address || "",
-                line2: "", // Always include this, even if empty
-                postal_code: billingInfo.zipcode || "",
-                country: billingInfo.country || "",
-                state: billingInfo.state || "",
-                city: billingInfo.city || "",
+                line1: billingInfo.address,
+                line2: "", // Required when address is set to 'never' in PaymentElement
+                postal_code: billingInfo.zipcode,
+                country: getCountryCode(billingInfo.country),
+                state: "", // Required when address is set to 'never' in PaymentElement
+                city: "", // Required when address is set to 'never' in PaymentElement
               },
-              email: "",
-              phone: "",
             },
           },
         },
@@ -140,6 +155,7 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
       });
 
       if (error) {
+        console.error("Stripe payment error:", error);
         if (error.type === "card_error" || error.type === "validation_error") {
           setMessage(error.message || "An error occurred");
         } else {
@@ -150,11 +166,13 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
       }
 
       if (paymentIntent && paymentIntent.status === "succeeded") {
+        console.log("Payment succeeded, saving data...");
         // Only send billing info and paymentIntentId; card details are handled by the backend webhook
         await saveCardholderAndRiskData({
-          name: billingInfo.name || "",
-          address: billingInfo.address || "",
-          zipcode: billingInfo.zipcode || "",
+          name: billingInfo.name,
+          address: billingInfo.address,
+          zipcode: billingInfo.zipcode,
+          country: billingInfo.country,
           paymentIntentId: paymentIntent.id,
           applicationId: applicationId,
           amount: actualAmount
@@ -174,6 +192,7 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
     name: string;
     address: string;
     zipcode: string;
+    country: string;
     paymentIntentId: string;
     applicationId: string;
     amount: number;
@@ -198,8 +217,9 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
     }
   };
 
-  const handleBillingInfoComplete = (info: BillingInfo) => {
+  const handleBillingInfoComplete = (info: BillingInfo, valid: boolean) => {
     setBillingInfo(info);
+    setBillingValid(valid);
   };
 
   return (
@@ -213,39 +233,38 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
             address: 'never'
           }
         },
-        paymentMethodOrder: ['card'], // <-- Only show card, hide Link
+        paymentMethodOrder: ['card'],
         wallets: {
           link: 'never'
         }
       }} />
 
-      <BillingForm
-        onBillingInfoChange={(info, valid) => {
-          setBillingInfo(info);
-          setBillingValid(valid);
-        }}
+      <BillingForm 
+        onBillingInfoChange={handleBillingInfoComplete}
         isProcessing={isLoading}
       />
 
       <Button
-        disabled={!stripe || !elements || isLoading || !billingInfo || !isCardComplete}
-        id="submit"
-        className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-2.5"
+        type="submit"
+        disabled={isLoading || !billingValid || !isCardComplete}
+        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isLoading ? (
-          <span className="flex items-center gap-2">
-            <Loader2 className="h-4 w-4 animate-spin" /> Processing...
-          </span>
+          <div className="flex items-center justify-center">
+            <Loader2 className="h-5 w-5 animate-spin mr-2" />
+            Processing...
+          </div>
         ) : (
-          <span className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4" /> Pay ${actualAmount.toFixed(2)}
-          </span>
+          <div className="flex items-center justify-center">
+            <CheckCircle className="h-5 w-5 mr-2" />
+            Pay ${actualAmount.toFixed(2)}
+          </div>
         )}
       </Button>
 
       {message && (
-        <div className={message.includes("succeeded") ? "text-green-600" : "text-red-600"}>
-          {message}
+        <div className="text-center p-4 rounded-lg bg-red-50 border border-red-200">
+          <p className="text-red-600">{message}</p>
         </div>
       )}
     </form>

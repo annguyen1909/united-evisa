@@ -104,30 +104,30 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
 
               <div className="grid gap-5">
                 <div className="grid gap-2">
-                  <Label htmlFor="fullName" className="text-slate-700 font-medium">Full Name</Label>
+                  <Label htmlFor="fullName" className="text-slate-700 font-medium">Full Name *</Label>
                   <Input 
                     id="fullName" 
                     name="fullName" 
-                    placeholder="John Doe" 
+                    placeholder="Enter your full name" 
                     required 
                     className="focus:ring-emerald-500"
                   />
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="email" className="text-slate-700 font-medium">Email</Label>
+                  <Label htmlFor="email" className="text-slate-700 font-medium">Email *</Label>
                   <Input 
                     id="email" 
                     name="email" 
                     type="email" 
-                    placeholder="you@example.com" 
+                    placeholder="Enter your email" 
                     required 
                     className="focus:ring-emerald-500"
                   />
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="password" className="text-slate-700 font-medium">Password</Label>
+                  <Label htmlFor="password" className="text-slate-700 font-medium">Password *</Label>
                   <Input 
                     id="password" 
                     name="password" 
@@ -139,7 +139,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="areaCode" className="text-slate-700 font-medium">Area Code</Label>
+                    <Label htmlFor="areaCode" className="text-slate-700 font-medium">Area Code *</Label>
                     <Input 
                       id="areaCode" 
                       name="areaCode" 
@@ -150,11 +150,11 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="phoneNumber" className="text-slate-700 font-medium">Phone Number</Label>
+                    <Label htmlFor="phoneNumber" className="text-slate-700 font-medium">Phone Number *</Label>
                     <Input 
                       id="phoneNumber" 
                       name="phoneNumber" 
-                      placeholder="0123456789" 
+                      placeholder="Enter phone number" 
                       required 
                       className="focus:ring-emerald-500"
                     />
@@ -162,7 +162,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="gender" className="text-slate-700 font-medium">Gender</Label>
+                  <Label htmlFor="gender" className="text-slate-700 font-medium">Gender *</Label>
                   <Select name="gender" required>
                     <SelectTrigger className="focus:ring-emerald-500">
                       <SelectValue placeholder="Select gender" />
@@ -170,7 +170,6 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                     <SelectContent>
                       <SelectItem value="Male">Male</SelectItem>
                       <SelectItem value="Female">Female</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

@@ -1320,7 +1320,7 @@ export default function ApplyForm({ user }: { user: any }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                 {/* Full Name */}
                 <div className="space-y-1.5">
-                  <Label className="text-sm font-medium">Full Name</Label>
+                  <Label className="text-sm font-medium">Full Name *</Label>
                   <Input
                     type="text"
                     className={cn(
@@ -1346,7 +1346,7 @@ export default function ApplyForm({ user }: { user: any }) {
 
                 {/* Email */}
                 <div className="space-y-1.5">
-                  <Label className="text-sm font-medium">Email Address</Label>
+                  <Label className="text-sm font-medium">Email Address *</Label>
                   <Input
                     type="email"
                     className={cn(
@@ -1375,7 +1375,7 @@ export default function ApplyForm({ user }: { user: any }) {
                 {/* Phone */}
                 <div className="grid grid-cols-3 gap-2">
                   <div className="space-y-1.5">
-                    <Label className="text-sm font-medium">Country Code</Label>
+                    <Label className="text-sm font-medium">Country Code *</Label>
                     <Popover open={countryCodeOpen} onOpenChange={setCountryCodeOpen}>
                       <PopoverTrigger asChild>
                         <button
@@ -1442,7 +1442,7 @@ export default function ApplyForm({ user }: { user: any }) {
                     )}
                   </div>
                   <div className="space-y-1.5 col-span-2">
-                    <Label className="text-sm font-medium">Phone Number</Label>
+                    <Label className="text-sm font-medium">Phone Number *</Label>
                     <Input
                       type="tel"
                       className={cn(
@@ -1469,7 +1469,7 @@ export default function ApplyForm({ user }: { user: any }) {
 
                 {/* Gender */}
                 <div className="space-y-1.5">
-                  <Label className="text-sm font-medium">Gender</Label>
+                  <Label className="text-sm font-medium">Gender *</Label>
                   <Select
                     key={`gender-${contact.gender}`}
                     value={contact.gender || ""}
@@ -1494,7 +1494,6 @@ export default function ApplyForm({ user }: { user: any }) {
                     <SelectContent>
                       <SelectItem value="Male">Male</SelectItem>
                       <SelectItem value="Female">Female</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-slate-500">

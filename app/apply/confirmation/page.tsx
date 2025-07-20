@@ -41,7 +41,7 @@ function ConfirmationContent() {
           setApplicationData(data);
 
           // Step check: require paymentStatus === 'Completed' and passengers exist
-          if (!data.paymentStatus || data.paymentStatus !== 'Completed' || !data.passengers || !Array.isArray(data.passengers) || data.passengers.length === 0) {
+          if (!data.paymentStatus || (data.paymentStatus !== 'Completed' && data.paymentStatus !== 'Payment Completed') || !data.passengers || !Array.isArray(data.passengers) || data.passengers.length === 0) {
             setStepNotAllowed(true);
             clearInterval(interval);
             setIsLoading(false);

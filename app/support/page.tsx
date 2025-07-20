@@ -43,15 +43,31 @@ export default function SupportPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: contactForm.fullName,
+          email: contactForm.email,
+          phone: contactForm.phoneNumber,
+          message: contactForm.message,
+          subject: contactForm.subject, // Send subject separately
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      // Reset form
       setContactForm({
         fullName: "",
         phoneNumber: "",
@@ -59,7 +75,16 @@ export default function SupportPage() {
         subject: "",
         message: ""
       });
-    }, 3000);
+      
+      // Reset after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Contact form error:', error);
+      setIsSubmitting(false);
+      alert('Failed to send message. Please try again.');
+    }
   };
 
   const regionOffices = {

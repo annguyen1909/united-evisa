@@ -71,7 +71,7 @@ export default function ContactWidget() {
 
   // Check if we should show agent image or 24/7 support bubble based on current page
   useEffect(() => {
-    const hideAgentPages = ['/apply', '/contact', '/applications', '/embassy', '/list', '/profile'];
+    const hideAgentPages = ['/apply', '/contact', '/applications', '/embassy', '/list', '/profile', '/support'];
     const hideAgentPatterns = ['/faq/', '/check-requirement/', '/profile/', '/apply/', '/list/'];
 
     const shouldHideAgent =

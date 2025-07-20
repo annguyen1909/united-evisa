@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import Stripe from "stripe";
 import { NATIONALITIES } from "@/lib/nationalities";
+import { sendEmail } from "@/lib/email";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-05-28.basil",
@@ -279,6 +280,18 @@ export async function POST(
     } catch (riskError) {
       console.error("Error creating Risk and RiskActivity records:", riskError);
       // Continue without Risk records if it fails
+    }
+
+    // Send payment confirmation email
+    try {
+      await sendEmail({
+        template: 'payment-confirmation',
+        data: { applicationId }
+      });
+      console.log("Payment confirmation email sent for application:", applicationId);
+    } catch (emailError) {
+      console.error("Error sending payment confirmation email:", emailError);
+      // Continue even if email fails
     }
 
     return NextResponse.json({

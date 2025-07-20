@@ -60,6 +60,7 @@
     "remark-html": "^16.0.1",
     "remark-rehype": "^11.1.2",
     "remark-slug": "^8.0.0",
+    "resend": "^4.7.0",
     "sonner": "^2.0.5",
     "stripe": "^18.2.1",
     "tailwind-merge": "^3.3.0",

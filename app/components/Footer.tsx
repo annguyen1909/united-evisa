@@ -273,19 +273,8 @@ export function Footer({
 
             {/* Bottom Bar */}
             <div className="py-6 px-4 sm:px-6">
-                <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="max-w-6xl mx-auto flex justify-center items-center">
                     <p className="text-slate-500 text-sm">{copyright}</p>
-                    <div className="flex gap-6">
-                        {legalLinks.map((link, idx) => (
-                            <Link
-                                key={idx}
-                                href={link.href}
-                                className="text-slate-400 hover:text-emerald-400 text-sm transition-colors"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                    </div>
                 </div>
             </div>
         </footer>

@@ -85,7 +85,7 @@ export default function ResetPasswordForm() {
       const res = await fetch('/api/user/verify-reset-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, otp, newPassword, jwtToken }),
+        body: JSON.stringify({ email, otp, newPassword }),
       })
       const data = await res.json()
       if (!res.ok) {

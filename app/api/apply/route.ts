@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import crypto from "crypto";
+import { sendEmail } from "@/lib/email";
 
 function generateAppId(destinationCode: string) {
   const random = Math.floor(100000 + Math.random() * 900000);
@@ -311,6 +312,41 @@ export async function POST(req: NextRequest) {
       },
     });
     console.log("Creating application with visaTypeId:", visaTypeId);
+    
+    // Send notification email to visa@unitedevisa.com
+    try {
+      // Get destination and visa type details
+      const destination = await prisma.destination.findUnique({
+        where: { id: destinationId },
+        select: { name: true }
+      });
+      
+      const visaType = await prisma.visaType.findUnique({
+        where: { id: visaTypeId },
+        select: { name: true }
+      });
+      
+      await sendEmail({
+        to: "visa@unitedevisa.com",
+        template: 'new-application-notification',
+        data: { 
+          applicationId: app.applicationId,
+          customerEmail: email,
+          customerName: fullName,
+          destinationName: destination?.name || destinationCode,
+          visaTypeName: visaType?.name || 'Unknown',
+          passengerCount,
+          total,
+          stayingStart,
+          stayingEnd
+        }
+      });
+      console.log("New application notification email sent for:", app.applicationId);
+    } catch (emailError) {
+      console.error("Error sending new application notification email:", emailError);
+      // Continue even if email fails
+    }
+    
     return NextResponse.json({ 
       id: app.id, 
       applicationId: app.applicationId,

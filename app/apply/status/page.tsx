@@ -121,7 +121,7 @@ function StatusContent() {
 
     // Determine which status component to render based on application status
     const normalizedStatus = applicationData.status?.toLowerCase();
-    
+
     console.log('Status page - Original status:', applicationData.status);
     console.log('Status page - Normalized status:', normalizedStatus);
 

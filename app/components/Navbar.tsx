@@ -40,6 +40,10 @@ const navItems = [
     label: "Get Your eVisa",
     href: "/apply",
   },
+  {
+    label: "Check Requirements",
+    href: "/check-requirements",
+  },
   { label: "Pricing", href: "/pricing" },
   {
     label: "Info Center",

@@ -32,7 +32,7 @@ export default function CustomerSupport() {
         throw new Error(data.error || 'Failed to send message');
       }
 
-      setSubmitted(true);
+    setSubmitted(true);
       
       // Reset form
       setForm({ name: "", email: "", message: "" });

@@ -2,7 +2,7 @@
 
 import { notFound, useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
-import { getCountryBySlug } from '@/lib/countries';
+import { getCountryBySlug, COUNTRIES } from '@/lib/countries';
 import { getNationalityByCode } from '@/lib/nationalities';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import {
@@ -14,7 +14,6 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
-import CheckEligibility from '@/components/shared/CheckEligibility';
 
 function CheckRequirementsContent() {
     const searchParams = useSearchParams();
@@ -26,11 +25,20 @@ function CheckRequirementsContent() {
     const [destinationName, setDestinationName] = useState<string | null>(null);
     const [visaTypeResults, setVisaTypeResults] = useState<any[] | null>(null);
     const [loading, setLoading] = useState(true);
+    const [showDestinations, setShowDestinations] = useState(false);
 
     useEffect(() => {
         const checkEligibility = async () => {
+            // If no parameters provided, show destinations list
+            if (!nationalitySlug && !destinationSlug) {
+                setShowDestinations(true);
+                setLoading(false);
+                return;
+            }
+
+            // If only one parameter is provided, redirect to home
             if (!nationalitySlug || !destinationSlug) {
-                notFound();
+                router.push('/');
                 return;
             }
 
@@ -72,7 +80,114 @@ function CheckRequirementsContent() {
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <div className="text-center">
                     <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600 mb-4"></div>
-                    <p className="text-slate-700 font-medium">Checking visa eligibility...</p>
+                    <p className="text-slate-700 font-medium">Loading...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Show destinations list if no parameters provided
+    if (showDestinations) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+                {/* Header Section */}
+                <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
+                    <div className="absolute inset-0 bg-black/10"></div>
+                    <div className="absolute inset-0 opacity-20">
+                        <div style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                            backgroundRepeat: 'repeat'
+                        }} className="w-full h-full" />
+                    </div>
+                    <div className="relative max-w-6xl mx-auto px-4 py-16">
+                        <div className="text-center">
+                            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                                <Globe className="h-4 w-4" />
+                                <span className="text-sm font-medium">Visa Requirements</span>
+                            </div>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                                Check Visa <span className="text-emerald-200">Requirements</span>
+                            </h1>
+                            <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
+                                Select your destination to check visa requirements and eligibility
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="max-w-6xl mx-auto px-4 py-12">
+                    {/* All Destinations Grid */}
+                    <div className="mb-12">
+                        <div className="text-center mb-8">
+                            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 mb-4 border border-white/30">
+                                <Globe className="h-4 w-4 text-emerald-600" />
+                                <span className="text-sm font-medium text-slate-700">All Destinations</span>
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-800 mb-2">
+                                Browse All Available Destinations
+                            </h2>
+                            <p className="text-slate-600">
+                                Click on any destination to check visa requirements
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                            {COUNTRIES.map((country) => (
+                                <Link
+                                    key={country.code}
+                                    href={`/requirements-posts/${country.slug || country.name.toLowerCase().replace(/\s+/g, '-')}`}
+                                    className="group bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 p-6 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-300 transform hover:-translate-y-1 hover:border-emerald-200"
+                                >
+                                    <div className="text-center">
+                                        <div className="relative mb-4">
+                                            <img
+                                                src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
+                                                alt={country.name}
+                                                className="w-16 h-16 rounded-lg border-2 border-white shadow-md object-cover bg-white mx-auto"
+                                                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                            />
+                                            <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center">
+                                                <ArrowRight className="h-3 w-3 text-white" />
+                                            </div>
+                                        </div>
+                                        <h3 className="font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors">
+                                            {country.name}
+                                        </h3>
+                                        <p className="text-xs text-slate-500 mt-1">
+                                            {country.visaTypes?.length || 0} visa types available
+                                        </p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Help Section */}
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 rounded-2xl p-8 shadow-lg">
+                        <div className="flex items-start gap-4">
+                            <div className="p-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg">
+                                <BadgeInfo className="h-6 w-6" />
+                            </div>
+                            <div className="flex-1">
+                                <h3 className="text-xl font-bold text-blue-800 mb-3">How to Check Requirements</h3>
+                                <div className="space-y-2 text-blue-700">
+                                    <p className="leading-relaxed">
+                                        Select your destination above, then enter your nationality to see detailed visa requirements, processing times, and fees.
+                                    </p>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                        <div className="bg-white/60 p-4 rounded-lg border border-blue-100">
+                                            <h4 className="font-semibold text-blue-800 mb-2">Step 1: Choose Destination</h4>
+                                            <p className="text-sm text-blue-600">Select your destination country from the list above.</p>
+                                        </div>
+                                        <div className="bg-white/60 p-4 rounded-lg border border-blue-100">
+                                            <h4 className="font-semibold text-blue-800 mb-2">Step 2: Enter Nationality</h4>
+                                            <p className="text-sm text-blue-600">Provide your nationality to check eligibility.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -331,7 +446,13 @@ function CheckRequirementsContent() {
                             Easily check visa requirements for different destinations
                         </p>
                     </div>
-                    <CheckEligibility key={`${nationalitySlug}-${destinationSlug}`} />
+                    <div className="text-center">
+                        <Link href="/check-requirements">
+                            <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                                Browse All Destinations
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Action Buttons */}

@@ -239,10 +239,10 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
         }
       }} />
 
-      <BillingForm 
+        <BillingForm
         onBillingInfoChange={handleBillingInfoComplete}
-        isProcessing={isLoading}
-      />
+          isProcessing={isLoading}
+        />
 
       <Button
         type="submit"

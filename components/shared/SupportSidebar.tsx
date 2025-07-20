@@ -54,11 +54,11 @@ export default function SupportSidebar() {
             if (!response.ok) {
                 throw new Error(data.error || 'Failed to send message');
             }
-
-            // Show success state
-            setIsSubmitting(false);
-            setIsSubmitted(true);
-            
+        
+        // Show success state
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        
             // Reset form
             setFormState({
                 name: "",
@@ -70,7 +70,7 @@ export default function SupportSidebar() {
             // Reset after 5 seconds
             setTimeout(() => {
                 setIsSubmitted(false);
-            }, 5000);
+        }, 5000);
         } catch (error) {
             console.error('Contact form error:', error);
             setIsSubmitting(false);

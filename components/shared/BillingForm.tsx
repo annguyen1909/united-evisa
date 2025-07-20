@@ -17,8 +17,6 @@ export interface BillingInfo {
   name: string;
   address: string;
   country: string;
-  state: string;
-  city: string;
   zipcode: string;
 }
 
@@ -37,8 +35,6 @@ export function BillingForm({
       name: "",
       address: "",
       zipcode: "",
-      state: "",
-      city: "",
       country: "",
     },
   });
@@ -48,31 +44,29 @@ export function BillingForm({
   const country = watch("country");
   const address = watch("address");
   const zipcode = watch("zipcode");
-  const city = watch("city");
-  const state = watch("state");
-  
-  const countryOptions = NATIONALITIES.map((n) => ({
-    value: n.code, // Use code for value
+  const nationalitySelect = NATIONALITIES.map((n) => ({
+    value: n.name,
     label: n.name,
-    code: n.code,
   }));
 
   useEffect(() => {
-    // Find code for selected country
-    const selectedCountry = countryOptions.find((c) => c.code === country);
     onBillingInfoChange(
       {
         name,
         address,
         zipcode,
-        state,
-        country: selectedCountry ? selectedCountry.code : country,
-        city,
+        country,
       },
       isValid
     );
     // Only run when these values or validity change
-  }, [name, address, zipcode, country, city, state, isValid]);
+  }, [name, address, zipcode, country, isValid]);
+
+  // Add validation for country field
+  const validateCountry = (value: string) => {
+    if (!value) return "Country is required";
+    return true;
+  };
 
   return (
     <Card className="shadow-sm border-slate-200">
@@ -83,7 +77,7 @@ export function BillingForm({
 
         <div className="space-y-5">
           <div className="space-y-1.5">
-            <Label htmlFor="name">Cardholder Name</Label>
+            <Label htmlFor="name">Cardholder Name *</Label>
             <Input
               id="name"
               placeholder="Full Name (as it appears on card)"
@@ -99,14 +93,15 @@ export function BillingForm({
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="address">Billing Address</Label>
+            <Label htmlFor="address">Billing Address *</Label>
             <Input
               id="address"
-              placeholder="Street Address"
+              placeholder="Street address, city, state"
               {...register("address", { required: "Billing address is required" })}
               className={errors.address ? "border-red-500 focus:ring-red-500" : ""}
               disabled={isProcessing}
             />
+            <p className="text-xs text-slate-500">Include street address, city, and state/province</p>
             {errors.address && (
               <p className="text-red-500 text-sm mt-1 flex items-center">
                 <AlertCircle className="h-4 w-4 mr-1" /> {errors.address.message}
@@ -116,7 +111,7 @@ export function BillingForm({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="space-y-1.5">
-              <Label htmlFor="country">Country</Label>
+              <Label htmlFor="country">Country *</Label>
               <Select
                 value={country}
                 onValueChange={(value) => setValue("country", value, { shouldValidate: true })}
@@ -124,77 +119,37 @@ export function BillingForm({
               >
                 <SelectTrigger className={cn(
                   "bg-white",
-                  errors.country && "border-red-500 focus:ring-red-500"
+                  !country && "border-red-500 focus:ring-red-500"
                 )}>
                   <SelectValue placeholder="Select Country" />
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px]">
-                  {countryOptions.map((country) => (
-                    <SelectItem key={country.code} value={country.code}>
-                      {country.label}
+                  {nationalitySelect.map((nationality) => (
+                    <SelectItem key={nationality.value} value={nationality.value}>
+                      {nationality.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              {/* Add hidden input for react-hook-form validation */}
-              <input
-                type="hidden"
-                {...register("country", { required: "Country is required" })}
-                value={country}
-              />
-              {errors.country && (
+              {!country && (
                 <p className="text-red-500 text-sm mt-1 flex items-center">
-                  <AlertCircle className="h-4 w-4 mr-1" /> {errors.country.message}
+                  <AlertCircle className="h-4 w-4 mr-1" /> Country is required
                 </p>
               )}
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="zipcode">Postal/ZIP Code</Label>
+              <Label htmlFor="zipcode">ZIP Code *</Label>
               <Input
                 id="zipcode"
-                placeholder="Postal Code"
-                {...register("zipcode", { required: "Postal/ZIP code is required" })}
+                placeholder="ZIP code"
+                {...register("zipcode", { required: "ZIP code is required" })}
                 className={errors.zipcode ? "border-red-500 focus:ring-red-500" : ""}
                 disabled={isProcessing}
               />
               {errors.zipcode && (
                 <p className="text-red-500 text-sm mt-1 flex items-center">
                   <AlertCircle className="h-4 w-4 mr-1" /> {errors.zipcode.message}
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="space-y-1.5">
-              <Label htmlFor="city">City</Label>
-              <Input
-                id="city"
-                placeholder="City"
-                {...register("city", { required: "City is required" })}
-                className={errors.city ? "border-red-500 focus:ring-red-500" : ""}
-                disabled={isProcessing}
-              />
-              {errors.city && (
-                <p className="text-red-500 text-sm mt-1 flex items-center">
-                  <AlertCircle className="h-4 w-4 mr-1" /> {errors.city.message}
-                </p>
-              )}
-            </div>
-
-            <div className="space-y-1.5">
-              <Label htmlFor="state">State/Province</Label>
-              <Input
-                id="state"
-                placeholder="State or Province"
-                {...register("state", { required: "State/Province is required" })}
-                className={errors.state ? "border-red-500 focus:ring-red-500" : ""}
-                disabled={isProcessing}
-              />
-              {errors.state && (
-                <p className="text-red-500 text-sm mt-1 flex items-center">
-                  <AlertCircle className="h-4 w-4 mr-1" /> {errors.state.message}
                 </p>
               )}
             </div>

@@ -12,7 +12,6 @@ import moment from "moment";
 import { NATIONALITIES } from "@/lib/nationalities";
 import { COUNTRIES } from "@/lib/countries/index";
 import { calculateIndiaVisaFee } from "@/lib/countries/india";
-import OrderSummary from "@/components/shared/OrderSummary";
 
 import { Users, AlertCircle, Check } from "lucide-react";
 import {
@@ -53,6 +52,7 @@ function PassengersContent() {
   const [passengers, setPassengers] = useState<Passenger[]>([]);
   const [errors, setErrors] = useState<PassengerError[]>([]);
   const [stepNotAllowed, setStepNotAllowed] = useState(false);
+  const [visaTypes, setVisaTypes] = useState<any[]>([]);
 
   useEffect(() => {
     // Always prioritize URL parameter
@@ -74,6 +74,27 @@ function PassengersContent() {
     }
   }, [searchParams, router]);
 
+  // Fetch visa types for India (like India repo)
+  useEffect(() => {
+    const fetchVisaTypes = async () => {
+      try {
+        const response = await fetch('/api/destinations/india/visa-types');
+        if (response.ok) {
+          const data = await response.json();
+          setVisaTypes(data);
+          console.log('[visa types debug] Fetched visa types:', data.length);
+        }
+      } catch (error) {
+        console.error('Failed to fetch visa types:', error);
+      }
+    };
+
+    // Only fetch visa types if destination is India
+    if (applicationData?.destination?.code?.toLowerCase() === "in") {
+      fetchVisaTypes();
+    }
+  }, [applicationData?.destination?.code]);
+
   // Fetch application data function
   async function fetchApplicationData(appId: string) {
     try {
@@ -92,11 +113,14 @@ function PassengersContent() {
 
         // Initialize passengers based on application data
         const passengerCount = data.passengerCount || 1;
+        console.log('Passengers page - passengerCount from DB:', passengerCount);
+        console.log('Passengers page - existing passengers:', data.passengers);
 
         // Check for cached passenger data first
         const cachedPassengerData = loadCachedPassengerData(appId);
         
         if (cachedPassengerData && cachedPassengerData.length > 0) {
+          console.log('Using cached passenger data');
           
           // Check if passenger count changed
           if (cachedPassengerData.length !== passengerCount) {
@@ -113,18 +137,21 @@ function PassengersContent() {
               setPassengers(updatedPassengers);
               // Update cache with new passenger count
               savePassengerDataToCache(appId, updatedPassengers);
+              console.log('Added empty passengers to existing cache');
             } else {
               // Passenger count decreased, truncate existing cache
               const truncatedPassengers = cachedPassengerData.slice(0, passengerCount);
               setPassengers(truncatedPassengers);
               // Update cache with truncated data
               savePassengerDataToCache(appId, truncatedPassengers);
+              console.log('Truncated existing cache to match new passenger count');
             }
           } else {
             // Passenger count unchanged, use cached data as is
             setPassengers(cachedPassengerData);
           }
         } else if (data.passengers && data.passengers.length > 0) {
+          console.log('Using existing passengers from DB');
           const dbPassengers = data.passengers.map((p: any) => ({
             id: p.id,
             fullName: p.fullName || "",
@@ -137,6 +164,7 @@ function PassengersContent() {
           // Save DB data to cache for future use
           savePassengerDataToCache(appId, dbPassengers);
         } else {
+          console.log('Creating empty passenger forms based on count:', passengerCount);
           // Create empty passenger forms based on count
           const emptyPassengers = Array.from({ length: passengerCount }, () => ({
             fullName: "",
@@ -166,48 +194,121 @@ function PassengersContent() {
   // Get visa type from database (applicationData includes visaType and destination)
   const visa = useMemo(() => {
     if (!applicationData?.visaType) {
+      console.log('[visa debug] visaType missing from applicationData', { applicationData });
       return null;
     }
     return applicationData.visaType;
   }, [applicationData]);
 
-  // Always use canonical allowedNationalities for India
+  // Canonical visa types and their display names (copied from India repo)
+  const CANONICAL_VISA_TYPES = [
+    {
+      key: 'tourist-30d',
+      display: 'Tourist e-Visa (Double entries for 30 days)',
+      match: /tourist.*30\s*days/i,
+    },
+    {
+      key: 'tourist-1y',
+      display: 'Tourist e-Visa (Multiple entries for 1 year)',
+      match: /tourist.*1\s*year/i,
+    },
+    {
+      key: 'tourist-5y',
+      display: 'Tourist e-Visa (Multiple entries for 5 years)',
+      match: /tourist.*5\s*years?/i,
+    },
+    {
+      key: 'business',
+      display: 'Business e-Visa (Multiple entries for 1 year)',
+      match: /business.*1\s*year/i,
+    },
+    {
+      key: 'ayush',
+      display: 'Ayush e-Visa (Triple entries for 60 days)',
+      match: /ayush.*60\s*days/i,
+    },
+    {
+      key: 'medical',
+      display: 'Medical e-Visa (Triple entries for 60 days)',
+      match: /medical.*60\s*days/i,
+    },
+    {
+      key: 'conference',
+      display: 'Conference e-Visa (Triple entries for 30 days)',
+      match: /conference.*30\s*days/i,
+    },
+    {
+      key: 'student',
+      display: 'Student e-Visa (Triple entries for 365 days)',
+      match: /student.*365\s*days/i,
+    },
+    {
+      key: 'x-misc',
+      display: 'e-Emergency X-Misc Visa',
+      match: /emergency|x-misc/i,
+    },
+  ];
+
+  // Get allowed nationalities from the database visa type - Updated to match India repo logic
   const allowedNationalities = useMemo(() => {
-    if (!visa || !visa.allowedNationalities) {
+    if (!visa || !visa.name) {
+      console.log('[nationality debug] No visa or visa name found, using all nationalities');
       return NATIONALITIES;
     }
 
-    // For India, get canonical allowedNationalities
-    if (applicationData?.destination?.code?.toLowerCase() === 'in') {
-      const canonicalId = visa.id.split('-group-')[0];
-      const indiaConfig = COUNTRIES.find(c => c.code === 'in');
-      const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
-      let allowedCodes: string[] = [];
-      if (canonicalVisa && canonicalVisa.allowedNationalities) {
-        if (typeof canonicalVisa.allowedNationalities === 'string') {
-          try {
-            allowedCodes = JSON.parse(canonicalVisa.allowedNationalities);
-          } catch (e) {
-            console.error('Error parsing canonical allowedNationalities:', e);
-            return NATIONALITIES;
-          }
-        } else if (Array.isArray(canonicalVisa.allowedNationalities)) {
-          allowedCodes = canonicalVisa.allowedNationalities;
-        }
-      }
-      if (allowedCodes.length === 0) {
-        console.log('[nationality debug] Empty canonical allowedNationalities, using all nationalities');
+    // For India, use the database approach like India repo
+    if (applicationData?.destination?.code?.toLowerCase() === "in") {
+      // Find the canonical config
+      const canonical = CANONICAL_VISA_TYPES.find((c) => c.match.test(visa.name));
+      if (!canonical) {
+        console.log('[nationality debug] No canonical visa type found for:', visa.name);
         return NATIONALITIES;
       }
-      console.log('[nationality debug] Filtering nationalities by canonical:', allowedCodes);
+
+      // Get all visa types for India to compute union
+      const allVisaTypes = visaTypes || [];
+      
+      // Find all matching group-specific visa types
+      const allMatching = allVisaTypes.filter((vt: any) => canonical.match.test(vt.name));
+      
+      // Union of all allowed nationalities from database
+      const allAllowedCodes = new Set<string>();
+      allMatching.forEach((vt: any) => {
+        if (vt.allowedNationalities) {
+          let allowed = vt.allowedNationalities;
+          if (typeof allowed === 'string') {
+            try {
+              allowed = JSON.parse(allowed);
+            } catch {
+              return;
+            }
+          }
+          if (Array.isArray(allowed)) {
+            allowed.forEach((code: string) => allAllowedCodes.add(code.toUpperCase()));
+          }
+        }
+      });
+
+      if (allAllowedCodes.size === 0) {
+        console.log('[nationality debug] No allowed nationalities found in database for India, using all nationalities');
+        return NATIONALITIES;
+      }
+
+      console.log('[nationality debug] India - Database allowed nationalities:', Array.from(allAllowedCodes));
       const filtered = NATIONALITIES.filter((c: { code: string; }) =>
-        allowedCodes.includes(c.code.toUpperCase())
+        allAllowedCodes.has(c.code.toUpperCase())
       );
-      console.log('[nationality debug] Filtered nationalities count:', filtered.length);
+      console.log('[nationality debug] India - Filtered nationalities count:', filtered.length);
       return filtered;
     }
 
-    // For non-India, use visa.allowedNationalities
+    // For other countries, use the existing logic
+    if (!visa.allowedNationalities) {
+      console.log('[nationality debug] No allowedNationalities found, using all nationalities');
+      return NATIONALITIES;
+    }
+
+    // Parse the allowedNationalities JSON if it's a string
     let allowedCodes: string[] = [];
     if (typeof visa.allowedNationalities === 'string') {
       try {
@@ -219,17 +320,19 @@ function PassengersContent() {
     } else if (Array.isArray(visa.allowedNationalities)) {
       allowedCodes = visa.allowedNationalities;
     }
+
     if (allowedCodes.length === 0) {
       console.log('[nationality debug] Empty allowedNationalities, using all nationalities');
       return NATIONALITIES;
     }
+
     console.log('[nationality debug] Filtering nationalities by:', allowedCodes);
     const filtered = NATIONALITIES.filter((c: { code: string; }) =>
       allowedCodes.includes(c.code.toUpperCase())
     );
     console.log('[nationality debug] Filtered nationalities count:', filtered.length);
     return filtered;
-  }, [visa, applicationData?.destination]);
+  }, [visa, applicationData, visaTypes]);
 
   const updatePassenger = (
     index: number,
@@ -297,7 +400,7 @@ function PassengersContent() {
   useEffect(() => {
     return () => {
       // Clear cache when component unmounts if payment is completed
-      if (applicationId && applicationData?.paymentStatus === "Completed") {
+      if (applicationId && (applicationData?.paymentStatus === "Completed" || applicationData?.paymentStatus === "Payment Completed")) {
         clearPassengerDataFromCache(applicationId);
       }
     };
@@ -378,62 +481,17 @@ function PassengersContent() {
       // Calculate total (same logic as order summary)
       const passengerCount = applicationData?.passengerCount || 1;
       const serviceFee = FIXED_SERVICE_FEE * passengerCount;
-      let govFeeToSend = 0;
-      if (applicationData?.destination?.code?.toLowerCase() === 'in' && visa && passengers.length > 0) {
-        const canonicalId = visa.id.split('-group-')[0];
-        const fees = passengers.map((p) => calculateIndiaVisaFee(canonicalId, p.nationality));
-        const validFees = fees.filter((fee): fee is number => typeof fee === 'number' && !isNaN(fee));
-        govFeeToSend = validFees.reduce((sum, fee) => sum + fee, 0);
-        console.log('[India govFeeToSend debug]', { canonicalId, passengers, fees, validFees, govFeeToSend });
-      } else if (visa && typeof visa.fees === 'number') {
-        govFeeToSend = visa.fees * passengerCount;
+      let total = 0;
+      if (visa && typeof govFee === 'number') {
+        total = govFee + serviceFee;
       }
-      let total = govFeeToSend + serviceFee;
 
-      // --- India promotionAmount logic ---
-      let promotionAmount = 0;
-      let passengersWithPromotion = passengers;
-      if (applicationData?.destination?.code?.toLowerCase() === 'in' && visa) {
-        const canonicalId = visa.id.split('-group-')[0];
-        // Find highest group fee (step 1: canonicalVisa)
-        const indiaConfig = COUNTRIES.find(c => c.code === 'in');
-        const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
-        let highestFee = 0;
-        if (typeof canonicalVisa?.govFee === 'number') {
-          highestFee = canonicalVisa.govFee;
-        }
-        // For each passenger, calculate their fee and promotionAmount
-        promotionAmount = passengers.reduce((sum, p) => {
-          const nationalityFee = calculateIndiaVisaFee(canonicalId, p.nationality);
-          if (typeof nationalityFee === 'number' && !isNaN(nationalityFee)) {
-            return sum + (highestFee - nationalityFee);
-          }
-          return sum;
-        }, 0);
-        // Debug log for India promotionAmount calculation
-        console.log('[India promotionAmount debug]', {
-          highestFee,
-          passengers,
-          promotionAmount,
-          perPassengerPromotion: passengers.map(p => {
-            const nationalityFee = calculateIndiaVisaFee(canonicalId, p.nationality);
-            return {
-              nationality: p.nationality,
-              promotion: typeof nationalityFee === 'number' && !isNaN(nationalityFee) ? highestFee - nationalityFee : null
-            };
-          })
-        });
-      }
-      // --- End India promotionAmount logic ---
 
       // Save passengers and total in one request
-      const body = applicationData?.destination?.code?.toLowerCase() === 'in'
-        ? { passengers, total, promotionAmount, govFee: govFeeToSend }
-        : { passengers, total, govFee: govFeeToSend };
       const passengersRes = await fetch(`/api/applications/${applicationId}/passengers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify({ passengers, total }),
       });
 
       const passengersData = await passengersRes.json();
@@ -484,19 +542,93 @@ function PassengersContent() {
   // Order summary
   let orderSummary = null;
   if (applicationData) {
+    const destination = applicationData.destination?.name ?? "---";
+    // Always show canonical visa name (no group or suffix)
+    let visaName = applicationData.visaType?.name ?? "---";
+    if (applicationData?.destination?.code?.toLowerCase() === "in" && visa) {
+      // For India, get the canonical visa type name from the config (by id)
+      // The canonical visa type id is the part before any '-group-' in the id
+      const canonicalId = visa.id.split('-group-')[0];
+      // Find the canonical visa type in the India config
+      const indiaConfig = COUNTRIES.find(c => c.code === 'in');
+      const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
+      if (canonicalVisa) {
+        visaName = canonicalVisa.name;
+      }
+    }
+    const passenger = applicationData.passengerCount || 1;
+    const serviceFee = FIXED_SERVICE_FEE * passenger;
+    const stayingStart = applicationData.stayingStart;
+    const stayingEnd = applicationData.stayingEnd;
+    const isDateValid = stayingStart && stayingEnd;
+    const formattedStart = isDateValid
+      ? moment(stayingStart).format("DD/MM/YYYY")
+      : "---";
+    const formattedEnd = isDateValid
+      ? moment(stayingEnd).format("DD/MM/YYYY")
+      : "---";
+    const durationInMs = isDateValid
+      ? new Date(stayingEnd).getTime() - new Date(stayingStart).getTime()
+      : null;
+    const days =
+      durationInMs !== null
+        ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
+        : "---";
+    const total = visa && typeof govFee === 'number' ? (govFee + serviceFee) : 0;
     orderSummary = (
-      <OrderSummary
-        applicationData={applicationData}
-        passengers={passengers}
-        visa={visa}
-        stayingStart={applicationData.stayingStart}
-        stayingEnd={applicationData.stayingEnd}
-        step="passengers"
-      />
+      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
+        <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
+          Order Summary
+        </h2>
+        <div className="space-y-4 text-sm">
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Destination</span>
+            <span className="font-medium text-emerald-700">{destination}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Type of Visa</span>
+            <span className="text-slate-800 text-xs">{visaName}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Travelers</span>
+            <span className="text-slate-800">{passenger}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Staying Time</span>
+            <span className="text-slate-800">{formattedStart} - {formattedEnd}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-slate-700">Duration</span>
+            <span className="text-slate-800">{days} days</span>
+          </div>
+          <hr className="border-slate-100" />
+          <div className="flex items-center justify-between">
+            <span className="text-slate-600">Government Fee</span>
+            <span className="text-slate-800">
+              {applicationData?.destination?.code?.toLowerCase() === "in" && passengers.length === 0
+                ? "Pending nationality selection"
+                : (visa && typeof govFee === 'number' ? `$${govFee.toFixed(2)}` : "---")}
+            </span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-slate-600">Service Fee</span>
+            <span className="text-slate-800">${serviceFee.toFixed(2)}</span>
+          </div>
+          <hr className="border-slate-100" />
+          <div className="flex items-center justify-between pt-1">
+            <span className="font-semibold text-base text-slate-800">Total</span>
+            <span className="font-bold text-lg text-emerald-700">
+              {applicationData?.destination?.code?.toLowerCase() === "in" && passengers.length === 0
+                ? `${serviceFee.toFixed(2)}+`
+                : (visa && typeof govFee === 'number' ? `$${total.toFixed(2)}` : "---")}
+            </span>
+          </div>
+        </div>
+      </div>
     );
   }
   // Prevent editing passengers if payment is completed
-  if (applicationData && applicationData.paymentStatus === "Completed") {
+  if (applicationData && (applicationData.paymentStatus === "Completed" || applicationData.paymentStatus === "Payment Completed")) {
     return (
       <div className="min-h-screen bg-slate-50 pb-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center min-h-[60vh]">
@@ -546,6 +678,8 @@ function PassengersContent() {
           Traveler Information
         </h1>
 
+
+
         {isLoading && !applicationData ? (
           <div className="flex flex-col items-center justify-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-emerald-600"></div>
@@ -582,7 +716,7 @@ function PassengersContent() {
                       {/* Full Name */}
                       <div className="space-y-1.5">
                         <Label htmlFor={`fullName-${index}`} className="text-sm font-medium">
-                          Full Name (as per passport)
+                          Full Name (as per passport) *
                         </Label>
                         <Input
                           id={`fullName-${index}`}
@@ -605,7 +739,7 @@ function PassengersContent() {
 
                       {/* Gender */}
                       <div className="space-y-1.5">
-                        <Label htmlFor={`gender-${index}`} className="text-sm font-medium">Gender</Label>
+                        <Label htmlFor={`gender-${index}`} className="text-sm font-medium">Gender *</Label>
                         <Select
                           value={passenger.gender}
                           onValueChange={(value) => updatePassenger(index, "gender", value)}
@@ -618,7 +752,6 @@ function PassengersContent() {
                           <SelectContent>
                             <SelectItem value="male">Male</SelectItem>
                             <SelectItem value="female">Female</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
                         {errors[index]?.gender && (
@@ -631,7 +764,7 @@ function PassengersContent() {
 
                       {/* Date of Birth */}
                       <div className="space-y-1.5">
-                        <Label htmlFor={`dob-${index}`} className="text-sm font-medium">Date of Birth</Label>
+                        <Label htmlFor={`dob-${index}`} className="text-sm font-medium">Date of Birth *</Label>
                         <Input
                           id={`dob-${index}`}
                           type="date"
@@ -655,7 +788,7 @@ function PassengersContent() {
 
                       {/* Passport Number */}
                       <div className="space-y-1.5">
-                        <Label htmlFor={`passport-${index}`} className="text-sm font-medium">Passport Number</Label>
+                        <Label htmlFor={`passport-${index}`} className="text-sm font-medium">Passport Number *</Label>
                         <Input
                           id={`passport-${index}`}
                           placeholder="Passport Number"
@@ -677,24 +810,23 @@ function PassengersContent() {
 
                       {/* Nationality */}
                       <div className="md:col-span-2">
-                        <Label htmlFor={`nationality-${index}`} className="text-sm font-medium">Nationality</Label>
-                        <Select
+                        <Label htmlFor={`nationality-${index}`} className="text-sm font-medium">Nationality *</Label>
+                        <select
+                          id={`nationality-${index}`}
                           value={passenger.nationality}
-                          onValueChange={(value) => updatePassenger(index, "nationality", value)}
+                          onChange={(e) => updatePassenger(index, "nationality", e.target.value)}
+                          className={cn(
+                            "w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-900",
+                            errors[index]?.nationality ? 'border-red-500' : 'border-slate-300'
+                          )}
                         >
-                          <SelectTrigger className={cn(
-                            errors[index]?.nationality && "border-red-500 focus:ring-red-500"
-                          )}>
-                            <SelectValue placeholder="Select Nationality" />
-                          </SelectTrigger>
-                          <SelectContent className="max-h-[300px]">
-                            {allowedNationalities.map((country) => (
-                              <SelectItem key={country.code} value={country.code}>
-                                {country.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                          <option value="">Select Nationality</option>
+                          {allowedNationalities.map((country) => (
+                            <option key={country.code} value={country.code}>
+                              {country.name}
+                            </option>
+                          ))}
+                        </select>
                         {errors[index]?.nationality && (
                           <div className="flex items-center text-red-500 text-xs mt-1">
                             <AlertCircle className="w-3 h-3 mr-1" />

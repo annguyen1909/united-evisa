@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { AlertCircle, CheckCircle } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { useForm } from "react-hook-form"
+import { XCircle } from "lucide-react"
 
 export default function ResetPasswordForm() {
   const [step, setStep] = useState<"email" | "otp" | "success">("email")
@@ -133,16 +136,25 @@ export default function ResetPasswordForm() {
             <span className="text-red-700">{error}</span>
           </div>
         )}
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+        <div className="space-y-1.5">
+          <Label htmlFor="email">Email *</Label>
           <Input
             id="email"
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
-            className="border-slate-200 focus:ring-emerald-500"
+            className={cn(
+              "focus:ring-emerald-500",
+              error && "border-red-500 focus:ring-red-500"
+            )}
           />
+          {error && (
+            <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
+              <AlertCircle className="h-3.5 w-3.5" />
+              <span>{error}</span>
+            </div>
+          )}
         </div>
         <Button
           type="submit"

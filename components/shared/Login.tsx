@@ -83,7 +83,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                 )}
 
                 <div className="grid gap-2">
-                  <Label htmlFor="email" className="text-slate-700 font-medium">Email</Label>
+                  <Label htmlFor="email" className="text-slate-700 font-medium">Email *</Label>
                   <Input
                     id="email"
                     type="email"
@@ -97,7 +97,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
                 <div className="grid gap-2">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password" className="text-slate-700 font-medium">Password</Label>
+                    <Label htmlFor="password" className="text-slate-700 font-medium">Password *</Label>
                     <button
                       type="button"
                       className="text-emerald-600 text-sm hover:text-emerald-700 hover:underline"

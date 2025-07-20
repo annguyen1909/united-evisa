@@ -13,8 +13,9 @@ export async function GET(
     const session = await getServerSession();
     if (!session?.user?.email) {
       return NextResponse.json({
-        type: "AUTH",
-        message: "For your security, please log in to upload documents. We have created an account for you using your email from Step 1."
+        error: "AUTHENTICATION_REQUIRED",
+        message: "For your security, please log in to view documents. We have created an account for you using your email from Step 1.",
+        applicationId: applicationId
       }, { status: 401 });
     }
 
@@ -75,7 +76,11 @@ export async function POST(
 
     const session = await getServerSession();
     if (!session?.user?.email) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ 
+        error: "AUTHENTICATION_REQUIRED",
+        message: "For your security, please log in to upload documents. We have created an account for you using your email from Step 1.",
+        applicationId: applicationId
+      }, { status: 401 });
     }
 
     // Find the application
@@ -130,24 +135,10 @@ export async function POST(
       }
     });
 
-    // Count passengers and documents
-    const passengers = await prisma.passenger.findMany({
-      where: { applicationId: application.id },
-      select: { id: true }
+    await prisma.application.update({
+      where: { id: application.id },
+      data: { status: "Processing" }
     });
-    const passengerCount = passengers.length || 1;
-    const requiredDocumentCount = passengerCount * 2;
-    const uploadedDocumentCount = await prisma.applicationDocument.count({
-      where: { applicationId: application.id }
-    });
-
-    // Only set status to 'Processing' if all required documents are uploaded
-    if (uploadedDocumentCount >= requiredDocumentCount) {
-      await prisma.application.update({
-        where: { id: application.id },
-        data: { status: "Processing" }
-      });
-    }
 
     // Return the document without the content field
     const { ...documentWithoutContent } = document;

@@ -50,19 +50,23 @@ export function BillingForm({
   const zipcode = watch("zipcode");
   const city = watch("city");
   const state = watch("state");
-  const nationalitySelect = NATIONALITIES.map((n) => ({
-    value: n.name,
-    label: n.code,
+  
+  const countryOptions = NATIONALITIES.map((n) => ({
+    value: n.code, // Use code for value
+    label: n.name,
+    code: n.code,
   }));
 
   useEffect(() => {
+    // Find code for selected country
+    const selectedCountry = countryOptions.find((c) => c.code === country);
     onBillingInfoChange(
       {
         name,
         address,
         zipcode,
         state,
-        country,
+        country: selectedCountry ? selectedCountry.code : country,
         city,
       },
       isValid
@@ -125,13 +129,19 @@ export function BillingForm({
                   <SelectValue placeholder="Select Country" />
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px]">
-                  {nationalitySelect.map((nationality) => (
-                    <SelectItem key={nationality.value} value={nationality.label}>
-                      {nationality.value}
+                  {countryOptions.map((country) => (
+                    <SelectItem key={country.code} value={country.code}>
+                      {country.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
+              {/* Add hidden input for react-hook-form validation */}
+              <input
+                type="hidden"
+                {...register("country", { required: "Country is required" })}
+                value={country}
+              />
               {errors.country && (
                 <p className="text-red-500 text-sm mt-1 flex items-center">
                   <AlertCircle className="h-4 w-4 mr-1" /> {errors.country.message}

@@ -8,6 +8,7 @@ import CheckoutForm from "@/components/shared/StripePaymentForm";
 import { COUNTRIES } from "@/lib/countries";
 import { Country } from "@/lib/countries/type";
 import SupportSidebar from "@/components/shared/SupportSidebar";
+import OrderSummary from "@/components/shared/OrderSummary";
 import moment from "moment";
 import { DollarSign, CreditCard, Calendar, Map, CheckCircle, AlertCircle } from "lucide-react";
 import { calculateIndiaVisaFee } from "@/lib/countries/india";
@@ -83,11 +84,25 @@ function PaymentContent() {
                 setCountry(country || null);
                 setVisa(visa || null);
                 
-                const govFee = visa?.govFee ?? 0;
+                let govFee = visa?.govFee ?? 0;
                 const passengerCount = data.passengerCount || 1;
+                // Special case for India: get total from server and subtract serviceFee
+                if (country?.code?.toLowerCase() === "in") {
+                    // total from server is data.total
+                    if (typeof data.total === "number") {
+                        govFee = data.total - (FIXED_SERVICE_FEE * passengerCount);
+                    }
+                } else if (Array.isArray(data.passengers) && data.passengers.length > 0 && country?.code?.toLowerCase() !== "in") {
+                    // For other countries, fallback to per-passenger calculation if needed
+                    const canonicalId = (visa?.id?.split('-group-')[0]) || "";
+                    const fees = data.passengers.map((p: any) => calculateIndiaVisaFee(canonicalId, p.nationality));
+                    const validFees = fees.filter((fee: any): fee is number => typeof fee === 'number' && !isNaN(fee));
+                    if (validFees.length > 0) {
+                        govFee = validFees.reduce((sum: number, fee: number) => sum + fee, 0);
+                    }
+                }
                 // Use fixed service fee
-                const total = (govFee + FIXED_SERVICE_FEE) * passengerCount;
-                
+                const total = (typeof data.total === "number") ? data.total : govFee + (FIXED_SERVICE_FEE * passengerCount);
                 setTotalAmount(total);
                 
                 // Create payment intent
@@ -107,6 +122,7 @@ function PaymentContent() {
     // Create payment intent with the database-sourced data
     async function createPaymentIntent(appId: string, total: number) {
         try {
+            console.log('[PaymentPage] Submitting amount to Stripe:', total, 'appId:', appId);
             const response = await fetch("/api/create-payment-intent", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -132,99 +148,17 @@ function PaymentContent() {
         let passengersArr = Array.isArray(applicationData.passengers) && applicationData.passengers.length > 0
             ? applicationData.passengers
             : [];
-        const passenger = applicationData.passengerCount || passengersArr.length || 1;
-        const serviceFee = FIXED_SERVICE_FEE * passenger;
-        let govFee: number | null = null;
-        const destination = country?.name ?? applicationData.destination?.name ?? "---";
-        let visaName = visa?.name ?? applicationData.visaType?.name ?? "---";
-        // Always show canonical visa type name for India
-        if (country?.code?.toLowerCase() === "in" && visa) {
-            // Find canonical visa type by removing group suffix from id
-            const canonicalId = visa.id.split('-group-')[0];
-            const indiaConfig = COUNTRIES.find(c => c.code === 'in');
-            const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
-            if (canonicalVisa) {
-                visaName = canonicalVisa.name;
-            } else {
-                // Fallback: remove group suffix from name if present
-                visaName = visa.name.split(' - Group')[0];
-            }
-        }
-        // Calculate govFee for India per passenger nationality
-        if (country?.code?.toLowerCase() === "in" && visa && passengersArr.length > 0) {
-            const canonicalId = visa.id.split('-group-')[0];
-            const fees = passengersArr.map((p: any) => calculateIndiaVisaFee(canonicalId, p.nationality));
-            const validFees = fees.filter((fee: any) => typeof fee === 'number' && !isNaN(fee));
-            if (validFees.length > 0) {
-                govFee = validFees.reduce((sum: number, fee: number) => sum + fee, 0);
-            } else {
-                govFee = null;
-            }
-        } else {
-            // For non-India, multiply visa.govFee by passenger count
-            const passengerCount = applicationData.passengerCount || passengersArr.length || 1;
-            govFee = typeof visa?.govFee === 'number' ? visa.govFee * passengerCount : null;
-        }
-        const stayingStart = applicationData.stayingStart;
-        const stayingEnd = applicationData.stayingEnd;
-        const isDateValid = stayingStart && stayingEnd;
-        const formattedStart = isDateValid
-            ? moment(stayingStart).format("DD/MM/YYYY")
-            : "---";
-        const formattedEnd = isDateValid
-            ? moment(stayingEnd).format("DD/MM/YYYY")
-            : "---";
-        const durationInMs = isDateValid
-            ? new Date(stayingEnd).getTime() - new Date(stayingStart).getTime()
-            : null;
-        const days =
-            durationInMs !== null
-                ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
-                : "---";
-        // Use fixed service fee and total
-        const total = typeof applicationData.total === 'number' ? applicationData.total : (visa && typeof govFee === 'number' ? (govFee + serviceFee) : 0);
+        
         orderSummary = (
-            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
-                <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
-                    Order Summary
-                </h2>
-                <div className="space-y-4 text-sm">
-                    <div className="flex items-center justify-between">
-                        <span className="font-medium text-slate-700">Destination</span>
-                        <span className="font-medium text-emerald-700">{destination}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <span className="font-medium text-slate-700">Type of Visa</span>
-                        <span className="text-slate-800">{visaName}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <span className="font-medium text-slate-700">Travelers</span>
-                        <span className="text-slate-800">{passenger}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <span className="font-medium text-slate-700">Staying Time</span>
-                        <span className="text-slate-800">{formattedStart} - {formattedEnd}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <span className="font-medium text-slate-700">Duration</span>
-                        <span className="text-slate-800">{days} days</span>
-                    </div>
-                    <hr className="border-slate-100" />
-                    <div className="flex items-center justify-between">
-                        <span className="text-slate-600">Government Fee</span>
-                        <span className="text-slate-800">{govFee !== null ? `$${govFee.toFixed(2)}` : "---"}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <span className="text-slate-600">Service Fee</span>
-                        <span className="text-slate-800">${serviceFee.toFixed(2)}</span>
-                    </div>
-                    <hr className="border-slate-100" />
-                    <div className="flex items-center justify-between pt-1">
-                        <span className="font-semibold text-base text-slate-800">Total</span>
-                        <span className="font-bold text-lg text-emerald-700">{`$${total.toFixed(2)}`}</span>
-                    </div>
-                </div>
-            </div>
+            <OrderSummary
+                applicationData={applicationData}
+                passengers={passengersArr}
+                visa={visa}
+                totalAmount={totalAmount}
+                stayingStart={applicationData.stayingStart}
+                stayingEnd={applicationData.stayingEnd}
+                step="payment"
+            />
         );
     }
 

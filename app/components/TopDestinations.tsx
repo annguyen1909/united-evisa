@@ -55,10 +55,10 @@ const destinations = [
 
 export default function TopDestinationsCarousel() {
   return (
-    <section className="w-full bg-slate-50 pt-12 px-4 overflow-x-hidden">
+    <section className="w-full bg-white pt-12 px-4 overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-manrope mb-4 text-emerald-700">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-manrope mb-4 text-emerald-700">
             Top Destinations
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">

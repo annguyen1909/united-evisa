@@ -8,6 +8,8 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { ChevronDown, ChevronUp, AlertTriangle, Check, FileText, Download } from 'lucide-react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+
 // Types
 interface ApplicationData {
     applicationId?: string;
@@ -19,7 +21,6 @@ interface ApplicationData {
     stayingStart?: string;
     stayingEnd?: string;
     passengers?: Passenger[];
-    status?: string;
 }
 
 interface Passenger {
@@ -65,6 +66,8 @@ function DocumentsContent({ user }: { user: any }) {
     const [stepNotAllowed, setStepNotAllowed] = useState(false);
     // Step 1 logic: isLoggedIn and user/contact
     const isLoggedIn = !!user;
+    // Debug: log user object to verify available fields
+    console.log('Current user object:', user);
     const contact = {
         fullName: applicationData.fullName,
         email: applicationData.email,
@@ -293,6 +296,28 @@ function DocumentsContent({ user }: { user: any }) {
 
                     <CardContent className="space-y-8">
 
+                        {/* Application Information */}
+                        <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 mb-6">
+                            <h3 className="text-lg font-bold text-slate-800 mb-4">Application Information</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p className="text-sm text-slate-500 mb-1">Application ID</p>
+                                    <p className="font-mono text-slate-800">{applicationData.applicationId || 'N/A'}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-slate-500 mb-1">Full Name</p>
+                                    <p className="font-semibold text-slate-800">{user?.name || 'N/A'}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-slate-500 mb-1">Email</p>
+                                    <p className="font-semibold text-slate-800">{user?.email || 'N/A'}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-slate-500 mb-1">Phone</p>
+                                    <p className="font-semibold text-slate-800">{user?.areaCode ? user.areaCode + ' ' : ''}{user?.phoneNumber || 'N/A'}</p>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Required Documents */}
                         <div>
@@ -433,10 +458,7 @@ function DocumentsContent({ user }: { user: any }) {
                                             <div className="flex items-center gap-3">
                                                 <FileText className="h-5 w-5 text-slate-400" />
                                                 <div>
-                                                    <p className="font-medium text-slate-800">{doc.fileName}</p>
-                                                    <p className="text-xs text-slate-500">
-                                                        {doc.passengerName} • {formatDate(doc.uploadDate)}
-                                                    </p>
+                                                    <p className="font-medium text-slate-800">{doc.fileName || 'Unknown file'}</p>
                                                 </div>
                                             </div>
                                             <Button
@@ -478,12 +500,8 @@ function DocumentsContent({ user }: { user: any }) {
 
 
 export default function DocumentsPage() {
-    // Replace this with your actual user fetching logic
-    const [user, setUser] = useState<any>(null);
-    useEffect(() => {
-        // Example: fetch user from API or context
-        setUser({ fullName: 'John Doe', email: 'john@example.com', areaCode: '+1', phoneNumber: '123456789', gender: 'Male' });
-    }, []);
+    const { data: session } = useSession();
+    const user = session?.user || null;
     return (
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center bg-slate-50">

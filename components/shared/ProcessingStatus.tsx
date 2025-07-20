@@ -7,22 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { Clock, CheckCircle2, FileText, Mail, Phone, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
-interface ApplicationData {
-    applicationId?: string;
-    fullName?: string;
-    email?: string;
-    areaCode?: string;
-    phoneNumber?: string;
-    gender?: string;
-    stayingStart?: string;
-    stayingEnd?: string;
-    passengers?: any[];
-    status?: string;
-    submittedAt?: string;
-    estimatedProcessingTime?: string;
-    visaType?: string | { id: string; name: string; waitTime?: string; fees?: any; requiredDocuments?: any; allowedNationalities?: any; destinationId?: string };
-    destination?: string | { id: string; name: string; [key: string]: any };
-}
+import type { ApplicationData } from '@/lib/types';
 
 interface ProcessingStatusProps {
     applicationData: ApplicationData;
@@ -39,11 +24,11 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-yellow-50 to-amber-50 py-12">
+        <div className="min-h-screen bg-white py-12">
             <div className="max-w-5xl mx-auto px-4">
                 {/* Modern Header Card */}
                 <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 mb-8 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-amber-500/5"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-amber-500/5 pointer-events-none"></div>
                     <CardHeader className="text-center pb-8 pt-8 relative z-10">
                         <div className="flex justify-center mb-6">
                             <div className="relative">
@@ -82,9 +67,19 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                                     { label: "Application ID", value: applicationData.applicationId, mono: true },
                                     { 
                                         label: "Visa Type", 
-                                        value: typeof applicationData.visaType === 'string' 
-                                            ? applicationData.visaType 
-                                            : applicationData.visaType?.name || 'Tourist Visa'
+                                        value: (() => {
+                                            if (typeof applicationData.visaType === 'string') {
+                                                if (applicationData.destination && typeof applicationData.destination !== 'string' && applicationData.destination.code?.toLowerCase() === 'in') {
+                                                    return applicationData.visaType.replace(/\s*-\s*Group\s*\d+$/, "");
+                                                }
+                                                return applicationData.visaType;
+                                            } else {
+                                                if (applicationData.destination && typeof applicationData.destination !== 'string' && applicationData.destination.code?.toLowerCase() === 'in') {
+                                                    return applicationData.visaType?.name?.replace(/\s*-\s*Group\s*\d+$/, "");
+                                                }
+                                                return applicationData.visaType?.name || 'Tourist Visa';
+                                            }
+                                        })(),
                                     },
                                     { 
                                         label: "Destination", 
@@ -94,7 +89,7 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                                     },
                                     { 
                                         label: "Submitted On", 
-                                        value: applicationData.submittedAt ? formatDate(applicationData.submittedAt) : 'Not available'
+                                        value: applicationData.createdAt ? formatDate(applicationData.createdAt) : 'Not available'
                                     },
                                     { 
                                         label: "Travel Dates", 
@@ -104,7 +99,12 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                                     },
                                     { 
                                         label: "Estimated Processing Time", 
-                                        value: applicationData.estimatedProcessingTime || '3-5 business days'
+                                        value: (() => {
+                                            if (applicationData.visaType && typeof applicationData.visaType !== 'string' && applicationData.visaType.waitTime) {
+                                                return applicationData.visaType.waitTime;
+                                            }
+                                            return applicationData.estimatedProcessingTime || '3-5 business days';
+                                        })()
                                     }
                                 ].map((item, index) => (
                                     <div key={index} className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-slate-200/50">
@@ -242,8 +242,8 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                                 <Clock className="w-4 h-4 mr-2" />
                                 Refresh Status
                             </Button>
-                            <Link href="/list" className="flex-1">
-                                <Button className="w-full h-12 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
+                            <Link href="/list" className="flex-1 w-full">
+                                <Button className="w-full h-12 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-medium transition-all duration-200 shadow-lg cursor-pointer hover:shadow-xl">
                                     View All Applications
                                 </Button>
                             </Link>
@@ -253,7 +253,7 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
 
                 {/* Important Notice */}
                 <Card className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/50 shadow-lg overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-orange-500/5"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-orange-500/5 pointer-events-none"></div>
                     <CardContent className="p-8 relative z-10">
                         <div className="flex items-start gap-4">
                             <div className="p-3 bg-amber-100 rounded-lg flex-shrink-0">

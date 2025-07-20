@@ -10,7 +10,18 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const amount = body.amount;
-    const applicationId = body.applicationId
+    const applicationId = body.applicationId;
+    // Optionally log govFee and serviceFee if sent
+    const govFee = body.govFee;
+    const serviceFee = body.serviceFee;
+
+    console.log('[Stripe] Creating payment intent:', {
+      applicationId,
+      amount,
+      govFee,
+      serviceFee,
+      expectedTotal: govFee && serviceFee ? govFee + serviceFee : undefined
+    });
 
     if (!amount || typeof amount !== "number" || !applicationId) {
       console.warn("Invalid amount or applicationId received:", amount, applicationId);

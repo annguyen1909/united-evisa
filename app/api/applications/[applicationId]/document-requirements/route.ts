@@ -53,9 +53,25 @@ export async function GET(request: NextRequest) {
     }
 
     // Get standard document requirements from visa type
-    const standardRequirements = application.visaType && application.visaType.requiredDocuments
-      ? JSON.parse(application.visaType.requiredDocuments as string)
-      : [];
+    let standardRequirements = [];
+    if (application.visaType && application.visaType.requiredDocuments) {
+      try {
+        if (typeof application.visaType.requiredDocuments === 'string') {
+          // Try to parse as JSON, fallback to array with one string
+          standardRequirements = JSON.parse(application.visaType.requiredDocuments);
+        } else {
+          standardRequirements = application.visaType.requiredDocuments;
+        }
+      } catch (e) {
+        // Fallback: treat as a single requirement string
+        standardRequirements = [{
+          name: application.visaType.requiredDocuments,
+          required: true,
+          description: '',
+          source: 'visaType'
+        }];
+      }
+    }
 
 
     return NextResponse.json({

@@ -12,8 +12,8 @@ const vietnam: Country = {
   welcomeMessage: `Explore Vietnam's stunning landscapes, vibrant cities, and rich culture. From Hanoi's old quarter to Halong Bay, Vietnam is a captivating destination for travelers.`,
   welcomeImgUrl: '/images/country/vietnam/vietnam-welcome.jpg',
   processingTime: {
-    normal: '3 days',
-    superUrgent: '24 hours',
+    normal: '3 working days',
+    superUrgent: '1 working day',
   },
     visaTypes: [
       {

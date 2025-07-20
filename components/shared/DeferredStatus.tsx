@@ -7,25 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { Clock, AlertTriangle, FileText, Mail, Phone, Upload, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
 
-interface ApplicationData {
-    applicationId?: string;
-    fullName?: string;
-    email?: string;
-    areaCode?: string;
-    phoneNumber?: string;
-    gender?: string;
-    stayingStart?: string;
-    stayingEnd?: string;
-    passengers?: any[];
-    status?: string;
-    submittedAt?: string;
-    deferredAt?: string;
-    deferralReason?: string;
-    requiredActions?: string[];
-    visaType?: string | { id: string; name: string; waitTime?: string; fees?: any; requiredDocuments?: any; allowedNationalities?: any; destinationId?: string };
-    destination?: string | { id: string; name: string; [key: string]: any };
-    estimatedResolutionTime?: string;
-}
+import type { ApplicationData } from '@/lib/types';
 
 interface DeferredStatusProps {
     applicationData: ApplicationData;
@@ -104,9 +86,19 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                                     { label: "Application ID", value: applicationData.applicationId, mono: true },
                                     { 
                                         label: "Visa Type", 
-                                        value: typeof applicationData.visaType === 'string' 
-                                            ? applicationData.visaType 
-                                            : applicationData.visaType?.name || 'Tourist Visa'
+                                        value: (() => {
+                                            if (typeof applicationData.visaType === 'string') {
+                                                if (applicationData.destination && typeof applicationData.destination !== 'string' && applicationData.destination.code?.toLowerCase() === 'in') {
+                                                    return applicationData.visaType.replace(/\s*-\s*Group\s*\d+$/, "");
+                                                }
+                                                return applicationData.visaType;
+                                            } else {
+                                                if (applicationData.destination && typeof applicationData.destination !== 'string' && applicationData.destination.code?.toLowerCase() === 'in') {
+                                                    return applicationData.visaType?.name?.replace(/\s*-\s*Group\s*\d+$/, "");
+                                                }
+                                                return applicationData.visaType?.name || 'Tourist Visa';
+                                            }
+                                        })(),
                                     },
                                     { 
                                         label: "Destination", 
@@ -124,7 +116,12 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                                     },
                                     { 
                                         label: "Expected Resolution", 
-                                        value: applicationData.estimatedResolutionTime || '5-7 business days after submission'
+                                        value: (() => {
+                                            if (applicationData.visaType && typeof applicationData.visaType !== 'string' && applicationData.visaType.waitTime) {
+                                                return applicationData.visaType.waitTime;
+                                            }
+                                            return applicationData.estimatedResolutionTime || '5-7 business days after submission';
+                                        })()
                                     }
                                 ].map((item, index) => (
                                     <div key={index} className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-slate-200/50">

@@ -14,7 +14,8 @@ export async function POST(
       address,
       zipcode,
       paymentIntentId,
-      amount
+      amount,
+      country
     } = await request.json();
 
     // Fetch payment intent from Stripe to get card details
@@ -58,7 +59,7 @@ export async function POST(
         name,
         cardType: cardType || "unknown",
         cardNumber: `xxxx-xxxx-xxxx-${lastFourDigits || "0000"}`,
-        address,
+        address: `${address}, ${country}`,
         zipcode,
         applicationId: application.id
       }

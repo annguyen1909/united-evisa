@@ -118,7 +118,16 @@ function ConfirmationContent() {
 
   const applicationId = searchParams.get("applicationId");
   const destination = applicationData?.destination?.name || "your destination";
-  const visaType = applicationData?.visaType?.name || "visa";
+  // For India, show canonical only
+let visaType = applicationData?.visaType?.name || "visa";
+if (applicationData?.destination?.code?.toUpperCase() === "IN") {
+  const groupRegex = /(\s*-?\s*Group\s*\d*$|\s*-?\s*Group$|\s*Group\d*$|\s*Group$)/i;
+  if (applicationData?.canonical && applicationData.canonical.trim()) {
+    visaType = applicationData.canonical.replace(groupRegex, '').trim();
+  } else {
+    visaType = (applicationData?.visaType?.name || "visa").replace(groupRegex, '').trim();
+  }
+}
   const status = applicationData?.status || "Pending";
   const formattedDate = applicationData?.createdAt
     ? moment(applicationData.createdAt).format("MMMM D, YYYY")

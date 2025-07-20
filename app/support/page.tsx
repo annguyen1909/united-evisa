@@ -390,53 +390,39 @@ export default function SupportPage() {
 
               {/* Office Details Table */}
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
-                  <thead>
-                    <tr className="bg-slate-50 border-b border-slate-200">
-                      <th className="text-left p-4 font-semibold text-slate-700">Country</th>
-                      <th className="text-left p-4 font-semibold text-slate-700">Contact Number</th>
-                      <th className="text-left p-4 font-semibold text-slate-700">Email</th>
-                      <th className="text-left p-4 font-semibold text-slate-700">Hours of Operation</th>
-                      <th className="text-left p-4 font-semibold text-slate-700">Address</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {regionOffices[selectedRegion as keyof typeof regionOffices].offices.map((office, index) => (
-                      <tr key={index} className="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-                        <td className="p-4">
-                          <div className="flex items-center space-x-3">
-                            <span className="text-2xl">{office.flag}</span>
-                            <span className="font-medium text-slate-800">{office.country}</span>
-                          </div>
-                        </td>
-                        <td className="p-4">
-                          <div className="flex items-center space-x-2">
-                            <Phone className="h-4 w-4 text-emerald-600" />
-                            <span className="text-emerald-600 font-medium">{office.phone}</span>
-                          </div>
-                        </td>
-                        <td className="p-4">
-                          <div className="flex items-center space-x-2">
-                            <Mail className="h-4 w-4 text-blue-600" />
-                            <span className="text-blue-600">{office.email}</span>
-                          </div>
-                        </td>
-                        <td className="p-4">
-                          <div className="flex items-center space-x-2">
-                            <Clock className="h-4 w-4 text-slate-500" />
-                            <span className="text-slate-600">{office.hours}</span>
-                          </div>
-                        </td>
-                        <td className="p-4">
-                          <div className="flex items-center space-x-2">
-                            <MapPin className="h-4 w-4 text-slate-500" />
-                            <span className="text-slate-600 text-sm">{office.address}</span>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <div className="min-w-full max-w-5xl mx-auto rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                  <div className="grid" style={{ gridTemplateColumns: '180px 180px 220px 180px 1fr' }}>
+                    <div className="px-4 py-4 font-semibold text-slate-700 text-center bg-slate-50 border-b border-slate-200 rounded-tl-2xl">Country</div>
+                    <div className="px-4 py-4 font-semibold text-slate-700 text-center bg-slate-50 border-b border-slate-200">Contact Number</div>
+                    <div className="px-4 py-4 font-semibold text-slate-700 text-center bg-slate-50 border-b border-slate-200">Email</div>
+                    <div className="px-4 py-4 font-semibold text-slate-700 text-center bg-slate-50 border-b border-slate-200">Hours of Operation</div>
+                    <div className="px-4 py-4 font-semibold text-slate-700 text-center bg-slate-50 border-b border-slate-200 rounded-tr-2xl">Address</div>
+                  </div>
+                  {regionOffices[selectedRegion as keyof typeof regionOffices].offices.map((office, index) => (
+                    <div key={index} className="grid border-b border-slate-100" style={{ gridTemplateColumns: '180px 180px 220px 180px 1fr' }}>
+                      <div className="px-4 py-3 flex items-center gap-2 text-center">
+                        <span className="text-2xl">{office.flag}</span>
+                        <span className="font-medium text-slate-800">{office.country}</span>
+                      </div>
+                      <div className="px-4 py-3 text-emerald-600 font-medium text-sm text-center flex items-center justify-center gap-2">
+                        <Phone className="h-4 w-4 text-emerald-600" />
+                        {office.phone}
+                      </div>
+                      <div className="px-4 py-3 text-blue-600 text-center flex items-center justify-center gap-2">
+                        <Mail className="h-4 w-4 text-blue-600" />
+                        {office.email}
+                      </div>
+                      <div className="px-4 py-3 text-slate-600 text-center text-xs flex items-center justify-start gap-2">
+                        <Clock className="h-4 w-4 text-slate-500" />
+                        {office.hours}
+                      </div>
+                      <div className="px-4 py-3 text-slate-600 text-sm text-center flex items-center justify-start gap-2">
+                        <MapPin className="h-4 w-4 text-slate-500" />
+                        {office.address}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>

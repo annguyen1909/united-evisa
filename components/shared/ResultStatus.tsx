@@ -7,26 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { CheckCircle2, Download, Printer, FileText, Mail, Phone, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
-interface ApplicationData {
-    applicationId?: string;
-    fullName?: string;
-    email?: string;
-    areaCode?: string;
-    phoneNumber?: string;
-    gender?: string;
-    stayingStart?: string;
-    stayingEnd?: string;
-    passengers?: any[];
-    status?: string;
-    submittedAt?: string;
-    completedAt?: string;
-    visaType?: string | { id: string; name: string; waitTime?: string; fees?: any; requiredDocuments?: any; allowedNationalities?: any; destinationId?: string };
-    destination?: string | { id: string; name: string; [key: string]: any };
-    visaNumber?: string;
-    visaExpiryDate?: string;
-    visaValidFrom?: string;
-    visaValidUntil?: string;
-}
+import type { ApplicationData } from '@/lib/types';
 
 interface ResultStatusProps {
     applicationData: ApplicationData;
@@ -125,9 +106,19 @@ export default function ResultStatus({ applicationData, onRefresh }: ResultStatu
                                     },
                                     { 
                                         label: "Visa Type", 
-                                        value: typeof applicationData.visaType === 'string' 
-                                            ? applicationData.visaType 
-                                            : applicationData.visaType?.name || 'Tourist Visa'
+                                        value: (() => {
+                                            if (typeof applicationData.visaType === 'string') {
+                                                if (applicationData.destination && typeof applicationData.destination !== 'string' && applicationData.destination.code?.toLowerCase() === 'in') {
+                                                    return applicationData.visaType.replace(/\s*-\s*Group\s*\d+$/, "");
+                                                }
+                                                return applicationData.visaType;
+                                            } else {
+                                                if (applicationData.destination && typeof applicationData.destination !== 'string' && applicationData.destination.code?.toLowerCase() === 'in') {
+                                                    return applicationData.visaType?.name?.replace(/\s*-\s*Group\s*\d+$/, "");
+                                                }
+                                                return applicationData.visaType?.name || 'Tourist Visa';
+                                            }
+                                        })(),
                                     },
                                     { 
                                         label: "Destination", 

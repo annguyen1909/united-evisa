@@ -149,7 +149,7 @@ export default function ApplicationsPage() {
         router.push(`/apply/documents?applicationId=${applicationId}`);
         break;
       case "Processing":
-        router.push(`/apply/processing?applicationId=${applicationId}`);
+        router.push(`/apply/status?applicationId=${applicationId}`);
         break;
       case "Deferred":
         router.push(`/apply/deferred?applicationId=${applicationId}`);

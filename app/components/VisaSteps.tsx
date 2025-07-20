@@ -47,7 +47,7 @@ export default function VisaSteps() {
   return (
     <div className="w-full  max-w-7xl mx-auto">
       <div className="text-center mb-12">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-emerald-800">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-manrope mb-4 text-emerald-700">
           4 Easy Steps to Get Your eVisa
         </h2>
         <p className="text-slate-600 max-w-2xl mx-auto">

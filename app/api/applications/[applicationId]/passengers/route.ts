@@ -129,7 +129,7 @@ export async function POST(
   try {
     const { applicationId } = await params;
     const body = await request.json();
-    const { passengers, total } = body;
+    const { passengers, total, promotionAmount } = body;
 
     if (!passengers || !Array.isArray(passengers)) {
       return NextResponse.json(
@@ -147,10 +147,13 @@ export async function POST(
       return NextResponse.json({ error: 'Application not found' }, { status: 404 });
     }
 
+
+    // Accept promotionAmount from frontend, do not calculate here
+    // If you want to save promotionAmount, you can use it below
+
     // Process passengers - update existing or create new ones
     const passengerPromises = passengers.map(async (passengerData: any) => {
       const nationalityObj = getNationalityByCode(passengerData.nationality);
-
       if (passengerData.id) {
         return prisma.passenger.update({
           where: { id: passengerData.id },
@@ -209,6 +212,9 @@ export async function POST(
     if (typeof total === 'number' && !isNaN(total)) {
       updateData.total = total;
     }
+    if (typeof promotionAmount === 'number' && !isNaN(promotionAmount)) {
+      updateData.promotionAmount = promotionAmount;
+    }
     await prisma.application.update({
       where: { id: application.id },
       data: updateData
@@ -217,7 +223,8 @@ export async function POST(
     return NextResponse.json({
       message: 'Passengers saved successfully',
       passengers: updatedPassengers,
-      ...(typeof total === 'number' && !isNaN(total) ? { total } : {})
+      ...(typeof total === 'number' && !isNaN(total) ? { total } : {}),
+      ...(typeof promotionAmount === 'number' && !isNaN(promotionAmount) ? { promotionAmount } : {})
     });
   } catch (error) {
     console.error('Error processing passengers:', error);

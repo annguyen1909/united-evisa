@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import moment from "moment";
+import OrderSummary from "@/components/shared/OrderSummary";
 import {
   Select,
   SelectTrigger,
@@ -154,6 +155,30 @@ interface VisaType {
 }
 
 export default function ApplyForm({ user }: { user: any }) {
+  // Handler to reset the form and clear cache
+  const handleStartNewApplication = () => {
+    sessionStorage.removeItem('apply-form-cache');
+    sessionStorage.removeItem('current-application-id');
+    sessionStorage.removeItem('cached-destination-id');
+    setSelectedDestination(null);
+    setSelectedCountry(null);
+    setSelectedVisaType("");
+    setPassengerCount("1");
+    setStayingStart("");
+    setStayingEnd("");
+    setPortType("Air");
+    setPortName("");
+    setContact({ fullName: "", email: "", phone: "", countryCode: "+1", gender: "" });
+    setErrors({});
+    setApplicationExists(false);
+    setContactWasCompleteOnLoad(false);
+    setFormKey(prev => prev + 1); // Force re-render
+    
+    // Refresh the page to ensure completely clean state
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  };
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -475,6 +500,8 @@ export default function ApplyForm({ user }: { user: any }) {
     // Only allow updates if destination hasn't changed (only visa type, passenger count, dates)
     selectedDestination?.id === sessionStorage.getItem('cached-destination-id')
   ));
+  // Show reset button if form is locked due to cached data
+  const showResetButton = applicationExists || shouldUpdateExisting;
 
   // Calculate total for order summary
   let total = 0;
@@ -710,10 +737,28 @@ export default function ApplyForm({ user }: { user: any }) {
           <p className="text-slate-500 mt-2">
             Complete the form below to start your visa application process
           </p>
+          {(applicationExists || shouldUpdateExisting) && (
+            <div className="mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+              <p className="text-emerald-700 text-sm mb-3">
+                {shouldUpdateExisting 
+                  ? "You have an existing application. You can update it or start fresh."
+                  : "This form is pre-filled with your previous application data."}
+              </p>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleStartNewApplication}
+                className="bg-white border-emerald-300 text-emerald-700 hover:bg-emerald-50 text-sm px-4 py-2"
+              >
+                + Create New Application
+              </Button>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <form
+            key={formKey}
             onSubmit={handleSubmit}
             className="space-y-6 col-span-2 bg-white rounded-xl p-6 shadow-sm border border-slate-200"
           >
@@ -1490,102 +1535,16 @@ export default function ApplyForm({ user }: { user: any }) {
 
           {/* Order Summary */}
           <div className="space-y-6">
-            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-              <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
-                Order Summary
-              </h2>
-              <div className="space-y-4 text-sm">
-                <div className="flex items-center justify-between">
-                  <span className="font-medium text-slate-700">
-                    Destination
-                  </span>
-                  <span className="font-medium text-emerald-700">
-                    {selectedDestination?.name ?? "---"}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="font-medium text-slate-700">
-                    Type of Visa
-                  </span>
-                  <span className="text-slate-800 text-xs">
-                    {(() => {
-                      if (!selectedDestination || !selectedVisaType) return "---";
-                      // Always show canonical visa type name
-                      const canonical = visaTypes.find(
-                        (v) => v.name === selectedVisaType
-                      );
-                      return canonical ? canonical.name : "---";
-                    })()}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="font-medium text-slate-700">Travelers</span>
-                  <span className="text-slate-800">{passengerCount}</span>
-                </div>
-                {/* Show portType and portName for India if present */}
-                {isIndia && portType && (
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-slate-700">Port Type</span>
-                    <span className="text-slate-800">{portType}</span>
-                  </div>
-                )}
-                {isIndia && portName && (
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-slate-700">Port Name</span>
-                    <span className="text-slate-800">{portName}</span>
-                  </div>
-                )}
-
-                {/* Hide Government Fee for India */}
-                {!isIndia && (
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-600">Government Fee</span>
-                    <span className="text-slate-800">
-                      {selectedDestination && selectedVisaType
-                        ? `$${(
-                            visaTypes.find(
-                              (v) => v.name === selectedVisaType
-                            )?.fees ?? 0
-                          ).toFixed(2)}`
-                        : "---"}
-                    </span>
-                  </div>
-                )}
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-600">Service Fee</span>
-                  <span className="text-slate-800">
-                    ${FIXED_SERVICE_FEE.toFixed(2)}
-                  </span>
-                </div>
-
-                {/* Total */}
-                <div className="flex justify-between items-center pt-3 mt-2 border-t border-slate-200">
-                  <p className="font-semibold text-slate-800">Total</p>
-                  <p className="font-bold text-lg text-emerald-700">
-                    {`$${total.toFixed(2)}`}
-                  </p>
-                </div>
-
-                {/* Secure payment indicator */}
-                {selectedDestination && (
-                  <div className="flex flex-col gap-3 mt-3 pt-3 border-t border-slate-100">
-                    <div className="flex items-center text-xs text-slate-500">
-                      <ShieldCheck className="w-4 h-4 text-slate-400 mr-1.5" />
-                      Secure SSL encrypted payment
-                    </div>
-                    <div className="bg-emerald-50 border border-emerald-100 rounded-md p-3">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-                        <span className="text-xs text-emerald-800">
-                          100% Service Fee Refund Guarantee if your visa is
-                          rejected
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+            <OrderSummary
+              selectedDestination={selectedDestination}
+              selectedVisaType={selectedVisaType}
+              passengerCount={Number(passengerCount)}
+              stayingStart={stayingStart}
+              stayingEnd={stayingEnd}
+              portType={portType}
+              portName={portName}
+              step="apply"
+            />
             <SupportSidebar />
           </div>
         </div>

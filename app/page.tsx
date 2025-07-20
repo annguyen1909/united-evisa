@@ -12,10 +12,10 @@ export default function LandingPage() {
       {/* Hero section with full width */}
       <Hero />
       {/* Main content sections with consistent spacing */}
-      <div className="w-full pb-8 bg-slate-50">
+      <div className="w-full pb-8 bg-white">
         <TopDestinations />
       </div>
-      <div className="w-full bg-slate-50">
+      <div className="w-full bg-white">
         <AllVisaTypes />
       </div>
       <div className="w-full pb-8 bg-white">
@@ -24,7 +24,7 @@ export default function LandingPage() {
       <div className="w-full pb-8 bg-white">
           <CustomerSupport />
       </div>
-      <div className="w-full pb-8 bg-slate-50">
+      <div className="w-full pb-8 bg-white">
           <FeeGuarantee />
       </div>
     </main>

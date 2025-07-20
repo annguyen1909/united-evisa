@@ -122,14 +122,14 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
           return_url: `${window.location.origin}/apply/confirmation?applicationId=${applicationId}`,
           payment_method_data: {
             billing_details: {
-              name: billingInfo.name,
+              name: billingInfo.name || "",
               address: {
-                line1: billingInfo.address,
-                line2: "", // <-- Always include this, even if empty
-                postal_code: billingInfo.zipcode,
-                country: billingInfo.country,
-                state: billingInfo.state,
-                city: billingInfo.city,
+                line1: billingInfo.address || "",
+                line2: "", // Always include this, even if empty
+                postal_code: billingInfo.zipcode || "",
+                country: billingInfo.country || "",
+                state: billingInfo.state || "",
+                city: billingInfo.city || "",
               },
               email: "",
               phone: "",
@@ -152,9 +152,9 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
       if (paymentIntent && paymentIntent.status === "succeeded") {
         // Only send billing info and paymentIntentId; card details are handled by the backend webhook
         await saveCardholderAndRiskData({
-          name: billingInfo.name,
-          address: billingInfo.address,
-          zipcode: billingInfo.zipcode,
+          name: billingInfo.name || "",
+          address: billingInfo.address || "",
+          zipcode: billingInfo.zipcode || "",
           paymentIntentId: paymentIntent.id,
           applicationId: applicationId,
           amount: actualAmount
@@ -219,15 +219,13 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
         }
       }} />
 
-      {isCardComplete && (
-        <BillingForm
-          onBillingInfoChange={(info, valid) => {
-            setBillingInfo(info);
-            setBillingValid(valid);
-          }}
-          isProcessing={isLoading}
-        />
-      )}
+      <BillingForm
+        onBillingInfoChange={(info, valid) => {
+          setBillingInfo(info);
+          setBillingValid(valid);
+        }}
+        isProcessing={isLoading}
+      />
 
       <Button
         disabled={!stripe || !elements || isLoading || !billingInfo || !isCardComplete}

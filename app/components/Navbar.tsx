@@ -115,6 +115,12 @@ export default function Navbar() {
             <span className={`text-2xl leading-tight text-emerald-800 tracking-wide uppercase ${anton.className}`}>Worldmaxxing</span>
             <span className={`text-sm text-slate-600 tracking-widest uppercase ${anton.className}`}>Global Services</span>
           </div>
+          <div className="flex items-center h-10 ml-3 pl-3 border-l border-slate-300">
+            <div className="flex flex-col items-start justify-center">
+              <span className="text-lg font-extrabold text-emerald-700 leading-tight">eVisa</span>
+              <span className="text-lg font-bold text-slate-700 leading-tight">Center</span>
+            </div>
+          </div>
         </Link>
 
         {/* Desktop Menu */}

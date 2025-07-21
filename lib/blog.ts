@@ -12,8 +12,15 @@ const postsDirectory = path.join(process.cwd(), "content/blog");
 export interface BlogPostMeta {
   slug: string;
   title: string;
-  countryCode: string;
+  description?: string;
+  date: string;
+  author?: string;
+  category?: string;
   tags: string[];
+  readTime?: string;
+  image?: string;
+  featured?: boolean;
+  countryCode?: string;
 }
 
 export function getAllPosts(): BlogPostMeta[] {
@@ -28,10 +35,22 @@ export function getAllPosts(): BlogPostMeta[] {
 
       return {
         slug: filename.replace(/\.md$/, ""),
-        title: data.title ?? "Untitled",
-        countryCode: data.countryCode ?? "",
-        tags: data.tags ?? [],
+        title: data.title,
+        description: data.description,
+        date: data.date,
+        author: data.author,
+        category: data.category,
+        tags: data.tags || [],
+        readTime: data.readTime,
+        image: data.image,
+        featured: data.featured || false,
+        countryCode: data.countryCode,
       };
+    })
+    .sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
 }
 
@@ -56,6 +75,13 @@ export async function getPostBySlug(
   return {
     slug,
     title: data.title ?? "Untitled",
+    description: data.description ?? "",
+    date: data.date ?? "2024-01-01",
+    author: data.author ?? "eVisa United Team",
+    category: data.category ?? "General",
+    readTime: data.readTime ?? "5 min read",
+    image: data.image ?? "",
+    featured: data.featured || false,
     countryCode: data.countryCode ?? "",
     tags: data.tags ?? [],
     contentHtml,

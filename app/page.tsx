@@ -4,7 +4,7 @@ import AllVisaTypes from "./components/AllVisaTypes";
 import VisaSteps from "./components/VisaSteps";
 import CustomerSupport from "./components/CustomerSupport";
 import FeeGuarantee from "./components/FeeGuarantee";
-
+import News from "./components/News";
 
 export default function LandingPage() {
   return (
@@ -19,13 +19,16 @@ export default function LandingPage() {
         <AllVisaTypes />
       </div>
       <div className="w-full pb-8 bg-white">
-          <VisaSteps />
+        <VisaSteps />
       </div>
       <div className="w-full pb-8 bg-white">
-          <CustomerSupport />
+        <CustomerSupport />
       </div>
       <div className="w-full pb-8 bg-white">
-          <FeeGuarantee />
+        <News />
+      </div>
+      <div className="w-full pb-8 bg-white">
+        <FeeGuarantee />
       </div>
     </main>
   );

@@ -23,14 +23,14 @@ export default function CustomAccordion({ items, className }: CustomAccordionPro
   const getSelectedRow4 = (index: number) => Math.floor(index / 4) + 1;
 
   return (
-    <div className={cn("grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4", className)}>
+    <div className={cn("grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6", className)}>
       {items.map((item, index) => (
         <div key={item.id} className="contents">
           {/* Trigger */}
           <button
             onClick={() => setOpenId(openId === item.id ? null : item.id)}
             className={cn(
-              "flex flex-col items-center gap-3 p-5 border border-slate-200 rounded-xl bg-white",
+              "flex flex-col items-center gap-3 py-8 border border-slate-200 rounded-xl bg-white",
               "transition-all duration-300 hover:shadow-md relative group",
               "hover:border-emerald-400",
               openId === item.id && "ring-2 ring-emerald-600 border-emerald-600 shadow-lg bg-emerald-50"

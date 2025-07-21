@@ -97,31 +97,22 @@ export default function PricingPage() {
               Service Overview
             </h3>
             <p className="text-slate-600">
-              This fee covers eVisa consulting, personal info checking, status
-              updates, collection & delivery of eVisa.
+              Our service fee is a fixed <span className="font-bold text-emerald-700">US$ 59.99</span> per customer, regardless of nationality or visa type. This covers eVisa consulting, personal information review, status updates, and secure collection & delivery of your eVisa.
             </p>
             <p className="mt-1 text-slate-600">Processing time is 3 days after receiving complete documents.</p>
             <div className="bg-emerald-50 p-4 rounded-lg mt-3 border border-emerald-100">
               <ul className="space-y-2 list-none">
                 <li className="flex items-center gap-2">
-                  <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">1</span>
-                  <span>1 person – <span className="font-semibold">US$ 39.00</span></span>
+                  <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">✔</span>
+                  <span>Fixed service fee: <span className="font-semibold">US$ 59.99</span> per applicant</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">2</span>
-                  <span>2 people – <span className="font-semibold">US$ 37.00</span></span>
+                  <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">✔</span>
+                  <span>No hidden charges or extra costs</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">3</span>
-                  <span>3–5 people – <span className="font-semibold">US$ 35.00</span></span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">4</span>
-                  <span>6–9 people – <span className="font-semibold">US$ 34.00</span></span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">5</span>
-                  <span>10+ people – <span className="font-semibold">US$ 32.00</span></span>
+                  <span className="h-5 w-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">✔</span>
+                  <span>All nationalities and visa types included</span>
                 </li>
               </ul>
             </div>
@@ -133,29 +124,9 @@ export default function PricingPage() {
               Tour & Group Support
             </h3>
             <p className="text-slate-600">
-              Travel agents can contact us for discounted group tour visa
-              pricing.
+              You can apply for up to <span className="font-bold text-emerald-700">15 visas</span> in a single application. For groups larger than 15, please contact our support team for dedicated assistance and special pricing.
             </p>
           </div>
-
-          <div className="border-t border-slate-100 pt-6">
-            <h3 className="font-semibold mb-3 text-xl text-emerald-700 flex items-center gap-2">
-              <Clock className="h-5 w-5" />
-              Emergency Support
-            </h3>
-            <p className="text-slate-600">Need a visa urgently?</p>
-            <div className="bg-[#fcf9e8] p-4 rounded-lg mt-3 border border-[#f5efc7] space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 bg-amber-500 text-white rounded-md text-xs font-semibold">URGENT</span>
-                <span>Urgent (24h) – Plus <span className="font-semibold">US$ 79.00</span>/person</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 bg-red-500 text-white rounded-md text-xs font-semibold">SUPER</span>
-                <span>Super Urgent (5h) – Plus <span className="font-semibold">US$ 99.00</span>/person</span>
-              </div>
-            </div>
-          </div>
-
           <div className="flex justify-center pt-4">
             <Button
               className="px-10 bg-emerald-600 text-white text-lg font-semibold rounded-lg py-6 mt-4 hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-md"
@@ -236,7 +207,7 @@ export default function PricingPage() {
       )}
 
       {/* Accordion Section */}
-      <section className="mt-16 mb-16 max-w-7xl px-4 mx-auto text-center">
+      <section className="mt-16 mb-16 max-w-6xl px-4 mx-auto text-center">
         <h2 className="text-emerald-600 font-manrope text-3xl font-bold mb-4">
           Comprehensive Visa Fee Information
         </h2>

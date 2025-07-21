@@ -201,12 +201,6 @@ export default function Navbar() {
                         <span>My Applications</span>
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/profile/settings" className="cursor-pointer">
-                        <Settings className="mr-2 h-4 w-4" />
-                        <span>Settings</span>
-                      </Link>
-                    </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>

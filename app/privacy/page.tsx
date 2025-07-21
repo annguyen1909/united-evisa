@@ -371,7 +371,7 @@ export default function PrivacyPolicyPage() {
                 <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                   <div className="flex items-center space-x-3 mb-6">
                     <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">6</span>
+                      <span className="text-white font-bold text-sm">5</span>
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Data Security</h3>
                   </div>
@@ -404,7 +404,7 @@ export default function PrivacyPolicyPage() {
                 <div className="bg-gradient-to-r from-teal-50 to-cyan-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">8</span>
+                      <span className="text-white font-bold text-sm">6</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Your Privacy Rights</h2>
                   </div>
@@ -523,7 +523,7 @@ export default function PrivacyPolicyPage() {
                 <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">10</span>
+                      <span className="text-white font-bold text-sm">8</span>
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Children's Privacy</h3>
                   </div>
@@ -551,7 +551,7 @@ export default function PrivacyPolicyPage() {
                 <div className="bg-gradient-to-r from-gray-50 to-slate-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-slate-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">12</span>
+                      <span className="text-white font-bold text-sm">10</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Contact Information</h2>
                   </div>

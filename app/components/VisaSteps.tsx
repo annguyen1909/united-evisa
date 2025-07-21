@@ -45,81 +45,99 @@ const visaTypes: VisaType[] = [
 
 export default function VisaSteps() {
   return (
-    <div className="w-full  max-w-7xl mx-auto">
-      <div className="text-center mb-12">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-manrope font-semibold mb-4 text-emerald-700">
-          4 Easy Steps to Get Your eVisa
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-br from-emerald-50/50 via-white to-emerald-50/30">
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mb-6">
+          <CheckCircle className="h-8 w-8 text-emerald-600" />
+        </div>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope mb-6 text-emerald-800 leading-tight">
+          Get Your eVisa in 
+          <span className="bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent"> 4 Simple Steps</span>
         </h2>
-        <p className="text-slate-600 max-w-2xl mx-auto">
-          Our streamlined process makes applying for an eVisa quick and hassle-free
+        <p className="text-lg text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
+          Our streamlined, secure process makes visa applications effortless. From start to finish, we've got you covered.
         </p>
+        <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full mx-auto mt-6"></div>
       </div>
 
-      {/* Timeline Design */}
+      {/* Modern Timeline Design */}
       <div className="relative">
-        {/* Connecting line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-emerald-100 hidden md:block"></div>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
           {visaTypes.map(({ name, title, description, image }, index) => (
             <motion.div
               key={name}
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ y: 30, opacity: 0, scale: 0.95 }}
+              whileInView={{ y: 0, opacity: 1, scale: 1 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.15,
+                type: "spring",
+                stiffness: 100
+              }}
               viewport={{ once: true }}
-              className="relative"
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="relative group"
             >
-              <Card className="overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                {/* Timeline node */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
-                  <div className="bg-white p-1 rounded-full">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg
-                      ${index === 0 ? 'bg-emerald-600' : 
-                        index === 1 ? 'bg-emerald-700' :
-                        index === 2 ? 'bg-emerald-800' : 'bg-emerald-900'}`
-                    }>
-                      {name}
-                    </div>
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full flex flex-col bg-white backdrop-blur-sm group-hover:bg-white group-hover:scale-[1.02]">
+                {/* Step number node always visible and centered */}
+                <div className="flex items-center justify-center w-full mt-0 mb-6">
+                  <div className={`w-14 h-14 mt-2 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg transform transition-all duration-300 group-hover:scale-102
+                    ${index === 0 ? 'bg-gradient-to-br from-emerald-400 to-emerald-600' : 
+                      index === 1 ? 'bg-gradient-to-br from-emerald-500 to-emerald-700' :
+                      index === 2 ? 'bg-gradient-to-br from-emerald-600 to-emerald-800' : 
+                      'bg-gradient-to-br from-emerald-700 to-emerald-900'}`
+                  }>
+                    {name}
                   </div>
                 </div>
 
-                {/* Mobile step indicator */}
-                <div className="md:hidden absolute top-0 left-0 bg-emerald-700 text-white font-bold px-3 py-1 text-sm rounded-br-lg">
-                  Step {name}
+                {/* Enhanced Mobile step indicator */}
+                <div className="lg:hidden absolute top-0 left-0 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-bold px-4 py-2 text-sm rounded-br-2xl rounded-tl-xl shadow-md">
+                  <span className="font-manrope">Step {name}</span>
                 </div>
 
-                <div className="p-6 pt-8 flex flex-col items-center text-center h-full">
-                  <div className="mb-4 w-16 h-16 flex items-center justify-center">
+                <div className="p-8 pt-4 flex flex-col items-center text-center h-full">
+                  {/* Enhanced image container */}
+                  <div className="mb-6 w-20 h-20 flex items-center justify-center bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl shadow-sm group-hover:shadow-md transition-all duration-300">
                     <Image
                       src={image || "/images/steps/default.png"}
-                      width={80}
-                      height={80}
-                      className="w-auto h-auto object-contain"
+                      width={48}
+                      height={48}
+                      className="w-12 h-12 object-contain filter group-hover:scale-110 transition-transform duration-300"
                       alt={title}
                     />
                   </div>
 
-                  <h3 className="font-bold text-lg text-slate-800 mb-2">{title}</h3>
-                  <p className="text-slate-600 text-sm">{description}</p>
+                  {/* Enhanced typography */}
+                  <h3 className="font-manrope font-bold text-xl text-slate-800 mb-3 leading-tight">{title}</h3>
+                  <p className="text-slate-600 text-base leading-relaxed font-medium flex-grow">{description}</p>
                   
-                  {/* Completed indicator */}
-                  <div className="mt-auto pt-4">
-                    <div className={`w-8 h-8 mx-auto rounded-full flex items-center justify-center 
-                      ${index === 3 ? 'bg-emerald-100' : 'bg-slate-100'}`
+                  {/* Enhanced completion indicator */}
+                  <div className="mt-8 pt-4">
+                    <div className={`w-12 h-12 mx-auto rounded-full flex items-center justify-center transition-all duration-300 shadow-sm
+                      ${index === 3 ? 
+                        'bg-gradient-to-br from-emerald-100 to-emerald-200 group-hover:from-emerald-200 group-hover:to-emerald-300' : 
+                        'bg-gradient-to-br from-slate-100 to-slate-200 group-hover:from-slate-200 group-hover:to-slate-300'}`
                     }>
                       {index === 3 ? (
-                        <CheckCircle className="h-5 w-5 text-emerald-600" />
+                        <CheckCircle className="h-6 w-6 text-emerald-600 group-hover:scale-110 transition-transform duration-300" />
                       ) : (
-                        <span className="text-xs font-semibold text-slate-500">→</span>
+                        <span className="text-lg font-bold text-slate-500 group-hover:text-emerald-600 transition-colors duration-300">→</span>
                       )}
                     </div>
                   </div>
                 </div>
+
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-transparent to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl"></div>
               </Card>
             </motion.div>
           ))}
         </div>
+
+        {/* Additional decorative elements */}
+        <div className="absolute -top-4 -left-4 w-8 h-8 bg-emerald-200 rounded-full opacity-60 animate-pulse hidden lg:block"></div>
+        <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-emerald-300 rounded-full opacity-40 animate-pulse delay-1000 hidden lg:block"></div>
       </div>
     </div>
   );

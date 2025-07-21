@@ -2,9 +2,9 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy - United eVisa',
+  title: 'Cookie Policy - Worldmaxxing Global Services',
   description:
-    'Learn about how we use cookies and similar technologies on our United eVisa website to improve your experience and provide better services.',
+    'Learn about how we use cookies and similar technologies on our Worldmaxxing Global Services website to improve your experience and provide better services.',
 };
 
 export default function CookiePolicyPage() {
@@ -34,7 +34,7 @@ export default function CookiePolicyPage() {
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Cookie Policy</h1>
                 <p className="text-xl text-gray-800 mb-8 max-w-3xl mx-auto">
                   Understanding how we use cookies and similar technologies to enhance your 
-                  experience on our United eVisa platform
+                  experience on our Worldmaxxing Global Services platform
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                   <span>Last Updated: {new Date().toLocaleDateString()}</span>
@@ -129,8 +129,8 @@ export default function CookiePolicyPage() {
                     <h2 className="text-2xl font-bold text-gray-900">Introduction</h2>
                   </div>
                   <p className="text-gray-800 mb-4">
-                    This Cookie Policy explains how United eVisa Immigration Assistance Service ("we," "us," or "our") 
-                    uses cookies and similar technologies when you visit our website at unitedevisa.com (the "Website"). 
+                    This Cookie Policy explains how Worldmaxxing Global Services Immigration Assistance Service ("we," "us," or "our") 
+                    uses cookies and similar technologies when you visit our website at worldmaxxing.com (the "Website"). 
                     This policy should be read alongside our Privacy Policy, which explains how we collect, use, and 
                     protect your personal information.
                   </p>
@@ -703,8 +703,8 @@ export default function CookiePolicyPage() {
                           </svg>
                           <div>
                             <p className="font-medium text-gray-900">Email</p>
-                            <a href="mailto:visa@unitedevisa.com" className="text-blue-600 hover:underline">
-                              visa@unitedevisa.com
+                            <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 hover:underline">
+                              visa@worldmaxxing.com
                             </a>
                           </div>
                         </div>
@@ -782,7 +782,7 @@ export default function CookiePolicyPage() {
                   <div className="mt-6 p-4 bg-white rounded-lg border border-amber-200">
                     <p className="text-gray-800">
                       <strong>Last updated:</strong> {new Date().toLocaleDateString()} • 
-                      Questions? Contact us at <a href="mailto:visa@unitedevisa.com" className="text-blue-600 hover:underline">visa@unitedevisa.com</a>
+                      Questions? Contact us at <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 hover:underline">visa@worldmaxxing.com</a>
                     </p>
                   </div>
                 </div>

@@ -10,7 +10,7 @@ const australia: Country = {
   flagUrl: '/images/country/australia/australia-square.png',
   imageUrl: '/images/country/australia/australia-bg.jpg',
   roundedFlagUrl: '/images/country/australia/australia-rounded.png',
-  description: `Apply for your Australia eVisa online with United eVisa. Fast, secure, and convenient visa application for Australia travel. Get your Australia visa quickly with our expert assistance.`,
+  description: `Apply for your Australia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Australia travel. Get your Australia visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Australia's iconic cities, stunning beaches, and unique wildlife. From the Great Barrier Reef to Sydney Opera House, Australia offers unforgettable adventures for every traveler.`,
   welcomeImgUrl: '/images/country/australia/australia-welcome.jpg',
   processingTime: {

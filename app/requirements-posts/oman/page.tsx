@@ -33,94 +33,65 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-const kenyaVisaTypes = [
+const omanVisaTypes = [
   {
-    id: "kenya-tourist-single-90-days",
-    name: 'Tourist ETA (Single Entry for 90 days)',
-    type: 'Tourist ETA',
-    description: 'Single Entry for 90 days',
+    id: "oman-tourist",
+    name: 'Tourist eVisa (Single Entry for 30 days)',
+    type: 'Tourist eVisa',
+    description: 'Single Entry for 30 days',
     entry: 'Single Entry',
-    visaDuration: 90,
+    visaDuration: 30,
     visaValidity: '60 days',
-    govFee: 95,
+    govFee: 82,
     processingTime: '3 working days',
-    features: ['Safari tours', 'Beach holidays', 'Cultural visits', 'Wildlife photography']
-  },
-  {
-    id: "kenya-business-single-90-days",
-    name: 'Business ETA (Single Entry for 90 days)',
-    type: 'Business ETA',
-    description: 'Single Entry for 90 days',
-    entry: 'Single Entry',
-    visaDuration: 90,
-    visaValidity: '60 days',
-    govFee: 95,
-    processingTime: '3 working days',
-    features: ['Business meetings', 'Conferences', 'Trade shows', 'Corporate events']
-  },
-  {
-    id: "kenya-transit-single-72-hours",
-    name: 'Transit ETA (Single Entry for 72 hours)',
-    type: 'Transit ETA',
-    description: 'Single Entry for 72 hours',
-    entry: 'Single Entry',
-    visaDuration: 3,
-    visaValidity: '60 days',
-    govFee: 65,
-    processingTime: '1 working day',
-    features: ['Airport transit', 'Short layovers', 'Quick connections', 'Emergency travel']
+    features: ['Desert adventures', 'Cultural visits', 'Historic forts', 'Coastal exploration']
   }
 ];
 
 const faqs = [
   {
-    question: "Do I need a visa to visit Kenya?",
-    answer: "Most foreign nationals require a visa to enter Kenya. However, citizens of East African Community (EAC) countries (Uganda, Tanzania, Rwanda, Burundi, and South Sudan) do not need a visa. The Kenya eVisa system allows travelers from eligible countries to apply online before their trip. The eVisa is mandatory for tourism, business, and transit purposes."
+    question: "Do I need a visa to visit Oman?",
+    answer: "Most foreign nationals require a visa to enter Oman. Citizens of GCC countries (Saudi Arabia, UAE, Bahrain, Kuwait, Qatar) can enter without a visa. The Oman eVisa system allows travelers from eligible countries to apply online before their trip for tourism purposes."
   },
   {
-    question: "How long does it take to process a Kenya eVisa?",
-    answer: "Processing time for Kenya eVisas ranges from 1-3 working days. We recommend applying at least 1 week before your intended travel date to avoid any delays. Our platform has an 80% approval rate, and we provide 24/7 support throughout the application process."
+    question: "How long does it take to process an Oman eVisa?",
+    answer: "Processing time for Oman eVisas is typically 3 working days. We recommend applying at least 1 week before your intended travel date to avoid any delays. Our platform provides 24/7 support throughout the application process."
   },
   {
-    question: "What documents do I need for a Kenya eVisa?",
-    answer: "You'll need a valid passport with at least 6 months validity beyond your intended stay, a recent passport-size photo, proof of accommodation in Kenya, return flight tickets, and sufficient funds for your stay. Business travelers may need additional documents like invitation letters. All documents should be clear, legible, and in English."
+    question: "What documents do I need for an Oman eVisa?",
+    answer: "You'll need a valid passport with at least 6 months validity beyond your intended stay, a recent passport-size photo, proof of accommodation in Oman, return flight tickets, and sufficient funds for your stay. All documents should be clear, legible, and in English or Arabic."
   },
   {
-    question: "Can I extend my Kenya visa?",
-    answer: "Yes, you can extend your Kenya visa while in the country. You'll need to visit the Immigration Department in Nairobi or other major cities. Extensions are typically granted for valid reasons such as medical treatment, business needs, or tourism. There are fees associated with visa extensions, and the process can take several days."
+    question: "Can I extend my Oman visa?",
+    answer: "Oman tourist eVisas are typically non-extendable. If you need to stay longer, you would need to exit Oman and apply for a new visa. For business or other purposes, you may need to apply for a different visa type through the Oman embassy."
   },
   {
-    question: "Is it safe to travel to Kenya?",
-    answer: "Kenya is generally safe for tourists, especially in popular tourist areas like Nairobi, Mombasa, and the Maasai Mara. However, it's important to stay informed about current travel advisories, avoid certain areas near the border with Somalia, and take standard safety precautions like not walking alone at night. Most tourist destinations have good security measures in place."
+    question: "Is it safe to travel to Oman?",
+    answer: "Oman is generally safe for tourists. The country has a low crime rate and good security measures in place. However, it's important to respect local customs and laws, dress modestly, and be aware of cultural sensitivities. Most tourist areas are well-policed and secure."
   },
   {
-    question: "What is the best time to visit Kenya?",
-    answer: "The best time to visit Kenya depends on what you want to see. For wildlife viewing, the dry seasons (January-March and July-October) are ideal. The wildebeest migration typically occurs from July to October. For beach holidays, the coastal areas are pleasant year-round, though April-May and November are the rainy seasons."
+    question: "What is the best time to visit Oman?",
+    answer: "The best time to visit Oman is during the cooler months from October to April. Summers (May to September) are extremely hot with temperatures often exceeding 40°C. Spring (March to May) and autumn (October to November) offer pleasant weather for outdoor activities."
   },
   {
-    question: "How much does a Kenya eVisa cost?",
-    answer: "Kenya eVisa fees are set by the government: Tourist and Business ETAs cost $95 for 90-day stays, while Transit ETAs cost $65 for 72-hour stays. We do not charge additional urgent processing fees, ensuring transparent pricing. Payment can be made securely online using credit cards or bank transfers."
+    question: "How much does an Oman eVisa cost?",
+    answer: "Oman eVisa fees are set by the government at $82 for tourist visas. We do not charge additional urgent processing fees, ensuring transparent pricing. Payment can be made securely online using credit cards or bank transfers."
   },
   {
-    question: "Can I apply for a Kenya eVisa if I have a criminal record?",
-    answer: "Individuals with criminal records may face additional scrutiny during the Kenya eVisa application process. It's important to be honest about your background and provide any required documentation. Some convictions may result in visa denial, while others may require additional processing time."
+    question: "Can I apply for an Oman eVisa if I have a criminal record?",
+    answer: "Individuals with criminal records may face additional scrutiny during the Oman eVisa application process. It's important to be honest about your background and provide any required documentation. Some convictions may result in visa denial."
   },
   {
-    question: "What happens if my Kenya eVisa application is denied?",
-    answer: "If your Kenya eVisa application is denied, you will receive a notification explaining the reason. Common reasons include incomplete documentation, insufficient funds, or security concerns. You can reapply after addressing the issues, or contact our support team for guidance on improving your application."
-  },
-
-  {
-    question: "Can I enter Kenya multiple times with one eVisa?",
-    answer: "Kenya ETAs are typically single-entry visas. If you plan to leave and re-enter Kenya during your trip, you'll need to apply for a new eVisa each time. For multiple entries, consider applying for a different visa type or planning your itinerary to avoid multiple border crossings."
+    question: "What happens if my Oman eVisa application is denied?",
+    answer: "If your Oman eVisa application is denied, you will receive a notification explaining the reason. Common reasons include incomplete documentation, insufficient funds, or security concerns. You can reapply after addressing the issues, or contact our support team for guidance."
   },
   {
-    question: "What should I do if I lose my Kenya eVisa approval letter?",
-    answer: "If you lose your Kenya eVisa approval letter, you can download it again from our platform or contact our support team. It's recommended to carry both digital and printed copies of your eVisa approval when traveling. The approval letter is required for entry into Kenya."
+    question: "What should I do if I lose my Oman eVisa approval letter?",
+    answer: "If you lose your Oman eVisa approval letter, you can download it again from our platform or contact our support team. It's recommended to carry both digital and printed copies of your eVisa approval when traveling. The approval letter is required for entry into Oman."
   }
 ];
 
-export default function KenyaRequirementsPage() {
+export default function OmanRequirementsPage() {
   const [activeSection, setActiveSection] = useState('overview');
 
   const scrollToSection = (sectionId: string) => {
@@ -138,8 +109,8 @@ export default function KenyaRequirementsPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0">
           <Image
-            src="/images/country/kenya/kenya-bg.jpg"
-            alt="Kenya Safari Landscape"
+            src="/images/country/oman/oman-bg.jpg"
+            alt="Oman Desert Landscape"
             fill
             className="object-cover opacity-30"
             priority
@@ -152,10 +123,10 @@ export default function KenyaRequirementsPage() {
               <span className="text-sm font-medium">Visa Requirements</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Kenya Visa <span className="text-emerald-200">Requirements</span>
+              Oman Visa <span className="text-emerald-200">Requirements</span>
             </h1>
             <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
-              Complete guide to Kenya eVisa requirements, application process, and travel information for your African adventure
+              Complete guide to Oman eVisa requirements, application process, and travel information for your Arabian adventure
             </p>
           </div>
         </div>
@@ -202,40 +173,40 @@ export default function KenyaRequirementsPage() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Globe className="h-8 w-8 text-emerald-600" />
-              Kenya Overview
+              Oman Overview
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Kenya</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Oman</h3>
                 <div className="prose prose-slate max-w-none">
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    Kenya, located in East Africa, is renowned for its diverse wildlife, stunning landscapes, and rich cultural heritage. 
-                    From the iconic Maasai Mara National Reserve to the pristine beaches of Mombasa, Kenya offers unforgettable experiences 
-                    for every type of traveler.
+                    Oman, located on the southeastern coast of the Arabian Peninsula, is a country of stunning contrasts 
+                    featuring vast deserts, rugged mountains, and pristine coastline. From the historic forts of Muscat 
+                    to the dramatic Wahiba Sands, Oman offers visitors a glimpse into authentic Arabian culture and tradition.
                   </p>
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    The country is home to the Great Rift Valley, Mount Kenya, and the Indian Ocean coastline, making it a perfect 
-                    destination for safari adventures, mountain climbing, and beach holidays. Nairobi, the capital city, serves as a 
-                    major hub for business and tourism in East Africa.
+                    The country is known for its warm hospitality, rich cultural heritage, and breathtaking natural landscapes. 
+                    Muscat, the capital, combines modern development with traditional architecture, while the interior regions 
+                    offer opportunities for desert adventures and cultural experiences.
                   </p>
                   <p className="text-slate-600 leading-relaxed">
-                    Kenya's visa system has been modernized with the introduction of the eVisa program, making it easier for international 
-                    travelers to obtain their travel authorization online before arrival.
+                    Oman's visa system has been modernized with the introduction of the eVisa program, making it easier for 
+                    international travelers to obtain their travel authorization online before arrival.
                   </p>
                 </div>
               </div>
               
               <div className="relative">
                 <Image
-                  src="/images/country/kenya/kenya-welcome.jpg"
-                  alt="Kenya Wildlife Safari"
+                  src="/images/country/oman/oman-bg.jpg"
+                  alt="Oman Desert Landscape"
                   width={600}
                   height={400}
                   className="rounded-xl shadow-lg"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-                  <span className="text-sm font-semibold text-slate-800">🇰🇪 Kenya</span>
+                  <span className="text-sm font-semibold text-slate-800">🇴🇲 Oman</span>
                 </div>
               </div>
             </div>
@@ -246,7 +217,7 @@ export default function KenyaRequirementsPage() {
                   <MapPin className="h-6 w-6 text-emerald-600" />
                   <h4 className="font-semibold text-slate-800">Capital</h4>
                 </div>
-                <p className="text-slate-600">Nairobi</p>
+                <p className="text-slate-600">Muscat</p>
               </div>
               
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
@@ -254,7 +225,7 @@ export default function KenyaRequirementsPage() {
                   <Globe className="h-6 w-6 text-blue-600" />
                   <h4 className="font-semibold text-slate-800">Language</h4>
                 </div>
-                <p className="text-slate-600">English & Kiswahili</p>
+                <p className="text-slate-600">Arabic & English</p>
               </div>
               
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
@@ -262,7 +233,7 @@ export default function KenyaRequirementsPage() {
                   <CreditCard className="h-6 w-6 text-purple-600" />
                   <h4 className="font-semibold text-slate-800">Currency</h4>
                 </div>
-                <p className="text-slate-600">Kenyan Shilling (KES)</p>
+                <p className="text-slate-600">Omani Rial (OMR)</p>
               </div>
             </div>
           </div>
@@ -277,7 +248,7 @@ export default function KenyaRequirementsPage() {
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {kenyaVisaTypes.map((visa, index) => (
+              {omanVisaTypes.map((visa, index) => (
                 <Card key={index} className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm">
                   <div className="h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-500" />
                   <CardHeader className="pt-6 pb-4">
@@ -333,7 +304,7 @@ export default function KenyaRequirementsPage() {
                   </CardContent>
 
                   <CardFooter className="pt-4 pb-6">
-                    <Link href={`/apply?country=kenya&type=${encodeURIComponent(visa.id)}`} className="w-full">
+                    <Link href={`/apply?country=oman&type=${encodeURIComponent(visa.id)}`} className="w-full">
                       <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                         Apply Now
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -361,10 +332,10 @@ export default function KenyaRequirementsPage() {
                   {[
                     'Valid passport with at least 6 months validity beyond intended stay',
                     'Recent passport-size photograph (taken within the last 6 months)',
-                    'Proof of accommodation in Kenya (hotel bookings or invitation letter)',
+                    'Proof of accommodation in Oman (hotel bookings or invitation letter)',
                     'Return flight tickets or onward travel itinerary',
                     'Proof of sufficient funds for the duration of stay',
-                    'Yellow fever vaccination certificate (if traveling from endemic areas)'
+                    'Travel insurance covering the entire stay period'
                   ].map((requirement, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
@@ -375,17 +346,17 @@ export default function KenyaRequirementsPage() {
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Additional Requirements for Business Visa</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Important Cultural Notes</h3>
                 <div className="space-y-4">
                   {[
-                    'Invitation letter from Kenyan business partner or organization',
-                    'Business registration documents (if applicable)',
-                    'Letter from employer stating purpose of visit',
-                    'Conference registration (if attending business events)',
-                    'Proof of business activities or meetings scheduled'
+                    'Dress modestly and respect local customs and traditions',
+                    'Avoid public displays of affection',
+                    'Do not consume alcohol in public places',
+                    'Respect prayer times and religious practices',
+                    'Carry identification documents at all times'
                   ].map((requirement, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <Info className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <Info className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700">{requirement}</span>
                     </div>
                   ))}
@@ -460,9 +431,7 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Fees</h3>
                 <div className="space-y-4">
                   {[
-                    { type: 'Tourist ETA', fee: '$95', duration: '90 days' },
-                    { type: 'Business ETA', fee: '$95', duration: '90 days' },
-                    { type: 'Transit ETA', fee: '$65', duration: '72 hours' }
+                    { type: 'Tourist eVisa', fee: '$82', duration: '30 days' }
                   ].map((visa, index) => (
                     <div key={index} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                       <div>
@@ -485,7 +454,7 @@ export default function KenyaRequirementsPage() {
                       <Clock className="h-5 w-5 text-emerald-600" />
                       <h4 className="font-semibold text-slate-800">Processing Time</h4>
                     </div>
-                    <p className="text-slate-600">1-3 working days</p>
+                    <p className="text-slate-600">3 working days</p>
                   </div>
                   
                   <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
@@ -501,61 +470,11 @@ export default function KenyaRequirementsPage() {
           </div>
         </section>
 
-        {/* Travel Information Section */}
-        <section id="travel-info" className="mb-16">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <MapPin className="h-8 w-8 text-emerald-600" />
-              Travel Information
-            </h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit</h3>
-                <div className="space-y-4">
-                  <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Wildlife Viewing (July-October)</h4>
-                    <p className="text-sm text-slate-600">Witness the Great Migration in Maasai Mara</p>
-                  </div>
-                  <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Beach Holidays (Year-round)</h4>
-                    <p className="text-sm text-slate-600">Coastal areas offer pleasant weather throughout the year</p>
-                  </div>
-                  <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Avoid (April-May, November)</h4>
-                    <p className="text-sm text-slate-600">Rainy seasons may affect travel plans</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Entry Points</h3>
-                <div className="space-y-3">
-                  {[
-                    'Jomo Kenyatta International Airport (Nairobi)',
-                    'Moi International Airport (Mombasa)',
-                    'Kisumu International Airport',
-                    'Eldoret International Airport',
-                    'Land borders with Tanzania, Uganda, and Ethiopia'
-                  ].map((entry, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
-                      <MapPin className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-                      <span className="text-slate-700">{entry}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-
         {/* Why Choose Us Section */}
         <section id="why-choose-us" className="mb-16">
           <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-              Why Choose Worldmaxxing Global Services for Your Kenya Visa?
+              Why Choose Worldmaxxing Global Services for Your Oman Visa?
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -579,7 +498,7 @@ export default function KenyaRequirementsPage() {
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="h-6 w-6 text-green-600" />
                 </div>
-                <h3 className="font-semibold text-slate-800 mb-2">80% Approval Rate</h3>
+                <h3 className="font-semibold text-slate-800 mb-2">High Success Rate</h3>
                 <p className="text-sm text-slate-600">High success rate with our expert guidance and thorough application review.</p>
               </div>
               
@@ -588,18 +507,18 @@ export default function KenyaRequirementsPage() {
                   <Shield className="h-6 w-6 text-purple-600" />
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">Secure & Fast</h3>
-                <p className="text-sm text-slate-600">Bank-level security with 1-3 day processing for most applications.</p>
+                <p className="text-sm text-slate-600">Bank-level security with 3-day processing for most applications.</p>
               </div>
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Kenya eVisa Today</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Oman eVisa Today</h3>
               <p className="text-slate-600 text-center mb-6">
-                Join thousands of satisfied travelers who have successfully obtained their Kenya visa through our platform. 
+                Join thousands of satisfied travelers who have successfully obtained their Oman visa through our platform. 
                 Our streamlined process ensures you get your visa quickly and hassle-free.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/apply?country=kenya">
+                <Link href="/apply?country=oman">
                   <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                     Apply Now
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -615,127 +534,62 @@ export default function KenyaRequirementsPage() {
           </div>
         </section>
 
-        {/* Comprehensive Kenya Travel Guide */}
+        {/* Travel Guide Section */}
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Globe className="h-8 w-8 text-emerald-600" />
-              Complete Kenya Travel Guide & Visa Information
+              Oman Travel Guide
             </h2>
             
             <div className="prose prose-slate max-w-none">
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Kenya eVisa Requirements</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Oman eVisa Requirements</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                Kenya introduced its eVisa system in 2015 to streamline the visa application process for international travelers. 
-                The Kenya eVisa is an electronic travel authorization that allows visitors to enter Kenya for tourism, business, 
-                or transit purposes. This digital system has significantly reduced processing times and improved the overall 
-                travel experience for millions of visitors to Kenya each year.
+                Oman introduced its eVisa system to streamline the visa application process for international travelers. 
+                The Oman eVisa is an electronic travel authorization that allows visitors to enter Oman for tourism purposes. 
+                This digital system has significantly improved the travel experience for visitors to Oman.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya eVisa Eligibility & Requirements</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Oman</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Most foreign nationals require a Kenya eVisa to enter the country, with the exception of citizens from East 
-                African Community (EAC) countries including Uganda, Tanzania, Rwanda, Burundi, and South Sudan. The eVisa 
-                system is available to travelers from over 150 countries worldwide, making Kenya one of the most accessible 
-                African destinations for international visitors.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-emerald-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Kenya eVisa?</h4>
-                  <ul className="text-sm text-slate-600 space-y-1">
-                    <li> International tourists visiting Kenya for leisure</li>
-                    <li> Business travelers attending meetings or conferences</li>
-                    <li> Transit passengers with layovers in Kenya</li>
-                    <li> Journalists and media professionals</li>
-                    <li> Students attending educational programs</li>
-                  </ul>
-                </div>
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Kenya eVisa?</h4>
-                  <ul className="text-sm text-slate-600 space-y-1">
-                    <li> East African Community citizens</li>
-                    <li> Diplomatic passport holders</li>
-
-                    <li> Crew members on duty</li>
-                    <li> Emergency medical cases</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya eVisa Application Process Explained</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                The Kenya eVisa application process is designed to be simple and user-friendly. Our platform guides you 
-                through each step, ensuring your application meets all requirements for approval. The entire process can 
-                be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
-              </p>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya Visa Processing Times & Fees</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                Kenya eVisa processing times typically range from 1-3 working days, making it one of the fastest visa 
-                processing systems in Africa. The government fees are transparent and vary by visa type: Tourist and 
-                Business ETAs cost $95 for 90-day stays, while Transit ETAs cost $65 for 72-hour stays. Unlike many 
-                other visa services, we do not charge additional urgent processing fees, ensuring you get the best value 
-                for your money.
-              </p>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Kenya</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                Kenya offers diverse attractions for every type of traveler. From the world-famous Maasai Mara National 
-                Reserve, where you can witness the Great Migration, to the pristine beaches of Mombasa and Lamu Island, 
-                Kenya provides unforgettable experiences. Nairobi, the capital city, offers modern amenities and cultural 
-                attractions, while Mount Kenya provides opportunities for hiking and adventure tourism.
+                Oman offers a unique blend of traditional culture and stunning natural landscapes. From the historic forts 
+                and souks of Muscat to the dramatic Wahiba Sands desert, visitors can experience both authentic Arabian 
+                culture and breathtaking natural beauty.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Wildlife & Safari</h4>
+                  <h4 className="font-semibold text-emerald-800 mb-2">Historic Sites</h4>
                   <p className="text-sm text-slate-600">
-                    Maasai Mara, Amboseli, Tsavo, and Samburu National Parks offer world-class safari experiences with 
-                    the Big Five and annual wildebeest migration.
+                    Muscat's forts, Nizwa Fort, and traditional souks showcase Oman's rich cultural heritage and 
+                    architectural traditions.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Beach & Coastal</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">Natural Landscapes</h4>
                   <p className="text-sm text-slate-600">
-                    Mombasa, Malindi, and Lamu Island feature pristine beaches, coral reefs, and rich Swahili culture 
-                    along the Indian Ocean coast.
+                    Wahiba Sands desert, Jebel Shams mountain, and pristine coastline offer opportunities for 
+                    adventure and exploration.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Urban & Cultural</h4>
+                  <h4 className="font-semibold text-purple-800 mb-2">Cultural Experiences</h4>
                   <p className="text-sm text-slate-600">
-                    Nairobi offers modern attractions, museums, and cultural experiences, while traditional villages 
-                    showcase authentic Kenyan culture.
+                    Traditional villages, frankincense trails, and authentic Omani hospitality provide insights 
+                    into local culture.
                   </p>
                 </div>
               </div>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya Travel Tips & Best Practices</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                When planning your trip to Kenya, consider the weather patterns and seasonal attractions. The dry seasons 
-                (January-March and July-October) are ideal for wildlife viewing, while the coastal areas are pleasant 
-                year-round. Always carry your eVisa approval letter, passport, and other required documents when traveling. 
-                It's also recommended to have travel insurance and be aware of local customs and safety guidelines.
-              </p>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Kenya Visa Applications</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Kenya visas since the eVisa system was introduced. 
-                Our expertise in the Kenyan visa process, combined with our 80% approval rate and 24/7 customer support, 
-                makes us the preferred choice for thousands of travelers each year. We provide transparent pricing with no 
-                hidden fees, ensuring you get the best value for your visa application.
-              </p>
             </div>
           </div>
         </section>
 
-        {/* Travel Data & Analytics Section */}
+        {/* Analytics Section */}
         <section id="analytics" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <BarChart3 className="h-8 w-8 text-emerald-600" />
-              Kenya Visa Processing Insights & Travel Analytics
+              Oman Visa Processing Insights
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -747,160 +601,79 @@ export default function KenyaRequirementsPage() {
                     <span className="text-sm text-slate-600">January</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.1 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">2.8 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">February</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '78%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.3 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">3.1 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">March</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">1.9 days</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">April</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.0 days</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">May</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
                         <div className="h-full bg-emerald-500 rounded-full" style={{width: '95%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">1.8 days</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">June</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.0 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">2.5 days</span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
                   <p className="text-xs text-emerald-800">
-                    <strong>Source:</strong> Kenya Immigration Department & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> Oman Immigration Department & Worldmaxxing Global Services processing data
                   </p>
                 </div>
               </div>
-              
-              {/* Visa Type Distribution */}
+              {/* Only show Visa Type Distribution if more than one visa type */}
+              {/* {omanVisaTypes.length > 1 && (
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Tourist ETA</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '65%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">65%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Business ETA</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '28%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">28%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Transit ETA</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '7%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">7%</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 p-3 bg-blue-100 rounded-lg">
-                  <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> <a href="https://kenya-immigration.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">kenya-immigration.com</a> (2024)
-                  </p>
-                </div>
+                ...Visa Type Distribution code...
               </div>
+              )} */}
             </div>
-            
-            {/* Travel Seasonality Chart */}
+            {/* Best Time to Visit Oman Analytics Box */}
             <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Kenya</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Oman</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Sun className="h-6 w-6 text-green-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Jan-Mar</h4>
-                  <p className="text-xs text-slate-600">Dry Season</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-green-500 rounded-full" style={{width: '90%'}}></div>
-                    </div>
-                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">Oct-Apr</h4>
+                  <p className="text-xs text-slate-600">Pleasant weather, ideal for outdoor activities and sightseeing</p>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Cloud className="h-6 w-6 text-yellow-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Apr-May</h4>
-                  <p className="text-xs text-slate-600">Long Rains</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-yellow-500 rounded-full" style={{width: '40%'}}></div>
-                    </div>
-                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">May-Jun</h4>
+                  <p className="text-xs text-slate-600">Warming up, some wind and dust storms possible</p>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Zap className="h-6 w-6 text-red-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Jul-Oct</h4>
-                  <p className="text-xs text-slate-600">Migration</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-red-500 rounded-full" style={{width: '95%'}}></div>
-                    </div>
-                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">Jul-Sep</h4>
+                  <p className="text-xs text-slate-600">Extremely hot (often 40°C+), avoid outdoor activities</p>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Droplets className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Nov-Dec</h4>
-                  <p className="text-xs text-slate-600">Short Rains</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-500 rounded-full" style={{width: '60%'}}></div>
-                    </div>
-                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">Mar-May</h4>
+                  <p className="text-xs text-slate-600">Spring season, pleasant temperatures for exploration</p>
                 </div>
               </div>
               <div className="mt-4 p-3 bg-purple-100 rounded-lg">
                 <p className="text-xs text-purple-800">
-                  <strong>Source:</strong> Kenya Meteorological Department & Tourism Board
+                  <strong>Source:</strong> Oman Meteorological Department & Worldmaxxing Global Services travel data
                 </p>
               </div>
             </div>
@@ -938,47 +711,13 @@ export default function KenyaRequirementsPage() {
                 </a>
               </div>
               
-              <div className="text-center p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MessageCircle className="h-6 w-6 text-green-600" />
+              <div className="text-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MessageCircle className="h-6 w-6 text-purple-600" />
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">Live Chat</h3>
                 <p className="text-sm text-slate-600 mb-3">Instant chat with our visa experts</p>
-                <span className="text-green-600 font-semibold">Available 24/7</span>
-              </div>
-            </div>
-            
-            <div className="mt-8 p-6 bg-slate-50 rounded-xl">
-              <h3 className="text-lg font-semibold text-slate-800 mb-3">Why Travelers Choose Worldmaxxing Global Services</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
-                <ul className="space-y-2">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>No hidden fees or urgent processing charges</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>Expert guidance throughout the entire process</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>Secure document handling and processing</span>
-                  </li>
-                </ul>
-                <ul className="space-y-2">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>80% approval rate with our expert review</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>24/7 customer support in multiple languages</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>Fast processing with 1-3 day turnaround</span>
-                  </li>
-                </ul>
+                <span className="text-purple-600 font-semibold">Available 24/7</span>
               </div>
             </div>
           </div>

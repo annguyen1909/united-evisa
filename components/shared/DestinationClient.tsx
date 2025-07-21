@@ -96,7 +96,7 @@ export default function DestinationClient() {
           Visa Destinations
         </h2>
         <p className="text-slate-600 max-w-3xl mx-auto">
-          Start your journey by applying for a visa with UnitedEVisa assistance
+          Start your journey by applying for a visa with Worldmaxxing Global Services assistance
         </p>
       </div>
       

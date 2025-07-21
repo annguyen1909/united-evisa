@@ -8,7 +8,7 @@ const uganda: Country = {
   flagUrl: '/images/country/uganda/uganda-square.png',
   imageUrl: '/images/country/uganda/uganda-bg.jpg',
   roundedFlagUrl: '/images/country/uganda/uganda-rounded.png',
-  description: `Apply for your Uganda eVisa online with United eVisa. Fast, secure, and convenient visa application for Uganda travel. Get your Uganda visa quickly with our expert assistance.`,
+  description: `Apply for your Uganda eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Uganda travel. Get your Uganda visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Uganda's diverse wildlife, stunning landscapes, and rich culture. From gorilla trekking to the source of the Nile, Uganda is a nature lover's paradise.`,
   welcomeImgUrl: '/images/country/uganda/uganda-welcome.jpg',
   processingTime: {

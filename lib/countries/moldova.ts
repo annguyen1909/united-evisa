@@ -10,7 +10,7 @@ const Moldova: Country = {
   flagUrl: '/images/country/moldova/moldova-square.png',
   imageUrl: '/images/country/moldova/moldova-bg.jpg',
   roundedFlagUrl: '/images/country/moldova/moldova-rounded.png',
-  description: `Apply for your Moldova eVisa online with United eVisa. Fast, secure, and convenient visa application for Moldova travel. Get your Moldova visa quickly with our expert assistance.`,
+  description: `Apply for your Moldova eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Moldova travel. Get your Moldova visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Moldova's charming villages, vineyards, and rich history. From Chisinau to the Orheiul Vechi Monastery, Moldova is a hidden gem for travelers.`,
   welcomeImgUrl: '/images/country/moldova/moldova-welcome.jpg',
   processingTime: {

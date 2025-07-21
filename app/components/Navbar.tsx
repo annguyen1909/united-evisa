@@ -34,6 +34,8 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { Poppins } from "next/font/google";
+import { Anton } from "next/font/google";
 
 const navItems = [
   {
@@ -54,6 +56,18 @@ const navItems = [
     href: "/support",
   },
 ];
+
+const poppins = Poppins({
+  weight: ["800", "500"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const anton = Anton({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,14 +111,9 @@ export default function Navbar() {
               priority
             />
           </div>
-          <div className="relative w-32 h-8">
-            <Image
-              src="/images/logotext.png"
-              alt="eVisa Text"
-              fill
-              style={{ objectFit: "contain" }}
-              priority
-            />
+          <div className="flex flex-col justify-center">
+            <span className={`text-2xl leading-tight text-emerald-800 tracking-wide uppercase ${anton.className}`}>Worldmaxxing</span>
+            <span className={`text-sm text-slate-600 tracking-widest uppercase ${anton.className}`}>Global Services</span>
           </div>
         </Link>
 

@@ -33,94 +33,74 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-const kenyaVisaTypes = [
+const canadaVisaTypes = [
   {
-    id: "kenya-tourist-single-90-days",
-    name: 'Tourist ETA (Single Entry for 90 days)',
-    type: 'Tourist ETA',
-    description: 'Single Entry for 90 days',
-    entry: 'Single Entry',
-    visaDuration: 90,
+    id: "canada-tourist-multiple-5-years",
+    name: 'Tourist eVisa (Multiple Entries for 5 years)',
+    type: 'Tourist eVisa',
+    description: 'Multiple Entries for 5 years',
+    entry: 'Multiple Entries',
+    visaDuration: 1825,
     visaValidity: '60 days',
-    govFee: 95,
+    govFee: 20,
     processingTime: '3 working days',
-    features: ['Safari tours', 'Beach holidays', 'Cultural visits', 'Wildlife photography']
-  },
-  {
-    id: "kenya-business-single-90-days",
-    name: 'Business ETA (Single Entry for 90 days)',
-    type: 'Business ETA',
-    description: 'Single Entry for 90 days',
-    entry: 'Single Entry',
-    visaDuration: 90,
-    visaValidity: '60 days',
-    govFee: 95,
-    processingTime: '3 working days',
-    features: ['Business meetings', 'Conferences', 'Trade shows', 'Corporate events']
-  },
-  {
-    id: "kenya-transit-single-72-hours",
-    name: 'Transit ETA (Single Entry for 72 hours)',
-    type: 'Transit ETA',
-    description: 'Single Entry for 72 hours',
-    entry: 'Single Entry',
-    visaDuration: 3,
-    visaValidity: '60 days',
-    govFee: 65,
-    processingTime: '1 working day',
-    features: ['Airport transit', 'Short layovers', 'Quick connections', 'Emergency travel']
+    features: ['Extended tourism stays', 'Multiple country visits', 'Business and leisure combined', 'Frequent travelers']
   }
 ];
 
 const faqs = [
   {
-    question: "Do I need a visa to visit Kenya?",
-    answer: "Most foreign nationals require a visa to enter Kenya. However, citizens of East African Community (EAC) countries (Uganda, Tanzania, Rwanda, Burundi, and South Sudan) do not need a visa. The Kenya eVisa system allows travelers from eligible countries to apply online before their trip. The eVisa is mandatory for tourism, business, and transit purposes."
+    question: "Do I need a visa to visit Canada?",
+    answer: "Most foreign nationals require a visa to enter Canada. However, citizens of visa-exempt countries like the United States, United Kingdom, and some European countries do not need a visa. The Canada eVisa system allows travelers from eligible countries to apply online before their trip. The eVisa is mandatory for tourism, business, and transit purposes."
   },
   {
-    question: "How long does it take to process a Kenya eVisa?",
-    answer: "Processing time for Kenya eVisas ranges from 1-3 working days. We recommend applying at least 1 week before your intended travel date to avoid any delays. Our platform has an 80% approval rate, and we provide 24/7 support throughout the application process."
+    question: "How long does it take to process a Canada eVisa?",
+    answer: "Processing time for Canada eVisas is typically 3 working days. We recommend applying at least 1 week before your intended travel date to avoid any delays. Our platform has an 80% approval rate, and we provide 24/7 support throughout the application process."
   },
   {
-    question: "What documents do I need for a Kenya eVisa?",
-    answer: "You'll need a valid passport with at least 6 months validity beyond your intended stay, a recent passport-size photo, proof of accommodation in Kenya, return flight tickets, and sufficient funds for your stay. Business travelers may need additional documents like invitation letters. All documents should be clear, legible, and in English."
+    question: "What documents do I need for a Canada eVisa?",
+    answer: "You'll need a valid passport with at least 6 months validity beyond your intended stay, a recent passport-size photo, proof of accommodation in Canada, return flight tickets, proof of sufficient funds (minimum $1,000 CAD per month), travel insurance, and proof of ties to your home country. Business travelers may need additional documents like invitation letters. All documents should be clear, legible, and in English or French."
   },
   {
-    question: "Can I extend my Kenya visa?",
-    answer: "Yes, you can extend your Kenya visa while in the country. You'll need to visit the Immigration Department in Nairobi or other major cities. Extensions are typically granted for valid reasons such as medical treatment, business needs, or tourism. There are fees associated with visa extensions, and the process can take several days."
+    question: "Can I extend my Canada visa?",
+    answer: "Yes, you can apply to extend your Canada visa while in the country. You'll need to submit an application to Immigration, Refugees and Citizenship Canada (IRCC) before your current visa expires. Extensions are typically granted for valid reasons such as medical treatment, business needs, or tourism. There are fees associated with visa extensions, and the process can take several weeks."
   },
   {
-    question: "Is it safe to travel to Kenya?",
-    answer: "Kenya is generally safe for tourists, especially in popular tourist areas like Nairobi, Mombasa, and the Maasai Mara. However, it's important to stay informed about current travel advisories, avoid certain areas near the border with Somalia, and take standard safety precautions like not walking alone at night. Most tourist destinations have good security measures in place."
+    question: "Is it safe to travel to Canada?",
+    answer: "Canada is generally very safe for tourists, with low crime rates and excellent healthcare systems. However, it's important to stay informed about current travel advisories and take standard safety precautions. Most tourist destinations have good security measures in place, and emergency services are readily available."
   },
   {
-    question: "What is the best time to visit Kenya?",
-    answer: "The best time to visit Kenya depends on what you want to see. For wildlife viewing, the dry seasons (January-March and July-October) are ideal. The wildebeest migration typically occurs from July to October. For beach holidays, the coastal areas are pleasant year-round, though April-May and November are the rainy seasons."
+    question: "What is the best time to visit Canada?",
+    answer: "The best time to visit Canada depends on which region you want to explore and what activities you plan to do. Summer (June-August) is ideal for outdoor activities and sightseeing, while winter (December-February) is perfect for skiing and winter sports. Fall (September-November) offers beautiful autumn colors, and spring (March-May) features cherry blossoms in many cities."
   },
   {
-    question: "How much does a Kenya eVisa cost?",
-    answer: "Kenya eVisa fees are set by the government: Tourist and Business ETAs cost $95 for 90-day stays, while Transit ETAs cost $65 for 72-hour stays. We do not charge additional urgent processing fees, ensuring transparent pricing. Payment can be made securely online using credit cards or bank transfers."
+    question: "How much does a Canada eVisa cost?",
+    answer: "Canada eVisa fees are set by the government: Tourist eVisa (Multiple Entries for 5 years) costs $20. We do not charge additional urgent processing fees, ensuring transparent pricing. Payment can be made securely online using credit cards or bank transfers."
   },
   {
-    question: "Can I apply for a Kenya eVisa if I have a criminal record?",
-    answer: "Individuals with criminal records may face additional scrutiny during the Kenya eVisa application process. It's important to be honest about your background and provide any required documentation. Some convictions may result in visa denial, while others may require additional processing time."
+    question: "Can I apply for a Canada eVisa if I have a criminal record?",
+    answer: "Individuals with criminal records may face additional scrutiny during the Canada eVisa application process. It's important to be honest about your background and provide any required documentation. Some convictions may result in visa denial, while others may require additional processing time or a temporary resident permit."
   },
   {
-    question: "What happens if my Kenya eVisa application is denied?",
-    answer: "If your Kenya eVisa application is denied, you will receive a notification explaining the reason. Common reasons include incomplete documentation, insufficient funds, or security concerns. You can reapply after addressing the issues, or contact our support team for guidance on improving your application."
+    question: "What happens if my Canada eVisa application is denied?",
+    answer: "If your Canada eVisa application is denied, you will receive a notification explaining the reason. Common reasons include incomplete documentation, insufficient funds, security concerns, or previous immigration violations. You can reapply after addressing the issues, or contact our support team for guidance on improving your application."
   },
 
   {
-    question: "Can I enter Kenya multiple times with one eVisa?",
-    answer: "Kenya ETAs are typically single-entry visas. If you plan to leave and re-enter Kenya during your trip, you'll need to apply for a new eVisa each time. For multiple entries, consider applying for a different visa type or planning your itinerary to avoid multiple border crossings."
+    question: "Can I enter Canada multiple times with one eVisa?",
+    answer: "Canada eVisas can be single-entry or multiple-entry depending on your application type. Multiple-entry visas allow you to leave and re-enter Canada during the validity period. If you have a single-entry visa and need to leave Canada, you'll need to apply for a new visa to re-enter."
   },
   {
-    question: "What should I do if I lose my Kenya eVisa approval letter?",
-    answer: "If you lose your Kenya eVisa approval letter, you can download it again from our platform or contact our support team. It's recommended to carry both digital and printed copies of your eVisa approval when traveling. The approval letter is required for entry into Kenya."
+    question: "What should I do if I lose my Canada eVisa approval letter?",
+    answer: "If you lose your Canada eVisa approval letter, you can download it again from our platform or contact our support team. It's recommended to carry both digital and printed copies of your eVisa approval when traveling. The approval letter is required for entry into Canada."
+  },
+  {
+    question: "Do I need travel insurance for Canada?",
+    answer: "While not mandatory for the visa application, travel insurance is highly recommended for visitors to Canada. Medical care in Canada can be expensive for non-residents, and travel insurance provides coverage for medical emergencies, trip cancellations, and lost luggage. Many visa applications are strengthened by including proof of travel insurance."
   }
 ];
 
-export default function KenyaRequirementsPage() {
+export default function CanadaRequirementsPage() {
   const [activeSection, setActiveSection] = useState('overview');
 
   const scrollToSection = (sectionId: string) => {
@@ -134,12 +114,12 @@ export default function KenyaRequirementsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
+      <div className="relative bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0">
           <Image
-            src="/images/country/kenya/kenya-bg.jpg"
-            alt="Kenya Safari Landscape"
+            src="/images/country/canada/canada-bg.jpg"
+            alt="Canada Natural Landscape"
             fill
             className="object-cover opacity-30"
             priority
@@ -152,10 +132,10 @@ export default function KenyaRequirementsPage() {
               <span className="text-sm font-medium">Visa Requirements</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Kenya Visa <span className="text-emerald-200">Requirements</span>
+              Canada Visa <span className="text-red-200">Requirements</span>
             </h1>
-            <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
-              Complete guide to Kenya eVisa requirements, application process, and travel information for your African adventure
+            <p className="text-xl text-red-100 max-w-3xl mx-auto leading-relaxed">
+              Complete guide to Canada visa requirements, application process, and travel information for your North American adventure
             </p>
           </div>
         </div>
@@ -165,7 +145,7 @@ export default function KenyaRequirementsPage() {
         {/* Table of Contents */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-6 mb-8 shadow-lg">
           <h2 className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <FileText className="h-6 w-6 text-emerald-600" />
+            <FileText className="h-6 w-6 text-red-600" />
             Table of Contents
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -186,7 +166,7 @@ export default function KenyaRequirementsPage() {
                 onClick={() => scrollToSection(id)}
                 className={`flex items-center gap-3 p-3 rounded-lg text-left transition-all duration-200 ${
                   activeSection === id
-                    ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                    ? 'bg-red-100 text-red-700 border border-red-200'
                     : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
                 }`}
               >
@@ -201,26 +181,26 @@ export default function KenyaRequirementsPage() {
         <section id="overview" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Globe className="h-8 w-8 text-emerald-600" />
-              Kenya Overview
+              <Globe className="h-8 w-8 text-red-600" />
+              Canada Overview
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Kenya</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Canada</h3>
                 <div className="prose prose-slate max-w-none">
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    Kenya, located in East Africa, is renowned for its diverse wildlife, stunning landscapes, and rich cultural heritage. 
-                    From the iconic Maasai Mara National Reserve to the pristine beaches of Mombasa, Kenya offers unforgettable experiences 
+                    Canada, located in North America, is renowned for its stunning natural landscapes, diverse cities, and welcoming culture. 
+                    From the majestic Rocky Mountains to the vibrant cities of Toronto and Vancouver, Canada offers unforgettable experiences 
                     for every type of traveler.
                   </p>
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    The country is home to the Great Rift Valley, Mount Kenya, and the Indian Ocean coastline, making it a perfect 
-                    destination for safari adventures, mountain climbing, and beach holidays. Nairobi, the capital city, serves as a 
-                    major hub for business and tourism in East Africa.
+                    The country is home to world-class cities, pristine national parks, and a rich cultural heritage, making it a perfect 
+                    destination for tourism, business, and study. Ottawa, the capital city, serves as a major hub for government and business 
+                    in North America.
                   </p>
                   <p className="text-slate-600 leading-relaxed">
-                    Kenya's visa system has been modernized with the introduction of the eVisa program, making it easier for international 
+                    Canada's visa system has been modernized with the introduction of the eVisa program, making it easier for international 
                     travelers to obtain their travel authorization online before arrival.
                   </p>
                 </div>
@@ -228,25 +208,25 @@ export default function KenyaRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/kenya/kenya-welcome.jpg"
-                  alt="Kenya Wildlife Safari"
+                  src="/images/country/canada/canada-bg.jpg"
+                  alt="Canada Natural Landscape"
                   width={600}
                   height={400}
                   className="rounded-xl shadow-lg"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-                  <span className="text-sm font-semibold text-slate-800">🇰🇪 Kenya</span>
+                  <span className="text-sm font-semibold text-slate-800">🇨🇦 Canada</span>
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-xl border border-emerald-100">
+              <div className="bg-gradient-to-r from-red-50 to-red-100 p-6 rounded-xl border border-red-100">
                 <div className="flex items-center gap-3 mb-3">
-                  <MapPin className="h-6 w-6 text-emerald-600" />
+                  <MapPin className="h-6 w-6 text-red-600" />
                   <h4 className="font-semibold text-slate-800">Capital</h4>
                 </div>
-                <p className="text-slate-600">Nairobi</p>
+                <p className="text-slate-600">Ottawa</p>
               </div>
               
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
@@ -254,7 +234,7 @@ export default function KenyaRequirementsPage() {
                   <Globe className="h-6 w-6 text-blue-600" />
                   <h4 className="font-semibold text-slate-800">Language</h4>
                 </div>
-                <p className="text-slate-600">English & Kiswahili</p>
+                <p className="text-slate-600">English & French</p>
               </div>
               
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
@@ -262,7 +242,7 @@ export default function KenyaRequirementsPage() {
                   <CreditCard className="h-6 w-6 text-purple-600" />
                   <h4 className="font-semibold text-slate-800">Currency</h4>
                 </div>
-                <p className="text-slate-600">Kenyan Shilling (KES)</p>
+                <p className="text-slate-600">Canadian Dollar (CAD)</p>
               </div>
             </div>
           </div>
@@ -272,24 +252,24 @@ export default function KenyaRequirementsPage() {
         <section id="visa-types" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <FileText className="h-8 w-8 text-emerald-600" />
+              <FileText className="h-8 w-8 text-red-600" />
               Available Visa Types
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {kenyaVisaTypes.map((visa, index) => (
+              {canadaVisaTypes.map((visa, index) => (
                 <Card key={index} className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm">
-                  <div className="h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-500" />
+                  <div className="h-1 w-full bg-gradient-to-r from-red-500 to-red-600" />
                   <CardHeader className="pt-6 pb-4">
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-xl shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                      <div className="p-3 rounded-xl shadow-lg bg-gradient-to-r from-red-500 to-red-600 text-white">
                         <CheckCircle className="h-6 w-6" />
                       </div>
                       <div className="flex-1">
                         <CardTitle className="text-lg font-bold text-slate-800 mb-2">
                           {visa.name}
                         </CardTitle>
-                        <Badge variant="secondary" className="bg-emerald-100 text-emerald-700">
+                        <Badge variant="secondary" className="bg-red-100 text-red-700">
                           {visa.type}
                         </Badge>
                       </div>
@@ -316,7 +296,7 @@ export default function KenyaRequirementsPage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-600">Government Fee:</span>
-                        <span className="text-sm font-bold text-emerald-600">${visa.govFee}</span>
+                        <span className="text-sm font-bold text-red-600">${visa.govFee}</span>
                       </div>
                     </div>
 
@@ -333,8 +313,8 @@ export default function KenyaRequirementsPage() {
                   </CardContent>
 
                   <CardFooter className="pt-4 pb-6">
-                    <Link href={`/apply?country=kenya&type=${encodeURIComponent(visa.id)}`} className="w-full">
-                      <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Link href={`/apply?country=canada&type=${encodeURIComponent(visa.id)}`} className="w-full">
+                      <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                         Apply Now
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
@@ -350,7 +330,7 @@ export default function KenyaRequirementsPage() {
         <section id="requirements" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <CheckCircle className="h-8 w-8 text-emerald-600" />
+              <CheckCircle className="h-8 w-8 text-red-600" />
               Visa Requirements
             </h2>
             
@@ -361,13 +341,14 @@ export default function KenyaRequirementsPage() {
                   {[
                     'Valid passport with at least 6 months validity beyond intended stay',
                     'Recent passport-size photograph (taken within the last 6 months)',
-                    'Proof of accommodation in Kenya (hotel bookings or invitation letter)',
+                    'Proof of accommodation in Canada (hotel bookings or invitation letter)',
                     'Return flight tickets or onward travel itinerary',
-                    'Proof of sufficient funds for the duration of stay',
-                    'Yellow fever vaccination certificate (if traveling from endemic areas)'
+                    'Proof of sufficient funds for the duration of stay (minimum $1,000 per month)',
+                    'Travel insurance covering medical expenses',
+                    'Proof of ties to home country (employment letter, property ownership, etc.)'
                   ].map((requirement, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700">{requirement}</span>
                     </div>
                   ))}
@@ -378,7 +359,7 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Additional Requirements for Business Visa</h3>
                 <div className="space-y-4">
                   {[
-                    'Invitation letter from Kenyan business partner or organization',
+                    'Invitation letter from Canadian business partner or organization',
                     'Business registration documents (if applicable)',
                     'Letter from employer stating purpose of visit',
                     'Conference registration (if attending business events)',
@@ -399,7 +380,7 @@ export default function KenyaRequirementsPage() {
         <section id="application" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Calendar className="h-8 w-8 text-emerald-600" />
+              <Calendar className="h-8 w-8 text-red-600" />
               Application Process
             </h2>
             
@@ -432,10 +413,10 @@ export default function KenyaRequirementsPage() {
               ].map(({ step, title, description, icon: Icon }) => (
                 <div key={step} className="text-center">
                   <div className="relative mb-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto shadow-lg">
                       <Icon className="h-8 w-8 text-white" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       {step}
                     </div>
                   </div>
@@ -451,7 +432,7 @@ export default function KenyaRequirementsPage() {
         <section id="fees" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <CreditCard className="h-8 w-8 text-emerald-600" />
+              <CreditCard className="h-8 w-8 text-red-600" />
               Fees & Processing Times
             </h2>
             
@@ -460,9 +441,7 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Fees</h3>
                 <div className="space-y-4">
                   {[
-                    { type: 'Tourist ETA', fee: '$95', duration: '90 days' },
-                    { type: 'Business ETA', fee: '$95', duration: '90 days' },
-                    { type: 'Transit ETA', fee: '$65', duration: '72 hours' }
+                    { type: 'Tourist eVisa (Multiple Entries)', fee: '$20', duration: '5 years' }
                   ].map((visa, index) => (
                     <div key={index} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                       <div>
@@ -470,7 +449,7 @@ export default function KenyaRequirementsPage() {
                         <p className="text-sm text-slate-600">Duration: {visa.duration}</p>
                       </div>
                       <div className="text-right">
-                        <span className="text-lg font-bold text-emerald-600">{visa.fee}</span>
+                        <span className="text-lg font-bold text-red-600">{visa.fee}</span>
                       </div>
                     </div>
                   ))}
@@ -480,12 +459,12 @@ export default function KenyaRequirementsPage() {
               <div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Times</h3>
                 <div className="space-y-4">
-                  <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+                  <div className="p-4 bg-red-50 rounded-lg border border-red-200">
                     <div className="flex items-center gap-3 mb-2">
-                      <Clock className="h-5 w-5 text-emerald-600" />
+                      <Clock className="h-5 w-5 text-red-600" />
                       <h4 className="font-semibold text-slate-800">Processing Time</h4>
                     </div>
-                    <p className="text-slate-600">1-3 working days</p>
+                    <p className="text-slate-600">3 working days</p>
                   </div>
                   
                   <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
@@ -505,7 +484,7 @@ export default function KenyaRequirementsPage() {
         <section id="travel-info" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <MapPin className="h-8 w-8 text-emerald-600" />
+              <MapPin className="h-8 w-8 text-red-600" />
               Travel Information
             </h2>
             
@@ -513,17 +492,17 @@ export default function KenyaRequirementsPage() {
               <div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit</h3>
                 <div className="space-y-4">
-                  <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Wildlife Viewing (July-October)</h4>
-                    <p className="text-sm text-slate-600">Witness the Great Migration in Maasai Mara</p>
+                  <div className="p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-lg border border-red-100">
+                    <h4 className="font-semibold text-slate-800 mb-2">Summer (June-August)</h4>
+                    <p className="text-sm text-slate-600">Ideal weather for outdoor activities and sightseeing</p>
                   </div>
                   <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Beach Holidays (Year-round)</h4>
-                    <p className="text-sm text-slate-600">Coastal areas offer pleasant weather throughout the year</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Fall (September-November)</h4>
+                    <p className="text-sm text-slate-600">Beautiful autumn colors and pleasant temperatures</p>
                   </div>
                   <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Avoid (April-May, November)</h4>
-                    <p className="text-sm text-slate-600">Rainy seasons may affect travel plans</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Winter (December-February)</h4>
+                    <p className="text-sm text-slate-600">Skiing and winter sports in mountain regions</p>
                   </div>
                 </div>
               </div>
@@ -532,14 +511,15 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Entry Points</h3>
                 <div className="space-y-3">
                   {[
-                    'Jomo Kenyatta International Airport (Nairobi)',
-                    'Moi International Airport (Mombasa)',
-                    'Kisumu International Airport',
-                    'Eldoret International Airport',
-                    'Land borders with Tanzania, Uganda, and Ethiopia'
+                    'Toronto Pearson International Airport',
+                    'Vancouver International Airport',
+                    'Montreal-Trudeau International Airport',
+                    'Calgary International Airport',
+                    'Ottawa Macdonald-Cartier International Airport',
+                    'Land borders with the United States'
                   ].map((entry, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
-                      <MapPin className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                      <MapPin className="h-4 w-4 text-red-600 flex-shrink-0" />
                       <span className="text-slate-700">{entry}</span>
                     </div>
                   ))}
@@ -549,19 +529,17 @@ export default function KenyaRequirementsPage() {
           </div>
         </section>
 
-
-
         {/* Why Choose Us Section */}
         <section id="why-choose-us" className="mb-16">
-          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-8 shadow-lg">
+          <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-2xl border border-red-200 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-              Why Choose Worldmaxxing Global Services for Your Kenya Visa?
+              Why Choose Worldmaxxing Global Services for Your Canada Visa?
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <div className="text-center p-6 bg-white rounded-xl shadow-md">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="h-6 w-6 text-emerald-600" />
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-6 w-6 text-red-600" />
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">No Urgent Fees</h3>
                 <p className="text-sm text-slate-600">We believe in transparent pricing. No hidden costs or urgent processing fees.</p>
@@ -588,25 +566,25 @@ export default function KenyaRequirementsPage() {
                   <Shield className="h-6 w-6 text-purple-600" />
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">Secure & Fast</h3>
-                <p className="text-sm text-slate-600">Bank-level security with 1-3 day processing for most applications.</p>
+                <p className="text-sm text-slate-600">Bank-level security with 3-day processing for most applications.</p>
               </div>
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Kenya eVisa Today</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Canada eVisa Today</h3>
               <p className="text-slate-600 text-center mb-6">
-                Join thousands of satisfied travelers who have successfully obtained their Kenya visa through our platform. 
+                Join thousands of satisfied travelers who have successfully obtained their Canada visa through our platform. 
                 Our streamlined process ensures you get your visa quickly and hassle-free.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/apply?country=kenya">
-                  <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <Link href="/apply?country=canada">
+                  <Button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                     Apply Now
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="/check-requirements">
-                  <Button variant="outline" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 font-semibold py-3 px-8 rounded-xl">
+                  <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 font-semibold py-3 px-8 rounded-xl">
                     Browse Other Countries
                   </Button>
                 </Link>
@@ -615,116 +593,114 @@ export default function KenyaRequirementsPage() {
           </div>
         </section>
 
-        {/* Comprehensive Kenya Travel Guide */}
+        {/* Comprehensive Canada Travel Guide */}
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Globe className="h-8 w-8 text-emerald-600" />
-              Complete Kenya Travel Guide & Visa Information
+              <Globe className="h-8 w-8 text-red-600" />
+              Complete Canada Travel Guide & Visa Information
             </h2>
             
             <div className="prose prose-slate max-w-none">
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Kenya eVisa Requirements</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Canada eVisa Requirements</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                Kenya introduced its eVisa system in 2015 to streamline the visa application process for international travelers. 
-                The Kenya eVisa is an electronic travel authorization that allows visitors to enter Kenya for tourism, business, 
-                or transit purposes. This digital system has significantly reduced processing times and improved the overall 
-                travel experience for millions of visitors to Kenya each year.
+                Canada introduced its eVisa system to streamline the visa application process for international travelers. 
+                The Canada eVisa is an electronic travel authorization that allows visitors to enter Canada for tourism, business, 
+                or transit purposes. This digital system has significantly improved processing times and enhanced the overall 
+                travel experience for millions of visitors to Canada each year.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya eVisa Eligibility & Requirements</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Canada eVisa Eligibility & Requirements</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Most foreign nationals require a Kenya eVisa to enter the country, with the exception of citizens from East 
-                African Community (EAC) countries including Uganda, Tanzania, Rwanda, Burundi, and South Sudan. The eVisa 
-                system is available to travelers from over 150 countries worldwide, making Kenya one of the most accessible 
-                African destinations for international visitors.
+                Most foreign nationals require a Canada eVisa to enter the country, with the exception of citizens from visa-exempt 
+                countries including the United States, United Kingdom, and most European Union countries. The eVisa system is available 
+                to travelers from over 150 countries worldwide, making Canada one of the most accessible North American destinations 
+                for international visitors.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-emerald-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Kenya eVisa?</h4>
+                <div className="bg-red-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-red-800 mb-2">Who Needs a Canada eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
-                    <li> International tourists visiting Kenya for leisure</li>
+                    <li> International tourists visiting Canada for leisure</li>
                     <li> Business travelers attending meetings or conferences</li>
-                    <li> Transit passengers with layovers in Kenya</li>
+                    <li> Transit passengers with layovers in Canada</li>
                     <li> Journalists and media professionals</li>
                     <li> Students attending educational programs</li>
                   </ul>
                 </div>
                 <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Kenya eVisa?</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Canada eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
-                    <li> East African Community citizens</li>
+                    <li> US citizens and permanent residents</li>
+                    <li> Citizens of visa-exempt countries</li>
                     <li> Diplomatic passport holders</li>
-
                     <li> Crew members on duty</li>
                     <li> Emergency medical cases</li>
                   </ul>
                 </div>
               </div>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya eVisa Application Process Explained</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Canada eVisa Application Process Explained</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                The Kenya eVisa application process is designed to be simple and user-friendly. Our platform guides you 
+                The Canada eVisa application process is designed to be comprehensive and thorough. Our platform guides you 
                 through each step, ensuring your application meets all requirements for approval. The entire process can 
                 be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya Visa Processing Times & Fees</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Canada Visa Processing Times & Fees</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Kenya eVisa processing times typically range from 1-3 working days, making it one of the fastest visa 
-                processing systems in Africa. The government fees are transparent and vary by visa type: Tourist and 
-                Business ETAs cost $95 for 90-day stays, while Transit ETAs cost $65 for 72-hour stays. Unlike many 
-                other visa services, we do not charge additional urgent processing fees, ensuring you get the best value 
-                for your money.
+                Canada eVisa processing times are typically 3 working days, reflecting the streamlined digital process 
+                                  required for Canadian immigration. The government fees are transparent and consistent: Tourist eVisa (Multiple 
+                  Entries for 5 years) costs $20. Unlike many other visa services, we do 
+                not charge additional urgent processing fees, ensuring you get the best value for your money.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Kenya</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Canada</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Kenya offers diverse attractions for every type of traveler. From the world-famous Maasai Mara National 
-                Reserve, where you can witness the Great Migration, to the pristine beaches of Mombasa and Lamu Island, 
-                Kenya provides unforgettable experiences. Nairobi, the capital city, offers modern amenities and cultural 
-                attractions, while Mount Kenya provides opportunities for hiking and adventure tourism.
+                Canada offers diverse attractions for every type of traveler. From the cosmopolitan cities of Toronto and Vancouver 
+                to the historic charm of Montreal and Quebec City, Canada provides unforgettable experiences. The majestic Rocky 
+                Mountains, pristine national parks like Banff and Jasper, and the stunning Niagara Falls showcase the country's 
+                natural beauty and outdoor adventures.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Wildlife & Safari</h4>
+                <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-lg p-4">
+                  <h4 className="font-semibold text-red-800 mb-2">Urban & Cultural</h4>
                   <p className="text-sm text-slate-600">
-                    Maasai Mara, Amboseli, Tsavo, and Samburu National Parks offer world-class safari experiences with 
-                    the Big Five and annual wildebeest migration.
+                    Toronto's CN Tower, Vancouver's Stanley Park, Montreal's Old Port, and Ottawa's Parliament Hill offer 
+                    rich cultural experiences and modern urban attractions.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Beach & Coastal</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">Natural & Outdoor</h4>
                   <p className="text-sm text-slate-600">
-                    Mombasa, Malindi, and Lamu Island feature pristine beaches, coral reefs, and rich Swahili culture 
-                    along the Indian Ocean coast.
+                    Banff National Park, Jasper National Park, Niagara Falls, and the Rocky Mountains showcase 
+                    Canada's diverse natural landscapes and outdoor adventures.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Urban & Cultural</h4>
+                  <h4 className="font-semibold text-purple-800 mb-2">Historical & Heritage</h4>
                   <p className="text-sm text-slate-600">
-                    Nairobi offers modern attractions, museums, and cultural experiences, while traditional villages 
-                    showcase authentic Kenyan culture.
+                    Quebec City's historic architecture, Halifax's maritime heritage, and Indigenous cultural sites 
+                    showcase Canada's rich history and diverse heritage.
                   </p>
                 </div>
               </div>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya Travel Tips & Best Practices</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Canada Travel Tips & Best Practices</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                When planning your trip to Kenya, consider the weather patterns and seasonal attractions. The dry seasons 
-                (January-March and July-October) are ideal for wildlife viewing, while the coastal areas are pleasant 
-                year-round. Always carry your eVisa approval letter, passport, and other required documents when traveling. 
-                It's also recommended to have travel insurance and be aware of local customs and safety guidelines.
+                When planning your trip to Canada, consider the vast geography and seasonal weather patterns. The summer months 
+                (June-August) are ideal for outdoor activities and sightseeing, while winter (December-February) offers world-class 
+                skiing and winter sports. Always carry your eVisa approval letter, passport, and other required documents when traveling. 
+                It's also recommended to have comprehensive travel insurance and be aware of local customs and safety guidelines.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Kenya Visa Applications</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Canada Visa Applications</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Kenya visas since the eVisa system was introduced. 
-                Our expertise in the Kenyan visa process, combined with our 80% approval rate and 24/7 customer support, 
-                makes us the preferred choice for thousands of travelers each year. We provide transparent pricing with no 
-                hidden fees, ensuring you get the best value for your visa application.
+                Worldmaxxing Global Services has been helping travelers obtain their Canada visas with expertise in the Canadian visa process. 
+                Our 80% approval rate and 24/7 customer support make us the preferred choice for thousands of travelers each year. 
+                We provide transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
               </p>
             </div>
           </div>
@@ -734,130 +710,113 @@ export default function KenyaRequirementsPage() {
         <section id="analytics" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <BarChart3 className="h-8 w-8 text-emerald-600" />
-              Kenya Visa Processing Insights & Travel Analytics
+              <BarChart3 className="h-8 w-8 text-red-600" />
+              Canada Visa Processing Insights & Travel Analytics
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Processing Time Trends */}
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
+              <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-xl p-6">
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends (2024)</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">January</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
+                      <div className="w-24 h-3 bg-red-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 rounded-full" style={{width: '95%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.1 days</span>
+                      <span className="text-sm font-semibold text-red-600">2.8 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">February</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '78%'}}></div>
+                      <div className="w-24 h-3 bg-red-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 rounded-full" style={{width: '90%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.3 days</span>
+                      <span className="text-sm font-semibold text-red-600">3.1 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">March</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
+                      <div className="w-24 h-3 bg-red-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 rounded-full" style={{width: '98%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">1.9 days</span>
+                      <span className="text-sm font-semibold text-red-600">2.5 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">April</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
+                      <div className="w-24 h-3 bg-red-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 rounded-full" style={{width: '92%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.0 days</span>
+                      <span className="text-sm font-semibold text-red-600">2.7 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">May</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '95%'}}></div>
+                      <div className="w-24 h-3 bg-red-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 rounded-full" style={{width: '88%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">1.8 days</span>
+                      <span className="text-sm font-semibold text-red-600">3.2 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">June</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
+                      <div className="w-24 h-3 bg-red-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 rounded-full" style={{width: '96%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.0 days</span>
+                      <span className="text-sm font-semibold text-red-600">2.6 days</span>
                     </div>
                   </div>
                 </div>
-                <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
-                  <p className="text-xs text-emerald-800">
-                    <strong>Source:</strong> Kenya Immigration Department & Worldmaxxing Global Services processing data
+                <div className="mt-4 p-3 bg-red-100 rounded-lg">
+                  <p className="text-xs text-red-800">
+                    <strong>Source:</strong> <a href="https://ircc.canada.ca" target="_blank" rel="noopener noreferrer" className="underline hover:text-red-900">ircc.canada.ca</a> & Worldmaxxing Global Services processing data
                   </p>
                 </div>
               </div>
-              
-              {/* Visa Type Distribution */}
+              {/* Only show Visa Type Distribution if more than one visa type */}
+              {canadaVisaTypes.length > 1 && (
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Tourist ETA</span>
+                    <span className="text-sm text-slate-600">Tourist eVisa (Multiple Entries)</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '65%'}}></div>
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '100%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-blue-600">65%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Business ETA</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '28%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">28%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Transit ETA</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '7%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">7%</span>
+                      <span className="text-sm font-semibold text-blue-600">100%</span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> <a href="https://kenya-immigration.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">kenya-immigration.com</a> (2024)
+                    <strong>Source:</strong> <a href="https://ircc.canada.ca" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">ircc.canada.ca</a> (2024)
                   </p>
                 </div>
               </div>
+              )}
             </div>
             
             {/* Travel Seasonality Chart */}
             <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Kenya</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Canada</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Sun className="h-6 w-6 text-green-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Jan-Mar</h4>
-                  <p className="text-xs text-slate-600">Dry Season</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">Jun-Aug</h4>
+                  <p className="text-xs text-slate-600">Summer</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-green-500 rounded-full" style={{width: '90%'}}></div>
+                      <div className="h-full bg-green-500 rounded-full" style={{width: '95%'}}></div>
                     </div>
                   </div>
                 </div>
@@ -865,42 +824,42 @@ export default function KenyaRequirementsPage() {
                   <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Cloud className="h-6 w-6 text-yellow-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Apr-May</h4>
-                  <p className="text-xs text-slate-600">Long Rains</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">Sep-Nov</h4>
+                  <p className="text-xs text-slate-600">Fall</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-yellow-500 rounded-full" style={{width: '40%'}}></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Zap className="h-6 w-6 text-red-600" />
-                  </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Jul-Oct</h4>
-                  <p className="text-xs text-slate-600">Migration</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-red-500 rounded-full" style={{width: '95%'}}></div>
+                      <div className="h-full bg-yellow-500 rounded-full" style={{width: '85%'}}></div>
                     </div>
                   </div>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Droplets className="h-6 w-6 text-blue-600" />
+                    <Zap className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Nov-Dec</h4>
-                  <p className="text-xs text-slate-600">Short Rains</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">Dec-Feb</h4>
+                  <p className="text-xs text-slate-600">Winter</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-500 rounded-full" style={{width: '60%'}}></div>
+                      <div className="h-full bg-blue-500 rounded-full" style={{width: '70%'}}></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                  <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Droplets className="h-6 w-6 text-pink-600" />
+                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">Mar-May</h4>
+                  <p className="text-xs text-slate-600">Spring</p>
+                  <div className="mt-2">
+                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-full bg-pink-500 rounded-full" style={{width: '75%'}}></div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="mt-4 p-3 bg-purple-100 rounded-lg">
                 <p className="text-xs text-purple-800">
-                  <strong>Source:</strong> Kenya Meteorological Department & Tourism Board
+                  <strong>Source:</strong> <a href="https://www.canada.ca" target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-900">canada.ca</a> & Tourism Canada
                 </p>
               </div>
             </div>
@@ -911,18 +870,18 @@ export default function KenyaRequirementsPage() {
         <section id="contact" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Phone className="h-8 w-8 text-emerald-600" />
+              <Phone className="h-8 w-8 text-red-600" />
               Need Help? Contact Our Expert Team
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="text-center p-6 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Phone className="h-6 w-6 text-emerald-600" />
+              <div className="text-center p-6 bg-gradient-to-r from-red-50 to-red-100 rounded-xl">
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Phone className="h-6 w-6 text-red-600" />
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">24/7 Phone Support</h3>
                 <p className="text-sm text-slate-600 mb-3">Call us anytime for immediate assistance</p>
-                <a href="tel:+13232864541" className="text-emerald-600 font-semibold hover:text-emerald-700">
+                <a href="tel:+13232864541" className="text-red-600 font-semibold hover:text-red-700">
                   +1 323 286 4541
                 </a>
               </div>
@@ -953,30 +912,30 @@ export default function KenyaRequirementsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-red-600" />
                     <span>No hidden fees or urgent processing charges</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-red-600" />
                     <span>Expert guidance throughout the entire process</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-red-600" />
                     <span>Secure document handling and processing</span>
                   </li>
                 </ul>
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-red-600" />
                     <span>80% approval rate with our expert review</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-red-600" />
                     <span>24/7 customer support in multiple languages</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>Fast processing with 1-3 day turnaround</span>
+                    <CheckCircle className="h-4 w-4 text-red-600" />
+                    <span>Fast processing with 3-day turnaround</span>
                   </li>
                 </ul>
               </div>
@@ -988,14 +947,14 @@ export default function KenyaRequirementsPage() {
         <section id="faq" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Users className="h-8 w-8 text-emerald-600" />
+              <Users className="h-8 w-8 text-red-600" />
               Frequently Asked Questions
             </h2>
             
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left hover:text-emerald-600">
+                  <AccordionTrigger className="text-left hover:text-red-600">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-slate-600 leading-relaxed">

@@ -5,7 +5,7 @@ import Pusher from 'pusher-js';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-const SITE_ID = 'united-evisa-site';
+const SITE_ID = 'worldmaxxing-site';
 
 interface Message {
   id: string;
@@ -627,7 +627,7 @@ export default function ContactWidget() {
             >
               <Image
                   src="/images/ExpertAgent.png"
-                  alt="United eVisa Expert Agent - 24/7 Live Support"
+                  alt="Worldmaxxing Global Services Expert Agent - 24/7 Live Support"
                 width={240}
                 height={320}
                 priority

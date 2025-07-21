@@ -27,34 +27,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "United eVisa | Your Trusted Global Visa Assistant",
-  description: "Get fast and reliable eVisa services for over 190 countries. Apply online, track your application, and receive your visa in record time.",
-  keywords: "evisa, online visa, electronic visa, travel visa, visa application, visa service",
-  authors: [{ name: "United eVisa" }],
-  creator: "United eVisa",
+  title: "Worldmaxxing Global Services | Your Trusted Global Visa Assistant",
+  description: "Get your eVisa quickly and securely with Worldmaxxing Global Services. Apply for visas to Kenya, Canada, Vietnam, and more countries with our expert assistance.",
+  keywords: "eVisa, visa application, Kenya visa, Canada visa, Vietnam visa, online visa, travel visa, immigration services",
+  authors: [{ name: "Worldmaxxing Global Services" }],
+  creator: "Worldmaxxing Global Services",
+  publisher: "Worldmaxxing Global Services",
+  robots: "index, follow",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://unitedevisa.com",
-    siteName: "United eVisa",
-    title: "United eVisa | Your Trusted Global Visa Assistant",
-    description: "Fast, reliable, and trusted eVisa services worldwide",
+    url: "https://worldmaxxing.com",
+    siteName: "Worldmaxxing Global Services",
+    title: "Worldmaxxing Global Services | Your Trusted Global Visa Assistant",
+    description: "Get your eVisa quickly and securely with Worldmaxxing Global Services. Apply for visas to Kenya, Canada, Vietnam, and more countries with our expert assistance.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/logo.png",
         width: 1200,
         height: 630,
-        alt: "United eVisa"
+        alt: "Worldmaxxing Global Services"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "United eVisa | Your Trusted Global Visa Assistant",
+    title: "Worldmaxxing Global Services | Your Trusted Global Visa Assistant",
     description: "Fast, reliable, and trusted eVisa services worldwide",
     images: ["/images/twitter-image.jpg"]
-  },
-  robots: "index, follow"
+  }
 };
 
 // Move viewport to its own export

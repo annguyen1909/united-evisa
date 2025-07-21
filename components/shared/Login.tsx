@@ -62,7 +62,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8">
               <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg text-center max-w-md">
-                <h2 className="text-2xl font-bold text-emerald-800 mb-2">Welcome to United eVisa</h2>
+                <h2 className="text-2xl font-bold text-emerald-800 mb-2">Welcome to Worldmaxxing Global Services</h2>
                 <p className="text-slate-700">Access your account to manage your visa applications and track their status.</p>
               </div>
             </div>

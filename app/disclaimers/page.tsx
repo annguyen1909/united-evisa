@@ -2,9 +2,9 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Disclaimers | United eVisa Immigration Assistance Service',
+  title: 'Disclaimers | Worldmaxxing Global Services Immigration Assistance Service',
   description:
-    'Important disclaimers and legal notices for United eVisa Immigration Assistance Service - Understand our role, limitations, and your rights.',
+    'Important disclaimers and legal notices for Worldmaxxing Global Services Immigration Assistance Service - Understand our role, limitations, and your rights.',
 };
 
 export default function DisclaimersPage() {
@@ -79,7 +79,7 @@ export default function DisclaimersPage() {
                       </div>
                       <div className="flex-1">
                         <p className="text-gray-800 mb-3 font-medium">
-                          <strong>Important Notice:</strong> unitedevisa.com is operated by United
+                          <strong>Important Notice:</strong> worldmaxxing.com is operated by Worldmaxxing Global Services
                           eVisa Immigration Assistance Service, a private company that provides
                           visa application assistance and support services.
                         </p>
@@ -508,10 +508,10 @@ export default function DisclaimersPage() {
                             <p className="text-gray-700 text-sm">
                               Email:{' '}
                               <a
-                                href="mailto:visa@unitedevisa.com"
+                                href="mailto:visa@worldmaxxing.com"
                                 className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                               >
-                                visa@unitedevisa.com
+                                visa@worldmaxxing.com
                               </a>
                             </p>
                             <p className="text-gray-700 text-sm">
@@ -533,14 +533,14 @@ export default function DisclaimersPage() {
                             <p className="text-gray-700 text-sm">
                               Email:{' '}
                               <a
-                                href="mailto:visa@unitedevisa.com"
+                                href="mailto:visa@worldmaxxing.com"
                                 className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                               >
-                                visa@unitedevisa.com
+                                visa@worldmaxxing.com
                               </a>
                             </p>
                             <p className="text-gray-700 text-sm">
-                              Address: United eVisa Immigration Assistance Service
+                              Address: Worldmaxxing Global Services Immigration Assistance Service
                               <br />
                               [Your Business Address]
                             </p>

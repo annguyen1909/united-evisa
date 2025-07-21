@@ -10,7 +10,7 @@ const mongolia: Country = {
   flagUrl: '/images/country/mongolia/mongolia-square.png',
   imageUrl: '/images/country/mongolia/mongolia-bg.jpg',
   roundedFlagUrl: '/images/country/mongolia/mongolia-rounded.png',
-  description: `Apply for your Mongolia eVisa online with United eVisa. Fast, secure, and convenient visa application for Mongolia travel. Get your Mongolia visa quickly with our expert assistance.`,
+  description: `Apply for your Mongolia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Mongolia travel. Get your Mongolia visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Mongolia's vast steppes, nomadic culture, and stunning landscapes. From Ulaanbaatar to the Gobi Desert, Mongolia is an adventure traveler's dream.`,
   welcomeImgUrl: '/images/country/mongolia/mongolia-welcome.jpg',
   processingTime: {

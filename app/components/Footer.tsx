@@ -111,7 +111,7 @@ export function Footer({
     sections = defaultSections,
     socialLinks = defaultSocialLinks,
     paymentLinks = defaultPaymentLinks,
-    copyright = "© 2025 Unitedevisa.com All rights reserved.",
+    copyright = "© 2025 Worldmaxxing Global Services. All rights reserved.",
     legalLinks = defaultLegalLinks,
 }: FooterProps) {
     const [email, setEmail] = useState("");
@@ -173,11 +173,11 @@ export function Footer({
                                             className="object-contain"
                                         />
                                     </div>
-                                    <div className="text-white text-xl font-bold">UnitedEVISA</div>
+                                    <div className="text-white text-xl font-bold">Worldmaxxing Global Services</div>
                                 </div>
                             </Link>
                             <p className="text-slate-400 mb-6 pr-8">
-                                UnitedEVISA is a leading global visa service provider, helping travelers 
+                                Worldmaxxing Global Services is a leading global visa service provider, helping travelers 
                                 secure visas quickly and efficiently for destinations worldwide. With our 
                                 expert team and streamlined process, your visa application is in good hands.
                             </p>
@@ -237,13 +237,13 @@ export function Footer({
                                 <li className="flex items-center gap-3">
                                     <Mail className="h-5 w-5 text-emerald-500" />
                                     <span className="text-slate-400 text-sm">
-                                        visa@unitedevisa.com
+                                        visa@worldmaxxing.com
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">
                                     <Globe className="h-5 w-5 text-emerald-500" />
                                     <span className="text-slate-400 text-sm">
-                                        www.unitedevisa.com
+                                        www.worldmaxxing.com
                                     </span>
                                 </li>
                             </ul>

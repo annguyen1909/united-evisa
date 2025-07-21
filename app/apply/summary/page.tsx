@@ -217,13 +217,13 @@ function SummaryContent() {
                                 Contact Our Support Team
                             </h3>
                             <div className="grid gap-4">
-                                <a href="mailto:visa@unitedevisa.com" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">
+                                <a href="mailto:visa@worldmaxxing.com" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">
                                     <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-md">
                                         <Mail className="h-6 w-6 text-white" />
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Email Support</p>
-                                        <p className="text-slate-700">visa@unitedevisa.com</p>
+                                        <p className="text-slate-700">visa@worldmaxxing.com</p>
                                     </div>
                                 </a>
                                 <a href="tel:+1-555-123-4567" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">

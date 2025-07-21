@@ -189,7 +189,7 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                                     {
                                         step: "1",
                                         title: "Email Submission (Recommended)",
-                                        description: `Send documents to visa@unitedevisa.com with subject: "Deferred Application ${applicationData.applicationId}"`
+                                        description: `Send documents to visa@worldmaxxing.com with subject: "Deferred Application ${applicationData.applicationId}"`
                                     },
                                     {
                                         step: "2", 
@@ -225,9 +225,9 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Email Support</p>
-                                        <a href={`mailto:visa@unitedevisa.com?subject=Deferred Application ${applicationData.applicationId}`} 
+                                        <a href={`mailto:visa@worldmaxxing.com?subject=Deferred Application ${applicationData.applicationId}`} 
                                            className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors">
-                                            visa@unitedevisa.com
+                                            visa@worldmaxxing.com
                                         </a>
                                     </div>
                                 </div>

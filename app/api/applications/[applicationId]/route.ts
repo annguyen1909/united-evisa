@@ -58,7 +58,7 @@ export async function GET(
         where: {
           email_websiteCreatedAt: {
             email: session.user.email,
-            websiteCreatedAt: "United eVisa Site"
+            websiteCreatedAt: "Worldmaxxing Site"
           }
         },
         select: { id: true },
@@ -149,7 +149,7 @@ export async function PATCH(
       where: {
         email_websiteCreatedAt: {
           email: session.user.email,
-          websiteCreatedAt: "United eVisa Site"
+          websiteCreatedAt: "Worldmaxxing Site"
         }
       },
       select: { id: true },
@@ -215,7 +215,7 @@ export async function DELETE(
       where: {
         email_websiteCreatedAt: {
           email: session.user.email,
-          websiteCreatedAt: "United eVisa Site"
+          websiteCreatedAt: "Worldmaxxing Site"
         }
       },
       select: { id: true },

@@ -8,7 +8,7 @@ const taiwan: Country = {
   flagUrl: '/images/country/taiwan/taiwan-square.png',
   imageUrl: '/images/country/taiwan/taiwan-bg.jpg',
   roundedFlagUrl: '/images/country/taiwan/taiwan-rounded.png',
-  description: `Apply for your Taiwan eVisa online with United eVisa. Fast, secure, and convenient visa application for Taiwan travel. Get your Taiwan visa quickly with our expert assistance.`,
+  description: `Apply for your Taiwan eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Taiwan travel. Get your Taiwan visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Taiwan's vibrant culture, modern cities, and stunning landscapes. From Taipei's night markets to Taroko Gorge, Taiwan is a must-visit destination for travelers.`,
   welcomeImgUrl: '/images/country/taiwan/taiwan-welcome.jpg',
   processingTime: {

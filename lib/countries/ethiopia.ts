@@ -10,7 +10,7 @@ const ethiopia: Country = {
   flagUrl: '/images/country/ethiopia/ethiopia-square.png',
   imageUrl: '/images/country/ethiopia/ethiopia-bg.jpg',
   roundedFlagUrl: '/images/country/ethiopia/ethiopia-rounded.png',
-  description: `Apply for your Ethiopia eVisa online with United eVisa. Fast, secure, and convenient visa application for Ethiopia travel. Get your Ethiopia visa quickly with our expert assistance.`,
+  description: `Apply for your Ethiopia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Ethiopia travel. Get your Ethiopia visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Ethiopia's rich history, stunning landscapes, and vibrant culture. From the rock-hewn churches of Lalibela to the Simien Mountains, Ethiopia is a unique destination for travelers.`,
   welcomeImgUrl: '/images/country/ethiopia/ethiopia-welcome.jpg',
   processingTime: {

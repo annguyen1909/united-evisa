@@ -33,94 +33,106 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-const kenyaVisaTypes = [
+const vietnamVisaTypes = [
   {
-    id: "kenya-tourist-single-90-days",
-    name: 'Tourist ETA (Single Entry for 90 days)',
-    type: 'Tourist ETA',
+    id: "vietnam-tourist-single-90-days",
+    name: 'Tourist eVisa (Single Entry for 90 days)',
+    type: 'Tourist eVisa',
     description: 'Single Entry for 90 days',
     entry: 'Single Entry',
     visaDuration: 90,
-    visaValidity: '60 days',
-    govFee: 95,
-    processingTime: '3 working days',
-    features: ['Safari tours', 'Beach holidays', 'Cultural visits', 'Wildlife photography']
+    visaValidity: '90 days',
+    govFee: 55,
+    processingTime: '1-3 working days',
+    features: ['Tourism and sightseeing', 'Cultural visits', 'Family visits', 'Photography and travel']
   },
   {
-    id: "kenya-business-single-90-days",
-    name: 'Business ETA (Single Entry for 90 days)',
-    type: 'Business ETA',
+    id: "vietnam-tourist-multiple-90-days",
+    name: 'Tourist eVisa (Multiple Entries for 90 days)',
+    type: 'Tourist eVisa',
+    description: 'Multiple Entries for 90 days',
+    entry: 'Multiple Entries',
+    visaDuration: 90,
+    visaValidity: '90 days',
+    govFee: 80,
+    processingTime: '1-3 working days',
+    features: ['Extended tourism stays', 'Multiple country visits', 'Business and leisure combined', 'Frequent travelers']
+  },
+  {
+    id: "vietnam-business-single-90-days",
+    name: 'Business eVisa (Single Entry for 90 days)',
+    type: 'Business eVisa',
     description: 'Single Entry for 90 days',
     entry: 'Single Entry',
     visaDuration: 90,
-    visaValidity: '60 days',
-    govFee: 95,
-    processingTime: '3 working days',
-    features: ['Business meetings', 'Conferences', 'Trade shows', 'Corporate events']
+    visaValidity: '90 days',
+    govFee: 55,
+    processingTime: '1-3 working days',
+    features: ['Business meetings', 'Conferences and seminars', 'Trade shows', 'Corporate events']
   },
   {
-    id: "kenya-transit-single-72-hours",
-    name: 'Transit ETA (Single Entry for 72 hours)',
-    type: 'Transit ETA',
-    description: 'Single Entry for 72 hours',
-    entry: 'Single Entry',
-    visaDuration: 3,
-    visaValidity: '60 days',
-    govFee: 65,
-    processingTime: '1 working day',
-    features: ['Airport transit', 'Short layovers', 'Quick connections', 'Emergency travel']
+    id: "vietnam-business-multiple-90-days",
+    name: 'Business eVisa (Multiple Entries for 90 days)',
+    type: 'Business eVisa',
+    description: 'Multiple Entries for 90 days',
+    entry: 'Multiple Entries',
+    visaDuration: 90,
+    visaValidity: '90 days',
+    govFee: 80,
+    processingTime: '1-3 working days',
+    features: ['Extended business stays', 'Multiple business trips', 'International trade', 'Corporate partnerships']
   }
 ];
 
 const faqs = [
   {
-    question: "Do I need a visa to visit Kenya?",
-    answer: "Most foreign nationals require a visa to enter Kenya. However, citizens of East African Community (EAC) countries (Uganda, Tanzania, Rwanda, Burundi, and South Sudan) do not need a visa. The Kenya eVisa system allows travelers from eligible countries to apply online before their trip. The eVisa is mandatory for tourism, business, and transit purposes."
+    question: "Do I need a visa to visit Vietnam?",
+    answer: "Most foreign nationals require a visa to enter Vietnam. However, citizens of ASEAN countries and some visa-exempt countries do not need a visa. The Vietnam eVisa system allows travelers from eligible countries to apply online before their trip. The eVisa is mandatory for tourism, business, and transit purposes."
   },
   {
-    question: "How long does it take to process a Kenya eVisa?",
-    answer: "Processing time for Kenya eVisas ranges from 1-3 working days. We recommend applying at least 1 week before your intended travel date to avoid any delays. Our platform has an 80% approval rate, and we provide 24/7 support throughout the application process."
+    question: "How long does it take to process a Vietnam eVisa?",
+    answer: "Processing time for Vietnam eVisas ranges from 1-3 working days. We recommend applying at least 1 week before your intended travel date to avoid any delays. Our platform has an 80% approval rate, and we provide 24/7 support throughout the application process."
   },
   {
-    question: "What documents do I need for a Kenya eVisa?",
-    answer: "You'll need a valid passport with at least 6 months validity beyond your intended stay, a recent passport-size photo, proof of accommodation in Kenya, return flight tickets, and sufficient funds for your stay. Business travelers may need additional documents like invitation letters. All documents should be clear, legible, and in English."
+    question: "What documents do I need for a Vietnam eVisa?",
+    answer: "You'll need a valid passport with at least 6 months validity beyond your intended stay, a recent passport-size photo, proof of accommodation in Vietnam, return flight tickets, and sufficient funds for your stay. Business travelers may need additional documents like invitation letters. All documents should be clear, legible, and in English."
   },
   {
-    question: "Can I extend my Kenya visa?",
-    answer: "Yes, you can extend your Kenya visa while in the country. You'll need to visit the Immigration Department in Nairobi or other major cities. Extensions are typically granted for valid reasons such as medical treatment, business needs, or tourism. There are fees associated with visa extensions, and the process can take several days."
+    question: "Can I extend my Vietnam visa?",
+    answer: "Yes, you can extend your Vietnam visa while in the country. You'll need to visit the Immigration Department in major cities like Hanoi or Ho Chi Minh City. Extensions are typically granted for valid reasons such as medical treatment, business needs, or tourism. There are fees associated with visa extensions, and the process can take several days."
   },
   {
-    question: "Is it safe to travel to Kenya?",
-    answer: "Kenya is generally safe for tourists, especially in popular tourist areas like Nairobi, Mombasa, and the Maasai Mara. However, it's important to stay informed about current travel advisories, avoid certain areas near the border with Somalia, and take standard safety precautions like not walking alone at night. Most tourist destinations have good security measures in place."
+    question: "Is it safe to travel to Vietnam?",
+    answer: "Vietnam is generally safe for tourists, especially in popular tourist areas like Hanoi, Ho Chi Minh City, and Hoi An. However, it's important to stay informed about current travel advisories and take standard safety precautions like not walking alone at night. Most tourist destinations have good security measures in place."
   },
   {
-    question: "What is the best time to visit Kenya?",
-    answer: "The best time to visit Kenya depends on what you want to see. For wildlife viewing, the dry seasons (January-March and July-October) are ideal. The wildebeest migration typically occurs from July to October. For beach holidays, the coastal areas are pleasant year-round, though April-May and November are the rainy seasons."
+    question: "What is the best time to visit Vietnam?",
+    answer: "The best time to visit Vietnam depends on which region you want to explore. For northern Vietnam, the dry season (November-April) is ideal. For southern Vietnam, the weather is pleasant year-round. The peak tourist season is December-March when the weather is most favorable throughout the country."
   },
   {
-    question: "How much does a Kenya eVisa cost?",
-    answer: "Kenya eVisa fees are set by the government: Tourist and Business ETAs cost $95 for 90-day stays, while Transit ETAs cost $65 for 72-hour stays. We do not charge additional urgent processing fees, ensuring transparent pricing. Payment can be made securely online using credit cards or bank transfers."
+    question: "How much does a Vietnam eVisa cost?",
+    answer: "Vietnam eVisa fees are set by the government: Single Entry Tourist and Business eVisas cost $55, while Multiple Entry Tourist and Business eVisas cost $80 for 90-day stays. We do not charge additional urgent processing fees, ensuring transparent pricing. Payment can be made securely online using credit cards or bank transfers."
   },
   {
-    question: "Can I apply for a Kenya eVisa if I have a criminal record?",
-    answer: "Individuals with criminal records may face additional scrutiny during the Kenya eVisa application process. It's important to be honest about your background and provide any required documentation. Some convictions may result in visa denial, while others may require additional processing time."
+    question: "Can I apply for a Vietnam eVisa if I have a criminal record?",
+    answer: "Individuals with criminal records may face additional scrutiny during the Vietnam eVisa application process. It's important to be honest about your background and provide any required documentation. Some convictions may result in visa denial, while others may require additional processing time."
   },
   {
-    question: "What happens if my Kenya eVisa application is denied?",
-    answer: "If your Kenya eVisa application is denied, you will receive a notification explaining the reason. Common reasons include incomplete documentation, insufficient funds, or security concerns. You can reapply after addressing the issues, or contact our support team for guidance on improving your application."
+    question: "What happens if my Vietnam eVisa application is denied?",
+    answer: "If your Vietnam eVisa application is denied, you will receive a notification explaining the reason. Common reasons include incomplete documentation, insufficient funds, or security concerns. You can reapply after addressing the issues, or contact our support team for guidance on improving your application."
   },
 
   {
-    question: "Can I enter Kenya multiple times with one eVisa?",
-    answer: "Kenya ETAs are typically single-entry visas. If you plan to leave and re-enter Kenya during your trip, you'll need to apply for a new eVisa each time. For multiple entries, consider applying for a different visa type or planning your itinerary to avoid multiple border crossings."
+    question: "Can I enter Vietnam multiple times with one eVisa?",
+    answer: "Vietnam eVisas are typically single-entry visas. If you plan to leave and re-enter Vietnam during your trip, you'll need to apply for a new eVisa each time. For multiple entries, consider applying for a different visa type or planning your itinerary to avoid multiple border crossings."
   },
   {
-    question: "What should I do if I lose my Kenya eVisa approval letter?",
-    answer: "If you lose your Kenya eVisa approval letter, you can download it again from our platform or contact our support team. It's recommended to carry both digital and printed copies of your eVisa approval when traveling. The approval letter is required for entry into Kenya."
+    question: "What should I do if I lose my Vietnam eVisa approval letter?",
+    answer: "If you lose your Vietnam eVisa approval letter, you can download it again from our platform or contact our support team. It's recommended to carry both digital and printed copies of your eVisa approval when traveling. The approval letter is required for entry into Vietnam."
   }
 ];
 
-export default function KenyaRequirementsPage() {
+export default function VietnamRequirementsPage() {
   const [activeSection, setActiveSection] = useState('overview');
 
   const scrollToSection = (sectionId: string) => {
@@ -138,8 +150,8 @@ export default function KenyaRequirementsPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0">
           <Image
-            src="/images/country/kenya/kenya-bg.jpg"
-            alt="Kenya Safari Landscape"
+            src="/images/country/vietnam/vietnam-bg.jpg"
+            alt="Vietnam Cultural Landscape"
             fill
             className="object-cover opacity-30"
             priority
@@ -152,10 +164,10 @@ export default function KenyaRequirementsPage() {
               <span className="text-sm font-medium">Visa Requirements</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Kenya Visa <span className="text-emerald-200">Requirements</span>
+              Vietnam Visa <span className="text-emerald-200">Requirements</span>
             </h1>
             <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
-              Complete guide to Kenya eVisa requirements, application process, and travel information for your African adventure
+              Complete guide to Vietnam eVisa requirements, application process, and travel information for your Southeast Asian adventure
             </p>
           </div>
         </div>
@@ -202,25 +214,25 @@ export default function KenyaRequirementsPage() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Globe className="h-8 w-8 text-emerald-600" />
-              Kenya Overview
+              Vietnam Overview
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Kenya</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Vietnam</h3>
                 <div className="prose prose-slate max-w-none">
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    Kenya, located in East Africa, is renowned for its diverse wildlife, stunning landscapes, and rich cultural heritage. 
-                    From the iconic Maasai Mara National Reserve to the pristine beaches of Mombasa, Kenya offers unforgettable experiences 
+                    Vietnam, located in Southeast Asia, is renowned for its stunning landscapes, rich history, and vibrant culture. 
+                    From the bustling streets of Hanoi to the serene waters of Halong Bay, Vietnam offers unforgettable experiences 
                     for every type of traveler.
                   </p>
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    The country is home to the Great Rift Valley, Mount Kenya, and the Indian Ocean coastline, making it a perfect 
-                    destination for safari adventures, mountain climbing, and beach holidays. Nairobi, the capital city, serves as a 
-                    major hub for business and tourism in East Africa.
+                    The country is home to the Mekong Delta, Ho Chi Minh City, and the beautiful coastline, making it a perfect 
+                    destination for cultural exploration, beach holidays, and culinary adventures. Hanoi, the capital city, serves as a 
+                    major hub for business and tourism in Southeast Asia.
                   </p>
                   <p className="text-slate-600 leading-relaxed">
-                    Kenya's visa system has been modernized with the introduction of the eVisa program, making it easier for international 
+                    Vietnam's visa system has been modernized with the introduction of the eVisa program, making it easier for international 
                     travelers to obtain their travel authorization online before arrival.
                   </p>
                 </div>
@@ -228,14 +240,14 @@ export default function KenyaRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/kenya/kenya-welcome.jpg"
-                  alt="Kenya Wildlife Safari"
+                  src="/images/country/vietnam/vietnam-welcome.jpg"
+                  alt="Vietnam Cultural Landscape"
                   width={600}
                   height={400}
                   className="rounded-xl shadow-lg"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-                  <span className="text-sm font-semibold text-slate-800">🇰🇪 Kenya</span>
+                  <span className="text-sm font-semibold text-slate-800">🇻🇳 Vietnam</span>
                 </div>
               </div>
             </div>
@@ -246,7 +258,7 @@ export default function KenyaRequirementsPage() {
                   <MapPin className="h-6 w-6 text-emerald-600" />
                   <h4 className="font-semibold text-slate-800">Capital</h4>
                 </div>
-                <p className="text-slate-600">Nairobi</p>
+                <p className="text-slate-600">Hanoi</p>
               </div>
               
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
@@ -254,7 +266,7 @@ export default function KenyaRequirementsPage() {
                   <Globe className="h-6 w-6 text-blue-600" />
                   <h4 className="font-semibold text-slate-800">Language</h4>
                 </div>
-                <p className="text-slate-600">English & Kiswahili</p>
+                <p className="text-slate-600">Vietnamese & English</p>
               </div>
               
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
@@ -262,7 +274,7 @@ export default function KenyaRequirementsPage() {
                   <CreditCard className="h-6 w-6 text-purple-600" />
                   <h4 className="font-semibold text-slate-800">Currency</h4>
                 </div>
-                <p className="text-slate-600">Kenyan Shilling (KES)</p>
+                <p className="text-slate-600">Vietnam Dong (VND)</p>
               </div>
             </div>
           </div>
@@ -277,7 +289,7 @@ export default function KenyaRequirementsPage() {
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {kenyaVisaTypes.map((visa, index) => (
+              {vietnamVisaTypes.map((visa, index) => (
                 <Card key={index} className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm">
                   <div className="h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-500" />
                   <CardHeader className="pt-6 pb-4">
@@ -333,7 +345,7 @@ export default function KenyaRequirementsPage() {
                   </CardContent>
 
                   <CardFooter className="pt-4 pb-6">
-                    <Link href={`/apply?country=kenya&type=${encodeURIComponent(visa.id)}`} className="w-full">
+                    <Link href={`/apply?country=vietnam&type=${encodeURIComponent(visa.id)}`} className="w-full">
                       <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                         Apply Now
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -361,10 +373,10 @@ export default function KenyaRequirementsPage() {
                   {[
                     'Valid passport with at least 6 months validity beyond intended stay',
                     'Recent passport-size photograph (taken within the last 6 months)',
-                    'Proof of accommodation in Kenya (hotel bookings or invitation letter)',
+                    'Proof of accommodation in Vietnam (hotel bookings or invitation letter)',
                     'Return flight tickets or onward travel itinerary',
                     'Proof of sufficient funds for the duration of stay',
-                    'Yellow fever vaccination certificate (if traveling from endemic areas)'
+                    'COVID-19 vaccination certificate (if required)'
                   ].map((requirement, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
@@ -378,7 +390,7 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Additional Requirements for Business Visa</h3>
                 <div className="space-y-4">
                   {[
-                    'Invitation letter from Kenyan business partner or organization',
+                    'Invitation letter from Vietnamese business partner or organization',
                     'Business registration documents (if applicable)',
                     'Letter from employer stating purpose of visit',
                     'Conference registration (if attending business events)',
@@ -460,9 +472,10 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Fees</h3>
                 <div className="space-y-4">
                   {[
-                    { type: 'Tourist ETA', fee: '$95', duration: '90 days' },
-                    { type: 'Business ETA', fee: '$95', duration: '90 days' },
-                    { type: 'Transit ETA', fee: '$65', duration: '72 hours' }
+                    { type: 'Tourist eVisa', fee: '$55', duration: '90 days' },
+                    { type: 'Business eVisa', fee: '$55', duration: '90 days' },
+                    { type: 'Multiple Entry Tourist', fee: '$80', duration: '90 days' },
+                    { type: 'Multiple Entry Business', fee: '$80', duration: '90 days' }
                   ].map((visa, index) => (
                     <div key={index} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                       <div>
@@ -514,16 +527,16 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit</h3>
                 <div className="space-y-4">
                   <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Wildlife Viewing (July-October)</h4>
-                    <p className="text-sm text-slate-600">Witness the Great Migration in Maasai Mara</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Northern Vietnam (November-April)</h4>
+                    <p className="text-sm text-slate-600">Dry season, ideal for exploring Hanoi and Halong Bay</p>
                   </div>
                   <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Beach Holidays (Year-round)</h4>
-                    <p className="text-sm text-slate-600">Coastal areas offer pleasant weather throughout the year</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Southern Vietnam (Year-round)</h4>
+                    <p className="text-sm text-slate-600">Pleasant weather throughout the year</p>
                   </div>
                   <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Avoid (April-May, November)</h4>
-                    <p className="text-sm text-slate-600">Rainy seasons may affect travel plans</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Avoid (May-October)</h4>
+                    <p className="text-sm text-slate-600">Rainy season may affect travel plans</p>
                   </div>
                 </div>
               </div>
@@ -532,11 +545,11 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Entry Points</h3>
                 <div className="space-y-3">
                   {[
-                    'Jomo Kenyatta International Airport (Nairobi)',
-                    'Moi International Airport (Mombasa)',
-                    'Kisumu International Airport',
-                    'Eldoret International Airport',
-                    'Land borders with Tanzania, Uganda, and Ethiopia'
+                    'Noi Bai International Airport (Hanoi)',
+                    'Tan Son Nhat International Airport (Ho Chi Minh City)',
+                    'Da Nang International Airport',
+                    'Cam Ranh International Airport (Nha Trang)',
+                    'Land borders with China, Laos, and Cambodia'
                   ].map((entry, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
                       <MapPin className="h-4 w-4 text-emerald-600 flex-shrink-0" />
@@ -549,13 +562,11 @@ export default function KenyaRequirementsPage() {
           </div>
         </section>
 
-
-
         {/* Why Choose Us Section */}
         <section id="why-choose-us" className="mb-16">
           <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-              Why Choose Worldmaxxing Global Services for Your Kenya Visa?
+              Why Choose Worldmaxxing Global Services for Your Vietnam Visa?
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -593,13 +604,13 @@ export default function KenyaRequirementsPage() {
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Kenya eVisa Today</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Vietnam eVisa Today</h3>
               <p className="text-slate-600 text-center mb-6">
-                Join thousands of satisfied travelers who have successfully obtained their Kenya visa through our platform. 
+                Join thousands of satisfied travelers who have successfully obtained their Vietnam visa through our platform. 
                 Our streamlined process ensures you get your visa quickly and hassle-free.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/apply?country=kenya">
+                <Link href="/apply?country=vietnam">
                   <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                     Apply Now
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -615,46 +626,46 @@ export default function KenyaRequirementsPage() {
           </div>
         </section>
 
-        {/* Comprehensive Kenya Travel Guide */}
+        {/* Comprehensive Vietnam Travel Guide */}
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Globe className="h-8 w-8 text-emerald-600" />
-              Complete Kenya Travel Guide & Visa Information
+              Complete Vietnam Travel Guide & Visa Information
             </h2>
             
             <div className="prose prose-slate max-w-none">
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Kenya eVisa Requirements</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Vietnam eVisa Requirements</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                Kenya introduced its eVisa system in 2015 to streamline the visa application process for international travelers. 
-                The Kenya eVisa is an electronic travel authorization that allows visitors to enter Kenya for tourism, business, 
+                Vietnam introduced its eVisa system in 2017 to streamline the visa application process for international travelers. 
+                The Vietnam eVisa is an electronic travel authorization that allows visitors to enter Vietnam for tourism, business, 
                 or transit purposes. This digital system has significantly reduced processing times and improved the overall 
-                travel experience for millions of visitors to Kenya each year.
+                travel experience for millions of visitors to Vietnam each year.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya eVisa Eligibility & Requirements</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Vietnam eVisa Eligibility & Requirements</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Most foreign nationals require a Kenya eVisa to enter the country, with the exception of citizens from East 
-                African Community (EAC) countries including Uganda, Tanzania, Rwanda, Burundi, and South Sudan. The eVisa 
-                system is available to travelers from over 150 countries worldwide, making Kenya one of the most accessible 
-                African destinations for international visitors.
+                Most foreign nationals require a Vietnam eVisa to enter the country, with the exception of citizens from ASEAN 
+                countries including Thailand, Malaysia, Singapore, Indonesia, and the Philippines. The eVisa system is available 
+                to travelers from over 80 countries worldwide, making Vietnam one of the most accessible Southeast Asian destinations 
+                for international visitors.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="bg-emerald-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Kenya eVisa?</h4>
+                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Vietnam eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
-                    <li> International tourists visiting Kenya for leisure</li>
+                    <li> International tourists visiting Vietnam for leisure</li>
                     <li> Business travelers attending meetings or conferences</li>
-                    <li> Transit passengers with layovers in Kenya</li>
+                    <li> Transit passengers with layovers in Vietnam</li>
                     <li> Journalists and media professionals</li>
                     <li> Students attending educational programs</li>
                   </ul>
                 </div>
                 <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Kenya eVisa?</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Vietnam eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
-                    <li> East African Community citizens</li>
+                    <li> ASEAN Community citizens</li>
                     <li> Diplomatic passport holders</li>
 
                     <li> Crew members on duty</li>
@@ -663,66 +674,67 @@ export default function KenyaRequirementsPage() {
                 </div>
               </div>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya eVisa Application Process Explained</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Vietnam eVisa Application Process Explained</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                The Kenya eVisa application process is designed to be simple and user-friendly. Our platform guides you 
+                The Vietnam eVisa application process is designed to be simple and user-friendly. Our platform guides you 
                 through each step, ensuring your application meets all requirements for approval. The entire process can 
                 be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya Visa Processing Times & Fees</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Vietnam Visa Processing Times & Fees</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Kenya eVisa processing times typically range from 1-3 working days, making it one of the fastest visa 
-                processing systems in Africa. The government fees are transparent and vary by visa type: Tourist and 
-                Business ETAs cost $95 for 90-day stays, while Transit ETAs cost $65 for 72-hour stays. Unlike many 
-                other visa services, we do not charge additional urgent processing fees, ensuring you get the best value 
-                for your money.
+                Vietnam eVisa processing times typically range from 1-3 working days, making it one of the fastest visa 
+                processing systems in Southeast Asia. The government fees are transparent and vary by visa type: Single Entry 
+                Tourist and Business eVisas cost $55 for 90-day stays, while Multiple Entry Tourist and Business eVisas cost 
+                $80 for 90-day stays. Unlike many other visa services, we do not charge additional urgent processing fees, 
+                ensuring you get the best value for your money.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Kenya</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Vietnam</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Kenya offers diverse attractions for every type of traveler. From the world-famous Maasai Mara National 
-                Reserve, where you can witness the Great Migration, to the pristine beaches of Mombasa and Lamu Island, 
-                Kenya provides unforgettable experiences. Nairobi, the capital city, offers modern amenities and cultural 
-                attractions, while Mount Kenya provides opportunities for hiking and adventure tourism.
+                Vietnam offers diverse attractions for every type of traveler. From the historic streets of Hanoi's Old Quarter 
+                to the bustling energy of Ho Chi Minh City, Vietnam provides unforgettable experiences. Halong Bay's limestone 
+                islands, the ancient town of Hoi An, and the Mekong Delta's floating markets showcase the country's natural 
+                beauty and cultural richness.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Wildlife & Safari</h4>
+                  <h4 className="font-semibold text-emerald-800 mb-2">Cultural & Historical</h4>
                   <p className="text-sm text-slate-600">
-                    Maasai Mara, Amboseli, Tsavo, and Samburu National Parks offer world-class safari experiences with 
-                    the Big Five and annual wildebeest migration.
+                    Hanoi's Old Quarter, Ho Chi Minh City's Cu Chi Tunnels, and Hoi An's ancient architecture offer 
+                    rich cultural experiences and historical insights into Vietnam's past.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Beach & Coastal</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">Natural & Scenic</h4>
                   <p className="text-sm text-slate-600">
-                    Mombasa, Malindi, and Lamu Island feature pristine beaches, coral reefs, and rich Swahili culture 
-                    along the Indian Ocean coast.
+                    Halong Bay's limestone karsts, Sapa's terraced rice fields, and Phu Quoc's pristine beaches 
+                    showcase Vietnam's diverse natural landscapes and outdoor adventures.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Urban & Cultural</h4>
+                  <h4 className="font-semibold text-purple-800 mb-2">Urban & Modern</h4>
                   <p className="text-sm text-slate-600">
-                    Nairobi offers modern attractions, museums, and cultural experiences, while traditional villages 
-                    showcase authentic Kenyan culture.
+                    Ho Chi Minh City offers modern attractions, shopping districts, and vibrant nightlife, while 
+                    Da Nang combines urban development with beautiful coastal scenery.
                   </p>
                 </div>
               </div>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Kenya Travel Tips & Best Practices</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Vietnam Travel Tips & Best Practices</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                When planning your trip to Kenya, consider the weather patterns and seasonal attractions. The dry seasons 
-                (January-March and July-October) are ideal for wildlife viewing, while the coastal areas are pleasant 
-                year-round. Always carry your eVisa approval letter, passport, and other required documents when traveling. 
-                It's also recommended to have travel insurance and be aware of local customs and safety guidelines.
+                When planning your trip to Vietnam, consider the weather patterns and seasonal attractions. The dry seasons 
+                (November-April in the north, year-round in the south) are ideal for sightseeing, while the coastal areas 
+                offer pleasant weather throughout the year. Always carry your eVisa approval letter, passport, and other 
+                required documents when traveling. It's also recommended to have travel insurance and be aware of local 
+                customs and safety guidelines.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Kenya Visa Applications</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Vietnam Visa Applications</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Kenya visas since the eVisa system was introduced. 
-                Our expertise in the Kenyan visa process, combined with our 80% approval rate and 24/7 customer support, 
+                Worldmaxxing Global Services has been helping travelers obtain their Vietnam visas since the eVisa system was introduced. 
+                Our expertise in the Vietnamese visa process, combined with our 80% approval rate and 24/7 customer support, 
                 makes us the preferred choice for thousands of travelers each year. We provide transparent pricing with no 
                 hidden fees, ensuring you get the best value for your visa application.
               </p>
@@ -735,7 +747,7 @@ export default function KenyaRequirementsPage() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <BarChart3 className="h-8 w-8 text-emerald-600" />
-              Kenya Visa Processing Insights & Travel Analytics
+              Vietnam Visa Processing Insights & Travel Analytics
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -747,45 +759,45 @@ export default function KenyaRequirementsPage() {
                     <span className="text-sm text-slate-600">January</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '95%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.1 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">1.2 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">February</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '78%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.3 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">1.5 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">March</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '98%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">1.9 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">1.0 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">April</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.0 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">1.3 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">May</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '95%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">1.8 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">1.6 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
@@ -794,13 +806,13 @@ export default function KenyaRequirementsPage() {
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
                         <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.0 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">1.4 days</span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
                   <p className="text-xs text-emerald-800">
-                    <strong>Source:</strong> Kenya Immigration Department & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> <a href="https://immigration.gov.vn" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-900">immigration.gov.vn</a> & Worldmaxxing Global Services processing data
                   </p>
                 </div>
               </div>
@@ -810,36 +822,36 @@ export default function KenyaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Tourist ETA</span>
+                    <span className="text-sm text-slate-600">Tourist eVisa</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '65%'}}></div>
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '72%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-blue-600">65%</span>
+                      <span className="text-sm font-semibold text-blue-600">72%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Business ETA</span>
+                    <span className="text-sm text-slate-600">Business eVisa</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '28%'}}></div>
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '22%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-blue-600">28%</span>
+                      <span className="text-sm font-semibold text-blue-600">22%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Transit ETA</span>
+                    <span className="text-sm text-slate-600">Multiple Entry</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '7%'}}></div>
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '6%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-blue-600">7%</span>
+                      <span className="text-sm font-semibold text-blue-600">6%</span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> <a href="https://kenya-immigration.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">kenya-immigration.com</a> (2024)
+                    <strong>Source:</strong> <a href="https://immigration.gov.vn" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">immigration.gov.vn</a> (2024)
                   </p>
                 </div>
               </div>
@@ -847,13 +859,13 @@ export default function KenyaRequirementsPage() {
             
             {/* Travel Seasonality Chart */}
             <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Kenya</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Vietnam</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Sun className="h-6 w-6 text-green-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Jan-Mar</h4>
+                  <h4 className="font-semibold text-slate-800 text-sm">Nov-Apr</h4>
                   <p className="text-xs text-slate-600">Dry Season</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -865,8 +877,8 @@ export default function KenyaRequirementsPage() {
                   <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Cloud className="h-6 w-6 text-yellow-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Apr-May</h4>
-                  <p className="text-xs text-slate-600">Long Rains</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">May-Oct</h4>
+                  <p className="text-xs text-slate-600">Rainy Season</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div className="h-full bg-yellow-500 rounded-full" style={{width: '40%'}}></div>
@@ -877,8 +889,8 @@ export default function KenyaRequirementsPage() {
                   <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Zap className="h-6 w-6 text-red-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Jul-Oct</h4>
-                  <p className="text-xs text-slate-600">Migration</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">Dec-Mar</h4>
+                  <p className="text-xs text-slate-600">Peak Season</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div className="h-full bg-red-500 rounded-full" style={{width: '95%'}}></div>
@@ -889,18 +901,18 @@ export default function KenyaRequirementsPage() {
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Droplets className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Nov-Dec</h4>
-                  <p className="text-xs text-slate-600">Short Rains</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">Year-round</h4>
+                  <p className="text-xs text-slate-600">Southern Vietnam</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-500 rounded-full" style={{width: '60%'}}></div>
+                      <div className="h-full bg-blue-500 rounded-full" style={{width: '80%'}}></div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="mt-4 p-3 bg-purple-100 rounded-lg">
                 <p className="text-xs text-purple-800">
-                  <strong>Source:</strong> Kenya Meteorological Department & Tourism Board
+                  <strong>Source:</strong> <a href="https://vietnamtourism.gov.vn" target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-900">vietnamtourism.gov.vn</a> & Vietnam Meteorological Department
                 </p>
               </div>
             </div>

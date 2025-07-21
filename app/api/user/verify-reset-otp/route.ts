@@ -11,9 +11,9 @@ export async function POST(request: NextRequest) {
     if (!email || !newPassword || !otp) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
-    // Find the account by email (only United eVisa Site accounts)
+    // Find the account by email (only Worldmaxxing Site accounts)
     const account = await prisma.account.findFirst({ 
-      where: { email, websiteCreatedAt: "United eVisa Site" } 
+      where: { email, websiteCreatedAt: "Worldmaxxing Site" } 
     });
     if (!account) {
       return NextResponse.json({ error: "Account not found" }, { status: 404 });

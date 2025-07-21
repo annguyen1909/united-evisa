@@ -15,7 +15,7 @@ export default async function ProfilePage() {
   const user = await prisma.account.findFirst({
     where: {
       email: session.user.email,
-      websiteCreatedAt: "United eVisa Site", // ensure it's your site's user
+      websiteCreatedAt: "Worldmaxxing Site", // ensure it's your site's user
     },
     select: {
       id: true,

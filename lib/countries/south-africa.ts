@@ -8,7 +8,7 @@ const southafrica: Country = {
   flagUrl: '/images/country/south-africa/south-africa-square.png',
   imageUrl: '/images/country/south-africa/south-africa-bg.jpg',
   roundedFlagUrl: '/images/country/south-africa/south-africa-rounded.png',
-  description: `Apply for your South Africa eVisa online with United eVisa. Fast, secure, and convenient visa application for South Africa travel. Get your South Africa visa quickly with our expert assistance.`,
+  description: `Apply for your South Africa eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for South Africa travel. Get your South Africa visa quickly with our expert assistance.`,
   welcomeMessage: `Explore South Africa's diverse landscapes, wildlife, and vibrant cities. From Cape Town to Kruger National Park, South Africa is a must-visit destination for travelers.`,
   welcomeImgUrl: '/images/country/south-africa/south-africa-welcome.jpg',
   processingTime: {

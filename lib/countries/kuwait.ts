@@ -10,7 +10,7 @@ const kuwait: Country = {
   flagUrl: '/images/flags/vietnam.png',
   imageUrl: '/images/country/kuwait/kuwait-bg.jpg',
   roundedFlagUrl: '/images/flags/vietnam.png',
-  description: `Apply for your Kuwait eVisa online with United eVisa. Fast, secure, and convenient visa application for Kuwait travel. Get your Kuwait visa quickly with our expert assistance.`,
+  description: `Apply for your Kuwait eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Kuwait travel. Get your Kuwait visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Kuwait's modern skyline, rich history, and vibrant culture. From the Grand Mosque to the Arabian Gulf, Kuwait is a unique destination for travelers.`,
   welcomeImgUrl: '/images/country/kenya-welcome.jpg',
   processingTime: {

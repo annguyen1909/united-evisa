@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing email" }, { status: 400 })
     }
     const user = await prisma.account.findFirst({
-      where: { email, websiteCreatedAt: "United eVisa Site" },
+      where: { email, websiteCreatedAt: "Worldmaxxing Site" },
       select: { id: true, password: true }
     })
     if (!user) {

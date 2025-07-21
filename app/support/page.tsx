@@ -96,7 +96,7 @@ export default function SupportPage() {
           flag: "🇺🇸",
           address: "123 Business Ave, Suite 100, New York, NY 10001",
           phone: "+1 323 286 4541",
-          email: "visa@unitedevisa.com",
+          email: "visa@worldmaxxing.com",
           hours: "24/7"
         },
         {
@@ -104,7 +104,7 @@ export default function SupportPage() {
           flag: "🇨🇦",
           address: "789 Commerce Blvd, Toronto, ON M5H 3M7",
           phone: "+1 323 286 4541", 
-          email: "visa@unitedevisa.com",
+          email: "visa@worldmaxxing.com",
           hours: "24/7"
         },
         {
@@ -112,7 +112,7 @@ export default function SupportPage() {
           flag: "🇧🇷", 
           address: "Av. Paulista 1000, São Paulo, SP 01310-100",
           phone: "+1 323 286 4541",
-          email: "visa@unitedevisa.com", 
+          email: "visa@worldmaxxing.com", 
           hours: "Mon-Fri 8AM-6PM"
         }
       ]
@@ -125,7 +125,7 @@ export default function SupportPage() {
           flag: "🇬🇧",
           address: "45 Business Street, London, SW1A 1AA",
           phone: "+1 323 286 4541",
-          email: "visa@unitedevisa.com",
+          email: "visa@worldmaxxing.com",
           hours: "24/7"
         },
         {
@@ -133,7 +133,7 @@ export default function SupportPage() {
           flag: "🇩🇪",
           address: "Friedrichstraße 123, 10117 Berlin",
           phone: "+1 323 286 4541",
-          email: "visa@unitedevisa.com",
+          email: "visa@worldmaxxing.com",
           hours: "Mon-Fri 9AM-6PM"
         },
         {
@@ -141,7 +141,7 @@ export default function SupportPage() {
           flag: "🇦🇪",
           address: "Sheikh Zayed Road, Dubai",
           phone: "+1 323 286 4541",
-          email: "visa@unitedevisa.com",
+          email: "visa@worldmaxxing.com",
           hours: "Sun-Thu 9AM-6PM"
         }
       ]
@@ -154,7 +154,7 @@ export default function SupportPage() {
           flag: "🇦🇺", 
           address: "321 Corporate Plaza, Sydney, NSW 2000",
           phone: "+1 323 286 4541",
-          email: "visa@unitedevisa.com",
+          email: "visa@worldmaxxing.com",
           hours: "Mon-Fri 9AM-5PM"
         },
         {
@@ -162,7 +162,7 @@ export default function SupportPage() {
           flag: "🇸🇬",
           address: "1 Marina Bay, Singapore 018989",
           phone: "+1 323 286 4541",
-          email: "visa@unitedevisa.com", 
+          email: "visa@worldmaxxing.com", 
           hours: "Mon-Fri 9AM-6PM"
         },
         {
@@ -170,7 +170,7 @@ export default function SupportPage() {
           flag: "🇯🇵",
           address: "Tokyo Station, Tokyo 100-0005",
           phone: "+1 323 286 4541",
-          email: "visa@unitedevisa.com",
+          email: "visa@worldmaxxing.com",
           hours: "Mon-Fri 9AM-6PM"
         }
       ]
@@ -182,7 +182,7 @@ export default function SupportPage() {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-emerald-600 to-green-700 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-4xl font-bold mb-4">Get in touch with United eVisa</h1>
+                          <h1 className="text-4xl font-bold mb-4">Get in touch with Worldmaxxing Global Services</h1>
           <p className="text-xl text-emerald-100">We're here to help with your visa application journey</p>
         </div>
       </div>
@@ -343,7 +343,7 @@ export default function SupportPage() {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Mail className="h-3 w-3 text-slate-400" />
-                        <span className="text-sm">visa@unitedevisa.com</span>
+                        <span className="text-sm">visa@worldmaxxing.com</span>
                       </div>
                     </div>
                   </div>
@@ -366,7 +366,7 @@ export default function SupportPage() {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Mail className="h-3 w-3 text-slate-400" />
-                        <span className="text-sm">visa@unitedevisa.com</span>
+                        <span className="text-sm">visa@worldmaxxing.com</span>
                       </div>
                     </div>
                   </div>
@@ -382,7 +382,7 @@ export default function SupportPage() {
             <CardContent className="p-8">
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-bold text-slate-800 mb-2">Our Worldwide Network</h2>
-                <p className="text-slate-600">United eVisa offices around the world ready to assist you</p>
+                <p className="text-slate-600">Worldmaxxing Global Services offices around the world ready to assist you</p>
               </div>
 
               {/* Region Tabs */}

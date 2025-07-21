@@ -2,9 +2,9 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | United eVisa Immigration Assistance Service',
+  title: 'Terms of Service | Worldmaxxing Global Services Immigration Assistance Service',
   description:
-    'Terms of Service Agreement for United eVisa Immigration Assistance Service - Learn about eligibility, fees, responsibilities, and legal terms.',
+    'Terms of Service Agreement for Worldmaxxing Global Services Immigration Assistance Service - Learn about eligibility, fees, responsibilities, and legal terms.',
 };
 
 export default function TermsPage() {
@@ -49,7 +49,7 @@ export default function TermsPage() {
                 </h1>
                 
                 <p className="text-xl md:text-2xl text-purple-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  Legal terms and conditions for using United eVisa Immigration Assistance Services
+                  Legal terms and conditions for using Worldmaxxing Global Services Immigration Assistance Services
                 </p>
                 
                 <div className="flex items-center justify-center space-x-4 text-purple-200">
@@ -96,10 +96,10 @@ export default function TermsPage() {
                 <div className="p-8">
                   <div className="prose prose-lg max-w-none">
                     <p className="text-gray-700 mb-6 leading-relaxed">
-                      This United eVisa Immigration Assistance Service Agreement (this "Agreement") is entered into by and between 
-                      United eVisa Immigration Assistance Service ("we," "us," or "our") and you, and is made effective as of 
-                      the date of electronic acceptance. This Agreement sets forth the terms and conditions of your use of our 
-                      United eVisa Immigration Assistance Service (the "Services").
+                      This Worldmaxxing Global Services Immigration Assistance Service Agreement (this "Agreement") is entered into by and between 
+                      Worldmaxxing Global Services Immigration Assistance Service ("we," "us," or "our") and you, and is made effective as of 
+                      the date of your use of this website ("Site") or the date of electronic acceptance.
+                      This Agreement sets forth the general terms and conditions of your use of the Worldmaxxing Global Services Immigration Assistance Service (the "Services").
                     </p>
                     <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-200">
                       <div className="flex items-start space-x-3">
@@ -590,8 +590,8 @@ export default function TermsPage() {
                           </svg>
                           <div>
                             <p className="font-medium text-gray-900">Email</p>
-                            <a href="mailto:visa@unitedevisa.com" className="text-blue-600 hover:underline">
-                              visa@unitedevisa.com
+                            <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 hover:underline">
+                              visa@worldmaxxing.com
                             </a>
                           </div>
                         </div>
@@ -617,8 +617,8 @@ export default function TermsPage() {
                           </svg>
                           <div>
                             <p className="font-medium text-gray-900">24/7 Support</p>
-                            <a href="mailto:visa@unitedevisa.com" className="text-green-600 hover:underline">
-                              visa@unitedevisa.com
+                            <a href="mailto:visa@worldmaxxing.com" className="text-green-600 hover:underline">
+                              visa@worldmaxxing.com
                             </a>
                           </div>
                         </div>
@@ -630,7 +630,7 @@ export default function TermsPage() {
                           </svg>
                           <div>
                             <p className="font-medium text-gray-900">Address</p>
-                            <p className="text-gray-700 text-sm">United eVisa Immigration Assistance Service</p>
+                            <p className="text-gray-700 text-sm">Worldmaxxing Global Services Immigration Assistance Service</p>
                           </div>
                         </div>
                       </div>

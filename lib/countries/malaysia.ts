@@ -10,7 +10,7 @@ const malaysia: Country = {
   flagUrl: '/images/country/malaysia/malaysia-square.png',
   imageUrl: '/images/country/malaysia/malaysia-bg.jpg',
   roundedFlagUrl: '/images/country/malaysia/malaysia-rounded.png',
-  description: `Apply for your Malaysia eVisa online with United eVisa. Fast, secure, and convenient visa application for Malaysia travel. Get your Malaysia visa quickly with our expert assistance.`,
+  description: `Apply for your Malaysia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Malaysia travel. Get your Malaysia visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Malaysia's diverse culture, modern cities, and natural beauty. From Kuala Lumpur's skyline to Borneo's rainforests, Malaysia is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/malaysia/malaysia-welcome.jpg',
   processingTime: {

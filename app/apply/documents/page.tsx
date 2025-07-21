@@ -78,8 +78,8 @@ function UnauthorizedMessage({ uploadError }: { uploadError: { type: 'AUTH'; mes
                             <b>Alternative: Email Submission</b>
                             <br />
                             You can also email your documents directly to{' '}
-                            <a href="mailto:visa@unitedevisa.com" className="text-blue-600 underline">
-                                visa@unitedevisa.com
+                                                            <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 underline">
+                                  visa@worldmaxxing.com
                             </a>{' '}
                             with the subject line: <b>Documents for Application {uploadError.applicationId}</b>
                         </p>
@@ -94,7 +94,7 @@ function UnauthorizedMessage({ uploadError }: { uploadError: { type: 'AUTH'; mes
                                 Login Now
                             </Link>
                             <a
-                                href={`mailto:visa@unitedevisa.com?subject=Documents for Application ${uploadError.applicationId}`}
+                                href={`mailto:visa@worldmaxxing.com?subject=Documents for Application ${uploadError.applicationId}`}
                                 className="bg-slate-200 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-300 transition"
                             >
                                 Email Documents
@@ -372,7 +372,7 @@ function DocumentsContent({ user }: { user: any }) {
                                         </p>
                                         <div className="flex flex-col sm:flex-row gap-2">
                                             <a 
-                                                href="mailto:visa@unitedevisa.com" 
+                                                href="mailto:visa@worldmaxxing.com" 
                                                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-red-700 bg-red-100 hover:bg-red-200 rounded-md transition-colors"
                                             >
                                                 Contact Support
@@ -553,7 +553,7 @@ function DocumentsContent({ user }: { user: any }) {
                                     <h3 className="font-semibold text-blue-800 mb-1">Need Assistance?</h3>
                                     <p className="text-sm text-blue-700">
                                         Our support team is available to help with your document upload.
-                                        Contact us at <a href="mailto:visa@unitedevisa.com" className="font-medium underline">visa@unitedevisa.com</a>
+                                        Contact us at <a href="mailto:visa@worldmaxxing.com" className="font-medium underline">visa@worldmaxxing.com</a>
                                     </p>
                                 </div>
                             </div>

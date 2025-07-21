@@ -8,7 +8,7 @@ const uzbekistan: Country = {
   flagUrl: '/images/country/uzbekistan/uzbekistan-square.png',
   imageUrl: '/images/country/uzbekistan/uzbekistan-bg.jpg',
   roundedFlagUrl: '/images/country/uzbekistan/uzbekistan-rounded.png',
-  description: `Apply for your Uzbekistan eVisa online with United eVisa. Fast, secure, and convenient visa application for Uzbekistan travel. Get your Uzbekistan visa quickly with our expert assistance.`,
+  description: `Apply for your Uzbekistan eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Uzbekistan travel. Get your Uzbekistan visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Uzbekistan's ancient Silk Road cities, stunning architecture, and rich culture. From Samarkand to Bukhara, Uzbekistan is a treasure trove for history lovers.`,
   welcomeImgUrl: '/images/country/uzbekistan/uzbekistan-welcome.jpg',
   processingTime: {

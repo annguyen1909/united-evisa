@@ -2,9 +2,9 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Digital Services Act Compliance | United eVisa Immigration Assistance Service',
+  title: 'Digital Services Act Compliance | Worldmaxxing Global Services Immigration Assistance Service',
   description:
-    'Learn about our compliance with the EU Digital Services Act (DSA) and your rights as a user of our United eVisa Immigration Assistance Service.',
+    'Learn about our compliance with the EU Digital Services Act (DSA) and your rights as a user of our Worldmaxxing Global Services Immigration Assistance Service.',
 };
 
 export default function DigitalServicesActPage() {
@@ -72,7 +72,7 @@ export default function DigitalServicesActPage() {
                 <div className="p-8">
                   <div className="prose prose-lg max-w-none">
                     <p className="text-gray-700 mb-6 leading-relaxed">
-                      United eVisa Immigration Assistance Service ("we," "us," or "our") is
+                      Worldmaxxing Global Services Immigration Assistance Service ("we," "us," or "our") is
                       committed to compliance with the European Union's Digital Services Act (DSA)
                       Regulation (EU) 2022/2065. This page explains how we comply with the DSA and
                       your rights as a user of our digital services.
@@ -442,10 +442,10 @@ export default function DigitalServicesActPage() {
                         <p className="text-gray-700 mb-3">
                           Email:{' '}
                           <a
-                            href="mailto:visa@unitedevisa.com"
+                            href="mailto:visa@worldmaxxing.com"
                             className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                           >
-                            visa@unitedevisa.com
+                            visa@worldmaxxing.com
                           </a>
                         </p>
                         <p className="text-gray-600 text-sm leading-relaxed">
@@ -504,10 +504,10 @@ export default function DigitalServicesActPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@unitedevisa.com"
+                              href="mailto:visa@worldmaxxing.com"
                               className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                             >
-                              visa@unitedevisa.com
+                              visa@worldmaxxing.com
                             </a>
                           </p>
                         </div>
@@ -600,10 +600,10 @@ export default function DigitalServicesActPage() {
                   <p className="text-gray-700">
                     Our latest transparency report is available upon request. Please contact us at{' '}
                     <a
-                      href="mailto:visa@unitedevisa.com"
+                      href="mailto:visa@worldmaxxing.com"
                       className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                     >
-                      visa@unitedevisa.com
+                      visa@worldmaxxing.com
                     </a>
                     .
                   </p>
@@ -641,10 +641,10 @@ export default function DigitalServicesActPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@unitedevisa.com"
+                              href="mailto:visa@worldmaxxing.com"
                               className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                             >
-                              visa@unitedevisa.com
+                              visa@worldmaxxing.com
                             </a>
                           </p>
                           <p className="text-gray-700 text-sm">
@@ -666,14 +666,14 @@ export default function DigitalServicesActPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@unitedevisa.com"
+                              href="mailto:visa@worldmaxxing.com"
                               className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                             >
-                              visa@unitedevisa.com
+                              visa@worldmaxxing.com
                             </a>
                           </p>
                           <p className="text-gray-700 text-sm">
-                            Address: United eVisa Immigration Assistance Service
+                            Address: Worldmaxxing Global Services Immigration Assistance Service
                             <br />
                             [Your Business Address]
                           </p>

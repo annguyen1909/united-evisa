@@ -138,7 +138,7 @@ export default function CustomerSupport() {
               <div className="mt-auto flex flex-col gap-2 items-center">
                 <span className="text-xs text-slate-500">Reply within 1 hour</span>
                 <Button variant="outline" size="sm" className="border-amber-200 text-amber-700 hover:bg-amber-50">
-                  visa@unitedevisa.com
+                                          visa@worldmaxxing.com
                 </Button>
               </div>
             </div>

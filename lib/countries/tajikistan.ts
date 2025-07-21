@@ -8,7 +8,7 @@ const tajikistan: Country = {
   flagUrl: '/images/country/tajikistan/tajikistan-square.png',
   imageUrl: '/images/country/tajikistan/tajikistan-bg.jpg',
   roundedFlagUrl: '/images/country/tajikistan/tajikistan-rounded.png',
-  description: `Apply for your Tajikistan eVisa online with United eVisa. Fast, secure, and convenient visa application for Tajikistan travel. Get your Tajikistan visa quickly with our expert assistance.`,
+  description: `Apply for your Tajikistan eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Tajikistan travel. Get your Tajikistan visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Tajikistan's stunning mountains, ancient Silk Road sites, and rich culture. From the Pamir Mountains to Dushanbe, Tajikistan is an adventure traveler's dream.`,
   welcomeImgUrl: '/images/country/tajikistan/tajikistan-welcome.jpg',
   processingTime: {

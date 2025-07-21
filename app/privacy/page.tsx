@@ -2,9 +2,9 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | United eVisa Immigration Assistance Service',
+  title: 'Privacy Policy | Worldmaxxing Global Services Immigration Assistance Service',
   description:
-    'Learn how we collect, use, and protect your personal information when you use our United eVisa Immigration Assistance Service.',
+    'Learn how we collect, use, and protect your personal information when you use our Worldmaxxing Global Services Immigration Assistance Service.',
 };
 
 export default function PrivacyPolicyPage() {
@@ -72,11 +72,11 @@ export default function PrivacyPolicyPage() {
                 <div className="p-8">
                   <div className="prose prose-lg max-w-none">
                     <p className="text-gray-700 mb-6 leading-relaxed">
-                      United eVisa Immigration Assistance Service ("we," "us," or "our") is
+                      Worldmaxxing Global Services Immigration Assistance Service ("we," "us," or "our") is
                       committed to protecting your privacy and ensuring the security of your personal
                       information. This Privacy Policy explains how we collect, use, disclose, and
-                      safeguard your information when you visit our website at unitedevisa.com
-                      and use our United eVisa Immigration Assistance Service.
+                      safeguard your information when you visit our website at worldmaxxing.com
+                      and use our Worldmaxxing Global Services Immigration Assistance Service.
                     </p>
                     <p className="text-gray-700 leading-relaxed">
                       By using our services, you consent to the collection and use of your information
@@ -576,10 +576,10 @@ export default function PrivacyPolicyPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@unitedevisa.com"
+                              href="mailto:visa@worldmaxxing.com"
                               className="text-green-600 hover:text-green-800 font-medium underline decoration-green-200 hover:decoration-green-400 transition-colors"
                             >
-                              visa@unitedevisa.com
+                              visa@worldmaxxing.com
                             </a>
                           </p>
                           <p className="text-gray-700 text-sm">
@@ -601,14 +601,14 @@ export default function PrivacyPolicyPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@unitedevisa.com"
+                              href="mailto:visa@worldmaxxing.com"
                               className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                             >
-                              visa@unitedevisa.com
+                              visa@worldmaxxing.com
                             </a>
                           </p>
                           <p className="text-gray-700 text-sm">
-                            Address: United eVisa Immigration Assistance Service
+                            Address: Worldmaxxing Global Services Immigration Assistance Service
                             <br />
                             [Your Business Address]
                           </p>

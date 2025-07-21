@@ -10,7 +10,7 @@ const benin: Country = {
   flagUrl: '/images/country/benin/benin-square.png',
   imageUrl: '/images/country/benin/benin-bg.jpg',
   roundedFlagUrl: '/images/country/benin/benin-rounded.png',
-  description: `Apply for your Benin eVisa online with United eVisa. Fast, secure, and convenient visa application for Benin travel. Get your Benin visa quickly with our expert assistance.`,
+  description: `Apply for your Benin eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Benin travel. Get your Benin visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Benin's fascinating history, vibrant markets, and stunning national parks. From the UNESCO-listed city of Ouidah to Pendjari National Park, Benin offers unique adventures for every traveler.`,
   welcomeImgUrl: '/images/country/benin/benin-welcome.jpg',
   processingTime: {

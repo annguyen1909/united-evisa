@@ -17,7 +17,7 @@ export const authOptions = {
         const user = await prisma.account.findFirst({
           where: {
             email,
-            websiteCreatedAt: "United eVisa Site",
+            websiteCreatedAt: "Worldmaxxing Site",
           },
         });
         if (!user || !user.password) return null;

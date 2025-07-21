@@ -10,7 +10,7 @@ const kyrgyzstan: Country = {
   flagUrl: '/images/country/kyrgyzstan/kyrgyzstan-square.png',
   imageUrl: '/images/country/kyrgyzstan/kyrgyzstan-bg.jpg',
   roundedFlagUrl: '/images/country/kyrgyzstan/kyrgyzstan-rounded.png',
-  description: `Apply for your Kyrgyzstan eVisa online with United eVisa. Fast, secure, and convenient visa application for Kyrgyzstan travel. Get your Kyrgyzstan visa quickly with our expert assistance.`,
+  description: `Apply for your Kyrgyzstan eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Kyrgyzstan travel. Get your Kyrgyzstan visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Kyrgyzstan's stunning mountains, nomadic culture, and scenic lakes. From Issyk-Kul to the Tien Shan, Kyrgyzstan is an adventure traveler's paradise.`,
   welcomeImgUrl: '/images/country/kyrgyzstan/kyrgyzstan-welcome.jpg',
   processingTime: {

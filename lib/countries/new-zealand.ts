@@ -10,7 +10,7 @@ const newzealand: Country = {
   flagUrl: '/images/country/new-zealand/new-zealand-square.png',
   imageUrl: '/images/country/new-zealand/new-zealand-bg.jpg',
   roundedFlagUrl: '/images/country/new-zealand/new-zealand-rounded.png',
-  description: `Apply for your New Zealand eVisa online with United eVisa. Fast, secure, and convenient visa application for New Zealand travel. Get your New Zealand visa quickly with our expert assistance.`,
+  description: `Apply for your New Zealand eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for New Zealand travel. Get your New Zealand visa quickly with our expert assistance.`,
   welcomeMessage: `Explore New Zealand's breathtaking landscapes, adventure sports, and Maori culture. From the Southern Alps to vibrant Auckland, New Zealand is a dream destination for travelers.`,
   welcomeImgUrl: '/images/country/new-zealand/new-zealand-welcome.jpg',
   processingTime: {

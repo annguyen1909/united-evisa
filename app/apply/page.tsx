@@ -11,7 +11,7 @@ export default async function ApplyPage() {
     ? await prisma.account.findFirst({
         where: {
           email: session.user.email,
-          websiteCreatedAt: "United eVisa Site",
+          websiteCreatedAt: "Worldmaxxing Site",
         },
         select: {
           fullName: true,

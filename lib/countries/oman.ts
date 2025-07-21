@@ -10,7 +10,7 @@ const oman: Country = {
   flagUrl: '/images/country/oman/oman-square.png',
   imageUrl: '/images/country/oman/oman-bg.jpg',
   roundedFlagUrl: '/images/country/oman/oman-rounded.png',
-  description: `Apply for your Oman eVisa online with United eVisa. Fast, secure, and convenient visa application for Oman travel. Get your Oman visa quickly with our expert assistance.`,
+  description: `Apply for your Oman eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Oman travel. Get your Oman visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Oman's stunning deserts, historic forts, and beautiful coastline. From Muscat to the Wahiba Sands, Oman is a unique destination for travelers.`,
   welcomeImgUrl: '/images/country/oman/oman-welcome.jpg',
   processingTime: {

@@ -8,7 +8,7 @@ const gabon: Country = {
   flagUrl: '/images/country/gabon/gabon-square.png',
   imageUrl: '/images/country/gabon/gabon-bg.jpg',
   roundedFlagUrl: '/images/country/gabon/gabon-rounded.png',
-  description: `Apply for your Gabon eVisa online with United eVisa. Fast, secure, and convenient visa application for Gabon travel. Get your Gabon visa quickly with our expert assistance.`,
+  description: `Apply for your Gabon eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Gabon travel. Get your Gabon visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Gabon's lush rainforests, diverse wildlife, and beautiful Atlantic coastline. From Loango National Park to Libreville, Gabon offers unforgettable adventures for travelers.`,
   welcomeImgUrl: '/images/country/gabon/gabon-welcome.jpg',
   processingTime: {

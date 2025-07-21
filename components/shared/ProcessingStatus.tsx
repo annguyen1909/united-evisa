@@ -207,8 +207,8 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Email Support</p>
-                                        <a href="mailto:visa@unitedevisa.com" className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors">
-                                            visa@unitedevisa.com
+                                                                <a href="mailto:visa@worldmaxxing.com" className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors">
+                            visa@worldmaxxing.com
                                         </a>
                                     </div>
                                 </div>

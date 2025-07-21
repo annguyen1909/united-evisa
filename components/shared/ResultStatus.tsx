@@ -54,7 +54,7 @@ export default function ResultStatus({ applicationData, onRefresh }: ResultStatu
                                 <div className="flex items-start gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-blue-200/50">
                                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
                                         1
-                                    </div>
+                            </div>
                                     <p className="text-blue-700 font-medium leading-relaxed">
                                         Check your email inbox for the visa result
                                     </p>
@@ -62,7 +62,7 @@ export default function ResultStatus({ applicationData, onRefresh }: ResultStatu
                                 <div className="flex items-start gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-blue-200/50">
                                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
                                         2
-                                    </div>
+                            </div>
                                     <p className="text-blue-700 font-medium leading-relaxed">
                                         If you don't see the email, check your spam folder
                                     </p>
@@ -92,10 +92,10 @@ export default function ResultStatus({ applicationData, onRefresh }: ResultStatu
                             <div className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-blue-200/50">
                                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-md">
                                     <Mail className="h-6 w-6 text-white" />
-                                </div>
-                                <div>
+                                    </div>
+                                    <div>
                                     <p className="font-semibold text-blue-800">Email Support</p>
-                                    <p className="text-blue-700">visa@unitedevisa.com</p>
+                                    <p className="text-blue-700">visa@worldmaxxing.com</p>
                                 </div>
                             </div>
                         </div>

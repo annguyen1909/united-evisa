@@ -10,7 +10,7 @@ const qatar: Country = {
   flagUrl: '/images/country/qatar/qatar-square.png',
   imageUrl: '/images/country/qatar/qatar-bg.jpg',
   roundedFlagUrl: '/images/country/qatar/qatar-rounded.png',
-  description: `Apply for your Qatar eVisa online with United eVisa. Fast, secure, and convenient visa application for Qatar travel. Get your Qatar visa quickly with our expert assistance.`,
+  description: `Apply for your Qatar eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Qatar travel. Get your Qatar visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Qatar's modern skyline, cultural heritage, and desert adventures. From Doha's museums to the Inland Sea, Qatar is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/qatar/qatar-welcome.jpg',
   processingTime: {

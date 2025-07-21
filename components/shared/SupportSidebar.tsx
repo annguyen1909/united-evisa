@@ -201,10 +201,10 @@ export default function SupportSidebar() {
                             <Mail className="w-4 h-4 text-emerald-700" />
                         </div>
                         <a 
-                            href="mailto:visa@unitedevisa.com" 
+                            href="mailto:visa@worldmaxxing.com" 
                             className="text-emerald-700 hover:underline transition-colors"
                         >
-                            visa@unitedevisa.com
+                            visa@worldmaxxing.com
                         </a>
                     </div>
                     

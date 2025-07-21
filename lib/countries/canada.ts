@@ -10,7 +10,7 @@ const canada: Country = {
   flagUrl: '/images/country/canada/canada-square.png',
   imageUrl: '/images/country/canada/canada-bg.jpg',
   roundedFlagUrl: '/images/country/canada/canada-rounded.png',
-  description: `Apply for your Canada eVisa online with United eVisa. Fast, secure, and convenient visa application for Canada travel. Get your Canada visa quickly with our expert assistance.`,
+  description: `Apply for your Canada eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Canada travel. Get your Canada visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Canada's breathtaking natural wonders, vibrant cities, and multicultural charm. From Niagara Falls to the Rockies and cosmopolitan Toronto, Canada is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/canada/canada-welcome.jpg',
   processingTime: {

@@ -85,8 +85,7 @@ export default function Hero() {
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
-            Welcome to <span className="font-extrabold bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">UNITED</span>
-            <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">eVisa</span>
+            Welcome to <span className="font-extrabold bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">Worldmaxxing</span>
           </h1>
           
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 drop-shadow-lg max-w-4xl mx-auto">

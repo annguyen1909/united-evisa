@@ -2,9 +2,9 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Refund Policy - United eVisa',
+  title: 'Refund Policy - Worldmaxxing Global Services',
   description:
-    'Complete refund policy for United eVisa Immigration Assistance Service. Learn about refundable and non-refundable fees, processing times, and our money-back guarantee.',
+    'Complete refund policy for Worldmaxxing Global Services Immigration Assistance Service. Learn about refundable and non-refundable fees, processing times, and our money-back guarantee.',
 };
 
 export default function RefundPolicyPage() {
@@ -18,7 +18,7 @@ export default function RefundPolicyPage() {
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Refund Policy</h1>
                 <p className="text-xl text-gray-800 mb-8">
-                  Transparent and fair refund terms for our United eVisa Immigration
+                  Transparent and fair refund terms for our Worldmaxxing Global Services Immigration
                   Assistance Service
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
@@ -432,12 +432,12 @@ export default function RefundPolicyPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Refund Requests</h3>
-                      <p className="text-blue-700 font-medium mb-2">visa@unitedevisa.com</p>
+                      <p className="text-blue-700 font-medium mb-2">visa@worldmaxxing.com</p>
                       <p className="text-sm text-gray-600">For all refund inquiries and requests</p>
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">General Support</h3>
-                      <p className="text-blue-700 font-medium mb-2">visa@unitedevisa.com</p>
+                      <p className="text-blue-700 font-medium mb-2">visa@worldmaxxing.com</p>
                       <p className="text-sm text-gray-600">For general questions and assistance</p>
                     </div>
                   </div>

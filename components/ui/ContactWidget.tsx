@@ -71,14 +71,9 @@ export default function ContactWidget() {
 
   // Check if we should show agent image or 24/7 support bubble based on current page
   useEffect(() => {
-    const hideAgentPages = ['/apply', '/contact', '/applications', '/embassy'];
-    const hideAgentPatterns = ['/faq/', '/check-requirement/', '/profile/', '/apply/'];
-
-    const shouldHideAgent =
-      hideAgentPages.includes(pathname) ||
-      hideAgentPatterns.some((pattern) => pathname.startsWith(pattern));
-
-    setShowAgentImage(!shouldHideAgent);
+    // Only show agent image on home page (/)
+    const shouldShowAgent = pathname === '/';
+    setShowAgentImage(shouldShowAgent);
   }, [pathname]);
 
   const handleCookieAccept = (acceptAll: boolean = false) => {

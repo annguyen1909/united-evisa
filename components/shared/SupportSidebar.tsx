@@ -40,23 +40,43 @@ export default function SupportSidebar() {
         e.preventDefault();
         setIsSubmitting(true);
         
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formState),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message');
+            }
         
         // Show success state
         setIsSubmitting(false);
         setIsSubmitted(true);
         
-        // Reset after 5 seconds
-        setTimeout(() => {
-            setIsSubmitted(false);
+            // Reset form
             setFormState({
                 name: "",
                 email: "",
                 phone: "",
                 message: ""
             });
+            
+            // Reset after 5 seconds
+            setTimeout(() => {
+                setIsSubmitted(false);
         }, 5000);
+        } catch (error) {
+            console.error('Contact form error:', error);
+            setIsSubmitting(false);
+            // You might want to show an error message to the user here
+            alert('Failed to send message. Please try again.');
+        }
     };
 
     return (

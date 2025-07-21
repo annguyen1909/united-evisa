@@ -1,7 +1,7 @@
 "use client";
 import { JSX, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
-import { Calendar, FileText, Users, DollarSign, Clock, ChevronRight } from 'lucide-react';
+import { Calendar, FileText, Users, DollarSign, Clock, ChevronRight, XCircle, CheckCircle } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 
 interface Application {
@@ -105,11 +105,35 @@ export default function ApplicationsPage() {
           text: 'text-indigo-700',
           icon: <Clock className="w-4 h-4 mr-1.5" />
         };
+      case 'Deferred':
+        return { 
+          bg: 'bg-purple-50', 
+          text: 'text-purple-700',
+          icon: <XCircle className="w-4 h-4 mr-1.5" />
+        };
       case 'Visa Result Sent':
         return { 
           bg: 'bg-emerald-50', 
           text: 'text-emerald-700',
           icon: <FileText className="w-4 h-4 mr-1.5" />
+        };
+      case 'Cancelled':
+        return { 
+          bg: 'bg-gray-50', 
+          text: 'text-gray-700',
+          icon: <XCircle className="w-4 h-4 mr-1.5" />
+        };
+      case 'Refunded':
+        return { 
+          bg: 'bg-green-50', 
+          text: 'text-green-700',
+          icon: <CheckCircle className="w-4 h-4 mr-1.5" />
+        };
+      case 'Chargeback Detected':
+        return { 
+          bg: 'bg-red-50', 
+          text: 'text-red-700',
+          icon: <XCircle className="w-4 h-4 mr-1.5" />
         };
       default:
         return { 
@@ -152,10 +176,11 @@ export default function ApplicationsPage() {
         router.push(`/apply/status?applicationId=${applicationId}`);
         break;
       case "Deferred":
-        router.push(`/apply/deferred?applicationId=${applicationId}`);
+        router.push(`/apply/documents?applicationId=${applicationId}`);
         break;
+      case "Send Visa Result":
       case "Visa Result Sent":
-        router.push(`/apply/result?applicationId=${applicationId}`);
+        router.push(`/apply/status?applicationId=${applicationId}`);
         break;
       case "Completed":
       case "Approved":
@@ -165,6 +190,12 @@ export default function ApplicationsPage() {
       case "Cancellation Requested":
       case "Cancelled":
         router.push(`/apply/summary?applicationId=${applicationId}`);
+        break;
+      case "Closed - Chargeback":
+        router.push(`/apply/chargeback?applicationId=${applicationId}`);
+        break;
+      case "Refunded":
+        router.push(`/apply/refunded?applicationId=${applicationId}`);
         break;
       default:
         router.push(`/apply/passengers?applicationId=${applicationId}`);

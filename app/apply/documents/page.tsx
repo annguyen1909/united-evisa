@@ -20,6 +20,9 @@ interface ApplicationData {
     stayingEnd?: string;
     passengers?: Passenger[];
     status?: string;
+    destination?: {
+        name: string;
+    };
 }
 
 interface Passenger {
@@ -117,6 +120,7 @@ function DocumentsContent({ user }: { user: any }) {
     const [documentRequirements, setDocumentRequirements] = useState<DocumentRequirement[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [stepNotAllowed, setStepNotAllowed] = useState(false);
+    const [isDeferred, setIsDeferred] = useState(false);
     // Step 1 logic: isLoggedIn and user/contact
     const isLoggedIn = !!user;
     const contact = {
@@ -140,6 +144,11 @@ function DocumentsContent({ user }: { user: any }) {
                 if (response.ok) {
                     const data = await response.json();
                     setApplicationData(data);
+
+                    // Check if application is deferred
+                    if (data.status === 'Deferred') {
+                        setIsDeferred(true);
+                    }
 
                     // Check if previous step is completed (customize this check as needed)
                     if (!data.paymentStatus || (data.paymentStatus !== 'Completed' && data.paymentStatus !== 'Payment Completed')) {
@@ -350,6 +359,29 @@ function DocumentsContent({ user }: { user: any }) {
 
                     <CardContent className="space-y-8">
 
+                        {/* Deferred Application Banner */}
+                        {isDeferred && (
+                            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                                <div className="flex gap-3">
+                                    <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
+                                    <div>
+                                        <h4 className="font-semibold text-red-800 mb-2">Application Deferred</h4>
+                                        <p className="text-sm text-red-700 mb-3">
+                                            Your application has been deferred by the Government of {applicationData.destination?.name || 'the destination country'}. 
+                                            Please check your email or contact us for further information, and submit the requirements as soon as possible to avoid delay.
+                                        </p>
+                                        <div className="flex flex-col sm:flex-row gap-2">
+                                            <a 
+                                                href="mailto:visa@unitedevisa.com" 
+                                                className="inline-flex items-center px-3 py-2 text-sm font-medium text-red-700 bg-red-100 hover:bg-red-200 rounded-md transition-colors"
+                                            >
+                                                Contact Support
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
                         {/* Required Documents */}
                         <div>

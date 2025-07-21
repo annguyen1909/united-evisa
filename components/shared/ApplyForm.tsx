@@ -405,7 +405,7 @@ export default function ApplyForm({ user }: { user: any }) {
   useEffect(() => {
     const handleBeforeUnload = () => {
       sessionStorage.removeItem('apply-form-cache');
-      sessionStorage.removeItem('current-application-id');
+      sessionStorage.removeItem('evisa-application-id');
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -433,7 +433,7 @@ export default function ApplyForm({ user }: { user: any }) {
   const isIndia = selectedCountry?.code?.toLowerCase() === "in";
 
   // Check if there's an existing application to update
-  const existingApplicationId = sessionStorage.getItem('current-application-id');
+  const existingApplicationId = sessionStorage.getItem('evisa-application-id');
   const shouldUpdateExisting = !!(existingApplicationId && (
     // Only allow updates if destination hasn't changed (only visa type, passenger count, dates)
     selectedDestination?.id === sessionStorage.getItem('cached-destination-id')
@@ -547,7 +547,7 @@ export default function ApplyForm({ user }: { user: any }) {
     console.log('total calculation:', total);
     
     // Check if there's an existing application to update
-    const existingApplicationId = sessionStorage.getItem('current-application-id');
+    const existingApplicationId = sessionStorage.getItem('evisa-application-id');
     const shouldUpdateExisting = existingApplicationId && (
       // Only allow updates if destination hasn't changed (only visa type, passenger count, dates)
       selectedDestination?.id === sessionStorage.getItem('cached-destination-id')
@@ -620,10 +620,12 @@ export default function ApplyForm({ user }: { user: any }) {
         }
       } else {
         // New application created, store the application ID and destination ID
-        sessionStorage.setItem('current-application-id', appData.applicationId);
+        sessionStorage.setItem('evisa-application-id', appData.applicationId);
         sessionStorage.setItem('cached-destination-id', selectedDestination?.id || '');
         console.log('Created new application:', appData.applicationId);
         console.log('Created passenger IDs:', appData.passengerIds);
+        console.log('Stored application ID in session storage:', appData.applicationId);
+        console.log('Session storage key:', 'evisa-application-id');
       }
 
       // Navigate to passengers page with applicationId as URL parameter
@@ -721,7 +723,7 @@ export default function ApplyForm({ user }: { user: any }) {
                     const currentDestinationId = sessionStorage.getItem('cached-destination-id');
                     if (currentDestinationId && currentDestinationId !== id) {
                       // Destination changed, clear existing application ID since we'll need a new application
-                      sessionStorage.removeItem('current-application-id');
+                      sessionStorage.removeItem('evisa-application-id');
                       sessionStorage.removeItem('cached-destination-id');
                       console.log('Destination changed, cleared existing application ID');
                     }
@@ -752,72 +754,9 @@ export default function ApplyForm({ user }: { user: any }) {
                 
                 {selectedDestination && (
                   <div className="mt-3 space-y-3">
-                    {/* Required Documents Card */}
-                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 mt-0.5">
-                          <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
-                            <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-amber-900 text-sm mb-2">
-                            Required Documents for {selectedDestination.name}
-                          </h4>
-                          <ul className="text-sm text-amber-800 space-y-1">
-                            <li className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
-                              Valid passport with at least 6 months validity from arrival date
-                            </li>
-                            <li className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
-                              Recent passport-size photograph
-                            </li>
-                            <li className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
-                              Onward flight ticket
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
 
-                    {/* Processing Time Card */}
-                    <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-lg p-4">
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 mt-0.5">
-                          <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                            <Clock className="w-4 h-4 text-emerald-600" />
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-emerald-900 text-sm mb-1">
-                            Processing Time
-                          </h4>
-                          <p className="text-sm text-emerald-800">
-                            {(() => {
-                              if (!selectedDestination || !selectedDestination.processingTime)
-                                return "Processing time information not available";
-                              const pt = selectedDestination.processingTime;
-                              if (typeof pt === "object" && pt !== null) {
-                                if (pt.superUrgent && pt.normal) {
-                                  return `${pt.superUrgent} to ${pt.normal}`;
-                                } else if (pt.superUrgent) {
-                                  return pt.superUrgent;
-                                } else if (pt.normal) {
-                                  return pt.normal;
-                                } else {
-                                  return "Processing time information not available";
-                                }
-                              }
-                              return String(pt);
-                            })()}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+
+
 
                     {/* Port of Arrival for India */}
                     {isIndia && (
@@ -837,7 +776,7 @@ export default function ApplyForm({ user }: { user: any }) {
                                 className="accent-emerald-600"
                               />
                               <label htmlFor="portType-Air" className="text-sm text-slate-700">Airport</label>
-                            </div>
+                          </div>
                             <div className="flex items-center gap-2">
                               <input
                                 type="radio"
@@ -849,15 +788,15 @@ export default function ApplyForm({ user }: { user: any }) {
                                 className="accent-emerald-600"
                               />
                               <label htmlFor="portType-Seaport" className="text-sm text-slate-700">Seaport</label>
-                            </div>
-                          </div>
+                        </div>
+                        </div>
                           {errors.portType && (
                             <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
                               <XCircle className="h-3.5 w-3.5" />
                               <span>{errors.portType}</span>
-                            </div>
+                      </div>
                           )}
-                        </div>
+                    </div>
 
                         {/* Port Name */}
                         <div className="space-y-1.5">
@@ -989,7 +928,7 @@ export default function ApplyForm({ user }: { user: any }) {
                             <div className="flex items-center gap-2 mt-1 text-red-500 text-xs">
                               <XCircle className="h-3.5 w-3.5" />
                               <span>{errors.portName}</span>
-                            </div>
+                          </div>
                           )}
                         </div>
                       </>
@@ -1186,7 +1125,7 @@ export default function ApplyForm({ user }: { user: any }) {
                         }
                       } else {
                         // For other countries, use the visa type name directly
-                        setSelectedVisaType(v);
+                      setSelectedVisaType(v);
                       }
                       setErrors((prev) => ({ ...prev, visaType: "" }));
                     }}
@@ -1260,11 +1199,11 @@ export default function ApplyForm({ user }: { user: any }) {
                       ) : (
                         // For other countries, show individual visa types
                         visaTypes.map((v) => (
-                          <SelectItem key={v.name} value={v.name}>
-                            <div className="flex flex-row items-center justify-between gap-2">
-                              <span>{v.name}</span>
-                            </div>
-                          </SelectItem>
+                        <SelectItem key={v.name} value={v.name}>
+                          <div className="flex flex-row items-center justify-between gap-2">
+                            <span>{v.name}</span>
+                          </div>
+                        </SelectItem>
                         ))
                       )}
                     </SelectContent>
@@ -1275,16 +1214,7 @@ export default function ApplyForm({ user }: { user: any }) {
                     </p>
                   )}
 
-                  {selectedVisaType && (
-                    <div className="mt-2 p-2.5 bg-indigo-50 rounded-md border border-indigo-100">
-                      <p className="text-sm text-indigo-700">
-                        {visaTypes.find(
-                          (v) => v.name === selectedVisaType
-                        )?.description ||
-                          "Selected visa allows entry to the country based on your purpose of visit."}
-                      </p>
-                    </div>
-                  )}
+
                 </div>
               )}
 
@@ -1537,7 +1467,7 @@ export default function ApplyForm({ user }: { user: any }) {
                                 (1000 * 60 * 60 * 24)
                             )} days${
                               selectedDestination
-                                ? ` at ${selectedDestination.name}`
+                                ? ` in ${selectedDestination.name}`
                                 : ""
                             }`}
                       </span>
@@ -1570,7 +1500,7 @@ export default function ApplyForm({ user }: { user: any }) {
                 <h2 className="text-lg font-semibold text-slate-800">
                   Contact Information
                 </h2>
-                {applicationExists && (
+                {(applicationExists || isLoggedIn) && (
                   <span className="ml-auto text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full border border-blue-100">
                     Contact information cannot be changed
                   </span>
@@ -1585,11 +1515,11 @@ export default function ApplyForm({ user }: { user: any }) {
                     type="text"
                     className={cn(
                       "focus:ring-emerald-500",
-                      applicationExists && "bg-slate-50 text-slate-500",
+                      (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                       errors.fullName && "border-red-500 focus:ring-red-500"
                     )}
                     value={contact.fullName}
-                    readOnly={applicationExists}
+                    readOnly={applicationExists || isLoggedIn}
                     onChange={(e) =>
                       setContact((c) => ({ ...c, fullName: e.target.value }))
                     }
@@ -1611,11 +1541,11 @@ export default function ApplyForm({ user }: { user: any }) {
                     type="email"
                     className={cn(
                       "focus:ring-emerald-500",
-                      applicationExists && "bg-slate-50 text-slate-500",
+                      (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                       errors.email && "border-red-500 focus:ring-red-500"
                     )}
                     value={contact.email}
-                    readOnly={applicationExists}
+                    readOnly={applicationExists || isLoggedIn}
                     onChange={(e) =>
                       setContact((c) => ({ ...c, email: e.target.value }))
                     }
@@ -1642,10 +1572,10 @@ export default function ApplyForm({ user }: { user: any }) {
                           type="button"
                           className={cn(
                             "w-full flex items-center justify-between rounded-md border px-3 py-2 text-left text-sm shadow-sm transition-colors focus:outline-none focus:ring-1",
-                            applicationExists ? "bg-slate-50 text-slate-500" : "bg-white",
+                            (applicationExists || isLoggedIn) ? "bg-slate-50 text-slate-500" : "bg-white",
                             errors.countryCode && "border-red-500 focus:ring-red-500"
                           )}
-                          disabled={applicationExists}
+                          disabled={applicationExists || isLoggedIn}
                         >
                           <span className="flex items-center gap-2">
                             {COUNTRY_CODES.find(c => c.code === contact.countryCode)?.flag || ""}
@@ -1707,11 +1637,11 @@ export default function ApplyForm({ user }: { user: any }) {
                       type="tel"
                       className={cn(
                         "focus:ring-emerald-500",
-                        applicationExists && "bg-slate-50 text-slate-500",
+                      (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                         errors.phone && "border-red-500 focus:ring-red-500"
                       )}
                       value={contact.phone}
-                      readOnly={applicationExists}
+                    readOnly={applicationExists || isLoggedIn}
                       onChange={(e) =>
                         setContact((c) => ({ ...c, phone: e.target.value }))
                       }
@@ -1737,12 +1667,12 @@ export default function ApplyForm({ user }: { user: any }) {
                       console.log('Gender changed to:', v);
                       setContact((c) => ({ ...c, gender: v }));
                     }}
-                    disabled={applicationExists}
+                    disabled={applicationExists || isLoggedIn}
                   >
                     <SelectTrigger
                       className={cn(
                         "focus:ring-emerald-500",
-                        applicationExists && "bg-slate-50 text-slate-500",
+                        (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                         errors.gender && "border-red-500 focus:ring-red-500"
                       )}
                     >
@@ -1827,9 +1757,9 @@ export default function ApplyForm({ user }: { user: any }) {
                 </div>
 
                 {/* Government Fee */}
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-600">Government Fee</span>
-                  <span className="text-slate-800">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-600">Government Fee</span>
+                    <span className="text-slate-800">
                     {isIndia 
                       ? "Pending nationality selection"
                       : (selectedDestination && selectedVisaType
@@ -1839,8 +1769,8 @@ export default function ApplyForm({ user }: { user: any }) {
                             )?.fees ?? 0
                           ).toFixed(2)}`
                         : "---")}
-                  </span>
-                </div>
+                    </span>
+                  </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Service Fee</span>
                   <span className="text-slate-800">

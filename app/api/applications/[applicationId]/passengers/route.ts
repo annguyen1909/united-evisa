@@ -163,7 +163,7 @@ export async function POST(
             passportNumber: passengerData.passportNumber,
             dateOfBirth: new Date(passengerData.dateOfBirth),
             gender: passengerData.gender,
-            status: 'active'
+            status: 'Active'
           },
           select: {
             id: true,
@@ -186,7 +186,7 @@ export async function POST(
             passportNumber: passengerData.passportNumber,
             dateOfBirth: new Date(passengerData.dateOfBirth),
             gender: passengerData.gender,
-            status: 'active'
+            status: 'Active'
           },
           select: {
             id: true,
@@ -268,7 +268,7 @@ export async function PUT(
           passportNumber: passengerData.passportNumber,
           dateOfBirth: new Date(passengerData.dateOfBirth),
           gender: passengerData.gender,
-          status: 'active',
+          status: 'Active',
           id: crypto.randomUUID(), // Generate a new UUID for the passenger ID
           applicationId: application.id // Use direct reference instead of relation syntax
         }

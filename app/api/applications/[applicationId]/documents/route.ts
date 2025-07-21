@@ -135,10 +135,7 @@ export async function POST(
       }
     });
 
-    await prisma.application.update({
-      where: { id: application.id },
-      data: { status: "Processing" }
-    });
+    // Note: Application status is left unchanged - only document is uploaded
 
     // Return the document without the content field
     const { ...documentWithoutContent } = document;

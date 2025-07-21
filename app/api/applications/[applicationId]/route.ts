@@ -51,6 +51,9 @@ export async function GET(
 
     if (session?.user?.email) {
       // Logged in: verify ownership
+      console.log('Authorization check - User email:', session.user.email);
+      console.log('Authorization check - Application accountId:', application.accountId);
+      
       const account = await prisma.account.findUnique({
         where: {
           email_websiteCreatedAt: {
@@ -60,9 +63,26 @@ export async function GET(
         },
         select: { id: true },
       });
+      
+      // Also try a fallback search if the composite key doesn't work
+      if (!account) {
+        console.log('Composite key lookup failed, trying simple email lookup');
+        const fallbackAccount = await prisma.account.findFirst({
+          where: { email: session.user.email },
+          select: { id: true },
+        });
+        console.log('Fallback account lookup:', fallbackAccount);
+      }
+      console.log('Authorization check - Found account:', account);
+      
       if (!account || (account.id !== application.accountId)) {
+        console.log('Authorization failed - Account not found or mismatch');
+        console.log('Account found:', !!account);
+        console.log('Account ID:', account?.id);
+        console.log('Application accountId:', application.accountId);
         return NextResponse.json({ error: "Unauthorized to view this application" }, { status: 403 });
       }
+      console.log('Authorization successful');
     } else {
       // Not logged in: check guest applicationId and email from cookie
       const cookieHeader = request.headers.get('cookie');

@@ -8,14 +8,29 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   
+  console.log('List route - User email:', session.user.email);
+  console.log('List route - Looking for account with websiteCreatedAt:', "United eVisa Site");
+  
   const account = await prisma.account.findUnique({
     where: { email_websiteCreatedAt: { email: session.user.email, websiteCreatedAt: "United eVisa Site" } },
     select: { id: true },
   });
   
+  console.log('List route - Found account:', account);
+  
+  // Check for all accounts with this email to see if there are multiple
+  const allAccountsWithEmail = await prisma.account.findMany({
+    where: { email: session.user.email },
+    select: { id: true, websiteCreatedAt: true },
+  });
+  console.log('List route - All accounts with this email:', allAccountsWithEmail);
+  
   if (!account) {
+    console.log('List route - No account found, returning empty applications');
     return NextResponse.json({ applications: [] });
   }
+  
+  console.log('List route - Looking for applications with accountId:', account.id);
   
   const applications = await prisma.application.findMany({
     where: { accountId: account.id },
@@ -24,6 +39,9 @@ export async function GET() {
     },
     orderBy: { createdAt: "desc" },
   });
+  
+  console.log('List route - Found applications:', applications.length);
+  console.log('List route - Application IDs:', applications.map(app => app.applicationId));
   
   return NextResponse.json({ applications });
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import Stripe from "stripe";
 import { NATIONALITIES } from "@/lib/nationalities";
+import { sendEmail } from "@/lib/email";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-05-28.basil",
@@ -40,7 +41,7 @@ export async function POST(
     if (paymentIntent.status !== "succeeded") {
       console.error("Payment intent not succeeded:", paymentIntent.status);
       return NextResponse.json({ error: "Payment not succeeded" }, { status: 400 });
-    }
+        }
 
     console.log("Payment intent succeeded, updating application status...");
 
@@ -239,29 +240,29 @@ export async function POST(
         riskActivityDescription,
       });
 
-      // Create Risk record
-      const risk = await prisma.risk.create({
-        data: {
+    // Create Risk record
+    const risk = await prisma.risk.create({
+      data: {
           id: `risk_${application.id}`,
-          status: riskStatus,
-          applicationId: application.id,
+        status: riskStatus,
+        applicationId: application.id,
           createdAt: new Date(),
           updatedAt: new Date(),
           lastUpdated: new Date(),
         },
-      });
+    });
 
       console.log("Created Risk record:", risk.id, risk.status);
 
       // Create RiskActivity record
       const riskActivity = await prisma.riskActivity.create({
-        data: {
+      data: {
           id: `risk_activity_${risk.id}_${Date.now()}`,
-          riskId: risk.id,
+        riskId: risk.id,
           createdAt: new Date(),
           description: riskActivityDescription,
           type: riskActivityType,
-          details: JSON.stringify({
+        details: JSON.stringify({
             cardholderName: name || "Cardholder",
             passengerNames,
             applicationTotal,
@@ -269,7 +270,7 @@ export async function POST(
             governmentFee,
             serviceFee,
             passengerCount,
-          }),
+        }),
           timestamp: new Date(),
           title: riskActivityTitle,
         },
@@ -279,6 +280,18 @@ export async function POST(
     } catch (riskError) {
       console.error("Error creating Risk and RiskActivity records:", riskError);
       // Continue without Risk records if it fails
+    }
+
+    // Send payment confirmation email
+    try {
+      await sendEmail({
+        template: 'payment-confirmation',
+        data: { applicationId }
+      });
+      console.log("Payment confirmation email sent for application:", applicationId);
+    } catch (emailError) {
+      console.error("Error sending payment confirmation email:", emailError);
+      // Continue even if email fails
     }
 
     return NextResponse.json({

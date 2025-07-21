@@ -143,8 +143,8 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             billingZipcode = 'Billing Form Data Missing';
         }
 
-        await prisma.stripeActivity.create({
-            data: {
+            await prisma.stripeActivity.create({
+                data: {
                 id: `payment_${paymentIntent.id}`,
                 applicationId: application.id,
                 type: 'Payment',
@@ -153,9 +153,9 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 status: 'succeeded',
                 transactionId: `payment_${paymentIntent.id}`,
                 description: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} - Made by ${cardholderName}.`,
-                timestamp: new Date(),
-            },
-        });
+                    timestamp: new Date(),
+                },
+            });
         console.log(
             `Webhook Action: Created StripeActivity for successful payment on application ${applicationId}.`
         );
@@ -177,8 +177,8 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 address: billingAddress,
                 zipcode: billingZipcode,
                 applicationId: application.id,
-            },
-        });
+                    },
+                });
         console.log(`Webhook Action: Upserted CardHolder for application ${applicationId}.`);
 
         const passengers = await prisma.passenger.findMany({

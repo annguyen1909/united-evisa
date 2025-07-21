@@ -7,22 +7,14 @@ const JWT_SECRET = process.env.JWT_SECRET || "changeme-secret";
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, newPassword, jwtToken } = await request.json();
-    if (!email || !newPassword || !jwtToken) {
+    const { email, newPassword, otp } = await request.json();
+    if (!email || !newPassword || !otp) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
-    // Verify JWT
-    let decoded: any;
-    try {
-      decoded = jwt.verify(jwtToken, JWT_SECRET);
-      if (decoded.email !== email || decoded.type !== "reset-password") {
-        return NextResponse.json({ error: "Invalid token" }, { status: 400 });
-      }
-    } catch (err) {
-      return NextResponse.json({ error: "Invalid or expired token" }, { status: 400 });
-    }
-    // Find the account by email
-    const account = await prisma.account.findFirst({ where: { email } });
+    // Find the account by email (only United eVisa Site accounts)
+    const account = await prisma.account.findFirst({ 
+      where: { email, websiteCreatedAt: "United eVisa Site" } 
+    });
     if (!account) {
       return NextResponse.json({ error: "Account not found" }, { status: 404 });
     }
@@ -34,9 +26,9 @@ export async function POST(request: NextRequest) {
     if (!latestToken) {
       return NextResponse.json({ error: "No OTP found for this account. Please request a new one." }, { status: 400 });
     }
-    // Only allow if the provided token matches the latest, is unused, and unexpired
+    // Only allow if the provided OTP matches the latest, is unused, and unexpired
     if (
-      latestToken.token !== jwtToken ||
+      latestToken.token !== otp ||
       latestToken.used ||
       latestToken.expiresAt <= new Date()
     ) {

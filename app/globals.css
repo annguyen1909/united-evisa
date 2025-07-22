@@ -346,22 +346,5 @@ article a {
   }
 }
 
-/* Dropdown positioning fixes */
-.dropdown-container {
-  overflow: visible !important;
-}
-
-.dropdown-container * {
-  overflow: visible !important;
-}
-
-/* Ensure parent containers don't clip dropdowns */
-.relative {
-  overflow: visible !important;
-}
-
-/* Fix for any parent containers that might clip */
-.overflow-hidden {
-  overflow: visible !important;
-}
+/* Dropdown positioning fixes - Floating UI handles this now */
 

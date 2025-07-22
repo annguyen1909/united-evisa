@@ -5,13 +5,7 @@ import { Check, Globe, ChevronRight } from "lucide-react";
 import { COUNTRIES } from '@/lib/countries';
 import { NATIONALITIES } from '@/lib/nationalities';
 import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
+
 import {
   Popover,
   PopoverContent,
@@ -20,6 +14,7 @@ import {
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useFloating, offset, flip, shift, size } from '@floating-ui/react';
 
 // Transform countries into ComboBox format
 const countryOptions = COUNTRIES.map((country) => ({
@@ -80,10 +75,29 @@ function ComboBox({
   );
   const selected = options.find((opt) => opt.value === value);
 
+  // Floating UI setup
+  const { refs, floatingStyles } = useFloating({
+    placement: 'bottom-start',
+    middleware: [
+      offset(4),
+      flip(),
+      shift(),
+      size({
+        apply({ availableWidth, availableHeight, elements }) {
+          const referenceElement = elements.reference as HTMLElement;
+          Object.assign(elements.floating.style, {
+            width: `${referenceElement.offsetWidth}px`,
+            maxHeight: `${Math.min(availableHeight, 240)}px`,
+          });
+        },
+      }),
+    ],
+  });
+
   return (
     <div className="w-full md:w-auto md:flex-1">
       <label className="block mb-1.5 font-medium text-sm text-slate-700">{label}</label>
-      <div className="relative w-full" style={{ overflow: 'visible' }}>
+      <div className="relative w-full" ref={refs.setReference}>
         <div className={cn("flex items-center h-[50px] border px-3 py-2 bg-white border-slate-300 shadow-sm", className)}>
           {icon && <div className="text-slate-400 mr-1">{icon}</div>}
           <input
@@ -99,43 +113,51 @@ function ComboBox({
         </div>
         {isFocused && (
           <div
-            className="absolute left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg z-50"
-            style={{ maxHeight: 320, overflowY: 'auto' }}
+            ref={refs.setFloating}
+            style={floatingStyles}
+            className="bg-white border border-slate-200 rounded-xl shadow-lg overflow-y-auto z-[9999]"
             onMouseDown={() => { mouseDownRef.current = true; }}
             onMouseUp={() => { mouseDownRef.current = false; }}
             onMouseLeave={() => { mouseDownRef.current = false; }}
           >
-            <Command>
-              <CommandList>
-                {filtered.length === 0 && (
-                  <CommandEmpty>No {label.toLowerCase()} found.</CommandEmpty>
-                )}
-                <CommandGroup>
-                  {filtered.map((opt) => (
-                    <CommandItem
-                      key={opt.value}
-                      value={opt.label.toLowerCase()}
-                      onSelect={() => {
-                        onChange(opt.value);
-                        setSearch(opt.label); // show selected in input
-                        handleSetFocused(false);
-                      }}
-                      className="flex items-center gap-2 px-4 py-2.5 cursor-pointer"
-                    >
-                      {opt.flag && (
-                        <div className="h-4 w-6 overflow-hidden rounded-sm flex-shrink-0">
-                          <img src={opt.flag} alt="" className="h-full w-full object-cover" />
-                        </div>
-                      )}
-                      <span className="flex-1 truncate">{opt.label}</span>
-                      {value === opt.value && (
-                        <Check className="ml-auto h-4 w-4 text-emerald-600" />
-                      )}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </CommandList>
-            </Command>
+            {filtered.length === 0 ? (
+              <div className="p-3 text-slate-500 text-sm">No {label.toLowerCase()} found.</div>
+            ) : (
+              <div>
+                {filtered.map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => {
+                      onChange(opt.value);
+                      setSearch(opt.label); // show selected in input
+                      handleSetFocused(false);
+                    }}
+                    onMouseDown={() => {
+                      mouseDownRef.current = true;
+                    }}
+                    onMouseUp={() => {
+                      mouseDownRef.current = false;
+                    }}
+                    className="flex items-center gap-2 w-full p-3 text-left hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0"
+                  >
+                    {opt.flag && (
+                      <Image
+                        src={opt.flag}
+                        alt={opt.label}
+                        width={20}
+                        height={15}
+                        className="rounded-sm"
+                      />
+                    )}
+                    <span>{opt.label}</span>
+                    {value === opt.value && (
+                      <Check className="ml-auto h-4 w-4 text-emerald-600" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

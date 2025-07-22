@@ -20,7 +20,6 @@ import {
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { createPortal } from "react-dom";
 
 // Transform countries into ComboBox format
 const countryOptions = COUNTRIES.map((country) => ({
@@ -76,8 +75,6 @@ function ComboBox({
     handleSetFocused(false);
   };
 
-  const [dropdownRef, setDropdownRef] = React.useState<HTMLDivElement | null>(null);
-
   const filtered = options.filter(opt =>
     opt.label.toLowerCase().includes(search.toLowerCase())
   );
@@ -86,7 +83,7 @@ function ComboBox({
   return (
     <div className="w-full md:w-auto md:flex-1">
       <label className="block mb-1.5 font-medium text-sm text-slate-700">{label}</label>
-      <div className="relative w-full" ref={setDropdownRef}>
+      <div className="relative w-full" style={{ overflow: 'visible' }}>
         <div className={cn("flex items-center h-[50px] border px-3 py-2 bg-white border-slate-300 shadow-sm", className)}>
           {icon && <div className="text-slate-400 mr-1">{icon}</div>}
           <input
@@ -100,16 +97,10 @@ function ComboBox({
             autoComplete="off"
           />
         </div>
-        {isFocused && dropdownRef && typeof window !== 'undefined' && createPortal(
+        {isFocused && (
           <div
-            className="fixed bg-white border border-slate-200 rounded-xl shadow-lg z-[99999]"
-            style={{
-              top: dropdownRef.getBoundingClientRect().bottom + 4,
-              left: dropdownRef.getBoundingClientRect().left,
-              width: dropdownRef.getBoundingClientRect().width,
-              maxHeight: 320,
-              overflowY: 'auto'
-            }}
+            className="absolute left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg z-50"
+            style={{ maxHeight: 320, overflowY: 'auto' }}
             onMouseDown={() => { mouseDownRef.current = true; }}
             onMouseUp={() => { mouseDownRef.current = false; }}
             onMouseLeave={() => { mouseDownRef.current = false; }}
@@ -145,8 +136,7 @@ function ComboBox({
                 </CommandGroup>
               </CommandList>
             </Command>
-          </div>,
-          document.body
+          </div>
         )}
       </div>
     </div>

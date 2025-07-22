@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { createPortal } from "react-dom";
 
 // Transform countries into ComboBox format
 const countryOptions = COUNTRIES.map((country) => ({
@@ -75,12 +74,10 @@ function ComboBox({
   );
   const selected = options.find((opt) => opt.value === value);
 
-  const [dropdownRef, setDropdownRef] = React.useState<HTMLDivElement | null>(null);
-
   return (
     <div className="w-full md:w-auto md:flex-1">
       <label className="block mb-1.5 font-medium text-sm text-slate-700">{label}</label>
-      <div className="relative w-full" style={{ position: 'relative' }} ref={setDropdownRef}>
+      <div className="relative w-full" style={{ overflow: 'visible' }}>
         <div className={cn("flex items-center h-[50px] border px-3 py-2 bg-white border-slate-300 shadow-sm", className, disabled && "opacity-60 cursor-not-allowed")}>
           {icon && <div className="text-slate-400 mr-1">{icon}</div>}
           <input
@@ -95,15 +92,9 @@ function ComboBox({
             disabled={disabled}
           />
         </div>
-        {isFocused && !disabled && dropdownRef && typeof window !== 'undefined' && createPortal(
+        {isFocused && !disabled && (
           <div 
-            className="fixed bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto"
-            style={{ 
-              top: dropdownRef.getBoundingClientRect().bottom + 4,
-              left: dropdownRef.getBoundingClientRect().left,
-              width: dropdownRef.getBoundingClientRect().width,
-              zIndex: 99999,
-            }}
+            className="absolute left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto z-50"
           >
             {filtered.length === 0 ? (
               <div className="p-3 text-slate-500 text-sm">No {label.toLowerCase()} found.</div>
@@ -140,8 +131,7 @@ function ComboBox({
                 ))}
               </div>
             )}
-          </div>,
-          document.body
+          </div>
         )}
       </div>
     </div>

@@ -11,6 +11,7 @@ import Image from "next/image";
 import { Calendar, Clock, ArrowLeft, User, Tag, Share2, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
+import { Metadata } from 'next';
 
 // Extract headings for TOC from markdown content
 function extractHeadingsFromHtml(html: string) {
@@ -116,6 +117,51 @@ function processContentHtml(html: string) {
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: 'Blog Post Not Found | Worldmaxxing Global Services',
+      description: 'The requested blog post could not be found.',
+    };
+  }
+
+  return {
+    title: `${post.title} | Worldmaxxing Global Services`,
+    description: post.description || `Read about ${post.title} on Worldmaxxing Global Services blog.`,
+    keywords: `${post.title}, visa blog, travel tips, eVisa, Worldmaxxing Global Services`,
+    alternates: {
+      canonical: `https://visa.worldmaxxing.com/blog/${slug}`,
+    },
+    openGraph: {
+      title: `${post.title} | Worldmaxxing Global Services`,
+      description: post.description || `Read about ${post.title} on Worldmaxxing Global Services blog.`,
+      url: `https://visa.worldmaxxing.com/blog/${slug}`,
+      siteName: 'Worldmaxxing Global Services',
+      images: [
+        {
+          url: '/images/hero/hero.jpg',
+          width: 1200,
+          height: 630,
+          alt: `${post.title} - Worldmaxxing Global Services Blog`,
+        }
+      ],
+      locale: 'en_US',
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Worldmaxxing Global Services'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${post.title} | Worldmaxxing Global Services`,
+      description: post.description || `Read about ${post.title} on Worldmaxxing Global Services blog.`,
+      images: ['/images/hero/hero.jpg'],
+    },
+  };
 }
 
 export default async function BlogDetail({ params }: Props) {

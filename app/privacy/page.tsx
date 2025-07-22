@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | Worldmaxxing Global Services Immigration Assistance Service',
   description:
     'Learn how we collect, use, and protect your personal information when you use our Worldmaxxing Global Services Immigration Assistance Service.',
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com/privacy',
+  },
 };
 
 export default function PrivacyPolicyPage() {
@@ -76,7 +79,7 @@ export default function PrivacyPolicyPage() {
                       committed to protecting your privacy and ensuring the security of your personal
                       information. This Privacy Policy explains how we collect, use, disclose, and
                       safeguard your information when you visit our website at worldmaxxing.com
-                      and use our Worldmaxxing Global Services Immigration Assistance Service.
+                      and use our Worldmaxxing Global Services Immigration Assistance.
                     </p>
                     <p className="text-gray-700 leading-relaxed">
                       By using our services, you consent to the collection and use of your information

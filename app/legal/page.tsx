@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     'Comprehensive legal terms, conditions, and agreements for United eVisa Immigration Assistance Service. Read our terms of service, privacy policy, and legal disclaimers.',
   keywords:
     'United eVisa legal terms, terms of service, legal agreement, visa services legal, immigration legal',
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com/legal',
+  },
 };
 
 export default function LegalPage() {

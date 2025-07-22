@@ -2,6 +2,15 @@ import SignupForm from "@/components/shared/Signup";
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/authOptions"
 import { redirect } from "next/navigation"
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sign Up | Worldmaxxing Global Services',
+  description: 'Create your Worldmaxxing Global Services account to start your visa application process.',
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com/signup',
+  },
+};
 
 export default async function SignupPage() {
   const session = await getServerSession(authOptions)

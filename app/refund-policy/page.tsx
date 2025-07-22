@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     "Complete refund policy for United eVisa Immigration Assistance Service. Learn about refundable and non-refundable fees, processing times, and our money-back guarantee.",
   keywords:
     "eVisa refund policy, visa refund, money-back guarantee, immigration refund terms, United eVisa refunds",
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com/refund-policy',
+  },
 };
 
 export default function RefundPolicyPage() {

@@ -1,3 +1,13 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Profile | Worldmaxxing Global Services',
+  description: 'View and manage your Worldmaxxing Global Services account and visa applications.',
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com/profile',
+  },
+};
+
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/authOptions"
 import { redirect } from "next/navigation"

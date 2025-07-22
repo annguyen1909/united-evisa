@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Terms of Service | Worldmaxxing Global Services Immigration Assistance Service',
   description:
     'Terms of Service Agreement for Worldmaxxing Global Services Immigration Assistance Service - Learn about eligibility, fees, responsibilities, and legal terms.',
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com/terms',
+  },
 };
 
 export default function TermsPage() {

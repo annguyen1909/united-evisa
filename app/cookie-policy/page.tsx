@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Cookie Policy - Worldmaxxing Global Services',
   description:
     'Learn about how we use cookies and similar technologies on our Worldmaxxing Global Services website to improve your experience and provide better services.',
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com/cookie-policy',
+  },
 };
 
 export default function CookiePolicyPage() {

@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
-import { FaGoogle, FaFacebook } from 'react-icons/fa'
+
 import { AlertCircle, Loader2 } from 'lucide-react'
 import ResetPasswordForm from "@/components/shared/ResetPasswordForm"
 
@@ -130,26 +130,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                     "Sign in"
                   )}
                 </Button>
-
-                <div className="relative my-2">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-slate-200"></div>
-                  </div>
-                  <div className="relative flex justify-center">
-                    <span className="bg-white px-4 text-sm text-slate-500">Or continue with</span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" type="button" className="w-full border-slate-300 hover:bg-slate-50 text-slate-800">
-                    <FaGoogle className="mr-2 h-4 w-4 text-red-500" />
-                    Google
-                  </Button>
-                  <Button variant="outline" type="button" className="w-full border-slate-300 hover:bg-slate-50 text-slate-800">
-                    <FaFacebook className="mr-2 h-4 w-4 text-blue-600" />
-                    Facebook
-                  </Button>
-                </div>
 
                 <div className="text-center text-slate-600 text-sm pt-2">
                   Don&apos;t have an account?{" "}

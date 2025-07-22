@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://visa.worldmaxxing.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /profile/
+Disallow: /login/
+Disallow: /signup/
+Disallow: /apply/passengers/
+Disallow: /apply/documents/
+Disallow: /apply/payment/
+Disallow: /apply/confirmation/
+Disallow: /apply/status/
+Disallow: /apply/summary/
+Disallow: /apply/chargeback/
+Disallow: /apply/refunded/
+
+# Allow important pages
+Allow: /requirements-posts/
+Allow: /blog/
+Allow: /destination/
+Allow: /check-requirements
+Allow: /apply/
+Allow: /support/
+Allow: /pricing/
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /terms
+Allow: /legal
+Allow: /disclaimers
+Allow: /refund-policy
+Allow: /cookie-policy
+Allow: /digital-services-act
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1 

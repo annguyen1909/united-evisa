@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Providers } from "./providers";
 import ContactWidget from "../components/ui/ContactWidget";
+import StructuredData from "./components/StructuredData";
+import GoogleAnalytics from "../components/GoogleAnalytics";
 
 // Primary fonts
 const geistSans = Geist({
@@ -27,35 +29,100 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Worldmaxxing Global Services | Your Trusted Global Visa Assistant",
-  description: "Get your eVisa quickly and securely with Worldmaxxing Global Services. Apply for visas to Kenya, Canada, Vietnam, and more countries with our expert assistance.",
-  keywords: "eVisa, visa application, Kenya visa, Canada visa, Vietnam visa, online visa, travel visa, immigration services",
+  metadataBase: new URL('https://visa.worldmaxxing.com'),
+  title: {
+    default: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
+    template: "%s | Worldmaxxing Global Services"
+  },
+  description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, and more. Fast processing, 24/7 support, and guaranteed approval. Start your visa application today!",
+  keywords: [
+    "eVisa", "visa application", "online visa", "travel visa", "immigration services",
+    "Kenya visa", "Canada visa", "Vietnam visa", "Australia visa", "UK visa",
+    "Saudi Arabia visa", "fast visa processing", "24/7 visa support",
+    "Worldmaxxing Global Services", "visa requirements", "visa fees",
+    "tourist visa", "business visa", "visa on arrival", "electronic visa"
+  ].join(", "),
   authors: [{ name: "Worldmaxxing Global Services" }],
   creator: "Worldmaxxing Global Services",
   publisher: "Worldmaxxing Global Services",
-  robots: "index, follow",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com',
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://worldmaxxing.com",
+    url: "https://visa.worldmaxxing.com",
+    title: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
+    description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, and more. Fast processing, 24/7 support, and guaranteed approval.",
     siteName: "Worldmaxxing Global Services",
-    title: "Worldmaxxing Global Services | Your Trusted Global Visa Assistant",
-    description: "Get your eVisa quickly and securely with Worldmaxxing Global Services. Apply for visas to Kenya, Canada, Vietnam, and more countries with our expert assistance.",
     images: [
       {
-        url: "/images/logo.png",
+        url: "/images/hero/hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Worldmaxxing Global Services"
-      }
-    ]
+        alt: "Worldmaxxing Global Services - Fast eVisa Applications",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Worldmaxxing Global Services | Your Trusted Global Visa Assistant",
-    description: "Fast, reliable, and trusted eVisa services worldwide",
-    images: ["/images/twitter-image.jpg"]
-  }
+    title: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
+    description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval.",
+    images: ["/images/hero/hero.jpg"],
+    creator: "@worldmaxxing",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
+  },
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png' }],
+    other: [
+      {
+        rel: 'android-chrome-192x192',
+        url: '/web-app-manifest-192x192.png',
+      },
+      {
+        rel: 'android-chrome-512x512',
+        url: '/web-app-manifest-512x512.png',
+      },
+    ],
+  },
+  other: {
+    "application-name": "Worldmaxxing Global Services",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "apple-mobile-web-app-title": "Worldmaxxing",
+    "format-detection": "telephone=no",
+    "mobile-web-app-capable": "yes",
+    "msapplication-config": "/browserconfig.xml",
+    "msapplication-TileColor": "#ffffff",
+    "msapplication-tap-highlight": "no",
+    "theme-color": "#059669",
+  },
 };
 
 // Move viewport to its own export
@@ -82,6 +149,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${inter.variable} ${geistMono.variable} font-sans antialiased bg-white text-slate-900`}
         style={{ position: 'relative', zIndex: 0 }}
       >
+        <GoogleAnalytics />
+        <StructuredData />
         <Providers>
           <TopBanner />
           <Navbar />

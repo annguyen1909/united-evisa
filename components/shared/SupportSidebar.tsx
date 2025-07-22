@@ -116,7 +116,9 @@ export default function SupportSidebar() {
                     ) : (
                         <form className="space-y-4" onSubmit={handleSubmit}>
                             <div className="space-y-2">
+                                <label htmlFor="support-name" className="block text-sm font-medium text-slate-700">Full Name *</label>
                                 <Input 
+                                    id="support-name"
                                     name="name"
                                     placeholder="Full Name *" 
                                     value={formState.name}
@@ -127,7 +129,9 @@ export default function SupportSidebar() {
                             </div>
                             
                             <div className="space-y-2">
+                                <label htmlFor="support-email" className="block text-sm font-medium text-slate-700">Email Address *</label>
                                 <Input 
+                                    id="support-email"
                                     name="email"
                                     type="email" 
                                     placeholder="Email Address *" 
@@ -139,7 +143,9 @@ export default function SupportSidebar() {
                             </div>
                             
                             <div className="space-y-2">
+                                <label htmlFor="support-phone" className="block text-sm font-medium text-slate-700">Phone Number *</label>
                                 <Input 
+                                    id="support-phone"
                                     name="phone"
                                     type="tel" 
                                     placeholder="Phone Number *" 
@@ -151,7 +157,9 @@ export default function SupportSidebar() {
                             </div>
                             
                             <div className="space-y-2">
+                                <label htmlFor="support-message" className="block text-sm font-medium text-slate-700">Your Question *</label>
                                 <Textarea 
+                                    id="support-message"
                                     name="message"
                                     placeholder="Your Question *" 
                                     rows={4} 

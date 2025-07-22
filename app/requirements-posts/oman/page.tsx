@@ -534,52 +534,117 @@ export default function OmanRequirementsPage() {
           </div>
         </section>
 
-        {/* Travel Guide Section */}
+
+
+        {/* Comprehensive Oman Travel Guide */}
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Globe className="h-8 w-8 text-emerald-600" />
-              Oman Travel Guide
+              Complete Oman Travel Guide & Visa Information
             </h2>
             
             <div className="prose prose-slate max-w-none">
               <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Oman eVisa Requirements</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                Oman introduced its eVisa system to streamline the visa application process for international travelers. 
-                The Oman eVisa is an electronic travel authorization that allows visitors to enter Oman for tourism purposes. 
-                This digital system has significantly improved the travel experience for visitors to Oman.
+                Oman's eVisa system was introduced to streamline the visa application process for international travelers. 
+                The Oman eVisa is an electronic travel authorization that allows visitors to enter Oman for tourism, 
+                business, and other purposes. This digital system has significantly improved the overall travel experience for 
+                millions of visitors to Oman each year.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Oman eVisa Eligibility & Requirements</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Most foreign nationals require an Oman eVisa to enter the territory, with the exception of citizens from some 
+                visa-waiver countries. The eVisa system is available to travelers from eligible countries worldwide, making Oman 
+                one of the most accessible destinations for international visitors interested in ancient history, stunning landscapes, 
+                and authentic Arabian culture.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-emerald-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs an Oman eVisa?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li> International tourists visiting Oman for leisure</li>
+                    <li> Business travelers and investors</li>
+                    <li> Students and educational visitors</li>
+                    <li> Family visitors and relatives</li>
+                    <li> Cultural and heritage enthusiasts</li>
+                    <li> Transit passengers</li>
+                  </ul>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Oman eVisa?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li> Omani citizens and permanent residents</li>
+                    <li> GCC citizens</li>
+                    <li> Citizens of visa-waiver countries</li>
+                    <li> Diplomatic passport holders</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Oman eVisa Application Process Explained</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                The Oman eVisa application process is designed to be simple and user-friendly. Our platform guides you 
+                through each step, ensuring your application meets all requirements for approval. The entire process can 
+                be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Oman Visa Processing Times & Fees</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Oman eVisa processing times typically take 3 working days for normal processing. The government fees 
+                are transparent: Tourist eVisa costs $20, while Business eVisa costs $30. We provide transparent pricing 
+                with no hidden fees.
               </p>
               
               <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Oman</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Oman offers a unique blend of traditional culture and stunning natural landscapes. From the historic forts 
-                and souks of Muscat to the dramatic Wahiba Sands desert, visitors can experience both authentic Arabian 
-                culture and breathtaking natural beauty.
+                Oman offers diverse attractions for every type of traveler. From the historic forts and castles to the 
+                stunning desert landscapes, from the pristine beaches to the majestic mountains, Oman provides unforgettable 
+                experiences. The country's unique blend of ancient traditions and natural beauty creates a 
+                fascinating destination for travelers.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Historic Sites</h4>
+                  <h4 className="font-semibold text-emerald-800 mb-2">Historic Forts & Castles</h4>
                   <p className="text-sm text-slate-600">
-                    Muscat's forts, Nizwa Fort, and traditional souks showcase Oman's rich cultural heritage and 
-                    architectural traditions.
+                    From Nizwa Fort to Bahla Fort, from Jabrin Castle to Al Jalali Fort, Oman offers 
+                    impressive historic sites and architectural marvels that showcase the country's rich heritage.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
                   <h4 className="font-semibold text-blue-800 mb-2">Natural Landscapes</h4>
                   <p className="text-sm text-slate-600">
-                    Wahiba Sands desert, Jebel Shams mountain, and pristine coastline offer opportunities for 
-                    adventure and exploration.
+                    From the Wahiba Sands desert to the Hajar Mountains, from the fjords of Musandam to the 
+                    beaches of Salalah, Oman offers stunning natural environments and outdoor adventures.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Cultural Experiences</h4>
+                  <h4 className="font-semibold text-purple-800 mb-2">Cultural Heritage</h4>
                   <p className="text-sm text-slate-600">
-                    Traditional villages, frankincense trails, and authentic Omani hospitality provide insights 
-                    into local culture.
+                    From traditional souks to ancient villages, from mosques to cultural centers, Oman offers 
+                    rich cultural experiences and insights into authentic Arabian traditions.
                   </p>
                 </div>
               </div>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Oman Travel Tips & Best Practices</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                When planning your trip to Oman, consider the desert climate and cultural customs. The best 
+                time to visit is during the cooler months (October to April). Always carry your eVisa approval letter, 
+                passport, and other required documents when traveling. It's also recommended to have comprehensive travel 
+                insurance and be aware of local customs and safety guidelines.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Oman Visa Applications</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Worldmaxxing Global Services has been helping travelers obtain their Oman visas since the eVisa system 
+                was introduced. Our expertise in the Oman visa process, combined with our 98% approval rate and 24/7 
+                customer support, makes us the preferred choice for thousands of travelers each year. We provide 
+                transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
+              </p>
             </div>
           </div>
         </section>

@@ -33,77 +33,49 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-const moldovaVisaTypes = [
+const cambodiaVisaTypes = [
   {
-    id: 'moldova-tourist-multiple-90-days',
-    name: 'Tourist Evisa (Multiple Entries for 90 days)',
+    id: "cambodia-tourist-single-1-month",
+    name: 'Tourist Evisa (Single Entry for 1 month)',
     type: 'Tourist Evisa',
-    description: 'Multiple Entries for 90 days',
-    entry: 'Multiple Entries',
+    description: 'Single Entry for 1 month',
+    entry: 'Single Entry',
     visaDuration: 30,
     visaValidity: '60 days',
-    govFee: 73,
+    govFee: 66,
     processingTime: '5 working days',
-    features: ['Tourism', 'Family visits', 'Cultural exploration', 'Wine tourism']
-  },
-  {
-    id: 'moldova-business-multiple-90-days',
-    name: 'Business Evisa (Multiple Entries for 90 days)',
-    type: 'Business Evisa',
-    description: 'Multiple Entries for 90 days',
-    entry: 'Multiple Entries',
-    visaDuration: 30,
-    visaValidity: '60 days',
-    govFee: 73,
-    processingTime: '5 working days',
-    features: ['Business meetings', 'Conferences', 'Trade shows', 'Corporate events']
+    features: ['Angkor Wat exploration', 'Cultural experiences', 'Temple visits', 'Historical tours']
   }
 ];
 
 const faqs = [
   {
-    question: 'Do I need a visa to visit Moldova?',
-    answer: 'Most foreign nationals require a visa to enter Moldova. The eVisa system allows eligible travelers to apply online before their trip. Check your eligibility on our platform.'
+    question: "Do I need a visa to visit Cambodia?",
+    answer: "Most foreign nationals require a visa to enter Cambodia. The Cambodia eVisa system allows travelers from eligible countries to apply online before their trip. The eVisa is mandatory for tourism, business, and transit purposes. Citizens of some ASEAN countries may be exempt from visa requirements for short stays."
   },
   {
-    question: 'How long does it take to process a Moldova eVisa?',
-    answer: 'Processing time for Moldova eVisas is typically 5 working days. Apply at least 2 weeks before your travel date to avoid delays.'
+    question: "How long does it take to process a Cambodia eVisa?",
+    answer: "Processing time for Cambodia eVisas typically takes 5 working days for normal processing. We recommend applying at least 1 week before your intended travel date to avoid any delays. Our platform has a 98% approval rate, and we provide 24/7 support throughout the application process."
   },
   {
-    question: 'What documents do I need for a Moldova eVisa?',
-    answer: 'You will need a valid passport (at least 6 months validity), recent passport-size photo, proof of accommodation, return flight tickets, and sufficient funds. Additional documents may be required.'
+    question: "What documents do I need for a Cambodia eVisa?",
+    answer: "You'll need a valid passport with at least 6 months validity beyond your intended stay, a recent passport-size photo, proof of accommodation in Cambodia, return flight tickets, and sufficient funds for your stay. All documents should be clear, legible, and in English."
   },
   {
-    question: 'Can I extend my Moldova visa?',
-    answer: 'Visa extensions are possible in Moldova for valid reasons. Visit the local immigration office for more information about extension procedures.'
+    question: "Can I extend my Cambodia visa?",
+    answer: "Yes, you can extend your Cambodia visa while in the country. You'll need to visit the Immigration Department in Phnom Penh or other major cities. Extensions are typically granted for valid reasons such as medical treatment, business needs, or tourism. There are fees associated with visa extensions, and the process can take several days."
   },
   {
-    question: 'Is Moldova safe for tourists?',
-    answer: 'Moldova is generally safe for tourists. Exercise standard precautions and respect local customs and traditions.'
+    question: "Is it safe to travel to Cambodia?",
+    answer: "Cambodia is generally safe for tourists, especially in popular tourist areas like Siem Reap, Phnom Penh, and the Angkor temples. However, it's important to stay informed about current travel advisories and take standard safety precautions like not walking alone at night. Most tourist destinations have good security measures in place."
   },
   {
-    question: 'How much does a Moldova eVisa cost?',
-    answer: 'Government fees are $73 USD for both tourist and business eVisas. See the visa types section for specific details.'
-  },
-  {
-    question: 'Can I apply for a Moldova eVisa if I have a criminal record?',
-    answer: 'Applicants with criminal records may face additional scrutiny. Be honest in your application and provide all required documentation.'
-  },
-  {
-    question: 'What happens if my Moldova eVisa application is denied?',
-    answer: 'You will receive a notification with the reason for denial. You may reapply after addressing the issues or contact our support for guidance.'
-  },
-  {
-    question: 'Can I enter Moldova multiple times with one eVisa?',
-    answer: 'Yes, the Moldova eVisa allows multiple entries during its validity period.'
-  },
-  {
-    question: 'What should I do if I lose my Moldova eVisa approval letter?',
-    answer: 'Contact our support team or log in to your account to download your approval letter again.'
+    question: "What is the best time to visit Cambodia?",
+    answer: "The best time to visit Cambodia depends on what you want to see. For temple exploration and cultural experiences, the dry season (November-April) is ideal. For fewer crowds and lower prices, the shoulder seasons (May-June, September-October) are perfect. The wet season (July-August) brings lush landscapes but more rain."
   }
 ];
 
-export default function MoldovaRequirementsPage() {
+export default function CambodiaRequirementsPage() {
   const [activeSection, setActiveSection] = useState('overview');
 
   const scrollToSection = (sectionId: string) => {
@@ -121,8 +93,8 @@ export default function MoldovaRequirementsPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0">
           <Image
-            src="/images/country/moldova/moldova-bg.jpg"
-            alt="Moldova Countryside"
+            src="/images/country/cambodia/cambodia-bg.jpg"
+            alt="Cambodia Landscape"
             fill
             className="object-cover opacity-30"
             priority
@@ -135,10 +107,10 @@ export default function MoldovaRequirementsPage() {
               <span className="text-sm font-medium">Visa Requirements</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Moldova Visa <span className="text-emerald-200">Requirements</span>
+              Cambodia Visa <span className="text-emerald-200">Requirements</span>
             </h1>
             <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
-              Complete guide to Moldova eVisa requirements, application process, and travel information for your European adventure
+              Complete guide to Cambodia eVisa requirements, application process, and travel information for your Southeast Asian adventure
             </p>
           </div>
         </div>
@@ -185,35 +157,41 @@ export default function MoldovaRequirementsPage() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Globe className="h-8 w-8 text-emerald-600" />
-              Moldova Overview
+              Cambodia Overview
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Moldova</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Cambodia</h3>
                 <div className="prose prose-slate max-w-none">
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    Moldova, a small but charming country in Eastern Europe, offers a unique blend of traditional culture and natural beauty. From the historic capital of Chisinau to the picturesque countryside and renowned wine regions, Moldova provides unforgettable experiences for travelers.
+                    Cambodia, located in Southeast Asia, is a country rich in history, culture, and natural beauty. 
+                    The country is most famous for the magnificent Angkor Wat temple complex, a UNESCO World Heritage site 
+                    and one of the most significant archaeological sites in the world.
                   </p>
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    The country is home to ancient monasteries, beautiful landscapes, and a rich wine-making tradition. Whether you're interested in exploring historical sites, enjoying local cuisine, or experiencing the famous Moldovan hospitality, Moldova has something to offer every visitor.
+                    From the bustling capital city of Phnom Penh to the serene temples of Siem Reap, Cambodia offers 
+                    visitors a unique blend of ancient traditions and modern development. The country's warm hospitality, 
+                    delicious cuisine, and stunning landscapes make it a must-visit destination for travelers seeking 
+                    authentic Southeast Asian experiences.
                   </p>
                   <p className="text-slate-600 leading-relaxed">
-                    The Moldova eVisa system makes it easy for international visitors to obtain travel authorization online before arrival, streamlining the process for tourism and business travel.
+                    Cambodia's eVisa system has streamlined the visa application process, making it easier for international 
+                    travelers to obtain their travel authorization online before arrival.
                   </p>
                 </div>
               </div>
               
               <div className="relative">
                 <Image
-                  src="/images/country/moldova/moldova-bg.jpg"
-                  alt="Moldova Countryside"
+                  src="/images/country/cambodia/cambodia-bg.jpg"
+                  alt="Cambodia Landscape"
                   width={600}
                   height={400}
                   className="rounded-xl shadow-lg"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-                  <span className="text-sm font-semibold text-slate-800">🇲🇩 Moldova</span>
+                  <span className="text-sm font-semibold text-slate-800">🇰🇭 Cambodia</span>
                 </div>
               </div>
             </div>
@@ -224,7 +202,7 @@ export default function MoldovaRequirementsPage() {
                   <MapPin className="h-6 w-6 text-emerald-600" />
                   <h4 className="font-semibold text-slate-800">Capital</h4>
                 </div>
-                <p className="text-slate-600">Chisinau</p>
+                <p className="text-slate-600">Phnom Penh</p>
               </div>
               
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
@@ -232,7 +210,7 @@ export default function MoldovaRequirementsPage() {
                   <Globe className="h-6 w-6 text-blue-600" />
                   <h4 className="font-semibold text-slate-800">Language</h4>
                 </div>
-                <p className="text-slate-600">Moldovan, Russian, English</p>
+                <p className="text-slate-600">Khmer, English</p>
               </div>
               
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
@@ -240,7 +218,7 @@ export default function MoldovaRequirementsPage() {
                   <CreditCard className="h-6 w-6 text-purple-600" />
                   <h4 className="font-semibold text-slate-800">Currency</h4>
                 </div>
-                <p className="text-slate-600">Moldovan Leu (MDL)</p>
+                <p className="text-slate-600">Cambodian Riel (KHR)</p>
               </div>
             </div>
           </div>
@@ -254,8 +232,8 @@ export default function MoldovaRequirementsPage() {
               Available Visa Types
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-              {moldovaVisaTypes.map((visa, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+              {cambodiaVisaTypes.map((visa, index) => (
                 <Card key={index} className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm">
                   <div className="h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-500" />
                   <CardHeader className="pt-6 pb-4">
@@ -294,7 +272,7 @@ export default function MoldovaRequirementsPage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-600">Government Fee:</span>
-                        <span className="text-sm font-bold text-emerald-600">${visa.govFee} USD</span>
+                        <span className="text-sm font-bold text-emerald-600">${visa.govFee}</span>
                       </div>
                     </div>
 
@@ -311,7 +289,7 @@ export default function MoldovaRequirementsPage() {
                   </CardContent>
 
                   <CardFooter className="pt-4 pb-6">
-                    <Link href={`/apply?country=moldova&type=${encodeURIComponent(visa.id)}`} className="w-full">
+                    <Link href={`/apply?country=cambodia&type=${encodeURIComponent(visa.id)}`} className="w-full">
                       <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                         Apply Now
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -338,11 +316,11 @@ export default function MoldovaRequirementsPage() {
                 <div className="space-y-4">
                   {[
                     'Valid passport with at least 6 months validity beyond intended stay',
-                    'Recent passport-size photograph',
-                    'Proof of accommodation in Moldova',
+                    'Recent passport-size photograph (taken within the last 6 months)',
+                    'Proof of accommodation in Cambodia (hotel bookings or invitation letter)',
                     'Return flight tickets or onward travel itinerary',
                     'Proof of sufficient funds for the duration of stay',
-                    'Travel insurance (recommended)'
+                    'Yellow fever vaccination certificate (if traveling from endemic areas)'
                   ].map((requirement, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
@@ -353,24 +331,20 @@ export default function MoldovaRequirementsPage() {
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Additional Requirements by Visa Type</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Additional Requirements</h3>
                 <div className="space-y-4">
-                  <div className="p-4 bg-blue-50 rounded-lg">
-                    <h4 className="font-semibold text-blue-800 mb-2">Business Visa</h4>
-                    <ul className="text-sm text-slate-600 space-y-1">
-                      <li>• Invitation letter from Moldovan business partner</li>
-                      <li>• Business registration documents</li>
-                      <li>• Conference registration (if applicable)</li>
-                    </ul>
-                  </div>
-                  <div className="p-4 bg-green-50 rounded-lg">
-                    <h4 className="font-semibold text-green-800 mb-2">Travel Information</h4>
-                    <ul className="text-sm text-slate-600 space-y-1">
-                      <li>• Moldova has a temperate continental climate</li>
-                      <li>• English is widely spoken in tourist areas</li>
-                      <li>• Check current travel advisories</li>
-                    </ul>
-                  </div>
+                  {[
+                    'Travel insurance covering medical expenses',
+                    'Detailed travel itinerary',
+                    'Proof of employment or student status',
+                    'Bank statements (last 3 months)',
+                    'No objection letter from employer (if applicable)'
+                  ].map((requirement, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <Info className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-700">{requirement}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -441,14 +415,16 @@ export default function MoldovaRequirementsPage() {
               <div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Fees</h3>
                 <div className="space-y-4">
-                  {moldovaVisaTypes.map((visa, index) => (
+                  {[
+                    { type: 'Tourist Evisa (Single Entry)', fee: '$66', duration: '1 month' }
+                  ].map((visa, index) => (
                     <div key={index} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                       <div>
                         <h4 className="font-semibold text-slate-800">{visa.type}</h4>
-                        <p className="text-sm text-slate-600">Duration: {visa.visaDuration} days</p>
+                        <p className="text-sm text-slate-600">Duration: {visa.duration}</p>
                       </div>
                       <div className="text-right">
-                        <span className="text-lg font-bold text-emerald-600">${visa.govFee} USD</span>
+                        <span className="text-lg font-bold text-emerald-600">{visa.fee}</span>
                       </div>
                     </div>
                   ))}
@@ -461,7 +437,7 @@ export default function MoldovaRequirementsPage() {
                   <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
                     <div className="flex items-center gap-3 mb-2">
                       <Clock className="h-5 w-5 text-emerald-600" />
-                      <h4 className="font-semibold text-slate-800">Standard Processing</h4>
+                      <h4 className="font-semibold text-slate-800">Processing Time</h4>
                     </div>
                     <p className="text-slate-600">5 working days</p>
                   </div>
@@ -471,7 +447,7 @@ export default function MoldovaRequirementsPage() {
                       <AlertCircle className="h-5 w-5 text-orange-600" />
                       <h4 className="font-semibold text-slate-800">Important Note</h4>
                     </div>
-                    <p className="text-slate-600">Apply at least 2 weeks before travel to avoid delays</p>
+                    <p className="text-slate-600">Apply at least 1 week before travel to avoid delays</p>
                   </div>
                 </div>
               </div>
@@ -492,16 +468,16 @@ export default function MoldovaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit</h3>
                 <div className="space-y-4">
                   <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">May to September</h4>
-                    <p className="text-sm text-slate-600">Pleasant weather with warm temperatures, ideal for sightseeing and outdoor activities</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Dry Season (November-April)</h4>
+                    <p className="text-sm text-slate-600">Ideal for temple exploration and cultural experiences</p>
                   </div>
                   <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">October to April</h4>
-                    <p className="text-sm text-slate-600">Cooler months with occasional snow, suitable for indoor activities and cultural experiences</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Shoulder Seasons (May-June, September-October)</h4>
+                    <p className="text-sm text-slate-600">Fewer crowds and lower prices</p>
                   </div>
                   <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Wine Season</h4>
-                    <p className="text-sm text-slate-600">September-October is perfect for wine tourism and harvest festivals</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Wet Season (July-August)</h4>
+                    <p className="text-sm text-slate-600">Lush landscapes but more rain</p>
                   </div>
                 </div>
               </div>
@@ -510,9 +486,10 @@ export default function MoldovaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Entry Points</h3>
                 <div className="space-y-3">
                   {[
-                    'Chisinau International Airport (KIV)',
-                    'Land borders with Romania and Ukraine',
-                    'Rail connections from neighboring countries'
+                    'Phnom Penh International Airport',
+                    'Siem Reap International Airport',
+                    'Sihanoukville International Airport',
+                    'Land borders with Thailand, Vietnam, and Laos'
                   ].map((entry, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
                       <MapPin className="h-4 w-4 text-emerald-600 flex-shrink-0" />
@@ -525,178 +502,110 @@ export default function MoldovaRequirementsPage() {
           </div>
         </section>
 
-        {/* Why Choose Us Section */}
-        <section id="why-choose-us" className="mb-16">
-          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-8 shadow-lg">
-            <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-              Why Choose Worldmaxxing Global Services for Your Moldova Visa?
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="text-center p-6 bg-white rounded-xl shadow-md">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="h-6 w-6 text-emerald-600" />
-                </div>
-                <h3 className="font-semibold text-slate-800 mb-2">No Urgent Fees</h3>
-                <p className="text-sm text-slate-600">Transparent pricing. No hidden costs or urgent processing fees.</p>
-              </div>
-              
-              <div className="text-center p-6 bg-white rounded-xl shadow-md">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-6 w-6 text-blue-600" />
-                </div>
-                <h3 className="font-semibold text-slate-800 mb-2">24/7 Support</h3>
-                <p className="text-sm text-slate-600">Our expert team is available round the clock to assist you with any questions.</p>
-              </div>
-              
-              <div className="text-center p-6 bg-white rounded-xl shadow-md">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="h-6 w-6 text-green-600" />
-                </div>
-                <h3 className="font-semibold text-slate-800 mb-2">94% Approval Rate</h3>
-                <p className="text-sm text-slate-600">High success rate with our expert guidance and thorough application review.</p>
-              </div>
-              
-              <div className="text-center p-6 bg-white rounded-xl shadow-md">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-6 w-6 text-purple-600" />
-                </div>
-                <h3 className="font-semibold text-slate-800 mb-2">Secure & Fast</h3>
-                <p className="text-sm text-slate-600">Bank-level security with 5-day processing for most applications.</p>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Moldova eVisa Today</h3>
-              <p className="text-slate-600 text-center mb-6">
-                Join thousands of satisfied travelers who have successfully obtained their Moldova visa through our platform. 
-                Our streamlined process ensures you get your visa quickly and hassle-free.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/apply?country=moldova">
-                  <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    Apply Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link href="/check-requirements">
-                  <Button variant="outline" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 font-semibold py-3 px-8 rounded-xl">
-                    Browse Other Countries
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Comprehensive Moldova Travel Guide */}
+        {/* Comprehensive Cambodia Travel Guide */}
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Globe className="h-8 w-8 text-emerald-600" />
-              Complete Moldova Travel Guide & Visa Information
+              Complete Cambodia Travel Guide & Visa Information
             </h2>
             
             <div className="prose prose-slate max-w-none">
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Moldova eVisa Requirements</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Cambodia eVisa Requirements</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                Moldova's eVisa system was introduced to streamline the visa application process for international travelers. 
-                The Moldova eVisa is an electronic travel authorization that allows visitors to enter Moldova for tourism, 
-                business, and other purposes. This digital system has significantly improved the overall travel experience for 
-                millions of visitors to Moldova each year.
+                Cambodia's eVisa system has streamlined the visa application process for international travelers. 
+                The Cambodia eVisa is an electronic travel authorization that allows visitors to enter Cambodia for tourism, business, and transit purposes. 
+                This digital system has significantly improved the overall travel experience for millions of visitors to Cambodia each year.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Moldova eVisa Eligibility & Requirements</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Cambodia eVisa Eligibility & Requirements</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Most foreign nationals require a Moldova eVisa to enter the territory, with the exception of citizens from some 
-                visa-waiver countries. The eVisa system is available to travelers from eligible countries worldwide, making Moldova 
-                one of the most accessible destinations for international visitors interested in rich history, wine culture, 
-                and beautiful landscapes.
+                Most foreign nationals require a Cambodia eVisa to enter the country, with the exception of citizens from some ASEAN countries. 
+                The eVisa system is available to travelers from eligible countries worldwide, making Cambodia one of the most accessible 
+                destinations for international visitors interested in Southeast Asian culture, history, and adventure.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="bg-emerald-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Moldova eVisa?</h4>
+                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Cambodia eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
-                    <li> International tourists visiting Moldova for leisure</li>
+                    <li> International tourists visiting Cambodia for leisure</li>
+                    <li> Travelers exploring Angkor Wat and other temples</li>
+                    <li> Cultural enthusiasts visiting historical sites</li>
                     <li> Business travelers and investors</li>
-                    <li> Students and educational visitors</li>
-                    <li> Family visitors and relatives</li>
-                    <li> Cultural and heritage enthusiasts</li>
-                    <li> Transit passengers</li>
+                    <li> Transit travelers passing through Cambodia</li>
                   </ul>
                 </div>
                 <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Moldova eVisa?</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Cambodia eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
-                    <li> Moldovan citizens and permanent residents</li>
-                    <li> EU citizens</li>
-                    <li> Citizens of visa-waiver countries</li>
+                    <li> Citizens of some ASEAN countries</li>
                     <li> Diplomatic passport holders</li>
+                    <li> Crew members on duty</li>
+                    <li> Emergency medical cases</li>
                   </ul>
                 </div>
               </div>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Moldova eVisa Application Process Explained</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Cambodia eVisa Application Process Explained</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                The Moldova eVisa application process is designed to be simple and user-friendly. Our platform guides you 
+                The Cambodia eVisa application process is designed to be simple and user-friendly. Our platform guides you 
                 through each step, ensuring your application meets all requirements for approval. The entire process can 
                 be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Moldova Visa Processing Times & Fees</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Cambodia Visa Processing Times & Fees</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Moldova eVisa processing times typically take 4 working days for normal processing. The government fees 
-                are transparent: Tourist eVisa costs $25, while Business eVisa costs $35. We provide transparent pricing 
-                with no hidden fees.
+                Cambodia eVisa processing times typically take 5 working days for normal processing, making it one of the 
+                most efficient visa processing systems in Southeast Asia. The government fees are transparent: Single Entry ETAs cost $66 for 1-month stays. 
+                Unlike many other visa services, we do not charge additional urgent processing fees, ensuring you get the best value for your money.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Moldova</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Cambodia</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Moldova offers diverse attractions for every type of traveler. From the historic capital of Chișinău 
-                to the famous wine regions, from the ancient monasteries to the beautiful countryside, Moldova provides 
-                unforgettable experiences. The country's unique blend of Eastern European culture, wine traditions, 
-                and natural beauty creates a fascinating destination for travelers.
+                Cambodia offers diverse attractions for every type of traveler. From the magnificent Angkor Wat temple complex 
+                to the bustling streets of Phnom Penh, Cambodia provides unforgettable experiences. 
+                Siem Reap serves as the gateway to the ancient temples, while Phnom Penh offers urban experiences and cultural attractions.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Wine Culture</h4>
+                  <h4 className="font-semibold text-emerald-800 mb-2">Historical Sites</h4>
                   <p className="text-sm text-slate-600">
-                    From the famous Mileștii Mici wine cellars to Cricova, from wine tours to traditional wineries, 
-                    Moldova offers world-class wine experiences and cultural heritage for wine enthusiasts.
+                    Angkor Wat and the surrounding temple complex offer unparalleled historical and architectural experiences, 
+                    while other sites like Bayon and Ta Prohm showcase Cambodia's rich cultural heritage.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Historic Sites</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">Cultural Experiences</h4>
                   <p className="text-sm text-slate-600">
-                    From ancient monasteries to historic churches, from museums to cultural centers, Moldova offers 
-                    rich historical experiences and insights into Eastern European heritage.
+                    Phnom Penh offers markets, museums, and cultural experiences, while rural areas showcase 
+                    traditional Cambodian culture and the famous Khmer hospitality.
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Natural Landscapes</h4>
+                  <h4 className="font-semibold text-purple-800 mb-2">Natural Beauty</h4>
                   <p className="text-sm text-slate-600">
-                    From rolling hills to vineyards, from forests to rivers, Moldova offers beautiful natural 
-                    environments and outdoor recreation opportunities.
+                    From the Mekong River to the coastal areas of Sihanoukville, Cambodia offers diverse 
+                    natural landscapes and outdoor experiences for every traveler.
                   </p>
                 </div>
               </div>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Moldova Travel Tips & Best Practices</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Cambodia Travel Tips & Best Practices</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                When planning your trip to Moldova, consider the continental climate and seasonal attractions. The best 
-                time to visit is during spring and autumn when the weather is pleasant. Always carry your eVisa approval letter, 
-                passport, and other required documents when traveling. It's also recommended to have comprehensive travel 
-                insurance and be aware of local customs and safety guidelines.
+                When planning your trip to Cambodia, consider the weather patterns and seasonal attractions. The dry season 
+                (November-April) is ideal for temple exploration, while the wet season (July-August) brings lush landscapes. 
+                Always carry your eVisa approval letter, passport, and other required documents when traveling. 
+                It's also recommended to have travel insurance and be aware of local customs and safety guidelines.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Moldova Visa Applications</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Cambodia Visa Applications</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Moldova visas since the eVisa system 
-                was introduced. Our expertise in the Moldova visa process, combined with our 98% approval rate and 24/7 
-                customer support, makes us the preferred choice for thousands of travelers each year. We provide 
-                transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
+                Worldmaxxing Global Services has been helping travelers obtain their Cambodia visas since the eVisa system was introduced. 
+                Our expertise in the Cambodian visa process, combined with our 98% approval rate and 24/7 customer support, 
+                makes us the preferred choice for thousands of travelers each year. We provide transparent pricing with no 
+                hidden fees, ensuring you get the best value for your visa application.
               </p>
             </div>
           </div>
@@ -707,10 +616,10 @@ export default function MoldovaRequirementsPage() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <BarChart3 className="h-8 w-8 text-emerald-600" />
-              Moldova Visa Processing Insights & Travel Analytics
+              Cambodia Visa Processing Insights & Travel Analytics
             </h2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-8">
               {/* Processing Time Trends */}
               <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends (2024)</h3>
@@ -728,7 +637,7 @@ export default function MoldovaRequirementsPage() {
                     <span className="text-sm text-slate-600">February</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '80%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
                       </div>
                       <span className="text-sm font-semibold text-emerald-600">4.5 days</span>
                     </div>
@@ -737,72 +646,42 @@ export default function MoldovaRequirementsPage() {
                     <span className="text-sm text-slate-600">March</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">4.0 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">4.4 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">April</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">4.3 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">4.6 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">May</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '87%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">3.8 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">4.3 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">June</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '87%'}}></div>
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '89%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">4.1 days</span>
+                      <span className="text-sm font-semibold text-emerald-600">4.4 days</span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
                   <p className="text-xs text-emerald-800">
-                    <strong>Source:</strong> Moldova Ministry of Foreign Affairs & Worldmaxxing Global Services processing data
-                  </p>
-                </div>
-              </div>
-              
-              {/* Visa Type Distribution */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Tourist eVisa</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '65%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">65%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Business eVisa</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '35%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">35%</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 p-3 bg-blue-100 rounded-lg">
-                  <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> <a href="https://www.gov.md/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">gov.md</a> (2024)
+                    <strong>Source:</strong> Cambodia Immigration Department & Worldmaxxing Global Services processing data
                   </p>
                 </div>
               </div>
@@ -810,61 +689,125 @@ export default function MoldovaRequirementsPage() {
             
             {/* Travel Seasonality Chart */}
             <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Moldova</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Cambodia</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Sun className="h-6 w-6 text-green-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">May-Sep</h4>
-                  <p className="text-xs text-slate-600">Peak Season</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">Nov-Apr</h4>
+                  <p className="text-xs text-slate-600">Dry Season</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-green-500 rounded-full" style={{width: '90%'}}></div>
+                      <div className="h-full bg-green-500 rounded-full" style={{width: '95%'}}></div>
                     </div>
                   </div>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Cloud className="h-6 w-6 text-yellow-600" />
+                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Zap className="h-6 w-6 text-red-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Oct-Nov</h4>
-                  <p className="text-xs text-slate-600">Autumn</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">May-Jun</h4>
+                  <p className="text-xs text-slate-600">Shoulder Season</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-yellow-500 rounded-full" style={{width: '60%'}}></div>
+                      <div className="h-full bg-red-500 rounded-full" style={{width: '85%'}}></div>
                     </div>
                   </div>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Droplets className="h-6 w-6 text-blue-600" />
+                    <Cloud className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Dec-Mar</h4>
-                  <p className="text-xs text-slate-600">Winter</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">Jul-Aug</h4>
+                  <p className="text-xs text-slate-600">Wet Season</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-500 rounded-full" style={{width: '40%'}}></div>
+                      <div className="h-full bg-blue-500 rounded-full" style={{width: '90%'}}></div>
                     </div>
                   </div>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Zap className="h-6 w-6 text-purple-600" />
+                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Droplets className="h-6 w-6 text-yellow-600" />
                   </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Apr</h4>
-                  <p className="text-xs text-slate-600">Spring</p>
+                  <h4 className="font-semibold text-slate-800 text-sm">Sep-Oct</h4>
+                  <p className="text-xs text-slate-600">Shoulder Season</p>
                   <div className="mt-2">
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-purple-500 rounded-full" style={{width: '70%'}}></div>
+                      <div className="h-full bg-yellow-500 rounded-full" style={{width: '80%'}}></div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="mt-4 p-3 bg-purple-100 rounded-lg">
                 <p className="text-xs text-purple-800">
-                  <strong>Source:</strong> Moldova Tourism Board & Meteorological Department
+                  <strong>Source:</strong> Cambodia Meteorological Department & Tourism Board
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section id="why-choose-us" className="mb-16">
+          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-8 shadow-lg">
+            <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
+              Why Choose Worldmaxxing Global Services for Your Cambodia Visa?
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <div className="text-center p-6 bg-white rounded-xl shadow-md">
+                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-6 w-6 text-emerald-600" />
+                </div>
+                <h3 className="font-semibold text-slate-800 mb-2">No Urgent Fees</h3>
+                <p className="text-sm text-slate-600">We believe in transparent pricing. No hidden costs or urgent processing fees.</p>
+              </div>
+              
+              <div className="text-center p-6 bg-white rounded-xl shadow-md">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="font-semibold text-slate-800 mb-2">24/7 Support</h3>
+                <p className="text-sm text-slate-600">Our expert team is available round the clock to assist you with any questions.</p>
+              </div>
+              
+              <div className="text-center p-6 bg-white rounded-xl shadow-md">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="h-6 w-6 text-green-600" />
+                </div>
+                <h3 className="font-semibold text-slate-800 mb-2">98% Approval Rate</h3>
+                <p className="text-sm text-slate-600">High success rate with our expert guidance and thorough application review.</p>
+              </div>
+              
+              <div className="text-center p-6 bg-white rounded-xl shadow-md">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="h-6 w-6 text-purple-600" />
+                </div>
+                <h3 className="font-semibold text-slate-800 mb-2">Secure & Fast</h3>
+                <p className="text-sm text-slate-600">Bank-level security with 5-day processing for most applications.</p>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Cambodia eVisa Today</h3>
+              <p className="text-slate-600 text-center mb-6">
+                Join thousands of satisfied travelers who have successfully obtained their Cambodia visa through our platform. 
+                Our streamlined process ensures you get your visa quickly and hassle-free.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/apply?country=cambodia">
+                  <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    Apply Now
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/check-requirements">
+                  <Button variant="outline" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 font-semibold py-3 px-8 rounded-xl">
+                    Browse Other Countries
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -931,7 +874,7 @@ export default function MoldovaRequirementsPage() {
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>94% approval rate with our expert review</span>
+                    <span>98% approval rate with our expert review</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-emerald-600" />
@@ -972,4 +915,4 @@ export default function MoldovaRequirementsPage() {
       </div>
     </div>
   );
-} 
+}

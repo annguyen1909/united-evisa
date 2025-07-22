@@ -602,6 +602,119 @@ export default function DjiboutiRequirementsPage() {
           </div>
         </section>
 
+        {/* Comprehensive Djibouti Travel Guide */}
+        <section id="travel-guide" className="mb-16">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+              <Globe className="h-8 w-8 text-emerald-600" />
+              Complete Djibouti Travel Guide & Visa Information
+            </h2>
+            
+            <div className="prose prose-slate max-w-none">
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Djibouti eVisa Requirements</h3>
+              <p className="text-slate-600 mb-6 leading-relaxed">
+                Djibouti's eVisa system was introduced to streamline the visa application process for international travelers. 
+                The Djibouti eVisa is an electronic travel authorization that allows visitors to enter Djibouti for tourism, 
+                business, and other purposes. This digital system has significantly improved the overall travel experience for 
+                millions of visitors to Djibouti each year.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Djibouti eVisa Eligibility & Requirements</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Most foreign nationals require a Djibouti eVisa to enter the territory, with the exception of citizens from some 
+                visa-waiver countries. The eVisa system is available to travelers from eligible countries worldwide, making Djibouti 
+                one of the most accessible destinations for international visitors interested in unique landscapes, strategic location, 
+                and cultural diversity.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-emerald-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Djibouti eVisa?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li> International tourists visiting Djibouti for leisure</li>
+                    <li> Business travelers and investors</li>
+                    <li> Students and educational visitors</li>
+                    <li> Family visitors and relatives</li>
+                    <li> Adventure and nature enthusiasts</li>
+                    <li> Transit passengers</li>
+                  </ul>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Djibouti eVisa?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li> Djiboutian citizens and permanent residents</li>
+                    <li> Citizens of visa-waiver countries</li>
+                    <li> Diplomatic passport holders</li>
+                    <li> Some regional citizens</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Djibouti eVisa Application Process Explained</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                The Djibouti eVisa application process is designed to be simple and user-friendly. Our platform guides you 
+                through each step, ensuring your application meets all requirements for approval. The entire process can 
+                be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Djibouti Visa Processing Times & Fees</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Djibouti eVisa processing times typically take 3 working days for normal processing. The government fees 
+                are transparent: Tourist eVisa costs $25, while Business eVisa costs $35. We provide transparent pricing 
+                with no hidden fees.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Djibouti</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Djibouti offers diverse attractions for every type of traveler. From the unique Lake Assal 
+                to the stunning Gulf of Tadjoura, from the capital city to the volcanic landscapes, Djibouti provides 
+                unforgettable experiences. The country's unique blend of African and Arab cultures, strategic location, 
+                and natural wonders creates a fascinating destination for travelers.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-emerald-800 mb-2">Natural Wonders</h4>
+                  <p className="text-sm text-slate-600">
+                    From Lake Assal (the lowest point in Africa) to the Ardoukoba volcano, from the Gulf of Tadjoura 
+                    to the Goda Mountains, Djibouti offers unique natural experiences and geological wonders.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Cultural Heritage</h4>
+                  <p className="text-sm text-slate-600">
+                    From traditional markets to cultural centers, from historic sites to local communities, Djibouti offers 
+                    rich cultural experiences and insights into African and Arab heritage.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-purple-800 mb-2">Strategic Location</h4>
+                  <p className="text-sm text-slate-600">
+                    From the Red Sea coast to the Bab el-Mandeb strait, from international ports to strategic waterways, 
+                    Djibouti offers unique geopolitical experiences and maritime heritage.
+                  </p>
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Djibouti Travel Tips & Best Practices</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                When planning your trip to Djibouti, consider the hot desert climate and seasonal accessibility. The best 
+                time to visit is during the cooler months (November to March). Always carry your eVisa approval letter, 
+                passport, and other required documents when traveling. It's also recommended to have comprehensive travel 
+                insurance and be aware of local customs and safety guidelines.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Djibouti Visa Applications</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Worldmaxxing Global Services has been helping travelers obtain their Djibouti visas since the eVisa system 
+                was introduced. Our expertise in the Djibouti visa process, combined with our 98% approval rate and 24/7 
+                customer support, makes us the preferred choice for thousands of travelers each year. We provide 
+                transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Travel Data & Analytics Section */}
         <section id="analytics" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">

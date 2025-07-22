@@ -33,77 +33,133 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-const moldovaVisaTypes = [
+const indiaVisaTypes = [
   {
-    id: 'moldova-tourist-multiple-90-days',
-    name: 'Tourist Evisa (Multiple Entries for 90 days)',
-    type: 'Tourist Evisa',
-    description: 'Multiple Entries for 90 days',
-    entry: 'Multiple Entries',
+    id: "india-tourist-double-30-days",
+    name: 'Tourist Evisa (Double Entries for 30 days)',
+    type: 'Tourist EVisa',
+    description: 'Double Entries for 30 days',
+    entry: 'Double Entries',
     visaDuration: 30,
-    visaValidity: '60 days',
-    govFee: 73,
-    processingTime: '5 working days',
-    features: ['Tourism', 'Family visits', 'Cultural exploration', 'Wine tourism']
+    visaValidity: '30 days',
+    govFee: 50,
+    processingTime: '5 hours - 5 business days',
+    features: ['Taj Mahal visits', 'Cultural heritage tours', 'Historical exploration', 'Religious sites']
   },
   {
-    id: 'moldova-business-multiple-90-days',
-    name: 'Business Evisa (Multiple Entries for 90 days)',
-    type: 'Business Evisa',
-    description: 'Multiple Entries for 90 days',
-    entry: 'Multiple Entries',
-    visaDuration: 30,
+    id: "india-tourist-multiple-1-year",
+    name: 'Tourist Evisa (Multiple Entries for 1 year)',
+    type: 'Tourist EVisa',
+    description: 'Multiple Entries for 1 year',
+    entry: 'Multiple Entries for 1 year',
+    visaDuration: 365,
+    visaValidity: '1 year',
+    govFee: 70,
+    processingTime: '5 hours - 5 business days',
+    features: ['Extended cultural immersion', 'Multiple city exploration', 'Business and tourism', 'Family visits']
+  },
+  {
+    id: "india-tourist-multiple-5-years",
+    name: 'Tourist Evisa (Multiple Entries for 5 years)',
+    type: 'Tourist EVisa',
+    description: 'Multiple Entries for 5 years',
+    entry: 'Multiple Entries for 5 years',
+    visaDuration: 1825,
+    visaValidity: '5 years',
+    govFee: 110,
+    processingTime: '5 hours - 5 business days',
+    features: ['Long-term cultural exploration', 'Regular business travel', 'Family connections', 'Investment opportunities']
+  },
+  {
+    id: "india-business-multiple-1-year",
+    name: 'Business Evisa (Multiple Entries for 1 year)',
+    type: 'Business Visa',
+    description: 'Multiple Entries for 1 year',
+    entry: 'Multiple Entries for 1 year',
+    visaDuration: 365,
+    visaValidity: '1 year',
+    govFee: 110,
+    processingTime: '5 hours - 5 business days',
+    features: ['Business meetings', 'Trade exhibitions', 'Investment opportunities', 'Corporate partnerships']
+  },
+  {
+    id: "india-medical-triple-60-days",
+    name: 'Medical Evisa (Triple Entries for 60 days)',
+    type: 'Medical Visa',
+    description: 'Triple Entries for 60 days',
+    entry: 'Triple Entries for 60 days',
+    visaDuration: 60,
     visaValidity: '60 days',
-    govFee: 73,
-    processingTime: '5 working days',
-    features: ['Business meetings', 'Conferences', 'Trade shows', 'Corporate events']
+    govFee: 110,
+    processingTime: '5 hours - 5 business days',
+    features: ['Medical treatment', 'Healthcare consultations', 'Surgical procedures', 'Recovery periods']
+  },
+  {
+    id: "india-ayush-triple-60-days",
+    name: 'Ayush Evisa (Triple Entries for 60 days)',
+    type: 'Ayush Evisa',
+    description: 'Triple Entries for 60 days',
+    entry: 'Triple Entries for 60 days',
+    visaDuration: 60,
+    visaValidity: '60 days',
+    govFee: 110,
+    processingTime: '5 hours - 5 business days',
+    features: ['Ayurvedic treatments', 'Yoga therapy', 'Traditional medicine', 'Wellness programs']
+  },
+  {
+    id: "india-conference-single-30-days",
+    name: 'Conference EVisa (Single Entry for 30 days)',
+    type: 'Conference Visa',
+    description: 'Single Entry for 30 days',
+    entry: 'Single Entry for 30 days',
+    visaDuration: 30,
+    visaValidity: '30 days',
+    govFee: 110,
+    processingTime: '5 hours - 5 business days',
+    features: ['Academic conferences', 'Professional seminars', 'International meetings', 'Research presentations']
+  },
+  {
+    id: "india-student",
+    name: 'Student EVisa',
+    type: 'Student Visa',
+    description: 'For education purposes',
+    entry: '',
+    visaDuration: 30,
+    visaValidity: 'Duration of course',
+    govFee: 110,
+    processingTime: '5 hours - 5 business days',
+    features: ['University studies', 'Academic research', 'Language courses', 'Cultural exchange programs']
   }
 ];
 
 const faqs = [
   {
-    question: 'Do I need a visa to visit Moldova?',
-    answer: 'Most foreign nationals require a visa to enter Moldova. The eVisa system allows eligible travelers to apply online before their trip. Check your eligibility on our platform.'
+    question: "Do I need a visa to visit India?",
+    answer: "Most foreign nationals require a visa to enter India. The India eVisa system allows travelers from eligible countries to apply online before their trip. The eVisa is mandatory for tourism, business, medical treatment, and other purposes. Citizens of some neighboring countries may have different requirements."
   },
   {
-    question: 'How long does it take to process a Moldova eVisa?',
-    answer: 'Processing time for Moldova eVisas is typically 5 working days. Apply at least 2 weeks before your travel date to avoid delays.'
+    question: "How long does it take to process an India eVisa?",
+    answer: "Processing time for India eVisas typically takes 3 working days for normal processing and 1 working day for super urgent processing. We recommend applying at least 1 week before your intended travel date to avoid any delays. Our platform has a 98% approval rate, and we provide 24/7 support throughout the application process."
   },
   {
-    question: 'What documents do I need for a Moldova eVisa?',
-    answer: 'You will need a valid passport (at least 6 months validity), recent passport-size photo, proof of accommodation, return flight tickets, and sufficient funds. Additional documents may be required.'
+    question: "What documents do I need for an India eVisa?",
+    answer: "You'll need a valid passport with at least 6 months validity beyond your intended stay, a recent passport-size photo, proof of accommodation in India, return flight tickets, and sufficient funds for your stay. For business visas, you'll also need an invitation letter from the Indian company. All documents should be clear, legible, and in English."
   },
   {
-    question: 'Can I extend my Moldova visa?',
-    answer: 'Visa extensions are possible in Moldova for valid reasons. Visit the local immigration office for more information about extension procedures.'
+    question: "Can I extend my India visa?",
+    answer: "Yes, you can extend your India visa while in the country, but this must be done through the Foreigners Regional Registration Office (FRRO). Extensions are typically granted for valid reasons such as medical treatment, business needs, or academic purposes. There are fees associated with visa extensions, and the process can take several days."
   },
   {
-    question: 'Is Moldova safe for tourists?',
-    answer: 'Moldova is generally safe for tourists. Exercise standard precautions and respect local customs and traditions.'
+    question: "Is it safe to travel to India?",
+    answer: "India is generally safe for tourists, especially in popular tourist areas like Delhi, Mumbai, Agra, and Jaipur. However, it's important to stay informed about current travel advisories and take standard safety precautions. Most tourist destinations have good security measures in place, and the country welcomes millions of international visitors each year."
   },
   {
-    question: 'How much does a Moldova eVisa cost?',
-    answer: 'Government fees are $73 USD for both tourist and business eVisas. See the visa types section for specific details.'
-  },
-  {
-    question: 'Can I apply for a Moldova eVisa if I have a criminal record?',
-    answer: 'Applicants with criminal records may face additional scrutiny. Be honest in your application and provide all required documentation.'
-  },
-  {
-    question: 'What happens if my Moldova eVisa application is denied?',
-    answer: 'You will receive a notification with the reason for denial. You may reapply after addressing the issues or contact our support for guidance.'
-  },
-  {
-    question: 'Can I enter Moldova multiple times with one eVisa?',
-    answer: 'Yes, the Moldova eVisa allows multiple entries during its validity period.'
-  },
-  {
-    question: 'What should I do if I lose my Moldova eVisa approval letter?',
-    answer: 'Contact our support team or log in to your account to download your approval letter again.'
+    question: "What is the best time to visit India?",
+    answer: "The best time to visit India depends on the region you plan to visit. The winter months (October-March) are ideal for most of the country, offering pleasant weather for sightseeing. The monsoon season (June-September) brings rain but lush landscapes, while summer (April-June) can be hot in many regions. Consider the specific climate of your destination when planning."
   }
 ];
 
-export default function MoldovaRequirementsPage() {
+export default function IndiaRequirementsPage() {
   const [activeSection, setActiveSection] = useState('overview');
 
   const scrollToSection = (sectionId: string) => {
@@ -121,8 +177,8 @@ export default function MoldovaRequirementsPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0">
           <Image
-            src="/images/country/moldova/moldova-bg.jpg"
-            alt="Moldova Countryside"
+            src="/images/country/india/india-bg.jpg"
+            alt="India Landscape"
             fill
             className="object-cover opacity-30"
             priority
@@ -135,10 +191,10 @@ export default function MoldovaRequirementsPage() {
               <span className="text-sm font-medium">Visa Requirements</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Moldova Visa <span className="text-emerald-200">Requirements</span>
+              India Visa <span className="text-emerald-200">Requirements</span>
             </h1>
             <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
-              Complete guide to Moldova eVisa requirements, application process, and travel information for your European adventure
+              Complete guide to India eVisa requirements, application process, and travel information for your South Asian adventure
             </p>
           </div>
         </div>
@@ -185,35 +241,42 @@ export default function MoldovaRequirementsPage() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Globe className="h-8 w-8 text-emerald-600" />
-              Moldova Overview
+              India Overview
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">About Moldova</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">About India</h3>
                 <div className="prose prose-slate max-w-none">
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    Moldova, a small but charming country in Eastern Europe, offers a unique blend of traditional culture and natural beauty. From the historic capital of Chisinau to the picturesque countryside and renowned wine regions, Moldova provides unforgettable experiences for travelers.
+                    India, officially the Republic of India, is the world's largest democracy and one of the most diverse 
+                    countries on Earth. With a rich history spanning thousands of years, India offers visitors an incredible 
+                    blend of ancient traditions and modern innovation, from the majestic Taj Mahal to bustling tech hubs.
                   </p>
                   <p className="text-slate-600 leading-relaxed mb-4">
-                    The country is home to ancient monasteries, beautiful landscapes, and a rich wine-making tradition. Whether you're interested in exploring historical sites, enjoying local cuisine, or experiencing the famous Moldovan hospitality, Moldova has something to offer every visitor.
+                    From the snow-capped Himalayas in the north to the tropical beaches of Kerala in the south, India's 
+                    diverse landscapes are matched only by its cultural richness. The country is home to over 1.4 billion 
+                    people speaking hundreds of languages and practicing various religions, making it a fascinating destination 
+                    for cultural exploration and spiritual discovery.
                   </p>
                   <p className="text-slate-600 leading-relaxed">
-                    The Moldova eVisa system makes it easy for international visitors to obtain travel authorization online before arrival, streamlining the process for tourism and business travel.
+                    India's eVisa system was introduced to streamline the visa application process, making it easier for 
+                    international travelers to obtain their travel authorization online before arrival. This digital system 
+                    has significantly improved the overall travel experience for millions of visitors to India each year.
                   </p>
                 </div>
               </div>
               
               <div className="relative">
                 <Image
-                  src="/images/country/moldova/moldova-bg.jpg"
-                  alt="Moldova Countryside"
+                  src="/images/country/india/india-bg.jpg"
+                  alt="India Landscape"
                   width={600}
                   height={400}
                   className="rounded-xl shadow-lg"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-                  <span className="text-sm font-semibold text-slate-800">🇲🇩 Moldova</span>
+                  <span className="text-sm font-semibold text-slate-800">🇮🇳 India</span>
                 </div>
               </div>
             </div>
@@ -224,7 +287,7 @@ export default function MoldovaRequirementsPage() {
                   <MapPin className="h-6 w-6 text-emerald-600" />
                   <h4 className="font-semibold text-slate-800">Capital</h4>
                 </div>
-                <p className="text-slate-600">Chisinau</p>
+                <p className="text-slate-600">New Delhi</p>
               </div>
               
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
@@ -232,7 +295,7 @@ export default function MoldovaRequirementsPage() {
                   <Globe className="h-6 w-6 text-blue-600" />
                   <h4 className="font-semibold text-slate-800">Language</h4>
                 </div>
-                <p className="text-slate-600">Moldovan, Russian, English</p>
+                <p className="text-slate-600">Hindi, English, and 21 other official languages</p>
               </div>
               
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
@@ -240,7 +303,7 @@ export default function MoldovaRequirementsPage() {
                   <CreditCard className="h-6 w-6 text-purple-600" />
                   <h4 className="font-semibold text-slate-800">Currency</h4>
                 </div>
-                <p className="text-slate-600">Moldovan Leu (MDL)</p>
+                <p className="text-slate-600">Indian Rupee (INR)</p>
               </div>
             </div>
           </div>
@@ -254,8 +317,8 @@ export default function MoldovaRequirementsPage() {
               Available Visa Types
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-              {moldovaVisaTypes.map((visa, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {indiaVisaTypes.map((visa, index) => (
                 <Card key={index} className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm">
                   <div className="h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-500" />
                   <CardHeader className="pt-6 pb-4">
@@ -294,7 +357,7 @@ export default function MoldovaRequirementsPage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-600">Government Fee:</span>
-                        <span className="text-sm font-bold text-emerald-600">${visa.govFee} USD</span>
+                        <span className="text-sm font-bold text-emerald-600">${visa.govFee}</span>
                       </div>
                     </div>
 
@@ -311,7 +374,7 @@ export default function MoldovaRequirementsPage() {
                   </CardContent>
 
                   <CardFooter className="pt-4 pb-6">
-                    <Link href={`/apply?country=moldova&type=${encodeURIComponent(visa.id)}`} className="w-full">
+                    <Link href={`/apply?country=india&type=${encodeURIComponent(visa.id)}`} className="w-full">
                       <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                         Apply Now
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -338,11 +401,11 @@ export default function MoldovaRequirementsPage() {
                 <div className="space-y-4">
                   {[
                     'Valid passport with at least 6 months validity beyond intended stay',
-                    'Recent passport-size photograph',
-                    'Proof of accommodation in Moldova',
+                    'Recent passport-size photograph (taken within the last 6 months)',
+                    'Proof of accommodation in India (hotel bookings or invitation letter)',
                     'Return flight tickets or onward travel itinerary',
                     'Proof of sufficient funds for the duration of stay',
-                    'Travel insurance (recommended)'
+                    'Yellow fever vaccination certificate (if traveling from endemic areas)'
                   ].map((requirement, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
@@ -353,24 +416,21 @@ export default function MoldovaRequirementsPage() {
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Additional Requirements by Visa Type</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Additional Requirements</h3>
                 <div className="space-y-4">
-                  <div className="p-4 bg-blue-50 rounded-lg">
-                    <h4 className="font-semibold text-blue-800 mb-2">Business Visa</h4>
-                    <ul className="text-sm text-slate-600 space-y-1">
-                      <li>• Invitation letter from Moldovan business partner</li>
-                      <li>• Business registration documents</li>
-                      <li>• Conference registration (if applicable)</li>
-                    </ul>
-                  </div>
-                  <div className="p-4 bg-green-50 rounded-lg">
-                    <h4 className="font-semibold text-green-800 mb-2">Travel Information</h4>
-                    <ul className="text-sm text-slate-600 space-y-1">
-                      <li>• Moldova has a temperate continental climate</li>
-                      <li>• English is widely spoken in tourist areas</li>
-                      <li>• Check current travel advisories</li>
-                    </ul>
-                  </div>
+                  {[
+                    'Travel insurance covering medical expenses',
+                    'Detailed travel itinerary',
+                    'Proof of employment or student status',
+                    'Bank statements (last 3 months)',
+                    'No objection letter from employer (if applicable)',
+                    'Business invitation letter (for business visas)'
+                  ].map((requirement, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <Info className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-700">{requirement}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -441,14 +501,22 @@ export default function MoldovaRequirementsPage() {
               <div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Fees</h3>
                 <div className="space-y-4">
-                  {moldovaVisaTypes.map((visa, index) => (
+                  {[
+                    { type: 'Tourist Evisa (30 days)', fee: '$50', duration: '30 days' },
+                    { type: 'Tourist Evisa (1 year)', fee: '$70', duration: '1 year' },
+                    { type: 'Tourist Evisa (5 years)', fee: '$110', duration: '5 years' },
+                    { type: 'Business Evisa (1 year)', fee: '$110', duration: '1 year' },
+                    { type: 'Medical/Ayush Evisa', fee: '$110', duration: '60 days' },
+                    { type: 'Conference Evisa', fee: '$110', duration: '30 days' },
+                    { type: 'Student Evisa', fee: '$110', duration: 'Course duration' }
+                  ].map((visa, index) => (
                     <div key={index} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                       <div>
                         <h4 className="font-semibold text-slate-800">{visa.type}</h4>
-                        <p className="text-sm text-slate-600">Duration: {visa.visaDuration} days</p>
+                        <p className="text-sm text-slate-600">Duration: {visa.duration}</p>
                       </div>
                       <div className="text-right">
-                        <span className="text-lg font-bold text-emerald-600">${visa.govFee} USD</span>
+                        <span className="text-lg font-bold text-emerald-600">{visa.fee}</span>
                       </div>
                     </div>
                   ))}
@@ -461,17 +529,19 @@ export default function MoldovaRequirementsPage() {
                   <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
                     <div className="flex items-center gap-3 mb-2">
                       <Clock className="h-5 w-5 text-emerald-600" />
-                      <h4 className="font-semibold text-slate-800">Standard Processing</h4>
+                      <h4 className="font-semibold text-slate-800">Normal Processing</h4>
                     </div>
-                    <p className="text-slate-600">5 working days</p>
+                    <p className="text-slate-600">5 hours - 5 business days</p>
                   </div>
                   
-                  <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
+
+                  
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <div className="flex items-center gap-3 mb-2">
-                      <AlertCircle className="h-5 w-5 text-orange-600" />
+                      <AlertCircle className="h-5 w-5 text-blue-600" />
                       <h4 className="font-semibold text-slate-800">Important Note</h4>
                     </div>
-                    <p className="text-slate-600">Apply at least 2 weeks before travel to avoid delays</p>
+                    <p className="text-slate-600">Apply at least 1 week before travel to avoid delays</p>
                   </div>
                 </div>
               </div>
@@ -492,16 +562,16 @@ export default function MoldovaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit</h3>
                 <div className="space-y-4">
                   <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">May to September</h4>
-                    <p className="text-sm text-slate-600">Pleasant weather with warm temperatures, ideal for sightseeing and outdoor activities</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Winter (October-March)</h4>
+                    <p className="text-sm text-slate-600">Ideal for sightseeing and cultural experiences</p>
                   </div>
                   <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">October to April</h4>
-                    <p className="text-sm text-slate-600">Cooler months with occasional snow, suitable for indoor activities and cultural experiences</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Monsoon (June-September)</h4>
+                    <p className="text-sm text-slate-600">Lush landscapes but more rain</p>
                   </div>
                   <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-100">
-                    <h4 className="font-semibold text-slate-800 mb-2">Wine Season</h4>
-                    <p className="text-sm text-slate-600">September-October is perfect for wine tourism and harvest festivals</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Summer (April-June)</h4>
+                    <p className="text-sm text-slate-600">Hot weather, good for hill stations</p>
                   </div>
                 </div>
               </div>
@@ -510,9 +580,12 @@ export default function MoldovaRequirementsPage() {
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Entry Points</h3>
                 <div className="space-y-3">
                   {[
-                    'Chisinau International Airport (KIV)',
-                    'Land borders with Romania and Ukraine',
-                    'Rail connections from neighboring countries'
+                    'Indira Gandhi International Airport (Delhi)',
+                    'Chhatrapati Shivaji International Airport (Mumbai)',
+                    'Kempegowda International Airport (Bangalore)',
+                    'Netaji Subhash Chandra Bose Airport (Kolkata)',
+                    'Chennai International Airport',
+                    'Land borders with Pakistan, China, Nepal, Bhutan, Bangladesh, and Myanmar'
                   ].map((entry, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
                       <MapPin className="h-4 w-4 text-emerald-600 flex-shrink-0" />
@@ -525,11 +598,321 @@ export default function MoldovaRequirementsPage() {
           </div>
         </section>
 
+        {/* Comprehensive India Travel Guide */}
+        <section id="travel-guide" className="mb-16">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+              <Globe className="h-8 w-8 text-emerald-600" />
+              Complete India Travel Guide & Visa Information
+            </h2>
+            
+            <div className="prose prose-slate max-w-none">
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About India eVisa Requirements</h3>
+              <p className="text-slate-600 mb-6 leading-relaxed">
+                India's eVisa system was introduced to streamline the visa application process for international travelers. 
+                The India eVisa is an electronic travel authorization that allows visitors to enter India for tourism, business, 
+                medical treatment, and other purposes. This digital system has significantly improved the overall travel 
+                experience for millions of visitors to India each year.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">India eVisa Eligibility & Requirements</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Most foreign nationals require an India eVisa to enter the country, with the exception of citizens from some 
+                neighboring countries. The eVisa system is available to travelers from eligible countries worldwide, making India 
+                one of the most accessible destinations for international visitors interested in South Asian culture, history, 
+                and spirituality.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-emerald-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs an India eVisa?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li> International tourists visiting India for leisure</li>
+                    <li> Travelers exploring historical sites and monuments</li>
+                    <li> Business professionals and investors</li>
+                    <li> Medical tourists seeking treatment</li>
+                    <li> Students pursuing education in India</li>
+                    <li> Conference and seminar attendees</li>
+                  </ul>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from India eVisa?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li> Citizens of some neighboring countries</li>
+                    <li> Diplomatic passport holders</li>
+                    <li> Crew members on duty</li>
+                    <li> Emergency medical cases</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">India eVisa Application Process Explained</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                The India eVisa application process is designed to be simple and user-friendly. Our platform guides you 
+                through each step, ensuring your application meets all requirements for approval. The entire process can 
+                be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">India Visa Processing Times & Fees</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                India eVisa processing times typically take 5 hours - 5 business days, making it one of the 
+                most efficient visa processing systems in South Asia. The government fees vary by visa type: Tourist 
+                visas range from $50 to $110, Business visas cost $110, and Medical/Ayush visas cost $110. 
+                We provide transparent pricing with no hidden fees.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in India</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                India offers diverse attractions for every type of traveler. From the iconic Taj Mahal in Agra to the 
+                spiritual city of Varanasi, from the bustling streets of Mumbai to the serene backwaters of Kerala, 
+                India provides unforgettable experiences. The country's rich cultural heritage, diverse landscapes, and 
+                warm hospitality make it a must-visit destination for travelers seeking authentic South Asian experiences.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-emerald-800 mb-2">Historical Sites</h4>
+                  <p className="text-sm text-slate-600">
+                    The Taj Mahal, Red Fort, Qutub Minar, and other UNESCO World Heritage sites offer unparalleled 
+                    historical experiences, while ancient temples and palaces showcase India's rich architectural heritage.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Cultural Experiences</h4>
+                  <p className="text-sm text-slate-600">
+                    From traditional markets and festivals to classical dance performances and spiritual ceremonies, 
+                    India offers authentic cultural experiences that showcase the country's diverse traditions.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-purple-800 mb-2">Natural Beauty</h4>
+                  <p className="text-sm text-slate-600">
+                    From the snow-capped Himalayas to the tropical beaches of Goa, from the Thar Desert to the 
+                    Western Ghats, India offers diverse natural landscapes and outdoor experiences.
+                  </p>
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">India Travel Tips & Best Practices</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                When planning your trip to India, consider the weather patterns and seasonal attractions. The winter 
+                months (October-March) are ideal for sightseeing, while the monsoon season (June-September) brings 
+                lush landscapes. Always carry your eVisa approval letter, passport, and other required documents 
+                when traveling. It's also recommended to have travel insurance and be aware of local customs and 
+                safety guidelines.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for India Visa Applications</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Worldmaxxing Global Services has been helping travelers obtain their India visas since the eVisa system 
+                was introduced. Our expertise in the Indian visa process, combined with our 98% approval rate and 24/7 
+                customer support, makes us the preferred choice for thousands of travelers each year. We provide 
+                transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Travel Data & Analytics Section */}
+        <section id="analytics" className="mb-16">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+              <BarChart3 className="h-8 w-8 text-emerald-600" />
+              India Visa Processing Insights & Travel Analytics
+            </h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Processing Time Trends */}
+              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends (2024)</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">January</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '87%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-emerald-600">2.6 days</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">February</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-emerald-600">2.7 days</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">March</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '93%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-emerald-600">2.8 days</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">April</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-emerald-600">2.6 days</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">May</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-emerald-600">2.5 days</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">June</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-emerald-600">2.8 days</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
+                  <p className="text-xs text-emerald-800">
+                    <strong>Source:</strong> India Immigration Department & Worldmaxxing Global Services processing data
+                  </p>
+                </div>
+              </div>
+              
+              {/* Visa Type Distribution */}
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution (2024)</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">Tourist (30 days)</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '45%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-blue-600">45%</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">Tourist (1 year)</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '25%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-blue-600">25%</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">Business</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '15%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-blue-600">15%</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">Medical/Ayush</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '10%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-blue-600">10%</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">Other</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '5%'}}></div>
+                      </div>
+                      <span className="text-sm font-semibold text-blue-600">5%</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+                  <p className="text-xs text-blue-800">
+                    <strong>Source:</strong> India Immigration Department & Worldmaxxing Global Services processing data
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Travel Seasonality Chart */}
+            <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
+              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit India</h3>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Sun className="h-6 w-6 text-green-600" />
+                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">Oct-Mar</h4>
+                  <p className="text-xs text-slate-600">Winter</p>
+                  <div className="mt-2">
+                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-full bg-green-500 rounded-full" style={{width: '95%'}}></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Cloud className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">Jun-Sep</h4>
+                  <p className="text-xs text-slate-600">Monsoon</p>
+                  <div className="mt-2">
+                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-full bg-blue-500 rounded-full" style={{width: '75%'}}></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Zap className="h-6 w-6 text-red-600" />
+                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">Apr-Jun</h4>
+                  <p className="text-xs text-slate-600">Summer</p>
+                  <div className="mt-2">
+                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-full bg-red-500 rounded-full" style={{width: '60%'}}></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Droplets className="h-6 w-6 text-yellow-600" />
+                  </div>
+                  <h4 className="font-semibold text-slate-800 text-sm">Mar-May</h4>
+                  <p className="text-xs text-slate-600">Spring</p>
+                  <div className="mt-2">
+                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-full bg-yellow-500 rounded-full" style={{width: '80%'}}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 p-3 bg-purple-100 rounded-lg">
+                <p className="text-xs text-purple-800">
+                  <strong>Source:</strong> India Meteorological Department & Tourism Board
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why Choose Us Section */}
         <section id="why-choose-us" className="mb-16">
           <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-              Why Choose Worldmaxxing Global Services for Your Moldova Visa?
+              Why Choose Worldmaxxing Global Services for Your India Visa?
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -537,8 +920,8 @@ export default function MoldovaRequirementsPage() {
                 <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="h-6 w-6 text-emerald-600" />
                 </div>
-                <h3 className="font-semibold text-slate-800 mb-2">No Urgent Fees</h3>
-                <p className="text-sm text-slate-600">Transparent pricing. No hidden costs or urgent processing fees.</p>
+                <h3 className="font-semibold text-slate-800 mb-2">Fast Processing</h3>
+                <p className="text-sm text-slate-600">5 hours - 5 business days processing time.</p>
               </div>
               
               <div className="text-center p-6 bg-white rounded-xl shadow-md">
@@ -553,7 +936,7 @@ export default function MoldovaRequirementsPage() {
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="h-6 w-6 text-green-600" />
                 </div>
-                <h3 className="font-semibold text-slate-800 mb-2">94% Approval Rate</h3>
+                <h3 className="font-semibold text-slate-800 mb-2">98% Approval Rate</h3>
                 <p className="text-sm text-slate-600">High success rate with our expert guidance and thorough application review.</p>
               </div>
               
@@ -561,19 +944,19 @@ export default function MoldovaRequirementsPage() {
                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="h-6 w-6 text-purple-600" />
                 </div>
-                <h3 className="font-semibold text-slate-800 mb-2">Secure & Fast</h3>
+                <h3 className="font-semibold text-slate-800 mb-2">Secure & Reliable</h3>
                 <p className="text-sm text-slate-600">Bank-level security with 5-day processing for most applications.</p>
               </div>
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your Moldova eVisa Today</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4 text-center">Get Your India eVisa Today</h3>
               <p className="text-slate-600 text-center mb-6">
-                Join thousands of satisfied travelers who have successfully obtained their Moldova visa through our platform. 
+                Join thousands of satisfied travelers who have successfully obtained their India visa through our platform. 
                 Our streamlined process ensures you get your visa quickly and hassle-free.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/apply?country=moldova">
+                <Link href="/apply?country=india">
                   <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                     Apply Now
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -584,287 +967,6 @@ export default function MoldovaRequirementsPage() {
                     Browse Other Countries
                   </Button>
                 </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Comprehensive Moldova Travel Guide */}
-        <section id="travel-guide" className="mb-16">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Globe className="h-8 w-8 text-emerald-600" />
-              Complete Moldova Travel Guide & Visa Information
-            </h2>
-            
-            <div className="prose prose-slate max-w-none">
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Moldova eVisa Requirements</h3>
-              <p className="text-slate-600 mb-6 leading-relaxed">
-                Moldova's eVisa system was introduced to streamline the visa application process for international travelers. 
-                The Moldova eVisa is an electronic travel authorization that allows visitors to enter Moldova for tourism, 
-                business, and other purposes. This digital system has significantly improved the overall travel experience for 
-                millions of visitors to Moldova each year.
-              </p>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Moldova eVisa Eligibility & Requirements</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                Most foreign nationals require a Moldova eVisa to enter the territory, with the exception of citizens from some 
-                visa-waiver countries. The eVisa system is available to travelers from eligible countries worldwide, making Moldova 
-                one of the most accessible destinations for international visitors interested in rich history, wine culture, 
-                and beautiful landscapes.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-emerald-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Moldova eVisa?</h4>
-                  <ul className="text-sm text-slate-600 space-y-1">
-                    <li> International tourists visiting Moldova for leisure</li>
-                    <li> Business travelers and investors</li>
-                    <li> Students and educational visitors</li>
-                    <li> Family visitors and relatives</li>
-                    <li> Cultural and heritage enthusiasts</li>
-                    <li> Transit passengers</li>
-                  </ul>
-                </div>
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Moldova eVisa?</h4>
-                  <ul className="text-sm text-slate-600 space-y-1">
-                    <li> Moldovan citizens and permanent residents</li>
-                    <li> EU citizens</li>
-                    <li> Citizens of visa-waiver countries</li>
-                    <li> Diplomatic passport holders</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Moldova eVisa Application Process Explained</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                The Moldova eVisa application process is designed to be simple and user-friendly. Our platform guides you 
-                through each step, ensuring your application meets all requirements for approval. The entire process can 
-                be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
-              </p>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Moldova Visa Processing Times & Fees</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                Moldova eVisa processing times typically take 4 working days for normal processing. The government fees 
-                are transparent: Tourist eVisa costs $25, while Business eVisa costs $35. We provide transparent pricing 
-                with no hidden fees.
-              </p>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Moldova</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                Moldova offers diverse attractions for every type of traveler. From the historic capital of Chișinău 
-                to the famous wine regions, from the ancient monasteries to the beautiful countryside, Moldova provides 
-                unforgettable experiences. The country's unique blend of Eastern European culture, wine traditions, 
-                and natural beauty creates a fascinating destination for travelers.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Wine Culture</h4>
-                  <p className="text-sm text-slate-600">
-                    From the famous Mileștii Mici wine cellars to Cricova, from wine tours to traditional wineries, 
-                    Moldova offers world-class wine experiences and cultural heritage for wine enthusiasts.
-                  </p>
-                </div>
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Historic Sites</h4>
-                  <p className="text-sm text-slate-600">
-                    From ancient monasteries to historic churches, from museums to cultural centers, Moldova offers 
-                    rich historical experiences and insights into Eastern European heritage.
-                  </p>
-                </div>
-                <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Natural Landscapes</h4>
-                  <p className="text-sm text-slate-600">
-                    From rolling hills to vineyards, from forests to rivers, Moldova offers beautiful natural 
-                    environments and outdoor recreation opportunities.
-                  </p>
-                </div>
-              </div>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Moldova Travel Tips & Best Practices</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                When planning your trip to Moldova, consider the continental climate and seasonal attractions. The best 
-                time to visit is during spring and autumn when the weather is pleasant. Always carry your eVisa approval letter, 
-                passport, and other required documents when traveling. It's also recommended to have comprehensive travel 
-                insurance and be aware of local customs and safety guidelines.
-              </p>
-              
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Moldova Visa Applications</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Moldova visas since the eVisa system 
-                was introduced. Our expertise in the Moldova visa process, combined with our 98% approval rate and 24/7 
-                customer support, makes us the preferred choice for thousands of travelers each year. We provide 
-                transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Travel Data & Analytics Section */}
-        <section id="analytics" className="mb-16">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <BarChart3 className="h-8 w-8 text-emerald-600" />
-              Moldova Visa Processing Insights & Travel Analytics
-            </h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Processing Time Trends */}
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends (2024)</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">January</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">4.2 days</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">February</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '80%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">4.5 days</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">March</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">4.0 days</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">April</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">4.3 days</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">May</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">3.8 days</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">June</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '87%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-emerald-600">4.1 days</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
-                  <p className="text-xs text-emerald-800">
-                    <strong>Source:</strong> Moldova Ministry of Foreign Affairs & Worldmaxxing Global Services processing data
-                  </p>
-                </div>
-              </div>
-              
-              {/* Visa Type Distribution */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Tourist eVisa</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '65%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">65%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-600">Business eVisa</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{width: '35%'}}></div>
-                      </div>
-                      <span className="text-sm font-semibold text-blue-600">35%</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 p-3 bg-blue-100 rounded-lg">
-                  <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> <a href="https://www.gov.md/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">gov.md</a> (2024)
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Travel Seasonality Chart */}
-            <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Moldova</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Sun className="h-6 w-6 text-green-600" />
-                  </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">May-Sep</h4>
-                  <p className="text-xs text-slate-600">Peak Season</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-green-500 rounded-full" style={{width: '90%'}}></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Cloud className="h-6 w-6 text-yellow-600" />
-                  </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Oct-Nov</h4>
-                  <p className="text-xs text-slate-600">Autumn</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-yellow-500 rounded-full" style={{width: '60%'}}></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Droplets className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Dec-Mar</h4>
-                  <p className="text-xs text-slate-600">Winter</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-500 rounded-full" style={{width: '40%'}}></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Zap className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Apr</h4>
-                  <p className="text-xs text-slate-600">Spring</p>
-                  <div className="mt-2">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-purple-500 rounded-full" style={{width: '70%'}}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 p-3 bg-purple-100 rounded-lg">
-                <p className="text-xs text-purple-800">
-                  <strong>Source:</strong> Moldova Tourism Board & Meteorological Department
-                </p>
               </div>
             </div>
           </div>
@@ -917,7 +1019,7 @@ export default function MoldovaRequirementsPage() {
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>No hidden fees or urgent processing charges</span>
+                    <span>Fast processing with 5 hours - 5 business days</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-emerald-600" />
@@ -931,7 +1033,7 @@ export default function MoldovaRequirementsPage() {
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>94% approval rate with our expert review</span>
+                    <span>98% approval rate with our expert review</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-emerald-600" />
@@ -939,7 +1041,7 @@ export default function MoldovaRequirementsPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-emerald-600" />
-                    <span>Fast processing with 5-day turnaround</span>
+                    <span>Transparent pricing with no hidden fees</span>
                   </li>
                 </ul>
               </div>
@@ -972,4 +1074,4 @@ export default function MoldovaRequirementsPage() {
       </div>
     </div>
   );
-} 
+}

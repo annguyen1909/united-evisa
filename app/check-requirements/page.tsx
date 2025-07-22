@@ -1,7 +1,7 @@
 'use client';
 
 import { notFound, useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, Suspense, useCallback } from 'react';
 import { getCountryBySlug, COUNTRIES } from '@/lib/countries';
 import { getNationalityByCode } from '@/lib/nationalities';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -10,6 +10,7 @@ import {
     Globe, ArrowLeftRight, BadgeInfo, User, Info, Search, Sparkles
 } from 'lucide-react';
 import VisaSteps from '../components/VisaSteps';
+import CheckEligibility from '../../components/shared/CheckEligibility';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,6 +27,31 @@ function CheckRequirementsContent() {
     const [visaTypeResults, setVisaTypeResults] = useState<any[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [showDestinations, setShowDestinations] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredCountries, setFilteredCountries] = useState(COUNTRIES);
+
+    // Debounced search function
+    const debouncedSearch = useCallback(
+        (() => {
+            let timeoutId: NodeJS.Timeout;
+            return (term: string) => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    const filtered = COUNTRIES.filter(country =>
+                        country.name.toLowerCase().includes(term.toLowerCase())
+                    );
+                    setFilteredCountries(filtered);
+                }, 300);
+            };
+        })(),
+        []
+    );
+
+    // Handle search input changes
+    const handleSearchChange = (value: string) => {
+        setSearchTerm(value);
+        debouncedSearch(value);
+    };
 
     useEffect(() => {
         const checkEligibility = async () => {
@@ -116,6 +142,23 @@ function CheckRequirementsContent() {
                 </div>
 
                 <div className="max-w-6xl mx-auto px-4 py-12">
+                    {/* Check Eligibility Section */}
+                    <div className="mb-12">
+                        <div className="text-center mb-8">
+                            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 mb-4 border border-white/30">
+                                <Globe className="h-4 w-4 text-emerald-600" />
+                                <span className="text-sm font-medium text-slate-700">Quick Check</span>
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-800 mb-2">
+                                Check Your Visa Eligibility
+                            </h2>
+                            <p className="text-slate-600">
+                                Select your nationality and destination to check visa requirements instantly
+                            </p>
+                        </div>
+                        <CheckEligibility />
+                    </div>
+
                     {/* All Destinations Grid */}
                     <div className="mb-12">
                         <div className="text-center mb-8">
@@ -126,40 +169,78 @@ function CheckRequirementsContent() {
                             <h2 className="text-2xl font-bold text-slate-800 mb-2">
                                 Browse All Available Destinations
                             </h2>
-                            <p className="text-slate-600">
+                            <p className="text-slate-600 mb-6">
                                 Click on any destination to check visa requirements
                             </p>
+                            
+                            {/* Search Input */}
+                            <div className="max-w-md mx-auto mb-8">
+                                <div className="relative">
+                                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+                                    <input
+                                        type="text"
+                                        placeholder="Search destinations..."
+                                        value={searchTerm}
+                                        onChange={(e) => handleSearchChange(e.target.value)}
+                                        className="w-full pl-10 pr-4 py-3 bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-xl shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-slate-400"
+                                    />
+                                </div>
+                                {searchTerm && (
+                                    <p className="text-sm text-slate-500 mt-2">
+                                        Found {filteredCountries.length} destination{filteredCountries.length !== 1 ? 's' : ''}
+                                    </p>
+                                )}
+                            </div>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                            {COUNTRIES.map((country) => (
-                                <Link
-                                    key={country.code}
-                                    href={`/requirements-posts/${country.slug || country.name.toLowerCase().replace(/\s+/g, '-')}`}
-                                    className="group bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 p-6 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-300 transform hover:-translate-y-1 hover:border-emerald-200"
-                                >
-                                    <div className="text-center">
-                                        <div className="relative mb-4">
-                                            <img
-                                                src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
-                                                alt={country.name}
-                                                className="w-16 h-16 rounded-lg border-2 border-white shadow-md object-cover bg-white mx-auto"
-                                                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                                            />
-                                            <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center">
-                                                <ArrowRight className="h-3 w-3 text-white" />
+                        {filteredCountries.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                                {filteredCountries.map((country) => (
+                                    <Link
+                                        key={country.code}
+                                        href={`/requirements-posts/${country.slug || country.name.toLowerCase().replace(/\s+/g, '-')}`}
+                                        className="group bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 p-6 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-300 transform hover:-translate-y-1 hover:border-emerald-200"
+                                    >
+                                        <div className="text-center">
+                                            <div className="relative mb-4">
+                                                <img
+                                                    src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
+                                                    alt={country.name}
+                                                    className="w-16 h-16 rounded-lg border-2 border-white shadow-md object-cover bg-white mx-auto"
+                                                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                                />
+                                                <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center">
+                                                    <ArrowRight className="h-3 w-3 text-white" />
+                                                </div>
                                             </div>
+                                            <h3 className="font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors">
+                                                {country.name}
+                                            </h3>
+                                            <p className="text-xs text-slate-500 mt-1">
+                                                {country.visaTypes?.length || 0} visa types available
+                                            </p>
                                         </div>
-                                        <h3 className="font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors">
-                                            {country.name}
-                                        </h3>
-                                        <p className="text-xs text-slate-500 mt-1">
-                                            {country.visaTypes?.length || 0} visa types available
-                                        </p>
-                                    </div>
-                                </Link>
-                            ))}
-                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-12">
+                                <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg max-w-md mx-auto">
+                                    <Search className="h-12 w-12 text-slate-400 mx-auto mb-4" />
+                                    <h3 className="text-lg font-semibold text-slate-800 mb-2">No destinations found</h3>
+                                    <p className="text-slate-600 mb-4">
+                                        No destinations match your search for "{searchTerm}". Try a different search term.
+                                    </p>
+                                    <Button
+                                        onClick={() => handleSearchChange('')}
+                                        variant="outline"
+                                        className="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                                    >
+                                        Clear Search
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* Help Section */}

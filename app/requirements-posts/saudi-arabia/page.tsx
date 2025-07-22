@@ -579,6 +579,119 @@ export default function SaudiArabiaRequirementsPage() {
           </div>
         </section>
 
+        {/* Comprehensive Saudi Arabia Travel Guide */}
+        <section id="travel-guide" className="mb-16">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+              <Globe className="h-8 w-8 text-emerald-600" />
+              Complete Saudi Arabia Travel Guide & Visa Information
+            </h2>
+            
+            <div className="prose prose-slate max-w-none">
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">About Saudi Arabia eVisa Requirements</h3>
+              <p className="text-slate-600 mb-6 leading-relaxed">
+                Saudi Arabia's eVisa system was introduced to streamline the visa application process for international travelers. 
+                The Saudi Arabia eVisa is an electronic travel authorization that allows visitors to enter Saudi Arabia for tourism, 
+                business, and other purposes. This digital system has significantly improved the overall travel experience for 
+                millions of visitors to Saudi Arabia each year.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Saudi Arabia eVisa Eligibility & Requirements</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Most foreign nationals require a Saudi Arabia eVisa to enter the territory, with the exception of citizens from some 
+                visa-waiver countries. The eVisa system is available to travelers from eligible countries worldwide, making Saudi Arabia 
+                one of the most accessible destinations for international visitors interested in Islamic heritage, modern development, 
+                and Arabian culture.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-emerald-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Saudi Arabia eVisa?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li> International tourists visiting Saudi Arabia for leisure</li>
+                    <li> Business travelers and investors</li>
+                    <li> Students and educational visitors</li>
+                    <li> Family visitors and relatives</li>
+                    <li> Religious and cultural enthusiasts</li>
+                    <li> Transit passengers</li>
+                  </ul>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Who is Exempt from Saudi Arabia eVisa?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li> Saudi citizens and permanent residents</li>
+                    <li> GCC citizens</li>
+                    <li> Citizens of visa-waiver countries</li>
+                    <li> Diplomatic passport holders</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Saudi Arabia eVisa Application Process Explained</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                The Saudi Arabia eVisa application process is designed to be simple and user-friendly. Our platform guides you 
+                through each step, ensuring your application meets all requirements for approval. The entire process can 
+                be completed online from anywhere in the world, eliminating the need to visit embassies or consulates.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Saudi Arabia Visa Processing Times & Fees</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Saudi Arabia eVisa processing times typically take 3 working days for normal processing. The government fees 
+                are transparent: Tourist eVisa costs $20, while Business eVisa costs $30. We provide transparent pricing 
+                with no hidden fees.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Popular Destinations in Saudi Arabia</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Saudi Arabia offers diverse attractions for every type of traveler. From the holy cities of Mecca and Medina 
+                to the modern capital of Riyadh, from the Red Sea coast to the desert landscapes, Saudi Arabia provides 
+                unforgettable experiences. The country's unique blend of Islamic heritage, modern development, 
+                and Arabian culture creates a fascinating destination for travelers.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-emerald-800 mb-2">Islamic Heritage</h4>
+                  <p className="text-sm text-slate-600">
+                    From the holy cities of Mecca and Medina to historical mosques, from religious sites to cultural centers, 
+                    Saudi Arabia offers world-class Islamic heritage and spiritual experiences.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Modern Development</h4>
+                  <p className="text-sm text-slate-600">
+                    From the modern cities of Riyadh and Jeddah to futuristic projects, from contemporary architecture to 
+                    modern attractions, Saudi Arabia offers cutting-edge urban experiences.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-purple-800 mb-2">Natural Landscapes</h4>
+                  <p className="text-sm text-slate-600">
+                    From the Red Sea coast to desert landscapes, from mountains to natural reserves, Saudi Arabia offers 
+                    stunning natural environments and outdoor adventures.
+                  </p>
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Saudi Arabia Travel Tips & Best Practices</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                When planning your trip to Saudi Arabia, consider the desert climate and cultural customs. The best 
+                time to visit is during the cooler months (November to March). Always carry your eVisa approval letter, 
+                passport, and other required documents when traveling. It's also recommended to have comprehensive travel 
+                insurance and be aware of local customs and safety guidelines.
+              </p>
+              
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Saudi Arabia Visa Applications</h3>
+              <p className="text-slate-600 mb-4 leading-relaxed">
+                Worldmaxxing Global Services has been helping travelers obtain their Saudi Arabia visas since the eVisa system 
+                was introduced. Our expertise in the Saudi Arabia visa process, combined with our 98% approval rate and 24/7 
+                customer support, makes us the preferred choice for thousands of travelers each year. We provide 
+                transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Travel Data & Analytics Section */}
         <section id="analytics" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">

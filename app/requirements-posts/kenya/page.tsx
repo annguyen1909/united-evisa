@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import CheckEligibilityWithPreset from '../../../components/shared/CheckEligibilityWithPreset';
 
 const kenyaVisaTypes = [
   {
@@ -162,6 +163,15 @@ export default function KenyaRequirementsPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Check Eligibility Section */}
+        <div className="mb-12">
+          <CheckEligibilityWithPreset 
+            presetDestination="ke"
+            title="Check Your Kenya Visa Eligibility"
+            description="Select your nationality to check if you need a visa for Kenya"
+          />
+        </div>
+
         {/* Table of Contents */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-6 mb-8 shadow-lg">
           <h2 className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">

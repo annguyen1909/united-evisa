@@ -32,7 +32,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import CheckEligibilityWithPreset from '../../../components/shared/CheckEligibilityWithPreset';
 const tajikistanVisaTypes = [
   {
     id: 'tajikistan-tourist-gbao-single-60-days',
@@ -153,7 +153,16 @@ export default function TajikistanRequirementsPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Table of Contents */}
+        {/* Check Eligibility Section */}
+        <div className="mb-12">
+          <CheckEligibilityWithPreset 
+            presetDestination="tj"
+            title="Check Your Tajikistan Visa Eligibility"
+            description="Select your nationality to check if you need a visa for Tajikistan"
+          />
+        </div>
+
+                {/* Table of Contents */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-6 mb-8 shadow-lg">
           <h2 className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
             <FileText className="h-6 w-6 text-emerald-600" />

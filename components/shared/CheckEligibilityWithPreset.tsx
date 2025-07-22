@@ -5,18 +5,7 @@ import { Check, Globe, ChevronRight } from "lucide-react";
 import { COUNTRIES } from '@/lib/countries';
 import { NATIONALITIES } from '@/lib/nationalities';
 import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -46,6 +35,7 @@ function ComboBox({
   className,
   focused,
   setFocused,
+  disabled = false,
 }: {
   label: string;
   options: { value: string; label: string; flag?: string }[];
@@ -56,6 +46,7 @@ function ComboBox({
   className?: string;
   focused?: boolean;
   setFocused?: (v: boolean) => void;
+  disabled?: boolean;
 }) {
   const [search, setSearch] = React.useState("");
   const [internalFocused, internalSetFocused] = React.useState(false);
@@ -73,78 +64,82 @@ function ComboBox({
       }, 0);
       return;
     }
-    handleSetFocused(false);
+    // Small delay to allow for dropdown clicks
+    setTimeout(() => {
+      handleSetFocused(false);
+    }, 100);
   };
-
-  const [dropdownRef, setDropdownRef] = React.useState<HTMLDivElement | null>(null);
 
   const filtered = options.filter(opt =>
     opt.label.toLowerCase().includes(search.toLowerCase())
   );
   const selected = options.find((opt) => opt.value === value);
 
+  const [dropdownRef, setDropdownRef] = React.useState<HTMLDivElement | null>(null);
+
   return (
     <div className="w-full md:w-auto md:flex-1">
       <label className="block mb-1.5 font-medium text-sm text-slate-700">{label}</label>
-      <div className="relative w-full" ref={setDropdownRef}>
-        <div className={cn("flex items-center h-[50px] border px-3 py-2 bg-white border-slate-300 shadow-sm", className)}>
+      <div className="relative w-full" style={{ position: 'relative' }} ref={setDropdownRef}>
+        <div className={cn("flex items-center h-[50px] border px-3 py-2 bg-white border-slate-300 shadow-sm", className, disabled && "opacity-60 cursor-not-allowed")}>
           {icon && <div className="text-slate-400 mr-1">{icon}</div>}
           <input
             type="text"
             className="flex-1 outline-none border-0 bg-transparent text-slate-800 placeholder:text-slate-400"
             placeholder={placeholder || `Search ${label.toLowerCase()}...`}
-            value={search}
+            value={isFocused ? search : (selected?.label || value || '')}
             onChange={e => setSearch(e.target.value)}
-            onFocus={() => handleSetFocused(true)}
+            onFocus={() => !disabled && handleSetFocused(true)}
             onBlur={handleInputBlur}
             autoComplete="off"
+            disabled={disabled}
           />
         </div>
-        {isFocused && dropdownRef && typeof window !== 'undefined' && createPortal(
-          <div
-            className="fixed bg-white border border-slate-200 rounded-xl shadow-lg z-[99999]"
-            style={{
+        {isFocused && !disabled && dropdownRef && typeof window !== 'undefined' && createPortal(
+          <div 
+            className="fixed bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto"
+            style={{ 
               top: dropdownRef.getBoundingClientRect().bottom + 4,
               left: dropdownRef.getBoundingClientRect().left,
               width: dropdownRef.getBoundingClientRect().width,
-              maxHeight: 320,
-              overflowY: 'auto'
+              zIndex: 99999,
             }}
-            onMouseDown={() => { mouseDownRef.current = true; }}
-            onMouseUp={() => { mouseDownRef.current = false; }}
-            onMouseLeave={() => { mouseDownRef.current = false; }}
           >
-            <Command>
-              <CommandList>
-                {filtered.length === 0 && (
-                  <CommandEmpty>No {label.toLowerCase()} found.</CommandEmpty>
-                )}
-                <CommandGroup>
-                  {filtered.map((opt) => (
-                    <CommandItem
-                      key={opt.value}
-                      value={opt.label.toLowerCase()}
-                      onSelect={() => {
-                        onChange(opt.value);
-                        setSearch(opt.label); // show selected in input
-                        handleSetFocused(false);
-                      }}
-                      className="flex items-center gap-2 px-4 py-2.5 cursor-pointer"
-                    >
-                      {opt.flag && (
-                        <div className="h-4 w-6 overflow-hidden rounded-sm flex-shrink-0">
-                          <img src={opt.flag} alt="" className="h-full w-full object-cover" />
-                        </div>
-                      )}
-                      <span className="flex-1 truncate">{opt.label}</span>
-                      {value === opt.value && (
-                        <Check className="ml-auto h-4 w-4 text-emerald-600" />
-                      )}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </CommandList>
-            </Command>
+            {filtered.length === 0 ? (
+              <div className="p-3 text-slate-500 text-sm">No {label.toLowerCase()} found.</div>
+            ) : (
+              <div>
+                {filtered.map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    onClick={() => {
+                      onChange(option.value);
+                      handleSetFocused(false);
+                      setSearch("");
+                    }}
+                    onMouseDown={() => {
+                      mouseDownRef.current = true;
+                    }}
+                    onMouseUp={() => {
+                      mouseDownRef.current = false;
+                    }}
+                    className="flex items-center gap-2 w-full p-3 text-left hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0"
+                  >
+                    {option.flag && (
+                      <Image
+                        src={option.flag}
+                        alt={option.label}
+                        width={20}
+                        height={15}
+                        className="rounded-sm"
+                      />
+                    )}
+                    <span>{option.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>,
           document.body
         )}
@@ -153,13 +148,39 @@ function ComboBox({
   );
 }
 
-// Main component
-export default function CheckEligibility() {
+interface CheckEligibilityWithPresetProps {
+  presetDestination?: string; // Country code like 'us', 'gb', etc.
+  title?: string;
+  description?: string;
+}
+
+export default function CheckEligibilityWithPreset({ 
+  presetDestination, 
+  title = "Check Your Visa Eligibility",
+  description = "Select your nationality to check visa requirements"
+}: CheckEligibilityWithPresetProps) {
   const [nationality, setNationality] = React.useState("");
-  const [destination, setDestination] = React.useState("");
+  const [destination, setDestination] = React.useState(presetDestination || "");
   const [isLoading, setIsLoading] = React.useState(false);
-  const [openCombo, setOpenCombo] = React.useState<string | null>(null); // Track which ComboBox is open
+  const [openCombo, setOpenCombo] = React.useState<string | null>(null);
   const router = useRouter();
+
+  // Get the country name for display
+  const selectedCountry = countryOptions.find(c => c.value === destination);
+
+  // Set the destination when presetDestination changes
+  React.useEffect(() => {
+    if (presetDestination) {
+      setDestination(presetDestination);
+    }
+  }, [presetDestination]);
+
+  // Initialize destination with preset value
+  React.useEffect(() => {
+    if (presetDestination && !destination) {
+      setDestination(presetDestination);
+    }
+  }, [presetDestination, destination]);
 
   // Reset loading state when component mounts or when URL changes
   React.useEffect(() => {
@@ -212,13 +233,17 @@ export default function CheckEligibility() {
     }
   };
 
-
   return (
     <section className="w-full max-w-4xl mx-auto pt-0 px-4 sm:px-6">
       <div className="bg-white rounded-xl shadow-lg p-6 border border-slate-100 backdrop-blur-sm">
         <h2 className="text-xl md:text-2xl font-bold mb-6 text-slate-800 text-center">
-          Check Your Visa Eligibility
+          {title}
         </h2>
+        {description && (
+          <p className="text-slate-600 text-center mb-6">
+            {description}
+          </p>
+        )}
         <form
           onSubmit={async (e) => {
             e.preventDefault();
@@ -243,11 +268,12 @@ export default function CheckEligibility() {
               options={countryOptions}
               value={destination}
               onChange={setDestination}
-              placeholder="Select destination"
+              placeholder={selectedCountry?.label || "Select destination"}
               icon={<Globe className="h-4 w-4" />}
               className="rounded-l-none"
               focused={openCombo === 'destination'}
               setFocused={(v: boolean) => setOpenCombo(v ? 'destination' : null)}
+              disabled={!!presetDestination}
             />
             <div className="w-full md:w-auto md:ml-0 max-md:mt-4">
               <Button
@@ -278,4 +304,4 @@ export default function CheckEligibility() {
       </div>
     </section>
   );
-}
+} 

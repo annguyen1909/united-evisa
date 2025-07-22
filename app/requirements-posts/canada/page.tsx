@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import CheckEligibilityWithPreset from '../../../components/shared/CheckEligibilityWithPreset';
 
 const canadaVisaTypes = [
   {

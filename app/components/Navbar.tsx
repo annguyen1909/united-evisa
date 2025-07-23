@@ -55,6 +55,8 @@ const navItems = [
     label: "Support",
     href: "/support",
   },
+  { label: "FAQ", 
+    href: "/faq" }
 ];
 
 const poppins = Poppins({

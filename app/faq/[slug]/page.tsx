@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/shared/FaqAccordion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, HelpCircle, MessageCircle, Globe, BookOpen, Clock, Shield } from "lucide-react";
@@ -80,26 +80,23 @@ export default async function FaqDetailPage({ params }: Props) {
           </div>
         )}
         <div className="relative max-w-6xl mx-auto px-4 py-16">
-          <div className="text-center">
-            {/* Back button */}
+          {/* Back button - positioned on the left */}
+          <div className="mb-6">
             <Link 
               href="/faq" 
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 group transition-all duration-300"
+              className="inline-flex gap-2 text-white/80 hover:text-white group transition-all duration-300"
             >
-              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform duration-300" />
+              <ArrowLeft className="h-6 w-4 group-hover:-translate-x-1 transition-transform duration-300" />
               Back to FAQ
             </Link>
+          </div>
 
+          {/* Centered content */}
+          <div className="text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
               <HelpCircle className="h-4 w-4" />
               <span className="text-sm font-medium">FAQ</span>
             </div>
-
-            {faq.category && (
-              <Badge className="bg-emerald-600 hover:bg-emerald-700 text-white border-0 px-3 py-1 mb-4">
-                {faq.category}
-              </Badge>
-            )}
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 max-w-4xl mx-auto">
               {faq.title}
@@ -140,35 +137,7 @@ export default async function FaqDetailPage({ params }: Props) {
                 </p>
               </div>
             ) : (
-              <Accordion type="single" collapsible className="w-full space-y-4">
-                {faq.faqs.map((item, index) => (
-                  <AccordionItem 
-                    key={index} 
-                    value={`item-${index}`}
-                    className="border border-slate-200 rounded-xl px-6 py-2 hover:bg-emerald-50/50 transition-colors duration-300"
-                  >
-                    <AccordionTrigger className="text-left hover:no-underline group">
-                      <div className="flex items-start gap-4 text-left">
-                        <div className="flex items-center justify-center w-8 h-8 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold mt-1 flex-shrink-0 group-hover:bg-emerald-200 transition-colors duration-300">
-                          {index + 1}
-                        </div>
-                        <span className="font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors duration-300">
-                          {item.question}
-                        </span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="ml-12 pb-4">
-                      <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
-                        {item.answer.split('\n').map((paragraph, pIndex) => (
-                          <p key={pIndex} className="mb-3 last:mb-0">
-                            {paragraph}
-                          </p>
-                        ))}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              <FaqAccordion faqs={faq.faqs} destinationSlug={slug} />
             )}
           </CardContent>
         </Card>

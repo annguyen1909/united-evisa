@@ -144,23 +144,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                       </div>
                     )}
                     
-                    <CardContent className="p-5">
-                      {/* Tags */}
-                      {post.tags && post.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {post.tags.slice(0, 2).map(tag => (
-                            <Badge key={tag} variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 text-xs font-medium">
-                              {tag}
-                            </Badge>
-                          ))}
-                          {post.tags.length > 2 && (
-                            <Badge variant="outline" className="bg-slate-50 text-slate-500 border-slate-200 text-xs">
-                              +{post.tags.length - 2}
-                            </Badge>
-                          )}
-                        </div>
-                      )}
-                      
+                    <CardContent className="px-5">                  
                       {/* Date */}
                       {post.date && (
                         <div className="flex items-center text-xs text-slate-500 mb-2">

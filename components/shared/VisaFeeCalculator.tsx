@@ -23,34 +23,17 @@ interface VisaTypeOption {
   id: string;
   name: string;
   govFee: number;
-  processingTimes?: {
-    normal?: string;
-    superUrgent?: string;
-  };
   allowedNationalities: string[];
 }
 
 export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculatorProps) {
   const [numVisa, setNumVisa] = useState(1);
   const [visaType, setVisaType] = useState<VisaTypeOption | null>(null);
-  const [processingTime, setProcessingTime] = useState<string>("");
   const [nationality, setNationality] = useState("");
+  const [passengerNationalities, setPassengerNationalities] = useState<string[]>([""]);
+  const [sameNationality, setSameNationality] = useState(true);
 
   const visaTypes = selectedCountry?.visaTypes || [];
-  const processingOptions = visaType?.processingTimes
-    ? ([
-      visaType.processingTimes.normal ? {
-        label: `Normal Processing${visaType.processingTimes.normal ? ` (${visaType.processingTimes.normal})` : ''}`,
-        value: 'normal',
-        badge: 'Standard'
-      } : null,
-      visaType.processingTimes.superUrgent ? {
-        label: `Super Urgent${visaType.processingTimes.superUrgent ? ` (${visaType.processingTimes.superUrgent})` : ''}`,
-        value: 'superUrgent',
-        badge: 'Express'
-      } : null,
-    ].filter((opt): opt is { label: string; value: string; badge: string } => !!opt))
-    : [];
   const allowedNationalities = visaType?.allowedNationalities || [];
   const nationalityOptions = allowedNationalities.map(code => {
     const nationality = NATIONALITIES.find(n => n.code === code);
@@ -60,29 +43,74 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
   // For Combobox, convert nationalityOptions (string[]) to { value, label }[]
   const nationalityComboboxOptions = nationalityOptions.map(n => ({ value: n, label: n }));
 
+  // Update passenger nationalities array when numVisa changes
+  const updatePassengerNationalities = (newNum: number) => {
+    setPassengerNationalities(prev => {
+      const updated = [...prev];
+      if (newNum > updated.length) {
+        // Add new entries
+        for (let i = updated.length; i < newNum; i++) {
+          updated.push(sameNationality ? nationality : "");
+        }
+      } else {
+        // Remove excess entries
+        updated.splice(newNum);
+      }
+      return updated;
+    });
+  };
+
   // Calculate fees
-  let govFee = visaType?.govFee || 0;
-  if (selectedCountry?.code?.toLowerCase() === "in" && visaType && nationality) {
-    // Find nationality code from name (since nationality is name, not code)
-    const nationalityObj = NATIONALITIES.find(n => n.name === nationality);
-    const nationalityCode = nationalityObj ? nationalityObj.code : nationality;
-    govFee = calculateIndiaVisaFee(visaType.id, nationalityCode) || 0;
-  }
+  let totalAmount = 0;
   const serviceFee = 59.99;
-  const urgentProcessingFee = processingTime === 'superUrgent' ? 79 : 0;
-  const totalPerVisa = govFee + serviceFee + urgentProcessingFee;
-  const totalAmount = totalPerVisa * numVisa;
+  
+  if (selectedCountry?.code?.toLowerCase() === "in" && visaType) {
+    // For India, calculate fee for each passenger based on their nationality
+    const nationalitiesToUse = sameNationality ? 
+      Array(numVisa).fill(nationality) : 
+      passengerNationalities;
+    
+    totalAmount = nationalitiesToUse.reduce((total, passengerNationality, index) => {
+      if (!passengerNationality) return total;
+      const nationalityObj = NATIONALITIES.find(n => n.name === passengerNationality);
+      const nationalityCode = nationalityObj ? nationalityObj.code : passengerNationality;
+      const govFee = calculateIndiaVisaFee(visaType.id, nationalityCode) || 0;
+      return total + govFee + serviceFee;
+    }, 0);
+  } else {
+    // For other countries, use standard calculation
+    const govFee = visaType?.govFee || 0;
+    const totalPerVisa = govFee + serviceFee;
+    totalAmount = totalPerVisa * numVisa;
+  }
 
   const handleApply = () => {
-    if (!selectedCountry || !visaType || !processingTime || !nationality) return;
+    const isIndia = selectedCountry?.code?.toLowerCase() === "in";
+    const requiredNationalities = isIndia && !sameNationality ? 
+      passengerNationalities : 
+      [nationality];
+    
+    const hasAllNationalities = requiredNationalities.every(n => n && n.trim() !== "");
+    
+    if (!selectedCountry || !visaType || !hasAllNationalities) return;
+    
     const params = new URLSearchParams({
-      country: selectedCountry.code,
-      visaType: visaType.id,
-      processing: processingTime,
+      country: selectedCountry.slug,
+      type: visaType.name,
       num: numVisa.toString(),
-      nationality,
+      nationality: isIndia && !sameNationality ? 
+        JSON.stringify(passengerNationalities) : 
+        nationality,
     });
-    window.location.href = `/apply?${params.toString()}`;
+    const url = `/apply?${params.toString()}`;
+    console.log('Apply Now clicked:', {
+      country: selectedCountry.code,
+      type: visaType.name,
+      num: numVisa.toString(),
+      nationality: isIndia && !sameNationality ? passengerNationalities : nationality,
+      url
+    });
+    window.location.href = url;
   };
 
   return (
@@ -121,7 +149,11 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                 </label>
                 <div className="flex items-center justify-center bg-gray-100 rounded-2xl">
                   <button
-                    onClick={() => setNumVisa((n) => Math.max(1, n - 1))}
+                    onClick={() => {
+                      const newNum = Math.max(1, numVisa - 1);
+                      setNumVisa(newNum);
+                      updatePassengerNationalities(newNum);
+                    }}
                     className="p-3 hover:bg-white rounded-xl transition-all duration-200 hover:shadow-sm"
                     type="button"
                   >
@@ -131,7 +163,11 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                     {numVisa}
                   </span>
                   <button
-                    onClick={() => setNumVisa((n) => n + 1)}
+                    onClick={() => {
+                      const newNum = numVisa + 1;
+                      setNumVisa(newNum);
+                      updatePassengerNationalities(newNum);
+                    }}
                     className="p-3 hover:bg-white rounded-xl transition-all duration-200 hover:shadow-sm"
                     type="button"
                   >
@@ -150,8 +186,9 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                   onValueChange={(value) => {
                     const vt = visaTypes.find(v => v.id === value);
                     setVisaType(vt || null);
-                    setProcessingTime("");
                     setNationality("");
+                    setPassengerNationalities(Array(numVisa).fill(""));
+                    setSameNationality(true);
                   }}
                 >
                   <SelectTrigger className="w-full min-h-[3rem] h-16 px-4 bg-gray-100 border-0 rounded-lg text-gray-700 font-medium 
@@ -168,47 +205,83 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
               </div>
             </div>
 
-            {/* Processing Time */}
-            <div className="space-y-3">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                <Clock className="inline h-4 w-4 mr-2" />
-                Processing Time
-              </label>
-              <Select
-                value={processingTime}
-                onValueChange={setProcessingTime}
-                disabled={!visaType}
-              >
-                <SelectTrigger className="w-full min-h-[3.25rem] h-16 px-4 bg-gray-100 border-0 rounded-lg text-left text-gray-700 font-normal text-base flex items-center justify-between focus:ring-4 focus:ring-emerald-100 focus:bg-white transition-all duration-200 hover:bg-white hover:shadow-sm disabled:opacity-50">
-                  <SelectValue 
-                    placeholder="Select processing time..."
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  {processingOptions.map(opt => (
-                    <SelectItem key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
             {/* Nationality */}
             <div className="space-y-3">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Nationality <span className="text-red-500">*</span>
               </label>
-              {/* Combobox for Nationality using shadcn/ui pattern */}
-              <div className="w-full">
+              
+              {selectedCountry?.code?.toLowerCase() === "in" && numVisa > 1 ? (
+                // India with multiple passengers
+                <div className="space-y-4">
+                  {/* Same nationality checkbox */}
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id="sameNationality"
+                      checked={sameNationality}
+                      onChange={(e) => {
+                        setSameNationality(e.target.checked);
+                        if (e.target.checked && nationality) {
+                          setPassengerNationalities(Array(numVisa).fill(nationality));
+                        }
+                      }}
+                      className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+                    />
+                    <label htmlFor="sameNationality" className="text-sm text-gray-700">
+                      All passengers have the same nationality
+                    </label>
+                  </div>
+
+                  {sameNationality ? (
+                    // Single nationality selection
+                    <Combobox
+                      options={nationalityComboboxOptions}
+                      value={nationality}
+                      onChange={(value) => {
+                        setNationality(value);
+                        setPassengerNationalities(Array(numVisa).fill(value));
+                      }}
+                      disabled={!visaType}
+                      placeholder="Select nationality for all passengers..."
+                    />
+                  ) : (
+                    // Individual nationality selection for each passenger
+                    <div className="space-y-3">
+                      {Array.from({ length: numVisa }, (_, index) => (
+                        <div key={index}>
+                          <label className="block text-sm font-medium text-gray-600 mb-1">
+                            Passenger {index + 1}:
+                          </label>
+                          <Combobox
+                            options={nationalityComboboxOptions}
+                            value={passengerNationalities[index] || ""}
+                            onChange={(value) => {
+                              const updated = [...passengerNationalities];
+                              updated[index] = value;
+                              setPassengerNationalities(updated);
+                            }}
+                            disabled={!visaType}
+                            placeholder={`Select nationality for passenger ${index + 1}...`}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                // Single nationality selection (non-India or single passenger)
                 <Combobox
                   options={nationalityComboboxOptions}
                   value={nationality}
-                  onChange={setNationality}
+                  onChange={(value) => {
+                    setNationality(value);
+                    setPassengerNationalities([value]);
+                  }}
                   disabled={!visaType}
                   placeholder="Select your nationality..."
                 />
-              </div>
+              )}
             </div>
           </div>
 
@@ -224,46 +297,96 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                 <div className="space-y-6">
                   {/* Individual Fees */}
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="text-gray-700 font-medium">Government & Admin Fee:</span>
-                      <span className="font-bold text-gray-800">US$ {govFee.toFixed(2)}</span>
-                    </div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="text-gray-700 font-medium">Service Fee:</span>
-                      <span className="font-bold text-gray-800">US$ {serviceFee.toFixed(2)}</span>
-                    </div>
+                    {selectedCountry?.code?.toLowerCase() === "in" ? (
+                      // India fee breakdown - grouped by fee type
+                      <div className="space-y-4">
+                        {(() => {
+                          const nationalitiesToUse = sameNationality ? Array(numVisa).fill(nationality) : passengerNationalities;
+                          const nationalityGroups: { [key: string]: number } = {};
+                          
+                          // Group nationalities and count occurrences
+                          nationalitiesToUse.forEach(nat => {
+                            if (nat) {
+                              nationalityGroups[nat] = (nationalityGroups[nat] || 0) + 1;
+                            }
+                          });
+                          
+                          // Calculate totals
+                          let totalGovFees = 0;
+                          let totalServiceFees = 0;
+                          
+                          const govFeeEntries = Object.entries(nationalityGroups).map(([passengerNationality, count]) => {
+                            const nationalityObj = NATIONALITIES.find(n => n.name === passengerNationality);
+                            const nationalityCode = nationalityObj ? nationalityObj.code : passengerNationality;
+                            const govFee = calculateIndiaVisaFee(visaType.id, nationalityCode) || 0;
+                            const totalGovFee = govFee * count;
+                            totalGovFees += totalGovFee;
+                            
+                            return { passengerNationality, count, govFee, totalGovFee };
+                          });
+                          
+                          const serviceFeeEntries = Object.entries(nationalityGroups).map(([passengerNationality, count]) => {
+                            const totalServiceFee = serviceFee * count;
+                            totalServiceFees += totalServiceFee;
+                            
+                            return { passengerNationality, count, serviceFee, totalServiceFee };
+                          });
+                          
+                          return (
+                            <>
+                              {/* Government Fee Section */}
+                              <div className="space-y-2">
+                                <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                                  <span className="text-gray-700 font-medium">Government Fee:</span>
+                                  <span className="font-bold text-gray-800">US$ {totalGovFees.toFixed(2)}</span>
+                                </div>
+                                <div className="bg-emerald-50 rounded-lg p-3 space-y-1">
+                                  {govFeeEntries.map(({ passengerNationality, count, govFee, totalGovFee }) => (
+                                    <div key={`gov-${passengerNationality}`} className="flex justify-between items-center text-sm">
+                                      <span className="text-emerald-700">
+                                        {passengerNationality}:
+                                      </span>
+                                      <span className="text-emerald-800 font-medium">
+                                        ${govFee.toFixed(2)} × {count} = ${totalGovFee.toFixed(2)}
+                                      </span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                              
+                              {/* Service Fee Section */}
+                              <div className="space-y-2">
+                                <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                                  <span className="text-gray-700 font-medium">Service Fee:</span>
+                                  <span className="font-bold text-gray-800">US$ {totalServiceFees.toFixed(2)}</span>
+                                </div>
+                              </div>
+                            </>
+                          );
+                        })()}
+                      </div>
+                    ) : (
+                      // Non-India fee breakdown
+                      <>
+                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                          <span className="text-gray-700 font-medium">Government & Admin Fee:</span>
+                          <span className="font-bold text-gray-800">US$ {(visaType?.govFee || 0).toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                          <span className="text-gray-700 font-medium">Service Fee:</span>
+                          <span className="font-bold text-gray-800">US$ {serviceFee.toFixed(2)}</span>
+                        </div>
+                      </>
+                    )}
                     <div className="flex justify-between items-center py-3 border-b border-gray-200">
                       <span className="text-gray-700 font-medium">Visa Fees Discount:</span>
                       <span className="font-bold text-green-600">- US$ 0.00</span>
                     </div>
-                    {processingTime === 'superUrgent' && (
-                      <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                        <span className="text-gray-700 font-medium">Urgent Processing - 24 hours:</span>
-                        <span className="font-bold text-gray-800">US$ {urgentProcessingFee.toFixed(2)}</span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Total Section - Highlighted */}
                   <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-2xl border-2 border-emerald-200">
                     <div className="space-y-3">
-                      {/* Processing Time Badge */}
-                      {processingTime && (
-                        <div className="mb-4">
-                          <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${processingTime === 'superUrgent'
-                              ? 'bg-red-100 text-red-800'
-                              : 'bg-blue-100 text-blue-800'
-                            }`}>
-                            <Clock className="h-4 w-4 mr-2" />
-                            {processingOptions.find(opt => opt.value === processingTime)?.badge} Processing
-                          </div>
-                        </div>
-                      )}
-
-                      <div className="flex justify-between items-center text-lg">
-                        <span className="text-emerald-800 font-semibold">Total per visa:</span>
-                        <span className="font-bold text-emerald-800">US$ {totalPerVisa.toFixed(2)}</span>
-                      </div>
                       <div className="flex justify-between items-center text-lg">
                         <span className="text-emerald-800 font-semibold">Number of visas:</span>
                         <span className="font-bold text-emerald-800">× {numVisa}</span>
@@ -281,7 +404,14 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                   <div className="mt-8 flex justify-end">
                     <Button
                       onClick={handleApply}
-                      disabled={!selectedCountry || !visaType || !processingTime || !nationality}
+                      disabled={(() => {
+                        const isIndia = selectedCountry?.code?.toLowerCase() === "in";
+                        const requiredNationalities = isIndia && !sameNationality ? 
+                          passengerNationalities : 
+                          [nationality];
+                        const hasAllNationalities = requiredNationalities.every(n => n && n.trim() !== "");
+                        return !selectedCountry || !visaType || !hasAllNationalities;
+                      })()}
                       className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 
                                text-white font-bold py-4 px-12 rounded-2xl text-lg transition-all duration-300
                                shadow-lg hover:shadow-xl transform hover:-translate-y-0.5

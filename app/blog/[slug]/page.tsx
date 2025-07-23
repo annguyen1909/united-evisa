@@ -195,7 +195,7 @@ export default async function BlogDetail({ params }: Props) {
             {/* Back button */}
             <Link 
               href="/blog" 
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 group transition-all duration-300"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-2 group transition-all duration-300"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform duration-300" />
               Back to Blog
@@ -313,7 +313,7 @@ export default async function BlogDetail({ params }: Props) {
                 
                 <div className="p-8 sm:p-12">
                   <div
-                    className="max-w-none text-base leading-relaxed"
+                    className="prose prose-slate max-w-none text-base leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: processedContent }}
                   />
                 </div>

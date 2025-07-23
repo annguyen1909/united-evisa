@@ -40,72 +40,72 @@ export default function News() {
         author: "eVisa United Team",
         category: "India",
         readTime: "8 min read",
-        image: "/images/blog/india-evisa-guide.jpg",
+        image: "/images/blog/india/india-blog-1.png",
         featured: true,
         countryCode: "IN",
         tags: ["India", "eVisa", "Travel", "Tourism", "Business"]
       },
       {
-        slug: "turkey-evisa-us-citizens",
-        title: "Turkey eVisa: Quick Guide for US Citizens",
-        description: "Step-by-step guide for US citizens applying for Turkey eVisa. Learn about requirements, fees, processing times, and application tips.",
+        slug: "angola-evisa-complete-guide",
+        title: "Angola eVisa: Complete Guide for Travelers",
+        description: "Everything you need to know about Angola eVisa application process, requirements, and tips for a smooth journey.",
         date: "2024-01-10",
         author: "Travel Expert",
-        category: "Turkey",
+        category: "Angola",
         readTime: "5 min read",
-        image: "/images/blog/turkey-evisa-us-citizens.jpg",
+        image: "/images/blog/angola/angola-blog-1.png",
         featured: true,
-        countryCode: "TR",
-        tags: ["Turkey", "eVisa", "US Citizens", "Travel"]
+        countryCode: "AO",
+        tags: ["Angola", "eVisa", "Travel"]
       },
       {
-        slug: "vietnam-evisa-requirements-guide",
+        slug: "vietnam-evisa-complete-guide",
         title: "Vietnam eVisa Requirements and Application Guide",
         description: "Complete guide to Vietnam eVisa application process, requirements, fees, and processing times for all nationalities.",
         date: "2024-01-08",
         author: "Visa Specialist",
         category: "Vietnam",
         readTime: "6 min read",
-        image: "/images/blog/vietnam-evisa-guide.jpg",
+        image: "/images/blog/vietnam/vietnam-blog-1.png",
         featured: false,
         countryCode: "VN",
         tags: ["Vietnam", "eVisa", "Travel", "Requirements"]
       },
       {
-        slug: "sri-lanka-eta-guide-2024",
+        slug: "sri-lanka-complete-guide",
         title: "Sri Lanka ETA Guide: Complete Application Process",
         description: "Everything you need to know about Sri Lanka Electronic Travel Authorization (ETA). Quick processing, requirements, and expert tips.",
         date: "2024-01-05",
         author: "Travel Specialist",
         category: "Sri Lanka",
         readTime: "4 min read",
-        image: "/images/blog/sri-lanka-eta-guide.jpg",
+        image: "/images/blog/sri-lanka/sri-lanka-blog-1.png",
         featured: false,
         countryCode: "LK",
         tags: ["Sri Lanka", "ETA", "Travel", "Tourism"]
       },
       {
-        slug: "egypt-evisa-requirements-2024",
+        slug: "egypt-evisa-complete-guide",
         title: "Egypt eVisa: Complete Requirements and Application Guide",
         description: "Apply for your Egypt eVisa with confidence. Learn about requirements, processing times, fees, and get expert application tips.",
         date: "2024-01-03",
         author: "Middle East Expert",
         category: "Egypt",
         readTime: "7 min read",
-        image: "/images/blog/egypt-evisa-guide.jpg",
+        image: "/images/blog/egypt/egypt-blog-1.png",
         featured: false,
         countryCode: "EG",
         tags: ["Egypt", "eVisa", "Travel", "Tourism"]
       },
       {
-        slug: "australia-eta-visa-guide",
+        slug: "australia-evisa-complete-guide",
         title: "Australia ETA Visa: Quick Guide for Tourists",
         description: "Get your Australia Electronic Travel Authority (ETA) quickly and easily. Requirements, processing times, and application tips included.",
         date: "2024-01-01",
         author: "Australia Expert",
         category: "Australia", 
         readTime: "5 min read",
-        image: "/images/blog/australia-eta-guide.jpg",
+        image: "/images/blog/australia/australia-blog-1.png",
         featured: false,
         countryCode: "AU",
         tags: ["Australia", "ETA", "Tourism", "Travel"]
@@ -213,7 +213,7 @@ export default function News() {
                         {/* Image */}
                         <div className="relative h-64 overflow-hidden">
                           <Image
-                            src={post.image || "/images/blog/default-blog.jpg"}
+                            src={post.image || "/images/blog/india/india-blog-1.png"}
                             alt={post.title}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-700"

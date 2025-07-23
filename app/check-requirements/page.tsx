@@ -143,15 +143,12 @@ function CheckRequirementsContent() {
 
                 <div className="max-w-6xl mx-auto px-4 py-12">
                     {/* Check Eligibility Section */}
-                    <div className="mb-12">
+                    <div className="mb-12 z-0 relative">
                         <div className="text-center mb-8">
                             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 mb-4 border border-white/30">
                                 <Globe className="h-4 w-4 text-emerald-600" />
                                 <span className="text-sm font-medium text-slate-700">Quick Check</span>
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-800 mb-2">
-                                Check Your Visa Eligibility
-                            </h2>
                             <p className="text-slate-600">
                                 Select your nationality and destination to check visa requirements instantly
                             </p>

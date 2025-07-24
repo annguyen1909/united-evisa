@@ -37,10 +37,17 @@ const faqDirectory = path.join(process.cwd(), 'content/faq');
 
 export function getAllFaqSlugs(): string[] {
   try {
-    const fileNames = fs.readdirSync(faqDirectory);
-    return fileNames
-      .filter(name => name.endsWith('.md'))
-      .map(name => name.replace(/\.md$/, ''));
+    const entries = fs.readdirSync(faqDirectory, { withFileTypes: true });
+    const folderSlugs = entries
+      .filter(entry => entry.isDirectory())
+      .map(entry => entry.name);
+    
+    // Also include standalone .md files for backward compatibility
+    const fileSlugs = entries
+      .filter(entry => entry.isFile() && entry.name.endsWith('.md'))
+      .map(entry => entry.name.replace(/\.md$/, ''));
+    
+    return [...folderSlugs, ...fileSlugs];
   } catch (error) {
     return [];
   }
@@ -48,6 +55,55 @@ export function getAllFaqSlugs(): string[] {
 
 export function getFaqBySlug(slug: string): FaqData | null {
   try {
+    // First check if it's a folder
+    const folderPath = path.join(faqDirectory, slug);
+    
+    if (fs.existsSync(folderPath) && fs.statSync(folderPath).isDirectory()) {
+      // Read all .md files from the folder
+      const files = fs.readdirSync(folderPath)
+        .filter(file => file.endsWith('.md'))
+        .sort();
+      
+      if (files.length === 0) {
+        return null;
+      }
+      
+      const faqs: FaqItem[] = [];
+      let faqData: any = {};
+      
+      // Read each file and extract FAQs
+      for (const file of files) {
+        const filePath = path.join(folderPath, file);
+        const fileContents = fs.readFileSync(filePath, 'utf8');
+        const { data, content } = matter(fileContents);
+        
+        // Use metadata from the first file
+        if (Object.keys(faqData).length === 0) {
+          faqData = data;
+        }
+        
+        // Parse FAQ content - looking for markdown format with ## questions and answers
+        const faqRegex = /## (.+?)\n\n((?:(?!##)[\s\S])+)/g;
+        
+        let match;
+        while ((match = faqRegex.exec(content)) !== null) {
+          const question = match[1].trim();
+          const answer = match[2].trim();
+          faqs.push({ question, answer });
+        }
+      }
+      
+      return {
+        slug,
+        title: faqData.title || slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        description: faqData.description || `Frequently asked questions about ${slug.replace('-evisa-faq', '').replace(/-/g, ' ')} eVisa`,
+        category: faqData.category || slug.replace('-evisa-faq', '').replace(/-/g, ' '),
+        image: faqData.image,
+        faqs
+      };
+    }
+    
+    // Fallback to reading single .md file (for backward compatibility)
     const fullPath = path.join(faqDirectory, `${slug}.md`);
     
     if (!fs.existsSync(fullPath)) {

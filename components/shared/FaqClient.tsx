@@ -44,9 +44,9 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
   const filteredFaqs = faqs.filter(faq => {
     const term = search.toLowerCase();
     return (
-      faq.title.toLowerCase().includes(term) ||
-      faq.description.toLowerCase().includes(term) ||
-      faq.category.toLowerCase().includes(term)
+      faq.title?.toLowerCase().includes(term) ||
+      faq.description?.toLowerCase().includes(term) ||
+      faq.category?.toLowerCase().includes(term)
     );
   });
 

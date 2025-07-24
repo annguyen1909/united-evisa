@@ -1,12 +1,11 @@
-import { getFaqBySlug, getAllFaqSlugs } from "@/lib/faq";
+import { getFaqBySlug, getAllFaqSlugs, getAllIndividualFaqSlugs, getIndividualFaq } from "@/lib/faq";
 import { notFound } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import FaqAccordion from "@/components/shared/FaqAccordion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, HelpCircle, MessageCircle, Globe, BookOpen, Clock, Shield } from "lucide-react";
+import { ArrowLeft, HelpCircle, MessageCircle, Globe, BookOpen, Clock, Shield, ArrowRight } from "lucide-react";
 import { Metadata } from 'next';
 
 interface Props {
@@ -58,10 +57,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function FaqDetailPage({ params }: Props) {
   const { slug } = await params;
   const faq = getFaqBySlug(slug);
+  const individualFaqSlugs = getAllIndividualFaqSlugs(slug);
 
   if (!faq) {
     return notFound();
   }
+
+  // Get individual FAQ data for each slug to display correct titles
+  const individualFaqs = await Promise.all(
+    individualFaqSlugs.map(async (faqSlug) => {
+      const individualFaq = await getIndividualFaq(slug, faqSlug);
+      return { slug: faqSlug, data: individualFaq };
+    })
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
@@ -111,7 +119,7 @@ export default async function FaqDetailPage({ params }: Props) {
             <div className="flex items-center justify-center gap-6 mt-8 text-emerald-100">
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4" />
-                <span className="text-sm">{faq.faqs.length} Questions</span>
+                <span className="text-sm">{individualFaqs.length} FAQ Articles</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
@@ -124,11 +132,11 @@ export default async function FaqDetailPage({ params }: Props) {
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* FAQ Content */}
+        {/* FAQ List */}
         <Card className="shadow-xl border-0 bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden mb-8">
           <div className="h-2 bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700" />
           <CardContent className="p-8">
-            {faq.faqs.length === 0 ? (
+            {individualFaqs.length === 0 ? (
               <div className="text-center py-12">
                 <MessageCircle className="h-16 w-16 text-slate-300 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-slate-600 mb-2">No FAQ Available</h3>
@@ -137,7 +145,43 @@ export default async function FaqDetailPage({ params }: Props) {
                 </p>
               </div>
             ) : (
-              <FaqAccordion faqs={faq.faqs} destinationSlug={slug} />
+              <div>
+                <h2 className="text-2xl font-bold text-slate-800 mb-6">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-4">
+                  {individualFaqs.map(({ slug: faqSlug, data: individualFaq }, index) => (
+                    <Link 
+                      key={faqSlug} 
+                      href={`/faq/${slug}/${faqSlug}`}
+                      className="block group"
+                    >
+                      <Card className="hover:shadow-lg transition-all duration-300 border border-slate-200 hover:border-emerald-300 bg-white/80 backdrop-blur-sm">
+                        <CardContent className="p-6">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+                                <span className="text-emerald-600 font-semibold">
+                                  {index + 1}
+                                </span>
+                              </div>
+                              <div>
+                                <h3 className="text-lg font-semibold text-slate-800 group-hover:text-emerald-600 transition-colors">
+                                  {individualFaq?.title || faqSlug.replace('faq-', '').replace(/-/g, ' ')}
+                                </h3>
+                                <p className="text-sm text-slate-500">
+                                  {individualFaq?.description || `Detailed FAQ guide for ${faq.category}`}
+                                </p>
+                              </div>
+                            </div>
+                            <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all duration-300" />
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             )}
           </CardContent>
         </Card>

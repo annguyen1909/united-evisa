@@ -44,8 +44,13 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
 
   const filtered = posts.filter(
     (post) =>
-      post.title.toLowerCase().includes(query.toLowerCase()) ||
-      post.tags.some((t) => t.toLowerCase().includes(query.toLowerCase()))
+      (post.title && post.title.toLowerCase().includes(query.toLowerCase())) ||
+      (Array.isArray(post.tags) &&
+        post.tags.some(
+          (t) =>
+            typeof t === "string" &&
+            t.toLowerCase().includes(query.toLowerCase())
+        ))
   );
 
   const totalPages = Math.ceil(filtered.length / BLOGS_PER_PAGE);
@@ -78,9 +83,10 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
             Travel Insights & Tips
           </h1>
           <p className="mt-2 text-lg text-white/90 font-medium drop-shadow-sm hidden sm:block mx-auto max-w-2xl">
-            Expert advice, destination guides, and visa information to help you plan your perfect journey.
+            Expert advice, destination guides, and visa information to help you
+            plan your perfect journey.
           </p>
-          
+
           {/* Search bar in hero */}
           <div className="mt-8 max-w-lg mx-auto relative">
             <Input
@@ -106,7 +112,11 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-200 pb-4">
             <h2 className="text-2xl sm:text-3xl font-bold text-emerald-800">
               Latest Articles
-              {query && <span className="text-lg ml-2 font-normal text-slate-600">for "{query}"</span>}
+              {query && (
+                <span className="text-lg ml-2 font-normal text-slate-600">
+                  for "{query}"
+                </span>
+              )}
             </h2>
             <div className="text-sm text-slate-500">
               Showing {paginated.length} of {filtered.length} articles
@@ -119,9 +129,12 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
               <div className="col-span-full text-center text-slate-500 py-16 bg-white rounded-lg shadow-sm">
                 <div className="flex flex-col items-center gap-3">
                   <Search className="h-12 w-12 text-slate-300" />
-                  <h3 className="text-xl font-semibold text-slate-700">No articles found</h3>
+                  <h3 className="text-xl font-semibold text-slate-700">
+                    No articles found
+                  </h3>
                   <p className="max-w-md text-slate-500">
-                    We couldn't find any articles matching your search. Try using different keywords.
+                    We couldn't find any articles matching your search. Try
+                    using different keywords.
                   </p>
                 </div>
               </div>
@@ -136,15 +149,15 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                     {/* Optional image */}
                     {post.image && (
                       <div className="w-full h-48 overflow-hidden">
-                        <img 
-                          src={post.image} 
+                        <img
+                          src={post.image}
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                     )}
-                    
-                    <CardContent className="px-5">                  
+
+                    <CardContent className="px-5">
                       {/* Date */}
                       {post.date && (
                         <div className="flex items-center text-xs text-slate-500 mb-2">
@@ -152,19 +165,19 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                           {post.date}
                         </div>
                       )}
-                      
+
                       {/* Title */}
                       <h3 className="text-lg font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors mb-2 line-clamp-2">
                         {post.title}
                       </h3>
-                      
+
                       {/* Excerpt */}
                       {post.excerpt && (
                         <p className="text-slate-600 text-sm line-clamp-3 mb-4">
                           {post.excerpt}
                         </p>
                       )}
-                      
+
                       {/* Read more link */}
                       <div className="flex items-center text-emerald-600 text-sm font-medium group-hover:text-emerald-700">
                         Read more
@@ -199,7 +212,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                   <path d="M15 19l-7-7 7-7" />
                 </svg>
               </Button>
-              
+
               {totalPages <= 7 ? (
                 // Show all pages if 7 or fewer
                 [...Array(totalPages)].map((_, idx) => (
@@ -234,9 +247,9 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                   >
                     1
                   </Button>
-                  
+
                   {page > 3 && <span className="text-slate-400">...</span>}
-                  
+
                   {page > 2 && (
                     <Button
                       variant="outline"
@@ -247,7 +260,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                       {page - 1}
                     </Button>
                   )}
-                  
+
                   {page !== 1 && page !== totalPages && (
                     <Button
                       variant="default"
@@ -257,7 +270,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                       {page}
                     </Button>
                   )}
-                  
+
                   {page < totalPages - 1 && (
                     <Button
                       variant="outline"
@@ -268,9 +281,11 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                       {page + 1}
                     </Button>
                   )}
-                  
-                  {page < totalPages - 2 && <span className="text-slate-400">...</span>}
-                  
+
+                  {page < totalPages - 2 && (
+                    <span className="text-slate-400">...</span>
+                  )}
+
                   <Button
                     variant={page === totalPages ? "default" : "outline"}
                     size="icon"
@@ -286,7 +301,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                   </Button>
                 </>
               )}
-              
+
               <Button
                 variant="outline"
                 size="icon"
@@ -319,21 +334,23 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
               Popular Topics
             </h3>
             <div className="flex flex-wrap gap-2">
-              {Array.from(new Set(posts.flatMap(post => post.tags))).slice(0, 12).map(tag => (
-                <Badge 
-                  key={tag} 
-                  className="bg-slate-100 hover:bg-emerald-100 text-slate-700 hover:text-emerald-700 cursor-pointer"
-                  onClick={() => {
-                    setQuery(tag);
-                    handlePageChange(1);
-                  }}
-                >
-                  {tag}
-                </Badge>
-              ))}
+              {Array.from(new Set(posts.flatMap((post) => post.tags)))
+                .slice(0, 12)
+                .map((tag) => (
+                  <Badge
+                    key={tag}
+                    className="bg-slate-100 hover:bg-emerald-100 text-slate-700 hover:text-emerald-700 cursor-pointer"
+                    onClick={() => {
+                      setQuery(tag);
+                      handlePageChange(1);
+                    }}
+                  >
+                    {tag}
+                  </Badge>
+                ))}
             </div>
           </div>
-          
+
           <SupportSidebar />
         </aside>
       </div>

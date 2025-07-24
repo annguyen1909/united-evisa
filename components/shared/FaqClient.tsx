@@ -38,16 +38,26 @@ interface FaqClientProps {
 
 export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  
-  // Calculate pagination
-  const totalPages = Math.ceil(faqs.length / itemsPerPage);
+  const [search, setSearch] = useState("");
+
+  // Filter FAQs by search term
+  const filteredFaqs = faqs.filter(faq => {
+    const term = search.toLowerCase();
+    return (
+      faq.title.toLowerCase().includes(term) ||
+      faq.description.toLowerCase().includes(term) ||
+      faq.category.toLowerCase().includes(term)
+    );
+  });
+
+  // Calculate pagination for filtered results
+  const totalPages = Math.ceil(filteredFaqs.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentFaqs = faqs.slice(startIndex, endIndex);
+  const currentFaqs = filteredFaqs.slice(startIndex, endIndex);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // Smooth scroll to top of FAQ section
     document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -106,29 +116,39 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                   <Search className="h-5 w-5 text-emerald-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-slate-800">
-                  Search FAQ by Country
+                  Search FAQ by Country or Keyword
                 </h2>
               </div>
               <p className="text-slate-600 mb-6">
-                Select a country below to view specific visa requirements and frequently asked questions.
+                Type a country, keyword, or visa type to filter FAQs, or browse all below.
               </p>
-              
-              {faqs.length > 0 && (
+              {/* Search Input */}
+              <input
+                type="text"
+                value={search}
+                onChange={e => {
+                  setSearch(e.target.value);
+                  setCurrentPage(1);
+                }}
+                placeholder="Search by country, keyword, or visa type..."
+                className="w-full mb-8 px-4 py-3 rounded-lg border border-slate-200 focus:border-emerald-500 focus:ring-emerald-200 outline-none text-base text-slate-700 bg-slate-50"
+                aria-label="Search FAQs"
+              />
+              {filteredFaqs.length > 0 && (
                 <div className="flex items-center justify-between mb-6">
                   <p className="text-sm text-slate-500">
-                    Showing {startIndex + 1}-{Math.min(endIndex, faqs.length)} of {faqs.length} FAQs
+                    Showing {filteredFaqs.length === 0 ? 0 : startIndex + 1}-{Math.min(endIndex, filteredFaqs.length)} of {filteredFaqs.length} FAQs
                   </p>
                   <p className="text-sm text-slate-500">
                     Page {currentPage} of {totalPages}
                   </p>
                 </div>
               )}
-              
-              {faqs.length === 0 ? (
+              {filteredFaqs.length === 0 ? (
                 <div className="text-center py-12">
                   <MessageCircle className="h-16 w-16 text-slate-300 mx-auto mb-4" />
-                  <p className="text-slate-500">No FAQ content available yet.</p>
-                  <p className="text-sm text-slate-400">Check back soon for comprehensive FAQ guides.</p>
+                  <p className="text-slate-500">No FAQ matches your search.</p>
+                  <p className="text-sm text-slate-400">Try a different keyword or clear your search.</p>
                 </div>
               ) : (
                 <>
@@ -173,7 +193,6 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                       </Link>
                     ))}
                   </div>
-                  
                   {/* Pagination Controls */}
                   {totalPages > 1 && (
                     <div className="flex items-center justify-center gap-2 mt-8">
@@ -187,7 +206,6 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                         <ChevronLeft className="h-4 w-4" />
                         Previous
                       </Button>
-                      
                       <div className="flex items-center gap-1">
                         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                           <Button
@@ -205,7 +223,6 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                           </Button>
                         ))}
                       </div>
-                      
                       <Button
                         variant="outline"
                         size="sm"

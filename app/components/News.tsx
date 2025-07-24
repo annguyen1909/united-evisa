@@ -72,7 +72,7 @@ export default function News() {
         tags: ["Vietnam", "eVisa", "Travel", "Requirements"]
       },
       {
-        slug: "sri-lanka-complete-guide",
+        slug: "sri-lanka-evisa-complete-guide",
         title: "Sri Lanka ETA Guide: Complete Application Process",
         description: "Everything you need to know about Sri Lanka Electronic Travel Authorization (ETA). Quick processing, requirements, and expert tips.",
         date: "2024-01-05",

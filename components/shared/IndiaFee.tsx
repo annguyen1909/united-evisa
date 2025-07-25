@@ -2,6 +2,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { NATIONALITIES, getNationalityByCode } from '@/lib/nationalities';
 
 interface FeeModalProps {
   open: boolean;
@@ -40,20 +41,39 @@ export function FeeModal({ open, onOpenChange, visaType, feeTable }: FeeModalPro
               </TableRow>
             </TableHeader>
             <TableBody>
-              {feeTable.map((group: any, index: number) => (
-                <TableRow key={index}>
-                  <TableCell className="font-medium align-top">
-                    {group.name.replace(/Group \d+: /, '')}
-                  </TableCell>
-                  <TableCell className="text-center">US$ {group.govFee["30_days_tourist"]}</TableCell>
-                  <TableCell className="text-center">US$ {group.govFee["1_year_tourist"]}</TableCell>
-                  <TableCell className="text-center">
-                    {group.govFee["5_years_tourist"] === null ? "Not applicable" : `US$ ${group.govFee["5_years_tourist"]}`}
-                  </TableCell>
-                  <TableCell className="text-center">US$ {group.govFee["1_year_business"]}</TableCell>
-                  <TableCell className="text-center">US$ {group.govFee["other_visa"]}</TableCell>
-                </TableRow>
-              ))}
+              {feeTable.map((group: any, index: number) => {
+                // Convert all codes/names to display names using lib/nationalities
+                const countryNames = group.countries
+                  .map((codeOrName: string) => {
+                    const code = codeOrName.length === 2 ? codeOrName.toUpperCase() : null;
+                    if (code) {
+                      const nationality = getNationalityByCode(code);
+                      return nationality ? nationality.name : null;
+                    } else {
+                      // Try to match by name if not a code
+                      const nationality = NATIONALITIES.find(
+                        (n) => n.name.toLowerCase() === codeOrName.toLowerCase()
+                      );
+                      return nationality ? nationality.name : null;
+                    }
+                  })
+                  .filter((name: string | null) => !!name);
+                return (
+                  <TableRow key={index}>
+                    <TableCell className="font-normal align-top whitespace-normal">
+                      {/* Show only country names, separated by comma, wrap by cell width */}
+                      {countryNames.join(', ')}
+                    </TableCell>
+                    <TableCell className="text-center">US$ {group.govFee["30_days_tourist"]}</TableCell>
+                    <TableCell className="text-center">US$ {group.govFee["1_year_tourist"]}</TableCell>
+                    <TableCell className="text-center">
+                      {group.govFee["5_years_tourist"] === null ? "Not applicable" : `US$ ${group.govFee["5_years_tourist"]}`}
+                    </TableCell>
+                    <TableCell className="text-center">US$ {group.govFee["1_year_business"]}</TableCell>
+                    <TableCell className="text-center">US$ {group.govFee["other_visa"]}</TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </div>

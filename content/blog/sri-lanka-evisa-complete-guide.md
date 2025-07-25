@@ -27,13 +27,13 @@ Most foreign nationals require a visa to enter Sri Lanka. The eVisa is available
 ## Types of Sri Lanka eVisas
 
 ### Tourist eVisa
-- **Double Entries:** For temple exploration and beach holidays. Government fee: $52 USD.
+- **Double Entries:** For temple exploration and beach holidays. Government fee: $85 USD.
 
 ### Business eVisa
-- **Multiple Entries (30 days):** For business meetings and trade exhibitions. Government fee: $52 USD.
+- **Multiple Entries (30 days):** For business meetings and trade exhibitions. Government fee: $80 USD.
 
 ### Transit eVisa
-- **Single Entry (48 hours):** For airport transit and quick connections. Government fee: FREE
+- **Single Entry (48 hours):** For airport transit and quick connections. Government fee: $30 USD
 
 *Note: All eVisas have a validity period of 180 days from the date of issue.*
 
@@ -62,10 +62,10 @@ Our platform guides you through each step, ensuring your application meets all r
 
 ## Sri Lanka eVisa Fees & Processing Times
 
-- **Tourist eVisa (Double Entries):** $52 USD
-- **Business eVisa (Multiple Entries, 30 days):** $52 USD
-- **Transit eVisa (Single Entry, 48 hours):** FREE
-- **Processing Time:** 5 hours to 5 business days
+- **Tourist eVisa (Double Entries):** $85 USD
+- **Business eVisa (Multiple Entries, 30 days):** $80 USD
+- **Transit eVisa (Single Entry, 48 hours):** $30 USD
+- **Processing Time:** 5 hours to 3 working days
 
 *Apply at least 1 week before your travel date to avoid delays. No hidden costs.*
 
@@ -93,7 +93,7 @@ Sri Lanka eVisa holders can enter through Bandaranaike International Airport (Co
 
 > **How long does it take to process a Sri Lanka eVisa?**
 >
-> Processing time ranges from 5 hours to 5 business days. Apply at least 1 week before your travel date.
+> Processing time ranges from 5 hours to 3 working days. Apply at least 1 week before your travel date.
 
 > **What documents do I need for a Sri Lanka eVisa?**
 >

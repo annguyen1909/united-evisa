@@ -42,10 +42,10 @@ Limited visa-free access is available for:
 ### Tourist eVisa (Double Entry)
 
 **Perfect for leisure and cultural exploration:**
-- Government fee: $52 USD
+- Government fee: $80 USD
 - Double entry authorization
 - Maximum 30 days per visit
-- Processing time: 5 hours to 5 business days
+- Processing time: 5 hours to 3 working days
 - Ideal for temple exploration, beach holidays, cultural experiences
 
 **Key Features:**
@@ -58,10 +58,10 @@ Limited visa-free access is available for:
 ### Business eVisa (Multiple Entry - 30 Days)
 
 **Ideal for professional and commercial activities:**
-- Government fee: $52 USD
+- Government fee: $85 USD
 - Multiple entry authorization
 - Maximum 30 days per visit
-- Processing time: 5 hours to 5 business days
+- Processing time: 5 hours to 3 working days
 - Perfect for business meetings, trade exhibitions, partnerships
 
 **Business Opportunities:**
@@ -74,10 +74,10 @@ Limited visa-free access is available for:
 ### Transit eVisa (Single Entry - 48 Hours)
 
 **Perfect for airport transit and short layovers:**
-- Government fee: $0 USD (Free)
+- Government fee: $30 USD
 - Single entry authorization
 - Maximum 48 hours stay
-- Processing time: 5 hours to 5 business days
+- Processing time: 5 hours to 3 working days
 - Ideal for airport connections and brief stopovers
 
 **Transit Benefits:**

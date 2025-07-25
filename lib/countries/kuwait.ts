@@ -12,7 +12,7 @@ const kuwait: Country = {
   roundedFlagUrl: '/images/flags/square/kuwait.png',
   description: `Apply for your Kuwait eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Kuwait travel. Get your Kuwait visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Kuwait's modern skyline, rich history, and vibrant culture. From the Grand Mosque to the Arabian Gulf, Kuwait is a unique destination for travelers.`,
-  welcomeImgUrl: '/images/country/kenya-welcome.jpg',
+  welcomeImgUrl: '/images/country/kuwait/kuwait-welcome.jpg',
   processingTime: {
     normal: '3 working days',
     superUrgent: '1 working day',

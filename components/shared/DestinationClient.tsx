@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -75,10 +75,12 @@ export default function DestinationClient() {
   }, [countryQuery, region]);
 
   // --- Combobox for Country ---
+  const countryBtnRef = useRef<HTMLButtonElement>(null);
   const [openCountry, setOpenCountry] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
   // --- Combobox for Region ---
+  const regionBtnRef = useRef<HTMLButtonElement>(null);
   const [openRegion, setOpenRegion] = useState(false);
 
   // Clear all filters
@@ -104,10 +106,11 @@ export default function DestinationClient() {
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 mb-10">
         <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
           {/* Country Search Combobox */}
-          <div className="w-full lg:w-2/5">
+          <div className="w-full lg:w-2/5 xl:w-1/2">
             <Popover open={openCountry} onOpenChange={setOpenCountry}>
               <PopoverTrigger asChild>
                 <button
+                  ref={countryBtnRef}
                   className="w-full px-4 py-3 border border-slate-200 rounded-lg text-left bg-white hover:border-emerald-300 focus:border-emerald-500 flex items-center gap-2 transition-all shadow-sm"
                 >
                   <Search className="w-5 h-5 text-slate-400" />
@@ -126,7 +129,7 @@ export default function DestinationClient() {
                   )}
                 </button>
               </PopoverTrigger>
-              <PopoverContent className="w-full p-0 rounded-lg shadow-lg animate-in fade-in-50">
+              <PopoverContent align="start" className="p-0 rounded-lg shadow-lg animate-in fade-in-50" style={{ minWidth: countryBtnRef.current?.offsetWidth || undefined }}>
                 <Command>
                   <CommandInput
                     placeholder="Type a country name..."
@@ -179,10 +182,11 @@ export default function DestinationClient() {
           </div>
           
           {/* Region Filter */}
-          <div className="w-full lg:w-1/4">
+          <div className="w-full lg:w-1/4 xl:w-1/3">
             <Popover open={openRegion} onOpenChange={setOpenRegion}>
               <PopoverTrigger asChild>
                 <button
+                  ref={regionBtnRef}
                   className="w-full px-4 py-3 border border-slate-200 rounded-lg text-left bg-white hover:border-emerald-300 focus:border-emerald-500 flex items-center gap-2 transition-all shadow-sm"
                 >
                   <Globe2 className="w-5 h-5 text-slate-400" />
@@ -200,7 +204,7 @@ export default function DestinationClient() {
                   )}
                 </button>
               </PopoverTrigger>
-              <PopoverContent className="w-full p-0 rounded-lg shadow-lg animate-in fade-in-50">
+              <PopoverContent align="start" className="p-0 rounded-lg shadow-lg animate-in fade-in-50" style={{ minWidth: regionBtnRef.current?.offsetWidth || undefined }}>
                 <Command>
                   <CommandList className="max-h-[300px] overflow-auto p-1">
                     <CommandItem

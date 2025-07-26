@@ -225,7 +225,7 @@ export function Footer({
                                 <li className="flex items-start gap-3">
                                     <MapPin className="h-5 w-5 text-emerald-500 mt-0.5" />
                                     <span className="text-slate-400 text-sm">
-                                        123 eVisa Street, International City, 10001
+                                        1308 E Colorado Blvd, #2244, Pasadena, CA 91106
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">

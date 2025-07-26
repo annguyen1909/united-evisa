@@ -613,7 +613,11 @@ export default function PrivacyPolicyPage() {
                           <p className="text-gray-700 text-sm">
                             Address: Worldmaxxing Global Services Immigration Assistance Service
                             <br />
-                            [Your Business Address]
+                            1308 E Colorado Blvd
+                            <br />
+                            #2244
+                            <br />
+                            Pasadena, CA 91106
                           </p>
                         </div>
                       </div>

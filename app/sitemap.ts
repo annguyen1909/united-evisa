@@ -22,8 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/check-requirements`,
       lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
+      changeFrequency: 'daily' as const,
+      priority: 0.95, // Very high priority for requirements checker tool
     },
     {
       url: `${baseUrl}/pricing`,
@@ -111,43 +111,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Generate country requirement pages
+  // Generate country requirement pages - High SEO priority
   const countryPages = COUNTRIES.map((country) => ({
     url: `${baseUrl}/requirements-posts/${country.slug}`,
     lastModified: currentDate,
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
+    changeFrequency: 'weekly' as const,
+    priority: 0.85, // High priority for requirements pages
   }))
 
-  // Generate destination pages
+  // Generate destination pages - High priority for SEO
   const destinationPages = COUNTRIES.map((country) => ({
     url: `${baseUrl}/destination/${country.slug}`,
     lastModified: currentDate,
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
+    changeFrequency: 'weekly' as const,
+    priority: 0.9, // High priority for destination pages
   }))
 
-  // Generate blog pages (you can expand this based on your blog structure)
-  const blogPages = [
-    {
-      url: `${baseUrl}/blog/sri-lanka-3-4-day-itinerary-2025`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/sri-lanka-transportation-guide-2025`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/vesak-festival-sri-lanka-2025-guide`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-  ]
+  // Generate blog pages - SEO optimized
+  const blogPages = COUNTRIES.map((country) => ({
+    url: `${baseUrl}/blog/${country.slug}-evisa-complete-guide`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
 
-  return [...staticPages, ...countryPages, ...destinationPages, ...blogPages]
+  // Generate FAQ pages for better SEO coverage
+  const faqPages = COUNTRIES.filter(country => 
+    ['armenia', 'egypt', 'ethiopia', 'india', 'kenya', 'malaysia', 'new-zealand', 'pakistan', 'qatar', 'south-africa', 'sri-lanka', 'united-kingdom', 'vietnam']
+    .includes(country.slug)
+  ).map((country) => ({
+    url: `${baseUrl}/faq/${country.slug}-evisa-faq`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
+  return [...staticPages, ...countryPages, ...destinationPages, ...blogPages, ...faqPages]
 } 

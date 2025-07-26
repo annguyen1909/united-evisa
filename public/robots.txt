@@ -4,6 +4,19 @@ Allow: /
 # Sitemap
 Sitemap: https://visa.worldmaxxing.com/sitemap.xml
 
+# High priority pages for SEO
+Allow: /check-requirements
+Allow: /requirements-posts/
+Allow: /destination/
+Allow: /blog/
+Allow: /faq/
+Allow: /apply/
+Allow: /pricing/
+
+# Allow static assets
+Allow: /images/
+Allow: /_next/static/
+
 # Disallow admin and private areas
 Disallow: /api/
 Disallow: /admin/
@@ -19,15 +32,10 @@ Disallow: /apply/status/
 Disallow: /apply/summary/
 Disallow: /apply/chargeback/
 Disallow: /apply/refunded/
+Disallow: /list/
 
-# Allow important pages
-Allow: /requirements-posts/
-Allow: /blog/
-Allow: /destination/
-Allow: /check-requirements
-Allow: /apply/
+# Allow important legal pages
 Allow: /support/
-Allow: /pricing/
 Allow: /about
 Allow: /contact
 Allow: /privacy
@@ -39,4 +47,8 @@ Allow: /cookie-policy
 Allow: /digital-services-act
 
 # Crawl delay for respectful crawling
-Crawl-delay: 1 
+Crawl-delay: 1
+
+# Google-specific settings
+User-agent: Googlebot
+Crawl-delay: 0 

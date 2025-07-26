@@ -1,11 +1,19 @@
 
-import { getCountryBySlug } from '@/lib/countries';
+import { getCountryBySlug, COUNTRIES } from '@/lib/countries';
 import { notFound } from 'next/navigation';
 import CountryPageClient from '@/components/shared/CountryPageClient';
+import CountryStructuredData from '@/components/shared/CountryStructuredData';
 import { Metadata } from 'next';
 
 interface PageProps {
   params: Promise<{ country: string }>;
+}
+
+// Generate static params for all countries - Critical for SEO and performance
+export async function generateStaticParams() {
+  return COUNTRIES.map((country) => ({
+    country: country.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -19,16 +27,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const title = `${country.name} eVisa Requirements & Application | Worldmaxxing Global Services`;
+  const description = `Apply for ${country.name} eVisa online. Fast processing (${country.processingTime?.normal || '24-72 hours'}), 24/7 support, expert assistance. Get your ${country.name} visa quickly and securely.`;
+
   return {
-    title: `${country.name} Visa Requirements | Worldmaxxing Global Services`,
-    description: `Apply for ${country.name} visa with Worldmaxxing Global Services. Fast processing, 24/7 support, and guaranteed approval.`,
-    keywords: `${country.name}, visa requirements, eVisa, travel, Worldmaxxing Global Services`,
+    title,
+    description,
     alternates: {
       canonical: `https://visa.worldmaxxing.com/destination/${countrySlug}`,
     },
     openGraph: {
-      title: `${country.name} Visa Requirements | Worldmaxxing Global Services`,
-      description: `Apply for ${country.name} visa with Worldmaxxing Global Services. Fast processing, 24/7 support, and guaranteed approval.`,
+      title,
+      description,
       url: `https://visa.worldmaxxing.com/destination/${countrySlug}`,
       siteName: 'Worldmaxxing Global Services',
       images: [
@@ -36,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: `/images/country/${countrySlug}/${countrySlug}-bg.jpg`,
           width: 1200,
           height: 630,
-          alt: `${country.name} Visa Requirements - Worldmaxxing Global Services`,
+          alt: `${country.name} eVisa Requirements and Application Process`,
         }
       ],
       locale: 'en_US',
@@ -44,9 +54,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${country.name} Visa Requirements | Worldmaxxing Global Services`,
-      description: `Apply for ${country.name} visa with Worldmaxxing Global Services. Fast processing, 24/7 support, and guaranteed approval.`,
+      title,
+      description,
       images: [`/images/country/${countrySlug}/${countrySlug}-bg.jpg`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
   };
 }
@@ -59,6 +80,11 @@ export default async function CountryPage({ params }: PageProps) {
         notFound();
     }
 
-    return <CountryPageClient country={country} />;
+    return (
+        <>
+            <CountryStructuredData country={country} />
+            <CountryPageClient country={country} />
+        </>
+    );
 }
 

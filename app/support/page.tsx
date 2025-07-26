@@ -94,7 +94,7 @@ export default function SupportPage() {
         {
           country: "USA",
           flag: "🇺🇸",
-          address: "123 Business Ave, Suite 100, New York, NY 10001",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
           email: "visa@worldmaxxing.com",
           hours: "24/7"
@@ -102,7 +102,7 @@ export default function SupportPage() {
         {
           country: "Canada", 
           flag: "🇨🇦",
-          address: "789 Commerce Blvd, Toronto, ON M5H 3M7",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541", 
           email: "visa@worldmaxxing.com",
           hours: "24/7"
@@ -110,7 +110,7 @@ export default function SupportPage() {
         {
           country: "Brazil",
           flag: "🇧🇷", 
-          address: "Av. Paulista 1000, São Paulo, SP 01310-100",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
           email: "visa@worldmaxxing.com", 
           hours: "Mon-Fri 8AM-6PM"
@@ -123,7 +123,7 @@ export default function SupportPage() {
         {
           country: "UK",
           flag: "🇬🇧",
-          address: "45 Business Street, London, SW1A 1AA",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
           email: "visa@worldmaxxing.com",
           hours: "24/7"
@@ -131,7 +131,7 @@ export default function SupportPage() {
         {
           country: "Germany",
           flag: "🇩🇪",
-          address: "Friedrichstraße 123, 10117 Berlin",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
           email: "visa@worldmaxxing.com",
           hours: "Mon-Fri 9AM-6PM"
@@ -139,7 +139,7 @@ export default function SupportPage() {
         {
           country: "UAE",
           flag: "🇦🇪",
-          address: "Sheikh Zayed Road, Dubai",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
           email: "visa@worldmaxxing.com",
           hours: "Sun-Thu 9AM-6PM"
@@ -152,7 +152,7 @@ export default function SupportPage() {
         {
           country: "Australia",
           flag: "🇦🇺", 
-          address: "321 Corporate Plaza, Sydney, NSW 2000",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
           email: "visa@worldmaxxing.com",
           hours: "Mon-Fri 9AM-5PM"
@@ -160,7 +160,7 @@ export default function SupportPage() {
         {
           country: "Singapore",
           flag: "🇸🇬",
-          address: "1 Marina Bay, Singapore 018989",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
           email: "visa@worldmaxxing.com", 
           hours: "Mon-Fri 9AM-6PM"
@@ -168,7 +168,7 @@ export default function SupportPage() {
         {
           country: "Japan",
           flag: "🇯🇵",
-          address: "Tokyo Station, Tokyo 100-0005",
+          address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
           email: "visa@worldmaxxing.com",
           hours: "Mon-Fri 9AM-6PM"
@@ -422,7 +422,6 @@ export default function SupportPage() {
                       <th className="text-left p-4 font-semibold text-slate-700">Contact Number</th>
                       <th className="text-left p-4 font-semibold text-slate-700">Email</th>
                       <th className="text-left p-4 font-semibold text-slate-700">Hours of Operation</th>
-                      <th className="text-left p-4 font-semibold text-slate-700">Address</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -450,12 +449,6 @@ export default function SupportPage() {
                           <div className="flex items-center space-x-2">
                             <Clock className="h-4 w-4 text-slate-500" />
                             <span className="text-slate-600">{office.hours}</span>
-                          </div>
-                        </td>
-                        <td className="p-4">
-                          <div className="flex items-center space-x-2">
-                            <MapPin className="h-4 w-4 text-slate-500" />
-                            <span className="text-slate-600 text-sm">{office.address}</span>
                           </div>
                         </td>
                       </tr>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import BreadcrumbNavigation from "@/components/shared/BreadcrumbNavigation";
 import {
   Cloud,
   Earth,
@@ -86,6 +87,12 @@ export default function CountryPageClient({ country }: { country: any }) {
 
   const isIndia = country.slug === "india";
 
+  // Breadcrumb items for navigation
+  const breadcrumbItems = [
+    { label: "Destinations", href: "/destination" },
+    { label: `${country.name} eVisa` }
+  ];
+
   const getTabColor = (visaType: string) => {
     const type = visaType.toLowerCase();
     if (type.includes("tourist")) return tabColors.tourist;
@@ -99,6 +106,12 @@ export default function CountryPageClient({ country }: { country: any }) {
 
   return (
     <main className="flex flex-col items-center bg-white">
+      {/* Breadcrumb Navigation */}
+      <div className="w-full bg-slate-50 border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 py-3">
+          <BreadcrumbNavigation items={breadcrumbItems} />
+        </div>
+      </div>
       {/* Hero section with country image */}
       <section className="w-full relative bg-cover bg-center py-20 md:py-28 px-4">
         <div
@@ -121,20 +134,22 @@ export default function CountryPageClient({ country }: { country: any }) {
             <div className="flex items-center">
               <Image
                 src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
-                alt={`${country.name} Flag`}
+                alt={`Official flag of ${country.name}`}
                 width={32}
                 height={24}
                 className="mr-3 border border-white/20 shadow-sm"
+                loading="eager"
+                priority
               />
             </div>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">
-            {country.name}
+            {country.name} eVisa Application
           </h1>
 
           <p className="text-xl md:text-2xl max-w-2xl mb-8 text-white/80">
-            {country.description}
+            Apply for your {country.name} eVisa online with fast processing and expert support. Simple application process for all visa types.
           </p>
 
           <div className="flex flex-wrap gap-3">
@@ -202,11 +217,11 @@ export default function CountryPageClient({ country }: { country: any }) {
       </section>
 
       {/* Welcome message section */}
-      <section id="welcome-message" className="w-full bg-slate-50 py-16 px-4">
+      <section id="welcome-message" className="w-full bg-slate-50 py-16 px-4" aria-labelledby="welcome-heading">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="w-full md:w-1/2 order-2 md:order-1">
-              <h2 className="text-3xl font-bold text-slate-800 mb-6">
+              <h2 id="welcome-heading" className="text-3xl font-bold text-slate-800 mb-6">
                 Welcome to {country.name}
               </h2>
 
@@ -255,18 +270,21 @@ export default function CountryPageClient({ country }: { country: any }) {
               <div className="relative rounded-xl overflow-hidden shadow-lg">
                 <Image
                   src={country.welcomeImgUrl || "/images/default-welcome.jpg"}
-                  alt={`${country.name} Welcome`}
+                  alt={`Beautiful scenic view of ${country.name} - popular tourist destination for visa travelers`}
                   width={600}
                   height={400}
                   className="w-full h-128 object-cover rounded-xl"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full">
                   <Image
                     src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
-                    alt={`${country.name} Flag`}
+                    alt={`${country.name} national flag`}
                     width={24}
                     height={16}
                     className="inline-block mr-2"
+                    loading="lazy"
                   />
                   <span className="text-sm font-medium text-slate-800">
                     {country.name}
@@ -279,11 +297,11 @@ export default function CountryPageClient({ country }: { country: any }) {
       </section>
 
       {/* Visa Types Section */}
-      <section id="visa-type" className="w-full bg-white py-16 px-4">
+      <section id="visa-type" className="w-full bg-white py-16 px-4" aria-labelledby="visa-types-heading">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Visa Types for {country.name}
+            <h2 id="visa-types-heading" className="text-3xl font-bold text-slate-800 mb-4">
+              {country.name} Visa Types & Requirements
             </h2>
             <p className="text-slate-600 max-w-3xl mx-auto">
               Choose the visa type that best fits your travel purpose
@@ -324,7 +342,7 @@ export default function CountryPageClient({ country }: { country: any }) {
                     <div className="lg:col-span-3 space-y-6">
                       <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                         <h3 className="text-xl font-bold text-slate-800 mb-4">
-                          {country.name} {visa.type} Visa
+                          {country.name} {visa.type} eVisa - Requirements & Application
                         </h3>
 
                         <p className="text-slate-600 mb-6">

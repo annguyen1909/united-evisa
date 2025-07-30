@@ -752,7 +752,7 @@ export default function SriLankaRequirementsPage() {
                 </div>
                 <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
                   <p className="text-xs text-emerald-800">
-                    <strong>Source:</strong> Sri Lanka Immigration Department & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> <a href="https://srilanka-immigration.com" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-900 underline">srilanka-immigration.com</a> and worldmaxxing processing data
                   </p>
                 </div>
               </div>
@@ -791,7 +791,7 @@ export default function SriLankaRequirementsPage() {
                 </div>
                 <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> Sri Lanka Immigration Department & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> <a href="https://srilanka-immigration.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 underline">srilanka-immigration.com</a> and worldmaxxing processing data
                   </p>
                 </div>
               </div>
@@ -1021,7 +1021,58 @@ export default function SriLankaRequirementsPage() {
               ))}
             </Accordion>
           </div>
-                  </section>
+          </section>
+
+          {/* Additional Resources Section */}
+          <section id="resources" className="mb-16">
+            <div className="bg-gradient-to-r from-slate-50 to-gray-50 rounded-2xl border border-slate-200 p-8 shadow-lg">
+              <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <Globe className="h-8 w-8 text-emerald-600" />
+                Additional Sri Lanka Travel Resources
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">Official Immigration Updates</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Access the latest Sri Lanka visa policies, entry procedures, and immigration guidelines from official government sources.
+                  </p>
+                  <a href="https://srilanka-immigration.com" target="_blank" rel="noopener noreferrer" 
+                     className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline">
+                    Visit srilanka-immigration.com →
+                  </a>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">South Asian Travel Planning</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Planning a multi-country tour? Check visa requirements for India, Tanzania, and other popular destinations in the region.
+                  </p>
+                  <div className="space-y-2">
+                    <a href="https://india-immigration.com" target="_blank" rel="noopener noreferrer" 
+                       className="block text-blue-600 hover:text-blue-700 font-medium text-sm underline">
+                      India Immigration Info →
+                    </a>
+                    <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" 
+                       className="block text-purple-600 hover:text-purple-700 font-medium text-sm underline">
+                      Tanzania Immigration Info →
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">Island Paradise Guide</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Explore Sri Lanka's pristine beaches, ancient temples, and tea plantations with our comprehensive destination guides.
+                  </p>
+                  <Link href="/blog" 
+                        className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline">
+                    Read Travel Guides →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </>

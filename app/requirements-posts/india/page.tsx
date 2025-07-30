@@ -811,7 +811,7 @@ export default function IndiaRequirementsPage() {
                 </div>
                 <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
                   <p className="text-xs text-emerald-800">
-                    <strong>Source:</strong> India Immigration Department & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> <a href="https://india-immigration.com" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-900 underline">india-immigration.com</a> and worldmaxxing processing data
                   </p>
                 </div>
               </div>
@@ -868,7 +868,7 @@ export default function IndiaRequirementsPage() {
                 </div>
                 <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> India Immigration Department & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> <a href="https://india-immigration.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 underline">india-immigration.com</a> and worldmaxxing processing data
                   </p>
                 </div>
               </div>
@@ -1077,28 +1077,79 @@ export default function IndiaRequirementsPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section id="faq" className="mb-16">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Users className="h-8 w-8 text-emerald-600" />
-              Frequently Asked Questions
-            </h2>
-            
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left hover:text-emerald-600">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 leading-relaxed">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-                  </section>
+                  {/* FAQ Section */}
+          <section id="faq" className="mb-16">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
+              <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <Users className="h-8 w-8 text-emerald-600" />
+                Frequently Asked Questions
+              </h2>
+              
+              <Accordion type="single" collapsible className="w-full">
+                {faqs.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger className="text-left hover:text-emerald-600">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-slate-600 leading-relaxed">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </section>
+
+          {/* Additional Resources Section */}
+          <section id="resources" className="mb-16">
+            <div className="bg-gradient-to-r from-slate-50 to-gray-50 rounded-2xl border border-slate-200 p-8 shadow-lg">
+              <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <Globe className="h-8 w-8 text-emerald-600" />
+                Additional India Travel Resources
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">Official Immigration Information</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Stay updated with the latest India visa policies, entry requirements, and immigration procedures from authoritative sources.
+                  </p>
+                  <a href="https://india-immigration.com" target="_blank" rel="noopener noreferrer" 
+                     className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline">
+                    Visit india-immigration.com →
+                  </a>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">Regional Travel Information</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Exploring South Asia? Get comprehensive visa information for India's neighboring countries and popular regional destinations.
+                  </p>
+                  <div className="space-y-2">
+                    <a href="https://srilanka-immigration.com" target="_blank" rel="noopener noreferrer" 
+                       className="block text-blue-600 hover:text-blue-700 font-medium text-sm underline">
+                      Sri Lanka Immigration →
+                    </a>
+                    <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" 
+                       className="block text-purple-600 hover:text-purple-700 font-medium text-sm underline">
+                      Tanzania Immigration →
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">Cultural & Travel Insights</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Discover India's rich heritage, from the Golden Triangle to Kerala backwaters, with our comprehensive travel guides and cultural tips.
+                  </p>
+                  <Link href="/blog" 
+                        className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline">
+                    Read Travel Guides →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </>

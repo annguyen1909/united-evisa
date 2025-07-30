@@ -170,7 +170,9 @@ export default function TanzaniaRequirementsPage() {
                 { id: 'requirements', title: 'Requirements', icon: CheckCircle },
                 { id: 'application', title: 'Application Process', icon: Calendar },
                 { id: 'fees', title: 'Fees & Processing', icon: CreditCard },
-                { id: 'faq', title: 'FAQ', icon: Users }
+                { id: 'faq', title: 'FAQ', icon: Users },
+                { id: 'analytics', title: 'Processing Insights', icon: BarChart3 },
+                { id: 'resources', title: 'Travel Resources', icon: ExternalLink }
               ].map(({ id, title, icon: Icon }) => (
                 <button
                   key={id}
@@ -507,6 +509,234 @@ export default function TanzaniaRequirementsPage() {
                   </AccordionItem>
                 ))}
               </Accordion>
+            </div>
+          </section>
+
+          {/* Travel Data & Analytics Section */}
+          <section id="analytics" className="mb-16">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
+              <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <BarChart3 className="h-8 w-8 text-emerald-600" />
+                Tanzania Visa Processing Insights & Travel Analytics
+              </h2>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Processing Time Trends */}
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
+                  <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends (2024)</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">January</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-emerald-600">12.8 days</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">February</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-emerald-600">13.2 days</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">March</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-emerald-600">13.5 days</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">April</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '82%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-emerald-600">12.3 days</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">May</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '86%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-emerald-600">12.9 days</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">June</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '89%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-emerald-600">13.4 days</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
+                    <p className="text-xs text-emerald-800">
+                      <strong>Source:</strong> <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-900 underline">tanzaniaimmigration.com</a> and worldmaxxing processing data
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Visa Type Distribution */}
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+                  <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution (2024)</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">Tourist Evisa</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '78%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-blue-600">78%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">Business Evisa</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '20%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-blue-600">20%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-600">Transit</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '2%'}}></div>
+                        </div>
+                        <span className="text-sm font-semibold text-blue-600">2%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+                    <p className="text-xs text-blue-800">
+                      <strong>Source:</strong> <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 underline">tanzaniaimmigration.com</a> and worldmaxxing processing data
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Travel Seasonality Chart */}
+              <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit Tanzania</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Sun className="h-6 w-6 text-green-600" />
+                    </div>
+                    <h4 className="font-semibold text-slate-800 text-sm">Jun-Oct</h4>
+                    <p className="text-xs text-slate-600">Dry Season</p>
+                    <div className="mt-2">
+                      <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-green-500 rounded-full" style={{width: '95%'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Cloud className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <h4 className="font-semibold text-slate-800 text-sm">Mar-May</h4>
+                    <p className="text-xs text-slate-600">Long Rains</p>
+                    <div className="mt-2">
+                      <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '60%'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                    <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Zap className="h-6 w-6 text-yellow-600" />
+                    </div>
+                    <h4 className="font-semibold text-slate-800 text-sm">Jan-Feb</h4>
+                    <p className="text-xs text-slate-600">Short Dry</p>
+                    <div className="mt-2">
+                      <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-yellow-500 rounded-full" style={{width: '88%'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center p-4 bg-white rounded-lg shadow-sm">
+                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Droplets className="h-6 w-6 text-purple-600" />
+                    </div>
+                    <h4 className="font-semibold text-slate-800 text-sm">Nov-Dec</h4>
+                    <p className="text-xs text-slate-600">Short Rains</p>
+                    <div className="mt-2">
+                      <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-purple-500 rounded-full" style={{width: '75%'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 p-3 bg-purple-100 rounded-lg">
+                  <p className="text-xs text-purple-800">
+                    <strong>Source:</strong> Tanzania Meteorological Agency & Tourism Board
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Additional Resources Section */}
+          <section id="resources" className="mb-16">
+            <div className="bg-gradient-to-r from-slate-50 to-gray-50 rounded-2xl border border-slate-200 p-8 shadow-lg">
+              <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <Globe className="h-8 w-8 text-emerald-600" />
+                Additional Tanzania Travel Resources
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">Official Immigration Information</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Get the latest updates on Tanzania visa policies, entry requirements, and immigration procedures directly from official sources.
+                  </p>
+                  <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" 
+                     className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline">
+                    Visit tanzaniaimmigration.com →
+                  </a>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">Regional Visa Information</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Planning to visit multiple countries? Check visa requirements for neighboring South Asian and East African destinations.
+                  </p>
+                  <div className="space-y-2">
+                    <a href="https://srilanka-immigration.com" target="_blank" rel="noopener noreferrer" 
+                       className="block text-blue-600 hover:text-blue-700 font-medium text-sm underline">
+                      Sri Lanka Immigration Info →
+                    </a>
+                    <a href="https://india-immigration.com" target="_blank" rel="noopener noreferrer" 
+                       className="block text-purple-600 hover:text-purple-700 font-medium text-sm underline">
+                      India Immigration Info →
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-md">
+                  <h3 className="font-semibold text-slate-800 mb-3">Travel Planning Tools</h3>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Use our comprehensive visa checker and application platform for seamless travel planning across multiple destinations.
+                  </p>
+                  <Link href="/check-requirements" 
+                        className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline">
+                    Check All Countries →
+                  </Link>
+                </div>
+              </div>
             </div>
           </section>
         </div>

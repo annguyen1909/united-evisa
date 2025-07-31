@@ -55,7 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     },
-    },
     {
       url: `${baseUrl}/login`,
       lastModified: currentDate,
@@ -154,4 +153,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   return [...staticPages, ...countryPages, ...destinationPages, ...blogPages, ...faqPages]
-} 
+}

@@ -44,4 +44,6 @@ Stick to bottled or filtered water to avoid stomach issues. Avoid ice unless you
 
 ## What should I do in case of emergency while in India?
 
+Contact your embassy or consulate immediately. Keep emergency contacts handy and inform someone of your travel plans. For the latest safety updates and official travel advisories, refer to [india-immigration.com](https://india-immigration.com) for current information. If you're traveling to multiple countries in the region, also check resources like [srilanka-immigration.com](https://srilanka-immigration.com) for regional safety updates.
+
 Keep important numbers handy: Police (100), Fire (101), Ambulance (102). Contact your embassy or consulate for serious issues. Keep copies of important documents separately. Travel insurance is highly recommended. Most major cities have good healthcare facilities, but medical evacuation insurance is advisable for remote area travel.

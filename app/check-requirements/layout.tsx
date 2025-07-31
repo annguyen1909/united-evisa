@@ -1,46 +1,32 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Check Visa Requirements & Eligibility | Worldmaxxing Global Services",
-  description: "Check visa requirements and eligibility for 50+ countries. Enter your nationality and destination to instantly see visa requirements, fees, and processing times. Fast, accurate visa information.",
-  keywords: [
-    "visa requirements checker",
-    "visa eligibility",
-    "visa requirements by nationality",
-    "check visa requirements",
-    "visa application requirements",
-    "visa eligibility checker",
-    "travel visa requirements",
-    "visa requirements tool",
-    "visa requirements database",
-    "international travel requirements",
-    "visa application guide",
-    "visa requirements by country"
-  ].join(", "),
+  title: 'Check Visa Requirements | eVisa Eligibility Tool | Worldmaxxing Global Services',
+  description: 'Check visa requirements instantly for 50+ countries. Verify eligibility, processing times, and fees. Free visa requirement checker with real-time results for all nationalities.',
+  keywords: 'visa requirements, visa eligibility checker, travel visa, eVisa requirements, visa tool, travel requirements',
+  alternates: {
+    canonical: 'https://visa.worldmaxxing.com/check-requirements',
+  },
   openGraph: {
-    title: "Check Visa Requirements & Eligibility | Worldmaxxing Global Services",
-    description: "Check visa requirements and eligibility for 50+ countries. Enter your nationality and destination to instantly see visa requirements, fees, and processing times.",
-    url: "https://visa.worldmaxxing.com/check-requirements",
-    siteName: "Worldmaxxing Global Services",
+    title: 'Check Visa Requirements | eVisa Eligibility Tool | Worldmaxxing Global Services',
+    description: 'Check visa requirements instantly for 50+ countries. Verify eligibility, processing times, and fees with our free tool.',
+    url: 'https://visa.worldmaxxing.com/check-requirements',
+    siteName: 'Worldmaxxing Global Services',
+    type: 'website',
     images: [
       {
-        url: "/images/hero/hero.jpg",
+        url: '/images/hero/check-requirements.jpg',
         width: 1200,
         height: 630,
-        alt: "Visa Requirements Checker - Worldmaxxing Global Services",
+        alt: 'Visa Requirements Checker Tool - Worldmaxxing Global Services',
       }
     ],
-    locale: "en_US",
-    type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Check Visa Requirements & Eligibility | Worldmaxxing Global Services",
-    description: "Check visa requirements and eligibility for 50+ countries. Fast, accurate visa information.",
-    images: ["/images/hero/hero.jpg"],
-  },
-  alternates: {
-    canonical: "https://visa.worldmaxxing.com/check-requirements",
+    card: 'summary_large_image',
+    title: 'Check Visa Requirements | eVisa Eligibility Tool',
+    description: 'Check visa requirements instantly for 50+ countries. Free visa eligibility checker.',
+    images: ['/images/hero/check-requirements.jpg'],
   },
   robots: {
     index: true,

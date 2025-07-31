@@ -33,6 +33,9 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import CheckEligibilityWithPreset from '../../../components/shared/CheckEligibilityWithPreset';
+import BreadcrumbNavigation from '@/components/shared/BreadcrumbNavigation';
+import RequirementsPostStructuredData from '@/components/shared/RequirementsPostStructuredData';
+
 const saintHelenaVisaTypes = [
   {
     id: 'saint-helena-evisa-single-183-days',
@@ -87,6 +90,12 @@ const faqs = [
   }
 ];
 
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Check Visa Requirements", href: "/check-requirements" },
+  { label: "Saint Helena Requirements" }
+];
+
 export default function SaintHelenaRequirementsPage() {
   const [activeSection, setActiveSection] = useState('overview');
 
@@ -99,33 +108,44 @@ export default function SaintHelenaRequirementsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0">
-          <div className="w-full h-full bg-gradient-to-br from-emerald-800 to-teal-800 flex items-center justify-center">
-            <div className="text-center">
-              <Globe className="h-32 w-32 text-white/30 mx-auto mb-4" />
-              <p className="text-white/60 text-lg">Saint Helena Island</p>
-            </div>
-          </div>
-        </div>
-        <div className="relative max-w-6xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Globe className="h-4 w-4" />
-              <span className="text-sm font-medium">Visa Requirements</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Saint Helena Visa <span className="text-emerald-200">Requirements</span>
-            </h1>
-            <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
-              Complete guide to Saint Helena eVisa requirements, application process, and travel information for your remote island adventure
-            </p>
-          </div>
+    <>
+      <RequirementsPostStructuredData country="Saint Helena" countrySlug="saint-helena" />
+      
+      {/* Breadcrumb Navigation */}
+      <div className="w-full bg-white border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 py-3">
+          <BreadcrumbNavigation items={breadcrumbItems} />
         </div>
       </div>
+
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        {/* Hero Section */}
+        <div className="relative bg-gradient-to-r from-blue-600 via-red-600 to-blue-600 text-white overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0">
+            <Image
+              src="/images/country/saint-helena/saint-helena-bg.jpg"
+              alt="Saint Helena eVisa requirements - beautiful South Atlantic destinations and landmarks for visa travelers"
+              fill
+              className="object-cover opacity-30"
+              priority
+            />
+          </div>
+          <div className="relative max-w-6xl mx-auto px-4 py-16">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                <Globe className="h-4 w-4" />
+                <span className="text-sm font-medium">Visa Requirements</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                Saint Helena eVisa Requirements & Application Guide 2024
+              </h1>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                Complete guide to Saint Helena eVisa requirements, application process, and travel information for your South Atlantic adventure
+              </p>
+            </div>
+          </div>
+        </div>
 
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Check Eligibility Section */}
@@ -976,8 +996,9 @@ export default function SaintHelenaRequirementsPage() {
               </div>
             </div>
           </div>
-        </section>
+                  </section>
+        </div>
       </div>
-    </div>
+    </>
   );
 } 

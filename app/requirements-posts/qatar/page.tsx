@@ -33,6 +33,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import CheckEligibilityWithPreset from '../../../components/shared/CheckEligibilityWithPreset';
+import BreadcrumbNavigation from '@/components/shared/BreadcrumbNavigation';
+import RequirementsPostStructuredData from '@/components/shared/RequirementsPostStructuredData';
 
 const qatarVisaTypes = [
   {
@@ -92,6 +94,12 @@ const faqs = [
   }
 ];
 
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Check Visa Requirements", href: "/check-requirements" },
+  { label: "Qatar Requirements" }
+];
+
 export default function QatarRequirementsPage() {
   const [activeSection, setActiveSection] = useState('overview');
 
@@ -104,34 +112,44 @@ export default function QatarRequirementsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0">
-          <Image
-            src="/images/country/qatar/qatar-bg.jpg"
-            alt="Qatar Skyline"
-            fill
-            className="object-cover opacity-30"
-            priority
-          />
-        </div>
-        <div className="relative max-w-6xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Globe className="h-4 w-4" />
-              <span className="text-sm font-medium">Visa Requirements</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Qatar Visa <span className="text-emerald-200">Requirements</span>
-            </h1>
-            <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
-              Complete guide to Qatar eVisa requirements, application process, and travel information for your Arabian adventure
-            </p>
-          </div>
+    <>
+      <RequirementsPostStructuredData country="Qatar" countrySlug="qatar" />
+      
+      {/* Breadcrumb Navigation */}
+      <div className="w-full bg-white border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 py-3">
+          <BreadcrumbNavigation items={breadcrumbItems} />
         </div>
       </div>
+
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        {/* Hero Section */}
+        <div className="relative bg-gradient-to-r from-red-700 via-white to-red-700 text-white overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0">
+            <Image
+              src="/images/country/qatar/qatar-bg.jpg"
+              alt="Qatar eVisa requirements - beautiful Middle Eastern destinations and landmarks for visa travelers"
+              fill
+              className="object-cover opacity-30"
+              priority
+            />
+          </div>
+          <div className="relative max-w-6xl mx-auto px-4 py-16">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                <Globe className="h-4 w-4" />
+                <span className="text-sm font-medium">Visa Requirements</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                Qatar eVisa Requirements & Application Guide 2024
+              </h1>
+              <p className="text-xl text-red-100 max-w-3xl mx-auto leading-relaxed">
+                Complete guide to Qatar eVisa requirements, application process, and travel information for your Middle Eastern adventure
+              </p>
+            </div>
+          </div>
+        </div>
 
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Check Eligibility Section */}
@@ -936,8 +954,9 @@ export default function QatarRequirementsPage() {
               ))}
             </Accordion>
           </div>
-        </section>
+                  </section>
+        </div>
       </div>
-    </div>
+    </>
   );
 } 

@@ -119,3 +119,13 @@ Sri Lanka eVisa holders can enter through Bandaranaike International Airport (Co
 - **Secure & Fast:** Bank-level security and fast processing for all applications.
 
 Join thousands of satisfied travelers who have successfully obtained their Sri Lanka visa through our platform. Apply today and start your Sri Lankan adventure with confidence!
+
+## Additional Resources for Sri Lanka Travel
+
+For the most up-to-date visa information and immigration policies, visit [srilanka-immigration.com](https://srilanka-immigration.com) for official guidance and requirements.
+
+**Planning a Multi-Country Trip?** Sri Lanka makes an excellent stop on a broader South Asian and East African journey. Check visa requirements for other popular destinations:
+- [India Immigration Information](https://india-immigration.com) - for exploring the subcontinent's cultural treasures
+- [Tanzania Immigration Info](https://tanzaniaimmigration.com) - perfect for combining island paradise with African safari adventures
+
+These official immigration resources provide complementary information to help you plan comprehensive travel itineraries across the region.

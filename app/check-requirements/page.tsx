@@ -4,6 +4,8 @@ import { notFound, useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense, useCallback } from 'react';
 import { getCountryBySlug, COUNTRIES } from '@/lib/countries';
 import { getNationalityByCode } from '@/lib/nationalities';
+import CheckRequirementsStructuredData from '@/components/shared/CheckRequirementsStructuredData';
+import BreadcrumbNavigation from '@/components/shared/BreadcrumbNavigation';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import {
     CheckCircle, XCircle, ArrowRight, Calendar, Clock, CreditCard,
@@ -21,6 +23,11 @@ function CheckRequirementsContent() {
     const router = useRouter();
     const nationalitySlug = searchParams.get('n');
     const destinationSlug = searchParams.get('d');
+
+    // Breadcrumb items
+    const breadcrumbItems = [
+        { label: "Visa Requirements Checker" }
+    ];
 
     const [nationalityName, setNationalityName] = useState<string | null>(null);
     const [destinationName, setDestinationName] = useState<string | null>(null);
@@ -115,7 +122,15 @@ function CheckRequirementsContent() {
     // Show destinations list if no parameters provided
     if (showDestinations) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+            <>
+                <CheckRequirementsStructuredData />
+                <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+                    {/* Breadcrumb Navigation */}
+                    <div className="w-full bg-white border-b border-slate-200">
+                        <div className="max-w-6xl mx-auto px-4 py-3">
+                            <BreadcrumbNavigation items={breadcrumbItems} />
+                        </div>
+                    </div>
                 {/* Header Section */}
                 <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
                     <div className="absolute inset-0 bg-black/10"></div>
@@ -268,6 +283,7 @@ function CheckRequirementsContent() {
                     </div>
                 </div>
             </div>
+            </>
         );
     }
 

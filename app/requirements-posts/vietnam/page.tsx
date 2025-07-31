@@ -34,6 +34,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import CheckEligibilityWithPreset from '../../../components/shared/CheckEligibilityWithPreset';
+import BreadcrumbNavigation from '@/components/shared/BreadcrumbNavigation';
+import RequirementsPostStructuredData from '@/components/shared/RequirementsPostStructuredData';
 
 const vietnamVisaTypes = [
   {
@@ -134,6 +136,12 @@ const faqs = [
   }
 ];
 
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Check Visa Requirements", href: "/check-requirements" },
+  { label: "Vietnam Requirements" }
+];
+
 export default function VietnamRequirementsPage() {
   const [activeSection, setActiveSection] = useState('overview');
 
@@ -146,7 +154,17 @@ export default function VietnamRequirementsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <>
+      <RequirementsPostStructuredData country="Vietnam" countrySlug="vietnam" />
+      
+      {/* Breadcrumb Navigation */}
+      <div className="w-full bg-white border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 py-3">
+          <BreadcrumbNavigation items={breadcrumbItems} />
+        </div>
+      </div>
+
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -1031,5 +1049,6 @@ export default function VietnamRequirementsPage() {
         </section>
       </div>
     </div>
+    </>
   );
 } 

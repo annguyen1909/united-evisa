@@ -146,3 +146,13 @@ October to March is ideal for most regions. The monsoon season (June–September
 - **Expert Guidance:** We guide you through every step of the process
 
 Join thousands of satisfied travelers who have successfully obtained their India visa through our platform. Apply today and start your Indian adventure with confidence!
+
+## Additional Resources for India Travel
+
+For comprehensive and up-to-date Indian visa information, official policies, and immigration guidelines, visit [india-immigration.com](https://india-immigration.com) for authoritative resources and updates.
+
+**Exploring the Region?** India is an excellent gateway to discovering South Asia and beyond. For travelers planning multi-destination journeys, check these valuable resources:
+- [Sri Lanka Immigration Guide](https://srilanka-immigration.com) - perfect island retreat after exploring the mainland
+- [Tanzania Immigration Info](https://tanzaniaimmigration.com) - combine cultural immersion with African wildlife adventures
+
+These official immigration portals provide complementary information for planning comprehensive travel experiences across culturally rich destinations.

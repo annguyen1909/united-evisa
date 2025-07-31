@@ -95,16 +95,16 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "w-full sticky z-40 top-0 transition-all duration-200 min-h-[64px]", // Set min-h for consistent height
+        "w-full sticky z-40 top-0 transition-all duration-300 min-h-[70px] border-b border-transparent", 
         isScrolled
-          ? "bg-white shadow-md py-3" // Use same py value for both states
-          : "bg-white/95 py-3" // Removed backdrop-blur-md from here
+          ? "bg-white/95 backdrop-blur-lg shadow-lg border-emerald-100/30 py-3" 
+          : "bg-gradient-to-r from-white/98 via-emerald-50/30 to-white/98 backdrop-blur-md py-4"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="relative w-10 h-10">
+        <Link href="/" className="flex items-center gap-2 group transition-all duration-300 hover:scale-105">
+          <div className="relative w-10 h-10 transition-all duration-300 group-hover:rotate-12">
             <Image
               src="/images/logo.png"
               alt="eVisa Logo"
@@ -114,13 +114,13 @@ export default function Navbar() {
             />
           </div>
           <div className="flex flex-col justify-center">
-            <span className={`text-2xl leading-tight text-emerald-800 tracking-wide uppercase ${anton.className}`}>Worldmaxxing</span>
-            <span className={`text-sm text-slate-600 tracking-widest uppercase ${anton.className}`}>Global Services</span>
+            <span className={`text-2xl leading-tight text-emerald-800 tracking-wide uppercase transition-colors duration-300 group-hover:text-emerald-900 ${anton.className}`}>Worldmaxxing</span>
+            <span className={`text-sm text-slate-600 tracking-widest uppercase transition-colors duration-300 group-hover:text-emerald-600 ${anton.className}`}>Global Services</span>
           </div>
-          <div className="flex items-center h-10 ml-3 pl-3 border-l border-slate-300">
+          <div className="flex items-center h-10 ml-3 pl-3 border-l border-slate-300 transition-colors duration-300 group-hover:border-emerald-300">
             <div className="flex flex-col items-start justify-center">
-              <span className="text-lg font-extrabold text-emerald-700 leading-tight">eVisa</span>
-              <span className="text-lg font-bold text-slate-700 leading-tight">Center</span>
+              <span className="text-lg font-extrabold text-emerald-700 leading-tight transition-colors duration-300 group-hover:text-emerald-800">eVisa</span>
+              <span className="text-lg font-bold text-slate-700 leading-tight transition-colors duration-300 group-hover:text-emerald-600">Center</span>
             </div>
           </div>
         </Link>
@@ -134,21 +134,26 @@ export default function Navbar() {
                   {item.href === "/apply" ? (
                     <NavigationMenuLink
                       href={item.href}
-                      className="relative group inline-flex h-10 w-max items-center justify-center rounded-lg px-6 py-2 text-white font-semibold bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
+                      className="relative group inline-flex h-11 w-max items-center justify-center rounded-xl px-6 py-2.5 text-white font-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-800 hover:from-emerald-700 hover:via-emerald-800 hover:to-emerald-900 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/25 transform hover:scale-105 overflow-hidden"
                     >
-                      <span className="relative z-10">🚀 {item.label}</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                      <span className="relative z-10 flex items-center gap-2">
+                        <span className="animate-bounce">🚀</span>
+                        {item.label}
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-xl opacity-0 group-hover:opacity-20 transition-all duration-300 animate-pulse"></div>
+                      <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-emerald-800 rounded-xl blur opacity-30 group-hover:opacity-100 transition duration-300"></div>
                     </NavigationMenuLink>
                   ) : (
                     <NavigationMenuLink
                       href={item.href}
                       className={cn(
-                        "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-slate-700",
-                        "font-medium transition-colors hover:bg-slate-50 hover:text-emerald-700",
-                        "focus:bg-slate-100 focus:text-emerald-700 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                        "group inline-flex h-10 w-max items-center justify-center rounded-lg px-4 py-2 text-slate-700 relative overflow-hidden",
+                        "font-medium transition-all duration-300 hover:bg-emerald-50/80 hover:text-emerald-800 hover:shadow-md",
+                        "focus:bg-emerald-100/60 focus:text-emerald-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+                        "before:absolute before:inset-0 before:bg-gradient-to-r before:from-emerald-500/10 before:to-emerald-600/10 before:translate-y-full before:transition-transform before:duration-300 hover:before:translate-y-0"
                       )}
                     >
-                      {item.label}
+                      <span className="relative z-10">{item.label}</span>
                     </NavigationMenuLink>
                   )}
                 </NavigationMenuItem>
@@ -171,7 +176,7 @@ export default function Navbar() {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
-                    className="rounded-full border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                    className="rounded-full border-emerald-200/60 hover:border-emerald-300 hover:bg-emerald-50/50 transition-all duration-300 hover:shadow-md hover:shadow-emerald-500/10"
                   >
                     <div className="flex items-center gap-2">
                       {session.user.image ? (

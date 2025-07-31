@@ -5,6 +5,7 @@ import { Check, Globe, ChevronRight } from "lucide-react";
 import { COUNTRIES } from '@/lib/countries';
 import { NATIONALITIES } from '@/lib/nationalities';
 import { Button } from "@/components/ui/button";
+import { createPortal } from 'react-dom';
 
 import {
   Popover,
@@ -53,10 +54,16 @@ function ComboBox({
 }) {
   const [search, setSearch] = React.useState("");
   const [internalFocused, internalSetFocused] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
   const isFocused = typeof focused === 'boolean' ? focused : internalFocused;
   const handleSetFocused = setFocused || internalSetFocused;
   // Track if mouse is down in dropdown
   const mouseDownRef = React.useRef(false);
+
+  // Handle client-side mounting for portal
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     // If mouse is down in dropdown, don't close
@@ -92,7 +99,62 @@ function ComboBox({
         },
       }),
     ],
+    strategy: 'fixed', // Use fixed positioning for portal
   });
+
+  // Dropdown content
+  const dropdownContent = isFocused && mounted ? (
+    <div
+      ref={refs.setFloating}
+      style={{
+        ...floatingStyles,
+        zIndex: 999999, // Extremely high z-index
+      }}
+      className="bg-white border border-slate-200 rounded-xl shadow-xl overflow-y-auto"
+      onMouseDown={() => { mouseDownRef.current = true; }}
+      onMouseUp={() => { mouseDownRef.current = false; }}
+      onMouseLeave={() => { mouseDownRef.current = false; }}
+    >
+      {filtered.length === 0 ? (
+        <div className="p-3 text-slate-500 text-sm">No {label.toLowerCase()} found.</div>
+      ) : (
+        <div>
+          {filtered.map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              onClick={() => {
+                onChange(opt.value);
+                setSearch(opt.label); // show selected in input
+                handleSetFocused(false);
+              }}
+              onMouseDown={() => {
+                mouseDownRef.current = true;
+              }}
+              onMouseUp={() => {
+                mouseDownRef.current = false;
+              }}
+              className="flex items-center gap-2 w-full p-3 text-left hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0"
+            >
+              {opt.flag && (
+                <Image
+                  src={opt.flag}
+                  alt={opt.label}
+                  width={20}
+                  height={15}
+                  className="rounded-sm"
+                />
+              )}
+              <span>{opt.label}</span>
+              {value === opt.value && (
+                <Check className="ml-auto h-4 w-4 text-emerald-600" />
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  ) : null;
 
   return (
     <div className="w-full md:w-auto md:flex-1">
@@ -111,55 +173,8 @@ function ComboBox({
             autoComplete="off"
           />
         </div>
-        {isFocused && (
-          <div
-            ref={refs.setFloating}
-            style={floatingStyles}
-            className="bg-white border border-slate-200 rounded-xl shadow-lg overflow-y-auto z-[9999]"
-            onMouseDown={() => { mouseDownRef.current = true; }}
-            onMouseUp={() => { mouseDownRef.current = false; }}
-            onMouseLeave={() => { mouseDownRef.current = false; }}
-          >
-            {filtered.length === 0 ? (
-              <div className="p-3 text-slate-500 text-sm">No {label.toLowerCase()} found.</div>
-            ) : (
-              <div>
-                {filtered.map((opt) => (
-                  <button
-                    key={opt.value}
-                    type="button"
-                    onClick={() => {
-                      onChange(opt.value);
-                      setSearch(opt.label); // show selected in input
-                      handleSetFocused(false);
-                    }}
-                    onMouseDown={() => {
-                      mouseDownRef.current = true;
-                    }}
-                    onMouseUp={() => {
-                      mouseDownRef.current = false;
-                    }}
-                    className="flex items-center gap-2 w-full p-3 text-left hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0"
-                  >
-                    {opt.flag && (
-                      <Image
-                        src={opt.flag}
-                        alt={opt.label}
-                        width={20}
-                        height={15}
-                        className="rounded-sm"
-                      />
-                    )}
-                    <span>{opt.label}</span>
-                    {value === opt.value && (
-                      <Check className="ml-auto h-4 w-4 text-emerald-600" />
-                    )}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        {/* Render dropdown using portal to document.body */}
+        {mounted && dropdownContent && createPortal(dropdownContent, document.body)}
       </div>
     </div>
   );

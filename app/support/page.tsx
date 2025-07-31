@@ -415,37 +415,37 @@ export default function SupportPage() {
 
               {/* Office Details Table */}
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm table-fixed">
                   <thead>
                     <tr className="bg-slate-50 border-b border-slate-200">
-                      <th className="text-left p-4 font-semibold text-slate-700">Country</th>
-                      <th className="text-left p-4 font-semibold text-slate-700">Contact Number</th>
-                      <th className="text-left p-4 font-semibold text-slate-700">Email</th>
-                      <th className="text-left p-4 font-semibold text-slate-700">Hours of Operation</th>
+                      <th className="text-left p-4 font-semibold text-slate-700 w-1/4">Country</th>
+                      <th className="text-left p-4 font-semibold text-slate-700 w-1/4">Contact Number</th>
+                      <th className="text-left p-4 font-semibold text-slate-700 w-1/4">Email</th>
+                      <th className="text-left p-4 font-semibold text-slate-700 w-1/4">Hours of Operation</th>
                     </tr>
                   </thead>
                   <tbody>
                     {regionOffices[selectedRegion as keyof typeof regionOffices].offices.map((office, index) => (
                       <tr key={index} className="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-                        <td className="p-4">
+                        <td className="p-4 w-1/4">
                           <div className="flex items-center space-x-3">
                             <span className="text-2xl">{office.flag}</span>
                             <span className="font-medium text-slate-800">{office.country}</span>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="p-4 w-1/4">
                           <div className="flex items-center space-x-2">
                             <Phone className="h-4 w-4 text-emerald-600" />
                             <span className="text-emerald-600 font-medium">{office.phone}</span>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="p-4 w-1/4">
                           <div className="flex items-center space-x-2">
                             <Mail className="h-4 w-4 text-blue-600" />
                             <span className="text-blue-600">{office.email}</span>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="p-4 w-1/4">
                           <div className="flex items-center space-x-2">
                             <Clock className="h-4 w-4 text-slate-500" />
                             <span className="text-slate-600">{office.hours}</span>

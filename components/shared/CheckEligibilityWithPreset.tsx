@@ -5,6 +5,7 @@ import { Check, Globe, ChevronRight } from "lucide-react";
 import { COUNTRIES } from '@/lib/countries';
 import { NATIONALITIES } from '@/lib/nationalities';
 import { Button } from "@/components/ui/button";
+import { createPortal } from 'react-dom';
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -50,10 +51,16 @@ function ComboBox({
 }) {
   const [search, setSearch] = React.useState("");
   const [internalFocused, internalSetFocused] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
   const isFocused = typeof focused === 'boolean' ? focused : internalFocused;
   const handleSetFocused = setFocused || internalSetFocused;
   // Track if mouse is down in dropdown
   const mouseDownRef = React.useRef(false);
+
+  // Handle client-side mounting for portal
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     // If mouse is down in dropdown, don't close
@@ -92,7 +99,59 @@ function ComboBox({
         },
       }),
     ],
+    strategy: 'fixed', // Use fixed positioning for portal
   });
+
+  // Dropdown content
+  const dropdownContent = isFocused && !disabled && mounted ? (
+    <div
+      ref={refs.setFloating}
+      style={{
+        ...floatingStyles,
+        zIndex: 999999, // Extremely high z-index
+      }}
+      className="bg-white border border-slate-200 rounded-lg shadow-xl overflow-y-auto"
+      onMouseDown={() => { mouseDownRef.current = true; }}
+      onMouseUp={() => { mouseDownRef.current = false; }}
+      onMouseLeave={() => { mouseDownRef.current = false; }}
+    >
+      {filtered.length === 0 ? (
+        <div className="p-3 text-slate-500 text-sm">No {label.toLowerCase()} found.</div>
+      ) : (
+        <div>
+          {filtered.map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              onClick={() => {
+                onChange(option.value);
+                handleSetFocused(false);
+                setSearch("");
+              }}
+              onMouseDown={() => {
+                mouseDownRef.current = true;
+              }}
+              onMouseUp={() => {
+                mouseDownRef.current = false;
+              }}
+              className="flex items-center gap-2 w-full p-3 text-left hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0"
+            >
+              {option.flag && (
+                <Image
+                  src={option.flag}
+                  alt={option.label}
+                  width={20}
+                  height={15}
+                  className="rounded-sm"
+                />
+              )}
+              <span>{option.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  ) : null;
 
   return (
     <div className="w-full md:w-auto md:flex-1">
@@ -112,49 +171,8 @@ function ComboBox({
             disabled={disabled}
           />
         </div>
-        {isFocused && !disabled && (
-          <div 
-            ref={refs.setFloating}
-            style={floatingStyles}
-            className="bg-white border border-slate-200 rounded-lg shadow-xl overflow-y-auto z-[9999]"
-          >
-            {filtered.length === 0 ? (
-              <div className="p-3 text-slate-500 text-sm">No {label.toLowerCase()} found.</div>
-            ) : (
-              <div>
-                {filtered.map((option) => (
-                  <button
-                    key={option.value}
-                    type="button"
-                    onClick={() => {
-                      onChange(option.value);
-                      handleSetFocused(false);
-                      setSearch("");
-                    }}
-                    onMouseDown={() => {
-                      mouseDownRef.current = true;
-                    }}
-                    onMouseUp={() => {
-                      mouseDownRef.current = false;
-                    }}
-                    className="flex items-center gap-2 w-full p-3 text-left hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0"
-                  >
-                    {option.flag && (
-                      <Image
-                        src={option.flag}
-                        alt={option.label}
-                        width={20}
-                        height={15}
-                        className="rounded-sm"
-                      />
-                    )}
-                    <span>{option.label}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        {/* Render dropdown using portal to document.body */}
+        {mounted && dropdownContent && createPortal(dropdownContent, document.body)}
       </div>
     </div>
   );

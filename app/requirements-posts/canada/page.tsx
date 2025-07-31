@@ -612,6 +612,15 @@ export default function CanadaRequirementsPage() {
           </div>
         </section>
 
+        {/* Check Eligibility Section */}
+        <section className="mb-16">
+          <CheckEligibilityWithPreset 
+            presetDestination="ca"
+            title="Check Your Canada Visa Eligibility"
+            description="Enter your nationality to check if you're eligible for a Canada eVisa and start your application"
+          />
+        </section>
+
         {/* Comprehensive Canada Travel Guide */}
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">

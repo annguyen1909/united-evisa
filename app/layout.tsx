@@ -63,10 +63,18 @@ export const metadata: Metadata = {
     siteName: "Worldmaxxing Global Services",
     images: [
       {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Worldmaxxing Global Services - Fast & Secure eVisa Applications to 50+ Countries",
+        type: "image/png",
+      },
+      {
         url: "/images/hero/hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Worldmaxxing Global Services - Fast eVisa Applications",
+        alt: "Worldmaxxing Global Services - eVisa Processing Center",
+        type: "image/jpeg",
       },
     ],
   },
@@ -74,8 +82,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
     description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval.",
-    images: ["/images/hero/hero.jpg"],
+    images: ["/images/og-image.png"],
     creator: "@worldmaxxing",
+    site: "@worldmaxxing",
   },
   robots: {
     index: true,
@@ -119,10 +128,20 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-title": "Worldmaxxing",
     "format-detection": "telephone=no",
     "mobile-web-app-capable": "yes",
+    // Social media and Open Graph enhancements
+    'og:image:width': '1200',
+    'og:image:height': '630',
+    'og:image:type': 'image/png',
+    'og:image:secure_url': 'https://visa.worldmaxxing.com/images/og-image.png',
+    'twitter:image:alt': 'Worldmaxxing Global Services - Fast & Secure eVisa Applications to 50+ Countries',
+    'twitter:domain': 'visa.worldmaxxing.com',
+    'twitter:url': 'https://visa.worldmaxxing.com',
+    // Additional branding
+    'theme-color': '#10b981',
+    'msapplication-TileColor': '#10b981',
+    'msapplication-TileImage': '/favicon-192x192.png',
     "msapplication-config": "/browserconfig.xml",
-    "msapplication-TileColor": "#ffffff",
     "msapplication-tap-highlight": "no",
-    "theme-color": "#059669",
   },
 };
 

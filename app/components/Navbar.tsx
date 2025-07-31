@@ -131,16 +131,26 @@ export default function Navbar() {
             <NavigationMenuList>
               {navItems.map((item) => (
                 <NavigationMenuItem key={item.label}>
-                  <NavigationMenuLink
-                    href={item.href}
-                    className={cn(
-                      "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-slate-700",
-                      "font-medium transition-colors hover:bg-slate-50 hover:text-emerald-700",
-                      "focus:bg-slate-100 focus:text-emerald-700 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                    )}
-                  >
-                    {item.label}
-                  </NavigationMenuLink>
+                  {item.href === "/apply" ? (
+                    <NavigationMenuLink
+                      href={item.href}
+                      className="relative group inline-flex h-10 w-max items-center justify-center rounded-lg px-6 py-2 text-white font-semibold bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse"
+                    >
+                      <span className="relative z-10">🚀 {item.label}</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    </NavigationMenuLink>
+                  ) : (
+                    <NavigationMenuLink
+                      href={item.href}
+                      className={cn(
+                        "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-slate-700",
+                        "font-medium transition-colors hover:bg-slate-50 hover:text-emerald-700",
+                        "focus:bg-slate-100 focus:text-emerald-700 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                      )}
+                    >
+                      {item.label}
+                    </NavigationMenuLink>
+                  )}
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
@@ -384,10 +394,17 @@ export default function Navbar() {
                     {navItems.map((item) => (
                       <div key={item.label} className="space-y-2">
                         <Link href={item.href}
-                          className="flex justify-between items-center px-2 py-1.5 text-base font-medium text-slate-800"
+                          className={`flex justify-between items-center px-2 py-1.5 text-base font-medium rounded-lg transition-all ${
+                            item.href === "/apply" 
+                              ? "bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg" 
+                              : "text-slate-800"
+                          }`}
                           onClick={() => setIsOpen(false)}
                         >
-                          {item.label}
+                          <span className="flex items-center gap-2">
+                            {item.href === "/apply" && <span>🚀</span>}
+                            {item.label}
+                          </span>
                           <ChevronRight className="w-5 h-5 text-slate-400" />
                         </Link>
                       </div>

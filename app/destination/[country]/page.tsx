@@ -3,6 +3,8 @@ import { getCountryBySlug, COUNTRIES } from '@/lib/countries';
 import { notFound } from 'next/navigation';
 import CountryPageClient from '@/components/shared/CountryPageClient';
 import CountryStructuredData from '@/components/shared/CountryStructuredData';
+import PageSEO from '@/components/shared/PageSEO';
+import InternalLinks from '@/components/shared/InternalLinks';
 import { Metadata } from 'next';
 
 interface PageProps {
@@ -82,8 +84,16 @@ export default async function CountryPage({ params }: PageProps) {
 
     return (
         <>
+            <PageSEO 
+                pageType="destination" 
+                countryName={country.name} 
+                countrySlug={countrySlug}
+            />
             <CountryStructuredData country={country} />
             <CountryPageClient country={country} />
+            <div className="w-full">
+                <InternalLinks currentCountry={country.name} />
+            </div>
         </>
     );
 }

@@ -8,6 +8,7 @@ import { Providers } from "./providers";
 import ContactWidget from "../components/ui/ContactWidget";
 import StructuredData from "./components/StructuredData";
 import GoogleAnalytics from "../components/GoogleAnalytics";
+import SEOMonitor from "../components/shared/SEOMonitor";
 
 // Primary fonts
 const geistSans = Geist({
@@ -157,6 +158,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <ContactWidget />
+          <SEOMonitor />
         </Providers>
       </body>
     </html>

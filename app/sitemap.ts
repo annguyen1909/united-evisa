@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { COUNTRIES } from '@/lib/countries'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://visa.worldmaxxing.com' // Updated domain
+  const baseUrl = 'https://visa.worldmaxxing.com'
   const currentDate = new Date()
 
   // Static pages with their priorities and change frequencies
@@ -17,13 +17,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/apply`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
-      priority: 0.9,
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/check-requirements`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
-      priority: 0.95, // Very high priority for requirements checker tool
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/pricing`,
@@ -44,10 +44,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/faq`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/support`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      priority: 0.6,
+    },
     },
     {
       url: `${baseUrl}/login`,
@@ -116,7 +123,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/requirements-posts/${country.slug}`,
     lastModified: currentDate,
     changeFrequency: 'weekly' as const,
-    priority: 0.85, // High priority for requirements pages
+    priority: 0.85,
   }))
 
   // Generate destination pages - High priority for SEO
@@ -124,7 +131,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/destination/${country.slug}`,
     lastModified: currentDate,
     changeFrequency: 'weekly' as const,
-    priority: 0.9, // High priority for destination pages
+    priority: 0.9,
   }))
 
   // Generate blog pages - SEO optimized

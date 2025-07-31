@@ -6,6 +6,8 @@ import VisaSteps from "./components/VisaSteps";
 import CustomerSupport from "./components/CustomerSupport";
 import FeeGuarantee from "./components/FeeGuarantee";
 import News from "./components/News";
+import PageSEO from "../components/shared/PageSEO";
+import InternalLinks from "../components/shared/InternalLinks";
 
 export const metadata: Metadata = {
   title: "Fast & Secure eVisa Applications | Worldmaxxing Global Services",
@@ -71,6 +73,7 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return (
     <main className="flex flex-col items-center bg-white">
+      <PageSEO pageType="homepage" />
       {/* Hero section with full width */}
       <Hero />
       {/* Main content sections with consistent spacing */}
@@ -91,6 +94,9 @@ export default function LandingPage() {
       </div>
       <div className="w-full pb-8 bg-white">
         <FeeGuarantee />
+      </div>
+      <div className="w-full pb-8 bg-white">
+        <InternalLinks />
       </div>
     </main>
   );

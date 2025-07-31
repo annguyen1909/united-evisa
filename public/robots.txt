@@ -4,18 +4,20 @@ Allow: /
 # Sitemap
 Sitemap: https://visa.worldmaxxing.com/sitemap.xml
 
-# High priority pages for SEO
+# High priority pages for SEO - Allow explicit indexing
+Allow: /
 Allow: /check-requirements
 Allow: /requirements-posts/
 Allow: /destination/
 Allow: /blog/
 Allow: /faq/
-Allow: /apply/
-Allow: /pricing/
+Allow: /apply
+Allow: /pricing
 
 # Allow static assets
 Allow: /images/
 Allow: /_next/static/
+Allow: /favicon.ico
 
 # Disallow admin and private areas
 Disallow: /api/

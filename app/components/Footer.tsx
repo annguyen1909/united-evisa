@@ -62,15 +62,6 @@ const defaultSections = [
         ],
     },
     {
-        title: "Information",
-        links: [
-            { name: "Make Payment", href: "/payment" },
-            { name: "Embassy List", href: "/embassies" },
-            { name: "FAQs", href: "/faq" },
-            { name: "Payment Guidelines", href: "/payment-guide" },
-        ],
-    },
-    {
         title: "Most Requested",
         links: [
             { name: "Kenya Visa", href: "/destination/kenya" },

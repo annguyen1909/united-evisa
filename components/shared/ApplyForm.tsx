@@ -152,8 +152,6 @@ interface VisaType {
 }
 
 export default function ApplyForm({ user }: { user: any }) {
-  console.log('ApplyForm user:', user);
-  console.log('ApplyForm isLoggedIn:', !!user);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -201,7 +199,6 @@ export default function ApplyForm({ user }: { user: any }) {
   
   // Debug: Log contact state changes
   useEffect(() => {
-    console.log('Contact state changed:', contact);
   }, [contact]);
 
   // Load cached form data after destinations are loaded
@@ -213,7 +210,6 @@ export default function ApplyForm({ user }: { user: any }) {
         const cached = sessionStorage.getItem('apply-form-cache');
         if (cached) {
           const data = JSON.parse(cached);
-          console.log('Loading cached form data:', data);
           
           // Restore form state from cache
           if (data.selectedDestination) setSelectedDestination(data.selectedDestination);
@@ -225,8 +221,6 @@ export default function ApplyForm({ user }: { user: any }) {
           if (data.portType) setPortType(data.portType);
           if (data.portName) setPortName(data.portName);
           if (data.contact) {
-            console.log('Setting contact from cache:', data.contact);
-            console.log('Gender from cache:', data.contact.gender);
             setContact(data.contact);
             
             // Check if contact was complete when loaded from cache
@@ -242,7 +236,6 @@ export default function ApplyForm({ user }: { user: any }) {
           
           // Prefill contact fields with user data if logged in
           if (user) {
-            console.log('Prefilling contact with user data:', user);
             setContact({
               fullName: user.fullName || "",
               email: user.email || "",
@@ -268,7 +261,6 @@ export default function ApplyForm({ user }: { user: any }) {
         const response = await fetch('/api/destinations');
         if (response.ok) {
           const data = await response.json();
-          console.log('Fetched destinations:', data);
           setDestinations(data);
           setHydrated(true);
         } else {
@@ -380,7 +372,6 @@ export default function ApplyForm({ user }: { user: any }) {
         contact
       };
       sessionStorage.setItem('apply-form-cache', JSON.stringify(formData));
-      console.log('Saved form data to cache:', formData);
     } catch (error) {
       console.error('Error saving form data to cache:', error);
     }
@@ -536,15 +527,6 @@ export default function ApplyForm({ user }: { user: any }) {
       govFeeToSend && selectedDestination
         ? (govFeeToSend + FIXED_SERVICE_FEE) * Number(passengerCount)
         : FIXED_SERVICE_FEE * Number(passengerCount);
-
-    console.log('portType:', portType);
-    console.log('portName:', portName);
-    console.log('isIndia:', isIndia);
-    console.log('selectedDestination:', selectedDestination);
-    console.log('selectedVisaType:', selectedVisaType);
-    console.log('visaTypeIdToSend:', visaTypeIdToSend);
-    console.log('govFeeToSend:', govFeeToSend);
-    console.log('total calculation:', total);
     
     // Check if there's an existing application to update
     const existingApplicationId = sessionStorage.getItem('evisa-application-id');

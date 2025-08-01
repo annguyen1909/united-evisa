@@ -102,25 +102,7 @@ export const metadata: Metadata = {
     yandex: 'your-yandex-verification-code',
     yahoo: 'your-yahoo-verification-code',
   },
-  icons: {
-    icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-    ],
-    apple: [{ url: '/apple-touch-icon.png', type: 'image/png' }],
-    other: [
-      {
-        rel: 'android-chrome-192x192',
-        url: '/web-app-manifest-192x192.png',
-      },
-      {
-        rel: 'android-chrome-512x512',
-        url: '/web-app-manifest-512x512.png',
-      },
-    ],
-  },
+  // Icons will be automatically detected from /app/favicon.ico
   other: {
     "application-name": "Worldmaxxing Global Services",
     "apple-mobile-web-app-capable": "yes",

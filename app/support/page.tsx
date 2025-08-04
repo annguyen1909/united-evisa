@@ -96,7 +96,7 @@ export default function SupportPage() {
           flag: "🇺🇸",
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
-          email: "visa@worldmaxxing.com",
+          email: "visa@unitedevisa.com",
           hours: "24/7"
         },
         {
@@ -104,7 +104,7 @@ export default function SupportPage() {
           flag: "🇨🇦",
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541", 
-          email: "visa@worldmaxxing.com",
+          email: "visa@unitedevisa.com",
           hours: "24/7"
         },
         {
@@ -112,7 +112,7 @@ export default function SupportPage() {
           flag: "🇧🇷", 
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
-          email: "visa@worldmaxxing.com", 
+          email: "visa@unitedevisa.com", 
           hours: "Mon-Fri 8AM-6PM"
         }
       ]
@@ -125,7 +125,7 @@ export default function SupportPage() {
           flag: "🇬🇧",
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
-          email: "visa@worldmaxxing.com",
+          email: "visa@unitedevisa.com",
           hours: "24/7"
         },
         {
@@ -133,7 +133,7 @@ export default function SupportPage() {
           flag: "🇩🇪",
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
-          email: "visa@worldmaxxing.com",
+          email: "visa@unitedevisa.com",
           hours: "Mon-Fri 9AM-6PM"
         },
         {
@@ -141,7 +141,7 @@ export default function SupportPage() {
           flag: "🇦🇪",
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
-          email: "visa@worldmaxxing.com",
+          email: "visa@unitedevisa.com",
           hours: "Sun-Thu 9AM-6PM"
         }
       ]
@@ -154,7 +154,7 @@ export default function SupportPage() {
           flag: "🇦🇺", 
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
-          email: "visa@worldmaxxing.com",
+          email: "visa@unitedevisa.com",
           hours: "Mon-Fri 9AM-5PM"
         },
         {
@@ -162,7 +162,7 @@ export default function SupportPage() {
           flag: "🇸🇬",
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
-          email: "visa@worldmaxxing.com", 
+          email: "visa@unitedevisa.com", 
           hours: "Mon-Fri 9AM-6PM"
         },
         {
@@ -170,7 +170,7 @@ export default function SupportPage() {
           flag: "🇯🇵",
           address: "1308 E Colorado Blvd, #2244, Pasadena, CA 91106",
           phone: "+1 323 286 4541",
-          email: "visa@worldmaxxing.com",
+          email: "visa@unitedevisa.com",
           hours: "Mon-Fri 9AM-6PM"
         }
       ]
@@ -180,10 +180,22 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-emerald-600 to-green-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-                          <h1 className="text-4xl font-bold mb-4">Get in touch with Worldmaxxing Global Services</h1>
-          <p className="text-xl text-emerald-100">We're here to help with your visa application journey</p>
+      <div className="relative bg-gradient-to-r from-emerald-600 to-green-700 text-white overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
+          style={{
+            backgroundImage: "url('/images/support/hero-support.jpg')"
+          }}
+        ></div>
+        
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/60 to-green-700/15"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-16 text-center">
+          <h1 className="text-4xl font-bold mb-4">Get in touch with unitedevisa Global Services</h1>
+          <p className="text-xl">We're here to help with your visa application journey</p>
         </div>
       </div>
 
@@ -343,7 +355,7 @@ export default function SupportPage() {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Mail className="h-3 w-3 text-slate-400" />
-                        <span className="text-sm">visa@worldmaxxing.com</span>
+                        <span className="text-sm">visa@unitedevisa.com</span>
                       </div>
                     </div>
                   </div>
@@ -366,7 +378,7 @@ export default function SupportPage() {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Mail className="h-3 w-3 text-slate-400" />
-                        <span className="text-sm">visa@worldmaxxing.com</span>
+                        <span className="text-sm">visa@unitedevisa.com</span>
                       </div>
                     </div>
                   </div>
@@ -382,7 +394,7 @@ export default function SupportPage() {
             <CardContent className="p-8">
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-bold text-slate-800 mb-2">Our Worldwide Network</h2>
-                <p className="text-slate-600">Worldmaxxing Global Services offices around the world ready to assist you</p>
+                <p className="text-slate-600">unitedevisa Global Services offices around the world ready to assist you</p>
               </div>
 
               {/* Region Tabs */}
@@ -413,8 +425,47 @@ export default function SupportPage() {
                 />
               </div>
 
-              {/* Office Details Table */}
-              <div className="overflow-x-auto">
+              {/* Office Details - Responsive Design */}
+              <div className="block md:hidden space-y-4">
+                {/* Mobile Card Layout */}
+                {regionOffices[selectedRegion as keyof typeof regionOffices].offices.map((office, index) => (
+                  <div key={index} className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <span className="text-2xl">{office.flag}</span>
+                      <span className="font-semibold text-slate-800 text-lg">{office.country}</span>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-start space-x-2">
+                        <Phone className="h-4 w-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <div className="text-xs text-slate-500 mb-1">Contact Number</div>
+                          <span className="text-emerald-600 font-medium text-sm">{office.phone}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start space-x-2">
+                        <Mail className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <div className="text-xs text-slate-500 mb-1">Email</div>
+                          <span className="text-blue-600 text-sm break-all">{office.email}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start space-x-2">
+                        <Clock className="h-4 w-4 text-slate-500 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <div className="text-xs text-slate-500 mb-1">Hours of Operation</div>
+                          <span className="text-slate-600 text-sm">{office.hours}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop Table Layout */}
+              <div className="hidden md:block overflow-x-auto">
                 <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm table-fixed">
                   <thead>
                     <tr className="bg-slate-50 border-b border-slate-200">
@@ -427,27 +478,27 @@ export default function SupportPage() {
                   <tbody>
                     {regionOffices[selectedRegion as keyof typeof regionOffices].offices.map((office, index) => (
                       <tr key={index} className="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-                        <td className="p-4 w-1/4">
+                        <td className="p-4">
                           <div className="flex items-center space-x-3">
                             <span className="text-2xl">{office.flag}</span>
                             <span className="font-medium text-slate-800">{office.country}</span>
                           </div>
                         </td>
-                        <td className="p-4 w-1/4">
+                        <td className="p-4">
                           <div className="flex items-center space-x-2">
-                            <Phone className="h-4 w-4 text-emerald-600" />
+                            <Phone className="h-4 w-4 text-emerald-600 flex-shrink-0" />
                             <span className="text-emerald-600 font-medium">{office.phone}</span>
                           </div>
                         </td>
-                        <td className="p-4 w-1/4">
+                        <td className="p-4">
                           <div className="flex items-center space-x-2">
-                            <Mail className="h-4 w-4 text-blue-600" />
+                            <Mail className="h-4 w-4 text-blue-600 flex-shrink-0" />
                             <span className="text-blue-600">{office.email}</span>
                           </div>
                         </td>
-                        <td className="p-4 w-1/4">
+                        <td className="p-4">
                           <div className="flex items-center space-x-2">
-                            <Clock className="h-4 w-4 text-slate-500" />
+                            <Clock className="h-4 w-4 text-slate-500 flex-shrink-0" />
                             <span className="text-slate-600">{office.hours}</span>
                           </div>
                         </td>

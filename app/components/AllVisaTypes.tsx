@@ -89,12 +89,9 @@ export default function AllVisaTypes() {
                 className="p-6 relative" 
                 style={{ backgroundColor: color }}
               >
-                <div className="absolute top-0 right-0 w-24 h-24 opacity-10 overflow-hidden">
-                  {icon && React.createElement(icon, { size: 96, strokeWidth: "1px" })}
-                </div>
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="bg-white/20 p-3 rounded-full">
-                    {icon && React.createElement(icon, { size: 28, color: "#fff", strokeWidth: "1.5px" })}
+                    {icon && React.createElement(icon, { size: 28, color: "#fff", strokeWidth: "1px" })}
                   </div>
                   <CardTitle className="font-bold text-white text-xl leading-tight m-0">
                     {name}

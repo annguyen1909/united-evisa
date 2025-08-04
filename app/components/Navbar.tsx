@@ -420,7 +420,7 @@ export default function Navbar() {
                   <div className="mt-8 pt-6 border-t border-slate-200">
                     <div className="space-y-4">
                       <Link
-                        href="/contact"
+                        href="/support"
                         className="flex items-center gap-2 text-sm text-slate-600 px-2 py-2"
                         onClick={() => setIsOpen(false)}
                       >
@@ -429,7 +429,7 @@ export default function Navbar() {
                       </Link>
 
                       <Link
-                        href="/track"
+                        href="/list"
                         className="flex items-center gap-2 text-sm text-slate-600 px-2 py-2"
                         onClick={() => setIsOpen(false)}
                       >

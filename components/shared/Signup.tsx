@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -14,6 +14,26 @@ import { signIn } from "next-auth/react"
 export default function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+
+  // TEMPORARY: Test conversion on page load (REMOVE AFTER TESTING)
+  useEffect(() => {
+    const testConversion = () => {
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        console.log('TEST: Firing Google Ads conversion on signup page load');
+        (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-17433558858/0ih1CIL0gIAbEMr--_hA',
+          'value': 1.0,
+          'currency': 'USD'
+        });
+      } else {
+        console.log('TEST: gtag not available');
+      }
+    };
+
+    // Fire after a short delay to ensure gtag is loaded
+    const timer = setTimeout(testConversion, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -59,13 +79,22 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
         } else {
           // Track Google Ads conversion
           if (typeof window !== 'undefined' && (window as any).gtag) {
+            console.log('Firing Google Ads conversion for signup');
             (window as any).gtag('event', 'conversion', {
-              'send_to': 'AW-17433558858/0ih1CIL0gIAbEMr--_hA'
+              'send_to': 'AW-17433558858/0ih1CIL0gIAbEMr--_hA',
+              'value': 1.0,
+              'currency': 'USD'
             });
+            
+            // Add a small delay before redirect to ensure conversion fires
+            setTimeout(() => {
+              window.location.href = "/profile"
+            }, 500);
+          } else {
+            console.log('gtag not available for conversion tracking');
+            // Successfully signed in, redirect to profile
+            window.location.href = "/profile"
           }
-          
-          // Successfully signed in, redirect to profile
-          window.location.href = "/profile"
         }
       }
     } catch (err) {

@@ -15,26 +15,6 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
-  // TEMPORARY: Test conversion on page load (REMOVE AFTER TESTING)
-  useEffect(() => {
-    const testConversion = () => {
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        console.log('TEST: Firing Google Ads conversion on signup page load');
-        (window as any).gtag('event', 'conversion', {
-          'send_to': 'AW-17433558858/0ih1CIL0gIAbEMr--_hA',
-          'value': 1.0,
-          'currency': 'USD'
-        });
-      } else {
-        console.log('TEST: gtag not available');
-      }
-    };
-
-    // Fire after a short delay to ensure gtag is loaded
-    const timer = setTimeout(testConversion, 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)

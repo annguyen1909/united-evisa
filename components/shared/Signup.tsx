@@ -57,6 +57,13 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
         if (signInResult?.error) {
           setError("Account created but login failed. Please try logging in manually.")
         } else {
+          // Track Google Ads conversion
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'conversion', {
+              'send_to': 'AW-17433558858/0ih1CIL0gIAbEMr--_hA'
+            });
+          }
+          
           // Successfully signed in, redirect to profile
           window.location.href = "/profile"
         }

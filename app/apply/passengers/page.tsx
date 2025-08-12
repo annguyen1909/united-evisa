@@ -290,7 +290,10 @@ function PassengersContent() {
             }
           }
           if (Array.isArray(allowed)) {
-            allowed.forEach((code: string) => allAllowedCodes.add(code.toUpperCase()));
+            allowed.forEach((code: string) => {
+              // Handle both lowercase and uppercase codes from database
+              allAllowedCodes.add(code.toUpperCase());
+            });
           }
         }
       });
@@ -334,7 +337,7 @@ function PassengersContent() {
 
     console.log('[nationality debug] Filtering nationalities by:', allowedCodes);
     const filtered = NATIONALITIES.filter((c: { code: string; }) =>
-      allowedCodes.includes(c.code.toUpperCase())
+      allowedCodes.some(code => code.toUpperCase() === c.code.toUpperCase())
     );
     console.log('[nationality debug] Filtered nationalities count:', filtered.length);
     return filtered;

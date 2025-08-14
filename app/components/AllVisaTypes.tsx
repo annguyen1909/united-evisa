@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Backpack, BriefcaseBusiness, Plane, BriefcaseMedical } from "lucide-react";
 import React from "react";
@@ -138,12 +139,18 @@ export default function AllVisaTypes() {
 
               {/* Apply Button */}
               <CardFooter className="p-6 pt-0">
-                <Button
-                  className="w-full py-3 font-semibold text-white rounded-lg transition-all duration-300 hover:opacity-90 hover:shadow-lg transform group-hover:scale-105"
-                  style={{ backgroundColor: color }}
+                <Link
+                  href={`/apply`}
+                  className="w-full"
+                  passHref
                 >
-                  Apply Now
-                </Button>
+                  <Button
+                    className="w-full py-3 font-semibold cursor-pointer text-white rounded-lg transition-all duration-300 hover:opacity-90 hover:shadow-lg transform group-hover:scale-105"
+                    style={{ backgroundColor: color }}
+                  >
+                    Apply Now
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}

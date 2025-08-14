@@ -289,7 +289,7 @@ export default function CheckEligibilityWithPreset({
               onChange={setNationality}
               placeholder="Select nationality"
               icon={<Globe className="h-4 w-4" />}
-              className="rounded-l-xl rounded-r-none"
+              className="rounded-l-xl rounded-r-none max-md:rounded-xl"
               focused={openCombo === 'nationality'}
               setFocused={(v: boolean) => setOpenCombo(v ? 'nationality' : null)}
             />
@@ -300,7 +300,7 @@ export default function CheckEligibilityWithPreset({
               onChange={setDestination}
               placeholder={selectedCountry?.label || "Select destination"}
               icon={<Globe className="h-4 w-4" />}
-              className="rounded-l-none"
+              className="rounded-l-none max-md:rounded-xl"
               focused={openCombo === 'destination'}
               setFocused={(v: boolean) => setOpenCombo(v ? 'destination' : null)}
               disabled={!!presetDestination}

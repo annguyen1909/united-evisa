@@ -75,7 +75,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                                 <div className="text-sm space-y-3 text-slate-600">
                                     <div className="flex items-center gap-2">
                                         <Phone size={16} />
-                                        <span>{user.areaCode} {user.phoneNumber}</span>
+                                        <span>{user.phoneNumber}</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <Calendar size={16} />
@@ -150,7 +150,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                                         <div className="space-y-4">
                                             <div>
                                                 <h3 className="text-sm font-medium text-slate-500 mb-1">Phone Number</h3>
-                                                <p className="text-slate-800 font-medium">{user.areaCode} {user.phoneNumber}</p>
+                                                <p className="text-slate-800 font-medium">{user.phoneNumber}</p>
                                             </div>
                                             <div>
                                                 <h3 className="text-sm font-medium text-slate-500 mb-1">Gender</h3>

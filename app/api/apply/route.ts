@@ -55,13 +55,17 @@ export async function POST(req: NextRequest) {
 
     if (!account) {
       console.log('Apply route - Creating new account for email:', email);
+      
+      // Concatenate area code and phone number
+      const fullPhoneNumber = areaCode && phoneNumber ? `${areaCode}${phoneNumber}` : "Unknown";
+      
       account = await prisma.account.create({
         data: {
           id: crypto.randomUUID(), // generate a unique id
           email,
           fullName: fullName || "Unknown",
           areaCode: areaCode || "+1",
-          phoneNumber: phoneNumber || "Unknown",
+          phoneNumber: fullPhoneNumber,
           gender: gender || "Unknown",
           websiteCreatedAt: "Worldmaxxing Site", // or your default value
         },

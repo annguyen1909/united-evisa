@@ -21,6 +21,9 @@ export async function POST(req: NextRequest) {
 
     const hashedPassword = await hash(password, 10)
 
+    // Concatenate area code and phone number
+    const fullPhoneNumber = `${areaCode}${phoneNumber}`
+
     const account = await prisma.account.create({
       data: {
         id: crypto.randomUUID(),
@@ -28,7 +31,7 @@ export async function POST(req: NextRequest) {
         password: hashedPassword,
         fullName,
         areaCode,
-        phoneNumber,
+        phoneNumber: fullPhoneNumber, // Store concatenated phone number
         gender,
         websiteCreatedAt: "Worldmaxxing Site",
       },

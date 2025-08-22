@@ -135,7 +135,7 @@ function ConfirmationContent() {
   let contact = {
     fullName: account.fullName || applicationData?.cardHolder?.name || "-",
     email: account.email || "-", 
-    phone: account.areaCode && account.phoneNumber ? `${account.areaCode} ${account.phoneNumber}` : "-",
+    phone: account.phoneNumber || "-", // phoneNumber now includes area code
     gender: account.gender || "-"
   };
 

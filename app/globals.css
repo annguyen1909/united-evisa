@@ -348,3 +348,13 @@ article a {
 
 /* Dropdown positioning fixes - Floating UI handles this now */
 
+/* Mobile CTA Button Shine Animation */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+

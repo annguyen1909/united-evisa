@@ -12,7 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useFloating, offset, flip, shift, size } from '@floating-ui/react';
@@ -187,11 +187,26 @@ export default function CheckEligibility() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [openCombo, setOpenCombo] = React.useState<string | null>(null); // Track which ComboBox is open
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const mountedRef = React.useRef(true);
 
-  // Reset loading state when component mounts or when URL changes
   React.useEffect(() => {
-    setIsLoading(false);
+    return () => {
+      mountedRef.current = false;
+    };
   }, []);
+
+  // Reset loading state when URL search params change
+  React.useEffect(() => {
+    const currentParams = searchParams.toString();
+    console.log('SearchParams changed:', currentParams);
+    
+    // Only clear loading if we have search params (meaning we've navigated)
+    if (currentParams) {
+      console.log('Clearing loading state due to search params change');
+      setIsLoading(false);
+    }
+  }, [searchParams]);
 
   const onCheck = async () => {
     if (!nationality || !destination) {
@@ -230,12 +245,25 @@ export default function CheckEligibility() {
         return;
       }
 
-      // Navigate to new page, component will unmount and loading state will reset
-      router.push(`/check-requirements?n=${nationality}&d=${destination}`);
+      // Navigate to new page or update URL if already on check-requirements page
+      const target = `/check-requirements?n=${nationality}&d=${destination}`;
+      console.log('Navigating to:', target);
+      console.log('Current pathname:', window.location.pathname);
+      
+      // Check if we're already on the check-requirements page
+      if (window.location.pathname === '/check-requirements') {
+        console.log('Same page navigation - using window.location.href');
+        // Use window.location.href to force a proper page reload with new params
+        window.location.href = target;
+      } else {
+        console.log('Different page navigation - using router.push');
+        // Navigate to new page
+        router.push(target);
+      }
     } catch (error) {
       console.error("Failed to load destination data:", error);
       alert("An error occurred while checking eligibility.");
-      setIsLoading(false);
+      if (mountedRef.current) setIsLoading(false);
     }
   };
 

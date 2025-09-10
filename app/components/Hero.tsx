@@ -25,69 +25,113 @@ export default function Hero() {
     "/images/hero/hero3.webp",
     "/images/hero/hero4.webp",
   ];
-  const [currentImageIndex, setCurrentImageIndex] = useState(-1);
-  const [isLoaded, setIsLoaded] = useState(false);
 
+  const TRANSITION_MS = 1000;
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
+  const [currentLoaded, setCurrentLoaded] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // preload first image for LCP, and mark it loaded
   useEffect(() => {
-    const preloadImages = () => {
-      backgroundImages.forEach((src) => {
-        const img = new window.Image();
-        img.src = src;
-      });
-
-      // Once the first image is loaded, show it
-      const firstImg = new window.Image();
-      firstImg.src = backgroundImages[0];
-      firstImg.onload = () => {
-        setCurrentImageIndex(0);
-        setIsLoaded(true);
-      };
+    const img = new window.Image();
+    img.src = backgroundImages[0];
+    img.onload = () => {
+      setIsFirstLoaded(true);
+      setCurrentLoaded(true);
     };
-
-    preloadImages();
+    // also kick off background preloads (non-blocking)
+    backgroundImages.slice(1).forEach((src) => {
+      const p = new window.Image();
+      p.src = src;
+    });
   }, []);
 
+  // automatic slide timer
   useEffect(() => {
-    if (!isLoaded) return;
-
+    if (!isFirstLoaded) return;
     const timer = setInterval(() => {
-      setCurrentImageIndex(
-        (prevIndex) => (prevIndex + 1) % backgroundImages.length
-      );
+      const next = (currentIndex + 1) % backgroundImages.length;
+      // prepare transition: keep prev, swap current (currentLoaded will reset)
+      setPrevIndex(currentIndex);
+      setCurrentLoaded(false);
+      setCurrentIndex(next);
     }, 5000);
-
     return () => clearInterval(timer);
-  }, [isLoaded]);
+  }, [isFirstLoaded, currentIndex]);
 
-  const handleDotClick = (index: number) => {
-    setCurrentImageIndex(index);
+  // when new image finishes loading, start fade and cleanup prev after transition
+  useEffect(() => {
+    if (prevIndex === null) return;
+    if (!currentLoaded) return;
+    setIsTransitioning(true);
+    const t = setTimeout(() => {
+      setPrevIndex(null);
+      setIsTransitioning(false);
+    }, TRANSITION_MS);
+    return () => clearTimeout(t);
+  }, [currentLoaded, prevIndex]);
+
+  const goTo = (index: number) => {
+    if (index === currentIndex) return;
+    setPrevIndex(currentIndex);
+    setCurrentLoaded(false);
+    setCurrentIndex(index);
   };
 
   return (
     <section className="w-full relative min-h-[600px] md:min-h-[700px] z-0 flex flex-col items-center justify-center border-b-4 border-emerald-700">
-      {/* Next.js Image for Background, only current image rendered for LCP */}
+      {/* Image stack: previous (fades out) and current (waits to show until loaded) */}
       <div className="absolute inset-0 w-full h-full" style={{ zIndex: -2 }}>
-        {isLoaded && currentImageIndex >= 0 && (
-          <Image
-            src={backgroundImages[currentImageIndex]}
-            alt="Hero background"
-            fill
-            priority={currentImageIndex === 0}
-            sizes="100vw"
-            className="object-cover object-center transition-opacity duration-1000 opacity-100"
-            style={{ willChange: "opacity" }}
-          />
+        {/* previous image wrapper */}
+        {prevIndex !== null && (
+          <div
+            className={`absolute inset-0 transition-opacity duration-[${TRANSITION_MS}ms] ${
+              isTransitioning ? "opacity-0" : "opacity-100"
+            }`}
+            aria-hidden
+          >
+            <Image
+              src={backgroundImages[prevIndex]}
+              alt={`Background ${prevIndex + 1}`}
+              fill
+              priority={prevIndex === 0}
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
         )}
+
+        {/* current image wrapper: invisible until it loads, then shows */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-[${TRANSITION_MS}ms] ${
+            currentLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={backgroundImages[currentIndex]}
+            alt={`Background ${currentIndex + 1}`}
+            fill
+            priority={currentIndex === 0}
+            sizes="100vw"
+            className="object-cover object-center"
+            onLoadingComplete={() => {
+              setCurrentLoaded(true);
+            }}
+          />
+        </div>
       </div>
 
-      {/* Enhanced Dark Gradient Overlay for better mobile readability */}
+      {/* overlay */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-800/50 to-slate-900/80 md:from-slate-900/70 md:via-slate-800/40 md:to-slate-900/70"
         style={{ zIndex: -1 }}
       />
 
       <div className="w-full max-w-6xl mx-auto px-4 py-16 md:py-24 flex flex-col items-center">
-        {/* Hero Content */}
+        {/* Hero content simplified for brevity */}
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -97,7 +141,9 @@ export default function Hero() {
           {/* Trust Badge - Enhanced for mobile */}
           <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-lg px-3 md:px-4 py-2 rounded-full text-emerald-300 text-sm font-medium mb-4 md:mb-6 border border-emerald-400/30">
             <Star className="h-4 w-4 fill-current" />
-            <span className="text-xs md:text-sm">Trusted by 50,000+ travelers worldwide</span>
+            <span className="text-xs md:text-sm">
+              Trusted by 50,000+ travelers worldwide
+            </span>
             <Star className="h-4 w-4 fill-current" />
           </div>
 
@@ -140,7 +186,9 @@ export default function Hero() {
               <span className="text-sm md:text-base font-semibold text-center">
                 Fast Processing
               </span>
-              <span className="text-xs text-white/70 text-center">From 24 hours</span>
+              <span className="text-xs text-white/70 text-center">
+                From 24 hours
+              </span>
             </div>
 
             <div className="flex flex-col items-center gap-2 text-white bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20">
@@ -150,7 +198,9 @@ export default function Hero() {
               <span className="text-sm md:text-base font-semibold text-center">
                 100% Secure
               </span>
-              <span className="text-xs text-white/70 text-center">Bank-level security</span>
+              <span className="text-xs text-white/70 text-center">
+                Bank-level security
+              </span>
             </div>
 
             <div className="flex flex-col items-center gap-2 text-white bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20">
@@ -160,7 +210,9 @@ export default function Hero() {
               <span className="text-sm md:text-base font-semibold text-center">
                 Expert Support
               </span>
-              <span className="text-xs text-white/70 text-center">24/7 assistance</span>
+              <span className="text-xs text-white/70 text-center">
+                24/7 assistance
+              </span>
             </div>
 
             <div className="flex flex-col items-center gap-2 text-white bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20">
@@ -170,7 +222,9 @@ export default function Hero() {
               <span className="text-sm md:text-base font-semibold text-center">
                 99.5% Success
               </span>
-              <span className="text-xs text-white/70 text-center">Approval rate</span>
+              <span className="text-xs text-white/70 text-center">
+                Approval rate
+              </span>
             </div>
           </div>
 
@@ -247,10 +301,10 @@ export default function Hero() {
         {backgroundImages.map((_, index) => (
           <button
             key={index}
-            onClick={() => handleDotClick(index)}
+            onClick={() => goTo(index)}
             className={`h-2.5 rounded-full transition-all duration-300 ease-in-out 
               ${
-                index === currentImageIndex
+                index === currentIndex
                   ? "w-10 bg-white"
                   : "w-2.5 bg-white/50 hover:bg-white/70"
               }`}

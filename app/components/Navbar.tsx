@@ -101,7 +101,7 @@ export default function Navbar() {
           : "bg-gradient-to-r from-white/98 via-emerald-50/30 to-white/98 backdrop-blur-md py-4"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group transition-all duration-300 hover:scale-105">
           <div className="relative w-10 h-10 transition-all duration-300 group-hover:rotate-12">
@@ -127,14 +127,14 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="flex items-center gap-6">
-          <NavigationMenu className="hidden lg:flex">
+          <NavigationMenu className="hidden xl:flex">
             <NavigationMenuList>
               {navItems.map((item) => (
                 <NavigationMenuItem key={item.label}>
                   {item.href === "/apply" ? (
                     <NavigationMenuLink
                       href={item.href}
-                      className="relative group inline-flex h-11 w-max items-center justify-center rounded-xl px-6 py-2.5 text-white font-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-800 hover:from-emerald-700 hover:via-emerald-800 hover:to-emerald-900 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/25 transform hover:scale-105 overflow-hidden"
+                      className="relative group inline-flex h-11 w-max items-center ml-2 justify-center rounded-md px-5 py-2.5 text-white font-semibold bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-800 hover:from-emerald-700 hover:via-emerald-800 hover:to-emerald-900 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/25 transform hover:scale-105 overflow-hidden"
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         <span className="animate-bounce">🚀</span>
@@ -162,7 +162,7 @@ export default function Navbar() {
           </NavigationMenu>
 
           {/* Desktop Auth */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden xl:flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -271,7 +271,7 @@ export default function Navbar() {
           </div>
         </div>
         {/* Mobile Button */}
-        <div className="lg:hidden flex items-center gap-3">
+        <div className="xl:hidden flex items-center gap-3">
           <Button
             variant="ghost"
             size="icon"

@@ -146,6 +146,25 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#ffffff" />
+        {/* Preload the primary hero image to improve LCP */}
+        <link rel="preload" as="image" href="/images/hero/hero.webp" />
+        {/* Organization JSON-LD for SEO (renders on every page) */}
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Worldmaxxing Global Services",
+            "url": "https://visa.worldmaxxing.com",
+            "logo": "https://visa.worldmaxxing.com/images/logo.png",
+            "sameAs": [
+              "https://www.facebook.com/yourpage",
+              "https://twitter.com/yourhandle",
+              "https://www.linkedin.com/company/yourcompany"
+            ]
+          }) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${inter.variable} ${geistMono.variable} font-sans antialiased bg-white text-slate-900`}

@@ -62,6 +62,7 @@ function CheckRequirementsContent() {
 
     useEffect(() => {
         const checkEligibility = async () => {
+            
             // If no parameters provided, show destinations list
             if (!nationalitySlug && !destinationSlug) {
                 setShowDestinations(true);
@@ -75,6 +76,7 @@ function CheckRequirementsContent() {
                 return;
             }
 
+            setLoading(true); // Ensure loading state is set
             try {
                 const nationality = getNationalityByCode(nationalitySlug);
                 const destination = getCountryBySlug(destinationSlug);
@@ -106,7 +108,7 @@ function CheckRequirementsContent() {
             }
         };
         checkEligibility();
-    }, [nationalitySlug, destinationSlug]);
+    }, [nationalitySlug, destinationSlug, router, searchParams]);
 
     if (loading) {
         return (

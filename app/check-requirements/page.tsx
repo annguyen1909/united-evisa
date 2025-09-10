@@ -172,7 +172,24 @@ function CheckRequirementsContent() {
                                 Select your nationality and destination to check visa requirements instantly
                             </p>
                         </div>
-                        <CheckEligibility />
+                        <Suspense fallback={
+                            <div className="w-full max-w-4xl mx-auto pt-0 px-4 sm:px-6">
+                                <div className="bg-white rounded-xl shadow-lg p-6 border border-slate-100 backdrop-blur-sm">
+                                    <div className="text-center">
+                                        <div className="animate-pulse">
+                                            <div className="h-8 bg-slate-200 rounded mb-6"></div>
+                                            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 gap-0">
+                                                <div className="flex-1 h-12 bg-slate-200 rounded-l-xl"></div>
+                                                <div className="flex-1 h-12 bg-slate-200"></div>
+                                                <div className="w-full md:w-auto md:min-w-[130px] h-12 bg-slate-200 rounded-r-xl"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }>
+                            <CheckEligibility />
+                        </Suspense>
                     </div>
 
                     {/* All Destinations Grid */}

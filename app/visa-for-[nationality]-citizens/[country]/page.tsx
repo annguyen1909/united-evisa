@@ -13,15 +13,24 @@ interface PageProps {
 // Generate static params for popular nationality-country combinations
 export async function generateStaticParams() {
   const popularNationalities = ['us', 'gb', 'ca', 'au', 'de', 'fr', 'it', 'es', 'nl', 'jp', 'kr', 'sg']
-  const popularCountries = COUNTRIES.slice(0, 15) // Top 15 destinations
+  
+  // Filter to only include countries that actually exist in our COUNTRIES array
+  const availableCountries = COUNTRIES.filter(country => country && country.slug).slice(0, 15)
   
   const combinations = []
   for (const nationality of popularNationalities) {
-    for (const country of popularCountries) {
-      combinations.push({
-        nationality: nationality,
-        country: country.slug,
-      })
+    // Verify the nationality exists in our NATIONALITIES array
+    const nationalityExists = NATIONALITIES.find(n => 
+      n.code && n.code.toLowerCase() === nationality.toLowerCase()
+    )
+    
+    if (nationalityExists) {
+      for (const country of availableCountries) {
+        combinations.push({
+          nationality: nationality,
+          country: country.slug,
+        })
+      }
     }
   }
   
@@ -30,7 +39,18 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { nationality, country: countrySlug } = await params
-  const nationalityInfo = NATIONALITIES.find(n => n.code.toLowerCase() === nationality.toLowerCase())
+  
+  // Add null checks
+  if (!nationality || !countrySlug) {
+    return {
+      title: 'Page Not Found',
+      description: 'The requested page could not be found.'
+    }
+  }
+  
+  const nationalityInfo = NATIONALITIES.find(n => 
+    n.code && n.code.toLowerCase() === nationality.toLowerCase()
+  )
   const country = getCountryBySlug(countrySlug)
   
   if (!nationalityInfo || !country) {
@@ -45,7 +65,15 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function NationalityCountryPage({ params }: PageProps) {
   const { nationality, country: countrySlug } = await params
-  const nationalityInfo = NATIONALITIES.find(n => n.code.toLowerCase() === nationality.toLowerCase())
+  
+  // Add null checks
+  if (!nationality || !countrySlug) {
+    notFound()
+  }
+  
+  const nationalityInfo = NATIONALITIES.find(n => 
+    n.code && n.code.toLowerCase() === nationality.toLowerCase()
+  )
   const country = getCountryBySlug(countrySlug)
   
   if (!nationalityInfo || !country) {

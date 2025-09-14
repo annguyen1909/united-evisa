@@ -195,9 +195,11 @@ export function generateInternalLinks(currentCountry?: string, pageType?: string
   return links
 }
 
-export default {
+const SEOUtils = {
   generateSEOMeta,
   generateCountrySEO,
   generateNationalitySEO,
   generateInternalLinks
 }
+
+export default SEOUtils

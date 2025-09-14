@@ -14,14 +14,32 @@ interface PageProps {
 export async function generateStaticParams() {
   const popularNationalities = ['us', 'gb', 'ca', 'au', 'de', 'fr', 'it', 'es', 'nl', 'se', 'no', 'dk', 'ch', 'at', 'be', 'ie', 'nz', 'jp', 'kr', 'sg']
   
-  return popularNationalities.map((nationality) => ({
+  // Filter to only include nationalities that actually exist in our NATIONALITIES array
+  const validNationalities = popularNationalities.filter(nationality => {
+    return NATIONALITIES.find(n => 
+      n.code && n.code.toLowerCase() === nationality.toLowerCase()
+    )
+  })
+  
+  return validNationalities.map((nationality) => ({
     nationality: nationality,
   }))
 }
 
 export async function generateMetadata({ params }: PageProps) {
   const { nationality } = await params
-  const nationalityInfo = NATIONALITIES.find(n => n.code.toLowerCase() === nationality.toLowerCase())
+  
+  // Add null check
+  if (!nationality) {
+    return {
+      title: 'Nationality Not Found',
+      description: 'The requested nationality page could not be found.'
+    }
+  }
+  
+  const nationalityInfo = NATIONALITIES.find(n => 
+    n.code && n.code.toLowerCase() === nationality.toLowerCase()
+  )
   
   if (!nationalityInfo) {
     return {
@@ -62,7 +80,15 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function NationalityPage({ params }: PageProps) {
   const { nationality } = await params
-  const nationalityInfo = NATIONALITIES.find(n => n.code.toLowerCase() === nationality.toLowerCase())
+  
+  // Add null check
+  if (!nationality) {
+    notFound()
+  }
+  
+  const nationalityInfo = NATIONALITIES.find(n => 
+    n.code && n.code.toLowerCase() === nationality.toLowerCase()
+  )
   
   if (!nationalityInfo) {
     notFound()

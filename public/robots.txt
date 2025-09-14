@@ -1,10 +1,7 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://visa.worldmaxxing.com/sitemap.xml
-
-# High priority pages for SEO - Allow explicit indexing
+# High priority pages for SEO indexing
 Allow: /
 Allow: /check-requirements
 Allow: /requirements-posts/
@@ -13,11 +10,52 @@ Allow: /blog/
 Allow: /faq/
 Allow: /apply
 Allow: /pricing
+Allow: /how-to-apply/
+Allow: /visa-for-*-citizens/
+Allow: /compare/
 
-# Allow static assets
+# Allow essential static assets
 Allow: /images/
 Allow: /_next/static/
 Allow: /favicon.ico
+Allow: /site.webmanifest
+
+# Block unnecessary admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /test/
+
+# Block user-specific pages from indexing
+Disallow: /profile
+Disallow: /login
+Disallow: /signup
+Disallow: /list
+
+# Block checkout/payment pages (should not be indexed)
+Disallow: /apply/payment
+Disallow: /apply/confirmation
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap locations
+Sitemap: https://visa.worldmaxxing.com/sitemap.xml
+Sitemap: https://visa.worldmaxxing.com/sitemap-blog.xml
+Sitemap: https://visa.worldmaxxing.com/sitemap-destinations.xml
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
 
 # Disallow admin and private areas
 Disallow: /api/

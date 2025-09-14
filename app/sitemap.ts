@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { COUNTRIES } from '@/lib/countries'
+import { NATIONALITIES } from '@/lib/nationalities'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://visa.worldmaxxing.com'
@@ -152,5 +153,67 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  return [...staticPages, ...countryPages, ...destinationPages, ...blogPages, ...faqPages]
+  // Generate visa type specific pages for more indexable content
+  const visaTypePages = COUNTRIES.flatMap((country) => {
+    const visaTypes = ['tourist', 'business', 'transit', 'medical']
+    return visaTypes.map((type) => ({
+      url: `${baseUrl}/destination/${country.slug}/${type}-visa`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    }))
+  })
+
+  // Generate nationality-specific landing pages for better targeting
+  const popularNationalities = NATIONALITIES.filter(nat => 
+    ['us', 'gb', 'ca', 'au', 'de', 'fr', 'it', 'es', 'nl', 'se', 'no', 'dk', 'ch', 'at', 'be', 'ie', 'nz', 'jp', 'kr', 'sg']
+    .includes(nat.code.toLowerCase())
+  )
+
+  const nationalityPages = popularNationalities.flatMap((nationality) => {
+    return COUNTRIES.slice(0, 20).map((country) => ({ // Limit to top 20 destinations
+      url: `${baseUrl}/visa-for-${nationality.code.toLowerCase()}-citizens/${country.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    }))
+  })
+
+  // Generate step-by-step guide pages
+  const guidePages = COUNTRIES.slice(0, 30).map((country) => ({
+    url: `${baseUrl}/how-to-apply/${country.slug}-evisa-step-by-step`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  // Generate comparison pages for similar destinations
+  const comparisonPages = [
+    {
+      url: `${baseUrl}/compare/kenya-vs-tanzania-evisa`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/compare/vietnam-vs-cambodia-evisa`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/compare/uae-gcc-countries-evisa`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/compare/east-africa-evisa-options`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+  ]
+
+  return [...staticPages, ...countryPages, ...destinationPages, ...blogPages, ...faqPages, ...visaTypePages, ...nationalityPages, ...guidePages, ...comparisonPages]
 }

@@ -7,8 +7,10 @@ import { Footer } from "./components/Footer";
 import { Providers } from "./providers";
 import ContactWidget from "../components/ui/ContactWidget";
 import StructuredData from "./components/StructuredData";
+import EnhancedStructuredData from "./components/EnhancedStructuredData";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 import SEOMonitor from "../components/shared/SEOMonitor";
+import SEOAnalysis from "../components/ui/SEOAnalysis";
 
 // Primary fonts
 const geistSans = Geist({
@@ -171,7 +173,7 @@ export default function RootLayout({
         style={{ position: 'relative', zIndex: 0 }}
       >
         <GoogleAnalytics />
-        <StructuredData />
+        <EnhancedStructuredData pageType="homepage" />
         <Providers>
           <TopBanner />
           <Navbar />
@@ -179,6 +181,7 @@ export default function RootLayout({
           <Footer />
           <ContactWidget />
           <SEOMonitor />
+          <SEOAnalysis />
         </Providers>
       </body>
     </html>

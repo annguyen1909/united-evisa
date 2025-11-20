@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Apply for eVisa | Worldmaxxing Global Services',
   description: 'Start your eVisa application with Worldmaxxing Global Services. Fast, secure, and easy process.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/apply',
+    canonical: 'https://worldmaxxing.com/apply',
   },
 };
 

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Important disclaimers and legal notices for Worldmaxxing Global Services Immigration Assistance Service - Understand our role, limitations, and your rights.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/disclaimers',
+    canonical: 'https://worldmaxxing.com/disclaimers',
   },
 };
 

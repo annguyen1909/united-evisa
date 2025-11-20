@@ -22,12 +22,12 @@ export default function PageSEO({
       "@graph": [
         {
           "@type": "Organization",
-          "@id": "https://visa.worldmaxxing.com/#organization",
+          "@id": "https://worldmaxxing.com/#organization",
           "name": "Worldmaxxing Global Services",
-          "url": "https://visa.worldmaxxing.com",
+          "url": "https://worldmaxxing.com",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://visa.worldmaxxing.com/images/logo.png",
+            "url": "https://worldmaxxing.com/images/logo.png",
             "width": 300,
             "height": 300
           },
@@ -46,18 +46,18 @@ export default function PageSEO({
         },
         {
           "@type": "WebSite",
-          "@id": "https://visa.worldmaxxing.com/#website",
-          "url": "https://visa.worldmaxxing.com",
+          "@id": "https://worldmaxxing.com/#website",
+          "url": "https://worldmaxxing.com",
           "name": "Worldmaxxing Global Services",
           "description": "Fast and secure eVisa applications for travelers worldwide",
           "publisher": {
-            "@id": "https://visa.worldmaxxing.com/#organization"
+            "@id": "https://worldmaxxing.com/#organization"
           },
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://visa.worldmaxxing.com/search?q={search_term_string}"
+              "urlTemplate": "https://worldmaxxing.com/search?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
           }
@@ -69,18 +69,18 @@ export default function PageSEO({
     if (pageType === 'destination' && countryName && countrySlug) {
       baseData["@graph"].push({
         "@type": "Service",
-        "@id": `https://visa.worldmaxxing.com/destination/${countrySlug}#service`,
+        "@id": `https://worldmaxxing.com/destination/${countrySlug}#service`,
         "name": `${countryName} eVisa Application Service`,
         "description": `Professional ${countryName} eVisa application assistance with fast processing and expert support`,
         "provider": {
-          "@id": "https://visa.worldmaxxing.com/#organization"
+          "@id": "https://worldmaxxing.com/#organization"
         },
         "areaServed": {
           "@type": "Country",
           "name": countryName
         },
         "serviceType": "Visa Application Service",
-        "url": `https://visa.worldmaxxing.com/destination/${countrySlug}`,
+        "url": `https://worldmaxxing.com/destination/${countrySlug}`,
         "offers": {
           "@type": "Offer",
           "priceCurrency": "USD",
@@ -88,7 +88,7 @@ export default function PageSEO({
           "priceValidUntil": "2025-12-31",
           "availability": "https://schema.org/InStock",
           "seller": {
-            "@id": "https://visa.worldmaxxing.com/#organization"
+            "@id": "https://worldmaxxing.com/#organization"
           }
         }
       });
@@ -100,19 +100,19 @@ export default function PageSEO({
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://visa.worldmaxxing.com"
+            "item": "https://worldmaxxing.com"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Destinations",
-            "item": "https://visa.worldmaxxing.com/destination"
+            "item": "https://worldmaxxing.com/destination"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": countryName,
-            "item": `https://visa.worldmaxxing.com/destination/${countrySlug}`
+            "item": `https://worldmaxxing.com/destination/${countrySlug}`
           }
         ]
       });
@@ -124,7 +124,7 @@ export default function PageSEO({
         "name": "eVisa Application Services",
         "description": "Fast, secure, and reliable eVisa application services for travelers worldwide",
         "provider": {
-          "@id": "https://visa.worldmaxxing.com/#organization"
+          "@id": "https://worldmaxxing.com/#organization"
         },
         "serviceType": "Travel Document Services",
         "hasOfferCatalog": {

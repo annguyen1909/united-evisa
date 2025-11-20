@@ -37,12 +37,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     alternates: {
-      canonical: `https://visa.worldmaxxing.com/destination/${countrySlug}`,
+      canonical: `https://worldmaxxing.com/destination/${countrySlug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://visa.worldmaxxing.com/destination/${countrySlug}`,
+      url: `https://worldmaxxing.com/destination/${countrySlug}`,
       siteName: 'Worldmaxxing Global Services',
       images: [
         {

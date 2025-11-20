@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Saudi Arabia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Saudi Arabia visa requirements guide. Apply for Saudi Arabia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/saudi-arabia",
+    url: "https://worldmaxxing.com/requirements-posts/saudi-arabia",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/saudi-arabia/saudi-arabia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/saudi-arabia",
+    canonical: "https://worldmaxxing.com/requirements-posts/saudi-arabia",
   },
   robots: {
     index: true,

@@ -157,12 +157,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: faq.description,
     keywords: `${faq.title}, ${faq.category} FAQ, visa questions, eVisa help, Worldmaxxing Global Services`,
     alternates: {
-      canonical: `https://visa.worldmaxxing.com/faq/${slug}/${faqSlug}`,
+      canonical: `https://worldmaxxing.com/faq/${slug}/${faqSlug}`,
     },
     openGraph: {
       title: `${faq.title} | ${faq.category} FAQ`,
       description: faq.description,
-      url: `https://visa.worldmaxxing.com/faq/${slug}/${faqSlug}`,
+      url: `https://worldmaxxing.com/faq/${slug}/${faqSlug}`,
       siteName: 'Worldmaxxing Global Services',
       images: [
         {

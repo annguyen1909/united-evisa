@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Blog | Worldmaxxing Global Services',
   description: 'Visa news, travel tips, and updates from Worldmaxxing Global Services.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/blog',
+    canonical: 'https://worldmaxxing.com/blog',
   },
 };
 

@@ -40,9 +40,9 @@ Disallow: /apply/confirmation
 Crawl-delay: 1
 
 # Sitemap locations
-Sitemap: https://visa.worldmaxxing.com/sitemap.xml
-Sitemap: https://visa.worldmaxxing.com/sitemap-blog.xml
-Sitemap: https://visa.worldmaxxing.com/sitemap-destinations.xml
+Sitemap: https://worldmaxxing.com/sitemap.xml
+Sitemap: https://worldmaxxing.com/sitemap-blog.xml
+Sitemap: https://worldmaxxing.com/sitemap-destinations.xml
 
 # Specific instructions for major search engines
 User-agent: Googlebot

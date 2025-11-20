@@ -4,9 +4,9 @@ export default function StructuredData() {
     "@type": "TravelAgency",
     "name": "Worldmaxxing Global Services",
     "description": "Professional eVisa application services for 50+ countries worldwide. Fast processing, 24/7 support, and guaranteed approval.",
-    "url": "https://visa.worldmaxxing.com",
-    "logo": "https://visa.worldmaxxing.com/images/logo.png",
-    "image": "https://visa.worldmaxxing.com/images/hero/hero.jpg",
+    "url": "https://worldmaxxing.com",
+    "logo": "https://worldmaxxing.com/images/logo.png",
+    "image": "https://worldmaxxing.com/images/hero/hero.jpg",
     "telephone": "+1 323 286 4541",
     "email": "support@worldmaxxing.com",
     "address": {

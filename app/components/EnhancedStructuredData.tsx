@@ -17,7 +17,7 @@ export default function EnhancedStructuredData({
   publishedDate,
   modifiedDate 
 }: StructuredDataProps) {
-  const baseUrl = 'https://visa.worldmaxxing.com'
+  const baseUrl = 'https://worldmaxxing.com'
   
   // Organization schema - appears on all pages
   const organizationSchema = {

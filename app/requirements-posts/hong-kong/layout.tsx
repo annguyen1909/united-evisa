@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Hong Kong Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Hong Kong visa requirements guide. Apply for Hong Kong eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/hong-kong",
+    url: "https://worldmaxxing.com/requirements-posts/hong-kong",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/hong-kong/hong-kong-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/hong-kong",
+    canonical: "https://worldmaxxing.com/requirements-posts/hong-kong",
   },
   robots: {
     index: true,

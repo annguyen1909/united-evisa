@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Malawi Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Malawi visa requirements guide. Apply for Malawi eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/malawi",
+    url: "https://worldmaxxing.com/requirements-posts/malawi",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/malawi/malawi-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/malawi",
+    canonical: "https://worldmaxxing.com/requirements-posts/malawi",
   },
   robots: {
     index: true,

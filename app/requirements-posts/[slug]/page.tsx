@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: post.description || `Visa requirements and information for ${post.title}`,
     keywords: `${post.title}, visa requirements, eVisa, travel, ${post.country}, Worldmaxxing Global Services`,
     alternates: {
-      canonical: `https://visa.worldmaxxing.com/requirements-posts/${slug}`,
+      canonical: `https://worldmaxxing.com/requirements-posts/${slug}`,
     },
     openGraph: {
       title: `${post.title} | Worldmaxxing Global Services`,
       description: post.description || `Visa requirements and information for ${post.title}`,
-      url: `https://visa.worldmaxxing.com/requirements-posts/${slug}`,
+      url: `https://worldmaxxing.com/requirements-posts/${slug}`,
       siteName: 'Worldmaxxing Global Services',
       images: [
         {

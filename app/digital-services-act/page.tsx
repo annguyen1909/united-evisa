@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Learn about our compliance with the EU Digital Services Act (DSA) and your rights as a user of our Worldmaxxing Global Services Immigration Assistance Service.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/digital-services-act',
+    canonical: 'https://worldmaxxing.com/digital-services-act',
   },
 };
 

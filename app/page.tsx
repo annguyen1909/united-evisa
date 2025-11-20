@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Fast & Secure eVisa Applications | Worldmaxxing Global Services",
     description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval. Start your visa application today!",
-    url: "https://visa.worldmaxxing.com",
+    url: "https://worldmaxxing.com",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     images: ["/images/hero/hero.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com",
+    canonical: "https://worldmaxxing.com",
   },
   robots: {
     index: true,

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { COUNTRIES } from '@/lib/countries'
 
 export default function blogSitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://visa.worldmaxxing.com'
+  const baseUrl = 'https://worldmaxxing.com'
   const currentDate = new Date()
 
   // Blog posts for each country

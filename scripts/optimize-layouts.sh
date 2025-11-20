@@ -24,12 +24,12 @@ export const metadata: Metadata = {
   title: '${display_name} eVisa Requirements & Application Guide | Worldmaxxing Global Services',
   description: 'Complete ${display_name} visa requirements guide. Step-by-step application process, fees, processing times, document checklist, and expert tips for ${display_name} eVisa applications.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/requirements-posts/${country}',
+    canonical: 'https://worldmaxxing.com/requirements-posts/${country}',
   },
   openGraph: {
     title: '${display_name} eVisa Requirements & Application Guide | Worldmaxxing Global Services',
     description: 'Complete ${display_name} visa requirements guide with step-by-step application process and expert tips.',
-    url: 'https://visa.worldmaxxing.com/requirements-posts/${country}',
+    url: 'https://worldmaxxing.com/requirements-posts/${country}',
     siteName: 'Worldmaxxing Global Services',
     type: 'article',
     images: [

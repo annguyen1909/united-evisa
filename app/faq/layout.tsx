@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   description: 'Find answers to common questions about eVisa applications, requirements, processing times, and travel tips for destinations worldwide.',
   keywords: 'FAQ, eVisa questions, visa help, travel FAQ, visa requirements',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/faq',
+    canonical: 'https://worldmaxxing.com/faq',
   },
   openGraph: {
     title: 'Frequently Asked Questions | Worldmaxxing Global Services',
     description: 'Find answers to common questions about eVisa applications, requirements, processing times, and travel tips.',
-    url: 'https://visa.worldmaxxing.com/faq',
+    url: 'https://worldmaxxing.com/faq',
     siteName: 'Worldmaxxing Global Services',
     images: [
       {

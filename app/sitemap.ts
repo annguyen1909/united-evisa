@@ -3,7 +3,7 @@ import { COUNTRIES } from '@/lib/countries'
 import { NATIONALITIES } from '@/lib/nationalities'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://visa.worldmaxxing.com'
+  const baseUrl = 'https://worldmaxxing.com'
   const currentDate = new Date()
 
   // Static pages with their priorities and change frequencies

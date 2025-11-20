@@ -32,7 +32,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://visa.worldmaxxing.com'),
+  metadataBase: new URL('https://worldmaxxing.com'),
   title: {
     default: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
     template: "%s | Worldmaxxing Global Services"
@@ -54,12 +54,12 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com',
+    canonical: 'https://worldmaxxing.com',
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://visa.worldmaxxing.com",
+    url: "https://worldmaxxing.com",
     title: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
     description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, and more. Fast processing, 24/7 support, and guaranteed approval.",
     siteName: "Worldmaxxing Global Services",
@@ -104,7 +104,6 @@ export const metadata: Metadata = {
     yandex: 'your-yandex-verification-code',
     yahoo: 'your-yahoo-verification-code',
   },
-  // Icons will be automatically detected from /app/favicon.ico
   other: {
     "application-name": "Worldmaxxing Global Services",
     "apple-mobile-web-app-capable": "yes",
@@ -112,15 +111,13 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-title": "Worldmaxxing",
     "format-detection": "telephone=no",
     "mobile-web-app-capable": "yes",
-    // Social media and Open Graph enhancements
     'og:image:width': '1200',
     'og:image:height': '630',
     'og:image:type': 'image/png',
-    'og:image:secure_url': 'https://visa.worldmaxxing.com/images/og-image.png',
+    'og:image:secure_url': 'https://worldmaxxing.com/images/og-image.png',
     'twitter:image:alt': 'Worldmaxxing Global Services - Fast & Secure eVisa Applications to 50+ Countries',
-    'twitter:domain': 'visa.worldmaxxing.com',
-    'twitter:url': 'https://visa.worldmaxxing.com',
-    // Additional branding
+    'twitter:domain': 'worldmaxxing.com',
+    'twitter:url': 'https://worldmaxxing.com',
     'theme-color': '#10b981',
     'msapplication-TileColor': '#10b981',
     'msapplication-TileImage': '/favicon-192x192.png',
@@ -158,8 +155,8 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Worldmaxxing Global Services",
-            "url": "https://visa.worldmaxxing.com",
-            "logo": "https://visa.worldmaxxing.com/images/logo.png",
+            "url": "https://worldmaxxing.com",
+            "logo": "https://worldmaxxing.com/images/logo.png",
             "sameAs": [
               "https://www.facebook.com/yourpage",
               "https://twitter.com/yourhandle",

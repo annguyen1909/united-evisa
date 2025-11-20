@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Learn about how we use cookies and similar technologies on our Worldmaxxing Global Services website to improve your experience and provide better services.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/cookie-policy',
+    canonical: 'https://worldmaxxing.com/cookie-policy',
   },
 };
 

@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   description: 'Check visa requirements instantly for 50+ countries. Verify eligibility, processing times, and fees. Free visa requirement checker with real-time results for all nationalities.',
   keywords: 'visa requirements, visa eligibility checker, travel visa, eVisa requirements, visa tool, travel requirements',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/check-requirements',
+    canonical: 'https://worldmaxxing.com/check-requirements',
   },
   openGraph: {
     title: 'Check Visa Requirements | eVisa Eligibility Tool | Worldmaxxing Global Services',
     description: 'Check visa requirements instantly for 50+ countries. Verify eligibility, processing times, and fees with our free tool.',
-    url: 'https://visa.worldmaxxing.com/check-requirements',
+    url: 'https://worldmaxxing.com/check-requirements',
     siteName: 'Worldmaxxing Global Services',
     type: 'website',
     images: [

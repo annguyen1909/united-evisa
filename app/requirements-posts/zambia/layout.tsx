@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Zambia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Zambia visa requirements guide. Apply for Zambia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/zambia",
+    url: "https://worldmaxxing.com/requirements-posts/zambia",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/zambia/zambia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/zambia",
+    canonical: "https://worldmaxxing.com/requirements-posts/zambia",
   },
   robots: {
     index: true,

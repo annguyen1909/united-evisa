@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Zimbabwe Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Zimbabwe visa requirements guide. Apply for Zimbabwe eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/zimbabwe",
+    url: "https://worldmaxxing.com/requirements-posts/zimbabwe",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/zimbabwe/zimbabwe-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/zimbabwe",
+    canonical: "https://worldmaxxing.com/requirements-posts/zimbabwe",
   },
   robots: {
     index: true,

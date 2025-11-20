@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Oman Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Oman visa requirements guide. Apply for Oman eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/oman",
+    url: "https://worldmaxxing.com/requirements-posts/oman",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/oman/oman-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/oman",
+    canonical: "https://worldmaxxing.com/requirements-posts/oman",
   },
   robots: {
     index: true,

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Sign Up | Worldmaxxing Global Services',
   description: 'Create your Worldmaxxing Global Services account to start your visa application process.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/signup',
+    canonical: 'https://worldmaxxing.com/signup',
   },
 };
 

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords:
     "eVisa refund policy, visa refund, money-back guarantee, immigration refund terms, United eVisa refunds",
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/refund-policy',
+    canonical: 'https://worldmaxxing.com/refund-policy',
   },
 };
 

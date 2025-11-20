@@ -33,12 +33,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: faq.description || `Frequently asked questions about ${faq.category} eVisa requirements and application process.`,
     keywords: `${faq.category} FAQ, ${faq.category} visa questions, eVisa help, visa requirements`,
     alternates: {
-      canonical: `https://visa.worldmaxxing.com/faq/${slug}`,
+      canonical: `https://worldmaxxing.com/faq/${slug}`,
     },
     openGraph: {
       title: `${faq.title} | Worldmaxxing Global Services`,
       description: faq.description || `Frequently asked questions about ${faq.category} eVisa.`,
-      url: `https://visa.worldmaxxing.com/faq/${slug}`,
+      url: `https://worldmaxxing.com/faq/${slug}`,
       siteName: 'Worldmaxxing Global Services',
       images: [
         {

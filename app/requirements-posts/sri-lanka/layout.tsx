@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sri Lanka Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Sri Lanka visa requirements guide. Apply for Sri Lanka eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/sri-lanka",
+    url: "https://worldmaxxing.com/requirements-posts/sri-lanka",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/sri-lanka/sri-lanka-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/sri-lanka",
+    canonical: "https://worldmaxxing.com/requirements-posts/sri-lanka",
   },
   robots: {
     index: true,

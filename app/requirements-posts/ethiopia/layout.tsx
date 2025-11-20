@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ethiopia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Ethiopia visa requirements guide. Apply for Ethiopia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/ethiopia",
+    url: "https://worldmaxxing.com/requirements-posts/ethiopia",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/ethiopia/ethiopia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/ethiopia",
+    canonical: "https://worldmaxxing.com/requirements-posts/ethiopia",
   },
   robots: {
     index: true,

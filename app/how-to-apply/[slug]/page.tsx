@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `How to Apply for ${country.name} eVisa - Step by Step Guide 2024`,
     description: `Complete step-by-step guide on how to apply for ${country.name} eVisa. Learn the application process, required documents, and get approved quickly.`,
     alternates: {
-      canonical: `https://visa.worldmaxxing.com/how-to-apply/${slug}`,
+      canonical: `https://worldmaxxing.com/how-to-apply/${slug}`,
     },
     keywords: [
       `how to apply ${country.name} visa`,
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: `How to Apply for ${country.name} eVisa - Step by Step Guide`,
       description: `Complete step-by-step guide on how to apply for ${country.name} eVisa. Learn the application process and get approved quickly.`,
-      url: `https://visa.worldmaxxing.com/how-to-apply/${slug}`,
+      url: `https://worldmaxxing.com/how-to-apply/${slug}`,
       images: [
         {
           url: `/images/guides/${countrySlug}-application-guide.jpg`,

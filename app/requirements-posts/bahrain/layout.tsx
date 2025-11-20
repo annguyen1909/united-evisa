@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bahrain Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Bahrain visa requirements guide. Apply for Bahrain eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/bahrain",
+    url: "https://worldmaxxing.com/requirements-posts/bahrain",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/bahrain/bahrain-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/bahrain",
+    canonical: "https://worldmaxxing.com/requirements-posts/bahrain",
   },
   robots: {
     index: true,

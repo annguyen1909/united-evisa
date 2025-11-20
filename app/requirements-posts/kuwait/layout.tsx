@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kuwait Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Kuwait visa requirements guide. Apply for Kuwait eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/kuwait",
+    url: "https://worldmaxxing.com/requirements-posts/kuwait",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/kuwait/kuwait-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/kuwait",
+    canonical: "https://worldmaxxing.com/requirements-posts/kuwait",
   },
   robots: {
     index: true,

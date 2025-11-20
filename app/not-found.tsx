@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: '404 Not Found | Worldmaxxing Global Services',
   description: 'Sorry, the page you are looking for does not exist. Return to the homepage or explore visa requirements.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/404',
+    canonical: 'https://worldmaxxing.com/404',
   },
   openGraph: {
     title: '404 Not Found | Worldmaxxing Global Services',
     description: 'Sorry, the page you are looking for does not exist. Return to the homepage or explore visa requirements.',
-    url: 'https://visa.worldmaxxing.com/404',
+    url: 'https://worldmaxxing.com/404',
     siteName: 'Worldmaxxing Global Services',
     images: [
       {

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rwanda Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Rwanda visa requirements guide. Apply for Rwanda eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/rwanda",
+    url: "https://worldmaxxing.com/requirements-posts/rwanda",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/rwanda/rwanda-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/rwanda",
+    canonical: "https://worldmaxxing.com/requirements-posts/rwanda",
   },
   robots: {
     index: true,

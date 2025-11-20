@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords:
     'United eVisa legal terms, terms of service, legal agreement, visa services legal, immigration legal',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/legal',
+    canonical: 'https://worldmaxxing.com/legal',
   },
 };
 

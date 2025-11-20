@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Learn how we collect, use, and protect your personal information when you use our Worldmaxxing Global Services Immigration Assistance Service.',
   alternates: {
-    canonical: 'https://visa.worldmaxxing.com/privacy',
+    canonical: 'https://worldmaxxing.com/privacy',
   },
 };
 

@@ -135,12 +135,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.description || `Read about ${post.title} on Worldmaxxing Global Services blog.`,
     keywords: `${post.title}, visa blog, travel tips, eVisa, Worldmaxxing Global Services`,
     alternates: {
-      canonical: `https://visa.worldmaxxing.com/blog/${slug}`,
+      canonical: `https://worldmaxxing.com/blog/${slug}`,
     },
     openGraph: {
       title: `${post.title} | Worldmaxxing Global Services`,
       description: post.description || `Read about ${post.title} on Worldmaxxing Global Services blog.`,
-      url: `https://visa.worldmaxxing.com/blog/${slug}`,
+      url: `https://worldmaxxing.com/blog/${slug}`,
       siteName: 'Worldmaxxing Global Services',
       images: [
         {

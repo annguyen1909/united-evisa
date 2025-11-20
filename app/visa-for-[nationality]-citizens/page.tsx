@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageProps) {
     title: `eVisa Applications for ${nationalityInfo.name} Citizens | Worldmaxxing`,
     description: `${nationalityInfo.name} citizens can apply for eVisas to 50+ countries. Fast processing, expert support, and guaranteed approval. Check visa requirements and apply online.`,
     alternates: {
-      canonical: `https://visa.worldmaxxing.com/visa-for-${nationality}-citizens`,
+      canonical: `https://worldmaxxing.com/visa-for-${nationality}-citizens`,
     },
     keywords: [
       `${nationalityInfo.name} visa applications`,
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: PageProps) {
     openGraph: {
       title: `eVisa Applications for ${nationalityInfo.name} Citizens`,
       description: `${nationalityInfo.name} citizens can apply for eVisas to 50+ countries. Fast processing, expert support, and guaranteed approval.`,
-      url: `https://visa.worldmaxxing.com/visa-for-${nationality}-citizens`,
+      url: `https://worldmaxxing.com/visa-for-${nationality}-citizens`,
       images: [
         {
           url: `/images/nationality/${nationality}-visa-services.jpg`,

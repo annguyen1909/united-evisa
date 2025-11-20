@@ -12,13 +12,13 @@ export default function CheckRequirementsStructuredData({
     "@type": "WebApplication",
     "name": "Visa Requirements Checker",
     "description": "Check visa requirements and eligibility for international travel to 50+ countries",
-    "url": "https://visa.worldmaxxing.com/check-requirements",
+    "url": "https://worldmaxxing.com/check-requirements",
     "applicationCategory": "TravelApplication",
     "operatingSystem": "Web Browser",
     "author": {
       "@type": "Organization",
       "name": "Worldmaxxing Global Services",
-      "url": "https://visa.worldmaxxing.com"
+      "url": "https://worldmaxxing.com"
     },
     "offers": {
       "@type": "Offer",

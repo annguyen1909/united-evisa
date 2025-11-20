@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Malaysia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
     description: "Complete Malaysia visa requirements guide. Apply for Malaysia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://visa.worldmaxxing.com/requirements-posts/malaysia",
+    url: "https://worldmaxxing.com/requirements-posts/malaysia",
     siteName: "Worldmaxxing Global Services",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/malaysia/malaysia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://visa.worldmaxxing.com/requirements-posts/malaysia",
+    canonical: "https://worldmaxxing.com/requirements-posts/malaysia",
   },
   robots: {
     index: true,

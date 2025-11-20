@@ -32,10 +32,8 @@ export async function generateStaticParams() {
   );
 }
 
-export async function generateMetadata(props: {
-  params: Params | Promise<Params>;
-}): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata(props: any): Promise<Metadata> {
+  const params = (await props.params) as Params;
   const country = COUNTRIES.find((c) => c.slug === params.country);
   const baseType = normalizeVisaTypeParam(params.visaType);
   const allowed = country ? getAllowedVisaTypes(country.slug) : [];
@@ -58,8 +56,8 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function VisaTypePage(props: { params: Params | Promise<Params> }) {
-  const params = await props.params;
+export default async function VisaTypePage(props: any) {
+  const params = (await props.params) as Params;
   const country = COUNTRIES.find((c) => c.slug === params.country);
   const baseType = normalizeVisaTypeParam(params.visaType);
   const allowed = country ? getAllowedVisaTypes(country.slug) : [];

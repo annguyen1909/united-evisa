@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { COUNTRIES } from '@/lib/countries'
 import { NATIONALITIES } from '@/lib/nationalities'
+import { getAllowedVisaTypes } from '@/lib/visa-types'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://worldmaxxing.com'
@@ -153,16 +154,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  // Generate visa type specific pages for more indexable content
-  const visaTypePages = COUNTRIES.flatMap((country) => {
-    const visaTypes = ['tourist', 'business', 'transit', 'medical']
-    return visaTypes.map((type) => ({
+  // Generate visa type specific pages only for allowed types per country.
+  const visaTypePages = COUNTRIES.flatMap((country) =>
+    getAllowedVisaTypes(country.slug).map((type) => ({
       url: `${baseUrl}/destination/${country.slug}/${type}-visa`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     }))
-  })
+  )
 
   // Generate nationality-specific landing pages for better targeting
   const popularNationalities = NATIONALITIES.filter(nat => 

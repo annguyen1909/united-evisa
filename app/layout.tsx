@@ -11,6 +11,7 @@ import EnhancedStructuredData from "./components/EnhancedStructuredData";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 import SEOMonitor from "../components/shared/SEOMonitor";
 import SEOAnalysis from "../components/ui/SEOAnalysis";
+import Script from 'next/script';
 
 // Primary fonts
 const geistSans = Geist({
@@ -163,6 +164,12 @@ export default function RootLayout({
               "https://www.linkedin.com/company/yourcompany"
             ]
           }) }}
+        />
+        {/* Google AdSense: page-level script to enable ads on all pages */}
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4911851888362550"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
         />
       </head>
       <body

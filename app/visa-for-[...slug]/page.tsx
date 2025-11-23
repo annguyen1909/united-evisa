@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 interface PageProps {
-  params: Promise<{ nationality: string; country: string }>
+  params: Promise<{ slug: string[] }>
 }
 
 // Generate static params for popular nationality-country combinations
@@ -15,8 +15,6 @@ export async function generateStaticParams() {
   const popularNationalities = ['us', 'gb', 'ca', 'au', 'de', 'fr', 'it', 'es', 'nl', 'jp', 'kr', 'sg']
   
   // Filter to only include countries that actually exist in our COUNTRIES array
-  // Include all countries (remove arbitrary slicing) so popular nationality pages
-  // are generated for the full country set and avoid unexpected 404s.
   const availableCountries = COUNTRIES.filter(country => country && country.slug)
   
   const combinations = []
@@ -29,8 +27,7 @@ export async function generateStaticParams() {
     if (nationalityExists) {
       for (const country of availableCountries) {
         combinations.push({
-          nationality: nationality,
-          country: country.slug,
+          slug: [`${nationality}-citizens`, country.slug],
         })
       }
     }
@@ -40,19 +37,22 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { nationality, country: countrySlug } = await params
+  const { slug } = await params
   
-  
-  // Add null checks
-  if (!nationality || !countrySlug) {
+  // Parse the slug: ['us-citizens', 'canada'] or ['us-citizens']
+  if (!slug || slug.length < 2) {
     return {
       title: 'Page Not Found',
       description: 'The requested page could not be found.'
     }
   }
   
+  // Extract nationality from 'us-citizens' -> 'us'
+  const nationalitySlug = slug[0].replace(/-citizens$/, '')
+  const countrySlug = slug[1]
+  
   const nationalityInfo = NATIONALITIES.find(n => 
-    n.code && n.code.toLowerCase() === nationality.toLowerCase()
+    n.code && n.code.toLowerCase() === nationalitySlug.toLowerCase()
   )
   const country = getCountryBySlug(countrySlug)
   
@@ -63,22 +63,25 @@ export async function generateMetadata({ params }: PageProps) {
     }
   }
 
-  return generateNationalitySEO(nationality, country)
+  return generateNationalitySEO(nationalitySlug, country)
 }
 
 export default async function NationalityCountryPage({ params }: PageProps) {
-  const { nationality, country: countrySlug } = await params
+  const { slug } = await params
   
-  // Add null checks
-  if (!nationality || !countrySlug) {
+  // Parse the slug: ['us-citizens', 'canada']
+  if (!slug || slug.length < 2) {
     notFound()
   }
+  
+  // Extract nationality from 'us-citizens' -> 'us'
+  const nationality = slug[0].replace(/-citizens$/, '')
+  const countrySlug = slug[1]
   
   const nationalityInfo = NATIONALITIES.find(n => 
     n.code && n.code.toLowerCase() === nationality.toLowerCase()
   )
   const country = getCountryBySlug(countrySlug)
-  
   if (!nationalityInfo || !country) {
     notFound()
   }

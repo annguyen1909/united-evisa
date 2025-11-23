@@ -171,8 +171,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   )
 
   const nationalityPages = popularNationalities.flatMap((nationality) => {
-    return COUNTRIES.slice(0, 20).map((country) => ({ // Limit to top 20 destinations
-      url: `${baseUrl}/visa-for-${nationality.code.toLowerCase()}-citizens/${country.slug}`,
+    return COUNTRIES.map((country) => ({ // Include all countries for comprehensive coverage
+      url: `${baseUrl}/visa-for/${nationality.code.toLowerCase()}-citizens/${country.slug}`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.75,

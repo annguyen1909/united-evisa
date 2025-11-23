@@ -52,6 +52,7 @@ export function getCountryBySlug(slug: string) {
 
   return COUNTRIES.find(
     (country) =>
+      country.slug.toLowerCase() === normalized || // match slug like 'canada'
       country.code.toLowerCase() === normalized || // match 2-letter code like 'vn'
       country.name.toLowerCase().replace(/\s+/g, '-') === normalized // match 'vietnam' (if used as slug)
   );

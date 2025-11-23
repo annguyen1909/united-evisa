@@ -12,6 +12,17 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url, 308)
   }
 
+  // Redirect /visa-for-{nationality}-citizens/{country} to /visa-for/{nationality}-citizens/{country}
+  const path = req.nextUrl.pathname
+  const visaForMatch = path.match(/^\/visa-for-([a-z]{2})-citizens\/([a-z-]+)$/)
+  if (visaForMatch) {
+    const nationality = visaForMatch[1]
+    const country = visaForMatch[2]
+    const url = req.nextUrl.clone()
+    url.pathname = `/visa-for/${nationality}-citizens/${country}`
+    return NextResponse.redirect(url, 308)
+  }
+
   return NextResponse.next()
 }
 

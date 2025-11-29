@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Combobox } from "@/components/ui/combobox";
 import { calculateIndiaVisaFee } from "@/lib/countries/india";
+import { SERVICE_FEE } from '@/lib/constants';
 
 interface VisaFeeCalculatorProps {
   selectedCountry: Country;
@@ -62,7 +63,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
 
   // Calculate fees
   let totalAmount = 0;
-  const serviceFee = 59.99;
+  const serviceFee = Number(SERVICE_FEE || 59.99);
   
   if (selectedCountry?.code?.toLowerCase() === "in" && visaType) {
     // For India, calculate fee for each passenger based on their nationality

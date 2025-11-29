@@ -141,7 +141,7 @@ export default async function NationalityCountryPage({ params }: PageProps) {
             <div className="text-center">
               <Link href={`/apply?country=${country.slug}&nationality=${nationality}`}>
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-lg px-12 py-3">
-                  Start Application - From $49.99
+                  Start Application - From $59.99
                 </Button>
               </Link>
             </div>
@@ -225,7 +225,7 @@ export default async function NationalityCountryPage({ params }: PageProps) {
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-semibold">Total Cost</span>
-                    <span className="text-emerald-600 font-bold">From $49.99</span>
+                    <span className="text-emerald-600 font-bold">From $59.99</span>
                   </div>
                   <div className="text-slate-600 text-sm">Includes government fees and service charges</div>
                 </div>

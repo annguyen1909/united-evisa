@@ -1,4 +1,6 @@
 import Script from 'next/script';
+import { getCountryBySlug } from '@/lib/countries';
+import { SERVICE_FEE } from '@/lib/constants';
 
 interface PageSEOProps {
   pageType: 'destination' | 'requirements' | 'faq' | 'homepage' | 'pricing';
@@ -67,6 +69,13 @@ export default function PageSEO({
 
     // Add page-specific structured data
     if (pageType === 'destination' && countryName && countrySlug) {
+      // try to compute a realistic 'starts from' price using country data
+      const countryObj: any = getCountryBySlug(countrySlug as string);
+      const visaFees = (countryObj?.visaTypes || []).map((v: any) => Number(v?.govFee || 0)).filter(Boolean);
+      const minGovFee = visaFees.length ? Math.min(...visaFees) : 0;
+      const serviceFee = Number(SERVICE_FEE || 0);
+      const startsFrom = ((minGovFee || 0) + serviceFee).toFixed(2);
+
       baseData["@graph"].push({
         "@type": "Service",
         "@id": `https://worldmaxxing.com/destination/${countrySlug}#service`,
@@ -84,7 +93,7 @@ export default function PageSEO({
         "offers": {
           "@type": "Offer",
           "priceCurrency": "USD",
-          "price": "59.99",
+          "price": startsFrom,
           "priceValidUntil": "2025-12-31",
           "availability": "https://schema.org/InStock",
           "seller": {

@@ -1,3 +1,6 @@
+import { getCountryBySlug } from '@/lib/countries';
+import { SERVICE_FEE } from '@/lib/constants';
+
 interface RequirementsPostStructuredDataProps {
   country: string;
   countrySlug: string;
@@ -7,6 +10,12 @@ export default function RequirementsPostStructuredData({
   country, 
   countrySlug 
 }: RequirementsPostStructuredDataProps) {
+  // Attempt to find country data to compute an accurate estimated cost
+  const countryObj = getCountryBySlug(countrySlug as string) as any;
+  const visaFees = (countryObj?.visaTypes || []).map((v: any) => Number(v?.govFee || 0)).filter(Boolean);
+  const minGovFee = visaFees.length ? Math.min(...visaFees) : 0;
+  const estimatedTotal = (minGovFee + Number(SERVICE_FEE || 0)).toFixed(2);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -107,7 +116,7 @@ export default function RequirementsPostStructuredData({
         "estimatedCost": {
           "@type": "MonetaryAmount",
           "currency": "USD",
-          "value": "59.99"
+          "value": estimatedTotal
         },
         "step": [
           {

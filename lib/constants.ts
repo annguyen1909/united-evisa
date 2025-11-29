@@ -100,3 +100,5 @@ export const COUNTRIES_DATA = [
         tourGroupSupport: "Expert assistance for Spanish visa applications.",
     },
 ];
+
+export const SERVICE_FEE = 59.99;

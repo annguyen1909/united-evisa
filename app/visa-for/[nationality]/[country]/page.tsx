@@ -3,6 +3,7 @@ import { COUNTRIES, getCountryBySlug } from '@/lib/countries'
 import { generateNationalitySEO } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import EnhancedStructuredData from '@/app/components/EnhancedStructuredData'
+import { SERVICE_FEE } from '@/lib/constants'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
@@ -164,7 +165,7 @@ export default async function NationalityCountryPage({ params }: PageProps) {
                         <p className="text-slate-600">{visaType.description}</p>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-emerald-600">${formatPrice(visaType.govFee + 49.99)}</div>
+                        <div className="text-2xl font-bold text-emerald-600">${formatPrice(visaType.govFee + Number(SERVICE_FEE))}</div>
                           <div className="text-sm text-slate-500">Total Cost</div>
                       </div>
                     </div>
@@ -224,7 +225,7 @@ export default async function NationalityCountryPage({ params }: PageProps) {
                 <div className="text-center">
               <Link href={`/apply?country=${country.slug}&nationality=${nationality}`}>
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-lg px-12 py-3 shadow-lg">
-                  Start Your Application Now - From ${formatPrice(primaryVisaType.govFee + 49.99)}
+                  Start Your Application Now - From ${formatPrice(primaryVisaType.govFee + Number(SERVICE_FEE))}
                 </Button>
               </Link>
               <p className="text-sm text-slate-600 mt-3">✓ Secure Payment ✓ 24/7 Support ✓ Money-Back Guarantee</p>
@@ -318,9 +319,9 @@ export default async function NationalityCountryPage({ params }: PageProps) {
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-semibold">Total Cost</span>
-                    <span className="text-emerald-600 font-bold">From ${formatPrice(primaryVisaType.govFee + 49.99)}</span>
+                    <span className="text-emerald-600 font-bold">From ${formatPrice(primaryVisaType.govFee + 59.99)}</span>
                   </div>
-                  <div className="text-slate-600 text-sm">Includes ${formatPrice(primaryVisaType.govFee)} government fee + $49.99 service charge</div>
+                    <div className="text-slate-600 text-sm">Includes ${formatPrice(primaryVisaType.govFee)} government fee + ${formatPrice(Number(SERVICE_FEE))} service charge</div>
                 </div>
                 <div>
                   <div className="flex justify-between items-center mb-2">
@@ -417,8 +418,8 @@ export default async function NationalityCountryPage({ params }: PageProps) {
               </div>
               <div className="border-l-4 border-orange-500 pl-6">
                 <h4 className="font-semibold text-lg mb-2">How much does a {country.name} eVisa cost for {nationalityInfo.name} citizens?</h4>
-                <p className="text-slate-600">
-                  The total cost is ${formatPrice(primaryVisaType.govFee + 49.99)}, which includes the government visa fee of ${formatPrice(primaryVisaType.govFee)} and our service charge of $49.99. {country.processingTime?.superUrgent && `Rush processing is available for ${country.processingTime.superUrgent} at an additional cost.`}
+                  <p className="text-slate-600">
+                  The total cost is ${formatPrice(primaryVisaType.govFee + Number(SERVICE_FEE))}, which includes the government visa fee of ${formatPrice(primaryVisaType.govFee)} and our service charge of ${formatPrice(Number(SERVICE_FEE))}. {country.processingTime?.superUrgent && `Rush processing is available for ${country.processingTime.superUrgent} at an additional cost.`}
                 </p>
               </div>
               <div className="border-l-4 border-red-500 pl-6">

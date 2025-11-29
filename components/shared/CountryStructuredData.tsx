@@ -1,10 +1,17 @@
 import { Country } from '@/lib/countries/type';
+import { SERVICE_FEE } from '@/lib/constants';
 
 interface CountryStructuredDataProps {
   country: Country;
 }
 
 export default function CountryStructuredData({ country }: CountryStructuredDataProps) {
+  // compute min government fee across visa types
+  const visaFees = (country?.visaTypes || []).map((v: any) => Number(v?.govFee || 0)).filter(Boolean);
+  const minGovFee = visaFees.length ? Math.min(...visaFees) : 0;
+  const serviceFee = Number(SERVICE_FEE || 0);
+  const startsFrom = (minGovFee + serviceFee).toFixed(2);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -98,11 +105,11 @@ export default function CountryStructuredData({ country }: CountryStructuredData
         "serviceType": `${visa.type} Visa Application`,
         "offers": {
           "@type": "Offer",
-          "price": visa.govFee?.toString() || "59.99",
+          "price": ((Number(visa?.govFee || 0) + serviceFee).toFixed(2)).toString(),
           "priceCurrency": "USD",
           "priceSpecification": {
             "@type": "PriceSpecification",
-            "price": visa.govFee?.toString() || "59.99",
+            "price": ((Number(visa?.govFee || 0) + serviceFee).toFixed(2)).toString(),
             "priceCurrency": "USD"
           },
           "availability": "https://schema.org/InStock"
@@ -150,9 +157,9 @@ export default function CountryStructuredData({ country }: CountryStructuredData
             "@type": "Question",
             "name": `How much does a ${country.name} visa cost?`,
             "acceptedAnswer": {
-              "@type": "Answer",
-              "text": `${country.name} visa fees vary by type and nationality. Government fees start from $${country.visaTypes[0]?.govFee || 25}, plus our service fee of $59.99. Check our calculator for exact pricing.`
-            }
+                "@type": "Answer",
+                "text": `${country.name} visa fees vary by type and nationality. Government fees start from $${minGovFee || 0}, plus our service fee of $${serviceFee.toFixed(2)}. Check our calculator for exact pricing. Total starts from $${startsFrom}.`
+              }
           }
         ]
       },

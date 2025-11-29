@@ -1,4 +1,5 @@
 import { COUNTRIES } from '@/lib/countries'
+import { SERVICE_FEE } from '@/lib/constants'
 
 interface StructuredDataProps {
   pageType?: 'homepage' | 'destination' | 'blog' | 'faq' | 'requirements'
@@ -138,32 +139,20 @@ export default function EnhancedStructuredData({
       "@type": "OfferCatalog",
       "name": `${countryName} Visa Types`,
       "itemListElement": [
-        {
+        // Compute simple offers: map first couple of visaTypes to offers including government fee + service fee
+        ...(COUNTRIES.find(c => c.slug === countrySlug)?.visaTypes || []).slice(0,2).map((v: any) => ({
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": `${countryName} Tourist eVisa`,
-            "description": `Tourist visa for ${countryName}`
+            "name": `${v.name}`,
+            "description": v.description || `${v.type} for ${countryName}`
           },
           "priceSpecification": {
             "@type": "PriceSpecification",
             "priceCurrency": "USD",
-            "price": "49.99"
+            "price": ((v.govFee || 0) + SERVICE_FEE).toFixed(2)
           }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": `${countryName} Business eVisa`,
-            "description": `Business visa for ${countryName}`
-          },
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "priceCurrency": "USD",
-            "price": "79.99"
-          }
-        }
+        }))
       ]
     },
     "url": `${baseUrl}/destination/${countrySlug}`,
@@ -240,7 +229,13 @@ export default function EnhancedStructuredData({
         "name": `How much does a ${countryName} eVisa cost?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `${countryName} eVisa fees start from $49.99 including government fees and service charges. Business visas may have different pricing.`
+          "text": (() => {
+            const info = COUNTRIES.find(c => c.name === countryName || c.slug === countryName)
+            if (!info || !info.visaTypes || info.visaTypes.length === 0) return `${countryName} eVisa fees vary by type and nationality.`
+            const minGov = Math.min(...info.visaTypes.map((vt: any) => vt.govFee || Infinity))
+            const total = (isFinite(minGov) ? (minGov + SERVICE_FEE) : SERVICE_FEE).toFixed(2)
+            return `${countryName} eVisa fees start from $${total} (government fee + $${SERVICE_FEE.toFixed(2)} service charge). Business visas may have different pricing.`
+          })()
         }
       },
       {

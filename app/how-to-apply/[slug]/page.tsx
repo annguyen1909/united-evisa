@@ -273,7 +273,7 @@ export default async function HowToApplyPage({ params }: PageProps) {
                 </li>
                 <li className="flex justify-between">
                   <span>Total Cost:</span>
-                  <span className="font-semibold text-emerald-600">From $49.99</span>
+                  <span className="font-semibold text-emerald-600">From $59.99</span>
                 </li>
               </ul>
             </div>

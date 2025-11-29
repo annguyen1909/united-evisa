@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Tajikistan Visa Requirements & eVisa Application",
-  description: "Complete Tajikistan visa requirements guide. Apply for Tajikistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Tajikistan visa application today.",
+  description: "Complete Tajikistan visa requirements guide. Apply for Tajikistan eVisa online with fast processing, 24/7 support. Start your Tajikistan visa application today.",
   keywords: [
     "Tajikistan visa requirements",
     "Tajikistan eVisa application",

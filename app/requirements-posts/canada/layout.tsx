@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Canada Visa Requirements & eVisa Application",
-  description: "Complete Canada visa requirements guide. Apply for Canada eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Canada visa application today.",
+  description: "Complete Canada visa requirements guide. Apply for Canada eVisa online with fast processing, 24/7 support. Start your Canada visa application today.",
   keywords: [
     "Canada visa requirements",
     "Canada eVisa application",

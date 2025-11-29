@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Indonesia Visa Requirements & eVisa Application",
-  description: "Complete Indonesia visa requirements guide. Apply for Indonesia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Indonesia visa application today.",
+  description: "Complete Indonesia visa requirements guide. Apply for Indonesia eVisa online with fast processing, 24/7 support. Start your Indonesia visa application today.",
   keywords: [
     "Indonesia visa requirements",
     "Indonesia eVisa application",

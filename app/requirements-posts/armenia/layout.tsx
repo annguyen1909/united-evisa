@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Armenia Visa Requirements & eVisa Application",
-  description: "Complete Armenia visa requirements guide. Apply for Armenia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Armenia visa application today.",
+  description: "Complete Armenia visa requirements guide. Apply for Armenia eVisa online with fast processing, 24/7 support. Start your Armenia visa application today.",
   keywords: [
     "Armenia visa requirements",
     "Armenia eVisa application",

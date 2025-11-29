@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Pakistan Visa Requirements & eVisa Application",
-  description: "Complete Pakistan visa requirements guide. Apply for Pakistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Pakistan visa application today.",
+  description: "Complete Pakistan visa requirements guide. Apply for Pakistan eVisa online with fast processing, 24/7 support. Start your Pakistan visa application today.",
   keywords: [
     "Pakistan visa requirements",
     "Pakistan eVisa application",

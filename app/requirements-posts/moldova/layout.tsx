@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Moldova Visa Requirements & eVisa Application",
-  description: "Complete Moldova visa requirements guide. Apply for Moldova eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Moldova visa application today.",
+  description: "Complete Moldova visa requirements guide. Apply for Moldova eVisa online with fast processing, 24/7 support. Start your Moldova visa application today.",
   keywords: [
     "Moldova visa requirements",
     "Moldova eVisa application",

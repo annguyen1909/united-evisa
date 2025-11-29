@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Oman Visa Requirements & eVisa Application",
-  description: "Complete Oman visa requirements guide. Apply for Oman eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Oman visa application today.",
+  description: "Complete Oman visa requirements guide. Apply for Oman eVisa online with fast processing, 24/7 support. Start your Oman visa application today.",
   keywords: [
     "Oman visa requirements",
     "Oman eVisa application",

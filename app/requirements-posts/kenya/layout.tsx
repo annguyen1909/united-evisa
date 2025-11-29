@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Kenya Visa Requirements & eVisa Application",
-  description: "Complete Kenya visa requirements guide. Apply for Kenya eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Kenya visa application today.",
+  description: "Complete Kenya visa requirements guide. Apply for Kenya eVisa online with fast processing, 24/7 support. Start your Kenya visa application today.",
   keywords: [
     "Kenya visa requirements",
     "Kenya eVisa application",

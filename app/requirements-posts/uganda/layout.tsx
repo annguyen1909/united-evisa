@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Uganda Visa Requirements & eVisa Application",
-  description: "Complete Uganda visa requirements guide. Apply for Uganda eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Uganda visa application today.",
+  description: "Complete Uganda visa requirements guide. Apply for Uganda eVisa online with fast processing, 24/7 support. Start your Uganda visa application today.",
   keywords: [
     "Uganda visa requirements",
     "Uganda eVisa application",

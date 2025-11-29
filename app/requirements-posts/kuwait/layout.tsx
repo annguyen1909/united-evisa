@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Kuwait Visa Requirements & eVisa Application",
-  description: "Complete Kuwait visa requirements guide. Apply for Kuwait eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Kuwait visa application today.",
+  description: "Complete Kuwait visa requirements guide. Apply for Kuwait eVisa online with fast processing, 24/7 support. Start your Kuwait visa application today.",
   keywords: [
     "Kuwait visa requirements",
     "Kuwait eVisa application",

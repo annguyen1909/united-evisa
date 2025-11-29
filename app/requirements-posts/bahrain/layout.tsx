@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Bahrain Visa Requirements & eVisa Application",
-  description: "Complete Bahrain visa requirements guide. Apply for Bahrain eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Bahrain visa application today.",
+  description: "Complete Bahrain visa requirements guide. Apply for Bahrain eVisa online with fast processing, 24/7 support. Start your Bahrain visa application today.",
   keywords: [
     "Bahrain visa requirements",
     "Bahrain eVisa application",

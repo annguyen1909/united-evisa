@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Ethiopia Visa Requirements & eVisa Application",
-  description: "Complete Ethiopia visa requirements guide. Apply for Ethiopia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Ethiopia visa application today.",
+  description: "Complete Ethiopia visa requirements guide. Apply for Ethiopia eVisa online with fast processing, 24/7 support. Start your Ethiopia visa application today.",
   keywords: [
     "Ethiopia visa requirements",
     "Ethiopia eVisa application",

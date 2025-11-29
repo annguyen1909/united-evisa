@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Sri Lanka Visa Requirements & eVisa Application",
-  description: "Complete Sri Lanka visa requirements guide. Apply for Sri Lanka eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Sri Lanka visa application today.",
+  description: "Complete Sri Lanka visa requirements guide. Apply for Sri Lanka eVisa online with fast processing, 24/7 support. Start your Sri Lanka visa application today.",
   keywords: [
     "Sri Lanka visa requirements",
     "Sri Lanka eVisa application",

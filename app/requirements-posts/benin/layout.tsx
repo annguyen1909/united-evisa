@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Benin Visa Requirements & eVisa Application",
-  description: "Complete Benin visa requirements guide. Apply for Benin eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Benin visa application today.",
+  description: "Complete Benin visa requirements guide. Apply for Benin eVisa online with fast processing, 24/7 support. Start your Benin visa application today.",
   keywords: [
     "Benin visa requirements",
     "Benin eVisa application",

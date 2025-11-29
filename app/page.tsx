@@ -11,7 +11,7 @@ import InternalLinks from "../components/shared/InternalLinks";
 
 export const metadata: Metadata = {
   title: "Fast & Secure eVisa Applications",
-  description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, UK, Saudi Arabia, and more. Fast processing, 24/7 support, and guaranteed approval. Start your visa application today!",
+  description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, UK, Saudi Arabia, and more. Start your visa application today!",
   keywords: [
     "eVisa application",
     "online visa",

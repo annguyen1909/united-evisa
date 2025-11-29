@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Malawi Visa Requirements & eVisa Application",
-  description: "Complete Malawi visa requirements guide. Apply for Malawi eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Malawi visa application today.",
+  description: "Complete Malawi visa requirements guide. Apply for Malawi eVisa online with fast processing, 24/7 support. Start your Malawi visa application today.",
   keywords: [
     "Malawi visa requirements",
     "Malawi eVisa application",

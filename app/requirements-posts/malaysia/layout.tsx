@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Malaysia Visa Requirements & eVisa Application",
-  description: "Complete Malaysia visa requirements guide. Apply for Malaysia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Malaysia visa application today.",
+  description: "Complete Malaysia visa requirements guide. Apply for Malaysia eVisa online with fast processing, 24/7 support. Start your Malaysia visa application today.",
   keywords: [
     "Malaysia visa requirements",
     "Malaysia eVisa application",

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Mongolia Visa Requirements & eVisa Application",
-  description: "Complete Mongolia visa requirements guide. Apply for Mongolia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Mongolia visa application today.",
+  description: "Complete Mongolia visa requirements guide. Apply for Mongolia eVisa online with fast processing, 24/7 support. Start your Mongolia visa application today.",
   keywords: [
     "Mongolia visa requirements",
     "Mongolia eVisa application",

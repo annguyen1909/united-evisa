@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Gabon Visa Requirements & eVisa Application",
-  description: "Complete Gabon visa requirements guide. Apply for Gabon eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Gabon visa application today.",
+  description: "Complete Gabon visa requirements guide. Apply for Gabon eVisa online with fast processing, 24/7 support. Start your Gabon visa application today.",
   keywords: [
     "Gabon visa requirements",
     "Gabon eVisa application",

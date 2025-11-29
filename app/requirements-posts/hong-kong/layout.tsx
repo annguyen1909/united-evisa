@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Hong Kong Visa Requirements & eVisa Application",
-  description: "Complete Hong Kong visa requirements guide. Apply for Hong Kong eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Hong Kong visa application today.",
+  description: "Complete Hong Kong visa requirements guide. Apply for Hong Kong eVisa online with fast processing, 24/7 support. Start your Hong Kong visa application today.",
   keywords: [
     "Hong Kong visa requirements",
     "Hong Kong eVisa application",

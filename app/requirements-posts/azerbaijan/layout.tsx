@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Azerbaijan Visa Requirements & eVisa Application",
-  description: "Complete Azerbaijan visa requirements guide. Apply for Azerbaijan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Azerbaijan visa application today.",
+  description: "Complete Azerbaijan visa requirements guide. Apply for Azerbaijan eVisa online with fast processing, 24/7 support. Start your Azerbaijan visa application today.",
   keywords: [
     "Azerbaijan visa requirements",
     "Azerbaijan eVisa application",

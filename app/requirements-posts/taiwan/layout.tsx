@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Taiwan Visa Requirements & eVisa Application",
-  description: "Complete Taiwan visa requirements guide. Apply for Taiwan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Taiwan visa application today.",
+  description: "Complete Taiwan visa requirements guide. Apply for Taiwan eVisa online with fast processing, 24/7 support. Start your Taiwan visa application today.",
   keywords: [
     "Taiwan visa requirements",
     "Taiwan eVisa application",

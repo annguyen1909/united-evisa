@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Zambia Visa Requirements & eVisa Application",
-  description: "Complete Zambia visa requirements guide. Apply for Zambia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Zambia visa application today.",
+  description: "Complete Zambia visa requirements guide. Apply for Zambia eVisa online with fast processing, 24/7 support. Start your Zambia visa application today.",
   keywords: [
     "Zambia visa requirements",
     "Zambia eVisa application",

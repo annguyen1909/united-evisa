@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Australia Visa Requirements & eVisa Application",
-  description: "Complete Australia visa requirements guide. Apply for Australia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Australia visa application today.",
+  description: "Complete Australia visa requirements guide. Apply for Australia eVisa online with fast processing, 24/7 support. Start your Australia visa application today.",
   keywords: [
     "Australia visa requirements",
     "Australia eVisa application",

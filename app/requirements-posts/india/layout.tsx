@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "India Visa Requirements & eVisa Application",
-  description: "Complete India visa requirements guide. Apply for India eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your India visa application today.",
+  description: "Complete India visa requirements guide. Apply for India eVisa online with fast processing, 24/7 support. Start your India visa application today.",
   keywords: [
     "India visa requirements",
     "India eVisa application",

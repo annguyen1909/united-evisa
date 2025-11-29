@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Qatar Visa Requirements & eVisa Application",
-  description: "Complete Qatar visa requirements guide. Apply for Qatar eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Qatar visa application today.",
+  description: "Complete Qatar visa requirements guide. Apply for Qatar eVisa online with fast processing, 24/7 support. Start your Qatar visa application today.",
   keywords: [
     "Qatar visa requirements",
     "Qatar eVisa application",

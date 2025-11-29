@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Zimbabwe Visa Requirements & eVisa Application",
-  description: "Complete Zimbabwe visa requirements guide. Apply for Zimbabwe eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Zimbabwe visa application today.",
+  description: "Complete Zimbabwe visa requirements guide. Apply for Zimbabwe eVisa online with fast processing, 24/7 support. Start your Zimbabwe visa application today.",
   keywords: [
     "Zimbabwe visa requirements",
     "Zimbabwe eVisa application",

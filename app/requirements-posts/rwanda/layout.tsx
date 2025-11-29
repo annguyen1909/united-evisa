@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Rwanda Visa Requirements & eVisa Application",
-  description: "Complete Rwanda visa requirements guide. Apply for Rwanda eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Rwanda visa application today.",
+  description: "Complete Rwanda visa requirements guide. Apply for Rwanda eVisa online with fast processing, 24/7 support. Start your Rwanda visa application today.",
   keywords: [
     "Rwanda visa requirements",
     "Rwanda eVisa application",

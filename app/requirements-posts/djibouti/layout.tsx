@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Djibouti Visa Requirements & eVisa Application",
-  description: "Complete Djibouti visa requirements guide. Apply for Djibouti eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Djibouti visa application today.",
+  description: "Complete Djibouti visa requirements guide. Apply for Djibouti eVisa online with fast processing, 24/7 support. Start your Djibouti visa application today.",
   keywords: [
     "Djibouti visa requirements",
     "Djibouti eVisa application",

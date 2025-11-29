@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Kyrgyzstan Visa Requirements & eVisa Application",
-  description: "Complete Kyrgyzstan visa requirements guide. Apply for Kyrgyzstan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Kyrgyzstan visa application today.",
+  description: "Complete Kyrgyzstan visa requirements guide. Apply for Kyrgyzstan eVisa online with fast processing, 24/7 support. Start your Kyrgyzstan visa application today.",
   keywords: [
     "Kyrgyzstan visa requirements",
     "Kyrgyzstan eVisa application",

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Georgia Visa Requirements & eVisa Application",
-  description: "Complete Georgia visa requirements guide. Apply for Georgia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Georgia visa application today.",
+  description: "Complete Georgia visa requirements guide. Apply for Georgia eVisa online with fast processing, 24/7 support. Start your Georgia visa application today.",
   keywords: [
     "Georgia visa requirements",
     "Georgia eVisa application",

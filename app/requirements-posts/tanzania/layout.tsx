@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Tanzania Visa Requirements & eVisa Application",
-  description: "Complete Tanzania visa requirements guide. Apply for Tanzania eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Tanzania visa application today.",
+  description: "Complete Tanzania visa requirements guide. Apply for Tanzania eVisa online with fast processing, 24/7 support. Start your Tanzania visa application today.",
   keywords: [
     "Tanzania visa requirements",
     "Tanzania eVisa application",

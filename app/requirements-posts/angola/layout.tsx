@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Angola Visa Requirements & eVisa Application",
-  description: "Complete Angola visa requirements guide. Apply for Angola eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Angola visa application today.",
+  description: "Complete Angola visa requirements guide. Apply for Angola eVisa online with fast processing, 24/7 support. Start your Angola visa application today.",
   keywords: [
     "Angola visa requirements",
     "Angola eVisa application",

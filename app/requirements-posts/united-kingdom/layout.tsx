@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "United Kingdom Visa Requirements & eVisa Application",
-  description: "Complete United Kingdom visa requirements guide. Apply for United Kingdom eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your United Kingdom visa application today.",
+  description: "Complete United Kingdom visa requirements guide. Apply for United Kingdom eVisa online with fast processing, 24/7 support. Start your United Kingdom visa application today.",
   keywords: [
     "United Kingdom visa requirements",
     "United Kingdom eVisa application",

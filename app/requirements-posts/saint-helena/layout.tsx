@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Saint Helena Visa Requirements & eVisa Application",
-  description: "Complete Saint Helena visa requirements guide. Apply for Saint Helena eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Saint Helena visa application today.",
+  description: "Complete Saint Helena visa requirements guide. Apply for Saint Helena eVisa online with fast processing, 24/7 support. Start your Saint Helena visa application today.",
   keywords: [
     "Saint Helena visa requirements",
     "Saint Helena eVisa application",

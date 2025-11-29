@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "New Zealand Visa Requirements & eVisa Application",
-  description: "Complete New Zealand visa requirements guide. Apply for New Zealand eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your New Zealand visa application today.",
+  description: "Complete New Zealand visa requirements guide. Apply for New Zealand eVisa online with fast processing, 24/7 support. Start your New Zealand visa application today.",
   keywords: [
     "New Zealand visa requirements",
     "New Zealand eVisa application",

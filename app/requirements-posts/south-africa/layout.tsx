@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "South Africa Visa Requirements & eVisa Application",
-  description: "Complete South Africa visa requirements guide. Apply for South Africa eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your South Africa visa application today.",
+  description: "Complete South Africa visa requirements guide. Apply for South Africa eVisa online with fast processing, 24/7 support. Start your South Africa visa application today.",
   keywords: [
     "South Africa visa requirements",
     "South Africa eVisa application",

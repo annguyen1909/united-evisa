@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Kazakhstan Visa Requirements & eVisa Application",
-  description: "Complete Kazakhstan visa requirements guide. Apply for Kazakhstan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Kazakhstan visa application today.",
+  description: "Complete Kazakhstan visa requirements guide. Apply for Kazakhstan eVisa online with fast processing, 24/7 support. Start your Kazakhstan visa application today.",
   keywords: [
     "Kazakhstan visa requirements",
     "Kazakhstan eVisa application",

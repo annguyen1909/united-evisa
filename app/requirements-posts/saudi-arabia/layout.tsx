@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Saudi Arabia Visa Requirements & eVisa Application",
-  description: "Complete Saudi Arabia visa requirements guide. Apply for Saudi Arabia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Saudi Arabia visa application today.",
+  description: "Complete Saudi Arabia visa requirements guide. Apply for Saudi Arabia eVisa online with fast processing, 24/7 support. Start your Saudi Arabia visa application today.",
   keywords: [
     "Saudi Arabia visa requirements",
     "Saudi Arabia eVisa application",

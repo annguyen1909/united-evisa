@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: '404 Not Found | Worldmaxxing Global Services',
+  title: '404 Not Found',
   description: 'Sorry, the page you are looking for does not exist. Return to the homepage or explore visa requirements.',
   alternates: {
     canonical: 'https://worldmaxxing.com/404',
   },
   openGraph: {
-    title: '404 Not Found | Worldmaxxing Global Services',
+    title: '404 Not Found',
     description: 'Sorry, the page you are looking for does not exist. Return to the homepage or explore visa requirements.',
     url: 'https://worldmaxxing.com/404',
     siteName: 'Worldmaxxing Global Services',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '404 Not Found | Worldmaxxing Global Services',
+    title: '404 Not Found',
     description: 'Sorry, the page you are looking for does not exist. Return to the homepage or explore visa requirements.',
     images: ['/images/logo.png'],
   },

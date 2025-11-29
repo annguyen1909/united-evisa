@@ -5,7 +5,7 @@ import { redirect } from "next/navigation"
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sign Up | Worldmaxxing Global Services',
+  title: 'Sign Up',
   description: 'Create your Worldmaxxing Global Services account to start your visa application process.',
   alternates: {
     canonical: 'https://worldmaxxing.com/signup',

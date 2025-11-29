@@ -15,26 +15,28 @@ for country in "${ALL_COUNTRIES[@]}"; do
   
   # Convert country name for display
   display_name=$(echo "$country" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
+  # Generate a safe lowercase slug for filesystem/URLs (ensures e.g. Vietnam -> vietnam)
+  slug=$(echo "$country" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/_/-/g')
   
   # Create optimized layout.tsx
-  cat > "app/requirements-posts/$country/layout.tsx" << EOF
+  cat > "app/requirements-posts/$slug/layout.tsx" << EOF
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '${display_name} eVisa Requirements & Application Guide | Worldmaxxing Global Services',
+  title: '${display_name} eVisa Requirements & Application Guide',
   description: 'Complete ${display_name} visa requirements guide. Step-by-step application process, fees, processing times, document checklist, and expert tips for ${display_name} eVisa applications.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/requirements-posts/${country}',
+    canonical: 'https://worldmaxxing.com/requirements-posts/${slug}',
   },
   openGraph: {
-    title: '${display_name} eVisa Requirements & Application Guide | Worldmaxxing Global Services',
+    title: '${display_name} eVisa Requirements & Application Guide',
     description: 'Complete ${display_name} visa requirements guide with step-by-step application process and expert tips.',
-    url: 'https://worldmaxxing.com/requirements-posts/${country}',
+    url: 'https://worldmaxxing.com/requirements-posts/${slug}',
     siteName: 'Worldmaxxing Global Services',
     type: 'article',
     images: [
       {
-        url: '/images/country/${country}/${country}-bg.jpg',
+        url: '/images/country/${slug}/${slug}-bg.jpg',
         width: 1200,
         height: 630,
         alt: '${display_name} visa requirements and application guide',
@@ -51,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '${display_name} eVisa Requirements & Application Guide',
     description: 'Complete ${display_name} visa requirements guide with step-by-step application process.',
-    images: ['/images/country/${country}/${country}-bg.jpg'],
+    images: ['/images/country/${slug}/${slug}-bg.jpg'],
   },
   robots: {
     index: true,

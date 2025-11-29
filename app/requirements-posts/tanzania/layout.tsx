@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Tanzania Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Tanzania Visa Requirements & eVisa Application",
   description: "Complete Tanzania visa requirements guide. Apply for Tanzania eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Tanzania visa application today.",
   keywords: [
     "Tanzania visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Tanzania visa application form"
   ].join(", "),
   openGraph: {
-    title: "Tanzania Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Tanzania Visa Requirements & eVisa Application",
     description: "Complete Tanzania visa requirements guide. Apply for Tanzania eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/tanzania",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/tanzania/tanzania-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Tanzania Visa Requirements - Worldmaxxing Global Services",
+        alt: "Tanzania Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tanzania Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Tanzania Visa Requirements & eVisa Application",
     description: "Complete Tanzania visa requirements guide. Apply for Tanzania eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/tanzania/tanzania-bg.jpg"],
   },

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Oman Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Oman Visa Requirements & eVisa Application",
   description: "Complete Oman visa requirements guide. Apply for Oman eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Oman visa application today.",
   keywords: [
     "Oman visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Oman visa application form"
   ].join(", "),
   openGraph: {
-    title: "Oman Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Oman Visa Requirements & eVisa Application",
     description: "Complete Oman visa requirements guide. Apply for Oman eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/oman",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/oman/oman-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Oman Visa Requirements - Worldmaxxing Global Services",
+        alt: "Oman Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Oman Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Oman Visa Requirements & eVisa Application",
     description: "Complete Oman visa requirements guide. Apply for Oman eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/oman/oman-bg.jpg"],
   },

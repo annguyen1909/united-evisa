@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Taiwan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Taiwan Visa Requirements & eVisa Application",
   description: "Complete Taiwan visa requirements guide. Apply for Taiwan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Taiwan visa application today.",
   keywords: [
     "Taiwan visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Taiwan visa application form"
   ].join(", "),
   openGraph: {
-    title: "Taiwan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Taiwan Visa Requirements & eVisa Application",
     description: "Complete Taiwan visa requirements guide. Apply for Taiwan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/taiwan",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/taiwan/taiwan-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Taiwan Visa Requirements - Worldmaxxing Global Services",
+        alt: "Taiwan Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Taiwan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Taiwan Visa Requirements & eVisa Application",
     description: "Complete Taiwan visa requirements guide. Apply for Taiwan eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/taiwan/taiwan-bg.jpg"],
   },

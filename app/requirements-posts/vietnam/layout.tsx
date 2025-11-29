@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Vietnam Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Vietnam Visa Requirements & eVisa Application",
   description: "Complete Vietnam visa requirements guide. Apply for Vietnam eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Vietnam visa application today.",
   keywords: [
     "Vietnam visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Vietnam visa application form"
   ].join(", "),
   openGraph: {
-    title: "Vietnam Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Vietnam Visa Requirements & eVisa Application",
     description: "Complete Vietnam visa requirements guide. Apply for Vietnam eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/vietnam",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/vietnam/vietnam-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Vietnam Visa Requirements - Worldmaxxing Global Services",
+        alt: "Vietnam Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,23 +35,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vietnam Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Vietnam Visa Requirements & eVisa Application",
     description: "Complete Vietnam visa requirements guide. Apply for Vietnam eVisa online with fast processing, 24/7 support.",
-    images: ["/images/country/vietnam/vietnam-bg.jpg"],
-  },
-  alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/vietnam",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+    images: [
+      {
+        url: "/images/country/vietnam/vietnam-bg.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Vietnam Visa Requirements",
+      }
+    ],
   },
 };
 

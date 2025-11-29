@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Rwanda Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Rwanda Visa Requirements & eVisa Application",
   description: "Complete Rwanda visa requirements guide. Apply for Rwanda eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Rwanda visa application today.",
   keywords: [
     "Rwanda visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Rwanda visa application form"
   ].join(", "),
   openGraph: {
-    title: "Rwanda Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Rwanda Visa Requirements & eVisa Application",
     description: "Complete Rwanda visa requirements guide. Apply for Rwanda eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/rwanda",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/rwanda/rwanda-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Rwanda Visa Requirements - Worldmaxxing Global Services",
+        alt: "Rwanda Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rwanda Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Rwanda Visa Requirements & eVisa Application",
     description: "Complete Rwanda visa requirements guide. Apply for Rwanda eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/rwanda/rwanda-bg.jpg"],
   },

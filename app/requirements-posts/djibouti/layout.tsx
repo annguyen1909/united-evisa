@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Djibouti Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Djibouti Visa Requirements & eVisa Application",
   description: "Complete Djibouti visa requirements guide. Apply for Djibouti eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Djibouti visa application today.",
   keywords: [
     "Djibouti visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Djibouti visa application form"
   ].join(", "),
   openGraph: {
-    title: "Djibouti Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Djibouti Visa Requirements & eVisa Application",
     description: "Complete Djibouti visa requirements guide. Apply for Djibouti eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/djibouti",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/djibouti/djibouti-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Djibouti Visa Requirements - Worldmaxxing Global Services",
+        alt: "Djibouti Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Djibouti Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Djibouti Visa Requirements & eVisa Application",
     description: "Complete Djibouti visa requirements guide. Apply for Djibouti eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/djibouti/djibouti-bg.jpg"],
   },

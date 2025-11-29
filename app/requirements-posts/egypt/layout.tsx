@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Egypt Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Egypt Visa Requirements & eVisa Application",
   description: "Complete Egypt visa requirements guide. Apply for Egypt eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Egypt visa application today.",
   keywords: [
     "Egypt visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Egypt visa application form"
   ].join(", "),
   openGraph: {
-    title: "Egypt Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Egypt Visa Requirements & eVisa Application",
     description: "Complete Egypt visa requirements guide. Apply for Egypt eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/egypt",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/egypt/egypt-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Egypt Visa Requirements - Worldmaxxing Global Services",
+        alt: "Egypt Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Egypt Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Egypt Visa Requirements & eVisa Application",
     description: "Complete Egypt visa requirements guide. Apply for Egypt eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/egypt/egypt-bg.jpg"],
   },

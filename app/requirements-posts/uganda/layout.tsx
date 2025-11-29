@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Uganda Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Uganda Visa Requirements & eVisa Application",
   description: "Complete Uganda visa requirements guide. Apply for Uganda eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Uganda visa application today.",
   keywords: [
     "Uganda visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Uganda visa application form"
   ].join(", "),
   openGraph: {
-    title: "Uganda Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Uganda Visa Requirements & eVisa Application",
     description: "Complete Uganda visa requirements guide. Apply for Uganda eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/uganda",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/uganda/uganda-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Uganda Visa Requirements - Worldmaxxing Global Services",
+        alt: "Uganda Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Uganda Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Uganda Visa Requirements & eVisa Application",
     description: "Complete Uganda visa requirements guide. Apply for Uganda eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/uganda/uganda-bg.jpg"],
   },

@@ -15,8 +15,10 @@ for country in "${REMAINING_COUNTRIES[@]}"; do
   
   # Convert country name for display (capitalize and handle hyphens)
   display_name=$(echo "$country" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
+    # Lowercase slug for file paths and URLs
+    slug=$(echo "$country" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/_/-/g')
   
-  FILE="app/requirements-posts/$country/page.tsx"
+    FILE="app/requirements-posts/$slug/page.tsx"
   
   # Backup the original file
   cp "$FILE" "${FILE}.backup"
@@ -33,12 +35,12 @@ import BreadcrumbNavigation from '\''@/components/shared/BreadcrumbNavigation'\'
   { label: "'"$display_name"' Requirements" }\
 ];\'$'\n' "$FILE"
 
-  # 3. Add structured data and breadcrumbs after return statement
+  # 3. Add structured data and breadcrumbs after return statement (use lowercase slug)
   sed -i '' '/return (/,/className="min-h-screen/ {
     /return (/c\
   return (\
     <>\
-      <RequirementsPostStructuredData country="'"$display_name"'" countrySlug="'"$country"'" />\
+      <RequirementsPostStructuredData country="'"$display_name"'" countrySlug="'"$slug"'" />\
       \
       {/* Breadcrumb Navigation */}\
       <div className="w-full bg-white border-b border-slate-200">\

@@ -25,12 +25,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!country) {
     return {
-      title: 'Country Not Found | Worldmaxxing Global Services',
+      title: 'Country Not Found',
       description: 'The requested country page could not be found.',
     };
   }
 
-  const title = `${country.name} eVisa Requirements & Application | Worldmaxxing Global Services`;
+  const title = `${country.name} eVisa Requirements & Application`;
   const description = `Apply for ${country.name} eVisa online. Fast processing (${country.processingTime?.normal || '24-72 hours'}), 24/7 support, expert assistance. Get your ${country.name} visa quickly and securely.`;
 
   return {

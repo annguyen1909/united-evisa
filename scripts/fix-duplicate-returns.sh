@@ -15,8 +15,10 @@ for country in "${ALL_COUNTRIES[@]}"; do
   
   # Convert country name for display
   display_name=$(echo "$country" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
+  # Lowercase slug for paths
+  slug=$(echo "$country" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/_/-/g')
   
-  FILE="app/requirements-posts/$country/page.tsx"
+  FILE="app/requirements-posts/$slug/page.tsx"
   
   # Remove the duplicate return statement and fix the structure
   # This removes lines that have the pattern: "return (" followed by just opening div

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Moldova Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Moldova Visa Requirements & eVisa Application",
   description: "Complete Moldova visa requirements guide. Apply for Moldova eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Moldova visa application today.",
   keywords: [
     "Moldova visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Moldova visa application form"
   ].join(", "),
   openGraph: {
-    title: "Moldova Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Moldova Visa Requirements & eVisa Application",
     description: "Complete Moldova visa requirements guide. Apply for Moldova eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/moldova",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/moldova/moldova-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Moldova Visa Requirements - Worldmaxxing Global Services",
+        alt: "Moldova Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Moldova Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Moldova Visa Requirements & eVisa Application",
     description: "Complete Moldova visa requirements guide. Apply for Moldova eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/moldova/moldova-bg.jpg"],
   },

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Armenia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Armenia Visa Requirements & eVisa Application",
   description: "Complete Armenia visa requirements guide. Apply for Armenia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Armenia visa application today.",
   keywords: [
     "Armenia visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Armenia visa application form"
   ].join(", "),
   openGraph: {
-    title: "Armenia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Armenia Visa Requirements & eVisa Application",
     description: "Complete Armenia visa requirements guide. Apply for Armenia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/armenia",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/armenia/armenia-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Armenia Visa Requirements - Worldmaxxing Global Services",
+        alt: "Armenia Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Armenia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Armenia Visa Requirements & eVisa Application",
     description: "Complete Armenia visa requirements guide. Apply for Armenia eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/armenia/armenia-bg.jpg"],
   },

@@ -23,8 +23,48 @@ export function generateSEOMeta({
   const baseUrl = 'https://worldmaxxing.com'
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : undefined
 
+  const SITE_NAME = 'Worldmaxxing Global Services'
+
+  function buildTitle(inputTitle: string) {
+    if (!inputTitle) return SITE_NAME
+    let clean = inputTitle.trim()
+    const hasSiteName = clean.toLowerCase().includes(SITE_NAME.toLowerCase())
+
+    if (!hasSiteName) {
+      clean = `${clean} | ${SITE_NAME}`
+    } else {
+      // Normalize repeated separators and whitespace
+      const parts = clean.split('|').map(p => p.trim()).filter(Boolean)
+      // If the site name appears multiple times, keep only one occurrence at the end
+      const filteredParts = parts.filter((p, i) => {
+        if (p.toLowerCase() === SITE_NAME.toLowerCase()) return i === parts.length - 1
+        return true
+      })
+      clean = filteredParts.join(' | ')
+    }
+
+    // Truncate to reasonable length for SERP display (~60 chars) while keeping the site name
+    const maxLen = 60
+    if (clean.length > maxLen) {
+      const separator = ' | '
+      if (clean.includes(separator)) {
+        const [left, ...rest] = clean.split(separator)
+        const suffix = rest.join(separator)
+        const available = Math.max(10, maxLen - (suffix.length + separator.length))
+        const truncatedLeft = left.length > available ? left.slice(0, available - 1).trimEnd() + '…' : left
+        clean = `${truncatedLeft}${separator}${suffix}`
+      } else {
+        clean = clean.slice(0, maxLen - 1).trimEnd() + '…'
+      }
+    }
+
+    return clean
+  }
+
+  const normalizedTitle = buildTitle(title)
+
   return {
-    title: `${title} | Worldmaxxing Global Services`,
+    title: normalizedTitle,
     description,
     keywords: keywords.join(', '),
     alternates: fullCanonical ? {
@@ -45,7 +85,7 @@ export function generateSEOMeta({
       },
     },
     openGraph: {
-      title: `${title} | Worldmaxxing Global Services`,
+      title: normalizedTitle,
       description,
       url: fullCanonical,
       siteName: 'Worldmaxxing Global Services',
@@ -62,7 +102,7 @@ export function generateSEOMeta({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | Worldmaxxing Global Services`,
+      title: normalizedTitle,
       description,
       images: [ogImage],
       creator: '@worldmaxxing',

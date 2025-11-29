@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   if (!validSlugs.includes(slug)) {
     return {
-      title: 'Comparison Not Found | Worldmaxxing Global Services',
+      title: 'Comparison Not Found',
       description: 'The requested comparison page could not be found.',
     };
   }

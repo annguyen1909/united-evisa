@@ -15,8 +15,10 @@ for country in "${ALL_COUNTRIES[@]}"; do
   
   # Convert country name for display (capitalize)
   display_name=$(echo "$country" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
+  # Lowercase slug for paths
+  slug=$(echo "$country" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/_/-/g')
   
-  FILE="app/requirements-posts/$country/page.tsx"
+  FILE="app/requirements-posts/$slug/page.tsx"
   
   # First, ensure there's a proper return statement before the fragment
   sed -i '' '/^[[:space:]]*<>$/i\
@@ -37,7 +39,7 @@ for country in "${ALL_COUNTRIES[@]}"; do
   echo "}" >> "$FILE"
   
   # Fix the country name in structured data to be properly capitalized
-  sed -i '' "s/country=\"$country\"/country=\"$display_name\"/g" "$FILE"
+  sed -i '' "s/country=\"$slug\"/country=\"$display_name\"/g" "$FILE"
   
   echo "✅ Fixed JSX structure for $country"
 done

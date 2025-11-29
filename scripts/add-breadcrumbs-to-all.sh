@@ -14,16 +14,18 @@ for country in "${REMAINING_COUNTRIES[@]}"; do
   
   # Convert country name for display (capitalize first letter, replace hyphens with spaces)
   display_name=$(echo "$country" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
+  # Lowercase slug for file paths
+  slug=$(echo "$country" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/_/-/g')
   
   # Add import statement if not already present
-  if ! grep -q "import BreadcrumbNavigation" "app/requirements-posts/$country/page.tsx"; then
+  if ! grep -q "import BreadcrumbNavigation" "app/requirements-posts/$slug/page.tsx"; then
     sed -i '' '/import CheckEligibilityWithPreset/a\
 import BreadcrumbNavigation from '\''../../../components/shared/BreadcrumbNavigation'\'';
-' "app/requirements-posts/$country/page.tsx"
+' "app/requirements-posts/$slug/page.tsx"
   fi
   
   # Add breadcrumb items if not already present
-  if ! grep -q "breadcrumbItems" "app/requirements-posts/$country/page.tsx"; then
+  if ! grep -q "breadcrumbItems" "app/requirements-posts/$slug/page.tsx"; then
     sed -i '' '/const \[activeSection, setActiveSection\] = useState/a\
 \
   // Breadcrumb items\
@@ -31,11 +33,11 @@ import BreadcrumbNavigation from '\''../../../components/shared/BreadcrumbNaviga
     { label: "Visa Requirements", href: "/requirements-posts" },\
     { label: "'"$display_name"' Requirements" }\
   ];
-' "app/requirements-posts/$country/page.tsx"
+' "app/requirements-posts/$slug/page.tsx"
   fi
   
   # Add breadcrumb navigation component if not already present
-  if ! grep -q "BreadcrumbNavigation items={breadcrumbItems}" "app/requirements-posts/$country/page.tsx"; then
+  if ! grep -q "BreadcrumbNavigation items={breadcrumbItems}" "app/requirements-posts/$slug/page.tsx"; then
     sed -i '' '/return (/,/Hero Section/ {
       /Hero Section/i\
       {/* Breadcrumb Navigation */}\
@@ -45,7 +47,7 @@ import BreadcrumbNavigation from '\''../../../components/shared/BreadcrumbNaviga
         </div>\
       </div>\
       \
-    }' "app/requirements-posts/$country/page.tsx"
+    }' "app/requirements-posts/$slug/page.tsx"
   fi
   
   echo "✅ Completed $country"

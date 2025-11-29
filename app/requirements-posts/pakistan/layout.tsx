@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Pakistan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Pakistan Visa Requirements & eVisa Application",
   description: "Complete Pakistan visa requirements guide. Apply for Pakistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Pakistan visa application today.",
   keywords: [
     "Pakistan visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Pakistan visa application form"
   ].join(", "),
   openGraph: {
-    title: "Pakistan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Pakistan Visa Requirements & eVisa Application",
     description: "Complete Pakistan visa requirements guide. Apply for Pakistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/pakistan",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/pakistan/pakistan-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Pakistan Visa Requirements - Worldmaxxing Global Services",
+        alt: "Pakistan Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pakistan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Pakistan Visa Requirements & eVisa Application",
     description: "Complete Pakistan visa requirements guide. Apply for Pakistan eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/pakistan/pakistan-bg.jpg"],
   },

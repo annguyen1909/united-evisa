@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Saint Helena Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Saint Helena Visa Requirements & eVisa Application",
   description: "Complete Saint Helena visa requirements guide. Apply for Saint Helena eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Saint Helena visa application today.",
   keywords: [
     "Saint Helena visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Saint Helena visa application form"
   ].join(", "),
   openGraph: {
-    title: "Saint Helena Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Saint Helena Visa Requirements & eVisa Application",
     description: "Complete Saint Helena visa requirements guide. Apply for Saint Helena eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/saint-helena",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/saint-helena/saint-helena-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Saint Helena Visa Requirements - Worldmaxxing Global Services",
+        alt: "Saint Helena Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saint Helena Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Saint Helena Visa Requirements & eVisa Application",
     description: "Complete Saint Helena visa requirements guide. Apply for Saint Helena eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/saint-helena/saint-helena-bg.jpg"],
   },

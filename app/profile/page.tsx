@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Profile | Worldmaxxing Global Services',
+  title: 'Profile',
   description: 'View and manage your Worldmaxxing Global Services account and visa applications.',
   alternates: {
     canonical: 'https://worldmaxxing.com/profile',

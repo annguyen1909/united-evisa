@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Uzbekistan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Uzbekistan Visa Requirements & eVisa Application",
   description: "Complete Uzbekistan visa requirements guide. Apply for Uzbekistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Uzbekistan visa application today.",
   keywords: [
     "Uzbekistan visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Uzbekistan visa application form"
   ].join(", "),
   openGraph: {
-    title: "Uzbekistan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Uzbekistan Visa Requirements & eVisa Application",
     description: "Complete Uzbekistan visa requirements guide. Apply for Uzbekistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/uzbekistan",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/uzbekistan/uzbekistan-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Uzbekistan Visa Requirements - Worldmaxxing Global Services",
+        alt: "Uzbekistan Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Uzbekistan Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Uzbekistan Visa Requirements & eVisa Application",
     description: "Complete Uzbekistan visa requirements guide. Apply for Uzbekistan eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/uzbekistan/uzbekistan-bg.jpg"],
   },

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Bahrain Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Bahrain Visa Requirements & eVisa Application",
   description: "Complete Bahrain visa requirements guide. Apply for Bahrain eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Bahrain visa application today.",
   keywords: [
     "Bahrain visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Bahrain visa application form"
   ].join(", "),
   openGraph: {
-    title: "Bahrain Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Bahrain Visa Requirements & eVisa Application",
     description: "Complete Bahrain visa requirements guide. Apply for Bahrain eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/bahrain",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/bahrain/bahrain-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Bahrain Visa Requirements - Worldmaxxing Global Services",
+        alt: "Bahrain Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bahrain Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Bahrain Visa Requirements & eVisa Application",
     description: "Complete Bahrain visa requirements guide. Apply for Bahrain eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/bahrain/bahrain-bg.jpg"],
   },

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "South Africa Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "South Africa Visa Requirements & eVisa Application",
   description: "Complete South Africa visa requirements guide. Apply for South Africa eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your South Africa visa application today.",
   keywords: [
     "South Africa visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "South Africa visa application form"
   ].join(", "),
   openGraph: {
-    title: "South Africa Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "South Africa Visa Requirements & eVisa Application",
     description: "Complete South Africa visa requirements guide. Apply for South Africa eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/south-africa",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/south-africa/south-africa-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "South Africa Visa Requirements - Worldmaxxing Global Services",
+        alt: "South Africa Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "South Africa Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "South Africa Visa Requirements & eVisa Application",
     description: "Complete South Africa visa requirements guide. Apply for South Africa eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/south-africa/south-africa-bg.jpg"],
   },

@@ -13,8 +13,10 @@ echo "Fixing breadcrumb links for ${#ALL_COUNTRIES[@]} countries..."
 for country in "${ALL_COUNTRIES[@]}"; do
   echo "Fixing breadcrumb for $country..."
   
+  # Lowercase slug for path
+  slug=$(echo "$country" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/_/-/g')
   # Replace /requirements-posts with /check-requirements in breadcrumb items
-  sed -i '' 's|{ label: "Visa Requirements", href: "/requirements-posts" },|{ label: "Check Visa Requirements", href: "/check-requirements" },|g' "app/requirements-posts/$country/page.tsx"
+  sed -i '' 's|{ label: "Visa Requirements", href: "/requirements-posts" },|{ label: "Check Visa Requirements", href: "/check-requirements" },|g' "app/requirements-posts/$slug/page.tsx"
   
   echo "✅ Fixed breadcrumb for $country"
 done

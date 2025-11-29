@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Worldmaxxing Global Services Immigration Assistance Service',
+  title: 'Terms of Service',
   description:
     'Terms of Service Agreement for Worldmaxxing Global Services Immigration Assistance Service - Learn about eligibility, fees, responsibilities, and legal terms.',
   alternates: {

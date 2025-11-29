@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Malawi Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Malawi Visa Requirements & eVisa Application",
   description: "Complete Malawi visa requirements guide. Apply for Malawi eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Malawi visa application today.",
   keywords: [
     "Malawi visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Malawi visa application form"
   ].join(", "),
   openGraph: {
-    title: "Malawi Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Malawi Visa Requirements & eVisa Application",
     description: "Complete Malawi visa requirements guide. Apply for Malawi eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/malawi",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/malawi/malawi-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Malawi Visa Requirements - Worldmaxxing Global Services",
+        alt: "Malawi Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Malawi Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Malawi Visa Requirements & eVisa Application",
     description: "Complete Malawi visa requirements guide. Apply for Malawi eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/malawi/malawi-bg.jpg"],
   },

@@ -13,20 +13,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!post) {
     return {
-      title: 'Page Not Found | Worldmaxxing Global Services',
+      title: 'Page Not Found',
       description: 'The requested page could not be found.',
     };
   }
 
   return {
-    title: `${post.title} | Worldmaxxing Global Services`,
+    title: post.title,
     description: post.description || `Visa requirements and information for ${post.title}`,
-    keywords: `${post.title}, visa requirements, eVisa, travel, ${post.country}, Worldmaxxing Global Services`,
+    keywords: `${post.title}, visa requirements, eVisa, travel, ${post.country}`,
     alternates: {
       canonical: `https://worldmaxxing.com/requirements-posts/${slug}`,
     },
     openGraph: {
-      title: `${post.title} | Worldmaxxing Global Services`,
+      title: post.title,
       description: post.description || `Visa requirements and information for ${post.title}`,
       url: `https://worldmaxxing.com/requirements-posts/${slug}`,
       siteName: 'Worldmaxxing Global Services',
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: `/images/country/${post.country.toLowerCase()}/${post.country.toLowerCase()}-bg.jpg`,
           width: 1200,
           height: 630,
-          alt: `${post.title} - Worldmaxxing Global Services`,
+          alt: `${post.title}`,
         }
       ],
       locale: 'en_US',
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${post.title} | Worldmaxxing Global Services`,
+      title: post.title,
       description: post.description || `Visa requirements and information for ${post.title}`,
       images: [`/images/country/${post.country.toLowerCase()}/${post.country.toLowerCase()}-bg.jpg`],
     },

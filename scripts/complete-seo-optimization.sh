@@ -15,6 +15,8 @@ for country in "${ALL_COUNTRIES[@]}"; do
   
   # Convert country name for display
   display_name=$(echo "$country" | sed 's/-/ /g' | sed 's/\b\w/\U&/g')
+  # Safe lowercase slug for paths/URLs
+  slug=$(echo "$country" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/_/-/g')
   
   # 1. Add structured data import if not present
   if ! grep -q "RequirementsPostStructuredData" "app/requirements-posts/$country/page.tsx"; then

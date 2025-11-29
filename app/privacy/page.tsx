@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Worldmaxxing Global Services Immigration Assistance Service',
+  title: 'Privacy Policy',
   description:
     'Learn how we collect, use, and protect your personal information when you use our Worldmaxxing Global Services Immigration Assistance Service.',
   alternates: {

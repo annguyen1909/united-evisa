@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Kenya Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Kenya Visa Requirements & eVisa Application",
   description: "Complete Kenya visa requirements guide. Apply for Kenya eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Kenya visa application today.",
   keywords: [
     "Kenya visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Kenya visa application form"
   ].join(", "),
   openGraph: {
-    title: "Kenya Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Kenya Visa Requirements & eVisa Application",
     description: "Complete Kenya visa requirements guide. Apply for Kenya eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/kenya",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/kenya/kenya-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Kenya Visa Requirements - Worldmaxxing Global Services",
+        alt: "Kenya Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kenya Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Kenya Visa Requirements & eVisa Application",
     description: "Complete Kenya visa requirements guide. Apply for Kenya eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/kenya/kenya-bg.jpg"],
   },

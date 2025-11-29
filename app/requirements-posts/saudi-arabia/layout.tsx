@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Saudi Arabia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "Saudi Arabia Visa Requirements & eVisa Application",
   description: "Complete Saudi Arabia visa requirements guide. Apply for Saudi Arabia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your Saudi Arabia visa application today.",
   keywords: [
     "Saudi Arabia visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Saudi Arabia visa application form"
   ].join(", "),
   openGraph: {
-    title: "Saudi Arabia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Saudi Arabia Visa Requirements & eVisa Application",
     description: "Complete Saudi Arabia visa requirements guide. Apply for Saudi Arabia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/saudi-arabia",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/saudi-arabia/saudi-arabia-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "Saudi Arabia Visa Requirements - Worldmaxxing Global Services",
+        alt: "Saudi Arabia Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saudi Arabia Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "Saudi Arabia Visa Requirements & eVisa Application",
     description: "Complete Saudi Arabia visa requirements guide. Apply for Saudi Arabia eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/saudi-arabia/saudi-arabia-bg.jpg"],
   },

@@ -35,8 +35,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://worldmaxxing.com'),
   title: {
-    default: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
-    template: "%s | Worldmaxxing Global Services"
+    // Keep the canonical site name as the default title. Do not automatically append
+    // the site name to page titles here — pages and generated layouts should supply
+    // their own concise titles to avoid duplication (some pages already include
+    // the site name). Template left as identity so page titles are used verbatim.
+    default: "Worldmaxxing Global Services",
+    template: "%s"
   },
   description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, and more. Fast processing, 24/7 support, and guaranteed approval. Start your visa application today!",
   keywords: [
@@ -61,7 +65,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://worldmaxxing.com",
-    title: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
+    title: "Worldmaxxing Global Services",
     description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, and more. Fast processing, 24/7 support, and guaranteed approval.",
     siteName: "Worldmaxxing Global Services",
     images: [
@@ -83,7 +87,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Worldmaxxing Global Services | Fast & Secure eVisa Applications",
+    title: "Worldmaxxing Global Services",
     description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval.",
     images: ["/images/og-image.png"],
     creator: "@worldmaxxing",

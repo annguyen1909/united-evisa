@@ -10,7 +10,7 @@ import PageSEO from "../components/shared/PageSEO";
 import InternalLinks from "../components/shared/InternalLinks";
 
 export const metadata: Metadata = {
-  title: "Fast & Secure eVisa Applications | Worldmaxxing Global Services",
+  title: "Fast & Secure eVisa Applications",
   description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, UK, Saudi Arabia, and more. Fast processing, 24/7 support, and guaranteed approval. Start your visa application today!",
   keywords: [
     "eVisa application",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "visa application help"
   ].join(", "),
   openGraph: {
-    title: "Fast & Secure eVisa Applications | Worldmaxxing Global Services",
+    title: "Fast & Secure eVisa Applications",
     description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval. Start your visa application today!",
     url: "https://worldmaxxing.com",
     siteName: "Worldmaxxing Global Services",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
         url: "/images/hero/hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Worldmaxxing Global Services - eVisa Application Platform",
+        alt: "eVisa Application Platform",
       }
     ],
     locale: "en_US",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fast & Secure eVisa Applications | Worldmaxxing Global Services",
+    title: "Fast & Secure eVisa Applications",
     description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval.",
     images: ["/images/hero/hero.jpg"],
   },

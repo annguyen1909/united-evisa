@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "India Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+  title: "India Visa Requirements & eVisa Application",
   description: "Complete India visa requirements guide. Apply for India eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available. Start your India visa application today.",
   keywords: [
     "India visa requirements",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "India visa application form"
   ].join(", "),
   openGraph: {
-    title: "India Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "India Visa Requirements & eVisa Application",
     description: "Complete India visa requirements guide. Apply for India eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
     url: "https://worldmaxxing.com/requirements-posts/india",
     siteName: "Worldmaxxing Global Services",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/images/country/india/india-bg.jpg",
         width: 1200,
         height: 630,
-        alt: "India Visa Requirements - Worldmaxxing Global Services",
+        alt: "India Visa Requirements",
       }
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "India Visa Requirements & eVisa Application | Worldmaxxing Global Services",
+    title: "India Visa Requirements & eVisa Application",
     description: "Complete India visa requirements guide. Apply for India eVisa online with fast processing, 24/7 support.",
     images: ["/images/country/india/india-bg.jpg"],
   },

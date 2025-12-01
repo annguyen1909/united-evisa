@@ -1,94 +1,31 @@
 User-agent: *
 Allow: /
 
-# High priority pages for SEO indexing
-Allow: /
-Allow: /check-requirements
-Allow: /requirements-posts/
-Allow: /destination/
-Allow: /blog/
-Allow: /faq/
-Allow: /apply
-Allow: /pricing
-Allow: /how-to-apply/
-Allow: /visa-for-*-citizens/
-Allow: /compare/
+# Allow Next.js static and build assets
+Allow: /_next/
 
-# Allow essential static assets
-Allow: /images/
-Allow: /_next/static/
-Allow: /favicon.ico
-Allow: /site.webmanifest
-
-# Block unnecessary admin and API routes
+# Block private/user pages
 Disallow: /admin/
 Disallow: /api/
-Disallow: /_next/
-Disallow: /test/
-
-# Block user-specific pages from indexing
+Disallow: /private/
 Disallow: /profile
 Disallow: /login
 Disallow: /signup
 Disallow: /list
 
-# Block checkout/payment pages (should not be indexed)
-Disallow: /apply/payment
-Disallow: /apply/confirmation
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
-# Sitemap locations
-Sitemap: https://worldmaxxing.com/sitemap.xml
-Sitemap: https://worldmaxxing.com/sitemap-blog.xml
-Sitemap: https://worldmaxxing.com/sitemap-destinations.xml
-
-# Specific instructions for major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Slurp
-Allow: /
-Crawl-delay: 2
-
-# Disallow admin and private areas
-Disallow: /api/
-Disallow: /admin/
-Disallow: /private/
-Disallow: /profile/
-Disallow: /login/
-Disallow: /signup/
+# Block application flow and payment pages
 Disallow: /apply/passengers/
 Disallow: /apply/documents/
-Disallow: /apply/payment/
-Disallow: /apply/confirmation/
+Disallow: /apply/payment
+Disallow: /apply/confirmation
 Disallow: /apply/status/
 Disallow: /apply/summary/
 Disallow: /apply/chargeback/
 Disallow: /apply/refunded/
-Disallow: /list/
 
-# Allow important legal pages
-Allow: /support/
-Allow: /about
-Allow: /contact
-Allow: /privacy
-Allow: /terms
-Allow: /legal
-Allow: /disclaimers
-Allow: /refund-policy
-Allow: /cookie-policy
-Allow: /digital-services-act
+# Block internal dev/test pages
+Disallow: /test/
 
-# Crawl delay for respectful crawling
-Crawl-delay: 1
-
-# Google-specific settings
-User-agent: Googlebot
-Crawl-delay: 0 
+# Sitemaps
+Sitemap: https://worldmaxxing.com/sitemap.xml
+Sitemap: https://worldmaxxing.com/sitemap-destinations.xml

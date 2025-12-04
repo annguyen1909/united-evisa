@@ -23,6 +23,18 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url, 308)
   }
 
+  // Normalize /requirements-posts/:slug to lowercase to avoid 404s for capitalized slugs
+  const reqPostsMatch = path.match(/^\/requirements-posts\/(.+)$/)
+  if (reqPostsMatch) {
+    const slug = reqPostsMatch[1]
+    const normalized = slug.toLowerCase()
+    if (slug !== normalized) {
+      const url = req.nextUrl.clone()
+      url.pathname = `/requirements-posts/${normalized}`
+      return NextResponse.redirect(url, 308)
+    }
+  }
+
   return NextResponse.next()
 }
 

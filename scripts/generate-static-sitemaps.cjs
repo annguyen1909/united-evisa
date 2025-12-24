@@ -39,7 +39,7 @@ function writeXml(filePath, urls) {
   fs.writeFileSync(filePath, header + body + footer, 'utf8')
 }
 
-const base = 'https://worldmaxxing.com'
+const base = process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://worldmaxxing.com'
 const countries = readCountries()
 const nationalities = readNationalities()
 

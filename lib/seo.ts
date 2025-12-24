@@ -20,7 +20,7 @@ export function generateSEOMeta({
   noindex = false,
   schema
 }: SEOMetaProps): Metadata {
-  const baseUrl = 'https://worldmaxxing.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://worldmaxxing.com'
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : undefined
 
   const SITE_NAME = 'Worldmaxxing Global Services'

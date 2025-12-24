@@ -34,7 +34,7 @@ function fileExists(p) { return fs.existsSync(path.join(process.cwd(), p)) }
 const countries = readCountries()
 const nationalities = readNationalities()
 
-const base = 'https://worldmaxxing.com'
+const base = process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://worldmaxxing.com'
 const report = []
 
 // static pages from sitemap.ts (reduced)
@@ -51,6 +51,7 @@ for (const c of countries) {
 // destination pages
 for (const c of countries) {
   const url = `${base}/destination/${c.slug}`
+  // dynamic route exists if app/destination/[country]/page.tsx exists
   const exists = fileExists('app/destination/[country]/page.tsx') || fileExists(`app/destination/${c.slug}/page.tsx`)
   report.push({ url, exists, check: 'app/destination/[country]/page.tsx (dynamic) or per-country page' })
 }
@@ -77,6 +78,7 @@ for (const c of countries) {
   const types = Array.from(new Set((c.visaTypes||[]).map(normalizeVisaTypeLabel).filter(Boolean)))
   for (const t of types) {
     const url = `${base}/destination/${c.slug}/${t}-visa`
+    // dynamic exists if app/destination/[country]/[visaType]/page.tsx (we rely on dynamic route)
     const exists = fileExists('app/destination/[country]/[visaType]/page.tsx') || fileExists('app/destination/[country]/[visaType].tsx') || fileExists('app/destination/[country]/[visaType]/index.tsx')
     report.push({ url, exists, check: 'dynamic destination visaType route' })
   }
@@ -103,6 +105,7 @@ for (const c of countries.slice(0,30)) {
 const comparison = ['/compare/kenya-vs-tanzania-evisa','/compare/vietnam-vs-cambodia-evisa','/compare/uae-gcc-countries-evisa','/compare/east-africa-evisa-options']
 for (const p of comparison) report.push({ url: base + p, exists: fileExists('app/compare/[slug]/page.tsx'), check: 'compare dynamic route' })
 
+// Now produce a missing-only report file
 const missing = report.filter(r=>!r.exists)
 const out = { total: report.length, missing: missing.length, missingItems: missing }
 const outPath = path.join(process.cwd(), 'tmp_sitemap_parity.json')

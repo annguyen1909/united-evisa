@@ -34,7 +34,7 @@ function fileExists(p) { return fs.existsSync(path.join(process.cwd(), p)) }
 const countries = readCountries()
 const nationalities = readNationalities()
 
-const base = 'https://worldmaxxing.com'
+const base = process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://worldmaxxing.com'
 const report = []
 
 // static pages from sitemap.ts (reduced)

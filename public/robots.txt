@@ -45,6 +45,6 @@ Disallow: /apply/refunded/
 Disallow: /test/
 
 # Sitemaps
-Sitemap: https://worldmaxxing.com/sitemap.xml
-Sitemap: https://worldmaxxing.com/sitemap-blog.xml
-Sitemap: https://worldmaxxing.com/sitemap-destinations.xml
+Sitemap: /sitemap.xml
+Sitemap: /sitemap-blog.xml
+Sitemap: /sitemap-destinations.xml

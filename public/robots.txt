@@ -1,50 +1,46 @@
+# robots.txt — cleaned and permissive
+# Keep in mind: for best results use absolute Sitemap URLs in production,
 User-agent: *
+
+# Allow everything by default so Google can discover pages, except
+# explicitly private or transactional endpoints below.
 Allow: /
 
-# High-priority public sections
-Allow: /visa-for/
-Allow: /destination/
-Allow: /blog/
-Allow: /faq/
-Allow: /check-requirements
-Allow: /requirements-posts/
-Allow: /how-to-apply/
-Allow: /compare/
-Allow: /pricing
+# Private, admin, auth, API and processing endpoints (do not index)
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /applications/
+Disallow: /account/
+Disallow: /login/
+Disallow: /register/
+Disallow: /forgot-password/
+Disallow: /reset-password/
+Disallow: /processing/
+Disallow: /private/
+Disallow: /test/
 
-# Allow essential static assets
+# Block sensitive or non-canonical application subpaths (keep landing pages crawlable)
+Disallow: /apply/payment
+Disallow: /apply/confirmation
+Disallow: /apply/status
+Disallow: /apply/summary
+Disallow: /apply/chargeback
+Disallow: /apply/refunded
+
+# Static assets (explicit allow helps some crawlers)
 Allow: /_next/static/
 Allow: /images/
 Allow: /favicon.ico
 Allow: /site.webmanifest
 
-# Block private/user pages
-Disallow: /admin/
-Disallow: /api/
-Disallow: /private/
-Disallow: /profile
-Disallow: /login
-Disallow: /signup
-Disallow: /list
-Disallow: /about
-Disallow: /track
-Disallow: /visa-info
-Disallow: /process
+# Sitemaps (relative paths — replace with absolute host URLs if possible)
+Sitemap: https://worldmaxxing.com/sitemap.xml
+Sitemap: https://worldmaxxing.com/sitemap-blog.xml
+Sitemap: https://worldmaxxing.com/sitemap-destinations.xml
 
-# Block application flow and payment pages
-Disallow: /apply/passengers/
-Disallow: /apply/documents/
-Disallow: /apply/payment
-Disallow: /apply/confirmation
-Disallow: /apply/status/
-Disallow: /apply/summary/
-Disallow: /apply/chargeback/
-Disallow: /apply/refunded/
-
-# Block internal dev/test pages
-Disallow: /test/
-
-# Sitemaps
-Sitemap: /sitemap.xml
-Sitemap: /sitemap-blog.xml
-Sitemap: /sitemap-destinations.xml
+# Notes:
+# - Avoid disallowing general site sections (e.g. /about, /list) unless they
+#   contain duplicate or low-value content. Over-broad Disallow rules can
+#   prevent Google from indexing many pages.
+# - If you have a canonical domain, replace the Sitemap lines with full URLs.

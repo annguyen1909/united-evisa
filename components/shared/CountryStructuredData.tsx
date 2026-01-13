@@ -17,7 +17,7 @@ export default function CountryStructuredData({ country }: CountryStructuredData
     "@graph": [
       {
         "@type": "TravelAgency",
-        "@id": `https://worldmaxxing.com/destination/${country.slug}#organization`,
+        "@id": `https://worldmaxxing.com/destinations/${country.slug}#organization`,
         "name": "Worldmaxxing Global Services",
         "url": "https://worldmaxxing.com",
         "logo": {
@@ -42,8 +42,8 @@ export default function CountryStructuredData({ country }: CountryStructuredData
       },
       {
         "@type": "WebPage",
-        "@id": `https://worldmaxxing.com/destination/${country.slug}#webpage`,
-        "url": `https://worldmaxxing.com/destination/${country.slug}`,
+        "@id": `https://worldmaxxing.com/destinations/${country.slug}#webpage`,
+        "url": `https://worldmaxxing.com/destinations/${country.slug}`,
         "name": `${country.name} eVisa Requirements & Application`,
         "description": `Apply for ${country.name} eVisa online. Fast processing, 24/7 support, expert assistance.`,
         "inLanguage": "en-US",
@@ -64,20 +64,20 @@ export default function CountryStructuredData({ country }: CountryStructuredData
               "@type": "ListItem",
               "position": 2,
               "name": "Destinations",
-              "item": "https://worldmaxxing.com/destination"
+              "item": "https://worldmaxxing.com/destinations"
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": country.name,
-              "item": `https://worldmaxxing.com/destination/${country.slug}`
+              "item": `https://worldmaxxing.com/destinations/${country.slug}`
             }
           ]
         }
       },
       {
         "@type": "Place",
-        "@id": `https://worldmaxxing.com/destination/${country.slug}#place`,
+        "@id": `https://worldmaxxing.com/destinations/${country.slug}#place`,
         "name": country.name,
         "address": {
           "@type": "PostalAddress",
@@ -135,7 +135,7 @@ export default function CountryStructuredData({ country }: CountryStructuredData
       // FAQ Schema for common visa questions
       {
         "@type": "FAQPage",
-        "@id": `https://worldmaxxing.com/destination/${country.slug}#faq`,
+        "@id": `https://worldmaxxing.com/destinations/${country.slug}#faq`,
         "mainEntity": [
           {
             "@type": "Question",
@@ -157,16 +157,16 @@ export default function CountryStructuredData({ country }: CountryStructuredData
             "@type": "Question",
             "name": `How much does a ${country.name} visa cost?`,
             "acceptedAnswer": {
-                "@type": "Answer",
-                "text": `${country.name} visa fees vary by type and nationality. Government fees start from $${minGovFee || 0}, plus our service fee of $${serviceFee.toFixed(2)}. Check our calculator for exact pricing. Total starts from $${startsFrom}.`
-              }
+              "@type": "Answer",
+              "text": `${country.name} visa fees vary by type and nationality. Government fees start from $${minGovFee || 0}, plus our service fee of $${serviceFee.toFixed(2)}. Check our calculator for exact pricing. Total starts from $${startsFrom}.`
+            }
           }
         ]
       },
       // Review/Rating Schema
       {
         "@type": "AggregateRating",
-        "@id": `https://worldmaxxing.com/destination/${country.slug}#rating`,
+        "@id": `https://worldmaxxing.com/destinations/${country.slug}#rating`,
         "ratingValue": "4.8",
         "reviewCount": "500+",
         "bestRating": "5",

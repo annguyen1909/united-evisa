@@ -10,16 +10,16 @@ interface StructuredDataProps {
   modifiedDate?: string
 }
 
-export default function EnhancedStructuredData({ 
-  pageType = 'homepage', 
-  country, 
-  title, 
+export default function EnhancedStructuredData({
+  pageType = 'homepage',
+  country,
+  title,
   description,
   publishedDate,
-  modifiedDate 
+  modifiedDate
 }: StructuredDataProps) {
   const baseUrl = 'https://worldmaxxing.com'
-  
+
   // Organization schema - appears on all pages
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -114,7 +114,7 @@ export default function EnhancedStructuredData({
           "@type": "TravelAction",
           "name": `${country.name} eVisa`,
           "description": `Apply for ${country.name} eVisa online`,
-          "url": `${baseUrl}/destination/${country.slug}`
+          "url": `${baseUrl}/destinations/${country.slug}`
         }
       }))
     }
@@ -140,7 +140,7 @@ export default function EnhancedStructuredData({
       "name": `${countryName} Visa Types`,
       "itemListElement": [
         // Compute simple offers: map first couple of visaTypes to offers including government fee + service fee
-        ...(COUNTRIES.find(c => c.slug === countrySlug)?.visaTypes || []).slice(0,2).map((v: any) => ({
+        ...(COUNTRIES.find(c => c.slug === countrySlug)?.visaTypes || []).slice(0, 2).map((v: any) => ({
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
@@ -155,7 +155,7 @@ export default function EnhancedStructuredData({
         }))
       ]
     },
-    "url": `${baseUrl}/destination/${countrySlug}`,
+    "url": `${baseUrl}/destinations/${countrySlug}`,
     "image": `${baseUrl}/images/countries/${countrySlug}.jpg`,
     "aggregateRating": {
       "@type": "AggregateRating",

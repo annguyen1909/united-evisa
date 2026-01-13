@@ -28,16 +28,20 @@ Disallow: /apply/summary
 Disallow: /apply/chargeback
 Disallow: /apply/refunded
 
+# Disallow Legacy Programmatic / Doorway Pages
+Disallow: /visa-for-*-citizens
+Disallow: /visa-for/*
+Disallow: /destination/*
+Disallow: /requirements-posts/*
+
 # Static assets (explicit allow helps some crawlers)
 Allow: /_next/static/
 Allow: /images/
 Allow: /favicon.ico
 Allow: /site.webmanifest
 
-# Sitemaps (relative paths — replace with absolute host URLs if possible)
+# Sitemaps (Absolute host URLs)
 Sitemap: https://worldmaxxing.com/sitemap.xml
-Sitemap: https://worldmaxxing.com/sitemap-blog.xml
-Sitemap: https://worldmaxxing.com/sitemap-destinations.xml
 
 # Notes:
 # - Avoid disallowing general site sections (e.g. /about, /list) unless they

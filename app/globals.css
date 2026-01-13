@@ -358,3 +358,51 @@ article a {
   }
 }
 
+/* Global Travel Hub Animations */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+.animate-fade-in-up { 
+  animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important; 
+  opacity: 0; 
+}
+
+.animate-fade-in-down { 
+  animation: fade-in-down 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important; 
+  opacity: 0; 
+}
+
+.animate-fade-in-left { 
+  animation: fade-in-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important; 
+  opacity: 0; 
+}
+
+.animate-slow-zoom { 
+  animation: slow-zoom 20s linear infinite alternate !important; 
+}
+
+.delay-100 { animation-delay: 0.1s !important; }
+.delay-200 { animation-delay: 0.2s !important; }
+.delay-300 { animation-delay: 0.3s !important; }
+
+.shadow-3xl { 
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.1) !important; 
+}
+

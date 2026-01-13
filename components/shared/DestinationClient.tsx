@@ -101,7 +101,7 @@ export default function DestinationClient() {
           Start your journey by applying for a visa with Worldmaxxing Global Services assistance
         </p>
       </div>
-      
+
       {/* Search and Filter Section */}
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 mb-10">
         <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
@@ -180,7 +180,7 @@ export default function DestinationClient() {
               </PopoverContent>
             </Popover>
           </div>
-          
+
           {/* Region Filter */}
           <div className="w-full lg:w-1/4 xl:w-1/3">
             <Popover open={openRegion} onOpenChange={setOpenRegion}>
@@ -248,7 +248,7 @@ export default function DestinationClient() {
               </PopoverContent>
             </Popover>
           </div>
-          
+
           {/* Clear Filters button */}
           <div className="ml-auto">
             <Button
@@ -273,12 +273,12 @@ export default function DestinationClient() {
           Showing <span className="font-medium text-emerald-700">{paginatedCountries.length}</span> of{" "}
           <span className="font-medium text-emerald-700">{filteredCountries.length}</span> destinations
         </p>
-        
+
         {region && (
           <Badge variant="outline" className="bg-emerald-50 border-emerald-200 text-emerald-700 flex items-center gap-1">
             <Globe2 className="h-3 w-3" />
             {region}
-            <button 
+            <button
               onClick={() => setRegion("")}
               className="ml-1 hover:text-red-500 transition-colors"
             >
@@ -287,7 +287,7 @@ export default function DestinationClient() {
           </Badge>
         )}
       </div>
-      
+
       {/* Country Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
         {paginatedCountries.map((country, index) => (
@@ -300,7 +300,7 @@ export default function DestinationClient() {
             <Card
               className="overflow-hidden rounded-xl hover:shadow-md transition-all duration-300 border-slate-200 h-full flex flex-col"
             >
-              <Link href={`/destination/${country.slug}${page > 1 ? `?page=${page}` : ""}`} className="flex-grow">
+              <Link href={`/destinations/${country.slug}${page > 1 ? `?page=${page}` : ""}`} className="flex-grow">
                 <div className="relative h-40 overflow-hidden">
                   <Image
                     src={`/images/country/${country.slug}/${country.slug}-bg.jpg`}
@@ -321,23 +321,23 @@ export default function DestinationClient() {
                     <span className="text-white font-medium text-sm drop-shadow-md">{country.name}</span>
                   </div>
                 </div>
-                
+
                 <CardContent className="p-4">
                   <div className="flex items-center gap-1 text-slate-500 text-sm mb-2">
                     <MapPin className="h-3.5 w-3.5" />
                     <span>{country.region || "Global"}</span>
                   </div>
-                  
+
                   <div className="line-clamp-2 text-sm h-10 text-slate-600">
                     {country.description?.substring(0, 80) || `Apply for your ${country.name} visa online with our fast and secure service.`}...
                   </div>
                 </CardContent>
               </Link>
-              
+
               <CardFooter className="px-4 pb-4 pt-0">
                 <Link href={`/apply?country=${country.slug}`} className="w-full">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
                   >
                     Apply for Visa
@@ -365,7 +365,7 @@ export default function DestinationClient() {
           </Button>
         </div>
       )}
-      
+
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-center mt-10 mb-8">
@@ -382,16 +382,16 @@ export default function DestinationClient() {
                 <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
               </svg>
             </Button>
-            
+
             {Array.from({ length: totalPages }, (_, idx) => {
               // Show current page, adjacent pages, first and last page, with ellipsis
               const pageNum = idx + 1;
               const isCurrentPage = pageNum === page;
-              const showDirectly = 
-                pageNum === 1 || 
-                pageNum === totalPages || 
+              const showDirectly =
+                pageNum === 1 ||
+                pageNum === totalPages ||
                 (pageNum >= page - 1 && pageNum <= page + 1);
-              
+
               // Show ellipsis for gaps
               if (!showDirectly) {
                 if ((pageNum === 2 && page > 3) || (pageNum === totalPages - 1 && page < totalPages - 2)) {
@@ -406,22 +406,21 @@ export default function DestinationClient() {
                 }
                 return null;
               }
-              
+
               return (
                 <button
                   key={pageNum}
                   onClick={() => handlePageChange(pageNum)}
-                  className={`relative inline-flex items-center px-4 py-2 text-sm font-medium border ${
-                    isCurrentPage 
-                      ? "z-10 bg-emerald-700 text-white border-emerald-700" 
+                  className={`relative inline-flex items-center px-4 py-2 text-sm font-medium border ${isCurrentPage
+                      ? "z-10 bg-emerald-700 text-white border-emerald-700"
                       : "text-slate-700 bg-white border-slate-300 hover:bg-slate-50"
-                  }`}
+                    }`}
                 >
                   {pageNum}
                 </button>
               );
             }).filter(Boolean)}
-            
+
             <Button
               variant="outline"
               size="icon"
@@ -437,7 +436,7 @@ export default function DestinationClient() {
           </nav>
         </div>
       )}
-      
+
       {/* Visa Steps */}
       <div className="border-t border-slate-200 pt-16 mt-16">
         <h2 className="text-2xl font-bold text-slate-800 mb-10 text-center">

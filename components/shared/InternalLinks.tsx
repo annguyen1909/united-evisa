@@ -11,10 +11,10 @@ interface InternalLinksProps {
   showRandomCountries?: boolean;
 }
 
-export default function InternalLinks({ 
-  currentCountry, 
-  pageType = "destination", 
-  showRandomCountries = true 
+export default function InternalLinks({
+  currentCountry,
+  pageType = "destination",
+  showRandomCountries = true
 }: InternalLinksProps) {
   // Get related countries (exclude current country)
   const relatedCountries = COUNTRIES
@@ -42,7 +42,7 @@ export default function InternalLinks({
               {relatedCountries.map((country) => (
                 <Link
                   key={country.slug}
-                  href={`/destination/${country.slug}`}
+                  href={`/destinations/${country.slug}`}
                   className="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 transition-all group"
                 >
                   <span className="text-sm font-medium text-slate-700 group-hover:text-emerald-700">
@@ -117,7 +117,7 @@ export default function InternalLinks({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {pageType !== "destination" && (
                 <Link
-                  href={`/destination/${currentCountry}`}
+                  href={`/destinations/${currentCountry}`}
                   className="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-amber-300 hover:bg-amber-50 transition-all group"
                 >
                   <span className="text-sm font-medium text-slate-700 group-hover:text-amber-700">
@@ -163,7 +163,7 @@ export default function InternalLinks({
               {popularDestinations.slice(0, 8).map((country) => (
                 <Link
                   key={country.slug}
-                  href={`/destination/${country.slug}`}
+                  href={`/destinations/${country.slug}`}
                   className="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-purple-300 hover:bg-purple-50 transition-all group"
                 >
                   <span className="text-sm font-medium text-slate-700 group-hover:text-purple-700">

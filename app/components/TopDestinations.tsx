@@ -80,7 +80,7 @@ export default function TopDestinationsCarousel() {
                   key={name}
                   className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
                 >
-                  <Link href={`/destination/${link}`}>
+                  <Link href={`/destinations/${link}`}>
                     <Card className="overflow-hidden rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full">
                       {/* Image container with gradient overlay */}
                       <div className="relative h-52">

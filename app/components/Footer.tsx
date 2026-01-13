@@ -64,12 +64,12 @@ const defaultSections = [
     {
         title: "Most Requested",
         links: [
-            { name: "Kenya Visa", href: "/destination/kenya" },
-            { name: "Uganda Visa", href: "/destination/uganda" },
-            { name: "Malaysia Visa", href: "/destination/malaysia" },
-            { name: "Indonesia Visa", href: "/destination/indonesia" },
-            { name: "Ethiopia Visa", href: "/destination/ethiopia" },
-            { name: "Sri Lanka Visa", href: "/destination/sri-lanka" },
+            { name: "Kenya Visa", href: "/destinations/kenya" },
+            { name: "Uganda Visa", href: "/destinations/uganda" },
+            { name: "Malaysia Visa", href: "/destinations/malaysia" },
+            { name: "Indonesia Visa", href: "/destinations/indonesia" },
+            { name: "Ethiopia Visa", href: "/destinations/ethiopia" },
+            { name: "Sri Lanka Visa", href: "/destinations/sri-lanka" },
         ],
     },
 ];
@@ -168,8 +168,8 @@ export function Footer({
                                 </div>
                             </Link>
                             <p className="text-slate-400 mb-6 pr-8">
-                                Worldmaxxing Global Services is a leading global visa service provider, helping travelers 
-                                secure visas quickly and efficiently for destinations worldwide. With our 
+                                Worldmaxxing Global Services is a leading global visa service provider, helping travelers
+                                secure visas quickly and efficiently for destinations worldwide. With our
                                 expert team and streamlined process, your visa application is in good hands.
                             </p>
                             <div className="flex gap-4">
@@ -193,7 +193,7 @@ export function Footer({
                                 <ul className="space-y-2">
                                     {section.links.map((link, linkIdx) => (
                                         <li key={linkIdx}>
-                                            <Link 
+                                            <Link
                                                 href={link.href}
                                                 className="text-slate-400 hover:text-emerald-400 flex items-center text-sm transition-colors"
                                             >

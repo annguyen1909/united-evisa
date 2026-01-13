@@ -1,60 +1,63 @@
-import kenya from "./kenya";
-import vietnam from "./vietnam";
-import kuwait from "./kuwait"
-import bahrain from "./bahrain"
-import oman from "./oman"
-import unitedkingdom from "./united-kingdom"
-import saudiarabia from "./saudi-arabia"
-import qatar from "./qatar"
-import moldova from "./moldova"
-import uzbekistan from "./uzbekistan"
-import canada from "./canada"
-import kyrgyzstan from "./kyrgyzstan";
+import angola from "./angola";
+import armenia from "./armenia";
+import australia from "./australia";
+import azerbaijan from "./azerbaijan";
+import bahrain from "./bahrain";
+import benin from "./benin";
+import cambodia from "./cambodia";
+import canada from "./canada";
 import djibouti from "./djibouti";
-import gabon from "./gabon";
-import zambia from "./zambia";
-import zimbabwe from "./zimbabwe";
-import rwanda from "./rwanda";
-import uganda from "./uganda";
-import tanzania from "./tanzania";
 import egypt from "./egypt";
 import ethiopia from "./ethiopia";
-import sainthelena from "./saint-helena";
-import southafrica from "./south-africa";
-import angola from "./angola";
-import benin from "./benin";
-import malawi from "./malawi";
-import cambodia from "./cambodia";
-import azerbaijan from "./azerbaijan";
-import australia from "./australia";
-import laos from "./laos";
-import india from "./india";
-import srilanka from "./sri-lanka";
-import armenia from "./armenia";
-import tajikistan from "./tajikistan";
-import malaysia from "./malaysia";
-import pakistan from "./pakistan";
-import newzealand from "./new-zealand";
-import taiwan from "./taiwan";
-import mongolia from "./mongolia";
-import hongkong from "./hong-kong";
+import gabon from "./gabon";
 import georgia from "./georgia";
-import kazakhstan from "./kazakhstan";
+import hongKong from "./hong-kong";
+import india from "./india";
 import indonesia from "./indonesia";
+import kazakhstan from "./kazakhstan";
+import kenya from "./kenya";
+import kuwait from "./kuwait";
+import kyrgyzstan from "./kyrgyzstan";
+import laos from "./laos";
+import malawi from "./malawi";
+import malaysia from "./malaysia";
+import moldova from "./moldova";
+import mongolia from "./mongolia";
+import newZealand from "./new-zealand";
+import oman from "./oman";
+import pakistan from "./pakistan";
+import qatar from "./qatar";
+import rwanda from "./rwanda";
+import saintHelena from "./saint-helena";
+import saudiArabia from "./saudi-arabia";
+import southAfrica from "./south-africa";
+import sriLanka from "./sri-lanka";
+import taiwan from "./taiwan";
+import tajikistan from "./tajikistan";
+import tanzania from "./tanzania";
+import uganda from "./uganda";
+import unitedKingdom from "./united-kingdom";
+import uzbekistan from "./uzbekistan";
+import vietnam from "./vietnam";
+import zambia from "./zambia";
+import zimbabwe from "./zimbabwe";
 
-export const COUNTRIES = [kenya, vietnam, canada, kuwait, oman, bahrain, unitedkingdom, saudiarabia, qatar, moldova, uzbekistan, kyrgyzstan, djibouti, gabon, zambia, zimbabwe, rwanda, uganda, tanzania, egypt, ethiopia, sainthelena, southafrica, angola, benin, malawi, cambodia, azerbaijan, australia, laos, india, srilanka, armenia, tajikistan, malaysia, pakistan, newzealand, taiwan, mongolia, hongkong, georgia, kazakhstan, indonesia  ];
-
-// Assuming COUNTRIES looks like this:
-// { code: 'VN', name: 'Vietnam' }
+export const COUNTRIES = [
+  angola, armenia, australia, azerbaijan, bahrain, benin, cambodia, canada,
+  djibouti, egypt, ethiopia, gabon, georgia, hongKong, india, indonesia,
+  kazakhstan, kenya, kuwait, kyrgyzstan, laos, malawi, malaysia, moldova,
+  mongolia, newZealand, oman, pakistan, qatar, rwanda, saintHelena,
+  saudiArabia, southAfrica, sriLanka, taiwan, tajikistan, tanzania,
+  uganda, unitedKingdom, uzbekistan, vietnam, zambia, zimbabwe
+];
 
 export function getCountryBySlug(slug: string) {
   const normalized = slug.toLowerCase();
 
   return COUNTRIES.find(
     (country) =>
-      country.slug.toLowerCase() === normalized || // match slug like 'canada'
-      country.code.toLowerCase() === normalized || // match 2-letter code like 'vn'
-      country.name.toLowerCase().replace(/\s+/g, '-') === normalized // match 'vietnam' (if used as slug)
+      country.slug.toLowerCase() === normalized ||
+      country.code.toLowerCase() === normalized ||
+      country.name.toLowerCase().replace(/\s+/g, '-') === normalized
   );
 }
-

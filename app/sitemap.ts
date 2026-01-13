@@ -1,13 +1,34 @@
 import { MetadataRoute } from 'next'
 import { COUNTRIES } from '@/lib/countries'
-import { NATIONALITIES } from '@/lib/nationalities'
 import { getAllowedVisaTypes } from '@/lib/visa-types'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://worldmaxxing.com'
   const currentDate = new Date()
 
-  // Static pages with their priorities and change frequencies
+  // Main Architecture Routes
+  const destinationHubs = COUNTRIES.map((country) => ({
+    url: `${baseUrl}/destinations/${country.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'daily' as const,
+    priority: 1.0,
+  }))
+
+  const requirementSpokes = COUNTRIES.map((country) => ({
+    url: `${baseUrl}/destinations/${country.slug}/entry-requirements`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }))
+
+  const riskSpokes = COUNTRIES.map((country) => ({
+    url: `${baseUrl}/destinations/${country.slug}/rejection-risk`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }))
+
+  // Static site pages
   const staticPages = [
     {
       url: baseUrl,
@@ -19,25 +40,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/apply`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
-      priority: 0.95,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/check-requirements`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/destination`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/blog`,
@@ -57,95 +66,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     },
-    {
-      url: `${baseUrl}/login`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/signup`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/profile`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/legal`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/disclaimers`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/refund-policy`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/cookie-policy`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/digital-services-act`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
   ]
 
-  // Generate country requirement pages - High SEO priority
-  const countryPages = COUNTRIES.map((country) => ({
-    url: `${baseUrl}/requirements-posts/${country.slug}`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly' as const,
-    priority: 0.85,
-  }))
+  // Legal and Auth (Lower priority)
+  const legalPages = [
+    { url: `${baseUrl}/terms`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
+    { url: `${baseUrl}/privacy`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
+    { url: `${baseUrl}/login`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.5 },
+    { url: `${baseUrl}/signup`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.5 },
+  ]
 
-  // Generate destination pages - High priority for SEO
-  const destinationPages = COUNTRIES.map((country) => ({
-    url: `${baseUrl}/destination/${country.slug}`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  }))
-
-  // Generate blog pages - SEO optimized
-  const blogPages = COUNTRIES.map((country) => ({
-    url: `${baseUrl}/blog/${country.slug}-evisa-complete-guide`,
-    lastModified: currentDate,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-
-  // Generate FAQ pages for better SEO coverage
+  // Legacy/Utility FAQ pages
   const faqPages = COUNTRIES.filter(country => 
-    ['armenia', 'egypt', 'ethiopia', 'india', 'kenya', 'malaysia', 'new-zealand', 'pakistan', 'qatar', 'south-africa', 'sri-lanka', 'united-kingdom', 'vietnam']
+    ['india', 'vietnam', 'kenya', 'egypt', 'saudi-arabia', 'turkey', 'cambodia', 'sri-lanka']
     .includes(country.slug)
   ).map((country) => ({
     url: `${baseUrl}/faq/${country.slug}-evisa-faq`,
@@ -154,66 +87,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  // Generate visa type specific pages only for allowed types per country.
-  const visaTypePages = COUNTRIES.flatMap((country) =>
-    getAllowedVisaTypes(country.slug).map((type) => ({
-      url: `${baseUrl}/destination/${country.slug}/${type}-visa`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    }))
-  )
-
-  // Generate nationality-specific landing pages for better targeting
-  const popularNationalities = NATIONALITIES.filter(nat => 
-    ['us', 'gb', 'ca', 'au', 'de', 'fr', 'it', 'es', 'nl', 'se', 'no', 'dk', 'ch', 'at', 'be', 'ie', 'nz', 'jp', 'kr', 'sg']
-    .includes(nat.code.toLowerCase())
-  )
-
-  const nationalityPages = popularNationalities.flatMap((nationality) => {
-    return COUNTRIES.map((country) => ({ // Include all countries for comprehensive coverage
-      url: `${baseUrl}/visa-for/${nationality.code.toLowerCase()}-citizens/${country.slug}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.75,
-    }))
-  })
-
-  // Generate step-by-step guide pages
-  const guidePages = COUNTRIES.slice(0, 30).map((country) => ({
-    url: `${baseUrl}/how-to-apply/${country.slug}-evisa-step-by-step`,
-    lastModified: currentDate,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-
-  // Generate comparison pages for similar destinations
-  const comparisonPages = [
-    {
-      url: `${baseUrl}/compare/kenya-vs-tanzania-evisa`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/compare/vietnam-vs-cambodia-evisa`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/compare/uae-gcc-countries-evisa`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/compare/east-africa-evisa-options`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
+  return [
+    ...staticPages, 
+    ...destinationHubs, 
+    ...requirementSpokes, 
+    ...riskSpokes, 
+    ...faqPages,
+    ...legalPages
   ]
-
-  return [...staticPages, ...countryPages, ...destinationPages, ...blogPages, ...faqPages, ...visaTypePages, ...nationalityPages, ...guidePages, ...comparisonPages]
 }

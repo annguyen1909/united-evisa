@@ -10,14 +10,14 @@ interface PageSEOProps {
   description?: string;
 }
 
-export default function PageSEO({ 
-  pageType, 
-  countryName, 
-  countrySlug, 
-  title, 
-  description 
+export default function PageSEO({
+  pageType,
+  countryName,
+  countrySlug,
+  title,
+  description
 }: PageSEOProps) {
-  
+
   const generateStructuredData = () => {
     const baseData: any = {
       "@context": "https://schema.org",
@@ -78,7 +78,7 @@ export default function PageSEO({
 
       baseData["@graph"].push({
         "@type": "Service",
-        "@id": `https://worldmaxxing.com/destination/${countrySlug}#service`,
+        "@id": `https://worldmaxxing.com/destinations/${countrySlug}#service`,
         "name": `${countryName} eVisa Application Service`,
         "description": `Professional ${countryName} eVisa application assistance with fast processing and expert support`,
         "provider": {
@@ -89,7 +89,7 @@ export default function PageSEO({
           "name": countryName
         },
         "serviceType": "Visa Application Service",
-        "url": `https://worldmaxxing.com/destination/${countrySlug}`,
+        "url": `https://worldmaxxing.com/destinations/${countrySlug}`,
         "offers": {
           "@type": "Offer",
           "priceCurrency": "USD",
@@ -121,7 +121,7 @@ export default function PageSEO({
             "@type": "ListItem",
             "position": 3,
             "name": countryName,
-            "item": `https://worldmaxxing.com/destination/${countrySlug}`
+            "item": `https://worldmaxxing.com/destinations/${countrySlug}`
           }
         ]
       });
@@ -148,7 +148,7 @@ export default function PageSEO({
               }
             },
             {
-              "@type": "Offer", 
+              "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
                 "name": "Business eVisa"
@@ -157,7 +157,7 @@ export default function PageSEO({
             {
               "@type": "Offer",
               "itemOffered": {
-                "@type": "Service", 
+                "@type": "Service",
                 "name": "Transit eVisa"
               }
             }

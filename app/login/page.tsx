@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://worldmaxxing.com/login',
   },
+  robots: {
+    index: false,
+    follow: true,
+    googleBot: {
+      index: false,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 // /login/page.tsx

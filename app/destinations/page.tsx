@@ -1,6 +1,15 @@
+import { Metadata } from 'next'
 import { COUNTRIES } from '@/lib/countries'
 import Image from 'next/image'
 import DestinationsClientPremium from '@/components/shared/DestinationsClientPremium'
+
+export const metadata: Metadata = {
+    title: 'Destinations | eVisa Requirements by Country | Worldmaxxing',
+    description: 'Browse eVisa destinations and view entry requirements, eligibility, and processing information for travelers worldwide.',
+    alternates: {
+        canonical: 'https://worldmaxxing.com/destinations',
+    },
+}
 
 export default function DestinationsPage() {
     return (

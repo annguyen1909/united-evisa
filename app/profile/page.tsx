@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://worldmaxxing.com/profile',
   },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 import { getServerSession } from "next-auth"

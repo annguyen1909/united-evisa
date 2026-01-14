@@ -19,8 +19,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const year = new Date().getFullYear();
+
   return {
-    title: `${post.title} | ${post.country} eVisa Official Requirements 2024`,
+    title: `${post.title} | ${post.country} eVisa Official Requirements ${year}`,
     description: post.description || `Comprehensive visa requirements and application guide for ${post.country}. Learn about documents, fees, and processing times.`,
     keywords: `${post.title}, visa requirements, eVisa, travel, ${post.country}, ${post.country} visa application`,
     alternates: {

@@ -105,42 +105,7 @@ export default function StructuredData() {
           }
         }
       ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "1250",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Sarah Johnson"
-        },
-        "reviewBody": "Excellent service! Got my Kenya visa in just 2 days. Highly recommended!"
-      },
-      {
-        "@type": "Review", 
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Michael Chen"
-        },
-        "reviewBody": "Fast and reliable service. The Vietnam visa process was smooth and efficient."
-      }
-    ]
+    }
   };
 
   return (

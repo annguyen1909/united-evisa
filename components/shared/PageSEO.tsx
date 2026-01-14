@@ -59,7 +59,7 @@ export default function PageSEO({
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://worldmaxxing.com/search?q={search_term_string}"
+              "urlTemplate": "https://worldmaxxing.com/check-requirements?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
           }
@@ -115,7 +115,7 @@ export default function PageSEO({
             "@type": "ListItem",
             "position": 2,
             "name": "Destinations",
-            "item": "https://worldmaxxing.com/destination"
+            "item": "https://worldmaxxing.com/destinations"
           },
           {
             "@type": "ListItem",

@@ -12,7 +12,10 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /applications/
 Disallow: /account/
-Disallow: /login/
+Disallow: /profile
+Disallow: /list
+Disallow: /login
+Disallow: /signup
 Disallow: /register/
 Disallow: /forgot-password/
 Disallow: /reset-password/
@@ -27,6 +30,8 @@ Disallow: /apply/status
 Disallow: /apply/summary
 Disallow: /apply/chargeback
 Disallow: /apply/refunded
+Disallow: /apply/documents
+Disallow: /apply/passengers
 
 # Disallow Legacy Programmatic / Doorway Pages
 Disallow: /visa-for-*-citizens

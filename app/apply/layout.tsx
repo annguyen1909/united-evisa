@@ -1,52 +1,23 @@
-'use client';
-import StepNavigation from "@/components/shared/StepNavigation";
-import Image from "next/image";
-import { useSearchParams } from 'next/navigation';
-import { usePathname } from 'next/navigation';
-import { Suspense } from 'react';
+import type { Metadata } from 'next';
 
+import ApplyLayoutClient from './ApplyLayoutClient';
 
-function StepNavWrapper() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  // Hide on /apply/deferred, /apply/processing, /apply/result
-  const hideStepNav =
-    pathname?.includes('/apply/status')
-      if (hideStepNav) return null;
-  return <StepNavigation />;
-}
+export const metadata: Metadata = {
+  title: 'Apply for Your eVisa',
+  description: 'Start your eVisa application on Worldmaxxing.',
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
-export default function ApplyLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="w-full mx-auto">
-      {/* Hero Section */}
-      <div className="relative w-full h-48 md:h-64 flex items-center justify-center max-md:mb-0 overflow-hidden mb-6 shadow-sm">
-        <Image
-          src="/images/apply/apply-bg.jpg"
-          alt="Apply background"
-          fill
-          className="object-cover object-center opacity-90"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative z-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
-            Apply for Your eVisa
-          </h1>
-          <p className="mt-2 text-lg text-white/90 font-medium drop-shadow-sm hidden sm:block mx-auto max-w-2xl">
-            Fast, secure, and easy visa application for over 40 countries.
-          </p>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent" />
-      </div>
-      <Suspense>
-        <StepNavWrapper />
-      </Suspense>
-      {children}
-    </div>
-  );
+export default function ApplyLayout({ children }: { children: React.ReactNode }) {
+  return <ApplyLayoutClient>{children}</ApplyLayoutClient>;
 }

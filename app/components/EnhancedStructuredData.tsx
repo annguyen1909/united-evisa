@@ -22,6 +22,17 @@ export default function EnhancedStructuredData({
 }: StructuredDataProps) {
   const baseUrl = 'https://worldmaxxing.com'
 
+  const normalize = (value: string) =>
+    value
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+
+  const normalizedCountry = country ? normalize(country) : null
+  const countryInfo = normalizedCountry
+    ? COUNTRIES.find((c) => normalize(c.slug) === normalizedCountry || normalize(c.name) === normalizedCountry)
+    : null
+
   // Organization schema
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -42,14 +53,20 @@ export default function EnhancedStructuredData({
       { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl }
     ]
 
-    if (pageType === 'destination' && country) {
-      items.push({ "@type": "ListItem", "position": 2, "name": country, "item": `${baseUrl}/destinations/${country.toLowerCase()}` })
-    } else if (pageType === 'requirements' && country) {
-      items.push({ "@type": "ListItem", "position": 2, "name": country, "item": `${baseUrl}/destinations/${country.toLowerCase()}` })
-      items.push({ "@type": "ListItem", "position": 3, "name": "Requirements", "item": `${baseUrl}/requirements-posts/${country.toLowerCase()}` })
-    } else if (pageType === 'guide' && country) {
-      items.push({ "@type": "ListItem", "position": 2, "name": country, "item": `${baseUrl}/destinations/${country.toLowerCase()}` })
-      items.push({ "@type": "ListItem", "position": 3, "name": "How to Apply", "item": `${baseUrl}/how-to-apply/${country.toLowerCase()}-evisa-step-by-step` })
+    if ((pageType === 'destination' || pageType === 'requirements' || pageType === 'guide') && (countryInfo || country)) {
+      const countryName = countryInfo?.name || country || ''
+      const countrySlug = countryInfo?.slug || (normalizedCountry || '')
+
+      items.push({ "@type": "ListItem", "position": 2, "name": countryName, "item": `${baseUrl}/destinations/${countrySlug}` })
+
+      if (pageType === 'requirements') {
+        // Requirements pages are keyed by post slug, so link to the section hub.
+        items.push({ "@type": "ListItem", "position": 3, "name": "Requirements", "item": `${baseUrl}/requirements-posts` })
+      }
+
+      if (pageType === 'guide') {
+        items.push({ "@type": "ListItem", "position": 3, "name": "How to Apply", "item": `${baseUrl}/how-to-apply/${countrySlug}-evisa-step-by-step` })
+      }
     } else if (pageType === 'comparison') {
       items.push({ "@type": "ListItem", "position": 2, "name": "Compare", "item": `${baseUrl}/compare` })
     }
@@ -124,8 +141,9 @@ export default function EnhancedStructuredData({
     "dateModified": modifiedDate
   })
 
-  const countryInfo = country ? COUNTRIES.find(c => c.slug === country || c.name === country) : null
-  let schemas: any[] = [organizationSchema, getBreadcrumbSchema()]
+  // Emit breadcrumbs + page-type schemas. Organization details are embedded as provider/author
+  // to avoid duplicating standalone Organization JSON-LD across the site.
+  let schemas: any[] = [getBreadcrumbSchema()]
 
   switch (pageType) {
     case 'homepage':

@@ -624,7 +624,7 @@ export default function AngolaRequirementsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Processing Time Trends */}
               <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends (2024)</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">January</span>
@@ -712,7 +712,7 @@ export default function AngolaRequirementsPage() {
                 </div>
                 <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> <a href="https://www.sme.gov.ao/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">sme.gov.ao</a> (2024)
+                    <strong>Source:</strong> <a href="https://www.sme.gov.ao/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">sme.gov.ao</a> (2026)
                   </p>
                 </div>
               </div>

@@ -6,8 +6,6 @@ import Navbar from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Providers } from "./providers";
 import ContactWidget from "../components/ui/ContactWidget";
-import StructuredData from "./components/StructuredData";
-import EnhancedStructuredData from "./components/EnhancedStructuredData";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 import SEOMonitor from "../components/shared/SEOMonitor";
 import SEOAnalysis from "../components/ui/SEOAnalysis";
@@ -57,9 +55,6 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false,
-  },
-  alternates: {
-    canonical: 'https://worldmaxxing.com',
   },
   openGraph: {
     type: "website",
@@ -155,7 +150,6 @@ export default function RootLayout({
         {/* Organization JSON-LD for SEO (renders on every page) */}
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
@@ -187,7 +181,6 @@ export default function RootLayout({
         style={{ position: 'relative', zIndex: 0 }}
       >
         <GoogleAnalytics />
-        <EnhancedStructuredData pageType="homepage" />
         <Providers>
           <TopBanner />
           <Navbar />

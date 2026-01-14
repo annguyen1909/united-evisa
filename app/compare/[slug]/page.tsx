@@ -25,6 +25,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const year = new Date().getFullYear();
 
   if (!validSlugs.includes(slug)) {
     return {
@@ -35,22 +36,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const comparisons: Record<string, { title: string; description: string; countries: string[] }> = {
     'kenya-vs-tanzania-evisa': {
-      title: 'Kenya vs Tanzania eVisa Comparison 2024 | Which is Better?',
+      title: `Kenya vs Tanzania eVisa Comparison ${year} | Which is Better?`,
       description: 'Compare Kenya and Tanzania eVisa requirements, processing times, costs, and travel benefits. Complete guide to help you choose the best East African destination.',
       countries: ['Kenya', 'Tanzania']
     },
     'vietnam-vs-cambodia-evisa': {
-      title: 'Vietnam vs Cambodia eVisa Comparison 2024 | Travel Guide',
+      title: `Vietnam vs Cambodia eVisa Comparison ${year} | Travel Guide`,
       description: 'Detailed comparison of Vietnam and Cambodia eVisa processes, costs, requirements, and travel experiences. Make the right choice for your Southeast Asian adventure.',
       countries: ['Vietnam', 'Cambodia']
     },
     'uae-gcc-countries-evisa': {
-      title: 'UAE vs GCC Countries eVisa Comparison 2024 | Gulf Travel Guide',
+      title: `UAE vs GCC Countries eVisa Comparison ${year} | Gulf Travel Guide`,
       description: 'Compare UAE with other GCC countries eVisa options including Saudi Arabia, Qatar, Oman, and Bahrain. Find the best Gulf destination for your needs.',
       countries: ['UAE', 'Saudi Arabia', 'Qatar', 'Oman', 'Bahrain']
     },
     'east-africa-evisa-options': {
-      title: 'East Africa eVisa Options Comparison 2024 | Complete Guide',
+      title: `East Africa eVisa Options Comparison ${year} | Complete Guide`,
       description: 'Compare all East African eVisa options including Kenya, Tanzania, Uganda, Rwanda, and Ethiopia. Find the perfect destination for your African safari.',
       countries: ['Kenya', 'Tanzania', 'Uganda', 'Rwanda', 'Ethiopia']
     }
@@ -66,6 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: comparison.title,
       description: comparison.description,
       type: 'article',
+      url: `https://worldmaxxing.com/compare/${slug}`,
       images: [{
         url: `/images/compare/${slug}.jpg`,
         width: 1200,
@@ -86,18 +88,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function KenyaVsTanzaniaComparison() {
+  const year = new Date().getFullYear();
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <Button variant="ghost" asChild className="mb-4">
-            <Link href="/destination" className="flex items-center gap-2">
+            <Link href="/destinations" className="flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               Back to Destinations
             </Link>
           </Button>
 
-          <h1 className="text-4xl font-bold mb-4">Kenya vs Tanzania eVisa: Complete Comparison Guide 2024</h1>
+          <h1 className="text-4xl font-bold mb-4">Kenya vs Tanzania eVisa: Complete Comparison Guide {year}</h1>
           <p className="text-xl text-muted-foreground mb-6">
             Planning an East African safari? Compare Kenya and Tanzania eVisa options to choose the perfect destination for your adventure.
           </p>
@@ -304,18 +307,19 @@ function KenyaVsTanzaniaComparison() {
 }
 
 function VietnamVsCambodiaComparison() {
+  const year = new Date().getFullYear();
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <Button variant="ghost" asChild className="mb-4">
-            <Link href="/destination" className="flex items-center gap-2">
+            <Link href="/destinations" className="flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               Back to Destinations
             </Link>
           </Button>
 
-          <h1 className="text-4xl font-bold mb-4">Vietnam vs Cambodia eVisa: Southeast Asia Travel Comparison 2024</h1>
+          <h1 className="text-4xl font-bold mb-4">Vietnam vs Cambodia eVisa: Southeast Asia Travel Comparison {year}</h1>
           <p className="text-xl text-muted-foreground mb-6">
             Discover the differences between Vietnam and Cambodia eVisa options to plan your perfect Southeast Asian journey.
           </p>
@@ -419,6 +423,7 @@ function VietnamVsCambodiaComparison() {
 
 export default async function ComparisonPage({ params }: Props) {
   const { slug } = await params;
+  const year = new Date().getFullYear();
 
   if (!validSlugs.includes(slug)) {
     notFound();
@@ -426,22 +431,22 @@ export default async function ComparisonPage({ params }: Props) {
 
   const comparisons: Record<string, { title: string; description: string; countries: string[] }> = {
     'kenya-vs-tanzania-evisa': {
-      title: 'Kenya vs Tanzania eVisa Comparison 2024 | Which is Better?',
+      title: `Kenya vs Tanzania eVisa Comparison ${year} | Which is Better?`,
       description: 'Compare Kenya and Tanzania eVisa requirements, processing times, costs, and travel benefits. Complete guide to help you choose the best East African destination.',
       countries: ['Kenya', 'Tanzania']
     },
     'vietnam-vs-cambodia-evisa': {
-      title: 'Vietnam vs Cambodia eVisa Comparison 2024 | Travel Guide',
+      title: `Vietnam vs Cambodia eVisa Comparison ${year} | Travel Guide`,
       description: 'Detailed comparison of Vietnam and Cambodia eVisa processes, costs, requirements, and travel experiences. Make the right choice for your Southeast Asian adventure.',
       countries: ['Vietnam', 'Cambodia']
     },
     'uae-gcc-countries-evisa': {
-      title: 'UAE vs GCC Countries eVisa Comparison 2024 | Gulf Travel Guide',
+      title: `UAE vs GCC Countries eVisa Comparison ${year} | Gulf Travel Guide`,
       description: 'Compare UAE with other GCC countries eVisa options including Saudi Arabia, Qatar, Oman, and Bahrain. Find the best Gulf destination for your needs.',
       countries: ['UAE', 'Saudi Arabia', 'Qatar', 'Oman', 'Bahrain']
     },
     'east-africa-evisa-options': {
-      title: 'East Africa eVisa Options Comparison 2024 | Complete Guide',
+      title: `East Africa eVisa Options Comparison ${year} | Complete Guide`,
       description: 'Compare all East African eVisa options including Kenya, Tanzania, Uganda, Rwanda, and Ethiopia. Find the perfect destination for your African safari.',
       countries: ['Kenya', 'Tanzania', 'Uganda', 'Rwanda', 'Ethiopia']
     }
@@ -478,10 +483,11 @@ export default async function ComparisonPage({ params }: Props) {
 }
 
 function UaeGccComparison() {
+  const year = new Date().getFullYear();
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">UAE vs GCC Countries eVisa Comparison 2024</h1>
+        <h1 className="text-4xl font-bold mb-4">UAE vs GCC Countries eVisa Comparison {year}</h1>
         <p className="text-xl text-muted-foreground mb-8">
           Compare visa options across Gulf Cooperation Council countries including UAE, Saudi Arabia, Qatar, Oman, and Bahrain.
         </p>
@@ -503,10 +509,11 @@ function UaeGccComparison() {
 }
 
 function EastAfricaComparison() {
+  const year = new Date().getFullYear();
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">East Africa eVisa Options Comparison 2024</h1>
+        <h1 className="text-4xl font-bold mb-4">East Africa eVisa Options Comparison {year}</h1>
         <p className="text-xl text-muted-foreground mb-8">
           Complete guide to East African visa options including Kenya, Tanzania, Uganda, Rwanda, and Ethiopia.
         </p>

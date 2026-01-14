@@ -150,7 +150,7 @@ export default function SriLankaRequirementsPage() {
                 <span className="text-sm font-medium">Visa Requirements</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                Sri Lanka eVisa Requirements & Application Guide 2024
+                Sri Lanka eVisa Requirements & Application Guide
               </h1>
               <p className="text-xl text-orange-100 max-w-3xl mx-auto leading-relaxed">
                 Complete guide to Sri Lanka eVisa requirements, application process, and travel information for your South Asian adventure
@@ -693,7 +693,7 @@ export default function SriLankaRequirementsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Processing Time Trends */}
               <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends (2024)</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">January</span>
@@ -759,7 +759,7 @@ export default function SriLankaRequirementsPage() {
               
               {/* Visa Type Distribution */}
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution (2024)</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">Tourist Evisa</span>

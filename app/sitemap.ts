@@ -132,8 +132,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/cookie-policy`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
     { url: `${baseUrl}/refund-policy`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
     { url: `${baseUrl}/disclaimers`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
-    { url: `${baseUrl}/login`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.5 },
-    { url: `${baseUrl}/signup`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.5 },
   ]
 
   // Dynamic FAQ pages from content folder

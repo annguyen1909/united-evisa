@@ -92,8 +92,8 @@ export default async function EntryRequirementsPage({ params }: PageProps) {
                         <p className="text-slate-400 text-sm leading-relaxed mb-6">
                             Some nationalities are exempt for short stays (under 15-30 days). If your nationality is marked "Regulated Entry", you may still qualify for a traditional embassy visa. Contact our logistics desk for full entity review.
                         </p>
-                        <Button className="w-full bg-emerald-600 hover:bg-emerald-700 font-black py-6 h-auto rounded-2xl">
-                            Request Expert Consultation
+                        <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 font-black py-6 h-auto rounded-2xl">
+                            <Link href="/support">Request Expert Consultation</Link>
                         </Button>
                     </div>
                 </div>

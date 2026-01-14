@@ -129,7 +129,7 @@ export function Footer({
                         </div>
                         <form onSubmit={handleSubscribe} className="w-full md:w-auto flex gap-2">
                             <div className="relative flex-grow">
-                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
+                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white h-5 w-5" />
                                 <Input
                                     type="email"
                                     placeholder="Your email address"

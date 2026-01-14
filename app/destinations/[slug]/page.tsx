@@ -16,8 +16,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     if (!country) return { title: 'Destination Not Found' }
 
+    const year = new Date().getFullYear()
+
     return {
-        title: `${country.name} eVisa Application 2024: Official Requirements & Policy Hub`,
+        title: `${country.name} eVisa Application ${year}: Official Requirements & Policy Hub`,
         description: `${country.description} Apply for your ${country.name} visa online with our fast, expert-verified process. Get real-time status updates and 24/7 support.`,
         alternates: {
             canonical: `https://worldmaxxing.com/destinations/${country.slug}`,
@@ -25,7 +27,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         openGraph: {
             title: `${country.name} eVisa Center | Worldmaxxing`,
             description: `Official ${country.name} travel policy and visa application requirements.`,
-            images: [country.imageUrl || ''],
+            url: `https://worldmaxxing.com/destinations/${country.slug}`,
+            images: country.imageUrl ? [country.imageUrl] : ['/images/hero/hero.jpg'],
         }
     }
 }

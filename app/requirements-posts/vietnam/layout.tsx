@@ -3,6 +3,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "Vietnam Visa Requirements & eVisa Application",
   description: "Complete Vietnam visa requirements guide. Apply for Vietnam eVisa online with fast processing, 24/7 support. Start your Vietnam visa application today.",
+  alternates: {
+    canonical: "https://worldmaxxing.com/requirements-posts/vietnam",
+  },
   keywords: [
     "Vietnam visa requirements",
     "Vietnam eVisa application",

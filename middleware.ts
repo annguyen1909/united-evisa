@@ -35,6 +35,21 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  // Prevent indexing of transactional flows and authenticated areas.
+  // Many of these routes are client components (can't export metadata),
+  // so we enforce via X-Robots-Tag.
+  const noIndexMatchers: RegExp[] = [
+    /^\/apply\/(payment|confirmation|status|summary|chargeback|refunded|documents|passengers)(\/|$)/,
+    /^\/list(\/|$)/,
+    /^\/profile(\/|$)/,
+  ]
+
+  if (noIndexMatchers.some((re) => re.test(path))) {
+    const res = NextResponse.next()
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow')
+    return res
+  }
+
   return NextResponse.next()
 }
 

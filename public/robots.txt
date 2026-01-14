@@ -32,7 +32,6 @@ Disallow: /apply/refunded
 Disallow: /visa-for-*-citizens
 Disallow: /visa-for/*
 Disallow: /destination/*
-Disallow: /requirements-posts/*
 
 # Static assets (explicit allow helps some crawlers)
 Allow: /_next/static/

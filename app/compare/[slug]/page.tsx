@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, Clock, DollarSign, FileText, MapPin, Users, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Clock, DollarSign, FileText, MapPin, Users, CheckCircle, XCircle, AlertCircle, ArrowRight } from 'lucide-react';
+import EnhancedStructuredData from '@/app/components/EnhancedStructuredData';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -13,7 +14,7 @@ interface Props {
 // Define available comparison slugs
 const validSlugs = [
   'kenya-vs-tanzania-evisa',
-  'vietnam-vs-cambodia-evisa', 
+  'vietnam-vs-cambodia-evisa',
   'uae-gcc-countries-evisa',
   'east-africa-evisa-options'
 ];
@@ -24,7 +25,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  
+
   if (!validSlugs.includes(slug)) {
     return {
       title: 'Comparison Not Found',
@@ -32,22 +33,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const comparisons: Record<string, { title: string; description: string }> = {
+  const comparisons: Record<string, { title: string; description: string; countries: string[] }> = {
     'kenya-vs-tanzania-evisa': {
       title: 'Kenya vs Tanzania eVisa Comparison 2024 | Which is Better?',
-      description: 'Compare Kenya and Tanzania eVisa requirements, processing times, costs, and travel benefits. Complete guide to help you choose the best East African destination.'
+      description: 'Compare Kenya and Tanzania eVisa requirements, processing times, costs, and travel benefits. Complete guide to help you choose the best East African destination.',
+      countries: ['Kenya', 'Tanzania']
     },
     'vietnam-vs-cambodia-evisa': {
       title: 'Vietnam vs Cambodia eVisa Comparison 2024 | Travel Guide',
-      description: 'Detailed comparison of Vietnam and Cambodia eVisa processes, costs, requirements, and travel experiences. Make the right choice for your Southeast Asian adventure.'
+      description: 'Detailed comparison of Vietnam and Cambodia eVisa processes, costs, requirements, and travel experiences. Make the right choice for your Southeast Asian adventure.',
+      countries: ['Vietnam', 'Cambodia']
     },
     'uae-gcc-countries-evisa': {
       title: 'UAE vs GCC Countries eVisa Comparison 2024 | Gulf Travel Guide',
-      description: 'Compare UAE with other GCC countries eVisa options including Saudi Arabia, Qatar, Oman, and Bahrain. Find the best Gulf destination for your needs.'
+      description: 'Compare UAE with other GCC countries eVisa options including Saudi Arabia, Qatar, Oman, and Bahrain. Find the best Gulf destination for your needs.',
+      countries: ['UAE', 'Saudi Arabia', 'Qatar', 'Oman', 'Bahrain']
     },
     'east-africa-evisa-options': {
       title: 'East Africa eVisa Options Comparison 2024 | Complete Guide',
-      description: 'Compare all East African eVisa options including Kenya, Tanzania, Uganda, Rwanda, and Ethiopia. Find the perfect destination for your African safari.'
+      description: 'Compare all East African eVisa options including Kenya, Tanzania, Uganda, Rwanda, and Ethiopia. Find the perfect destination for your African safari.',
+      countries: ['Kenya', 'Tanzania', 'Uganda', 'Rwanda', 'Ethiopia']
     }
   };
 
@@ -91,12 +96,12 @@ function KenyaVsTanzaniaComparison() {
               Back to Destinations
             </Link>
           </Button>
-          
+
           <h1 className="text-4xl font-bold mb-4">Kenya vs Tanzania eVisa: Complete Comparison Guide 2024</h1>
           <p className="text-xl text-muted-foreground mb-6">
             Planning an East African safari? Compare Kenya and Tanzania eVisa options to choose the perfect destination for your adventure.
           </p>
-          
+
           <div className="flex flex-wrap gap-2 mb-8">
             <Badge variant="secondary">East Africa</Badge>
             <Badge variant="secondary">Safari Destinations</Badge>
@@ -246,7 +251,7 @@ function KenyaVsTanzaniaComparison() {
                   </li>
                 </ol>
               </div>
-              
+
               <div>
                 <h3 className="font-semibold text-lg mb-3">Tanzania eVisa Process</h3>
                 <ol className="space-y-2">
@@ -309,12 +314,12 @@ function VietnamVsCambodiaComparison() {
               Back to Destinations
             </Link>
           </Button>
-          
+
           <h1 className="text-4xl font-bold mb-4">Vietnam vs Cambodia eVisa: Southeast Asia Travel Comparison 2024</h1>
           <p className="text-xl text-muted-foreground mb-6">
             Discover the differences between Vietnam and Cambodia eVisa options to plan your perfect Southeast Asian journey.
           </p>
-          
+
           <div className="flex flex-wrap gap-2 mb-8">
             <Badge variant="secondary">Southeast Asia</Badge>
             <Badge variant="secondary">Cultural Tourism</Badge>
@@ -414,23 +419,62 @@ function VietnamVsCambodiaComparison() {
 
 export default async function ComparisonPage({ params }: Props) {
   const { slug } = await params;
-  
+
   if (!validSlugs.includes(slug)) {
     notFound();
   }
 
-  switch (slug) {
-    case 'kenya-vs-tanzania-evisa':
-      return <KenyaVsTanzaniaComparison />;
-    case 'vietnam-vs-cambodia-evisa':
-      return <VietnamVsCambodiaComparison />;
-    case 'uae-gcc-countries-evisa':
-      return <UaeGccComparison />;
-    case 'east-africa-evisa-options':
-      return <EastAfricaComparison />;
-    default:
-      notFound();
+  const comparisons: Record<string, { title: string; description: string; countries: string[] }> = {
+    'kenya-vs-tanzania-evisa': {
+      title: 'Kenya vs Tanzania eVisa Comparison 2024 | Which is Better?',
+      description: 'Compare Kenya and Tanzania eVisa requirements, processing times, costs, and travel benefits. Complete guide to help you choose the best East African destination.',
+      countries: ['Kenya', 'Tanzania']
+    },
+    'vietnam-vs-cambodia-evisa': {
+      title: 'Vietnam vs Cambodia eVisa Comparison 2024 | Travel Guide',
+      description: 'Detailed comparison of Vietnam and Cambodia eVisa processes, costs, requirements, and travel experiences. Make the right choice for your Southeast Asian adventure.',
+      countries: ['Vietnam', 'Cambodia']
+    },
+    'uae-gcc-countries-evisa': {
+      title: 'UAE vs GCC Countries eVisa Comparison 2024 | Gulf Travel Guide',
+      description: 'Compare UAE with other GCC countries eVisa options including Saudi Arabia, Qatar, Oman, and Bahrain. Find the best Gulf destination for your needs.',
+      countries: ['UAE', 'Saudi Arabia', 'Qatar', 'Oman', 'Bahrain']
+    },
+    'east-africa-evisa-options': {
+      title: 'East Africa eVisa Options Comparison 2024 | Complete Guide',
+      description: 'Compare all East African eVisa options including Kenya, Tanzania, Uganda, Rwanda, and Ethiopia. Find the perfect destination for your African safari.',
+      countries: ['Kenya', 'Tanzania', 'Uganda', 'Rwanda', 'Ethiopia']
+    }
+  };
+
+  const comparison = comparisons[slug];
+
+  const getPage = () => {
+    switch (slug) {
+      case 'kenya-vs-tanzania-evisa':
+        return <KenyaVsTanzaniaComparison />;
+      case 'vietnam-vs-cambodia-evisa':
+        return <VietnamVsCambodiaComparison />;
+      case 'uae-gcc-countries-evisa':
+        return <UaeGccComparison />;
+      case 'east-africa-evisa-options':
+        return <EastAfricaComparison />;
+      default:
+        notFound();
+    }
   }
+
+  return (
+    <>
+      <EnhancedStructuredData
+        pageType="comparison"
+        title={comparison.title}
+        description={comparison.description}
+        comparisonCountries={comparison.countries}
+      />
+      {getPage()}
+    </>
+  )
 }
 
 function UaeGccComparison() {
@@ -441,7 +485,7 @@ function UaeGccComparison() {
         <p className="text-xl text-muted-foreground mb-8">
           Compare visa options across Gulf Cooperation Council countries including UAE, Saudi Arabia, Qatar, Oman, and Bahrain.
         </p>
-        
+
         <Card>
           <CardContent className="py-8">
             <div className="text-center">
@@ -466,7 +510,7 @@ function EastAfricaComparison() {
         <p className="text-xl text-muted-foreground mb-8">
           Complete guide to East African visa options including Kenya, Tanzania, Uganda, Rwanda, and Ethiopia.
         </p>
-        
+
         <Card>
           <CardContent className="py-8">
             <div className="text-center">

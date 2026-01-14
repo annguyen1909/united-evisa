@@ -4,7 +4,9 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Clock, FileText, CreditCard, Download, ArrowRight } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { CheckCircle, Clock, FileText, CreditCard, Download, ArrowRight, ShieldCheck, Info } from 'lucide-react'
+import EnhancedStructuredData from '@/app/components/EnhancedStructuredData'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -12,10 +14,10 @@ interface PageProps {
 
 // Generate static params for popular countries
 export async function generateStaticParams() {
-  const popularCountries = COUNTRIES.filter(country => 
+  const popularCountries = COUNTRIES.filter(country =>
     ['kenya', 'vietnam', 'india', 'egypt', 'united-kingdom', 'canada', 'australia', 'saudi-arabia', 'qatar', 'oman', 'kuwait', 'bahrain', 'cambodia', 'laos', 'thailand', 'malaysia', 'singapore', 'indonesia', 'south-africa'].includes(country.slug)
   )
-  
+
   return popularCountries.map((country) => ({
     slug: `${country.slug}-evisa-step-by-step`,
   }))
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const countrySlug = slug.replace('-evisa-step-by-step', '')
   const country = getCountryBySlug(countrySlug)
-  
+
   if (!country) {
     return {
       title: 'Guide Not Found',
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `How to Apply for ${country.name} eVisa - Step by Step Guide 2024`,
+    title: `How to Apply for ${country.name} eVisa | Step by Step Guide 2024`,
     description: `Complete step-by-step guide on how to apply for ${country.name} eVisa. Learn the application process, required documents, and get approved quickly.`,
     alternates: {
       canonical: `https://worldmaxxing.com/how-to-apply/${slug}`,
@@ -48,8 +50,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'online visa application'
     ].join(', '),
     openGraph: {
-      title: `How to Apply for ${country.name} eVisa - Step by Step Guide`,
-      description: `Complete step-by-step guide on how to apply for ${country.name} eVisa. Learn the application process and get approved quickly.`,
+      title: `How to Apply for ${country.name} eVisa - Official Step by Step Guide`,
+      description: `Official step-by-step guide on how to apply for ${country.name} eVisa. Learn the exact application process and get approved quickly.`,
       url: `https://worldmaxxing.com/how-to-apply/${slug}`,
       images: [
         {
@@ -67,7 +69,7 @@ export default async function HowToApplyPage({ params }: PageProps) {
   const { slug } = await params
   const countrySlug = slug.replace('-evisa-step-by-step', '')
   const country = getCountryBySlug(countrySlug)
-  
+
   if (!country) {
     notFound()
   }
@@ -153,203 +155,184 @@ export default async function HowToApplyPage({ params }: PageProps) {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-6">
-            <img 
-              src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`} 
-              alt={`${country.name} flag`}
-              className="w-16 h-12 rounded-lg shadow-lg mr-4"
-            />
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-800">
-              How to Apply for {country.name} eVisa
-            </h1>
+    <>
+      <EnhancedStructuredData
+        pageType="guide"
+        country={country.slug}
+        title={`How to Apply for ${country.name} eVisa`}
+        description={`Official step-by-step guide for ${country.name} visa application`}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="container mx-auto px-4 py-16">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="flex flex-col items-center justify-center mb-6">
+              <div className="flex items-center gap-4 mb-4">
+                <img
+                  src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
+                  alt={`${country.name} flag`}
+                  className="w-16 h-12 rounded-lg shadow-lg"
+                />
+                <Badge variant="outline" className="bg-white/50 border-blue-200 text-blue-700">Official Guide 2024</Badge>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-slate-800">
+                How to Apply for {country.name} eVisa
+              </h1>
+            </div>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Follow this comprehensive step-by-step guide to successfully apply for your {country.name} eVisa.
+              Our proven process has helped thousands of travelers get approved quickly and efficiently.
+            </p>
           </div>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Follow this comprehensive step-by-step guide to successfully apply for your {country.name} eVisa. 
-            Our proven process has helped thousands of travelers get approved quickly and efficiently.
-          </p>
-        </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-          <div className="bg-white rounded-xl p-6 text-center shadow-lg">
-            <div className="text-3xl font-bold text-emerald-600 mb-2">24-72h</div>
-            <div className="text-slate-600">Processing Time</div>
+          {/* Hub Cross-Link (Spoke to Hub) */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="bg-emerald-900 rounded-[32px] p-8 text-white shadow-2xl relative overflow-hidden group">
+              <div className="absolute right-0 top-0 p-8 opacity-10 group-hover:rotate-12 transition-transform">
+                <ShieldCheck className="w-24 h-24" />
+              </div>
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="flex-1">
+                  <span className="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] block mb-2">Expert Resource</span>
+                  <h3 className="text-2xl font-bold mb-2">Need More Details?</h3>
+                  <p className="text-emerald-100">
+                    Visit our comprehensive <strong>{country.name} Destination Hub</strong> for full entry requirements, rejection risk analysis, and local travel tips.
+                  </p>
+                </div>
+                <Link href={`/destinations/${country.slug}`}>
+                  <Button className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all h-auto">
+                    Visit {country.name} Hub
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="bg-white rounded-xl p-6 text-center shadow-lg">
-            <div className="text-3xl font-bold text-blue-600 mb-2">99.5%</div>
-            <div className="text-slate-600">Success Rate</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 text-center shadow-lg">
-            <div className="text-3xl font-bold text-purple-600 mb-2">6</div>
-            <div className="text-slate-600">Easy Steps</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 text-center shadow-lg">
-            <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
-            <div className="text-slate-600">Support</div>
-          </div>
-        </div>
 
-        {/* Step-by-Step Guide */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-800 text-center mb-12">
-            6 Simple Steps to Get Your {country.name} eVisa
-          </h2>
-          
-          <div className="space-y-8">
-            {steps.map((step, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-xl p-8">
-                <div className="flex items-start space-x-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <span className="text-2xl font-bold text-emerald-600">{step.number}</span>
+          {/* Quick Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+            <div className="bg-white rounded-xl p-6 text-center shadow-lg border border-white">
+              <div className="text-3xl font-bold text-emerald-600 mb-2">24-72h</div>
+              <div className="text-slate-600 text-sm uppercase font-bold tracking-wider">Processing Time</div>
+            </div>
+            <div className="bg-white rounded-xl p-6 text-center shadow-lg border border-white">
+              <div className="text-3xl font-bold text-blue-600 mb-2">99.5%</div>
+              <div className="text-slate-600 text-sm uppercase font-bold tracking-wider">Success Rate</div>
+            </div>
+            <div className="bg-white rounded-xl p-6 text-center shadow-lg border border-white">
+              <div className="text-3xl font-bold text-purple-600 mb-2">6</div>
+              <div className="text-slate-600 text-sm uppercase font-bold tracking-wider">Easy Steps</div>
+            </div>
+            <div className="bg-white rounded-xl p-6 text-center shadow-lg border border-white">
+              <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
+              <div className="text-slate-600 text-sm uppercase font-bold tracking-wider">Support</div>
+            </div>
+          </div>
+
+          {/* Step-by-Step Guide */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-slate-800 text-center mb-12">
+              6 Simple Steps to Get Your {country.name} eVisa
+            </h2>
+
+            <div className="space-y-8">
+              {steps.map((step, index) => (
+                <div key={index} className="bg-white rounded-3xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                  <div className="flex flex-col md:flex-row items-center border-l-8 border-emerald-500">
+                    <div className="flex-shrink-0 p-8">
+                      <div className="w-20 h-20 bg-emerald-50 rounded-2/3 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-500">
+                        <span className="text-3xl font-bold">{step.number}</span>
+                      </div>
+                    </div>
+                    <div className="flex-1 p-8">
+                      <div className="flex items-center mb-4">
+                        <div className="text-emerald-600 mr-4 p-2 bg-emerald-50 rounded-lg">{step.icon}</div>
+                        <h3 className="text-2xl font-bold text-slate-800">{step.title}</h3>
+                      </div>
+                      <p className="text-slate-600 mb-6 font-medium">{step.description}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {step.details.map((detail, detailIndex) => (
+                          <div key={detailIndex} className="flex items-start gap-3">
+                            <CheckCircle className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                            <span className="text-slate-700 text-sm font-bold">{detail}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center mb-4">
-                      <div className="text-emerald-600 mr-3">{step.icon}</div>
-                      <h3 className="text-2xl font-bold text-slate-800">{step.title}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Requirements Summary */}
+          <div className="bg-white rounded-3xl shadow-xl p-10 mb-16 border border-slate-100">
+            <div className="flex items-center gap-3 mb-8">
+              <Info className="w-8 h-8 text-blue-600" />
+              <h3 className="text-2xl font-bold text-slate-800">
+                {country.name} eVisa Requirements Summary
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="bg-slate-50 p-6 rounded-2xl">
+                <h4 className="font-black text-slate-800 mb-6 uppercase tracking-widest text-xs">Essential Documents</h4>
+                <div className="space-y-4">
+                  {[
+                    "Valid passport (6+ months remaining)",
+                    "Color passport-style photograph",
+                    "Return flight or onward travel itinerary",
+                    "Proof of accommodation for entire stay"
+                  ].map((doc, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      <span className="text-slate-700 font-bold text-sm">{doc}</span>
                     </div>
-                    <p className="text-slate-600 mb-6">{step.description}</p>
-                    <ul className="space-y-2">
-                      {step.details.map((detail, detailIndex) => (
-                        <li key={detailIndex} className="flex items-start space-x-3">
-                          <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-slate-700">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Requirements Summary */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-16">
-          <h3 className="text-2xl font-bold text-slate-800 mb-6">
-            {country.name} eVisa Requirements Summary
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="font-semibold mb-4 text-slate-800">Essential Documents</h4>
-              <ul className="space-y-2">
-                <li className="flex items-center space-x-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-500" />
-                  <span>Valid passport (6+ months)</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-500" />
-                  <span>Passport-style photograph</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-500" />
-                  <span>Travel itinerary</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-500" />
-                  <span>Proof of accommodation</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-slate-800">Processing Information</h4>
-              <ul className="space-y-2">
-                <li className="flex justify-between">
-                  <span>Processing Time:</span>
-                  <span className="font-semibold">24-72 hours</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Validity Period:</span>
-                  <span className="font-semibold">90 days</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Stay Duration:</span>
-                  <span className="font-semibold">Up to 30 days</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Total Cost:</span>
-                  <span className="font-semibold text-emerald-600">From $59.99</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Pro Tips */}
-        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-8 mb-16">
-          <h3 className="text-2xl font-bold text-slate-800 mb-6">Pro Tips for Success</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xs font-bold">1</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Apply Early</h4>
-                  <p className="text-slate-600 text-sm">Submit your application at least 1 week before travel to allow for processing time.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xs font-bold">2</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Double-Check Information</h4>
-                  <p className="text-slate-600 text-sm">Ensure all personal and travel details match your passport exactly.</p>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xs font-bold">3</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">High-Quality Photos</h4>
-                  <p className="text-slate-600 text-sm">Use recent, clear photos that meet official passport photo requirements.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xs font-bold">4</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Keep Records</h4>
-                  <p className="text-slate-600 text-sm">Save all confirmation emails and reference numbers for tracking.</p>
+              <div className="bg-slate-900 p-8 rounded-2xl text-white">
+                <h4 className="font-black text-emerald-400 mb-6 uppercase tracking-widest text-xs">Processing Information</h4>
+                <div className="space-y-4">
+                  {[
+                    { label: "Processing Time", value: "24-72 hours" },
+                    { label: "Validity Period", value: "90 days" },
+                    { label: "Stay Duration", value: "Up to 30 days" },
+                    { label: "Total Cost", value: "From $59.99", highlight: true }
+                  ].map((info, i) => (
+                    <div key={i} className="flex justify-between items-center border-b border-white/10 pb-2">
+                      <span className="text-slate-400 text-sm font-bold">{info.label}</span>
+                      <span className={`font-black ${info.highlight ? 'text-emerald-400' : 'text-white'}`}>{info.value}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* CTA Section */}
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-slate-800 mb-4">
-            Ready to Apply for Your {country.name} eVisa?
-          </h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Follow our step-by-step process and get your visa approved quickly with expert assistance.
-          </p>
-          <div className="space-x-4">
-            <Link href={`/apply?destination=${country.slug}`}>
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-lg px-8 py-3">
-                Start Application Now
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-            <Link href={`/requirements-posts/${country.slug}`}>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-3">
-                View Full Requirements
-              </Button>
-            </Link>
+          {/* CTA Section */}
+          <div className="text-center bg-slate-50 rounded-[48px] p-16 border border-slate-200">
+            <h2 className="text-4xl font-black text-slate-900 mb-6">
+              Get Your {country.name} eVisa Today
+            </h2>
+            <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
+              Skip the embassy queues. Our expert team ensures your application is perfect before submission.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link href={`/apply?destination=${country.slug}`}>
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-lg px-12 py-8 rounded-2xl font-black h-auto shadow-2xl shadow-emerald-200">
+                  Start Application
+                  <ArrowRight className="ml-2 w-6 h-6" />
+                </Button>
+              </Link>
+              <Link href={`/requirements-posts/${country.slug}`}>
+                <Button size="lg" variant="outline" className="bg-white text-slate-900 border-slate-200 text-lg px-12 py-8 rounded-2xl font-black h-auto hover:bg-slate-50 transition-all">
+                  Full Requirements
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

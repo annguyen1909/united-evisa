@@ -6,14 +6,14 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { 
-  Calendar, 
-  Clock, 
-  CreditCard, 
-  Globe, 
-  MapPin, 
-  Users, 
-  FileText, 
+import {
+  Calendar,
+  Clock,
+  CreditCard,
+  Globe,
+  MapPin,
+  Users,
+  FileText,
   CheckCircle,
   ArrowRight,
   ExternalLink,
@@ -87,11 +87,10 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
               <button
                 key={id}
                 onClick={() => scrollToSection(id)}
-                className={`flex items-center gap-3 p-3 rounded-lg text-left transition-all duration-200 ${
-                  activeSection === id
+                className={`flex items-center gap-3 p-3 rounded-lg text-left transition-all duration-200 ${activeSection === id
                     ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
                     : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
-                }`}
+                  }`}
               >
                 <Icon className="h-5 w-5" />
                 <span className="font-medium">{title}</span>
@@ -107,14 +106,14 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
               <Globe className="h-8 w-8 text-emerald-600" />
               {post.country} Overview
             </h2>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div>
                 <div className="prose prose-slate max-w-none">
                   <ReactMarkdown>{post.content}</ReactMarkdown>
                 </div>
               </div>
-              
+
               <div className="relative">
                 <Image
                   src={post.welcomeImage}
@@ -137,7 +136,7 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
                 </div>
                 <p className="text-slate-600">{post.capital}</p>
               </div>
-              
+
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
                 <div className="flex items-center gap-3 mb-3">
                   <Globe className="h-6 w-6 text-blue-600" />
@@ -145,7 +144,7 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
                 </div>
                 <p className="text-slate-600">{post.language}</p>
               </div>
-              
+
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
                 <div className="flex items-center gap-3 mb-3">
                   <CreditCard className="h-6 w-6 text-purple-600" />
@@ -164,7 +163,7 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
               <FileText className="h-8 w-8 text-emerald-600" />
               Available Visa Types
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {post.visaTypes.map((visa, index) => (
                 <Card key={index} className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm">
@@ -184,7 +183,7 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
                       </div>
                     </div>
                   </CardHeader>
-                  
+
                   <CardContent className="pb-4">
                     <p className="text-slate-600 mb-4 text-sm leading-relaxed">
                       {visa.description}
@@ -242,7 +241,7 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
               <Users className="h-8 w-8 text-emerald-600" />
               Frequently Asked Questions
             </h2>
-            
+
             <Accordion type="single" collapsible className="w-full">
               {post.faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
@@ -258,28 +257,52 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
           </div>
         </section>
 
+        {/* Hub Cross-Link (Spoke to Hub) */}
+        <div className="bg-slate-900 rounded-[32px] p-8 text-white mb-16 shadow-2xl relative overflow-hidden group">
+          <div className="absolute right-0 top-0 p-8 opacity-10 group-hover:rotate-12 transition-transform">
+            <Globe className="w-24 h-24" />
+          </div>
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex-1">
+              <Badge className="bg-emerald-500 text-white border-0 mb-4 px-3 py-1 uppercase tracking-widest text-[10px] font-black">Official Resource</Badge>
+              <h3 className="text-3xl font-black mb-2">The {post.country} Hub</h3>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                Need more travel info? Visit our main <strong>{post.country} Hub</strong> for real-time updates and rejection risk analysis.
+              </p>
+            </div>
+            <Link href={`/destinations/${post.country.toLowerCase().replace(/ /g, '-')}`}>
+              <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 font-black px-10 py-8 rounded-2xl shadow-2xl transition-all h-auto">
+                Visit Hub
+                <ArrowRight className="ml-2 w-6 h-6" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+
         {/* CTA Section */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 shadow-xl">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              Ready to Apply for Your {post.country} Visa?
-            </h2>
-            <p className="text-emerald-100 mb-6 max-w-2xl mx-auto">
-              Start your application today and get your {post.country} eVisa in just a few days. 
-              Our expert team is here to help you every step of the way.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={`/apply?country=${post.country.toLowerCase()}`}>
-                <Button className="bg-white text-emerald-600 hover:bg-slate-100 font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                  Apply Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="/check-requirements">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 font-semibold py-3 px-8 rounded-xl">
-                  Browse Other Countries
-                </Button>
-              </Link>
+          <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl p-12 shadow-2xl relative overflow-hidden">
+            <div className="relative z-10">
+              <h2 className="text-4xl font-black text-white mb-6">
+                Ready to Apply for Your {post.country} Visa?
+              </h2>
+              <p className="text-emerald-100 mb-10 text-xl max-w-2xl mx-auto font-medium">
+                Start your application today and get your {post.country} eVisa in just a few days.
+                Our expert team is here to help you every step of the way.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Link href={`/apply?country=${post.country.toLowerCase()}`}>
+                  <Button className="bg-white text-emerald-600 hover:bg-slate-50 font-black py-4 px-10 rounded-2xl shadow-2xl text-lg h-auto transition-all transform hover:scale-105 active:scale-95">
+                    Start Application
+                    <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
+                </Link>
+                <Link href={`/how-to-apply/${post.country.toLowerCase().replace(/ /g, '-')}-evisa-step-by-step`}>
+                  <Button variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 font-bold py-4 px-10 rounded-2xl text-lg h-auto backdrop-blur-sm">
+                    Step-by-Step Guide
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getRequirementsPostBySlug } from '@/lib/requirements-posts';
 import RequirementsPostClient from './RequirementsPostClient';
 import { Metadata } from 'next';
+import EnhancedStructuredData from '@/app/components/EnhancedStructuredData';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -19,14 +20,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: post.title,
-    description: post.description || `Visa requirements and information for ${post.title}`,
-    keywords: `${post.title}, visa requirements, eVisa, travel, ${post.country}`,
+    title: `${post.title} | ${post.country} eVisa Official Requirements 2024`,
+    description: post.description || `Comprehensive visa requirements and application guide for ${post.country}. Learn about documents, fees, and processing times.`,
+    keywords: `${post.title}, visa requirements, eVisa, travel, ${post.country}, ${post.country} visa application`,
     alternates: {
       canonical: `https://worldmaxxing.com/requirements-posts/${slug}`,
     },
     openGraph: {
-      title: post.title,
+      title: `${post.title} | ${post.country} eVisa Requirements`,
       description: post.description || `Visa requirements and information for ${post.title}`,
       url: `https://worldmaxxing.com/requirements-posts/${slug}`,
       siteName: 'Worldmaxxing Global Services',
@@ -58,5 +59,15 @@ export default async function RequirementsPostPage({ params }: PageProps) {
     notFound();
   }
 
-  return <RequirementsPostClient post={post} />;
-} 
+  return (
+    <>
+      <EnhancedStructuredData
+        pageType="requirements"
+        country={post.country.toLowerCase()}
+        title={post.title}
+        description={post.description}
+      />
+      <RequirementsPostClient post={post} />
+    </>
+  );
+}

@@ -1,12 +1,13 @@
 import { MetadataRoute } from 'next'
 import { COUNTRIES } from '@/lib/countries'
-import { getAllowedVisaTypes } from '@/lib/visa-types'
+import { getAllFaqSlugs } from '@/lib/faq'
+import { getAllRequirementsPosts } from '@/lib/requirements-posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://worldmaxxing.com'
   const currentDate = new Date()
 
-  // Main Architecture Routes
+  // Main Architecture Routes (Hubs)
   const destinationHubs = COUNTRIES.map((country) => ({
     url: `${baseUrl}/destinations/${country.slug}`,
     lastModified: currentDate,
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1.0,
   }))
 
+  // Architecture Spokes
   const requirementSpokes = COUNTRIES.map((country) => ({
     url: `${baseUrl}/destinations/${country.slug}/entry-requirements`,
     lastModified: currentDate,
@@ -26,6 +28,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: currentDate,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
+  }))
+
+  // How to Apply Guides (Dynamic country-based)
+  // Popular countries have step-by-step guides as seen in app/how-to-apply/[slug]/page.tsx
+  const popularCountrySlugs = [
+    'kenya', 'vietnam', 'india', 'egypt', 'united-kingdom', 'canada', 'australia', 
+    'saudi-arabia', 'qatar', 'oman', 'kuwait', 'bahrain', 'cambodia', 'laos', 
+    'thailand', 'malaysia', 'singapore', 'indonesia', 'south-africa'
+  ]
+  
+  const howToApplyPages = popularCountrySlugs.map((slug) => ({
+    url: `${baseUrl}/how-to-apply/${slug}-evisa-step-by-step`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  // Requirements Posts (Deep instructional content)
+  const requirementsPosts = getAllRequirementsPosts().map((post) => ({
+    url: `${baseUrl}/requirements-posts/${post.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  // Comparison Pages (High intent traffic)
+  const comparisonSlugs = [
+    'kenya-vs-tanzania-evisa',
+    'vietnam-vs-cambodia-evisa', 
+    'uae-gcc-countries-evisa',
+    'east-africa-evisa-options'
+  ]
+  const comparisonPages = comparisonSlugs.map((slug) => ({
+    url: `${baseUrl}/compare/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
   }))
 
   // Static site pages
@@ -66,22 +105,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/pricing`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/how-to-apply`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/digital-services-act`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly' as const,
+      priority: 0.3,
+    },
   ]
 
   // Legal and Auth (Lower priority)
   const legalPages = [
     { url: `${baseUrl}/terms`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
     { url: `${baseUrl}/privacy`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
+    { url: `${baseUrl}/cookie-policy`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
+    { url: `${baseUrl}/refund-policy`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
+    { url: `${baseUrl}/disclaimers`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.3 },
     { url: `${baseUrl}/login`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.5 },
     { url: `${baseUrl}/signup`, lastModified: currentDate, changeFrequency: 'yearly' as const, priority: 0.5 },
   ]
 
-  // Legacy/Utility FAQ pages
-  const faqPages = COUNTRIES.filter(country => 
-    ['india', 'vietnam', 'kenya', 'egypt', 'saudi-arabia', 'turkey', 'cambodia', 'sri-lanka']
-    .includes(country.slug)
-  ).map((country) => ({
-    url: `${baseUrl}/faq/${country.slug}-evisa-faq`,
+  // Dynamic FAQ pages from content folder
+  const faqSlugs = getAllFaqSlugs()
+  const faqPages = faqSlugs.map((slug) => ({
+    url: `${baseUrl}/faq/${slug}`,
     lastModified: currentDate,
     changeFrequency: 'monthly' as const,
     priority: 0.6,
@@ -92,6 +150,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...destinationHubs, 
     ...requirementSpokes, 
     ...riskSpokes, 
+    ...howToApplyPages,
+    ...requirementsPosts,
+    ...comparisonPages,
     ...faqPages,
     ...legalPages
   ]

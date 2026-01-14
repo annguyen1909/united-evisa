@@ -289,7 +289,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                 99% of rejections are preventable. Access our internal denial probability model.
                             </p>
                             <Link href={`/destinations/${country.slug}/rejection-risk`} className="w-full">
-                                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-slate-900 font-black py-6 h-auto rounded-2xl transition-all">
+                                <Button variant="outline" className="w-full border-white/20 text-slate-900 hover:bg-white hover:text-slate-900/80 font-black py-6 h-auto rounded-2xl transition-all">
                                     Analyze My Risk
                                 </Button>
                             </Link>

@@ -1,5 +1,7 @@
-# robots.txt — cleaned and permissive
-# Keep in mind: for best results use absolute Sitemap URLs in production,
+# robots.txt — Optimized for search engine crawling
+# This file allows search engines to crawl and index public pages
+# while blocking private, transactional, and legacy URLs.
+
 User-agent: *
 
 # Allow everything by default so Google can discover pages, except
@@ -34,9 +36,10 @@ Disallow: /apply/documents
 Disallow: /apply/passengers
 
 # Disallow Legacy Programmatic / Doorway Pages
-Disallow: /visa-for-*-citizens
-Disallow: /visa-for/*
-Disallow: /destination/*
+# Note: /destination/* (singular) redirects to /destinations/* (plural) via next.config.ts
+# Blocking the old singular paths prevents crawlers from indexing redirects
+Disallow: /destination/
+Disallow: /visa-for/
 
 # Static assets (explicit allow helps some crawlers)
 Allow: /_next/static/

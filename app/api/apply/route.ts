@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { COUNTRIES } from "@/lib/countries";
 import crypto from "crypto";
 import { sendEmail } from "@/lib/email";
 
@@ -100,6 +101,28 @@ export async function POST(req: NextRequest) {
         body,
       });
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    const startDate = new Date(stayingStart);
+    const endDate = new Date(stayingEnd);
+    const travelDays = Math.floor(
+      (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+    );
+    if (travelDays < 1) {
+      return NextResponse.json({ error: "Invalid travel dates" }, { status: 400 });
+    }
+
+    const destination = COUNTRIES.find(
+      (c) => c.code?.toLowerCase() === destinationCode?.toLowerCase()
+    );
+    const countryVisa = destination?.visaTypes?.find((v) => v.id === visaTypeId);
+    if (countryVisa?.visaDuration && travelDays > countryVisa.visaDuration) {
+      return NextResponse.json(
+        {
+          error: `Travel duration (${travelDays} days) exceeds the allowed visa duration (${countryVisa.visaDuration} days).`,
+        },
+        { status: 400 }
+      );
     }
 
     console.log('Apply route - Account ID being used:', account.id);

@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { getServerSession } from 'next-auth';
-import { getNationalityByCode } from '@/lib/nationalities';
+import { getNationalityByCode, NATIONALITIES } from '@/lib/nationalities';
 import crypto from 'crypto'; // Add this import for UUID generation
 
 // GET - List passengers for an application
@@ -145,6 +145,37 @@ export async function POST(
 
     if (!application) {
       return NextResponse.json({ error: 'Application not found' }, { status: 404 });
+    }
+
+    const visaType = await prisma.visaType.findUnique({
+      where: { id: application.visaTypeId },
+      select: { allowedNationalities: true }
+    });
+    const rawAllowed = visaType?.allowedNationalities;
+    const allowedNationalities = (Array.isArray(rawAllowed) ? rawAllowed : [])
+      .map((code) => String(code).toLowerCase());
+
+    const resolveNationalityCode = (value?: string | null) => {
+      if (!value) return null;
+      const direct = getNationalityByCode(value);
+      if (direct) return direct.code.toLowerCase();
+      const byName = NATIONALITIES.find(
+        (n) => n.name.toLowerCase() === value.toLowerCase()
+      );
+      return byName ? byName.code.toLowerCase() : null;
+    };
+
+    if (allowedNationalities.length > 0) {
+      const invalid = passengers.find((passengerData: any) => {
+        const code = resolveNationalityCode(passengerData.nationality);
+        return code && !allowedNationalities.includes(code);
+      });
+      if (invalid) {
+        return NextResponse.json(
+          { error: 'One or more passengers are not eligible for this visa type.' },
+          { status: 400 }
+        );
+      }
     }
 
 

@@ -42,20 +42,71 @@ export default async function DestinationHubPage({ params }: PageProps) {
     }
 
     const currentDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+    const quickFacts = [
+        { label: 'Capital', value: (country.info as any)?.capital },
+        { label: 'Region', value: country.region },
+        { label: 'Language', value: country.info?.language },
+        { label: 'Currency', value: country.info?.currency },
+        { label: 'Climate', value: country.info?.climate },
+    ].filter((fact) => Boolean(fact.value))
+
+    const visaHighlights = (country.visaTypes || []).slice(0, 3).map((visa) => ({
+        name: visa.name,
+        duration: visa.visaDuration ? `${visa.visaDuration} days` : null,
+        entry: visa.entry || null,
+        processing: visa.processingTimes?.normal || null,
+        validity: visa.visaValidity || null,
+    }))
+    const hasVisaHighlights = visaHighlights.length > 0
+    const fees = (country.visaTypes || []).map((visa) => visa.govFee).filter((fee) => Number.isFinite(fee))
+    const minFee = fees.length ? Math.min(...fees) : null
+    const maxFee = fees.length ? Math.max(...fees) : null
+    const entryTypes = Array.from(
+        new Set((country.visaTypes || []).map((visa) => visa.entry).filter(Boolean))
+    ) as string[]
+    const allowedNationalityCount = Array.from(
+        new Set((country.visaTypes || []).flatMap((visa) => visa.allowedNationalities || []))
+    ).length
+    const validitySamples = Array.from(
+        new Set((country.visaTypes || []).map((visa) => visa.visaValidity).filter(Boolean))
+    ) as string[]
+    const stayDurations = (country.visaTypes || []).map((visa) => visa.visaDuration).filter(Boolean)
+    const maxStay = stayDurations.length ? Math.max(...stayDurations) : null
+    const sampleVisa = country.visaTypes?.[0]
+    const destinationFaqs = [
+        {
+            question: `How long does it take to get a ${country.name} eVisa?`,
+            answer: `Typical processing is ${country.processingTime?.normal || '2-5 business days'}, depending on the visa type and the authority workload.`,
+        },
+        {
+            question: `What documents are usually required for ${country.name}?`,
+            answer: `Most applicants need a valid passport, a recent photo, and supporting travel details. Requirements can vary by nationality, so check the eligibility page before you apply.`,
+        },
+        {
+            question: `Which visa do travelers choose most often?`,
+            answer: sampleVisa
+                ? `${sampleVisa.name} is a common option. It offers ${sampleVisa.entry.toLowerCase()} entry with a stay of up to ${sampleVisa.visaDuration} days and validity of ${sampleVisa.visaValidity}.`
+                : `The best visa depends on your stay length and entry needs.`
+        },
+    ]
+    const ctaCopy = {
+        title: `Ready to apply for your ${country.name} eVisa?`,
+        subtitle: `Start your application today and get clear guidance from our team. We’ll keep you updated at every step.`,
+    }
 
     return (
         <div className="min-h-screen bg-slate-50 font-sans">
             <EnhancedStructuredData pageType="destination" country={country.slug} />
-            {/* Enhanced Premium Hero Section */}
-            <div className="relative min-h-[70vh] flex items-center bg-slate-900 text-white overflow-hidden">
-                {/* Cinematic Background */}
+            {/* Hero Section */}
+            <div className="relative min-h-[60vh] flex items-center bg-slate-900 text-white overflow-hidden">
+                {/* Background */}
                 {country.imageUrl && (
                     <div className="absolute inset-0 z-0">
                         <Image
                             src={country.imageUrl}
                             alt={`${country.name} landscape`}
                             fill
-                            className="object-cover opacity-50 scale-105 animate-slow-zoom"
+                            className="object-cover opacity-40"
                             priority
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
@@ -64,87 +115,72 @@ export default async function DestinationHubPage({ params }: PageProps) {
 
                 <div className="relative container mx-auto px-4 py-32 z-10">
                     <div className="max-w-3xl space-y-8">
-                        <div className="flex items-center space-x-4 animate-fade-in-down">
+                        <div className="flex items-center space-x-4">
                             {country.code && (
                                 <img
                                     src={`https://flagcdn.com/w160/${country.code.toLowerCase()}.png`}
                                     alt={`${country.name} flag`}
-                                    className="w-16 h-10 rounded shadow-2xl border border-white/30 object-cover"
+                                    className="w-14 h-9 rounded border border-white/30 object-cover"
                                 />
                             )}
                             <div className="h-8 w-px bg-white/20"></div>
-                            <span className="bg-emerald-500/90 backdrop-blur-md text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg shadow-emerald-500/20">
-                                Verified Policy Guide
+                            <span className="bg-white/10 text-white text-[11px] font-semibold px-3 py-1.5 rounded-full tracking-wide">
+                                Updated guidance
                             </span>
                         </div>
 
-                        <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter animate-fade-in-up">
-                            {country.name} <br />
-                            <span className="text-emerald-400">eVisa Rules.</span>
+                        <h1 className="text-5xl md:text-7xl font-semibold mb-6 leading-tight tracking-tight">
+                            {country.name} eVisa guidance
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-slate-200 mb-10 leading-relaxed font-medium max-w-2xl animate-fade-in-up delay-100">
+                        <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed font-medium max-w-2xl">
                             {country.description}
                         </p>
+                        <p className="text-sm md:text-base text-slate-300/90 max-w-2xl leading-relaxed">
+                            Based in {(country.info as any)?.capital || 'the capital'}, {country.name} uses {country.info?.currency || 'its local currency'} and primarily communicates in {country.info?.language || 'the local language'}.
+                        </p>
 
-                        <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-200">
+                        <div className="flex flex-col sm:flex-row gap-4">
                             <Link href={`/apply?country=${country.slug}`}>
-                                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white text-xl px-12 py-8 h-auto shadow-2xl shadow-emerald-600/20 rounded-2xl active:scale-95 transition-all">
+                                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white text-base px-10 py-6 h-auto rounded-2xl transition-all">
                                     Start Application
                                 </Button>
                             </Link>
                             <Link href={`/destinations/${country.slug}/entry-requirements`}>
-                                <Button size="lg" variant="outline" className="bg-white/5 border-white/20 hover:bg-white/10 text-white text-xl px-12 py-8 h-auto backdrop-blur-xl rounded-2xl transition-all">
+                                <Button size="lg" variant="outline" className="bg-white/5 border-white/20 hover:bg-white/10 text-white text-base px-10 py-6 h-auto rounded-2xl transition-all">
                                     Check Eligibility
                                 </Button>
                             </Link>
                         </div>
                     </div>
                 </div>
-
-                {/* Floating Stat Overlay */}
-                <div className="absolute bottom-12 right-12 hidden xl:block animate-fade-in-left delay-300">
-                    <div className="bg-white/5 backdrop-blur-2xl border border-white/10 p-8 rounded-[40px] space-y-4">
-                        <div className="flex items-center space-x-6">
-                            <div>
-                                <div className="text-3xl font-black text-white">99.5%</div>
-                                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Success Rate</div>
-                            </div>
-                            <div className="h-10 w-px bg-white/10"></div>
-                            <div>
-                                <div className="text-3xl font-black text-emerald-400">24h</div>
-                                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Avg Response</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            {/* Floating Action Strip */}
-            <div className="border-b border-slate-200 sticky top-0 z-50 shadow-sm backdrop-blur-lg bg-white/90">
+            {/* Quick Info Strip */}
+            <div className="border-b border-slate-200 bg-white">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-wrap items-center justify-between py-6 gap-8">
-                        <div className="flex items-center space-x-12 text-sm font-bold text-slate-700 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+                        <div className="flex items-center space-x-12 text-sm font-semibold text-slate-700 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
                             <div className="flex flex-col">
-                                <span className="text-emerald-600 text-[9px] uppercase tracking-[0.2em] mb-1">Region</span>
-                                <span className="tracking-tight">{country.region || 'Global'}</span>
+                                <span className="text-slate-400 text-[10px] uppercase tracking-[0.2em] mb-1">Region</span>
+                                <span>{country.region || 'Global'}</span>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-emerald-600 text-[9px] uppercase tracking-[0.2em] mb-1">Currency</span>
-                                <span className="tracking-tight">{country.info.currency}</span>
+                                <span className="text-slate-400 text-[10px] uppercase tracking-[0.2em] mb-1">Currency</span>
+                                <span>{country.info.currency}</span>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-emerald-600 text-[9px] uppercase tracking-[0.2em] mb-1">Language</span>
-                                <span className="tracking-tight">{country.info.language}</span>
+                                <span className="text-slate-400 text-[10px] uppercase tracking-[0.2em] mb-1">Language</span>
+                                <span>{country.info.language}</span>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-emerald-600 text-[9px] uppercase tracking-[0.2em] mb-1">Climate</span>
-                                <span className="tracking-tight">{country.info.climate}</span>
+                                <span className="text-slate-400 text-[10px] uppercase tracking-[0.2em] mb-1">Climate</span>
+                                <span>{country.info.climate}</span>
                             </div>
                         </div>
-                        <div className="hidden lg:flex items-center space-x-3 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Data accurate for {currentDate}</span>
+                        <div className="hidden lg:flex items-center space-x-3 text-[10px] text-slate-400 font-semibold uppercase tracking-widest">
+                            <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
+                            <span>Updated {currentDate}</span>
                         </div>
                     </div>
                 </div>
@@ -161,64 +197,112 @@ export default async function DestinationHubPage({ params }: PageProps) {
                             <div className="absolute -left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-500 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             <div className="flex flex-col md:flex-row gap-12 items-center">
                                 <div className="flex-1 space-y-6">
-                                    <h2 className="text-4xl font-black text-slate-900 tracking-tight">Welcome to {country.name}</h2>
-                                    <p className="text-xl text-slate-600 leading-relaxed font-medium">
+                                    <h2 className="text-3xl font-semibold text-slate-900 tracking-tight">Welcome to {country.name}</h2>
+                                    <p className="text-lg text-slate-600 leading-relaxed">
                                         {country.welcomeMessage}
                                     </p>
-                                    <div className="p-6 bg-slate-900 rounded-[32px] text-white shadow-2xl relative overflow-hidden group/tip">
-                                        <div className="absolute right-0 top-0 p-4 opacity-10 group-hover/tip:rotate-12 transition-transform">
-                                            <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" /></svg>
-                                        </div>
-                                        <div className="relative z-10">
-                                            <span className="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] block mb-2">Expert Tip</span>
-                                            <p className="text-slate-300 leading-relaxed uppercase0 text-sm font-bold">
-                                                Rejection rates spike due to minor photo errors. {country.name} requires precise lighting and 600dpi resolution.
-                                            </p>
-                                            <Link href={`/destinations/${country.slug}/rejection-risk`} className="inline-block mt-4 text-emerald-400 font-black hover:translate-x-2 transition-transform">
-                                                See Rejection Analysis →
-                                            </Link>
-                                        </div>
+                                    <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
+                                        A quick review of your documents can reduce delays. Use the eligibility check to confirm requirements before applying.
+                                        <Link href={`/destinations/${country.slug}/rejection-risk`} className="ml-2 text-emerald-700 font-semibold hover:underline">
+                                            See rejection insights
+                                        </Link>
                                     </div>
                                 </div>
                                 {country.welcomeImgUrl && (
-                                    <div className="w-full md:w-[350px] aspect-square relative rounded-[40px] overflow-hidden shadow-2xl shadow-slate-200 flex-shrink-0 group/img">
-                                        <Image src={country.welcomeImgUrl} alt={`Travel to ${country.name}`} fill className="object-cover group-hover/img:scale-110 transition-transform duration-700" />
-                                        <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover/img:opacity-100 transition-opacity"></div>
+                                    <div className="w-full md:w-[320px] aspect-square relative rounded-3xl overflow-hidden shadow-lg shadow-slate-200 flex-shrink-0">
+                                        <Image src={country.welcomeImgUrl} alt={`Travel to ${country.name}`} fill className="object-cover" />
                                     </div>
                                 )}
                             </div>
                         </section>
 
+                        {/* Quick Facts Section */}
+                        {quickFacts.length > 0 && (
+                            <section className="space-y-8">
+                                <div className="space-y-2">
+                                    <h2 className="text-3xl font-semibold text-slate-900">Quick facts</h2>
+                                    <p className="text-slate-600">
+                                        A fast overview of {country.name} to make your trip planning easier.
+                                    </p>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {quickFacts.map((fact) => (
+                                        <div
+                                            key={fact.label}
+                                            className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm"
+                                        >
+                                            <div className="text-xs uppercase tracking-widest text-slate-400">{fact.label}</div>
+                                            <div className="text-lg font-semibold text-slate-900">{fact.value}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        {/* Visa Snapshot Section */}
+                        {hasVisaHighlights && (
+                            <section className="space-y-8">
+                                <div className="space-y-2">
+                                    <h2 className="text-3xl font-semibold text-slate-900">Visa snapshot</h2>
+                                    <p className="text-slate-600">
+                                        Top visa options and timelines for {country.name} based on the latest published guidance.
+                                    </p>
+                                </div>
+                                <div className="space-y-4">
+                                    {visaHighlights.map((visa) => (
+                                        <div
+                                            key={visa.name}
+                                            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                                        >
+                                            <div className="text-lg font-semibold text-slate-900">{visa.name}</div>
+                                            <div className="mt-2 flex flex-wrap gap-3 text-sm text-slate-600">
+                                                {visa.duration && <span>Duration: {visa.duration}</span>}
+                                                {visa.entry && <span>Entry: {visa.entry}</span>}
+                                                {visa.processing && <span>Processing: {visa.processing}</span>}
+                                                {visa.validity && <span>Validity: {visa.validity}</span>}
+                                            </div>
+                                            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                                                {visa.entry ? `${visa.entry} entry` : 'Entry'} visas are commonly issued for {visa.duration || 'short stays'} with
+                                                {visa.validity ? ` a validity of ${visa.validity}` : ' standard validity'}.
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
                         {/* Visa Types Section */}
                         <section id="visa-types" className="space-y-12">
                             <div className="space-y-2">
-                                <h2 className="text-4xl font-black text-slate-900 tracking-tight">Available Visa Types</h2>
-                                <p className="text-slate-500 font-bold">Structured categories based on latest immigration directives.</p>
+                                <h2 className="text-3xl font-semibold text-slate-900">Available visa types</h2>
+                                <p className="text-slate-600">
+                                    Choose the visa that matches your stay length and entry needs.
+                                </p>
                             </div>
                             <div className="grid grid-cols-1 gap-6">
                                 {country.visaTypes.map((visa) => (
-                                    <div key={visa.id} className="bg-white p-8 rounded-[40px] border border-slate-200 shadow-sm hover:shadow-2xl hover:border-emerald-300 transition-all group flex flex-col md:flex-row justify-between items-center gap-8">
+                                    <div key={visa.id} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row justify-between items-center gap-8">
                                         <div className="space-y-4 text-center md:text-left">
-                                            <div className="inline-block bg-emerald-100 text-emerald-700 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">
+                                            <div className="inline-block bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-3 py-1 rounded-full uppercase tracking-widest">
                                                 {visa.type}
                                             </div>
-                                            <h3 className="text-2xl font-black text-slate-900 group-hover:text-emerald-700 transition-colors tracking-tight">{visa.name}</h3>
+                                            <h3 className="text-2xl font-semibold text-slate-900 tracking-tight">{visa.name}</h3>
                                             <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                                                <div className="flex items-center text-slate-400 text-xs font-bold uppercase tracking-widest">
+                                                <div className="flex items-center text-slate-500 text-xs font-semibold uppercase tracking-widest">
                                                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                                     {visa.visaDuration} Days
                                                 </div>
-                                                <div className="flex items-center text-slate-400 text-xs font-bold uppercase tracking-widest">
+                                                <div className="flex items-center text-slate-500 text-xs font-semibold uppercase tracking-widest">
                                                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                                     {visa.entry}
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="flex flex-col items-center md:items-end">
-                                            <div className="text-4xl font-black text-slate-900">${visa.govFee}</div>
-                                            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Official Gov Fee</div>
+                                            <div className="text-3xl font-semibold text-slate-900">${visa.govFee}</div>
+                                            <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Official gov fee</div>
                                             <Link href={`/apply?country=${country.slug}&visaType=${visa.id}`}>
-                                                <Button className="bg-slate-900 hover:bg-emerald-600 text-white font-black px-10 py-6 h-auto rounded-2xl transition-all shadow-xl">
+                                                <Button className="bg-slate-900 hover:bg-emerald-600 text-white font-semibold px-8 py-5 h-auto rounded-2xl transition-all shadow-sm">
                                                     Apply Now
                                                 </Button>
                                             </Link>
@@ -228,38 +312,123 @@ export default async function DestinationHubPage({ params }: PageProps) {
                             </div>
                         </section>
 
-                        {/* Premium Processing Section */}
-                        <section className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-[60px] p-16 relative overflow-hidden shadow-3xl shadow-emerald-500/20">
-                            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-                            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16">
-                                <div className="space-y-6">
-                                    <h2 className="text-4xl font-black tracking-tight">High-Velocity <br />Processing.</h2>
-                                    <p className="text-emerald-50/80 font-medium text-lg leading-relaxed">
-                                        We leverage direct API nodes at {country.name} immigration centers to bypass traditional bureaucratic delay.
+                        {/* Entry Requirements Section */}
+                        <section className="rounded-3xl border border-slate-200 bg-white p-10">
+                            <div className="space-y-3">
+                                <h2 className="text-3xl font-semibold text-slate-900">Entry requirements</h2>
+                                <p className="text-slate-600">
+                                    Requirements vary by nationality. Use the eligibility checker for the most accurate list.
+                                </p>
+                            </div>
+                            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+                                    Valid passport with remaining validity that meets {country.name} entry rules.
+                                </div>
+                                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+                                    A recent photo and supporting travel details (such as dates or itinerary).
+                                </div>
+                                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+                                    {allowedNationalityCount > 0
+                                        ? `${allowedNationalityCount}+ nationalities are eligible for at least one visa type.`
+                                        : 'Eligibility can depend on passport origin. Check the official matrix before applying.'}
+                                </div>
+                            </div>
+                            {entryTypes.length > 0 && (
+                                <div className="mt-6 text-sm text-slate-600">
+                                    Common entry options: {entryTypes.join(', ')}.
+                                </div>
+                            )}
+                            <div className="mt-6">
+                                <Link href={`/destinations/${country.slug}/entry-requirements`} className="text-emerald-700 font-semibold hover:underline">
+                                    View eligibility requirements →
+                                </Link>
+                            </div>
+                        </section>
+
+                        {/* Validity & Stay Section */}
+                        <section className="rounded-3xl border border-slate-200 bg-white p-10">
+                            <div className="space-y-3">
+                                <h2 className="text-3xl font-semibold text-slate-900">Validity and stay duration</h2>
+                                <p className="text-slate-600">
+                                    {validitySamples.length
+                                        ? `Common validity windows include ${validitySamples.slice(0, 3).join(', ')}.`
+                                        : `Validity depends on the visa type you choose.`}
+                                </p>
+                            </div>
+                            <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-600">
+                                {entryTypes.length > 0 && (
+                                    <span className="rounded-full bg-slate-100 px-4 py-2">Entry types: {entryTypes.join(', ')}</span>
+                                )}
+                                {maxStay && (
+                                    <span className="rounded-full bg-slate-100 px-4 py-2">Max stay up to {maxStay} days</span>
+                                )}
+                                {sampleVisa?.visaValidity && (
+                                    <span className="rounded-full bg-slate-100 px-4 py-2">
+                                        Example validity: {sampleVisa.visaValidity}
+                                    </span>
+                                )}
+                            </div>
+                        </section>
+
+                        {/* Fees Section */}
+                        <section className="rounded-3xl border border-slate-200 bg-white p-10">
+                            <div className="space-y-3">
+                                <h2 className="text-3xl font-semibold text-slate-900">Fees and payment</h2>
+                                <p className="text-slate-600">
+                                    {minFee !== null
+                                        ? `Government fees typically range from $${minFee} to $${maxFee ?? minFee}, depending on visa type.`
+                                        : `Fees depend on visa type and entry length.`}
+                                </p>
+                            </div>
+                            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+                                    Government fees are set by the destination and can change without notice.
+                                </div>
+                                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+                                    Service fees (if applicable) are shown during checkout before you submit.
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Processing Section */}
+                        <section className="rounded-3xl border border-slate-200 bg-white p-10">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                <div className="space-y-3">
+                                    <h2 className="text-3xl font-semibold text-slate-900">Processing timelines</h2>
+                                    <p className="text-slate-600">
+                                        Estimated timelines for {country.name} based on the latest guidance.
                                     </p>
-                                    <div className="flex space-x-4 pt-4">
-                                        <div className="bg-white/20 backdrop-blur-md p-4 rounded-2xl border border-white/20">
-                                            <div className="text-xs font-bold opacity-60 uppercase tracking-widest mb-1">Success</div>
-                                            <div className="text-xl font-black tracking-tight">99.5%</div>
-                                        </div>
-                                        <div className="bg-white/20 backdrop-blur-md p-4 rounded-2xl border border-white/20">
-                                            <div className="text-xs font-bold opacity-60 uppercase tracking-widest mb-1">Support</div>
-                                            <div className="text-xl font-black tracking-tight">24/7</div>
-                                        </div>
+                                </div>
+                                <div className="space-y-6">
+                                    <div>
+                                        <div className="text-xs uppercase tracking-widest text-slate-400">Standard</div>
+                                        <div className="text-3xl font-semibold text-slate-900">{country.processingTime?.normal || '3 days'}</div>
+                                        <p className="text-sm text-slate-500">Typical review time for most applications.</p>
+                                    </div>
+                                    <div>
+                                        <div className="text-xs uppercase tracking-widest text-slate-400">Rush</div>
+                                        <div className="text-3xl font-semibold text-slate-900">{country.processingTime?.superUrgent || '24 hours'}</div>
+                                        <p className="text-sm text-slate-500">Expedited processing when available.</p>
                                     </div>
                                 </div>
-                                <div className="space-y-12">
-                                    <div className="space-y-4 group/box">
-                                        <div className="text-emerald-300 font-extrabold uppercase tracking-[0.3em] text-[10px]">Tier 1: Essential</div>
-                                        <div className="text-5xl font-black tracking-tight group-hover:translate-x-2 transition-transform">{country.processingTime?.normal || '3 Days'}</div>
-                                        <p className="text-emerald-100/70 text-sm font-medium">Standard queue, human verification included.</p>
+                            </div>
+                        </section>
+
+                        {/* FAQ Section */}
+                        <section className="space-y-8">
+                            <div className="space-y-2">
+                                <h2 className="text-3xl font-semibold text-slate-900">Frequently asked questions</h2>
+                                <p className="text-slate-600">
+                                    Quick answers for common {country.name} eVisa questions.
+                                </p>
+                            </div>
+                            <div className="space-y-4">
+                                {destinationFaqs.map((faq) => (
+                                    <div key={faq.question} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                                        <div className="text-lg font-semibold text-slate-900">{faq.question}</div>
+                                        <p className="mt-2 text-sm text-slate-600 leading-relaxed">{faq.answer}</p>
                                     </div>
-                                    <div className="space-y-4 group/box">
-                                        <div className="text-emerald-300 font-extrabold uppercase tracking-[0.3em] text-[10px]">Tier 2: Rush</div>
-                                        <div className="text-5xl font-black tracking-tight group-hover:translate-x-2 transition-transform">{country.processingTime?.superUrgent || '24 Hours'}</div>
-                                        <p className="text-emerald-100/70 text-sm font-medium">Priority injection for emergency travel.</p>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </section>
                     </div>
@@ -267,33 +436,43 @@ export default async function DestinationHubPage({ params }: PageProps) {
                     {/* Sidebar Column */}
                     <aside className="space-y-12">
                         {/* Check Requirements Spoke */}
-                        <div className="bg-white p-10 rounded-[40px] shadow-2xl shadow-slate-200 border border-slate-100 flex flex-col items-center text-center space-y-6 group">
-                            <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-200 flex flex-col items-center text-center space-y-6">
+                            <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
                             </div>
-                            <h3 className="text-2xl font-black text-slate-900 tracking-tight">Requirement <br />Matrix.</h3>
-                            <p className="text-slate-500 font-medium text-sm leading-relaxed">
-                                Requirements fluctuate by passport origin. Query the dynamic matrix before application.
+                            <h3 className="text-xl font-semibold text-slate-900 tracking-tight">Eligibility checker</h3>
+                            <p className="text-slate-500 text-sm leading-relaxed">
+                                Requirements vary by passport. Check eligibility before you apply.
                             </p>
                             <Link href={`/destinations/${country.slug}/entry-requirements`} className="w-full">
-                                <Button className="w-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white font-black py-6 h-auto rounded-2xl transition-all border-none shadow-none">
-                                    Check Real-Time Matrix
+                                <Button className="w-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-5 h-auto rounded-2xl transition-all border-none shadow-none">
+                                    Check requirements
                                 </Button>
                             </Link>
                         </div>
 
                         {/* Risk Spoke */}
-                        <div className="bg-slate-900 text-white p-10 rounded-[40px] flex flex-col items-center text-center space-y-6 group">
-                            <div className="w-16 h-16 bg-red-500/20 text-red-500 rounded-3xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+                        <div className="bg-slate-900 text-white p-10 rounded-3xl flex flex-col items-center text-center space-y-6">
+                            <div className="w-14 h-14 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center">
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                             </div>
-                            <h3 className="text-2xl font-black text-white tracking-tight">Prevent <br />Rejection.</h3>
-                            <p className="text-slate-400 font-medium text-sm leading-relaxed">
-                                99% of rejections are preventable. Access our internal denial probability model.
+                            <h3 className="text-xl font-semibold text-white tracking-tight">Reduce errors</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                Review the most common rejection reasons before submitting.
                             </p>
                             <Link href={`/destinations/${country.slug}/rejection-risk`} className="w-full">
-                                <Button variant="outline" className="w-full border-white/20 text-slate-900 hover:bg-white hover:text-slate-900/80 font-black py-6 h-auto rounded-2xl transition-all">
-                                    Analyze My Risk
+                                <Button variant="outline" className="w-full border-white/20 text-slate-900 hover:bg-white hover:text-slate-900/80 font-semibold py-5 h-auto rounded-2xl transition-all">
+                                    View risk tips
+                                </Button>
+                            </Link>
+                        </div>
+                        {/* Country CTA */}
+                        <div className="rounded-3xl border border-slate-200 bg-white p-8 text-center space-y-4">
+                            <h3 className="text-xl font-semibold text-slate-900">{ctaCopy.title}</h3>
+                            <p className="text-sm text-slate-600">{ctaCopy.subtitle}</p>
+                            <Link href={`/apply?country=${country.slug}`} className="inline-block">
+                                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-5 h-auto rounded-2xl">
+                                    Start my application
                                 </Button>
                             </Link>
                         </div>
@@ -302,25 +481,20 @@ export default async function DestinationHubPage({ params }: PageProps) {
             </div>
 
             {/* Non-Government Disclaimer (Trust Signal) */}
-            <div className="container mx-auto px-4 py-12 border-t border-slate-200 mt-24 bg-white/50 backdrop-blur-sm rounded-[60px] mb-12">
+            <div className="container mx-auto px-4 py-12 border-t border-slate-200 mt-24 bg-white rounded-3xl mb-12">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400">
                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" /></svg>
                         </div>
                         <div className="max-w-xl">
-                            <p className="text-[11px] text-slate-500 leading-relaxed font-bold uppercase tracking-wider">
+                            <p className="text-[11px] text-slate-500 leading-relaxed font-semibold uppercase tracking-wider">
                                 Transparency Disclosure
                             </p>
-                            <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                            <p className="text-xs text-slate-400 leading-relaxed">
                                 Worldmaxxing is a private entity. We are not the government of {country.name}. We provide professional review and submission services for a fee. Official government forms are available at official gov sites at base cost.
                             </p>
                         </div>
-                    </div>
-                    <div className="flex space-x-2">
-                        <div className="w-8 h-8 bg-slate-100 rounded"></div>
-                        <div className="w-8 h-8 bg-slate-100 rounded"></div>
-                        <div className="w-8 h-8 bg-slate-100 rounded"></div>
                     </div>
                 </div>
             </div>

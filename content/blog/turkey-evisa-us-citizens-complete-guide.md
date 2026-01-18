@@ -1,11 +1,18 @@
 ---
-title: "Turkey eVisa for US Citizens: Complete Application Guide 2024"
-description: "Complete guide for US citizens applying for Turkey eVisa. Learn about requirements, processing times, costs, and step-by-step application process."
-date: "2024-01-15"
-category: "visa-guides"
-image: "/images/blog/turkey-evisa-us-citizens.jpg"
-tags: ["Turkey", "eVisa", "US Citizens", "Travel Guide", "Tourism"]
-readTime: "10 min read"
+title: 'Turkey eVisa for US Citizens: Complete Application Guide 2024'
+description: >-
+  Complete guide for US citizens applying for Turkey eVisa. Learn about
+  requirements, processing times, costs, and step-by-step application process.
+date: '2024-01-15'
+category: visa-guides
+image: /images/hero/hero.jpg
+tags:
+  - Turkey
+  - eVisa
+  - US Citizens
+  - Travel Guide
+  - Tourism
+readTime: 10 min read
 ---
 
 # Turkey eVisa for US Citizens: Your Complete Application Guide 2024

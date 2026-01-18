@@ -102,6 +102,18 @@ export default function EnhancedStructuredData({
     ]
   })
 
+  const getWebPageSchema = (url: string) => {
+    if (!modifiedDate) return null
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": title || `${country || 'Visa'} Requirements`,
+      "url": url,
+      "dateModified": modifiedDate,
+      ...(publishedDate ? { "datePublished": publishedDate } : {})
+    }
+  }
+
   // Comparison Schema (Dataset + Article)
   const getComparisonSchema = () => ({
     "@context": "https://schema.org",
@@ -162,6 +174,12 @@ export default function EnhancedStructuredData({
       if (countryInfo) {
         schemas.push(getDestinationSchema(countryInfo.name, countryInfo.slug))
         schemas.push(getFAQSchema(countryInfo.name))
+        const url =
+          pageType === 'requirements'
+            ? `${baseUrl}/requirements-posts/${countryInfo.slug}`
+            : `${baseUrl}/how-to-apply/${countryInfo.slug}-evisa-step-by-step`
+        const webPage = getWebPageSchema(url)
+        if (webPage) schemas.push(webPage)
       }
       break
     case 'comparison':

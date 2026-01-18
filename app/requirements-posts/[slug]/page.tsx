@@ -68,6 +68,7 @@ export default async function RequirementsPostPage({ params }: PageProps) {
         country={post.country.toLowerCase()}
         title={post.title}
         description={post.description}
+        modifiedDate={post.updatedAt}
       />
       <RequirementsPostClient post={post} />
     </>

@@ -1,12 +1,18 @@
 ---
-title: "Kenya Tourist Visa Guide 2024 - Requirements & Application Process"
-description: "Complete guide to Kenya tourist visa application. Learn about requirements, documents, processing times, and fees for tourist travel to Kenya."
-date: "2024-09-22T10:00:00.000Z"
-author: "Worldmaxxing Visa Experts"
-category: "Visa Types"
-tags: ["Kenya", "Tourist Visa", "Visa Application", "Tourist Travel"]
-image: "/images/blog/kenya-tourist-visa.jpg"
-readTime: "6 min read"
+title: Kenya Tourist Visa Guide 2024 - Requirements & Application Process
+description: >-
+  Complete guide to Kenya tourist visa application. Learn about requirements,
+  documents, processing times, and fees for tourist travel to Kenya.
+date: '2024-09-22T10:00:00.000Z'
+author: Worldmaxxing Visa Experts
+category: Visa Types
+tags:
+  - Kenya
+  - Tourist Visa
+  - Visa Application
+  - Tourist Travel
+image: /images/hero/hero.jpg
+readTime: 6 min read
 ---
 
 # Kenya Tourist Visa Guide 2024

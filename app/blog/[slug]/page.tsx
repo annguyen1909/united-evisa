@@ -8,7 +8,7 @@ import SupportSidebar from "@/components/shared/SupportSidebar";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
-import { Calendar, Clock, ArrowLeft, User, Tag, Share2, BookOpen } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, User, Tag, Share2, BookOpen, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { Metadata } from 'next';
@@ -225,6 +225,10 @@ export default async function BlogDetail({ params }: Props) {
                   <span>{post.author}</span>
                 </div>
               )}
+              <div className="flex items-center gap-1 text-sm">
+                <ShieldCheck className="h-4 w-4" />
+                <span>Reviewed by Visa Compliance Team</span>
+              </div>
             </div>
 
             {/* Title */}

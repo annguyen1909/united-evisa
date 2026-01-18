@@ -18,6 +18,9 @@ export interface RequirementsPost {
   visaTypes: VisaType[];
   faqs: FAQ[];
   content: string;
+  updatedAt?: string;
+  author?: string;
+  reviewer?: string;
 }
 
 export interface VisaType {
@@ -68,7 +71,10 @@ export function getAllRequirementsPosts(): RequirementsPost[] {
         features: (v as any).features || [] // Explicitly casting as features isn't in base type
       })),
       faqs: (country as any).faqs || [], // Explicitly casting as faqs isn't in base type
-      content: country.welcomeMessage || ''
+      content: country.welcomeMessage || '',
+      updatedAt: new Date().toISOString(),
+      author: 'Worldmaxxing Global Services',
+      reviewer: 'Visa Compliance Team',
     } as RequirementsPost));
   }
 
@@ -80,10 +86,18 @@ export function getAllRequirementsPosts(): RequirementsPost[] {
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { data, content } = matter(fileContents);
+      const stat = fs.statSync(fullPath);
+      const updatedAt =
+        (data as any).updatedAt ||
+        (data as any).lastUpdated ||
+        stat.mtime.toISOString();
 
       return {
         slug,
         content,
+        updatedAt,
+        author: (data as any).author || 'Worldmaxxing Global Services',
+        reviewer: (data as any).reviewer || 'Visa Compliance Team',
         ...data,
       } as RequirementsPost;
     });
@@ -123,17 +137,28 @@ export function getRequirementsPostBySlug(slug: string): RequirementsPost | null
             features: (v as any).features || []
           })),
           faqs: (country as any).faqs || [],
-          content: country.welcomeMessage || ''
+          content: country.welcomeMessage || '',
+          updatedAt: new Date().toISOString(),
+          author: 'Worldmaxxing Global Services',
+          reviewer: 'Visa Compliance Team',
         } as RequirementsPost;
       }
       return null;
     }
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
+    const stat = fs.statSync(fullPath);
+    const updatedAt =
+      (data as any).updatedAt ||
+      (data as any).lastUpdated ||
+      stat.mtime.toISOString();
 
     return {
       slug,
       content,
+      updatedAt,
+      author: (data as any).author || 'Worldmaxxing Global Services',
+      reviewer: (data as any).reviewer || 'Visa Compliance Team',
       ...data,
     } as RequirementsPost;
   } catch (error) {

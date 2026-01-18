@@ -1,13 +1,21 @@
 ---
-title: "Saint Helena eVisa Complete Guide: Requirements, Application, and Travel Tips"
-description: "Comprehensive guide to Saint Helena eVisa requirements, application process, fees, and travel tips. Learn how to apply for your Saint Helena visa online with expert advice."
-date: "2025-07-23"
-author: "eVisa United Team"
-category: "Saint Helena"
-tags: ["Saint Helena", "eVisa", "Travel", "Tourism", "Guide"]
-image: "/images/blog/saint-helena/saint-helena-blog-1.png"
+title: 'Saint Helena eVisa Complete Guide: Requirements, Application, and Travel Tips'
+description: >-
+  Comprehensive guide to Saint Helena eVisa requirements, application process,
+  fees, and travel tips. Learn how to apply for your Saint Helena visa online
+  with expert advice.
+date: '2025-07-23'
+author: eVisa United Team
+category: Saint Helena
+tags:
+  - Saint Helena
+  - eVisa
+  - Travel
+  - Tourism
+  - Guide
+image: /images/hero/hero.jpg
 featured: true
-slug: "saint-helena-evisa-complete-guide"
+slug: saint-helena-evisa-complete-guide
 ---
 
 # Saint Helena eVisa Complete Guide: Requirements, Application, and Travel Tips

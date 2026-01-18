@@ -166,6 +166,27 @@ export default function RootLayout({
             ]
           }) }}
         />
+        {/* LocalBusiness JSON-LD for trust signals */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TravelAgency",
+            "name": "Worldmaxxing Global Services",
+            "url": "https://worldmaxxing.com",
+            "logo": "https://worldmaxxing.com/images/logo.png",
+            "telephone": "+1 323 286 4541",
+            "email": "support@worldmaxxing.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "1308 E Colorado Blvd, #2244",
+              "addressLocality": "Pasadena",
+              "addressRegion": "CA",
+              "postalCode": "91106",
+              "addressCountry": "US"
+            }
+          }) }}
+        />
         {/* Google AdSense: page-level script to enable ads on all pages */}
         <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4911851888362550"

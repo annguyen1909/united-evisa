@@ -231,9 +231,9 @@ export default function CheckEligibility() {
     try {
       // Import the selected destination's data file
       const destinationModule = await import(`@/lib/countries/${destinationSlug}`);
-      const allowedNationalities: string[] = destinationModule.default.visaTypes.map(
-        (visaType: any) => visaType.allowedNationalities
-      );
+      const allowedNationalities = destinationModule.default.visaTypes
+        .flatMap((visaType: any) => visaType.allowedNationalities || [])
+        .map((code: string) => code.toLowerCase());
 
       const nationalityName = nationalityOptions.find(
         (n) => n.value === nationality.toLowerCase()
@@ -241,6 +241,12 @@ export default function CheckEligibility() {
 
       if (!nationalityName) {
         alert("Could not find nationality name.");
+        setIsLoading(false);
+        return;
+      }
+
+      if (!allowedNationalities.includes(nationality.toLowerCase())) {
+        alert("The selected nationality is not eligible for this destination.");
         setIsLoading(false);
         return;
       }

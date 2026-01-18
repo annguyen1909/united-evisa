@@ -36,6 +36,7 @@ import taiwan from "./taiwan";
 import tajikistan from "./tajikistan";
 import tanzania from "./tanzania";
 import uganda from "./uganda";
+import uae from "./uae";
 import unitedKingdom from "./united-kingdom";
 import uzbekistan from "./uzbekistan";
 import vietnam from "./vietnam";
@@ -48,7 +49,7 @@ export const COUNTRIES = [
   kazakhstan, kenya, kuwait, kyrgyzstan, laos, malawi, malaysia, moldova,
   mongolia, newZealand, oman, pakistan, qatar, rwanda, saintHelena,
   saudiArabia, southAfrica, sriLanka, taiwan, tajikistan, tanzania,
-  uganda, unitedKingdom, uzbekistan, vietnam, zambia, zimbabwe
+  uganda, uae, unitedKingdom, uzbekistan, vietnam, zambia, zimbabwe
 ];
 
 export function getCountryBySlug(slug: string) {

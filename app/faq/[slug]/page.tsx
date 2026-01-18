@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, HelpCircle, MessageCircle, Globe, BookOpen, Clock, Shield, ArrowRight } from "lucide-react";
+import { ArrowLeft, HelpCircle, MessageCircle, Globe, BookOpen, Clock, Shield, ArrowRight, Calendar } from "lucide-react";
 import { Metadata } from 'next';
 
 interface Props {
@@ -124,6 +124,10 @@ export default async function FaqDetailPage({ params }: Props) {
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
                 <span className="text-sm">Updated Daily</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="h-4 w-4" />
+                <span className="text-sm">Reviewed by Visa Compliance Team</span>
               </div>
             </div>
           </div>

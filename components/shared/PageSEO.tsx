@@ -23,30 +23,6 @@ export default function PageSEO({
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Organization",
-          "@id": "https://worldmaxxing.com/#organization",
-          "name": "Worldmaxxing Global Services",
-          "url": "https://worldmaxxing.com",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://worldmaxxing.com/images/logo.png",
-            "width": 300,
-            "height": 300
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+1-800-VISA-HELP",
-            "contactType": "customer service",
-            "availableLanguage": ["English"],
-            "areaServed": "Worldwide"
-          },
-          "sameAs": [
-            "https://twitter.com/worldmaxxing",
-            "https://facebook.com/worldmaxxing",
-            "https://linkedin.com/company/worldmaxxing"
-          ]
-        },
-        {
           "@type": "WebSite",
           "@id": "https://worldmaxxing.com/#website",
           "url": "https://worldmaxxing.com",

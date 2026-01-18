@@ -1,11 +1,18 @@
 ---
-title: "Taiwan eVisa Complete Guide 2024: Requirements, Application & Process"
-description: "Complete guide to Taiwan eVisa application. Learn about requirements, processing times, costs, and step-by-step application process for Taiwan travel."
-date: "2024-01-15"
-category: "visa-guides"
-image: "/images/blog/taiwan-evisa-complete-guide.jpg"
-tags: ["Taiwan", "eVisa", "Travel Guide", "Asia"]
-readTime: "12 min read"
+title: 'Taiwan eVisa Complete Guide 2024: Requirements, Application & Process'
+description: >-
+  Complete guide to Taiwan eVisa application. Learn about requirements,
+  processing times, costs, and step-by-step application process for Taiwan
+  travel.
+date: '2024-01-15'
+category: visa-guides
+image: /images/hero/hero.jpg
+tags:
+  - Taiwan
+  - eVisa
+  - Travel Guide
+  - Asia
+readTime: 12 min read
 ---
 
 # Taiwan eVisa Complete Guide 2024: Your Gateway to Formosa

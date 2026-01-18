@@ -35,6 +35,7 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Combobox } from "@/components/ui/combobox";
 import SupportSidebar from "./SupportSidebar";
+import { COUNTRIES } from "@/lib/countries";
 
 // Fixed service fee for all countries
 const FIXED_SERVICE_FEE = 59.99;
@@ -475,17 +476,20 @@ export default function ApplyForm({ user }: { user: any }) {
       );
     }
 
-    // Get visa duration in days (assume visa.waitTime is like "30 days" or "90 days")
+    // Get visa duration in days from country data
     let visaDurationDays = 0;
-    let visaTypeObj = null;
+    let visaTypeObj: VisaType | null = null;
     if (selectedDestination && selectedVisaType) {
-      visaTypeObj = visaTypes.find(
-        (v) => v.name === selectedVisaType
+      visaTypeObj =
+        visaTypes.find((v) => v.name === selectedVisaType) || null;
+      const country = COUNTRIES.find(
+        (c) => c.code?.toLowerCase() === selectedDestination.code?.toLowerCase()
       );
-      if (visaTypeObj && visaTypeObj.fees) {
-        const visaDurationStr = String(visaTypeObj.fees);
-        const match = visaDurationStr.match(/(\d+)/);
-        if (match) visaDurationDays = parseInt(match[1], 10);
+      const countryVisa = country?.visaTypes?.find(
+        (v) => v.id === visaTypeObj?.id || v.name === selectedVisaType
+      );
+      if (countryVisa?.visaDuration) {
+        visaDurationDays = countryVisa.visaDuration;
       }
     }
 

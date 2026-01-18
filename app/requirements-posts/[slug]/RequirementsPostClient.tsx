@@ -28,6 +28,13 @@ import { RequirementsPost } from '@/lib/requirements-posts';
 
 export default function RequirementsPostClient({ post }: { post: RequirementsPost }) {
   const [activeSection, setActiveSection] = useState('overview');
+  const updatedLabel = post.updatedAt
+    ? new Date(post.updatedAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : null;
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -63,6 +70,26 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
             <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
               {post.description}
             </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-emerald-100">
+              {updatedLabel && (
+                <div className="flex items-center gap-2 text-sm">
+                  <Calendar className="h-4 w-4" />
+                  <span>Last updated: {updatedLabel}</span>
+                </div>
+              )}
+              {post.author && (
+                <div className="flex items-center gap-2 text-sm">
+                  <Users className="h-4 w-4" />
+                  <span>Author: {post.author}</span>
+                </div>
+              )}
+              {post.reviewer && (
+                <div className="flex items-center gap-2 text-sm">
+                  <Star className="h-4 w-4" />
+                  <span>Reviewed by: {post.reviewer}</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

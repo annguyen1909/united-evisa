@@ -1,11 +1,17 @@
 ---
-title: "Processing Times for eVisa Applications Worldwide 2024"
-description: "Complete guide to eVisa processing times for different countries. Learn about standard, express, and emergency processing options for your travel plans."
-date: "2024-01-15"
-category: "visa-guides"
-image: "/images/blog/evisa-processing-times-guide.jpg"
-tags: ["Processing Times", "eVisa", "Travel Planning", "Visa Application"]
-readTime: "8 min read"
+title: Processing Times for eVisa Applications Worldwide 2024
+description: >-
+  Complete guide to eVisa processing times for different countries. Learn about
+  standard, express, and emergency processing options for your travel plans.
+date: '2024-01-15'
+category: visa-guides
+image: /images/hero/hero.jpg
+tags:
+  - Processing Times
+  - eVisa
+  - Travel Planning
+  - Visa Application
+readTime: 8 min read
 ---
 
 # eVisa Processing Times Worldwide: Complete Guide 2024

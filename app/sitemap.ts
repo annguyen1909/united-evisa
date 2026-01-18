@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next'
+import fs from 'fs'
+import path from 'path'
 import { COUNTRIES } from '@/lib/countries'
 import { getAllFaqSlugs } from '@/lib/faq'
+import { getAllPosts } from '@/lib/blog'
 import { getAllRequirementsPosts } from '@/lib/requirements-posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -48,10 +51,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Requirements Posts (Deep instructional content)
   const requirementsPosts = getAllRequirementsPosts().map((post) => ({
     url: `${baseUrl}/requirements-posts/${post.slug}`,
-    lastModified: currentDate,
+    lastModified: post.updatedAt ? new Date(post.updatedAt) : currentDate,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
+
+  // Blog posts
+  const blogPostsDirectory = path.join(process.cwd(), 'content/blog')
+  const blogPosts = getAllPosts().map((post) => {
+    const filePath = path.join(blogPostsDirectory, `${post.slug}.md`)
+    const mtime = fs.existsSync(filePath) ? fs.statSync(filePath).mtime : null
+    return {
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: mtime || currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }
+  })
 
   // Comparison Pages (High intent traffic)
   const comparisonSlugs = [
@@ -76,6 +92,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/about`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/apply`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
@@ -86,6 +108,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/requirements-posts`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/blog`,
@@ -149,6 +177,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...requirementSpokes, 
     ...riskSpokes, 
     ...howToApplyPages,
+    ...blogPosts,
     ...requirementsPosts,
     ...comparisonPages,
     ...faqPages,

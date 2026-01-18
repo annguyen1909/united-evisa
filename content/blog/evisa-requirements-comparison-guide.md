@@ -1,11 +1,18 @@
 ---
-title: "eVisa Requirements Comparison: Complete Guide for All Countries 2024"
-description: "Compare eVisa requirements across different countries. Complete guide to documents, eligibility, costs, and application processes for worldwide destinations."
-date: "2024-01-15"
-category: "visa-guides"
-image: "/images/blog/evisa-requirements-comparison.jpg"
-tags: ["Visa Requirements", "eVisa Comparison", "Travel Documents", "International Travel"]
-readTime: "15 min read"
+title: 'eVisa Requirements Comparison: Complete Guide for All Countries 2024'
+description: >-
+  Compare eVisa requirements across different countries. Complete guide to
+  documents, eligibility, costs, and application processes for worldwide
+  destinations.
+date: '2024-01-15'
+category: visa-guides
+image: /images/hero/hero.jpg
+tags:
+  - Visa Requirements
+  - eVisa Comparison
+  - Travel Documents
+  - International Travel
+readTime: 15 min read
 ---
 
 # eVisa Requirements Comparison: Your Complete Guide 2024

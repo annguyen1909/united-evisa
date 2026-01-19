@@ -2,12 +2,16 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { COUNTRIES } from '@/lib/countries'
+import { getAllRequirementsPosts } from '@/lib/requirements-posts'
 
 export const metadata: Metadata = {
   title: 'Visa Requirements by Country | Worldmaxxing Global Services',
   description: 'Browse visa requirements and documents by destination. Explore country-specific eVisa requirements, processing times, and application guidance.',
   alternates: {
     canonical: 'https://worldmaxxing.com/requirements-posts',
+    types: {
+      'application/rss+xml': 'https://worldmaxxing.com/requirements-posts/rss.xml',
+    },
   },
   robots: {
     index: true,
@@ -16,6 +20,16 @@ export const metadata: Metadata = {
 }
 
 export default function RequirementsIndexPage() {
+  const posts = getAllRequirementsPosts()
+  const recentPosts = posts
+    .filter((post) => post.updatedAt)
+    .sort((a, b) => {
+      const aDate = a.updatedAt ? new Date(a.updatedAt).getTime() : 0
+      const bDate = b.updatedAt ? new Date(b.updatedAt).getTime() : 0
+      return bDate - aDate
+    })
+    .slice(0, 6)
+
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="border-b border-slate-200 bg-white">
@@ -30,6 +44,33 @@ export default function RequirementsIndexPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-10">
+        {recentPosts.length > 0 && (
+          <div className="mb-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <h2 className="text-xl font-semibold text-slate-900">Recently updated requirements</h2>
+              <Link
+                href="/requirements-posts/rss.xml"
+                className="text-sm font-medium text-emerald-700 hover:text-emerald-800"
+              >
+                RSS feed
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {recentPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/requirements-posts/${post.slug}`}
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 hover:border-emerald-200 hover:bg-white transition-colors"
+                >
+                  <p className="text-sm font-semibold text-slate-900">{post.country}</p>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Updated {post.updatedAt ? new Date(post.updatedAt).toLocaleDateString('en-US') : 'recently'}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {COUNTRIES.map((country) => (
             <Link

@@ -1,4 +1,4 @@
-import { getPostBySlug } from "@/lib/blog";
+import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -153,7 +153,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: 'en_US',
       type: 'article',
       publishedTime: post.date,
-      authors: ['Worldmaxxing Global Services'],
+      modifiedTime: post.updatedAt || post.date,
+      authors: [post.author || 'Worldmaxxing Global Services'],
     },
     twitter: {
       card: 'summary_large_image',
@@ -169,6 +170,71 @@ export default async function BlogDetail({ params }: Props) {
   const post = await getPostBySlug(slug);
   if (!post) return notFound();
 
+  const baseUrl = "https://worldmaxxing.com";
+  const canonicalUrl = `${baseUrl}/blog/${slug}`;
+  const imagePath = post.image || "/images/hero/hero.jpg";
+  const imageUrl = imagePath.startsWith("http") ? imagePath : `${baseUrl}${imagePath}`;
+  const publishedDate = post.date;
+  const modifiedDate = post.updatedAt || post.date;
+  const authorName = post.author || "Worldmaxxing Global Services";
+
+  const blogStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${baseUrl}/blog` },
+          { "@type": "ListItem", "position": 3, "name": post.title, "item": canonicalUrl }
+        ]
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.description || `Read about ${post.title} on Worldmaxxing Global Services blog.`,
+        "image": [imageUrl],
+        "datePublished": publishedDate,
+        "dateModified": modifiedDate,
+        "author": post.author
+          ? { "@type": "Person", "name": authorName }
+          : { "@type": "Organization", "name": authorName },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Worldmaxxing Global Services",
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${baseUrl}/images/logo.png`
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonicalUrl
+        }
+      }
+    ]
+  };
+
+  const allPosts = getAllPosts();
+  const relatedPosts = allPosts
+    .filter((item) => item.slug !== slug)
+    .filter((item) => {
+      if (post.category && item.category === post.category) return true;
+      if (post.tags?.length && item.tags?.length) {
+        return item.tags.some((tag) => post.tags.includes(tag));
+      }
+      return false;
+    })
+    .slice(0, 4);
+
+  const fallbackPosts =
+    relatedPosts.length < 4
+      ? allPosts
+          .filter((item) => item.slug !== slug)
+          .filter((item) => !relatedPosts.some((rel) => rel.slug === item.slug))
+          .slice(0, 4 - relatedPosts.length)
+      : [];
+
   // Process the HTML content first to add IDs and styling
   const processedContent = processContentHtml(post.contentHtml);
   
@@ -178,6 +244,10 @@ export default async function BlogDetail({ params }: Props) {
 
   return (
     <div className="relative min-h-screen w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogStructuredData) }}
+      />
       {/* Hero Section with Background */}
       <div className="relative w-full h-[60vh] min-h-[400px] overflow-hidden">
         <Image
@@ -322,6 +392,32 @@ export default async function BlogDetail({ params }: Props) {
                   />
                 </div>
               </article>
+
+              {/* Related Guides */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-emerald-50 rounded-lg">
+                    <BookOpen className="h-5 w-5 text-emerald-600" />
+                  </div>
+                  <h2 className="text-lg font-bold text-slate-900">Related guides</h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[...relatedPosts, ...fallbackPosts].map((item) => (
+                    <Link
+                      key={item.slug}
+                      href={`/blog/${item.slug}`}
+                      className="group rounded-xl border border-slate-200 p-4 hover:border-emerald-200 hover:shadow-sm transition-all duration-200"
+                    >
+                      <p className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
+                        {item.title}
+                      </p>
+                      <p className="mt-2 text-xs text-slate-500">
+                        {item.category || "Guide"} · {item.date}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
               {/* Article Footer */}
               <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl p-8 border border-emerald-100">

@@ -61,6 +61,42 @@ export default async function RequirementsPostPage({ params }: PageProps) {
     notFound();
   }
 
+  const baseUrl = "https://worldmaxxing.com";
+  const canonicalUrl = `${baseUrl}/requirements-posts/${slug}`;
+  const imagePath =
+    post.image || `/images/country/${post.country.toLowerCase()}/${post.country.toLowerCase()}-bg.jpg`;
+  const imageUrl = imagePath.startsWith("http") ? imagePath : `${baseUrl}${imagePath}`;
+  const publishedDate = post.updatedAt || new Date().toISOString();
+  const modifiedDate = post.updatedAt || publishedDate;
+  const authorName = post.author || "Worldmaxxing Global Services";
+
+  const requirementsStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description":
+      post.description ||
+      `Comprehensive visa requirements and application guide for ${post.country}.`,
+    "image": [imageUrl],
+    "datePublished": publishedDate,
+    "dateModified": modifiedDate,
+    "author": post.author
+      ? { "@type": "Person", "name": authorName }
+      : { "@type": "Organization", "name": authorName },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Worldmaxxing Global Services",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${baseUrl}/images/logo.png`
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    }
+  };
+
   return (
     <>
       <EnhancedStructuredData
@@ -69,6 +105,10 @@ export default async function RequirementsPostPage({ params }: PageProps) {
         title={post.title}
         description={post.description}
         modifiedDate={post.updatedAt}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(requirementsStructuredData) }}
       />
       <RequirementsPostClient post={post} />
     </>

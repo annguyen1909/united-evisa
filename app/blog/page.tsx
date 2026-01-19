@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description: 'Visa news, travel tips, and updates from Worldmaxxing Global Services.',
   alternates: {
     canonical: 'https://worldmaxxing.com/blog',
+    types: {
+      'application/rss+xml': 'https://worldmaxxing.com/blog/rss.xml',
+    },
   },
 };
 

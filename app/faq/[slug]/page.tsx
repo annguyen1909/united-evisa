@@ -71,18 +71,34 @@ export default async function FaqDetailPage({ params }: Props) {
     })
   );
 
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": individualFaqs.map(({ slug: faqSlug, data }) => ({
+      "@type": "Question",
+      "name": data?.title || faqSlug.replace('faq-', '').replace(/-/g, ' '),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": data?.description || `Find details about ${faq.category} eVisa requirements and application steps.`
+      }
+    }))
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <div className="relative border-b border-slate-200 bg-slate-50 overflow-hidden">
         {faq.image && (
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 opacity-20">
             <Image
               src={faq.image}
               alt={faq.title}
               fill
-              className="object-cover opacity-30"
+              className="object-cover"
               priority
             />
           </div>
@@ -92,7 +108,7 @@ export default async function FaqDetailPage({ params }: Props) {
           <div className="mb-6">
             <Link 
               href="/faq" 
-              className="inline-flex gap-2 text-white/80 hover:text-white group transition-all duration-300"
+              className="inline-flex gap-2 text-slate-600 hover:text-slate-900 group transition-all duration-200"
             >
               <ArrowLeft className="h-6 w-4 group-hover:-translate-x-1 transition-transform duration-300" />
               Back to FAQ
@@ -101,22 +117,22 @@ export default async function FaqDetailPage({ params }: Props) {
 
           {/* Centered content */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+            <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-6 text-emerald-700">
               <HelpCircle className="h-4 w-4" />
               <span className="text-sm font-medium">FAQ</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 max-w-4xl mx-auto text-slate-900">
               {faq.title}
             </h1>
 
             {faq.description && (
-              <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
                 {faq.description}
               </p>
             )}
 
-            <div className="flex items-center justify-center gap-6 mt-8 text-emerald-100">
+            <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-slate-500">
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4" />
                 <span className="text-sm">{individualFaqs.length} FAQ Articles</span>
@@ -137,8 +153,7 @@ export default async function FaqDetailPage({ params }: Props) {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* FAQ List */}
-        <Card className="shadow-xl border-0 bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden mb-8">
-          <div className="h-2 bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700" />
+        <Card className="shadow-sm border border-slate-200 bg-white rounded-2xl overflow-hidden mb-8">
           <CardContent className="p-8">
             {individualFaqs.length === 0 ? (
               <div className="text-center py-12">
@@ -160,7 +175,7 @@ export default async function FaqDetailPage({ params }: Props) {
                       href={`/faq/${slug}/${faqSlug}`}
                       className="block group"
                     >
-                      <Card className="hover:shadow-lg transition-all duration-300 border border-slate-200 hover:border-emerald-300 bg-white/80 backdrop-blur-sm">
+                      <Card className="hover:shadow-sm transition-all duration-200 border border-slate-200 hover:border-emerald-300 bg-white">
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
@@ -192,7 +207,7 @@ export default async function FaqDetailPage({ params }: Props) {
 
         {/* Help Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="shadow-lg border-0 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl overflow-hidden">
+          <Card className="shadow-sm border border-slate-200 bg-white rounded-2xl overflow-hidden">
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-emerald-100 rounded-lg">
@@ -213,11 +228,11 @@ export default async function FaqDetailPage({ params }: Props) {
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg border-0 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl overflow-hidden">
+          <Card className="shadow-sm border border-slate-200 bg-white rounded-2xl overflow-hidden">
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Globe className="h-5 w-5 text-blue-600" />
+                <div className="p-2 bg-slate-100 rounded-lg">
+                  <Globe className="h-5 w-5 text-slate-600" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-800">
                   Ready to Apply?
@@ -226,7 +241,7 @@ export default async function FaqDetailPage({ params }: Props) {
               <p className="text-slate-600 text-sm mb-4">
                 Start your visa application process with our secure platform.
               </p>
-              <Button asChild className="w-full bg-blue-600 hover:bg-blue-700">
+              <Button asChild className="w-full bg-emerald-700 hover:bg-emerald-800">
                 <Link href="/apply">
                   Apply Now
                 </Link>
@@ -236,7 +251,7 @@ export default async function FaqDetailPage({ params }: Props) {
         </div>
 
         {/* Trust Indicators */}
-        <Card className="shadow-lg border-0 bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden mt-8">
+        <Card className="shadow-sm border border-slate-200 bg-white rounded-2xl overflow-hidden mt-8">
           <CardContent className="p-6">
             <h3 className="text-lg font-bold text-slate-800 mb-4 text-center">
               Why Choose Worldmaxxing Global Services?
@@ -247,7 +262,7 @@ export default async function FaqDetailPage({ params }: Props) {
                   <Shield className="h-6 w-6 text-emerald-600" />
                 </div>
                 <h4 className="font-semibold text-slate-800 mb-2">Secure & Trusted</h4>
-                <p className="text-sm text-slate-600">Bank-level security with 98% approval rate</p>
+                <p className="text-sm text-slate-600">Secure handling with clear application steps</p>
               </div>
               <div className="text-center">
                 <div className="p-3 bg-blue-100 rounded-full w-fit mx-auto mb-3">

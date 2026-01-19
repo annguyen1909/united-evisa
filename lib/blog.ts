@@ -14,6 +14,7 @@ export interface BlogPostMeta {
   title: string;
   description?: string;
   date: string;
+  updatedAt?: string;
   author?: string;
   category?: string;
   tags: string[];
@@ -31,6 +32,7 @@ export function getAllPosts(): BlogPostMeta[] {
     .map((filename) => {
       const filePath = path.join(postsDirectory, filename);
       const fileContents = fs.readFileSync(filePath, "utf8");
+      const fileStats = fs.statSync(filePath);
       const { data } = matter(fileContents);
 
       return {
@@ -38,6 +40,7 @@ export function getAllPosts(): BlogPostMeta[] {
         title: data.title,
         description: data.description,
         date: data.date,
+        updatedAt: fileStats.mtime.toISOString(),
         author: data.author,
         category: data.category,
         tags: data.tags || [],
@@ -61,6 +64,7 @@ export async function getPostBySlug(
   if (!fs.existsSync(filePath)) return null;
 
   const fileContents = fs.readFileSync(filePath, "utf8");
+  const fileStats = fs.statSync(filePath);
   const { data, content } = matter(fileContents);
 
   const processedContent = await remark()
@@ -77,6 +81,7 @@ export async function getPostBySlug(
     title: data.title ?? "Untitled",
     description: data.description ?? "",
     date: data.date ?? "2024-01-01",
+    updatedAt: fileStats.mtime.toISOString(),
     author: data.author ?? "eVisa United Team",
     category: data.category ?? "General",
     readTime: data.readTime ?? "5 min read",

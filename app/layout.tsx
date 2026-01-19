@@ -99,14 +99,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // Note: Add actual verification codes from Google Search Console, Yandex, and Yahoo
-  // when available. Verification codes should be added via meta tags in the HTML head.
-  // For Google: Use the HTML tag method from Search Console property settings
-  // verification: {
-  //   google: 'your-actual-google-verification-code-here',
-  //   yandex: 'your-actual-yandex-verification-code-here',
-  //   yahoo: 'your-actual-yahoo-verification-code-here',
-  // },
   other: {
     "application-name": "Worldmaxxing Global Services",
     "apple-mobile-web-app-capable": "yes",

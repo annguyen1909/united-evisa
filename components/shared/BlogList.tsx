@@ -68,27 +68,24 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
   }, [query, filtered.length]);
 
   return (
-    <div className="relative w-full bg-slate-50/50">
+    <div className="relative w-full bg-white">
       {/* Hero section */}
-      <div className="relative w-full h-64 sm:h-80 flex items-center justify-center mb-2 max-md:mb-0 overflow-hidden">
-        <img
-          src="/images/faq/faq-bg.jpg"
-          alt="Blogs background"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/60 to-emerald-800/70" />
-
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white drop-shadow-lg tracking-tight mb-3">
-            Travel Insights & Tips
+      <div className="relative w-full border-b border-slate-100 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4 py-16 sm:py-20">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
+            <Tag className="h-4 w-4" />
+            Info Center
+          </div>
+          <h1 className="mt-4 text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+            Travel insights, visa updates, and step-by-step guides
           </h1>
-          <p className="mt-2 text-lg text-white/90 font-medium drop-shadow-sm hidden sm:block mx-auto max-w-2xl">
-            Expert advice, destination guides, and visa information to help you
-            plan your perfect journey.
+          <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl">
+            Practical, up-to-date articles to help you understand requirements, avoid mistakes,
+            and apply with confidence.
           </p>
 
-          {/* Search bar in hero */}
-          <div className="mt-8 max-w-lg mx-auto relative">
+          {/* Search bar */}
+          <div className="mt-6 max-w-xl relative">
             <Input
               type="text"
               placeholder="Search articles by keyword or country..."
@@ -97,7 +94,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                 setQuery(e.target.value);
                 handlePageChange(1);
               }}
-              className="pl-10 py-6 pr-4 rounded-full bg-white/95 shadow-lg border-0 focus-visible:ring-emerald-500"
+              className="pl-10 pr-4 h-12 rounded-full bg-white border border-slate-200 focus-visible:ring-emerald-500"
             />
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
           </div>
@@ -110,10 +107,10 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
         <div className="space-y-8">
           {/* Section header */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-200 pb-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-emerald-800">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
               Latest Articles
               {query && (
-                <span className="text-lg ml-2 font-normal text-slate-600">
+                <span className="text-lg ml-2 font-normal text-slate-500">
                   for "{query}"
                 </span>
               )}

@@ -82,7 +82,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="w-full relative min-h-[600px] md:min-h-[700px] z-0 flex flex-col items-center justify-center border-b-4 border-emerald-700">
+    <section className="w-full relative min-h-[600px] md:min-h-[700px] z-0 flex flex-col items-center justify-center border-b border-slate-200">
       {/* Image stack: previous (fades out) and current (waits to show until loaded) */}
       <div className="absolute inset-0 w-full h-full" style={{ zIndex: -2 }}>
         {/* previous image wrapper */}
@@ -126,7 +126,7 @@ export default function Hero() {
 
       {/* overlay */}
       <div
-        className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-800/50 to-slate-900/80 md:from-slate-900/70 md:via-slate-800/40 md:to-slate-900/70"
+        className="absolute inset-0 bg-gradient-to-b from-slate-900/75 via-slate-900/40 to-slate-900/70"
         style={{ zIndex: -1 }}
       />
 
@@ -139,31 +139,25 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           {/* Trust Badge - Enhanced for mobile */}
-          <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-lg px-3 md:px-4 py-2 rounded-full text-emerald-300 text-sm font-medium mb-4 md:mb-6 border border-emerald-400/30">
-            <Star className="h-4 w-4 fill-current" />
+          <div className="inline-flex items-center gap-2 bg-white/10 px-3 md:px-4 py-2 rounded-full text-emerald-200 text-sm font-medium mb-4 md:mb-6 border border-white/20">
+            <Star className="h-4 w-4" />
             <span className="text-xs md:text-sm">
-              Trusted by 50,000+ travelers worldwide
+              Trusted by travelers worldwide
             </span>
-            <Star className="h-4 w-4 fill-current" />
           </div>
 
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 md:mb-6 drop-shadow-lg leading-tight">
-            Get Your{" "}
-            <span className="font-extrabold bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
-              eVisa
-            </span>{" "}
-            in
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 md:mb-6 leading-tight">
+            Apply for your eVisa online
             <br />
-            <span className="text-amber-400">24 Hours</span>
+            with clear steps and fast options
           </h1>
 
           {/* Mobile-First CTA Button - Moved to top for immediate visibility */}
           <div className="md:hidden mb-6">
             <Link href="/apply" className="block">
-              <Button className="w-4/5 bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 hover:from-emerald-700 hover:via-emerald-800 hover:to-teal-800 text-white px-6 py-4 text-lg font-bold rounded-xl shadow-2xl hover:shadow-emerald-500/30 transform hover:scale-105 transition-all duration-300 border-2 border-emerald-400/60 min-h-[56px] relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  🚀 START APPLICATION NOW
+              <Button className="w-4/5 bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-4 text-lg font-bold rounded-xl shadow-sm transition-all duration-200 min-h-[56px]">
+                <span className="flex items-center justify-center gap-2">
+                  Start application
                   <ArrowRight className="h-5 w-5" />
                 </span>
               </Button>
@@ -171,10 +165,9 @@ export default function Hero() {
           </div>
 
           <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 md:mb-8 leading-relaxed px-2">
-            Skip the embassy visits and long queues. Get your visa approved
-            online in as little as{" "}
-            <span className="text-emerald-400 font-semibold">24 hours</span>{" "}
-            with our trusted service.
+            Skip long queues and apply online. Processing time varies by destination,
+            with options as fast as{" "}
+            <span className="text-emerald-300 font-semibold">24 hours</span>.
           </p>
 
           {/* Key Benefits - Mobile optimized */}

@@ -225,6 +225,23 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                         A fast overview of {country.name} to make your trip planning easier.
                                     </p>
                                 </div>
+                                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+                                    Compare {country.name} requirements with other destinations in our
+                                    <Link href="/requirements-comparison" className="ml-1 text-emerald-700 font-semibold hover:underline">
+                                        eVisa requirements comparison
+                                    </Link>
+                                    .
+                                </div>
+                                <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
+                                    For document details and eligibility checks, visit the
+                                    <Link href={`/requirements-posts/${country.slug}`} className="ml-1 text-emerald-700 font-semibold hover:underline">
+                                        {country.name} requirements page
+                                    </Link>
+                                    .
+                                    <Link href="/requirements-posts/rss.xml" className="ml-2 text-emerald-700 font-semibold hover:underline">
+                                        RSS updates
+                                    </Link>
+                                </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {quickFacts.map((fact) => (
                                         <div
@@ -278,6 +295,13 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                 <p className="text-slate-600">
                                     Choose the visa that matches your stay length and entry needs.
                                 </p>
+                            </div>
+                            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+                                Looking for a quick comparison? See the
+                                <Link href="/requirements-comparison" className="ml-1 text-emerald-700 font-semibold hover:underline">
+                                    eVisa requirements comparison
+                                </Link>
+                                .
                             </div>
                             <div className="grid grid-cols-1 gap-6">
                                 {country.visaTypes.map((visa) => (
@@ -463,6 +487,18 @@ export default async function DestinationHubPage({ params }: PageProps) {
                             <Link href={`/destinations/${country.slug}/rejection-risk`} className="w-full">
                                 <Button variant="outline" className="w-full border-white/20 text-slate-900 hover:bg-white hover:text-slate-900/80 font-semibold py-5 h-auto rounded-2xl transition-all">
                                     View risk tips
+                                </Button>
+                            </Link>
+                        </div>
+                        {/* Requirements comparison link */}
+                        <div className="rounded-3xl border border-slate-200 bg-white p-8 text-center space-y-4">
+                            <h3 className="text-xl font-semibold text-slate-900">Compare requirements</h3>
+                            <p className="text-sm text-slate-600">
+                                See how {country.name} compares with Tanzania, Sri Lanka, India, Kenya, and Indonesia.
+                            </p>
+                            <Link href="/requirements-comparison" className="inline-block">
+                                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-5 h-auto rounded-2xl">
+                                    View comparison
                                 </Button>
                             </Link>
                         </div>

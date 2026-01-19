@@ -62,45 +62,29 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero/hero.jpg"
-            alt="FAQ Background"
-            fill
-            className="object-cover opacity-30"
-            priority
-          />
-        </div>
-        
-        <div className="relative max-w-6xl mx-auto px-4 py-24">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <HelpCircle className="h-4 w-4" />
-              <span className="text-sm font-medium">FAQ</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 max-w-4xl mx-auto">
-              Frequently Asked Questions
-            </h1>
-            
-            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Find answers to common questions about eVisa applications, requirements, and travel tips
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-white/30">
-                <Globe className="mr-2 h-4 w-4" />
-                Browse by Country
-              </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-black hover:bg-white/50">
-                <MessageCircle className="mr-2 h-4 w-4" />
-                Contact Support
-              </Button>
-            </div>
+      <div className="border-b border-slate-200 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
+            <HelpCircle className="h-4 w-4" />
+            FAQ Center
+          </div>
+          <h1 className="mt-4 text-3xl md:text-4xl font-bold text-slate-900">
+            Frequently Asked Questions
+          </h1>
+          <p className="mt-3 text-base md:text-lg text-slate-600 max-w-2xl">
+            Clear answers to common questions about eVisa applications, requirements, and travel tips.
+          </p>
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <Button size="lg" variant="outline" className="border-slate-200 text-slate-700 hover:bg-white">
+              <Globe className="mr-2 h-4 w-4" />
+              Browse by Country
+            </Button>
+            <Button size="lg" className="bg-emerald-700 hover:bg-emerald-800 text-white">
+              <MessageCircle className="mr-2 h-4 w-4" />
+              Contact Support
+            </Button>
           </div>
         </div>
       </div>
@@ -109,7 +93,7 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
       <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Search Section */}
         <div className="mb-12" id="faq-section">
-          <Card className="shadow-lg border-0 bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden">
+          <Card className="shadow-sm border border-slate-200 rounded-2xl overflow-hidden">
             <CardContent className="p-8">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-emerald-100 rounded-lg">

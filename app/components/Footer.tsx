@@ -56,6 +56,7 @@ const defaultSections = [
         links: [
             { name: "Visa Information", href: "/visa-info" },
             { name: "Check Visa Eligibility", href: "/check-requirements" },
+            { name: "Requirements Comparison", href: "/requirements-comparison" },
             { name: "Check Visa Status", href: "/track" },
             { name: "Visa Process", href: "/process" },
             { name: "Pricing", href: "/pricing" },

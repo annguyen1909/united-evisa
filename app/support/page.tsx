@@ -178,35 +178,31 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-emerald-600 to-green-700 text-white overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
-          style={{
-            backgroundImage: "url('/images/support/hero-support.jpg')"
-          }}
-        ></div>
-        
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/60 to-green-700/15"></div>
-        
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-4xl font-bold mb-4">Get in touch with unitedevisa Global Services</h1>
-          <p className="text-xl">We're here to help with your visa application journey</p>
+      <div className="border-b border-slate-200 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 py-14 sm:py-18">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
+            <HeadphonesIcon className="h-4 w-4" />
+            Support Center
+          </div>
+          <h1 className="mt-4 text-3xl sm:text-4xl font-bold text-slate-900">
+            Get help with your visa application
+          </h1>
+          <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl">
+            Reach our team for application status, document questions, and account support.
+          </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Contact Form */}
         <div className="max-w-4xl mx-auto mb-12">
-          <Card className="shadow-lg border-0">
+          <Card className="shadow-sm border border-slate-200">
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-slate-800 mb-2">Can We Help You?</h2>
-                <p className="text-slate-600">Feel free to contact us below!</p>
+                <h2 className="text-2xl font-bold text-slate-900 mb-2">Can we help?</h2>
+                <p className="text-slate-600">Send us a message and we’ll reply within one business day.</p>
               </div>
 
               {isSubmitted ? (
@@ -303,7 +299,7 @@ export default function SupportPage() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 text-lg font-medium"
+                      className="bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-3 text-lg font-medium"
                     >
                       {isSubmitting ? (
                         <div className="flex items-center space-x-2">
@@ -330,18 +326,18 @@ export default function SupportPage() {
 
         {/* 24/7 Support Center */}
         <div className="max-w-4xl mx-auto mb-16">
-          <Card className="shadow-lg border-0">
+          <Card className="shadow-sm border border-slate-200">
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-slate-800 mb-2">24/7 Support Center</h2>
-                <p className="text-slate-600">We're available around the clock to assist you</p>
+                <h2 className="text-2xl font-bold text-slate-900 mb-2">24/7 Support Center</h2>
+                <p className="text-slate-600">We’re available around the clock for urgent requests.</p>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Customer Service */}
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-full">
-                    <HeadphonesIcon className="h-6 w-6 text-blue-600" />
+                  <div className="bg-slate-100 p-3 rounded-full">
+                    <HeadphonesIcon className="h-6 w-6 text-slate-700" />
                   </div>
                   <div className="flex-1">
                     <h4 className="font-semibold text-slate-800 mb-1">Customer Service Center</h4>
@@ -363,8 +359,8 @@ export default function SupportPage() {
 
                 {/* Suggestions or Complaint */}
                 <div className="flex items-start space-x-4">
-                  <div className="bg-emerald-100 p-3 rounded-full">
-                    <MessageCircle className="h-6 w-6 text-emerald-600" />
+                  <div className="bg-emerald-50 p-3 rounded-full">
+                    <MessageCircle className="h-6 w-6 text-emerald-700" />
                   </div>
                   <div className="flex-1">
                     <h4 className="font-semibold text-slate-800 mb-1">Suggestions or Complaint</h4>
@@ -390,23 +386,23 @@ export default function SupportPage() {
 
         {/* Our Worldwide Network */}
         <div className="mt-16">
-          <Card className="shadow-lg border-0">
+          <Card className="shadow-sm border border-slate-200">
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-slate-800 mb-2">Our Worldwide Network</h2>
-                <p className="text-slate-600">unitedevisa Global Services offices around the world ready to assist you</p>
+                <h2 className="text-2xl font-bold text-slate-900 mb-2">Our worldwide network</h2>
+                <p className="text-slate-600">Regional offices and support lines to help across time zones.</p>
               </div>
 
               {/* Region Tabs */}
               <div className="flex justify-center mb-8">
-                <div className="inline-flex bg-slate-100 rounded-lg p-1">
+                <div className="inline-flex bg-slate-100 rounded-full p-1">
                   {Object.keys(regionOffices).map((region) => (
                     <button
                       key={region}
                       onClick={() => setSelectedRegion(region)}
                       className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
                         selectedRegion === region
-                          ? "bg-emerald-600 text-white shadow-sm"
+                          ? "bg-emerald-700 text-white shadow-sm"
                           : "text-slate-600 hover:text-slate-800"
                       }`}
                     >
@@ -421,7 +417,7 @@ export default function SupportPage() {
                 <img 
                   src={regionOffices[selectedRegion as keyof typeof regionOffices].imageUrl} 
                   alt={`${selectedRegion} Region`}
-                  className="w-full h-64 object-cover rounded-lg shadow-lg"
+                  className="w-full h-56 object-cover rounded-2xl border border-slate-200"
                 />
               </div>
 

@@ -5,13 +5,14 @@ import AllVisaTypes from "./components/AllVisaTypes";
 import VisaSteps from "./components/VisaSteps";
 import CustomerSupport from "./components/CustomerSupport";
 import FeeGuarantee from "./components/FeeGuarantee";
-import News from "./components/News";
+import RecentBlogPosts from "./components/RecentBlogPosts";
+import RecentRequirements from "./components/RecentRequirements";
 import PageSEO from "../components/shared/PageSEO";
 import InternalLinks from "../components/shared/InternalLinks";
 
 export const metadata: Metadata = {
   title: "Fast & Secure eVisa Applications",
-  description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, UK, Saudi Arabia, and more. Start your visa application today!",
+  description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, UK, Saudi Arabia, and more. Start your visa application today.",
   keywords: [
     "eVisa application",
     "online visa",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
   ].join(", "),
   openGraph: {
     title: "Fast & Secure eVisa Applications",
-    description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval. Start your visa application today!",
+    description: "Apply for eVisas to 50+ countries. Fast processing options, 24/7 support, and clear guidance at every step.",
     url: "https://worldmaxxing.com",
     siteName: "Worldmaxxing Global Services",
     images: [
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Fast & Secure eVisa Applications",
-    description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval.",
+    description: "Apply for eVisas to 50+ countries. Fast processing options and 24/7 support.",
     images: ["/images/hero/hero.jpg"],
   },
   alternates: {
@@ -89,9 +90,8 @@ export default function LandingPage() {
       <div className="w-full pb-8 bg-white">
         <CustomerSupport />
       </div>
-      <div className="w-full pb-8 bg-white">
-        <News />
-      </div>
+      <RecentRequirements />
+      <RecentBlogPosts />
       <div className="w-full pb-8 bg-white">
         <FeeGuarantee />
       </div>

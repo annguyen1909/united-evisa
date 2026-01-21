@@ -34,6 +34,8 @@ Disallow: /apply/chargeback
 Disallow: /apply/refunded
 Disallow: /apply/documents
 Disallow: /apply/passengers
+Disallow: /apply?
+Disallow: /apply?*
 
 # Disallow Legacy Programmatic / Doorway Pages
 # Note: /destination/* (singular) redirects to /destinations/* (plural) via next.config.ts

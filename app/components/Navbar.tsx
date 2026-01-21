@@ -333,7 +333,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {
         isOpen && (
-          <div className="lg:hidden fixed left-0 right-0 top-0 bottom-0 z-[9999] bg-slate-900/20 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
+          <div className="xl:hidden fixed left-0 right-0 top-0 bottom-0 z-[9999] bg-slate-900/20 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
             <div
               className="absolute top-0 right-0 w-full max-w-sm h-[calc(100vh)] bg-white shadow-xl z-[10000]"
               onClick={(e) => e.stopPropagation()}

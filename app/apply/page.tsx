@@ -1,12 +1,29 @@
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Apply for eVisa | Worldmaxxing Global Services',
-  description: 'Start your eVisa application with Worldmaxxing Global Services. Fast, secure, and easy process.',
-  alternates: {
-    canonical: 'https://worldmaxxing.com/apply',
-  },
-};
+interface ApplyPageProps {
+  searchParams?: Record<string, string | string[] | undefined>;
+}
+
+export async function generateMetadata({ searchParams }: ApplyPageProps): Promise<Metadata> {
+  const hasParams = Boolean(searchParams && Object.keys(searchParams).length > 0);
+
+  return {
+    title: 'Apply for eVisa | Worldmaxxing Global Services',
+    description: 'Start your eVisa application with Worldmaxxing Global Services. Fast, secure, and easy process.',
+    alternates: {
+      canonical: 'https://worldmaxxing.com/apply',
+    },
+    robots: hasParams
+      ? {
+          index: false,
+          follow: true,
+        }
+      : {
+          index: true,
+          follow: true,
+        },
+  };
+}
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/authOptions";

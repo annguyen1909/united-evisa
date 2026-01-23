@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 
 interface ApplyPageProps {
-  searchParams?: Record<string, string | string[] | undefined>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export async function generateMetadata({ searchParams }: ApplyPageProps): Promise<Metadata> {
-  const hasParams = Boolean(searchParams && Object.keys(searchParams).length > 0);
+  const resolvedParams = searchParams ? await searchParams : undefined;
+  const hasParams = Boolean(resolvedParams && Object.keys(resolvedParams).length > 0);
 
   return {
     title: 'Apply for eVisa | Worldmaxxing Global Services',

@@ -1,16 +1,26 @@
 import { getAllPosts } from "@/lib/blog";
 
+const escapeXml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+
 export async function GET() {
   const baseUrl = "https://worldmaxxing.com";
   const posts = getAllPosts();
 
   const items = posts
     .map((post) => {
-      const title = post.title.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-      const description = (post.description || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;");
-      const pubDate = new Date(post.date).toUTCString();
+      const rawTitle = post.title ?? post.slug ?? "Blog post";
+      const title = escapeXml(String(rawTitle));
+      const description = escapeXml(String(post.description ?? ""));
+      const dateValue = post.date ? new Date(post.date) : new Date();
+      const pubDate = Number.isNaN(dateValue.getTime())
+        ? new Date().toUTCString()
+        : dateValue.toUTCString();
       const link = `${baseUrl}/blog/${post.slug}`;
 
       return `

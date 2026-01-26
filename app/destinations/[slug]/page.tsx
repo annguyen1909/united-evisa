@@ -330,7 +330,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                             <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Official gov fee</div>
                                             <Link href={`/apply?country=${country.slug}&visaType=${visa.id}`}>
                                                 <Button className="bg-slate-900 hover:bg-emerald-600 text-white font-semibold px-8 py-5 h-auto rounded-2xl transition-all shadow-sm">
-                                                    Apply Now
+                                                    Apply for {country.name} eVisa
                                                 </Button>
                                             </Link>
                                         </div>

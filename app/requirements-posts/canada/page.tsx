@@ -334,7 +334,7 @@ export default function CanadaRequirementsPage() {
                   <CardFooter className="pt-4 pb-6">
                     <Link href={`/apply?country=canada&type=${encodeURIComponent(visa.id)}`} className="w-full">
                       <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
-                        Apply Now
+                        undefined
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     </Link>
@@ -598,7 +598,7 @@ export default function CanadaRequirementsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/apply?country=canada">
                   <Button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    Apply Now
+                    undefined
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>

@@ -334,7 +334,7 @@ export default function KuwaitRequirementsPage() {
                   <CardFooter className="pt-4 pb-6">
                     <Link href={`/apply?country=kuwait&type=${encodeURIComponent(visa.id)}`} className="w-full">
                       <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
-                        Apply Now
+                        undefined
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     </Link>
@@ -548,7 +548,7 @@ export default function KuwaitRequirementsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/apply?country=kuwait">
                   <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    Apply Now
+                    undefined
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>

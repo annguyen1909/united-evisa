@@ -502,7 +502,7 @@ function CheckRequirementsContent() {
                                         <Button
                                             className="w-full cursor-pointer bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 shadow-sm transition-all duration-200"
                                         >
-                                            Apply Now
+                                            Apply for {destinationName} eVisa
                                             <ArrowRight className="ml-2 h-5 w-5" />
                                         </Button>
                                     </Link>

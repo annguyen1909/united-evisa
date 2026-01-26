@@ -108,7 +108,7 @@ export default function RequirementsComparisonPage() {
                           className="text-emerald-700 font-semibold hover:underline"
                           href={`/destinations/${country.slug}/entry-requirements`}
                         >
-                          Check requirements →
+                          Check {country.name} requirements →
                         </Link>
                       </td>
                     </tr>
@@ -174,7 +174,7 @@ export default function RequirementsComparisonPage() {
             className="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-6 py-3 text-white font-semibold hover:bg-emerald-700"
             href="/check-requirements"
           >
-            Check eligibility
+            Check visa eligibility
           </Link>
         </section>
       </div>

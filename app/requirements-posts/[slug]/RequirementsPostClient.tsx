@@ -70,6 +70,9 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
             <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
               {post.description}
             </p>
+            <p className="text-sm text-emerald-200/90 mt-4">
+              Official {post.country} eVisa requirements and eligibility guidance.
+            </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-emerald-100">
               {updatedLabel && (
                 <div className="flex items-center gap-2 text-sm">
@@ -250,7 +253,7 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
                   <CardFooter className="pt-4 pb-6">
                     <Link href={`/apply?country=${post.country.toLowerCase()}&type=${encodeURIComponent(visa.id)}`} className="w-full">
                       <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
-                        Apply Now
+                        Apply for {post.country} eVisa
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     </Link>
@@ -299,7 +302,7 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
             </div>
             <Link href={`/destinations/${post.country.toLowerCase().replace(/ /g, '-')}`}>
               <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 font-black px-10 py-8 rounded-2xl shadow-2xl transition-all h-auto">
-                Visit Hub
+                Visit {post.country} hub
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>
@@ -320,7 +323,7 @@ export default function RequirementsPostClient({ post }: { post: RequirementsPos
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link href={`/apply?country=${post.country.toLowerCase()}`}>
                   <Button className="bg-white text-emerald-600 hover:bg-slate-50 font-black py-4 px-10 rounded-2xl shadow-2xl text-lg h-auto transition-all transform hover:scale-105 active:scale-95">
-                    Start Application
+                    Start {post.country} eVisa application
                     <ArrowRight className="ml-2 h-6 w-6" />
                   </Button>
                 </Link>

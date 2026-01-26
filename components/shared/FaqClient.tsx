@@ -76,6 +76,9 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
           <p className="mt-3 text-base md:text-lg text-slate-600 max-w-2xl">
             Clear answers to common questions about eVisa applications, requirements, and travel tips.
           </p>
+          <p className="mt-2 text-sm text-slate-500 max-w-2xl">
+            Explore the Worldmaxxing Global Services FAQ library by country and visa topic.
+          </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <Button size="lg" variant="outline" className="border-slate-200 text-slate-700 hover:bg-white">
               <Globe className="mr-2 h-4 w-4" />
@@ -168,7 +171,7 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                                 {faq.faqs.length} questions
                               </span>
                               <div className="flex items-center gap-1 text-emerald-600 text-sm font-semibold group-hover:gap-2 transition-all duration-300">
-                                View FAQ
+                                View {faq.category} FAQ
                                 <ArrowRight className="h-3 w-3" />
                               </div>
                             </div>

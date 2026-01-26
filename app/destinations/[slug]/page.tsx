@@ -137,18 +137,21 @@ export default async function DestinationHubPage({ params }: PageProps) {
                             {country.description}
                         </p>
                         <p className="text-sm md:text-base text-slate-300/90 max-w-2xl leading-relaxed">
+                            Official {country.name} eVisa requirements and policy hub for travelers.
+                        </p>
+                        <p className="text-sm md:text-base text-slate-300/90 max-w-2xl leading-relaxed">
                             Based in {(country.info as any)?.capital || 'the capital'}, {country.name} uses {country.info?.currency || 'its local currency'} and primarily communicates in {country.info?.language || 'the local language'}.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Link href={`/apply?country=${country.slug}`}>
                                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white text-base px-10 py-6 h-auto rounded-2xl transition-all">
-                                    Start Application
+                                    Start {country.name} eVisa application
                                 </Button>
                             </Link>
                             <Link href={`/destinations/${country.slug}/entry-requirements`}>
                                 <Button size="lg" variant="outline" className="bg-white/5 border-white/20 hover:bg-white/10 text-white text-base px-10 py-6 h-auto rounded-2xl transition-all">
-                                    Check Eligibility
+                                    Check {country.name} eVisa eligibility
                                 </Button>
                             </Link>
                         </div>

@@ -83,6 +83,10 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
             Practical, up-to-date articles to help you understand requirements, avoid mistakes,
             and apply with confidence.
           </p>
+          <p className="mt-2 text-sm text-slate-500 max-w-2xl">
+            This is the Worldmaxxing Global Services blog for eVisa requirements, travel tips, and
+            application guidance.
+          </p>
 
           {/* Search bar */}
           <div className="mt-6 max-w-xl relative">
@@ -177,7 +181,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
 
                       {/* Read more link */}
                       <div className="flex items-center text-emerald-600 text-sm font-medium group-hover:text-emerald-700">
-                        Read more
+                        Read {post.title}
                         <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </CardContent>

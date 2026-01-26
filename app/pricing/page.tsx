@@ -199,7 +199,7 @@ export default function PricingPage() {
               className="px-8 bg-emerald-600 text-white text-base font-semibold rounded-lg py-5 mt-4 hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-sm"
               onClick={() => alert(`Apply Now for ${country.name}`)}
             >
-              Apply Now <ArrowRight className="h-5 w-5" />
+              Apply for {country.name} eVisa <ArrowRight className="h-5 w-5" />
             </Button>
           </div>
         </div>
@@ -221,6 +221,10 @@ export default function PricingPage() {
               <p className="text-slate-200 text-lg">
                 Government fees depend on destination and visa type. Our service fee is fixed
                 and includes document review, updates, and secure delivery.
+              </p>
+              <p className="text-sm text-slate-300 max-w-2xl">
+                Worldmaxxing Global Services pricing covers official eVisa fees, processing timelines,
+                and support so you can plan your total visa cost upfront.
               </p>
               <div className="flex flex-wrap gap-3 text-sm text-slate-200/90">
                 {pricingHighlights.map((item) => (

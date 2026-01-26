@@ -323,7 +323,7 @@ export default function TanzaniaRequirementsPage() {
                     <CardFooter className="pt-4 pb-6">
                       <Link href={`/apply?country=tanzania&type=${encodeURIComponent(visa.id)}`} className="w-full">
                         <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
-                          undefined
+                          Apply for Tanzania eVisa
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                       </Link>

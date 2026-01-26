@@ -346,7 +346,7 @@ export default function ArmeniaRequirementsPage() {
                   <CardFooter className="pt-4 pb-6">
                     <Link href={`/apply?country=armenia&type=${encodeURIComponent(visa.id)}`} className="w-full">
                       <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
-                        undefined
+                        Apply for Armenia eVisa
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     </Link>
@@ -624,7 +624,7 @@ export default function ArmeniaRequirementsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/apply?country=armenia">
                   <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    undefined
+                    Apply for Armenia eVisa
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>

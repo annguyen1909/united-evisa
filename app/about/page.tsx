@@ -6,10 +6,10 @@ import { CheckCircle2, Globe, Shield, Clock, Users, Award, Mail, Phone, MapPin }
 import PageSEO from '@/components/shared/PageSEO';
 
 export const metadata: Metadata = {
-  title: 'About Us - Worldmaxxing Global Services | Leading eVisa Provider',
-  description: 'Learn about Worldmaxxing Global Services - a trusted visa service provider helping travelers secure eVisas to 50+ countries. Expert team, fast processing, 24/7 support, and guaranteed approval.',
+  title: 'About Us - United eVisa Services | Leading eVisa Provider',
+  description: 'Learn about United eVisa Services - a trusted visa service provider helping travelers secure eVisas to 50+ countries. Expert team, fast processing, 24/7 support, and guaranteed approval.',
   keywords: [
-    'about worldmaxxing',
+    'about united evisa',
     'visa service provider',
     'eVisa company',
     'travel visa services',
@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     'global visa services'
   ].join(', '),
   openGraph: {
-    title: 'About Us - Worldmaxxing Global Services',
+    title: 'About Us - United eVisa Services',
     description: 'Trusted visa service provider helping travelers secure eVisas to 50+ countries worldwide. Expert team, fast processing, and 24/7 support.',
-    url: 'https://worldmaxxing.com/about',
-    siteName: 'Worldmaxxing Global Services',
+    url: 'https://unitedevisa.com/about',
+    siteName: 'United eVisa Services',
     images: [
       {
         url: '/images/hero/hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Worldmaxxing Global Services - About Us',
+        alt: 'United eVisa Services - About Us',
       }
     ],
     locale: 'en_US',
@@ -35,12 +35,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Us - Worldmaxxing Global Services',
+    title: 'About Us - United eVisa Services',
     description: 'Trusted visa service provider helping travelers secure eVisas to 50+ countries worldwide.',
     images: ['/images/hero/hero.jpg'],
   },
   alternates: {
-    canonical: 'https://worldmaxxing.com/about',
+    canonical: 'https://unitedevisa.com/about',
   },
   robots: {
     index: true,
@@ -62,7 +62,7 @@ export default function AboutPage() {
       
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 text-white py-20 lg:py-32 overflow-hidden">
+        <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900 text-white py-20 lg:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0" style={{
             backgroundImage: `url('/images/hero/hero.jpg')`,
@@ -74,9 +74,9 @@ export default function AboutPage() {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                About Worldmaxxing Global Services
+                About United eVisa Services
               </h1>
-              <p className="text-xl md:text-2xl text-emerald-50 mb-8 leading-relaxed">
+              <p className="text-xl md:text-2xl text-blue-50 mb-8 leading-relaxed">
                 Empowering travelers worldwide with fast, secure, and reliable eVisa application services to 50+ countries.
               </p>
             </div>
@@ -89,8 +89,8 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-emerald-100 rounded-lg">
-                    <Globe className="h-8 w-8 text-emerald-600" />
+                  <div className="p-3 bg-blue-100 rounded-lg">
+                    <Globe className="h-8 w-8 text-blue-600" />
                   </div>
                   <h2 className="text-3xl font-bold text-gray-900">Our Mission</h2>
                 </div>
@@ -121,11 +121,11 @@ export default function AboutPage() {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-16 lg:py-24 bg-slate-50">
+        <section className="py-16 lg:py-24 bg-gradient-to-b from-blue-50/40 via-white to-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Why Choose Worldmaxxing?
+                Why Choose United eVisa?
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 We're committed to providing exceptional visa services that exceed expectations
@@ -133,9 +133,9 @@ export default function AboutPage() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-                <div className="p-4 bg-emerald-100 rounded-lg w-fit mb-6">
-                  <Shield className="h-8 w-8 text-emerald-600" />
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100">
+                <div className="p-4 bg-blue-100 rounded-lg w-fit mb-6">
+                  <Shield className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Trusted & Secure</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -143,7 +143,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100">
                 <div className="p-4 bg-blue-100 rounded-lg w-fit mb-6">
                   <Clock className="h-8 w-8 text-blue-600" />
                 </div>
@@ -153,7 +153,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100">
                 <div className="p-4 bg-purple-100 rounded-lg w-fit mb-6">
                   <Users className="h-8 w-8 text-purple-600" />
                 </div>
@@ -163,7 +163,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100">
                 <div className="p-4 bg-amber-100 rounded-lg w-fit mb-6">
                   <Globe className="h-8 w-8 text-amber-600" />
                 </div>
@@ -173,7 +173,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100">
                 <div className="p-4 bg-red-100 rounded-lg w-fit mb-6">
                   <CheckCircle2 className="h-8 w-8 text-red-600" />
                 </div>
@@ -183,9 +183,9 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-                <div className="p-4 bg-teal-100 rounded-lg w-fit mb-6">
-                  <Award className="h-8 w-8 text-teal-600" />
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100">
+                <div className="p-4 bg-amber-100 rounded-lg w-fit mb-6">
+                  <Award className="h-8 w-8 text-amber-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Proven Track Record</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -204,12 +204,12 @@ export default function AboutPage() {
                 Company Information
               </h2>
               
-              <div className="bg-slate-50 rounded-xl p-8 lg:p-12 mb-8">
+              <div className="bg-blue-50/40 rounded-2xl p-8 lg:p-12 mb-8 border border-blue-100">
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Who We Are</h3>
                     <p className="text-gray-700 leading-relaxed">
-                      Worldmaxxing Global Services is a leading global visa service provider specializing in eVisa applications for travelers worldwide. Founded with the mission to simplify international travel, we've helped hundreds of thousands of travelers secure the documents they need to explore the world.
+                      United eVisa Services is a leading global visa service provider specializing in eVisa applications for travelers worldwide. Founded with the mission to simplify international travel, we've helped hundreds of thousands of travelers secure the documents they need to explore the world.
                     </p>
                   </div>
 
@@ -220,23 +220,23 @@ export default function AboutPage() {
                     </p>
                     <ul className="space-y-2 text-gray-700">
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <span>Online eVisa applications for 50+ countries</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <span>Expert guidance and application assistance</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <span>24/7 customer support and status tracking</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <span>Requirements verification and eligibility checking</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <span>Fast processing with guaranteed approval support</span>
                       </li>
                     </ul>
@@ -255,13 +255,13 @@ export default function AboutPage() {
         </section>
 
         {/* Contact Section */}
-        <section className="py-16 lg:py-24 bg-emerald-600 text-white">
+        <section className="py-16 lg:py-24 bg-blue-600 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Get in Touch
               </h2>
-              <p className="text-xl text-emerald-50 mb-8">
+              <p className="text-xl text-blue-50 mb-8">
                 Have questions? Our team is here to help you with your visa needs.
               </p>
               
@@ -269,7 +269,7 @@ export default function AboutPage() {
                 <div className="flex flex-col items-center p-6 bg-white/10 rounded-lg backdrop-blur-sm">
                   <Phone className="h-6 w-6 mb-3" />
                   <p className="font-semibold mb-1">Phone</p>
-                  <a href="tel:+13232864541" className="text-emerald-100 hover:text-white">
+                  <a href="tel:+13232864541" className="text-blue-100 hover:text-white">
                     +1 323 286 4541
                   </a>
                 </div>
@@ -277,15 +277,15 @@ export default function AboutPage() {
                 <div className="flex flex-col items-center p-6 bg-white/10 rounded-lg backdrop-blur-sm">
                   <Mail className="h-6 w-6 mb-3" />
                   <p className="font-semibold mb-1">Email</p>
-                  <a href="mailto:visa@worldmaxxing.com" className="text-emerald-100 hover:text-white break-all">
-                    visa@worldmaxxing.com
+                  <a href="mailto:visa@unitedevisa.com" className="text-blue-100 hover:text-white break-all">
+                    visa@unitedevisa.com
                   </a>
                 </div>
                 
                 <div className="flex flex-col items-center p-6 bg-white/10 rounded-lg backdrop-blur-sm">
                   <MapPin className="h-6 w-6 mb-3" />
                   <p className="font-semibold mb-1">Address</p>
-                  <p className="text-emerald-100 text-sm text-center">
+                  <p className="text-blue-100 text-sm text-center">
                     1308 E Colorado Blvd, #2244<br />
                     Pasadena, CA 91106
                   </p>
@@ -294,7 +294,7 @@ export default function AboutPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/check-requirements">
-                  <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
+                  <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
                     Check Visa Requirements
                   </Button>
                 </Link>
@@ -319,7 +319,7 @@ export default function AboutPage() {
                 Apply for your eVisa today and experience our fast, secure, and reliable service.
               </p>
               <Link href="/check-requirements">
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
                   Apply for Visa Now
                 </Button>
               </Link>

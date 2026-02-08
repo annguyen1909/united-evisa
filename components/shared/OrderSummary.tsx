@@ -217,7 +217,7 @@ export default function OrderSummary({
         {/* Destination */}
         <div className="flex items-center justify-between">
           <span className="font-medium text-slate-700">Destination</span>
-          <span className="font-medium text-emerald-700">{destination}</span>
+          <span className="font-medium text-blue-700">{destination}</span>
         </div>
         
         {/* Visa Type - only show if selected */}
@@ -285,7 +285,7 @@ export default function OrderSummary({
             <hr className="border-slate-100" />
             <div className="flex items-center justify-between pt-1">
               <span className="font-semibold text-base text-slate-800">Total</span>
-              <span className="font-bold text-lg text-emerald-700">
+              <span className="font-bold text-lg text-blue-700">
                 {step === "passengers"
                   ? (govFee !== null ? `$${(govFee + serviceFee).toFixed(2)}` : "---")
                   : serverTotal !== null

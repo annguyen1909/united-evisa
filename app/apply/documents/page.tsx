@@ -56,9 +56,9 @@ type UploadError = string | null | { type: 'AUTH'; message: string; applicationI
 // Unauthorized Message Component (Tanzania Style)
 function UnauthorizedMessage({ uploadError }: { uploadError: { type: 'AUTH'; message: string; applicationId: string } }) {
     return (
-        <div className="min-h-screen bg-slate-50 py-10">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 py-10">
             <div className="max-w-4xl mx-auto px-4">
-                <Card className="bg-white shadow-sm border border-slate-200 p-6 text-center">
+                <Card className="bg-white shadow-sm border border-blue-100/50 rounded-xl p-6 text-center">
                     <CardHeader>
                         <CardTitle className="text-2xl font-bold text-slate-900 mb-4">Secure Document Upload</CardTitle>
                     </CardHeader>
@@ -78,8 +78,8 @@ function UnauthorizedMessage({ uploadError }: { uploadError: { type: 'AUTH'; mes
                             <b>Alternative: Email Submission</b>
                             <br />
                             You can also email your documents directly to{' '}
-                                                            <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 underline">
-                                  visa@worldmaxxing.com
+                                                            <a href="mailto:visa@unitedevisa.com" className="text-blue-600 underline">
+                                  visa@unitedevisa.com
                             </a>{' '}
                             with the subject line: <b>Documents for Application {uploadError.applicationId}</b>
                         </p>
@@ -89,12 +89,12 @@ function UnauthorizedMessage({ uploadError }: { uploadError: { type: 'AUTH'; mes
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
                                 href="/login"
-                                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition"
+                                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-blue-800 transition shadow-md"
                             >
                                 Login Now
                             </Link>
                             <a
-                                href={`mailto:visa@worldmaxxing.com?subject=Documents for Application ${uploadError.applicationId}`}
+                                href={`mailto:visa@unitedevisa.com?subject=Documents for Application ${uploadError.applicationId}`}
                                 className="bg-slate-200 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-300 transition"
                             >
                                 Email Documents
@@ -308,10 +308,10 @@ function DocumentsContent({ user }: { user: any }) {
     // Loading state
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-slate-50 py-10">
+            <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 py-10">
                 <div className="max-w-4xl mx-auto px-4">
                     <div className="flex flex-col items-center justify-center py-12">
-                        <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-emerald-600"></div>
+                        <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-blue-100 border-t-blue-600"></div>
                         <span className="mt-4 text-slate-600">Loading application data...</span>
                     </div>
                 </div>
@@ -322,18 +322,18 @@ function DocumentsContent({ user }: { user: any }) {
     // Step not allowed warning (displayed in main content area)
     if (stepNotAllowed) {
         return (
-            <div className=" bg-slate-50 py-10">
+            <div className="bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 py-10">
                 <div className="max-w-4xl mx-auto px-4">
-                    <Card className="bg-yellow-50 border border-yellow-200 rounded p-8 text-center">
+                    <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 rounded-xl p-8 text-center shadow-sm">
                         <CardHeader>
                             <CardTitle className="text-xl font-bold text-yellow-700 mb-2">Step Not Allowed</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="text-yellow-600 mb-4">
-                                You cannot access this step until you have completed the previous step <span className='text-emerald-700'>(Payment)</span>.
+                                You cannot access this step until you have completed the previous step <span className='text-blue-700'>(Payment)</span>.
                             </p>
                             <Button
-                                className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 mt-2"
+                                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-4 mt-2 shadow-md"
                                 onClick={() => window.location.href = `/apply/payment?applicationId=${applicationId}`}
                             >
                                 Go Back to Payment
@@ -347,10 +347,10 @@ function DocumentsContent({ user }: { user: any }) {
 
     // Main content
     return (
-        <div className="min-h-screen bg-slate-50 py-10">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 py-10">
             <div className="max-w-4xl mx-auto px-4">
-                <Card className="bg-white shadow-sm border border-slate-200">
-                    <CardHeader className="pb-3">
+                <Card className="bg-white shadow-sm border border-blue-100/50 rounded-xl">
+                    <CardHeader className="pb-3 bg-gradient-to-r from-blue-50/30 to-transparent rounded-t-xl">
                         <CardTitle className="text-2xl font-bold p-4 pt-6 text-slate-800">Step 4: Document Upload</CardTitle>
                         <p className="text-slate-600 mt-2">
                             Please upload the required documents for your visa application. All documents must be clear and legible.
@@ -372,7 +372,7 @@ function DocumentsContent({ user }: { user: any }) {
                                         </p>
                                         <div className="flex flex-col sm:flex-row gap-2">
                                             <a 
-                                                href="mailto:visa@worldmaxxing.com" 
+                                                href="mailto:visa@unitedevisa.com" 
                                                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-red-700 bg-red-100 hover:bg-red-200 rounded-md transition-colors"
                                             >
                                                 Contact Support
@@ -464,7 +464,7 @@ function DocumentsContent({ user }: { user: any }) {
                                 />
                                 <label
                                     htmlFor="file-upload"
-                                    className="inline-flex items-center px-4 py-2 rounded-md font-medium text-white bg-emerald-600 hover:bg-emerald-700 cursor-pointer"
+                                    className="inline-flex items-center px-4 py-2 rounded-lg font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 cursor-pointer shadow-md"
                                 >
                                     {isUploading ? (
                                         <>
@@ -553,7 +553,7 @@ function DocumentsContent({ user }: { user: any }) {
                                     <h3 className="font-semibold text-blue-800 mb-1">Need Assistance?</h3>
                                     <p className="text-sm text-blue-700">
                                         Our support team is available to help with your document upload.
-                                        Contact us at <a href="mailto:visa@worldmaxxing.com" className="font-medium underline">visa@worldmaxxing.com</a>
+                                        Contact us at <a href="mailto:visa@unitedevisa.com" className="font-medium underline">visa@unitedevisa.com</a>
                                     </p>
                                 </div>
                             </div>
@@ -577,7 +577,7 @@ export default function DocumentsPage() {
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <div className="text-center">
-                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600 mb-4"></div>
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
                     <p className="text-slate-700 font-medium">Loading documents...</p>
                 </div>
             </div>

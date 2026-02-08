@@ -97,9 +97,9 @@ function processContentHtml(html: string) {
       const cleanContent = content.replace(/^\d+(\.\d+)*\.\s*/, '');
       
       return `<h${level} id="${id}" class="text-${levelNum === 2 ? '3xl' : levelNum === 3 ? '2xl' : 'xl'} font-bold text-slate-800 mb-6 mt-12 scroll-mt-24 group">
-        <span class="text-emerald-600 font-mono mr-3">${number}.</span>
+        <span class="text-blue-600 font-mono mr-3">${number}.</span>
         ${cleanContent}
-        <a href="#${id}" class="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-emerald-500 hover:text-emerald-600" aria-label="Link to this section">
+        <a href="#${id}" class="opacity-0 group-hover:opacity-100 transition-opacity ml-2 text-blue-500 hover:text-blue-600" aria-label="Link to this section">
           <svg class="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"></path>
           </svg>
@@ -111,10 +111,10 @@ function processContentHtml(html: string) {
     // Style lists
     .replace(/<ul>/g, '<ul class="space-y-3 mb-8 text-slate-600">')
     .replace(/<ol>/g, '<ol class="space-y-3 mb-8 text-slate-600 list-decimal list-inside">')
-    .replace(/<li>/g, '<li class="flex items-start"><span class="text-emerald-500 mr-3 mt-2 flex-shrink-0">•</span><span class="flex-1 leading-relaxed">')
+    .replace(/<li>/g, '<li class="flex items-start"><span class="text-blue-500 mr-3 mt-2 flex-shrink-0">•</span><span class="flex-1 leading-relaxed">')
     .replace(/<\/li>/g, '</span></li>')
     // Style links
-    .replace(/<a([^>]*)>/g, '<a$1 class="text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-2 font-medium transition-colors">')
+    .replace(/<a([^>]*)>/g, '<a$1 class="text-blue-600 hover:text-blue-700 underline decoration-2 underline-offset-2 font-medium transition-colors">')
     // Style strong and bold
     .replace(/<strong>/g, '<strong class="font-bold text-slate-800">')
     .replace(/<b>/g, '<b class="font-bold text-slate-800">')
@@ -122,17 +122,17 @@ function processContentHtml(html: string) {
     .replace(/<em>/g, '<em class="text-slate-700 italic">')
     .replace(/<i>/g, '<i class="text-slate-700 italic">')
     // Style blockquotes
-    .replace(/<blockquote>/g, '<blockquote class="border-l-4 border-emerald-500 bg-emerald-50 p-6 my-8 text-slate-700 rounded-r-lg not-italic">')
+    .replace(/<blockquote>/g, '<blockquote class="border-l-4 border-blue-500 bg-blue-50 p-6 my-8 text-slate-700 rounded-r-lg not-italic">')
     // Style code elements
     .replace(/<code>/g, '<code class="bg-slate-100 px-2 py-1 rounded text-slate-800 font-mono text-sm">')
     // Style pre blocks
     .replace(/<pre>/g, '<pre class="bg-slate-900 text-slate-100 p-6 rounded-xl overflow-x-auto my-8">')
     // Style tables
     .replace(/<table>/g, '<table class="my-8 border-collapse border border-slate-200 w-full">')
-    .replace(/<th>/g, '<th class="bg-emerald-50 text-emerald-800 font-semibold p-4 border border-slate-200 text-left">')
+    .replace(/<th>/g, '<th class="bg-blue-50 text-blue-800 font-semibold p-4 border border-slate-200 text-left">')
     .replace(/<td>/g, '<td class="p-4 border border-slate-200 text-slate-600">')
     // Style horizontal rules
-    .replace(/<hr>/g, '<hr class="my-12 border-emerald-200">')
+    .replace(/<hr>/g, '<hr class="my-12 border-blue-200">')
     // Style images
     .replace(/<img([^>]*)>/g, '<img$1 class="rounded-xl shadow-lg my-8 max-w-full h-auto">');
 }
@@ -147,23 +147,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!faq) {
     return {
-      title: 'FAQ Not Found | Worldmaxxing Global Services',
+      title: 'FAQ Not Found | United eVisa Services',
       description: 'The requested FAQ could not be found.',
     };
   }
 
   return {
-    title: `${faq.title} | ${faq.category} FAQ | Worldmaxxing Global Services`,
+    title: `${faq.title} | ${faq.category} FAQ | United eVisa Services`,
     description: faq.description,
-    keywords: `${faq.title}, ${faq.category} FAQ, visa questions, eVisa help, Worldmaxxing Global Services`,
+    keywords: `${faq.title}, ${faq.category} FAQ, visa questions, eVisa help, United eVisa Services`,
     alternates: {
-      canonical: `https://worldmaxxing.com/faq/${slug}/${faqSlug}`,
+      canonical: `https://unitedevisa.com/faq/${slug}/${faqSlug}`,
     },
     openGraph: {
       title: `${faq.title} | ${faq.category} FAQ`,
       description: faq.description,
-      url: `https://worldmaxxing.com/faq/${slug}/${faqSlug}`,
-      siteName: 'Worldmaxxing Global Services',
+      url: `https://unitedevisa.com/faq/${slug}/${faqSlug}`,
+      siteName: 'United eVisa Services',
       images: [
         {
           url: faq.image || '/images/hero/hero.jpg',
@@ -254,7 +254,7 @@ export default async function FaqDetail({ params }: Props) {
           <div className="text-center">
             {/* Meta info */}
             <div className="flex flex-wrap items-center justify-center gap-4 mb-6 text-slate-500">
-              <Badge className="bg-emerald-50 text-emerald-700 border border-emerald-100 px-3 py-1">
+              <Badge className="bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1">
                 <Tag className="h-3 w-3 mr-1" />
                 {faq.category} FAQ
               </Badge>
@@ -318,13 +318,13 @@ export default async function FaqDetail({ params }: Props) {
                       Get personalized assistance and clear guidance for your next steps.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <Button size="lg" className="bg-emerald-700 hover:bg-emerald-800" asChild>
+                      <Button size="lg" className="bg-blue-700 hover:bg-blue-800" asChild>
                         <Link href="/support">
                           <Share2 className="mr-2 h-4 w-4" />
                           Contact Support
                         </Link>
                       </Button>
-                      <Button size="lg" variant="outline" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50" asChild>
+                      <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50" asChild>
                         <Link href={`/faq/${slug}`}>
                           <BookOpen className="mr-2 h-4 w-4" />
                           View All {faq.category} FAQs
@@ -353,13 +353,13 @@ export default async function FaqDetail({ params }: Props) {
                             key={heading.id}
                             href={`#${heading.id}`}
                             className={cn(
-                              "block text-sm hover:text-emerald-600 transition-colors duration-200 py-1",
+                              "block text-sm hover:text-blue-600 transition-colors duration-200 py-1",
                               heading.level === 2 && "font-semibold text-slate-700",
                               heading.level === 3 && "pl-4 text-slate-600",
                               heading.level === 4 && "pl-8 text-slate-500"
                             )}
                           >
-                            <span className="text-emerald-600 font-mono mr-2">
+                            <span className="text-blue-600 font-mono mr-2">
                               {heading.number}.
                             </span>
                             {heading.text}

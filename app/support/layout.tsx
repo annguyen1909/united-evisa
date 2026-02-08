@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Support',
-  description: 'Contact Worldmaxxing Global Services for visa support, help, and customer service.',
+  description: 'Contact United eVisa Services for visa support, help, and customer service.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/support',
+    canonical: 'https://unitedevisa.com/support',
   },
 };
 

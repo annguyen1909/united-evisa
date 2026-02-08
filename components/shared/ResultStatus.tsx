@@ -95,7 +95,7 @@ export default function ResultStatus({ applicationData, onRefresh }: ResultStatu
                                     </div>
                                     <div>
                                     <p className="font-semibold text-blue-800">Email Support</p>
-                                    <p className="text-blue-700">visa@worldmaxxing.com</p>
+                                    <p className="text-blue-700">visa@unitedevisa.com</p>
                                 </div>
                             </div>
                         </div>

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Djibouti Visa Requirements & eVisa Application",
     description: "Complete Djibouti visa requirements guide. Apply for Djibouti eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/djibouti",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/djibouti",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/djibouti/djibouti-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/djibouti/djibouti-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/djibouti",
+    canonical: "https://unitedevisa.com/requirements-posts/djibouti",
   },
   robots: {
     index: true,

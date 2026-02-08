@@ -4,13 +4,13 @@ export const metadata: Metadata = {
   title: 'Visa Pricing & Fees',
   description: 'View visa pricing and government fees for all countries. Transparent pricing with no hidden costs. Start your visa application today.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/pricing',
+    canonical: 'https://unitedevisa.com/pricing',
   },
   openGraph: {
     title: 'Visa Pricing & Fees',
     description: 'View visa pricing and government fees for all countries. Transparent pricing with no hidden costs.',
-    url: 'https://worldmaxxing.com/pricing',
-    siteName: 'Worldmaxxing Global Services',
+    url: 'https://unitedevisa.com/pricing',
+    siteName: 'United eVisa Services',
     images: [
       {
         url: '/images/hero/hero.jpg',

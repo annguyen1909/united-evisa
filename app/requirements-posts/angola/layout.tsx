@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Angola Visa Requirements & eVisa Application",
     description: "Complete Angola visa requirements guide. Apply for Angola eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/angola",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/angola",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/angola/angola-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/angola/angola-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/angola",
+    canonical: "https://unitedevisa.com/requirements-posts/angola",
   },
   robots: {
     index: true,

@@ -10,7 +10,7 @@ const hongkong: Country = {
   flagUrl: '/images/country/hong-kong/hong-kong-square.png',
   imageUrl: '/images/country/hong-kong/hong-kong-bg.jpg',
   roundedFlagUrl: '/images/country/hong-kong/hong-kong-rounded.png',
-  description: `Apply for your Hong Kong eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Hong Kong travel. Get your Hong Kong visa quickly with our expert assistance.`,
+  description: `Apply for your Hong Kong eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Hong Kong travel. Get your Hong Kong visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Hong Kong's dynamic city life, world-class cuisine, and stunning harbor views. From Victoria Peak to vibrant markets, Hong Kong is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/hong-kong/hong-kong-welcome.jpg',
   processingTime: {

@@ -1,7 +1,7 @@
 import { getAllFaqs } from "@/lib/faq";
 
 export async function GET() {
-  const baseUrl = "https://worldmaxxing.com";
+  const baseUrl = "https://unitedevisa.com";
   const faqs = getAllFaqs();
 
   const items = faqs
@@ -27,7 +27,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0">
       <channel>
-        <title>Worldmaxxing FAQ Center</title>
+        <title>United eVisa FAQ Center</title>
         <link>${baseUrl}/faq</link>
         <description>Frequently asked questions about eVisas, requirements, and applications.</description>
         ${items}

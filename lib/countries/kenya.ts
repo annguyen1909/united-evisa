@@ -10,7 +10,7 @@ const kenya: Country = {
   flagUrl: '/images/flags/square/kenya.png',
   roundedFlagUrl: '/images/flags/square/kenya.png',
   imageUrl: '/images/country/kenya/kenya-bg.jpg',
-  description: `Apply for your Kenya eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Kenya travel. Get your Kenya visa quickly with our expert assistance.`,
+  description: `Apply for your Kenya eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Kenya travel. Get your Kenya visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Kenya's world-famous safaris, breathtaking landscapes, and vibrant culture. From the Maasai Mara to the Great Rift Valley, Kenya is an unforgettable destination for travelers.`,
   welcomeImgUrl: '/images/country/kenya/kenya-welcome.jpg',
   processingTime: {

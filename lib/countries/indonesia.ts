@@ -10,7 +10,7 @@ const indonesia: Country = {
   flagUrl: '/images/country/indonesia/indonesia-square.png',
   imageUrl: '/images/country/indonesia/indonesia-bg.jpg',
   roundedFlagUrl: '/images/country/indonesia/indonesia-rounded.png',
-  description: `Apply for your Indonesia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Indonesia travel. Get your Indonesia visa quickly with our expert assistance.`,
+  description: `Apply for your Indonesia eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Indonesia travel. Get your Indonesia visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Indonesia's tropical islands, vibrant culture, and stunning natural beauty. From Bali's beaches to ancient temples, Indonesia is a dream destination for travelers.`,
   welcomeImgUrl: '/images/country/indonesia/indonesia-welcome.jpg',
   processingTime: {

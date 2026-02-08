@@ -1,326 +1,151 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import CheckEligibility from "../../components/shared/CheckEligibility";
 import { motion } from "framer-motion";
-import {
-  CheckCheck,
-  GlobeLock,
-  Map,
-  Clock,
-  ArrowRight,
-  Star,
-  Users,
-  Shield,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, ShieldCheck, Clock, Star, Globe } from "lucide-react";
+import CheckEligibility from "../../components/shared/CheckEligibility";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
-  const backgroundImages = [
-    "/images/hero/hero.webp",
-    "/images/hero/hero2.webp",
-    "/images/hero/hero3.webp",
-    "/images/hero/hero4.webp",
-  ];
-
-  const TRANSITION_MS = 1000;
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState<number | null>(null);
-  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
-  const [currentLoaded, setCurrentLoaded] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // preload first image for LCP, and mark it loaded
-  useEffect(() => {
-    const img = new window.Image();
-    img.src = backgroundImages[0];
-    img.onload = () => {
-      setIsFirstLoaded(true);
-      setCurrentLoaded(true);
-    };
-    // also kick off background preloads (non-blocking)
-    backgroundImages.slice(1).forEach((src) => {
-      const p = new window.Image();
-      p.src = src;
-    });
-  }, []);
-
-  // automatic slide timer
-  useEffect(() => {
-    if (!isFirstLoaded) return;
-    const timer = setInterval(() => {
-      const next = (currentIndex + 1) % backgroundImages.length;
-      // prepare transition: keep prev, swap current (currentLoaded will reset)
-      setPrevIndex(currentIndex);
-      setCurrentLoaded(false);
-      setCurrentIndex(next);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [isFirstLoaded, currentIndex]);
-
-  // when new image finishes loading, start fade and cleanup prev after transition
-  useEffect(() => {
-    if (prevIndex === null) return;
-    if (!currentLoaded) return;
-    setIsTransitioning(true);
-    const t = setTimeout(() => {
-      setPrevIndex(null);
-      setIsTransitioning(false);
-    }, TRANSITION_MS);
-    return () => clearTimeout(t);
-  }, [currentLoaded, prevIndex]);
-
-  const goTo = (index: number) => {
-    if (index === currentIndex) return;
-    setPrevIndex(currentIndex);
-    setCurrentLoaded(false);
-    setCurrentIndex(index);
-  };
-
   return (
-    <section className="w-full relative min-h-[600px] md:min-h-[700px] z-0 flex flex-col items-center justify-center border-b border-slate-200">
-      {/* Image stack: previous (fades out) and current (waits to show until loaded) */}
-      <div className="absolute inset-0 w-full h-full" style={{ zIndex: -2 }}>
-        {/* previous image wrapper */}
-        {prevIndex !== null && (
-          <div
-            className={`absolute inset-0 transition-opacity duration-[${TRANSITION_MS}ms] ${
-              isTransitioning ? "opacity-0" : "opacity-100"
-            }`}
-            aria-hidden
-          >
-            <Image
-              src={backgroundImages[prevIndex]}
-              alt={`Background ${prevIndex + 1}`}
-              fill
-              priority={prevIndex === 0}
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-        )}
-
-        {/* current image wrapper: invisible until it loads, then shows */}
-        <div
-          className={`absolute inset-0 transition-opacity duration-[${TRANSITION_MS}ms] ${
-            currentLoaded ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={backgroundImages[currentIndex]}
-            alt={`Background ${currentIndex + 1}`}
-            fill
-            priority={currentIndex === 0}
-            sizes="100vw"
-            className="object-cover object-center"
-            onLoadingComplete={() => {
-              setCurrentLoaded(true);
-            }}
-          />
-        </div>
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900 text-white">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hero/hero.webp"
+          alt="United Evisa travel hero"
+          fill
+          priority
+          className="object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/60 to-blue-900/90" />
       </div>
 
-      {/* overlay */}
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-slate-900/75 via-slate-900/40 to-slate-900/70"
-        style={{ zIndex: -1 }}
-      />
-
-      <div className="w-full max-w-6xl mx-auto px-4 py-16 md:py-24 flex flex-col items-center">
-        {/* Hero content simplified for brevity */}
+      <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24 lg:py-28 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.7 }}
+          className="flex flex-col gap-6"
         >
-          {/* Trust Badge - Enhanced for mobile */}
-          <div className="inline-flex items-center gap-2 bg-white/10 px-3 md:px-4 py-2 rounded-full text-emerald-200 text-sm font-medium mb-4 md:mb-6 border border-white/20">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-amber-200 w-fit">
             <Star className="h-4 w-4" />
-            <span className="text-xs md:text-sm">
-              Trusted by travelers worldwide
+            Trusted eVisa support for fast travel
+          </div>
+
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight">
+            United Evisa makes travel approvals feel effortless.
+          </h1>
+
+          <p className="text-base md:text-lg text-white/85 max-w-xl">
+            Apply online with clear steps, document review, and real-time updates. Travel-ready
+            support for popular destinations worldwide.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link href="/apply">
+              <Button className="bg-gradient-to-r from-blue-500 to-amber-500 hover:from-blue-600 hover:to-amber-600 text-white px-6 py-5 rounded-full text-base font-semibold shadow-lg">
+                Start your application
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="/check-requirements">
+              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-full px-6 py-5">
+                Check requirements
+              </Button>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm">
+              <div className="text-lg font-semibold">60,000+</div>
+              Travelers supported
+            </div>
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm">
+              <div className="text-lg font-semibold">50+</div>
+              Destinations covered
+            </div>
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm">
+              <div className="text-lg font-semibold">&lt; 5 min</div>
+              Avg response time
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-4 text-sm text-white/75">
+            <span className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-amber-200" />
+              Secure & encrypted
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Clock className="h-4 w-4 text-amber-200" />
+              24/7 support
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Globe className="h-4 w-4 text-amber-200" />
+              Multi‑language guidance
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 md:mb-6 leading-tight">
-            Apply for your eVisa online
-            <br />
-            with clear steps and fast options
-          </h1>
-
-          {/* Mobile-First CTA Button - Moved to top for immediate visibility */}
-          <div className="md:hidden mb-6">
-            <Link href="/apply" className="block">
-              <Button className="w-4/5 bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-4 text-lg font-bold rounded-xl shadow-sm transition-all duration-200 min-h-[56px]">
-                <span className="flex items-center justify-center gap-2">
-                  Start application
-                  <ArrowRight className="h-5 w-5" />
-                </span>
-              </Button>
-            </Link>
-          </div>
-
-          <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 md:mb-8 leading-relaxed px-2">
-            Skip long queues and apply online. Processing time varies by destination,
-            with options as fast as{" "}
-            <span className="text-emerald-300 font-semibold">24 hours</span>.
+          <p className="text-xs text-white/70 max-w-xl">
+            Not a government site. We provide independent visa support and you may apply directly
+            on official portals without service fees.
           </p>
-
-          {/* Key Benefits - Mobile optimized */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-10 max-w-4xl mx-auto">
-            <div className="flex flex-col items-center gap-2 text-white bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20">
-              <div className="bg-emerald-500 p-2 md:p-3 rounded-full">
-                <Zap className="h-5 w-5 md:h-6 md:w-6 text-white" />
-              </div>
-              <span className="text-sm md:text-base font-semibold text-center">
-                Fast Processing
-              </span>
-              <span className="text-xs text-white/70 text-center">
-                From 24 hours
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center gap-2 text-white bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20">
-              <div className="bg-emerald-500 p-2 md:p-3 rounded-full">
-                <Shield className="h-5 w-5 md:h-6 md:w-6 text-white" />
-              </div>
-              <span className="text-sm md:text-base font-semibold text-center">
-                100% Secure
-              </span>
-              <span className="text-xs text-white/70 text-center">
-                Bank-level security
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center gap-2 text-white bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20">
-              <div className="bg-emerald-500 p-2 md:p-3 rounded-full">
-                <Users className="h-5 w-5 md:h-6 md:w-6 text-white" />
-              </div>
-              <span className="text-sm md:text-base font-semibold text-center">
-                Expert Support
-              </span>
-              <span className="text-xs text-white/70 text-center">
-                24/7 assistance
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center gap-2 text-white bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20">
-              <div className="bg-emerald-500 p-2 md:p-3 rounded-full">
-                <CheckCheck className="h-5 w-5 md:h-6 md:w-6 text-white" />
-              </div>
-              <span className="text-sm md:text-base font-semibold text-center">
-                99.5% Success
-              </span>
-              <span className="text-xs text-white/70 text-center">
-                Approval rate
-              </span>
-            </div>
-          </div>
-
-          {/* CTA Buttons - Desktop version only */}
-          <div className="hidden md:flex flex-row gap-4 justify-center items-center mb-6 md:mb-8 px-4">
-            <Link href="/apply" className="w-auto">
-              <Button className="bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 hover:from-emerald-700 hover:via-emerald-800 hover:to-teal-800 text-white px-8 py-6 text-lg font-bold rounded-xl shadow-2xl hover:shadow-emerald-500/30 transform hover:scale-105 transition-all duration-300 border-2 border-emerald-400/60 min-h-[56px] relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  🚀 START APPLICATION NOW
-                  <ArrowRight className="h-5 w-5" />
-                </span>
-              </Button>
-            </Link>
-            <div className="text-white/90 text-sm flex flex-col space-y-1 bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-              <div className="flex items-center gap-1 justify-start">
-                <CheckCheck className="h-4 w-4 text-emerald-400" />
-                <span className="font-medium">No hidden fees</span>
-              </div>
-              <div className="flex items-center gap-1 justify-start">
-                <CheckCheck className="h-4 w-4 text-emerald-400" />
-                <span className="font-medium">Money-back guarantee</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Process Steps Preview - Mobile optimized */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-white/20 max-w-2xl mx-auto">
-            <h3 className="text-white text-base md:text-lg font-semibold mb-3 md:mb-4 text-center">
-              How it works:
-            </h3>
-            <div className="grid grid-cols-2 sm:flex sm:flex-row gap-3 md:gap-4 text-white text-sm">
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <div className="bg-emerald-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">
-                  1
-                </div>
-                <span className="text-center sm:text-left">Fill application</span>
-              </div>
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <div className="bg-emerald-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">
-                  2
-                </div>
-                <span className="text-center sm:text-left">Make payments</span>
-              </div>
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <div className="bg-emerald-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">
-                  3
-                </div>
-                <span className="text-center sm:text-left">Upload documents</span>
-              </div>
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <div className="bg-emerald-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">
-                  4
-                </div>
-                <span className="text-center sm:text-left">Receive eVisa</span>
-              </div>
-            </div>
-          </div>
         </motion.div>
 
-        {/* Check Eligibility Component */}
         <motion.div
-          className="w-full z-10"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="relative"
         >
-          <Suspense fallback={
-            <div className="w-full max-w-4xl mx-auto pt-0 px-4 sm:px-6">
-              <div className="bg-white rounded-xl shadow-lg p-6 border border-slate-100 backdrop-blur-sm">
-                <div className="text-center">
-                  <div className="animate-pulse">
-                    <div className="h-8 bg-slate-200 rounded mb-6"></div>
-                    <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 gap-0">
-                      <div className="flex-1 h-12 bg-slate-200 rounded-l-xl"></div>
-                      <div className="flex-1 h-12 bg-slate-200"></div>
-                      <div className="w-full md:w-auto md:min-w-[130px] h-12 bg-slate-200 rounded-r-xl"></div>
-                    </div>
-                  </div>
+          <div className="rounded-3xl border border-white/20 bg-white/95 p-6 shadow-2xl">
+            <h2 className="text-xl font-semibold text-slate-900 mb-2">
+              Check your eligibility in seconds
+            </h2>
+            <p className="text-sm text-slate-600 mb-6">
+              Select your nationality and destination to see available visa options.
+            </p>
+            <Suspense
+              fallback={
+                <div className="space-y-3 animate-pulse">
+                  <div className="h-12 rounded-xl bg-slate-200" />
+                  <div className="h-12 rounded-xl bg-slate-200" />
+                  <div className="h-12 rounded-xl bg-slate-200" />
+                </div>
+              }
+            >
+              <CheckEligibility />
+            </Suspense>
+            <div className="mt-5 rounded-2xl bg-blue-50 px-4 py-3 text-sm text-slate-700">
+              Prefer self‑service? You can apply directly on official sites with no service fee.
+            </div>
+            <div className="mt-6 border-t border-slate-200 pt-5">
+              <div className="grid gap-3 text-sm text-slate-600">
+                <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span className="font-medium text-slate-800">Step 1</span>
+                  <span>Tell us your route</span>
+                </div>
+                <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span className="font-medium text-slate-800">Step 2</span>
+                  <span>Upload documents</span>
+                </div>
+                <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                  <span className="font-medium text-slate-800">Step 3</span>
+                  <span>Get status updates</span>
                 </div>
               </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
+                  Document review included
+                </span>
+                <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                  Priority support available
+                </span>
+              </div>
             </div>
-          }>
-            <CheckEligibility />
-          </Suspense>
+          </div>
         </motion.div>
-      </div>
-
-      {/* Image Navigation Dots */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-0">
-        {backgroundImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goTo(index)}
-            className={`h-2.5 rounded-full transition-all duration-300 ease-in-out 
-              ${
-                index === currentIndex
-                  ? "w-10 bg-white"
-                  : "w-2.5 bg-white/50 hover:bg-white/70"
-              }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
       </div>
     </section>
   );

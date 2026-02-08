@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Moldova Visa Requirements & eVisa Application",
     description: "Complete Moldova visa requirements guide. Apply for Moldova eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/moldova",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/moldova",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/moldova/moldova-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/moldova/moldova-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/moldova",
+    canonical: "https://unitedevisa.com/requirements-posts/moldova",
   },
   robots: {
     index: true,

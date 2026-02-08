@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: comparison.title,
       description: comparison.description,
       type: 'article',
-      url: `https://worldmaxxing.com/compare/${slug}`,
+      url: `https://unitedevisa.com/compare/${slug}`,
       images: [{
         url: `/images/compare/${slug}.jpg`,
         width: 1200,
@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [`/images/compare/${slug}.jpg`]
     },
     alternates: {
-      canonical: `https://worldmaxxing.com/compare/${slug}`
+      canonical: `https://unitedevisa.com/compare/${slug}`
     }
   };
 }

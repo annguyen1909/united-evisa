@@ -13,13 +13,13 @@ export const metadata: Metadata = {
   description:
     'Compare eVisa requirements, processing times, and entry rules for Tanzania, Sri Lanka, India, Kenya, and Indonesia. Clear, neutral guidance for international travelers.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/requirements-comparison',
+    canonical: 'https://unitedevisa.com/requirements-comparison',
   },
   openGraph: {
     title: 'eVisa Requirements Comparison – Tanzania, Sri Lanka, India, Kenya, Indonesia',
     description:
       'Side‑by‑side eVisa requirements comparison for five popular destinations. Check eligibility, documents, and processing timelines.',
-    url: 'https://worldmaxxing.com/requirements-comparison',
+    url: 'https://unitedevisa.com/requirements-comparison',
     images: [
       {
         url: '/images/hero/hero.jpg',
@@ -43,7 +43,7 @@ export default function RequirementsComparisonPage() {
   const comparisonCountries = countries.map((c) => c.name)
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white">
       <EnhancedStructuredData
         pageType="comparison"
         title={metadata.title as string}
@@ -51,9 +51,9 @@ export default function RequirementsComparisonPage() {
         comparisonCountries={comparisonCountries}
       />
 
-      <div className="border-b border-slate-200 bg-white">
+      <div className="border-b border-blue-100 bg-white">
         <div className="max-w-6xl mx-auto px-4 py-14">
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-blue-400 mb-3">
             eVisa Requirements Comparison
           </p>
           <h1 className="text-4xl md:text-5xl font-semibold text-slate-900 mb-4">
@@ -64,16 +64,16 @@ export default function RequirementsComparisonPage() {
             Requirements can change, and final decisions are made by immigration authorities.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-600">
-            <span className="rounded-full bg-slate-100 px-4 py-2">Passport validity</span>
-            <span className="rounded-full bg-slate-100 px-4 py-2">Photo rules</span>
-            <span className="rounded-full bg-slate-100 px-4 py-2">Processing time</span>
-            <span className="rounded-full bg-slate-100 px-4 py-2">Entry type</span>
+            <span className="rounded-full bg-blue-50 px-4 py-2">Passport validity</span>
+            <span className="rounded-full bg-blue-50 px-4 py-2">Photo rules</span>
+            <span className="rounded-full bg-blue-50 px-4 py-2">Processing time</span>
+            <span className="rounded-full bg-blue-50 px-4 py-2">Entry type</span>
           </div>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-12 space-y-10">
-        <section className="rounded-3xl border border-slate-200 bg-white p-8">
+        <section className="rounded-3xl border border-blue-100 bg-white p-8">
           <h2 className="text-2xl font-semibold text-slate-900 mb-4">
             Quick comparison table
           </h2>
@@ -105,7 +105,7 @@ export default function RequirementsComparisonPage() {
                       <td className="py-3 pr-4">{maxStay ? `${maxStay} days` : 'Varies'}</td>
                       <td className="py-3">
                         <Link
-                          className="text-emerald-700 font-semibold hover:underline"
+                          className="text-blue-700 font-semibold hover:underline"
                           href={`/destinations/${country.slug}/entry-requirements`}
                         >
                           Check {country.name} requirements →
@@ -121,7 +121,7 @@ export default function RequirementsComparisonPage() {
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {countries.map((country) => (
-            <div key={country.slug} className="rounded-3xl border border-slate-200 bg-white p-8">
+            <div key={country.slug} className="rounded-3xl border border-blue-100 bg-white p-8">
               <h3 className="text-xl font-semibold text-slate-900 mb-2">
                 {country.name} eVisa overview
               </h3>
@@ -135,7 +135,7 @@ export default function RequirementsComparisonPage() {
               </ul>
               <div className="mt-4">
                 <Link
-                  className="text-emerald-700 font-semibold hover:underline"
+                  className="text-blue-700 font-semibold hover:underline"
                   href={`/destinations/${country.slug}`}
                 >
                   Visit {country.name} hub →
@@ -145,7 +145,7 @@ export default function RequirementsComparisonPage() {
           ))}
         </section>
 
-        <section className="rounded-3xl border border-slate-200 bg-white p-8">
+        <section className="rounded-3xl border border-blue-100 bg-white p-8">
           <h2 className="text-2xl font-semibold text-slate-900 mb-3">
             Common requirements across destinations
           </h2>
@@ -163,7 +163,7 @@ export default function RequirementsComparisonPage() {
           </p>
         </section>
 
-        <section className="rounded-3xl border border-slate-200 bg-white p-8 text-center">
+        <section className="rounded-3xl border border-blue-100 bg-white p-8 text-center">
           <h2 className="text-2xl font-semibold text-slate-900 mb-2">
             Not sure which visa applies to your nationality?
           </h2>
@@ -171,7 +171,7 @@ export default function RequirementsComparisonPage() {
             Use the eligibility checker to confirm the visa options for your passport.
           </p>
           <Link
-            className="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-6 py-3 text-white font-semibold hover:bg-emerald-700"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-amber-500 px-6 py-3 text-white font-semibold hover:from-blue-700 hover:to-amber-600"
             href="/check-requirements"
           >
             Check visa eligibility

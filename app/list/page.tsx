@@ -113,8 +113,8 @@ export default function ApplicationsPage() {
         };
       case 'Visa Result Sent':
         return { 
-          bg: 'bg-emerald-50', 
-          text: 'text-emerald-700',
+          bg: 'bg-blue-50', 
+          text: 'text-blue-700',
           icon: <FileText className="w-4 h-4 mr-1.5" />
         };
       case 'Cancelled':
@@ -220,14 +220,14 @@ export default function ApplicationsPage() {
             {isLoggedIn ? (
               <button
                 onClick={() => router.push('/apply')}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-lg transition-colors duration-200 font-medium text-sm md:text-base flex items-center justify-center shadow-sm"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition-colors duration-200 font-medium text-sm md:text-base flex items-center justify-center shadow-sm"
               >
                 Apply for New eVisa
               </button>
             ) : (
               <button
                 onClick={() => router.push('/login')}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-lg transition-colors duration-200 font-medium text-sm md:text-base flex items-center justify-center shadow-sm"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition-colors duration-200 font-medium text-sm md:text-base flex items-center justify-center shadow-sm"
               >
                 Login
               </button>
@@ -241,7 +241,7 @@ export default function ApplicationsPage() {
             {isLoading ? (
               <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-12">
                 <div className="flex flex-col items-center justify-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-emerald-600"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-blue-600"></div>
                   <span className="mt-4 text-slate-600">Loading your applications...</span>
                 </div>
               </div>
@@ -277,7 +277,7 @@ export default function ApplicationsPage() {
                   </p>
                   <button
                     onClick={() => router.push('/apply')}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg transition-colors font-medium shadow-sm"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors font-medium shadow-sm"
                   >
                     Start Your First Application
                   </button>
@@ -390,7 +390,7 @@ export default function ApplicationsPage() {
                           {displayStatus === 'Payment Needed' && (
                             <button
                               onClick={() => router.push(`/apply/payment?applicationId=${application.applicationId}`)}
-                              className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium text-sm"
+                              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
                             >
                               Complete Payment
                               <DollarSign className="w-4 h-4 ml-1" />
@@ -419,7 +419,7 @@ export default function ApplicationsPage() {
               </p>
               <button
                 onClick={() => router.push('/login')}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg transition-colors font-medium shadow-sm"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors font-medium shadow-sm"
               >
                 Login
               </button>

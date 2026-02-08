@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kazakhstan Visa Requirements & eVisa Application",
     description: "Complete Kazakhstan visa requirements guide. Apply for Kazakhstan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/kazakhstan",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/kazakhstan",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/kazakhstan/kazakhstan-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/kazakhstan/kazakhstan-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/kazakhstan",
+    canonical: "https://unitedevisa.com/requirements-posts/kazakhstan",
   },
   robots: {
     index: true,

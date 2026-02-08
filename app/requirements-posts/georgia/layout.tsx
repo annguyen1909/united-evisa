@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Georgia Visa Requirements & eVisa Application",
     description: "Complete Georgia visa requirements guide. Apply for Georgia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/georgia",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/georgia",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/georgia/georgia-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/georgia/georgia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/georgia",
+    canonical: "https://unitedevisa.com/requirements-posts/georgia",
   },
   robots: {
     index: true,

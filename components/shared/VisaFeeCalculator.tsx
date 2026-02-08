@@ -119,10 +119,10 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
       {/* Header */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-3 mb-4">
-          <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg">
-            <CreditCard className="h-8 w-8 text-emerald-700" />
+          <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg">
+            <CreditCard className="h-8 w-8 text-blue-700" />
           </div>
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-emerald-700 to-emerald-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-700 to-blue-600 bg-clip-text text-transparent">
             {selectedCountry.name} eVisa Calculator
           </h2>
         </div>
@@ -135,7 +135,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
         {/* Visa Details and Form */}
         <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
           <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-            <Globe className="h-6 w-6 text-emerald-600" />
+            <Globe className="h-6 w-6 text-blue-600" />
             Visa Details
           </h3>
 
@@ -193,7 +193,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                   }}
                 >
                   <SelectTrigger className="w-full min-h-[3rem] h-16 px-4 bg-gray-100 border-0 rounded-lg text-gray-700 font-medium 
-                                          focus:ring-4 focus:ring-emerald-100 focus:bg-white transition-all duration-200
+                                          focus:ring-4 focus:ring-blue-100 focus:bg-white transition-all duration-200
                                           hover:bg-white hover:shadow-sm">
                     <SelectValue placeholder="Choose visa type..." />
                   </SelectTrigger>
@@ -227,7 +227,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                           setPassengerNationalities(Array(numVisa).fill(nationality));
                         }
                       }}
-                      className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+                      className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <label htmlFor="sameNationality" className="text-sm text-gray-700">
                       All passengers have the same nationality
@@ -291,7 +291,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
             <>
               <div className="border-t border-gray-200 pt-8 mt-4">
                 <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                  <CreditCard className="h-6 w-6 text-emerald-600" />
+                  <CreditCard className="h-6 w-6 text-blue-600" />
                   Fee Breakdown
                 </h3>
 
@@ -341,13 +341,13 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                                   <span className="text-gray-700 font-medium">Government Fee:</span>
                                   <span className="font-bold text-gray-800">US$ {totalGovFees.toFixed(2)}</span>
                                 </div>
-                                <div className="bg-emerald-50 rounded-lg p-3 space-y-1">
+                                <div className="bg-blue-50 rounded-lg p-3 space-y-1">
                                   {govFeeEntries.map(({ passengerNationality, count, govFee, totalGovFee }) => (
                                     <div key={`gov-${passengerNationality}`} className="flex justify-between items-center text-sm">
-                                      <span className="text-emerald-700">
+                                      <span className="text-blue-700">
                                         {passengerNationality}:
                                       </span>
-                                      <span className="text-emerald-800 font-medium">
+                                      <span className="text-blue-800 font-medium">
                                         ${govFee.toFixed(2)} × {count} = ${totalGovFee.toFixed(2)}
                                       </span>
                                     </div>
@@ -386,16 +386,16 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                   </div>
 
                   {/* Total Section - Highlighted */}
-                  <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-2xl border-2 border-emerald-200">
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl border-2 border-blue-200">
                     <div className="space-y-3">
                       <div className="flex justify-between items-center text-lg">
-                        <span className="text-emerald-800 font-semibold">Number of visas:</span>
-                        <span className="font-bold text-emerald-800">× {numVisa}</span>
+                        <span className="text-blue-800 font-semibold">Number of visas:</span>
+                        <span className="font-bold text-blue-800">× {numVisa}</span>
                       </div>
-                      <div className="border-t-2 border-emerald-300 pt-4 mt-4">
+                      <div className="border-t-2 border-blue-300 pt-4 mt-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-2xl font-bold text-emerald-800">Total Amount:</span>
-                          <span className="text-3xl font-bold text-emerald-800">US$ {totalAmount.toFixed(2)}</span>
+                          <span className="text-2xl font-bold text-blue-800">Total Amount:</span>
+                          <span className="text-3xl font-bold text-blue-800">US$ {totalAmount.toFixed(2)}</span>
                         </div>
                       </div>
                     </div>
@@ -413,7 +413,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                         const hasAllNationalities = requiredNationalities.every(n => n && n.trim() !== "");
                         return !selectedCountry || !visaType || !hasAllNationalities;
                       })()}
-                      className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 
+                      className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 
                                text-white font-bold py-4 px-12 rounded-2xl text-lg transition-all duration-300
                                shadow-lg hover:shadow-xl transform hover:-translate-y-0.5
                                disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
@@ -429,11 +429,11 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
           {/* Empty State */}
           {!visaType && (
             <div className="text-center py-12 border-t border-gray-200 mt-4">
-              <div className="w-16 h-16 bg-emerald-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CreditCard className="h-8 w-8 text-emerald-600" />
+              <div className="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CreditCard className="h-8 w-8 text-blue-600" />
               </div>
-              <p className="text-emerald-700 font-medium mb-2">Select visa details</p>
-              <p className="text-emerald-600 text-sm">
+              <p className="text-blue-700 font-medium mb-2">Select visa details</p>
+              <p className="text-blue-600 text-sm">
                 Choose your visa type and preferences to see the fee breakdown
               </p>
             </div>

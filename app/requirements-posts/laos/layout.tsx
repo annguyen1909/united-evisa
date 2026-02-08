@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Laos Visa Requirements & eVisa Application",
     description: "Complete Laos visa requirements guide. Apply for Laos eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/laos",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/laos",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/laos/laos-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/laos/laos-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/laos",
+    canonical: "https://unitedevisa.com/requirements-posts/laos",
   },
   robots: {
     index: true,

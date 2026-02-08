@@ -10,7 +10,7 @@ const kazakhstan: Country = {
   flagUrl: '/images/country/kazakhstan/kazakhstan-square.png',
   imageUrl: '/images/country/kazakhstan/kazakhstan-bg.jpg',
   roundedFlagUrl: '/images/country/kazakhstan/kazakhstan-rounded.png',
-  description: `Apply for your Kazakhstan eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Kazakhstan travel. Get your Kazakhstan visa quickly with our expert assistance.`,
+  description: `Apply for your Kazakhstan eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Kazakhstan travel. Get your Kazakhstan visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Kazakhstan's vast steppes, modern cities, and unique culture. From Almaty to the Charyn Canyon, Kazakhstan offers adventure and beauty for every traveler.`,
   welcomeImgUrl: '/images/country/kazakhstan/kazakhstan-welcome.jpg',
   processingTime: {

@@ -152,6 +152,37 @@ interface VisaType {
   description?: string;
 }
 
+// Helper function to extract phone number without country code
+function extractPhoneNumber(fullPhoneNumber: string | null | undefined, countryCode: string | null | undefined): string {
+  if (!fullPhoneNumber) return "";
+  
+  // If country code is provided, try to remove it from the phone number
+  if (countryCode) {
+    // Remove the + sign and any spaces
+    const cleanCode = countryCode.replace(/\+/g, "").trim();
+    const cleanPhone = fullPhoneNumber.replace(/\s/g, "");
+    
+    // Check if phone number starts with the country code
+    if (cleanPhone.startsWith(cleanCode)) {
+      return cleanPhone.substring(cleanCode.length);
+    }
+    
+    // Check if phone number starts with + followed by country code
+    if (cleanPhone.startsWith(`+${cleanCode}`)) {
+      return cleanPhone.substring(cleanCode.length + 1);
+    }
+  }
+  
+  // If phone number starts with +, try to extract the number part
+  if (fullPhoneNumber.startsWith("+")) {
+    // Find the first digit after the + and country code
+    // This is a fallback if country code matching didn't work
+    return fullPhoneNumber.replace(/^\+?\d{1,4}/, "").trim();
+  }
+  
+  return fullPhoneNumber;
+}
+
 export default function ApplyForm({ user }: { user: any }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -162,6 +193,36 @@ export default function ApplyForm({ user }: { user: any }) {
   const [visaTypes, setVisaTypes] = useState<VisaType[]>([]);
   const [loadingDestinations, setLoadingDestinations] = useState(true);
   const [loadingVisaTypes, setLoadingVisaTypes] = useState(false);
+  
+  // Clear cache when navigating to /apply without URL parameters (fresh start)
+  // This runs first to ensure cache is cleared before it's loaded
+  useEffect(() => {
+    const countryParam = searchParams.get("country");
+    const typeParam = searchParams.get("type");
+    const applicationId = searchParams.get("applicationId");
+    
+    // If no URL parameters, this is likely a fresh start
+    if (!countryParam && !typeParam && !applicationId) {
+      // Check if there's an active application in session storage
+      const activeApplicationId = sessionStorage.getItem('evisa-application-id');
+      
+      // If no active application, this is definitely a fresh start - clear the cache
+      if (!activeApplicationId) {
+        console.log('No URL params and no active application - clearing cache for fresh start');
+        sessionStorage.removeItem('apply-form-cache');
+        sessionStorage.removeItem('cached-destination-id');
+        // Reset form state to ensure clean start
+        setSelectedDestination(null);
+        setSelectedCountry(null);
+        setSelectedVisaType("");
+        setPassengerCount("1");
+        setStayingStart("");
+        setStayingEnd("");
+        setPortType("");
+        setPortName("");
+      }
+    }
+  }, [searchParams]);
 
   // Keep legacy state for now (will update references later)
   const [selectedCountry, setSelectedCountry] = useState<any>(null);
@@ -208,6 +269,52 @@ export default function ApplyForm({ user }: { user: any }) {
     
     const loadCachedData = () => {
       try {
+        // Check if there are URL parameters - if yes, they take priority
+        const countryParam = searchParams.get("country");
+        const typeParam = searchParams.get("type");
+        
+        // If URL parameters exist, clear cache and use URL params instead
+        if (countryParam || typeParam) {
+          console.log('URL parameters detected, clearing cache and using URL params');
+          sessionStorage.removeItem('apply-form-cache');
+          
+          // URL params will be handled by the useEffect below
+          // Prefill contact fields with user data if logged in
+          if (user) {
+            const userCountryCode = user.areaCode || "+1";
+            setContact({
+              fullName: user.fullName || "",
+              email: user.email || "",
+              phone: extractPhoneNumber(user.phoneNumber, userCountryCode),
+              countryCode: userCountryCode,
+              gender: user.gender || "",
+            });
+          }
+          return;
+        }
+        
+        // If no URL params, check if user wants to start fresh
+        // Check for a flag that indicates user wants to start new application
+        const startFresh = sessionStorage.getItem('start-fresh-application');
+        if (startFresh === 'true') {
+          console.log('Starting fresh application, clearing cache');
+          sessionStorage.removeItem('apply-form-cache');
+          sessionStorage.removeItem('start-fresh-application');
+          
+          // Prefill contact fields with user data if logged in
+          if (user) {
+            const userCountryCode = user.areaCode || "+1";
+            setContact({
+              fullName: user.fullName || "",
+              email: user.email || "",
+              phone: extractPhoneNumber(user.phoneNumber, userCountryCode),
+              countryCode: userCountryCode,
+              gender: user.gender || "",
+            });
+          }
+          return;
+        }
+        
         const cached = sessionStorage.getItem('apply-form-cache');
         if (cached) {
           const data = JSON.parse(cached);
@@ -222,13 +329,21 @@ export default function ApplyForm({ user }: { user: any }) {
           if (data.portType) setPortType(data.portType);
           if (data.portName) setPortName(data.portName);
           if (data.contact) {
-            setContact(data.contact);
+            // Extract phone number without country code if it includes the country code
+            const cachedCountryCode = data.contact.countryCode || "+1";
+            const extractedPhone = extractPhoneNumber(data.contact.phone, cachedCountryCode);
+            
+            setContact({
+              ...data.contact,
+              phone: extractedPhone,
+              countryCode: cachedCountryCode,
+            });
             
             // Check if contact was complete when loaded from cache
             const contactComplete = !!(data.contact.fullName?.trim() && 
                                     data.contact.email?.trim() && 
-                                    data.contact.phone?.trim() && 
-                                    data.contact.countryCode?.trim() && 
+                                    extractedPhone?.trim() && 
+                                    cachedCountryCode?.trim() && 
                                     data.contact.gender);
             setContactWasCompleteOnLoad(contactComplete);
           }
@@ -237,11 +352,12 @@ export default function ApplyForm({ user }: { user: any }) {
           
           // Prefill contact fields with user data if logged in
           if (user) {
+            const userCountryCode = user.areaCode || "+1";
             setContact({
               fullName: user.fullName || "",
               email: user.email || "",
-              phone: user.phoneNumber || "",
-              countryCode: user.areaCode || "+1",
+              phone: extractPhoneNumber(user.phoneNumber, userCountryCode),
+              countryCode: userCountryCode,
               gender: user.gender || "",
             });
           }
@@ -252,7 +368,7 @@ export default function ApplyForm({ user }: { user: any }) {
     };
 
     loadCachedData();
-  }, [destinations]);
+  }, [destinations, searchParams, user]);
 
   // Fetch destinations on component mount
   useEffect(() => {
@@ -306,55 +422,51 @@ export default function ApplyForm({ user }: { user: any }) {
     fetchVisaTypes();
   }, [selectedDestination]);
 
-  // Get URL parameters on component mount - only apply if no cached data
+  // Get URL parameters on component mount - URL params always take priority
   useEffect(() => {
     if (!destinations || destinations.length === 0) return; // Wait until destinations are loaded
     
-    // Check if we have cached data
-    const cached = sessionStorage.getItem('apply-form-cache');
-    if (cached) {
-      // If we have cached data, don't override with URL parameters
-      console.log('Skipping URL parameters due to cached data');
-      return;
-    }
-    
     const countryParam = searchParams.get("country");
     const typeParam = searchParams.get("type");
+    
     if (countryParam) {
+      // URL parameters take priority - clear cache and use URL params
       const destination = destinations.find(
         (d) => d.id?.toLowerCase() === countryParam.toLowerCase()
       );
       if (destination) {
+        console.log('Setting destination from URL parameter:', countryParam);
+        sessionStorage.removeItem('apply-form-cache'); // Clear cache when URL params are used
         setSelectedDestination(destination);
         setSelectedCountry(destination); // Keep for compatibility
       }
-    } else {
+    } else if (!countryParam && !sessionStorage.getItem('apply-form-cache')) {
+      // No URL params and no cache - clear selection (fresh start)
       setSelectedDestination(null);
       setSelectedCountry(null);
       setSelectedVisaType("");
     }
   }, [searchParams, destinations]);
 
-  // Handle visa type selection when visaTypes change - only apply if no cached data
+  // Handle visa type selection when visaTypes change - URL params take priority
   useEffect(() => {
     if (!visaTypes || visaTypes.length === 0) return;
     
-    // Check if we have cached data
-    const cached = sessionStorage.getItem('apply-form-cache');
-    if (cached) {
-      // If we have cached data, don't override with URL parameters
-      console.log('Skipping visa type URL parameters due to cached data');
-      return;
-    }
-    
     const typeParam = searchParams.get("type");
     if (typeParam) {
+      // URL parameters take priority
       const visaType = visaTypes.find(
         (v) => v.id?.toLowerCase() === typeParam.toLowerCase()
       );
-      if (visaType) setSelectedVisaType(visaType.name);
-    } else {
-      setSelectedVisaType(visaTypes[0].name);
+      if (visaType) {
+        console.log('Setting visa type from URL parameter:', typeParam);
+        setSelectedVisaType(visaType.name);
+      }
+    } else if (!typeParam && !sessionStorage.getItem('apply-form-cache')) {
+      // No URL params and no cache - set first visa type as default
+      if (visaTypes.length > 0) {
+        setSelectedVisaType(visaTypes[0].name);
+      }
     }
   }, [visaTypes, searchParams]);
 
@@ -412,7 +524,7 @@ export default function ApplyForm({ user }: { user: any }) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="animate-spin h-8 w-8 border-4 border-emerald-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+          <div className="animate-spin h-8 w-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
           <p className="text-slate-600">Loading destinations...</p>
         </div>
       </div>
@@ -612,13 +724,15 @@ export default function ApplyForm({ user }: { user: any }) {
         console.log('Created passenger IDs:', appData.passengerIds);
         console.log('Stored application ID in session storage:', appData.applicationId);
         console.log('Session storage key:', 'evisa-application-id');
+        
+        // Clear form cache when new application is created
+        // This prevents the form from restoring old data when user navigates back
+        sessionStorage.removeItem('apply-form-cache');
+        console.log('Cleared form cache after creating new application');
       }
 
       // Navigate to passengers page with applicationId as URL parameter
       router.push(`/apply/passengers?applicationId=${appData.applicationId}`);
-
-      // Don't clear cache here - let it persist for back navigation
-      // Cache will only be cleared when browser tab closes
 
       // If the user is not logged in, store the applicationId and contact info in cookies
       if (!isLoggedIn && appData.applicationId) {
@@ -661,27 +775,49 @@ export default function ApplyForm({ user }: { user: any }) {
   };
 
   return (
-    <div className="min-h-screen justify-center pb-10 px-4 bg-slate-50">
-      <div className="max-w-7xl mx-auto pt-8 pb-6">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-slate-800">
-            Apply for Your eVisa
-          </h1>
-          <p className="text-slate-500 mt-2">
-            Complete the form below to start your visa application process
-          </p>
+    <div className="min-h-screen justify-center pb-12 px-4 bg-gradient-to-b from-blue-50/40 via-white to-white">
+      <div className="max-w-7xl mx-auto pt-10 pb-6">
+        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] items-center mb-10">
+          <div>
+            <span className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm">
+              United Evisa application
+            </span>
+            <h1 className="mt-4 text-3xl font-semibold text-slate-900">
+              Apply for your eVisa with confidence
+            </h1>
+            <p className="text-slate-600 mt-2 max-w-xl">
+              Clear steps, secure payments, and real‑time updates as you move through the process.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm">
+            <div className="text-sm text-slate-500">What you need</div>
+            <ul className="mt-3 space-y-2 text-sm text-slate-700">
+              <li className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-blue-600" />
+                Valid passport
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-blue-600" />
+                Travel dates
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-blue-600" />
+                Contact details
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <form
             onSubmit={handleSubmit}
-            className="space-y-6 col-span-2 bg-white rounded-xl p-6 shadow-sm border border-slate-200"
+            className="space-y-6 col-span-2 bg-white rounded-3xl p-6 shadow-sm border border-blue-100"
           >
             {/* Trip Details Section */}
             <div className="space-y-5">
-              <div className="flex items-center space-x-2 pb-2 border-b border-slate-200">
-                <div className="bg-emerald-100 p-1.5 rounded-full">
-                  <CalendarDays className="h-4 w-4 text-emerald-700" />
+              <div className="flex items-center space-x-2 pb-2 border-b border-blue-100">
+                <div className="bg-blue-100 p-1.5 rounded-full">
+                  <CalendarDays className="h-4 w-4 text-blue-700" />
                 </div>
                 <h2 className="text-lg font-semibold text-slate-800">
                   Trip Details
@@ -759,7 +895,7 @@ export default function ApplyForm({ user }: { user: any }) {
                                 value="Air"
                                 checked={portType === "Air"}
                                 onChange={() => { setPortType("Air"); setPortName(""); }}
-                                className="accent-emerald-600"
+                                className="accent-blue-600"
                               />
                               <label htmlFor="portType-Air" className="text-sm text-slate-700">Airport</label>
                           </div>
@@ -771,7 +907,7 @@ export default function ApplyForm({ user }: { user: any }) {
                                 value="Seaport"
                                 checked={portType === "Seaport"}
                                 onChange={() => { setPortType("Seaport"); setPortName(""); }}
-                                className="accent-emerald-600"
+                                className="accent-blue-600"
                               />
                               <label htmlFor="portType-Seaport" className="text-sm text-slate-700">Seaport</label>
                         </div>
@@ -796,7 +932,7 @@ export default function ApplyForm({ user }: { user: any }) {
                               "w-full",
                               !portType && "bg-slate-50 cursor-not-allowed",
                               errors.portName && "border-red-500 focus:ring-red-500",
-                              "focus:ring-emerald-500"
+                              "focus:ring-blue-500"
                             )}>
                               <SelectValue placeholder="Select Port" />
                             </SelectTrigger>
@@ -1121,7 +1257,7 @@ export default function ApplyForm({ user }: { user: any }) {
                         "w-full",
                         errors.visaType
                           ? "border-red-500 focus:ring-red-500"
-                          : "focus:ring-emerald-500"
+                          : "focus:ring-blue-500"
                       )}
                     >
                       <SelectValue placeholder="Select a visa type" />
@@ -1221,7 +1357,7 @@ export default function ApplyForm({ user }: { user: any }) {
                       "w-full",
                       errors.passengerCount
                         ? "border-red-500 focus:ring-red-500"
-                        : "focus:ring-emerald-500"
+                        : "focus:ring-blue-500"
                     )}
                   >
                     <SelectValue placeholder="Select number of passengers" />
@@ -1258,7 +1394,7 @@ export default function ApplyForm({ user }: { user: any }) {
                             !stayingStart && "text-slate-400",
                             errors.stayingStart
                               ? "border-red-500 focus:ring-red-500"
-                              : "focus:ring-emerald-500"
+                              : "focus:ring-blue-500"
                           )}
                         >
                           {stayingStart
@@ -1351,7 +1487,7 @@ export default function ApplyForm({ user }: { user: any }) {
                             !stayingEnd && "text-slate-400",
                             errors.stayingEnd
                               ? "border-red-500 focus:ring-red-500"
-                              : "focus:ring-emerald-500"
+                              : "focus:ring-blue-500"
                           )}
                         >
                           {stayingEnd
@@ -1436,13 +1572,13 @@ export default function ApplyForm({ user }: { user: any }) {
                       className={`col-span-full rounded-md p-2.5 border text-sm flex items-center space-x-2 ${
                         errors.stayingEnd
                           ? "bg-red-50 border-red-200 text-red-800"
-                          : "bg-emerald-50 border-emerald-100 text-emerald-800"
+                          : "bg-blue-50 border-blue-100 text-blue-800"
                       }`}
                     >
                       {errors.stayingEnd ? (
                         <XCircle className="h-4 w-4 text-red-600" />
                       ) : (
-                        <CheckCircle className="h-4 w-4 text-emerald-600" />
+                        <CheckCircle className="h-4 w-4 text-blue-600" />
                       )}
                       <span>
                         {errors.stayingEnd
@@ -1500,7 +1636,7 @@ export default function ApplyForm({ user }: { user: any }) {
                   <Input
                     type="text"
                     className={cn(
-                      "focus:ring-emerald-500",
+                      "focus:ring-blue-500",
                       (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                       errors.fullName && "border-red-500 focus:ring-red-500"
                     )}
@@ -1526,7 +1662,7 @@ export default function ApplyForm({ user }: { user: any }) {
                   <Input
                     type="email"
                     className={cn(
-                      "focus:ring-emerald-500",
+                      "focus:ring-blue-500",
                       (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                       errors.email && "border-red-500 focus:ring-red-500"
                     )}
@@ -1587,8 +1723,8 @@ export default function ApplyForm({ user }: { user: any }) {
                               key={`${c.code}-${c.country}-${i}`}
                               type="button"
                               className={cn(
-                                "w-full flex items-center gap-2 px-2 py-1 rounded hover:bg-emerald-50 text-left",
-                                contact.countryCode === c.code && "bg-emerald-100 font-semibold"
+                                "w-full flex items-center gap-2 px-2 py-1 rounded hover:bg-blue-50 text-left",
+                                contact.countryCode === c.code && "bg-blue-100 font-semibold"
                               )}
                               onClick={() => {
                                 setContact(prev => ({ ...prev, countryCode: c.code }));
@@ -1622,7 +1758,7 @@ export default function ApplyForm({ user }: { user: any }) {
                     <Input
                       type="tel"
                       className={cn(
-                        "focus:ring-emerald-500",
+                        "focus:ring-blue-500",
                       (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                         errors.phone && "border-red-500 focus:ring-red-500"
                       )}
@@ -1657,7 +1793,7 @@ export default function ApplyForm({ user }: { user: any }) {
                   >
                     <SelectTrigger
                       className={cn(
-                        "focus:ring-emerald-500",
+                        "focus:ring-blue-500",
                         (applicationExists || isLoggedIn) && "bg-slate-50 text-slate-500",
                         errors.gender && "border-red-500 focus:ring-red-500"
                       )}
@@ -1688,7 +1824,7 @@ export default function ApplyForm({ user }: { user: any }) {
             
             <Button
               type="submit"
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 rounded-lg shadow-sm transition-colors mt-6 flex items-center justify-center"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg shadow-sm transition-colors mt-6 flex items-center justify-center"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -1718,7 +1854,7 @@ export default function ApplyForm({ user }: { user: any }) {
                   <span className="font-medium text-slate-700">
                     Destination
                   </span>
-                  <span className="font-medium text-emerald-700">
+                  <span className="font-medium text-blue-700">
                     {selectedDestination?.name ?? "---"}
                   </span>
                 </div>
@@ -1767,7 +1903,7 @@ export default function ApplyForm({ user }: { user: any }) {
                 {/* Total */}
                 <div className="flex justify-between items-center pt-3 mt-2 border-t border-slate-200">
                   <p className="font-semibold text-slate-800">Total</p>
-                  <p className="font-bold text-lg text-emerald-700">
+                  <p className="font-bold text-lg text-blue-700">
                     {`$${total.toFixed(2)}`}
                   </p>
                 </div>
@@ -1779,10 +1915,10 @@ export default function ApplyForm({ user }: { user: any }) {
                       <ShieldCheck className="w-4 h-4 text-slate-400 mr-1.5" />
                       Secure SSL encrypted payment
                     </div>
-                    <div className="bg-emerald-50 border border-emerald-100 rounded-md p-3">
+                    <div className="bg-blue-50 border border-blue-100 rounded-md p-3">
                       <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-                        <span className="text-xs text-emerald-800">
+                        <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                        <span className="text-xs text-blue-800">
                           100% Service Fee Refund Guarantee if your visa is
                           rejected
                         </span>

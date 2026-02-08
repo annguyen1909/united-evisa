@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Canada Visa Requirements & eVisa Application",
     description: "Complete Canada visa requirements guide. Apply for Canada eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/canada",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/canada",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/canada/canada-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/canada/canada-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/canada",
+    canonical: "https://unitedevisa.com/requirements-posts/canada",
   },
   robots: {
     index: true,

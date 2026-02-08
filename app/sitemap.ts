@@ -7,7 +7,7 @@ import { getAllPosts } from '@/lib/blog'
 import { getAllRequirementsPosts } from '@/lib/requirements-posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://worldmaxxing.com'
+  const baseUrl = 'https://unitedevisa.com'
   const currentDate = new Date()
 
   // Main Architecture Routes (Hubs)

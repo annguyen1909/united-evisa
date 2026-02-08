@@ -23,23 +23,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!faq) {
     return {
-      title: 'FAQ Not Found | Worldmaxxing Global Services',
+      title: 'FAQ Not Found | United eVisa Services',
       description: 'The requested FAQ page could not be found.',
     };
   }
 
   return {
-    title: `${faq.title} | Worldmaxxing Global Services`,
+    title: `${faq.title} | United eVisa Services`,
     description: faq.description || `Frequently asked questions about ${faq.category} eVisa requirements and application process.`,
     keywords: `${faq.category} FAQ, ${faq.category} visa questions, eVisa help, visa requirements`,
     alternates: {
-      canonical: `https://worldmaxxing.com/faq/${slug}`,
+      canonical: `https://unitedevisa.com/faq/${slug}`,
     },
     openGraph: {
-      title: `${faq.title} | Worldmaxxing Global Services`,
+      title: `${faq.title} | United eVisa Services`,
       description: faq.description || `Frequently asked questions about ${faq.category} eVisa.`,
-      url: `https://worldmaxxing.com/faq/${slug}`,
-      siteName: 'Worldmaxxing Global Services',
+      url: `https://unitedevisa.com/faq/${slug}`,
+      siteName: 'United eVisa Services',
       images: [
         {
           url: faq.image || '/images/hero/hero.jpg',
@@ -117,7 +117,7 @@ export default async function FaqDetailPage({ params }: Props) {
 
           {/* Centered content */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-6 text-emerald-700">
+            <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-2 mb-6 text-blue-700">
               <HelpCircle className="h-4 w-4" />
               <span className="text-sm font-medium">FAQ</span>
             </div>
@@ -175,17 +175,17 @@ export default async function FaqDetailPage({ params }: Props) {
                       href={`/faq/${slug}/${faqSlug}`}
                       className="block group"
                     >
-                      <Card className="hover:shadow-sm transition-all duration-200 border border-slate-200 hover:border-emerald-300 bg-white">
+                      <Card className="hover:shadow-sm transition-all duration-200 border border-slate-200 hover:border-blue-300 bg-white">
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-                                <span className="text-emerald-600 font-semibold">
+                              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <span className="text-blue-600 font-semibold">
                                   {index + 1}
                                 </span>
                               </div>
                               <div>
-                                <h3 className="text-lg font-semibold text-slate-800 group-hover:text-emerald-600 transition-colors">
+                                <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
                                   {individualFaq?.title || faqSlug.replace('faq-', '').replace(/-/g, ' ')}
                                 </h3>
                                 <p className="text-sm text-slate-500">
@@ -193,7 +193,7 @@ export default async function FaqDetailPage({ params }: Props) {
                                 </p>
                               </div>
                             </div>
-                            <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all duration-300" />
+                            <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
                           </div>
                         </CardContent>
                       </Card>
@@ -210,8 +210,8 @@ export default async function FaqDetailPage({ params }: Props) {
           <Card className="shadow-sm border border-slate-200 bg-white rounded-2xl overflow-hidden">
             <CardContent className="p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-emerald-100 rounded-lg">
-                  <MessageCircle className="h-5 w-5 text-emerald-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <MessageCircle className="h-5 w-5 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-800">
                   Still Need Help?
@@ -220,7 +220,7 @@ export default async function FaqDetailPage({ params }: Props) {
               <p className="text-slate-600 text-sm mb-4">
                 Our expert team is available 24/7 to assist with your specific questions.
               </p>
-              <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700">
+              <Button asChild className="w-full bg-blue-600 hover:bg-blue-700">
                 <Link href="/support">
                   Contact Support
                 </Link>
@@ -241,7 +241,7 @@ export default async function FaqDetailPage({ params }: Props) {
               <p className="text-slate-600 text-sm mb-4">
                 Start your visa application process with our secure platform.
               </p>
-              <Button asChild className="w-full bg-emerald-700 hover:bg-emerald-800">
+              <Button asChild className="w-full bg-blue-700 hover:bg-blue-800">
                 <Link href="/apply">
                   Apply Now
                 </Link>
@@ -254,12 +254,12 @@ export default async function FaqDetailPage({ params }: Props) {
         <Card className="shadow-sm border border-slate-200 bg-white rounded-2xl overflow-hidden mt-8">
           <CardContent className="p-6">
             <h3 className="text-lg font-bold text-slate-800 mb-4 text-center">
-              Why Choose Worldmaxxing Global Services?
+              Why Choose United eVisa Services?
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="p-3 bg-emerald-100 rounded-full w-fit mx-auto mb-3">
-                  <Shield className="h-6 w-6 text-emerald-600" />
+                <div className="p-3 bg-blue-100 rounded-full w-fit mx-auto mb-3">
+                  <Shield className="h-6 w-6 text-blue-600" />
                 </div>
                 <h4 className="font-semibold text-slate-800 mb-2">Secure & Trusted</h4>
                 <p className="text-sm text-slate-600">Secure handling with clear application steps</p>

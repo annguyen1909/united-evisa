@@ -311,7 +311,7 @@ export default function CheckEligibilityWithPreset({
                 disabled={isLoading}
                 className={`
                   w-full md:w-auto md:min-w-[130px] h-[50px] text-base font-medium
-                  bg-emerald-700 hover:bg-emerald-800 text-white rounded-r-xl rounded-l-none
+                  bg-blue-700 hover:bg-blue-800 text-white rounded-r-xl rounded-l-none
                   max-md:rounded-xl
                   ${isLoading ? 'opacity-80' : ''}
                 `}

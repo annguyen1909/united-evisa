@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "United Kingdom Visa Requirements & eVisa Application",
     description: "Complete United Kingdom visa requirements guide. Apply for United Kingdom eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/united-kingdom",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/united-kingdom",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/united-kingdom/united-kingdom-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/united-kingdom/united-kingdom-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/united-kingdom",
+    canonical: "https://unitedevisa.com/requirements-posts/united-kingdom",
   },
   robots: {
     index: true,

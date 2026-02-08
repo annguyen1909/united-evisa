@@ -79,7 +79,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
                 >
                   <span>{option.label}</span>
                   {value === option.value && (
-                    <Check className="h-4 w-4 text-emerald-500" />
+                    <Check className="h-4 w-4 text-blue-500" />
                   )}
                 </CommandItem>
               ))}

@@ -9,10 +9,10 @@ export async function generateMetadata({ searchParams }: ApplyPageProps): Promis
   const hasParams = Boolean(resolvedParams && Object.keys(resolvedParams).length > 0);
 
   return {
-    title: 'Apply for eVisa | Worldmaxxing Global Services',
-    description: 'Start your eVisa application with Worldmaxxing Global Services. Fast, secure, and easy process.',
+    title: 'Apply for eVisa | United eVisa Services',
+    description: 'Start your eVisa application with United eVisa Services. Fast, secure, and easy process.',
     alternates: {
-      canonical: 'https://worldmaxxing.com/apply',
+      canonical: 'https://unitedevisa.com/apply',
     },
     robots: hasParams
       ? {
@@ -39,7 +39,7 @@ export default async function ApplyPage() {
     ? await prisma.account.findFirst({
         where: {
           email: session.user.email,
-          websiteCreatedAt: "Worldmaxxing Site",
+          websiteCreatedAt: "United eVisa Site",
         },
         select: {
           fullName: true,

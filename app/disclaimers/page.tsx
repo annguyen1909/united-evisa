@@ -2,21 +2,21 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Disclaimers | Worldmaxxing Global Services Immigration Assistance Service',
+  title: 'Disclaimers | United eVisa Services Immigration Assistance Service',
   description:
-    'Important disclaimers and legal notices for Worldmaxxing Global Services Immigration Assistance Service - Understand our role, limitations, and your rights.',
+    'Important disclaimers and legal notices for United eVisa Services Immigration Assistance Service - Understand our role, limitations, and your rights.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/disclaimers',
+    canonical: 'https://unitedevisa.com/disclaimers',
   },
 };
 
 export default function DisclaimersPage() {
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white">
         <main className="flex-1">
           {/* Enhanced Header Section */}
-          <section className="relative bg-gradient-to-r from-orange-600 via-red-600 to-pink-700 overflow-hidden">
+          <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-amber-700 overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-black bg-opacity-10"></div>
             <div className="absolute inset-0 opacity-30">
@@ -35,7 +35,7 @@ export default function DisclaimersPage() {
                   </svg>
                 </div>
                 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white mb-4 leading-tight">
                   Disclaimers &
                   <span className="block text-orange-200">Legal Notices</span>
                 </h1>
@@ -82,7 +82,7 @@ export default function DisclaimersPage() {
                       </div>
                       <div className="flex-1">
                         <p className="text-gray-800 mb-3 font-medium">
-                          <strong>Important Notice:</strong> worldmaxxing.com is operated by Worldmaxxing Global Services
+                          <strong>Important Notice:</strong> unitedevisa.com is operated by United eVisa Services
                           eVisa Immigration Assistance Service, a private company that provides
                           visa application assistance and support services.
                         </p>
@@ -264,7 +264,7 @@ export default function DisclaimersPage() {
                 
                 {/* Financial Disclaimers */}
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-6 py-4 border-b border-gray-100">
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 px-6 py-4 border-b border-gray-100">
                     <div className="flex items-center space-x-3">
                       <div className="flex-shrink-0 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
                         <span className="text-white font-bold text-xs">5</span>
@@ -511,10 +511,10 @@ export default function DisclaimersPage() {
                             <p className="text-gray-700 text-sm">
                               Email:{' '}
                               <a
-                                href="mailto:visa@worldmaxxing.com"
+                                href="mailto:visa@unitedevisa.com"
                                 className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                               >
-                                visa@worldmaxxing.com
+                                visa@unitedevisa.com
                               </a>
                             </p>
                             <p className="text-gray-700 text-sm">
@@ -536,14 +536,14 @@ export default function DisclaimersPage() {
                             <p className="text-gray-700 text-sm">
                               Email:{' '}
                               <a
-                                href="mailto:visa@worldmaxxing.com"
+                                href="mailto:visa@unitedevisa.com"
                                 className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                               >
-                                visa@worldmaxxing.com
+                                visa@unitedevisa.com
                               </a>
                             </p>
                             <p className="text-gray-700 text-sm">
-                              Address: Worldmaxxing Global Services Immigration Assistance Service
+                              Address: United eVisa Services Immigration Assistance Service
                               <br />
                               [Your Business Address]
                             </p>

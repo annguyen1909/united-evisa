@@ -144,7 +144,7 @@ export default function News() {
 
   if (loading) {
     return (
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="animate-pulse">
@@ -158,9 +158,9 @@ export default function News() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-emerald-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-100 rounded-full blur-3xl opacity-30 -translate-y-48 translate-x-48"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-30 -translate-y-48 translate-x-48"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-30 translate-y-48 -translate-x-48"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -173,13 +173,13 @@ export default function News() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent w-16"></div>
-            <Sparkles className="h-6 w-6 text-emerald-600" />
-            <div className="h-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent w-16"></div>
+            <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent w-16"></div>
+            <Sparkles className="h-6 w-6 text-blue-600" />
+            <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent w-16"></div>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-800 mb-4 font-manrope">
             Latest eVisa 
-            <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent ml-3">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent ml-3">
               News & Guides
             </span>
           </h2>
@@ -205,7 +205,7 @@ export default function News() {
                       <div className="relative">
                         {/* Featured badge */}
                         <div className="absolute top-4 left-4 z-10">
-                          <Badge className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white border-0 shadow-lg">
+                          <Badge className="bg-gradient-to-r from-blue-600 to-blue-700 text-white border-0 shadow-lg">
                             <TrendingUp className="h-3 w-3 mr-1" />
                             Featured
                           </Badge>
@@ -246,7 +246,7 @@ export default function News() {
                             </div>
                           </div>
                           {/* Title (also clickable) */}
-                          <h3 className="text-xl font-bold text-slate-800 mb-3 line-clamp-2 group-hover:text-emerald-600 transition-colors duration-300 font-manrope cursor-pointer">
+                          <h3 className="text-xl font-bold text-slate-800 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 font-manrope cursor-pointer">
                             {post.title}
                           </h3>
                           {/* Description - with flex-grow to push button down */}
@@ -258,7 +258,7 @@ export default function News() {
                         <div>
                           <Button
                             asChild
-                            className="group/btn bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white shadow-lg w-full"
+                            className="group/btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg w-full"
                           >
                             <span>
                               Read Full Article
@@ -310,7 +310,7 @@ export default function News() {
                           </div>
                         </div>
                         {/* Title (also clickable) */}
-                        <h3 className="text-lg font-bold text-slate-800 mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors duration-300 font-manrope cursor-pointer">
+                        <h3 className="text-lg font-bold text-slate-800 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 font-manrope cursor-pointer">
                           {post.title}
                         </h3>
                         {/* Description - with flex-grow to push link down */}
@@ -319,7 +319,7 @@ export default function News() {
                         </p>
                         {/* CTA Link - positioned at bottom */}
                         <div className="mt-auto">
-                          <span className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1 group/link transition-colors duration-300">
+                          <span className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1 group/link transition-colors duration-300">
                             Read More
                             <ArrowRight className="h-3 w-3 group-hover/link:translate-x-1 transition-transform duration-300" />
                           </span>
@@ -340,7 +340,7 @@ export default function News() {
             <Button
               asChild
               size="lg"
-              className="bg-emerald-600 hover:bg-emerald-700 transition-all duration-300 text-white shadow-xl px-8 py-3"
+              className="bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white shadow-xl px-8 py-3"
             >
               <Link href="/blog">
                 <Globe className="h-5 w-5 mr-2" />

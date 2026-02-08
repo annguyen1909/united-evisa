@@ -147,7 +147,7 @@ function ComboBox({
               )}
               <span>{opt.label}</span>
               {value === opt.value && (
-                <Check className="ml-auto h-4 w-4 text-emerald-600" />
+                <Check className="ml-auto h-4 w-4 text-blue-600" />
               )}
             </button>
           ))}
@@ -316,7 +316,7 @@ export default function CheckEligibility() {
                 disabled={isLoading}
                 className={`
                   w-full md:w-auto md:min-w-[130px] h-[50px] text-base font-medium
-                  bg-emerald-700 hover:bg-emerald-800 text-white rounded-r-xl rounded-l-none
+                  bg-blue-700 hover:bg-blue-800 text-white rounded-r-xl rounded-l-none
                   max-md:rounded-xl
                   ${isLoading ? 'opacity-80' : ''}
                 `}

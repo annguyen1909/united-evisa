@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Azerbaijan Visa Requirements & eVisa Application",
     description: "Complete Azerbaijan visa requirements guide. Apply for Azerbaijan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/azerbaijan",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/azerbaijan",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/azerbaijan/azerbaijan-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/azerbaijan/azerbaijan-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/azerbaijan",
+    canonical: "https://unitedevisa.com/requirements-posts/azerbaijan",
   },
   robots: {
     index: true,

@@ -180,35 +180,57 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="border-b border-slate-200 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 py-14 sm:py-18">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
-            <HeadphonesIcon className="h-4 w-4" />
-            Support Center
+      <div className="border-b border-blue-100 bg-gradient-to-b from-blue-50 via-white to-white">
+        <div className="max-w-7xl mx-auto px-4 py-14 sm:py-18 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm">
+              <HeadphonesIcon className="h-4 w-4" />
+              Support Center
+            </div>
+            <h1 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+              Get help with your visa application
+            </h1>
+            <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl">
+              Reach our team for application status, document questions, and account support.
+            </p>
           </div>
-          <h1 className="mt-4 text-3xl sm:text-4xl font-bold text-slate-900">
-            Get help with your visa application
-          </h1>
-          <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl">
-            Reach our team for application status, document questions, and account support.
-          </p>
+          <div className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-slate-900">24/7 support</h3>
+            <p className="text-sm text-slate-600 mt-2">
+              We reply quickly across phone, email, and live chat.
+            </p>
+            <div className="mt-4 space-y-2 text-sm text-slate-700">
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-blue-600" />
+                Avg response time under 1 hour
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-blue-600" />
+                visa@unitedevisa.com
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-blue-600" />
+                +1 323 286 4541
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Contact Form */}
         <div className="max-w-4xl mx-auto mb-12">
-          <Card className="shadow-sm border border-slate-200">
+          <Card className="shadow-sm border border-blue-100 rounded-3xl">
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-slate-900 mb-2">Can we help?</h2>
+                <h2 className="text-2xl font-semibold text-slate-900 mb-2">Can we help?</h2>
                 <p className="text-slate-600">Send us a message and we’ll reply within one business day.</p>
               </div>
 
               {isSubmitted ? (
                 <div className="text-center py-12">
-                  <CheckCircle className="h-16 w-16 text-emerald-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-emerald-700 mb-2">Message Sent Successfully!</h3>
+                  <CheckCircle className="h-16 w-16 text-blue-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-blue-700 mb-2">Message Sent Successfully!</h3>
                   <p className="text-slate-600">We'll get back to you within 24 hours.</p>
                 </div>
               ) : (
@@ -224,7 +246,7 @@ export default function SupportPage() {
                         type="text"
                         value={contactForm.fullName}
                         onChange={handleInputChange}
-                        className="mt-1"
+                        className="mt-1 rounded-xl"
                         required
                       />
                     </div>
@@ -238,7 +260,7 @@ export default function SupportPage() {
                         type="tel"
                         value={contactForm.phoneNumber}
                         onChange={handleInputChange}
-                        className="mt-1"
+                        className="mt-1 rounded-xl"
                         required
                       />
                     </div>
@@ -254,7 +276,7 @@ export default function SupportPage() {
                       type="email"
                       value={contactForm.email}
                       onChange={handleInputChange}
-                      className="mt-1"
+                      className="mt-1 rounded-xl"
                       required
                     />
                   </div>
@@ -264,7 +286,7 @@ export default function SupportPage() {
                       Subject / Category *
                     </Label>
                     <Select value={contactForm.subject} onValueChange={handleSelectChange}>
-                      <SelectTrigger className="mt-1">
+                      <SelectTrigger className="mt-1 rounded-xl">
                         <SelectValue placeholder="Please select..." />
                       </SelectTrigger>
                       <SelectContent>
@@ -289,7 +311,7 @@ export default function SupportPage() {
                       name="message"
                       value={contactForm.message}
                       onChange={handleInputChange}
-                      className="mt-1 min-h-[120px]"
+                      className="mt-1 min-h-[120px] rounded-xl"
                       placeholder="Please describe your inquiry in detail..."
                       required
                     />
@@ -299,7 +321,7 @@ export default function SupportPage() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-3 text-lg font-medium"
+                      className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white px-8 py-3 text-lg font-medium rounded-full"
                     >
                       {isSubmitting ? (
                         <div className="flex items-center space-x-2">
@@ -326,18 +348,18 @@ export default function SupportPage() {
 
         {/* 24/7 Support Center */}
         <div className="max-w-4xl mx-auto mb-16">
-          <Card className="shadow-sm border border-slate-200">
+          <Card className="shadow-sm border border-blue-100 rounded-3xl">
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-slate-900 mb-2">24/7 Support Center</h2>
+                <h2 className="text-2xl font-semibold text-slate-900 mb-2">24/7 Support Center</h2>
                 <p className="text-slate-600">We’re available around the clock for urgent requests.</p>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Customer Service */}
                 <div className="flex items-start space-x-4">
-                  <div className="bg-slate-100 p-3 rounded-full">
-                    <HeadphonesIcon className="h-6 w-6 text-slate-700" />
+                  <div className="bg-blue-100 p-3 rounded-full">
+                    <HeadphonesIcon className="h-6 w-6 text-blue-700" />
                   </div>
                   <div className="flex-1">
                     <h4 className="font-semibold text-slate-800 mb-1">Customer Service Center</h4>
@@ -359,8 +381,8 @@ export default function SupportPage() {
 
                 {/* Suggestions or Complaint */}
                 <div className="flex items-start space-x-4">
-                  <div className="bg-emerald-50 p-3 rounded-full">
-                    <MessageCircle className="h-6 w-6 text-emerald-700" />
+                  <div className="bg-amber-100 p-3 rounded-full">
+                    <MessageCircle className="h-6 w-6 text-amber-700" />
                   </div>
                   <div className="flex-1">
                     <h4 className="font-semibold text-slate-800 mb-1">Suggestions or Complaint</h4>
@@ -402,7 +424,7 @@ export default function SupportPage() {
                       onClick={() => setSelectedRegion(region)}
                       className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
                         selectedRegion === region
-                          ? "bg-emerald-700 text-white shadow-sm"
+                          ? "bg-blue-700 text-white shadow-sm"
                           : "text-slate-600 hover:text-slate-800"
                       }`}
                     >
@@ -433,10 +455,10 @@ export default function SupportPage() {
                     
                     <div className="space-y-3">
                       <div className="flex items-start space-x-2">
-                        <Phone className="h-4 w-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <Phone className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
                         <div>
                           <div className="text-xs text-slate-500 mb-1">Contact Number</div>
-                          <span className="text-emerald-600 font-medium text-sm">{office.phone}</span>
+                          <span className="text-blue-600 font-medium text-sm">{office.phone}</span>
                         </div>
                       </div>
                       
@@ -482,8 +504,8 @@ export default function SupportPage() {
                         </td>
                         <td className="p-4">
                           <div className="flex items-center space-x-2">
-                            <Phone className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-                            <span className="text-emerald-600 font-medium">{office.phone}</span>
+                            <Phone className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                            <span className="text-blue-600 font-medium">{office.phone}</span>
                           </div>
                         </td>
                         <td className="p-4">

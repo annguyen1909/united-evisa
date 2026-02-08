@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Saint Helena Visa Requirements & eVisa Application",
     description: "Complete Saint Helena visa requirements guide. Apply for Saint Helena eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/saint-helena",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/saint-helena",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/saint-helena/saint-helena-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/saint-helena/saint-helena-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/saint-helena",
+    canonical: "https://unitedevisa.com/requirements-posts/saint-helena",
   },
   robots: {
     index: true,

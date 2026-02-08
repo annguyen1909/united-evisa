@@ -107,7 +107,7 @@ export default function CountryPageClient({ country }: { country: any }) {
   return (
     <main className="flex flex-col items-center bg-white">
       {/* Breadcrumb Navigation */}
-      <div className="w-full bg-slate-50 border-b border-slate-200">
+      <div className="w-full bg-white border-b border-blue-100">
         <div className="max-w-6xl mx-auto px-4 py-3">
           <BreadcrumbNavigation items={breadcrumbItems} />
         </div>
@@ -120,7 +120,7 @@ export default function CountryPageClient({ country }: { country: any }) {
             backgroundImage: `url(/images/country/${country.slug}/${country.slug}-bg.jpg)`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-800/50 to-slate-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/75 via-blue-900/50 to-blue-950/70" />
 
         <div className="relative z-10 max-w-6xl mx-auto text-white">
           <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
@@ -156,7 +156,7 @@ export default function CountryPageClient({ country }: { country: any }) {
             <Button
               onClick={() => router.push(`/apply?country=${country.slug}`)}
               size="lg"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white rounded-full"
             >
               Apply for eVisa
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -164,7 +164,7 @@ export default function CountryPageClient({ country }: { country: any }) {
             <Button
               size="lg"
               variant="outline"
-              className="bg-white/10 hover:bg-white/20 text-white border-white/30"
+              className="bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-full"
               onClick={() =>
                 document
                   .getElementById("visa-type")
@@ -178,10 +178,10 @@ export default function CountryPageClient({ country }: { country: any }) {
       </section>
 
       {/* Quick stats */}
-      <section className="w-full bg-white shadow-md relative -mt-10 z-20">
+      <section className="w-full bg-transparent relative -mt-12 z-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-x divide-slate-200">
-            <div className="flex flex-col items-center py-6 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 rounded-3xl border border-blue-100 bg-white shadow-md p-6">
+            <div className="flex flex-col items-center text-center">
               <div className="p-3 bg-blue-100 rounded-full mb-3">
                 <Clock className="h-6 w-6 text-blue-700" />
               </div>
@@ -196,16 +196,16 @@ export default function CountryPageClient({ country }: { country: any }) {
                   : "Varies by application"}
               </p>
             </div>
-            <div className="flex flex-col items-center py-6 px-4">
-              <div className="p-3 bg-emerald-100 rounded-full mb-3">
-                <Check className="h-6 w-6 text-emerald-700" />
+            <div className="flex flex-col items-center text-center">
+              <div className="p-3 bg-blue-100 rounded-full mb-3">
+                <Check className="h-6 w-6 text-blue-700" />
               </div>
               <h3 className="font-bold text-lg text-slate-800">
                 Easy Application
               </h3>
               <p className="text-slate-600">3 simple steps</p>
             </div>
-            <div className="flex flex-col items-center py-6 px-4">
+            <div className="flex flex-col items-center text-center">
               <div className="p-3 bg-amber-100 rounded-full mb-3">
                 <Send className="h-6 w-6 text-amber-700" />
               </div>
@@ -253,8 +253,8 @@ export default function CountryPageClient({ country }: { country: any }) {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-emerald-100 p-2 rounded-full">
-                    <CircleDollarSign className="h-5 w-5 text-emerald-700" />
+                  <div className="bg-blue-100 p-2 rounded-full">
+                    <CircleDollarSign className="h-5 w-5 text-blue-700" />
                   </div>
                   <div>
                     <p className="text-slate-800 font-semibold mb-1">
@@ -388,7 +388,7 @@ export default function CountryPageClient({ country }: { country: any }) {
                             <p className="font-medium text-slate-800">
                               {isIndia ? (
                                 <button
-                                  className="text-sm text-emerald-600 hover:text-emerald-700 hover:underline"
+                                  className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
                                   onClick={() => handleOpenModal(visa.name)}
                                 >
                                   See Details
@@ -412,17 +412,17 @@ export default function CountryPageClient({ country }: { country: any }) {
                         </div>
                       </div>
 
-                      <div className="bg-emerald-50 p-6 rounded-xl border border-emerald-100">
+                      <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-emerald-100 rounded-full">
-                            <Info className="h-5 w-5 text-emerald-700" />
+                          <div className="p-2 bg-blue-100 rounded-full">
+                            <Info className="h-5 w-5 text-blue-700" />
                           </div>
-                          <h3 className="text-xl font-bold text-emerald-800">
+                          <h3 className="text-xl font-bold text-blue-800">
                             Visa Service Package
                           </h3>
                         </div>
 
-                        <p className="text-emerald-700 mb-6">
+                        <p className="text-blue-700 mb-6">
                           Our service helps travelers obtain travel documents,
                           simplifying the process so that you can better prepare
                           for your trip. The package includes:
@@ -438,8 +438,8 @@ export default function CountryPageClient({ country }: { country: any }) {
                             "Urgent case support, with added fees",
                           ].map((item) => (
                             <div key={item} className="flex items-start gap-2">
-                              <Check className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                              <span className="text-emerald-700">{item}</span>
+                              <Check className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                              <span className="text-blue-700">{item}</span>
                             </div>
                           ))}
                         </div>

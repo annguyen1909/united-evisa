@@ -163,18 +163,20 @@ function ConfirmationContent() {
   // Passengers extraction (try both .passengers and .Passenger for compatibility)
   const passengers = applicationData?.passengers || applicationData?.Passenger || [];
   return (
-    <div className="min-h-screen bg-slate-50 pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 pb-16">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
             <PaymentSuccess />
-            <Card className="bg-white p-8 shadow-lg border rounded-xl">
+            <Card className="bg-white p-8 shadow-lg border border-blue-100/50 rounded-xl">
               <div className="text-center mb-8">
                 <div className="flex justify-center mb-4">
-                  <CheckCircle className="h-20 w-20 text-emerald-500" />
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-full shadow-lg">
+                    <CheckCircle className="h-20 w-20 text-white" />
+                  </div>
                 </div>
-                <h1 className="text-3xl font-bold text-emerald-700 mb-2">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-2">
                   Payment Successful!
                 </h1>
                 <p className="text-lg text-gray-700">
@@ -183,7 +185,7 @@ function ConfirmationContent() {
               </div>
 
               {/* Application Details - Full Width */}
-              <div className="bg-green-50 p-6 rounded-lg mb-8">
+              <div className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl mb-8 border border-green-100">
                 <h2 className="text-xl font-semibold text-green-800 mb-4">
                   Application Details
                 </h2>
@@ -214,9 +216,11 @@ function ConfirmationContent() {
               {/* Payment Info & Contact Info - Side by Side */}
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 {/* Payment Information */}
-                <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 rounded-xl border border-blue-200">
                   <div className="flex items-center mb-4">
-                    <CreditCard className="h-5 w-5 text-blue-600 mr-2" />
+                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-lg mr-2 shadow-sm">
+                      <CreditCard className="h-5 w-5 text-white" />
+                    </div>
                     <h3 className="text-lg font-semibold text-blue-800">Payment Information</h3>
                   </div>
                   <div className="space-y-3">
@@ -261,12 +265,12 @@ function ConfirmationContent() {
                 </div>
 
                 {/* Contact Info */}
-                <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-lg border border-indigo-100">
+                <div className="bg-gradient-to-br from-blue-50 to-amber-50/30 p-6 rounded-xl border border-blue-100">
                   <div className="flex items-center mb-4">
-                    <div className="bg-indigo-100 p-2 rounded-full mr-3">
-                      <User className="h-5 w-5 text-indigo-600" />
+                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-full mr-3 shadow-sm">
+                      <User className="h-5 w-5 text-white" />
                     </div>
-                    <h3 className="text-lg font-semibold text-indigo-800">Contact Information</h3>
+                    <h3 className="text-lg font-semibold text-blue-800">Contact Information</h3>
                   </div>
                   <div className="space-y-3">
                     <div className="flex justify-between py-2 border-b border-indigo-100">
@@ -290,41 +294,41 @@ function ConfirmationContent() {
               </div>
 
               {/* Passengers List - Full Width with Scroll */}
-              <div className="bg-gradient-to-br from-emerald-50 to-green-50 p-6 rounded-lg border border-emerald-100 mb-8">
+              <div className="bg-gradient-to-br from-blue-50 to-amber-50/30 p-6 rounded-xl border border-blue-100 mb-8">
                 <div className="flex items-center mb-4">
-                  <div className="bg-emerald-100 p-2 rounded-full mr-3">
-                    <Users className="h-5 w-5 text-emerald-600" />
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-full mr-3 shadow-sm">
+                    <Users className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-emerald-800">Passengers ({passengers.length})</h3>
+                  <h3 className="text-lg font-semibold text-blue-800">Passengers ({passengers.length})</h3>
                 </div>
                 {passengers.length === 0 ? (
-                  <div className="text-emerald-600 bg-emerald-100 p-4 rounded-lg text-center">No passengers found.</div>
+                  <div className="text-blue-600 bg-blue-100 p-4 rounded-lg text-center">No passengers found.</div>
                 ) : (
                   <div className="max-h-96 overflow-y-auto pr-2 space-y-3">
                     {passengers.map((p: any, i: number) => (
-                      <div key={p.id || i} className="bg-white p-4 rounded-lg border border-emerald-200 shadow-sm">
+                      <div key={p.id || i} className="bg-white p-4 rounded-lg border border-blue-200 shadow-sm">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="font-semibold text-emerald-800 text-lg">Passenger {i + 1}</span>
-                          <span className="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-medium">
+                          <span className="font-semibold text-blue-800 text-lg">Passenger {i + 1}</span>
+                          <span className="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">
                             {p.gender || "N/A"}
                           </span>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                           <div>
-                            <span className="font-medium text-emerald-700 block">Name:</span>
-                            <span className="text-emerald-900">{p.fullName}</span>
+                            <span className="font-medium text-blue-700 block">Name:</span>
+                            <span className="text-blue-900">{p.fullName}</span>
                           </div>
                           <div>
-                            <span className="font-medium text-emerald-700 block">Date of Birth:</span>
-                            <span className="text-emerald-900">{p.dateOfBirth ? moment(p.dateOfBirth).format("YYYY-MM-DD") : "-"}</span>
+                            <span className="font-medium text-blue-700 block">Date of Birth:</span>
+                            <span className="text-blue-900">{p.dateOfBirth ? moment(p.dateOfBirth).format("YYYY-MM-DD") : "-"}</span>
                           </div>
                           <div>
-                            <span className="font-medium text-emerald-700 block">Passport:</span>
-                            <span className="text-emerald-900">{p.passportNumber}</span>
+                            <span className="font-medium text-blue-700 block">Passport:</span>
+                            <span className="text-blue-900">{p.passportNumber}</span>
                           </div>
                           <div>
-                            <span className="font-medium text-emerald-700 block">Nationality:</span>
-                            <span className="text-emerald-900">{p.nationality}</span>
+                            <span className="font-medium text-blue-700 block">Nationality:</span>
+                            <span className="text-blue-900">{p.nationality}</span>
                           </div>
                         </div>
                       </div>
@@ -344,7 +348,7 @@ function ConfirmationContent() {
                     </Button>
                   </Link>
                   <Link href={`/apply/documents?applicationId=${applicationId}`} className="inline-block">
-                    <Button className="bg-green-700 hover:bg-green-800">
+                    <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-md">
                       Upload Documents
                     </Button>
                   </Link>

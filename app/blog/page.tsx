@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog | Worldmaxxing Global Services',
-  description: 'Visa news, travel tips, and updates from Worldmaxxing Global Services.',
+  title: 'Blog | United eVisa Services',
+  description: 'Visa news, travel tips, and updates from United eVisa Services.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/blog',
+    canonical: 'https://unitedevisa.com/blog',
     types: {
-      'application/rss+xml': 'https://worldmaxxing.com/blog/rss.xml',
+      'application/rss+xml': 'https://unitedevisa.com/blog/rss.xml',
     },
   },
 };

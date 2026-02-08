@@ -51,8 +51,10 @@ const navItems = [
     label: "Support",
     href: "/support",
   },
-  { label: "FAQ", 
-    href: "/faq" }
+  {
+    label: "FAQ",
+    href: "/faq"
+  }
 ];
 
 const anton = Anton({
@@ -85,16 +87,16 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "w-full sticky z-40 top-0 transition-all duration-300 min-h-[70px] border-b",
+        "w-full sticky z-40 top-0 transition-all duration-300 min-h-[72px] border-b",
         isScrolled
-          ? "bg-white/95 backdrop-blur-lg shadow-sm border-slate-200 py-3"
-          : "bg-white/95 backdrop-blur-md border-transparent py-4"
+          ? "bg-white/90 backdrop-blur-xl shadow-md border-blue-100 py-3"
+          : "bg-white/80 backdrop-blur-md border-transparent py-4"
       )}
     >
-      <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group transition-all duration-300">
-          <div className="relative w-10 h-10 transition-all duration-300">
+        <Link href="/" className="flex items-center gap-3 group transition-all duration-300">
+          <div className="relative w-11 h-11 transition-all duration-300">
             <Image
               src="/images/logo.png"
               alt="eVisa Logo"
@@ -105,17 +107,11 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col justify-center">
             <span className={`text-2xl leading-tight text-slate-900 tracking-wide uppercase ${anton.className}`}>
-              Worldmaxxing
+              United Evisa
             </span>
-            <span className={`text-xs text-slate-600 tracking-widest uppercase ${anton.className}`}>
-              Global Services
+            <span className={`text-xs text-slate-500 tracking-[0.3em] uppercase ${anton.className}`}>
+              Travel Support
             </span>
-          </div>
-          <div className="hidden sm:flex items-center h-10 ml-3 pl-3 border-l border-slate-200">
-            <div className="flex flex-col items-start justify-center">
-              <span className="text-lg font-semibold text-emerald-700 leading-tight">eVisa</span>
-              <span className="text-lg font-semibold text-slate-700 leading-tight">Center</span>
-            </div>
           </div>
         </Link>
 
@@ -128,7 +124,7 @@ export default function Navbar() {
                   {item.href === "/apply" ? (
                     <NavigationMenuLink
                       href={item.href}
-                      className="inline-flex h-10 w-max items-center ml-2 justify-center rounded-full px-4 py-2 text-white font-semibold bg-emerald-700 hover:bg-emerald-800 transition-all duration-200 shadow-sm"
+                      className="inline-flex h-10 w-max items-center ml-2 justify-center rounded-full px-5 py-2 text-white font-semibold bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 transition-all duration-200 shadow-sm"
                     >
                       {item.label}
                     </NavigationMenuLink>
@@ -137,8 +133,8 @@ export default function Navbar() {
                       href={item.href}
                       className={cn(
                         "group inline-flex h-9 w-max items-center justify-center rounded-full px-4 py-2 text-slate-700",
-                        "font-medium transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-800",
-                        "focus:bg-emerald-50 focus:text-emerald-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                        "font-medium transition-all duration-200 hover:bg-blue-50 hover:text-blue-800",
+                        "focus:bg-blue-50 focus:text-blue-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
                       )}
                     >
                       <span>{item.label}</span>
@@ -156,7 +152,7 @@ export default function Navbar() {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
-                    className="rounded-full border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 transition-all duration-200"
+                    className="rounded-full border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200"
                   >
                     <div className="flex items-center gap-2">
                       {session.user.image ? (
@@ -168,7 +164,7 @@ export default function Navbar() {
                           className="rounded-full"
                         />
                       ) : (
-                        <div className="bg-emerald-100 text-emerald-700 rounded-full p-1">
+                        <div className="bg-blue-100 text-blue-700 rounded-full p-1">
                           <User className="h-4 w-4" />
                         </div>
                       )}
@@ -190,7 +186,7 @@ export default function Navbar() {
                         className="rounded-full"
                       />
                     ) : (
-                      <div className="bg-emerald-100 text-emerald-700 rounded-full p-2">
+                      <div className="bg-blue-100 text-blue-700 rounded-full p-2">
                         <User className="h-5 w-5" />
                       </div>
                     )}
@@ -236,13 +232,13 @@ export default function Navbar() {
                 <Link href="/login">
                   <Button
                     variant="ghost"
-                    className="text-slate-700 hover:text-emerald-700 hover:bg-slate-50"
+                    className="text-slate-700 hover:text-blue-700 hover:bg-slate-50"
                   >
                     Log in
                   </Button>
                 </Link>
                 <Link href="/signup">
-                  <Button className="bg-emerald-700 hover:bg-emerald-800 text-white font-medium">
+                  <Button className="bg-blue-700 hover:bg-blue-800 text-white font-medium">
                     Sign up
                   </Button>
                 </Link>
@@ -284,7 +280,7 @@ export default function Navbar() {
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="bg-emerald-100 text-emerald-700 rounded-full p-2">
+                    <div className="bg-blue-100 text-blue-700 rounded-full p-2">
                       <User className="h-4 w-4" />
                     </div>
                   )}
@@ -354,7 +350,7 @@ export default function Navbar() {
                   {!session?.user && (
                     <div className="flex flex-col gap-2 mb-6">
                       <Link href="/signup" className="w-full" onClick={() => setIsOpen(false)}>
-                        <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                           Sign up
                         </Button>
                       </Link>
@@ -371,11 +367,10 @@ export default function Navbar() {
                     {navItems.map((item) => (
                       <div key={item.label} className="space-y-2">
                         <Link href={item.href}
-                          className={`flex justify-between items-center px-2 py-1.5 text-base font-medium rounded-lg transition-all ${
-                            item.href === "/apply" 
-                              ? "bg-emerald-700 text-white shadow-sm"
+                          className={`flex justify-between items-center px-2 py-1.5 text-base font-medium rounded-lg transition-all ${item.href === "/apply"
+                              ? "bg-blue-700 text-white shadow-sm"
                               : "text-slate-800 hover:bg-slate-50"
-                          }`}
+                            }`}
                           onClick={() => setIsOpen(false)}
                         >
                           <span className="flex items-center gap-2">

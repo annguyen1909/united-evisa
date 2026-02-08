@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Login',
-  description: 'Login to your Worldmaxxing Global Services account to manage your visa applications.',
+  description: 'Login to your United eVisa Services account to manage your visa applications.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/login',
+    canonical: 'https://unitedevisa.com/login',
   },
   robots: {
     index: false,
@@ -32,12 +32,12 @@ export default async function LoginPage() {
     redirect("/profile") // or "/" or whatever page you want
   }
 return (
-  <div
-    className="bg-cover bg-center bg-no-repeat flex items-center justify-center p-6 md:p-10"
-    style={{ backgroundImage: "url('/images/auth/bigbackground.jpg')" }}
-  >
-    <div className="w-full max-w-sm md:max-w-4xl">
-      <LoginForm />
+  <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white flex items-center justify-center p-6 md:p-10">
+    <div className="relative w-full max-w-sm md:max-w-4xl">
+      <div className="absolute -inset-6 rounded-3xl bg-gradient-to-r from-blue-200/40 via-white to-amber-100/40 blur-2xl" />
+      <div className="relative">
+        <LoginForm />
+      </div>
     </div>
   </div>
 );

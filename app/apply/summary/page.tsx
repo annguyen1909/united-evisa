@@ -71,23 +71,23 @@ function SummaryContent() {
                     <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-pink-500/5"></div>
                         <CardHeader className="text-center pb-6 relative z-10">
-                            <div className="flex justify-center mb-4">
-                                <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-pink-100 rounded-2xl flex items-center justify-center shadow-lg">
-                                    <XCircle className="h-8 w-8 text-red-600" />
-                                </div>
+                        <div className="flex justify-center mb-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-amber-100 rounded-2xl flex items-center justify-center shadow-lg">
+                                <XCircle className="h-8 w-8 text-blue-600" />
                             </div>
-                            <CardTitle className="text-2xl font-bold text-red-700">
-                                Unable to Load Application
-                            </CardTitle>
+                        </div>
+                        <CardTitle className="text-2xl font-bold text-blue-700">
+                            Unable to Load Application
+                        </CardTitle>
                         </CardHeader>
                         <CardContent className="text-center space-y-4 relative z-10">
-                            <p className="text-red-600 leading-relaxed">{error}</p>
+                            <p className="text-blue-600 leading-relaxed">{error}</p>
                             <a 
                                 href="/list" 
                                 className="inline-block cursor-pointer"
                                 style={{ textDecoration: 'none' }}
                             >
-                                <div className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-medium px-6 py-2 rounded-lg shadow-lg transition-all duration-200">
+                                <div className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium px-6 py-2 rounded-lg shadow-lg transition-all duration-200">
                                     Back to Applications
                                 </div>
                             </a>
@@ -99,29 +99,29 @@ function SummaryContent() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-red-50 via-pink-50 to-rose-50 py-12">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 py-12">
             <div className="max-w-2xl mx-auto px-4">
-                <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-pink-500/5 pointer-events-none"></div>
+                <Card className="bg-white/90 backdrop-blur-sm shadow-xl border border-blue-100/50 overflow-hidden rounded-xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-amber-500/5 pointer-events-none"></div>
                     <CardHeader className="text-center pb-8 pt-8 relative z-10">
                         <div className="flex justify-center mb-6">
                             <div className="relative">
-                                <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-pink-100 rounded-2xl flex items-center justify-center shadow-lg">
-                                    <XCircle className="h-12 w-12 text-red-600" />
+                                <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-amber-100 rounded-2xl flex items-center justify-center shadow-lg">
+                                    <XCircle className="h-12 w-12 text-blue-600" />
                                 </div>
-                                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-md">
+                                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-blue-500 to-amber-500 rounded-full flex items-center justify-center shadow-md">
                                     <XCircle className="h-4 w-4 text-white" />
                                 </div>
                             </div>
                         </div>
-                        <CardTitle className="text-4xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent mb-3">
+                        <CardTitle className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
                             Application Cancelled
                         </CardTitle>
                         <p className="text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
                             Your application has been cancelled by our team. We apologize for any inconvenience this may have caused.
                         </p>
                         <div className="flex justify-center mt-4">
-                            <Badge className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white border-0 text-sm px-4 py-2 rounded-full font-medium shadow-lg">
+                            <Badge className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0 text-sm px-4 py-2 rounded-full font-medium shadow-lg">
                                 Status: Cancelled
                             </Badge>
                         </div>
@@ -217,17 +217,17 @@ function SummaryContent() {
                                 Contact Our Support Team
                             </h3>
                             <div className="grid gap-4">
-                                <a href="mailto:visa@worldmaxxing.com" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">
+                                <a href="mailto:visa@unitedevisa.com" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">
                                     <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-md">
                                         <Mail className="h-6 w-6 text-white" />
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Email Support</p>
-                                        <p className="text-slate-700">visa@worldmaxxing.com</p>
+                                        <p className="text-slate-700">visa@unitedevisa.com</p>
                                     </div>
                                 </a>
                                 <a href="tel:+1-555-123-4567" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">
-                                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-md">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center shadow-md">
                                         <Phone className="h-6 w-6 text-white" />
                                     </div>
                                     <div>
@@ -254,7 +254,7 @@ function SummaryContent() {
                                 className="flex-1 block cursor-pointer"
                                 style={{ textDecoration: 'none' }}
                             >
-                                <div className="w-full h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg flex items-center justify-center">
+                                <div className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg flex items-center justify-center">
                                     Apply for New Visa
                                 </div>
                             </a>

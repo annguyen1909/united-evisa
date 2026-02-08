@@ -130,10 +130,10 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                             <div className="space-y-6">
                                 {/* Submitted Step */}
                                 <div className="flex items-center gap-6">
-                                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
                                         <CheckCircle2 className="h-6 w-6 text-white" />
                                     </div>
-                                    <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-emerald-200/50">
+                                    <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
                                         <p className="font-semibold text-slate-800 mb-1">Application Submitted</p>
                                         <p className="text-sm text-slate-600">Your application has been received successfully</p>
                                     </div>
@@ -173,10 +173,10 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                         </div>
 
                         {/* What Happens Next */}
-                        <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200/50 rounded-2xl p-8 shadow-sm">
-                            <h3 className="text-xl font-bold text-emerald-800 mb-4 flex items-center gap-3">
-                                <div className="p-2 bg-emerald-100 rounded-lg">
-                                    <AlertCircle className="h-5 w-5 text-emerald-600" />
+                        <div className="bg-gradient-to-r from-blue-50 to-amber-50 border border-blue-200/50 rounded-2xl p-8 shadow-sm">
+                            <h3 className="text-xl font-bold text-blue-800 mb-4 flex items-center gap-3">
+                                <div className="p-2 bg-blue-100 rounded-lg">
+                                    <AlertCircle className="h-5 w-5 text-blue-600" />
                                 </div>
                                 What Happens Next?
                             </h3>
@@ -187,11 +187,11 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                                     "Once approved, your visa will be sent to your registered email address",
                                     "You will receive an SMS notification when your visa is ready"
                                 ].map((step, index) => (
-                                    <div key={index} className="flex items-start gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-emerald-200/50">
-                                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
+                                    <div key={index} className="flex items-start gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-blue-200/50">
+                                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-amber-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
                                             {index + 1}
                                         </div>
-                                        <p className="text-emerald-700 font-medium leading-relaxed">{step}</p>
+                                        <p className="text-blue-700 font-medium leading-relaxed">{step}</p>
                                     </div>
                                 ))}
                             </div>
@@ -202,23 +202,23 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                             <h3 className="text-xl font-bold text-slate-800 mb-6">Need Assistance?</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                                 <div className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="p-3 bg-emerald-100 rounded-lg">
-                                        <Mail className="h-6 w-6 text-emerald-600" />
+                                    <div className="p-3 bg-blue-100 rounded-lg">
+                                        <Mail className="h-6 w-6 text-blue-600" />
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Email Support</p>
-                                                                <a href="mailto:visa@worldmaxxing.com" className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors">
-                            visa@worldmaxxing.com
+                                                                <a href="mailto:visa@unitedevisa.com" className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors">
+                            visa@unitedevisa.com
                                         </a>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="p-3 bg-emerald-100 rounded-lg">
-                                        <Phone className="h-6 w-6 text-emerald-600" />
+                                    <div className="p-3 bg-blue-100 rounded-lg">
+                                        <Phone className="h-6 w-6 text-blue-600" />
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Phone Support</p>
-                                        <a href="tel:+1-323-286-4541" className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors">
+                                        <a href="tel:+1-323-286-4541" className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors">
                                             +1 323 286 4541
                                         </a>
                                     </div>
@@ -243,7 +243,7 @@ export default function ProcessingStatus({ applicationData, onRefresh }: Process
                                 Refresh Status
                             </Button>
                             <Link href="/list" className="flex-1 w-full">
-                                <Button className="w-full h-12 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-medium transition-all duration-200 shadow-lg cursor-pointer hover:shadow-xl">
+                                <Button className="w-full h-12 bg-gradient-to-r from-blue-600 to-amber-600 hover:from-blue-700 hover:to-amber-700 text-white font-medium transition-all duration-200 shadow-lg cursor-pointer hover:shadow-xl">
                                     View All Applications
                                 </Button>
                             </Link>

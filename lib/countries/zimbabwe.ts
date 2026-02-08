@@ -8,7 +8,7 @@ const zimbabwe: Country = {
   flagUrl: '/images/country/zimbabwe/zimbabwe-square.png',
   imageUrl: '/images/country/zimbabwe/zimbabwe-bg.jpg',
   roundedFlagUrl: '/images/country/zimbabwe/zimbabwe-rounded.png',
-  description: `Apply for your Zimbabwe eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Zimbabwe travel. Get your Zimbabwe visa quickly with our expert assistance.`,
+  description: `Apply for your Zimbabwe eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Zimbabwe travel. Get your Zimbabwe visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Zimbabwe's stunning landscapes, incredible wildlife, and rich culture. From Victoria Falls to Hwange National Park, Zimbabwe is an unforgettable destination for travelers.`,
   welcomeImgUrl: '/images/country/zimbabwe/zimbabwe-welcome.jpg',
   processingTime: {

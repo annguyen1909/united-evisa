@@ -112,7 +112,7 @@ export default function CountrySearch({
           placeholder={placeholder}
           className={`w-full ${selectedCountry ? 'pl-14' : 'pl-12'} pr-12 py-3 
                      bg-white border-2 border-gray-200 rounded-xl
-                     focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100
+                     focus:border-blue-500 focus:ring-4 focus:ring-blue-100
                      text-gray-700 placeholder-gray-400
                      transition-all duration-200 ease-in-out
                      shadow-sm hover:shadow-md focus:shadow-lg
@@ -149,8 +149,8 @@ export default function CountrySearch({
                   key={country.code}
                   onClick={() => handleSelectCountry(country.name)}
                   className={`w-full px-4 py-3 text-left flex items-center gap-3 
-                             hover:bg-emerald-50 transition-colors duration-150
-                             ${index === focusedIndex ? 'bg-emerald-50' : ''}
+                             hover:bg-blue-50 transition-colors duration-150
+                             ${index === focusedIndex ? 'bg-blue-50' : ''}
                              ${index !== filteredCountries.length - 1 ? 'border-b border-gray-100' : ''}`}
                 >
                   <img
@@ -160,7 +160,7 @@ export default function CountrySearch({
                   />
                   <span className="text-gray-700 font-medium">
                     {before}
-                    {match && <span className=" text-emerald-600 font-bold rounded">{match}</span>}
+                    {match && <span className=" text-blue-600 font-bold rounded">{match}</span>}
                     {after}
                   </span>
                 </button>

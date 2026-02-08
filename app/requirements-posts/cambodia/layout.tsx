@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cambodia Visa Requirements & eVisa Application",
     description: "Complete Cambodia visa requirements guide. Apply for Cambodia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/cambodia",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/cambodia",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/cambodia/cambodia-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/cambodia/cambodia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/cambodia",
+    canonical: "https://unitedevisa.com/requirements-posts/cambodia",
   },
   robots: {
     index: true,

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kenya Visa Requirements & eVisa Application",
     description: "Complete Kenya visa requirements guide. Apply for Kenya eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/kenya",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/kenya",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/kenya/kenya-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/kenya/kenya-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/kenya",
+    canonical: "https://unitedevisa.com/requirements-posts/kenya",
   },
   robots: {
     index: true,

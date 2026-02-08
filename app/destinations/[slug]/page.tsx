@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `${country.name} eVisa Application ${year}: Official Requirements & Policy Hub`,
         description: `${country.description} Apply for your ${country.name} visa online with our fast, expert-verified process. Get real-time status updates and 24/7 support.`,
         alternates: {
-            canonical: `https://worldmaxxing.com/destinations/${country.slug}`,
+            canonical: `https://unitedevisa.com/destinations/${country.slug}`,
         },
         openGraph: {
-            title: `${country.name} eVisa Center | Worldmaxxing`,
+            title: `${country.name} eVisa Center | United eVisa`,
             description: `Official ${country.name} travel policy and visa application requirements.`,
-            url: `https://worldmaxxing.com/destinations/${country.slug}`,
+            url: `https://unitedevisa.com/destinations/${country.slug}`,
             images: country.imageUrl ? [country.imageUrl] : ['/images/hero/hero.jpg'],
         }
     }
@@ -145,12 +145,12 @@ export default async function DestinationHubPage({ params }: PageProps) {
 
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Link href={`/apply?country=${country.slug}`}>
-                                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white text-base px-10 py-6 h-auto rounded-2xl transition-all">
+                                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-base px-10 py-6 h-auto rounded-2xl transition-all">
                                     Start {country.name} eVisa application
                                 </Button>
                             </Link>
                             <Link href={`/destinations/${country.slug}/entry-requirements`}>
-                                <Button size="lg" variant="outline" className="bg-white/5 border-white/20 hover:bg-white/10 text-white text-base px-10 py-6 h-auto rounded-2xl transition-all">
+                                <Button size="lg" variant="outline" className="bg-white/5 border-white/20 hover:bg-white/10 text-white hover:text-white/80 text-base px-10 py-6 h-auto rounded-2xl transition-all">
                                     Check {country.name} eVisa eligibility
                                 </Button>
                             </Link>
@@ -182,7 +182,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                             </div>
                         </div>
                         <div className="hidden lg:flex items-center space-x-3 text-[10px] text-slate-400 font-semibold uppercase tracking-widest">
-                            <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
+                            <span className="h-2 w-2 rounded-full bg-blue-500"></span>
                             <span>Updated {currentDate}</span>
                         </div>
                     </div>
@@ -197,7 +197,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
 
                         {/* Welcome Section */}
                         <section className="relative group">
-                            <div className="absolute -left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-500 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div className="absolute -left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             <div className="flex flex-col md:flex-row gap-12 items-center">
                                 <div className="flex-1 space-y-6">
                                     <h2 className="text-3xl font-semibold text-slate-900 tracking-tight">Welcome to {country.name}</h2>
@@ -206,7 +206,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                     </p>
                                     <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
                                         A quick review of your documents can reduce delays. Use the eligibility check to confirm requirements before applying.
-                                        <Link href={`/destinations/${country.slug}/rejection-risk`} className="ml-2 text-emerald-700 font-semibold hover:underline">
+                                        <Link href={`/destinations/${country.slug}/rejection-risk`} className="ml-2 text-blue-700 font-semibold hover:underline">
                                             See rejection insights
                                         </Link>
                                     </div>
@@ -230,18 +230,18 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                 </div>
                                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
                                     Compare {country.name} requirements with other destinations in our
-                                    <Link href="/requirements-comparison" className="ml-1 text-emerald-700 font-semibold hover:underline">
+                                    <Link href="/requirements-comparison" className="ml-1 text-blue-700 font-semibold hover:underline">
                                         eVisa requirements comparison
                                     </Link>
                                     .
                                 </div>
                                 <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
                                     For document details and eligibility checks, visit the
-                                    <Link href={`/requirements-posts/${country.slug}`} className="ml-1 text-emerald-700 font-semibold hover:underline">
+                                    <Link href={`/requirements-posts/${country.slug}`} className="ml-1 text-blue-700 font-semibold hover:underline">
                                         {country.name} requirements page
                                     </Link>
                                     .
-                                    <Link href="/requirements-posts/rss.xml" className="ml-2 text-emerald-700 font-semibold hover:underline">
+                                    <Link href="/requirements-posts/rss.xml" className="ml-2 text-blue-700 font-semibold hover:underline">
                                         RSS updates
                                     </Link>
                                 </div>
@@ -301,7 +301,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                             </div>
                             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
                                 Looking for a quick comparison? See the
-                                <Link href="/requirements-comparison" className="ml-1 text-emerald-700 font-semibold hover:underline">
+                                <Link href="/requirements-comparison" className="ml-1 text-blue-700 font-semibold hover:underline">
                                     eVisa requirements comparison
                                 </Link>
                                 .
@@ -310,7 +310,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                 {country.visaTypes.map((visa) => (
                                     <div key={visa.id} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row justify-between items-center gap-8">
                                         <div className="space-y-4 text-center md:text-left">
-                                            <div className="inline-block bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-3 py-1 rounded-full uppercase tracking-widest">
+                                            <div className="inline-block bg-blue-100 text-blue-700 text-[10px] font-semibold px-3 py-1 rounded-full uppercase tracking-widest">
                                                 {visa.type}
                                             </div>
                                             <h3 className="text-2xl font-semibold text-slate-900 tracking-tight">{visa.name}</h3>
@@ -329,7 +329,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                             <div className="text-3xl font-semibold text-slate-900">${visa.govFee}</div>
                                             <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Official gov fee</div>
                                             <Link href={`/apply?country=${country.slug}&visaType=${visa.id}`}>
-                                                <Button className="bg-slate-900 hover:bg-emerald-600 text-white font-semibold px-8 py-5 h-auto rounded-2xl transition-all shadow-sm">
+                                                <Button className="bg-slate-900 hover:bg-blue-600 text-white font-semibold px-8 py-5 h-auto rounded-2xl transition-all shadow-sm">
                                                     Apply for {country.name} eVisa
                                                 </Button>
                                             </Link>
@@ -366,7 +366,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                 </div>
                             )}
                             <div className="mt-6">
-                                <Link href={`/destinations/${country.slug}/entry-requirements`} className="text-emerald-700 font-semibold hover:underline">
+                                <Link href={`/destinations/${country.slug}/entry-requirements`} className="text-blue-700 font-semibold hover:underline">
                                     View eligibility requirements →
                                 </Link>
                             </div>
@@ -500,7 +500,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                 See how {country.name} compares with Tanzania, Sri Lanka, India, Kenya, and Indonesia.
                             </p>
                             <Link href="/requirements-comparison" className="inline-block">
-                                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-5 h-auto rounded-2xl">
+                                <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-5 h-auto rounded-2xl">
                                     View comparison
                                 </Button>
                             </Link>
@@ -510,7 +510,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                             <h3 className="text-xl font-semibold text-slate-900">{ctaCopy.title}</h3>
                             <p className="text-sm text-slate-600">{ctaCopy.subtitle}</p>
                             <Link href={`/apply?country=${country.slug}`} className="inline-block">
-                                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-5 h-auto rounded-2xl">
+                                <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-5 h-auto rounded-2xl">
                                     Start my application
                                 </Button>
                             </Link>
@@ -531,7 +531,7 @@ export default async function DestinationHubPage({ params }: PageProps) {
                                 Transparency Disclosure
                             </p>
                             <p className="text-xs text-slate-400 leading-relaxed">
-                                Worldmaxxing is a private entity. We are not the government of {country.name}. We provide professional review and submission services for a fee. Official government forms are available at official gov sites at base cost.
+                                United eVisa is a private entity. We are not the government of {country.name}. We provide professional review and submission services for a fee. Official government forms are available at official gov sites at base cost.
                             </p>
                         </div>
                     </div>

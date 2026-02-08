@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Indonesia Visa Requirements & eVisa Application",
     description: "Complete Indonesia visa requirements guide. Apply for Indonesia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/indonesia",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/indonesia",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/indonesia/indonesia-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/indonesia/indonesia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/indonesia",
+    canonical: "https://unitedevisa.com/requirements-posts/indonesia",
   },
   robots: {
     index: true,

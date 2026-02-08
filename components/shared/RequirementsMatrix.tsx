@@ -39,7 +39,7 @@ export default function RequirementsMatrix({ country }: RequirementsMatrixProps)
                     </div>
                     <input
                         type="text"
-                        className="block w-full pl-11 pr-4 py-4 border-2 border-slate-200 rounded-2xl focus:ring-emerald-500 focus:border-emerald-500 text-lg transition-all"
+                        className="block w-full pl-11 pr-4 py-4 border-2 border-slate-200 rounded-2xl focus:ring-blue-500 focus:border-blue-500 text-lg transition-all"
                         placeholder="Search your nationality..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
@@ -71,13 +71,13 @@ export default function RequirementsMatrix({ country }: RequirementsMatrixProps)
                                                     alt=""
                                                     className="w-8 h-5 rounded shadow-sm object-cover"
                                                 />
-                                                <span className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">{nat.name}</span>
+                                                <span className="font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{nat.name}</span>
                                             </div>
                                         </td>
                                         <td className="px-8 py-6">
                                             {isAllowed ? (
-                                                <div className="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
-                                                    <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                                                <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
+                                                    <span className="flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                                                     <span>Eligible Online</span>
                                                 </div>
                                             ) : (
@@ -94,7 +94,7 @@ export default function RequirementsMatrix({ country }: RequirementsMatrixProps)
                                             {isAllowed ? (
                                                 <a
                                                     href={`/apply?country=${country.slug}&nationality=${nat.code}`}
-                                                    className="text-emerald-600 font-black text-xs uppercase tracking-widest hover:underline"
+                                                    className="text-blue-600 font-black text-xs uppercase tracking-widest hover:underline"
                                                 >
                                                     Start Application →
                                                 </a>

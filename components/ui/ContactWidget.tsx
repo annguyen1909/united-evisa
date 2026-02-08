@@ -573,7 +573,7 @@ export default function ContactWidget() {
           <div className="flex items-start gap-3">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <FiSettings className="w-4 h-4 text-emerald-600" />
+                <FiSettings className="w-4 h-4 text-blue-600" />
                 <h3 className="font-medium text-[#0A284B] text-sm">We use cookies</h3>
               </div>
               <p className="text-xs text-gray-600 mb-3">
@@ -584,7 +584,7 @@ export default function ContactWidget() {
               <div className="flex gap-2">
                 <button
                   onClick={() => handleCookieAccept(true)}
-                  className="px-3 py-1 bg-emerald-600 text-white rounded text-xs font-medium hover:bg-emerald-700 transition-colors"
+                  className="px-3 py-1 bg-blue-600 text-white rounded text-xs font-medium hover:bg-blue-700 transition-colors"
                 >
                   Accept All
                 </button>
@@ -627,7 +627,7 @@ export default function ContactWidget() {
             >
               <Image
                   src="/images/ExpertAgent.png"
-                  alt="Worldmaxxing Global Services Expert Agent - 24/7 Live Support"
+                  alt="United eVisa Services Expert Agent - 24/7 Live Support"
                 width={240}
                 height={320}
                 priority
@@ -666,7 +666,7 @@ export default function ContactWidget() {
         {!open && (
             <button
               onClick={() => setOpen(true)}
-              className="block md:hidden flex items-center gap-1 px-2 py-2 rounded-full shadow-lg bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-medium hover:scale-105 transition-all focus:outline-none animate-shake"
+              className="block md:hidden flex items-center gap-1 px-2 py-2 rounded-full shadow-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium hover:scale-105 transition-all focus:outline-none animate-shake"
               aria-label="Open live chat"
               style={{ minWidth: 44 }}
             >
@@ -679,7 +679,7 @@ export default function ContactWidget() {
         {!open && (
           <button
             onClick={() => setOpen(true)}
-            className="hidden md:flex items-center gap-2 px-4 py-3 rounded-full shadow-lg bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-semibold hover:scale-105 transition-all focus:outline-none animate-shake"
+            className="hidden md:flex items-center gap-2 px-4 py-3 rounded-full shadow-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold hover:scale-105 transition-all focus:outline-none animate-shake"
             aria-label="Open live chat"
             style={{ minWidth: 56 }}
           >
@@ -708,7 +708,7 @@ export default function ContactWidget() {
                 placeholder="Enter your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full rounded-lg border-2 border-gray-200 px-3 py-2 text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all duration-200"
+                className="w-full rounded-lg border-2 border-gray-200 px-3 py-2 text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-200"
                 required
               />
             </div>
@@ -721,13 +721,13 @@ export default function ContactWidget() {
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border-2 border-gray-200 px-3 py-2 text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all duration-200"
+                className="w-full rounded-lg border-2 border-gray-200 px-3 py-2 text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-200"
                 required
               />
             </div>
             {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
             <button
-              className="w-full py-3 rounded-lg font-bold text-white bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200 mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full py-3 rounded-lg font-bold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
               onClick={handleStartChat}
               disabled={loading || !name.trim() || !email.trim()}
             >
@@ -768,7 +768,7 @@ export default function ContactWidget() {
                       // Visitor message - right side, blue
                       <div className="flex justify-end">
                         <div className="max-w-[80%]">
-                          <div className="bg-emerald-600 text-white px-3 py-2 rounded-lg rounded-br-md">
+                          <div className="bg-blue-600 text-white px-3 py-2 rounded-lg rounded-br-md">
                             <p className="text-sm">{message.content}</p>
                             {(() => {
                               const parsedAttachments = parseAttachments(message.attachments);
@@ -852,7 +852,7 @@ export default function ContactWidget() {
                                                       <span className="text-xs text-gray-500 text-left mt-1 flex items-center gap-1">
                               <span>{formatTime(message.sentAt)}</span>
                               {message.senderName && (
-                                <span className="text-emerald-600 font-medium">
+                                <span className="text-blue-600 font-medium">
                                   • {message.senderName}
                                 </span>
                               )}
@@ -937,7 +937,7 @@ export default function ContactWidget() {
                   }}
                   onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
                   placeholder="Type your message..."
-                  className="flex-1 rounded-lg border-2 border-gray-200 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all duration-200 resize-none"
+                  className="flex-1 rounded-lg border-2 border-gray-200 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-200 resize-none"
                   rows={3}
                   disabled={sending}
                   style={{ minHeight: '72px' }}
@@ -945,7 +945,7 @@ export default function ContactWidget() {
                 <button
                   onClick={handleSendMessage}
                   disabled={(!newMessage.trim() && attachments.length === 0) || sending}
-                  className="bg-emerald-600 text-white p-2 rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed self-end"
+                  className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed self-end"
                 >
                   <FiSend className="w-4 h-4" />
                 </button>

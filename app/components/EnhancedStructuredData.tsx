@@ -20,7 +20,7 @@ export default function EnhancedStructuredData({
   modifiedDate,
   comparisonCountries
 }: StructuredDataProps) {
-  const baseUrl = 'https://worldmaxxing.com'
+  const baseUrl = 'https://unitedevisa.com'
 
   const normalize = (value: string) =>
     value
@@ -37,14 +37,14 @@ export default function EnhancedStructuredData({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Worldmaxxing Global Services",
-    "alternateName": "Worldmaxxing",
+    "name": "United eVisa Services",
+    "alternateName": "United eVisa",
     "url": baseUrl,
     "logo": `${baseUrl}/images/logo.png`,
     "image": `${baseUrl}/images/hero/hero.jpg`,
     "description": "Professional eVisa application services for 50+ countries worldwide. Fast processing, 24/7 support, and guaranteed approval.",
     "telephone": "+1 323 286 4541",
-    "email": "support@worldmaxxing.com"
+    "email": "support@unitedevisa.com"
   }
 
   // Breadcrumb schema
@@ -128,7 +128,7 @@ export default function EnhancedStructuredData({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Worldmaxxing Global Services",
+    "name": "United eVisa Services",
     "url": baseUrl,
     "potentialAction": {
       "@type": "SearchAction",

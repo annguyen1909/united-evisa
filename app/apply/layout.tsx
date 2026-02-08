@@ -4,7 +4,7 @@ import ApplyLayoutClient from './ApplyLayoutClient';
 
 export const metadata: Metadata = {
   title: 'Apply for Your eVisa',
-  description: 'Start your eVisa application on Worldmaxxing.',
+  description: 'Start your eVisa application on United eVisa.',
   robots: {
     index: false,
     follow: false,

@@ -27,8 +27,8 @@ export default function DestinationsClientPremium({ initialCountries }: Destinat
         <div className="space-y-24">
             {/* Search Bar - Lifted from the page but made functional */}
             <div className="max-w-2xl mx-auto w-full group relative -mt-32 z-30">
-                <div className="relative flex items-center bg-white rounded-2xl shadow-2xl p-2 border-2 border-transparent focus-within:border-emerald-500 transition-all duration-300">
-                    <div className="pl-4 text-slate-400 group-focus-within:text-emerald-500">
+                <div className="relative flex items-center bg-white rounded-2xl shadow-2xl p-2 border-2 border-transparent focus-within:border-blue-500 transition-all duration-300">
+                    <div className="pl-4 text-slate-400 group-focus-within:text-blue-500">
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
@@ -40,7 +40,7 @@ export default function DestinationsClientPremium({ initialCountries }: Destinat
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl px-8 py-6 h-auto transition-all shadow-lg active:scale-95">
+                    <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-8 py-6 h-auto transition-all shadow-lg active:scale-95">
                         Discover
                     </Button>
                 </div>
@@ -61,7 +61,7 @@ export default function DestinationsClientPremium({ initialCountries }: Destinat
                                     <h2 className="text-4xl font-black text-slate-900 tracking-tight">{region}</h2>
                                     <p className="text-slate-500 font-medium tracking-tight">Explore the best destinations in {region}</p>
                                 </div>
-                                <div className="h-1 w-24 bg-emerald-500 rounded-full"></div>
+                                <div className="h-1 w-24 bg-blue-500 rounded-full"></div>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -93,7 +93,7 @@ export default function DestinationsClientPremium({ initialCountries }: Destinat
                                                     />
                                                     <h3 className="text-white font-black text-xl tracking-tight leading-none">{country.name}</h3>
                                                 </div>
-                                                <div className="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                                <div className="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                                                     View Requirements →
                                                 </div>
                                             </div>

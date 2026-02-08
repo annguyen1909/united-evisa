@@ -10,7 +10,7 @@ const angola: Country = {
   flagUrl: '/images/country/angola/angola-square.png',
   imageUrl: '/images/country/angola/angola-bg.jpg',
   roundedFlagUrl: '/images/country/angola/angola-rounded.png',
-  description: `Apply for your Angola eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Angola travel. Get your Angola visa in 5 working days with our expert assistance.`,
+  description: `Apply for your Angola eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Angola travel. Get your Angola visa in 5 working days with our expert assistance.`,
   welcomeMessage: `Discover Angola's stunning landscapes, rich culture, and vibrant cities. From the modern capital Luanda to the majestic Kalandula Falls and historic M'banza-Kongo UNESCO site, Angola offers unforgettable travel experiences.`,
   welcomeImgUrl: '/images/country/angola/angola-welcome.jpg',
   processingTime: {

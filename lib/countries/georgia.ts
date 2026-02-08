@@ -10,7 +10,7 @@ const georgia: Country = {
   flagUrl: '/images/country/georgia/georgia-square.png',
   imageUrl: '/images/country/georgia/georgia-bg.jpg',
   roundedFlagUrl: '/images/country/georgia/georgia-rounded.png',
-  description: `Apply for your Georgia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Georgia travel. Get your Georgia visa quickly with our expert assistance.`,
+  description: `Apply for your Georgia eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Georgia travel. Get your Georgia visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Georgia's breathtaking mountains, ancient cities, and vibrant culture. From Tbilisi's old town to the Caucasus peaks, Georgia is a hidden gem for travelers.`,
   welcomeImgUrl: '/images/country/georgia/georgia-welcome.jpg',
   processingTime: {

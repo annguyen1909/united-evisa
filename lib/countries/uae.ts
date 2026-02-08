@@ -328,7 +328,7 @@ const uae: Country = {
   region: "Middle East",
   code: "ae",
   description:
-    "Apply for your UAE visa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for UAE travel.",
+    "Apply for your UAE visa online with United eVisa Services. Fast, secure, and convenient visa application for UAE travel.",
   welcomeMessage:
     "Experience the UAE's world-class cities, desert adventures, and cultural landmarks. From Dubai to Abu Dhabi, travel made seamless.",
   processingTime: {

@@ -226,7 +226,7 @@ export default function AustraliaRequirementsPage() {
                 <p className="text-slate-600">Canberra</p>
               </div>
               
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100">
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-xl border border-green-100">
                 <div className="flex items-center gap-3 mb-3">
                   <Globe className="h-6 w-6 text-green-600" />
                   <h4 className="font-semibold text-slate-800">Language</h4>
@@ -537,7 +537,7 @@ export default function AustraliaRequirementsPage() {
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Globe className="h-8 w-8 text-emerald-600" />
+              <Globe className="h-8 w-8 text-blue-600" />
               Complete Australia Travel Guide & Visa Information
             </h2>
             
@@ -559,8 +559,8 @@ export default function AustraliaRequirementsPage() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-emerald-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs an Australia eVisa?</h4>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Who Needs an Australia eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li> International tourists visiting Australia for leisure</li>
                     <li> Business travelers and investors</li>
@@ -604,8 +604,8 @@ export default function AustraliaRequirementsPage() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Natural Wonders</h4>
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Natural Wonders</h4>
                   <p className="text-sm text-slate-600">
                     From the Great Barrier Reef to Uluru, from the Blue Mountains to the Twelve Apostles, Australia offers 
                     breathtaking natural landscapes and unique wildlife experiences for nature lovers.
@@ -635,9 +635,9 @@ export default function AustraliaRequirementsPage() {
                 and be aware of local customs and safety guidelines.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Australia Visa Applications</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose United eVisa Services for Australia Visa Applications</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Australia visas since the eVisa system 
+                United eVisa Services has been helping travelers obtain their Australia visas since the eVisa system 
                 was introduced. Our expertise in the Australia visa process, combined with our 98% approval rate and 24/7 
                 customer support, makes us the preferred choice for thousands of travelers each year. We provide 
                 transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
@@ -716,13 +716,13 @@ export default function AustraliaRequirementsPage() {
                 </div>
                 <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> Australian Department of Home Affairs & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> Australian Department of Home Affairs & United eVisa Services processing data
                   </p>
                 </div>
               </div>
               
               {/* Visa Type Distribution */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6">
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Visa Type Distribution</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -819,7 +819,7 @@ export default function AustraliaRequirementsPage() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
               <Shield className="h-8 w-8 text-blue-600" />
-              Why Choose Worldmaxxing Global Services
+              Why Choose United eVisa Services
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -887,14 +887,14 @@ export default function AustraliaRequirementsPage() {
                 </a>
               </div>
               
-              <div className="text-center p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl">
+              <div className="text-center p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Mail className="h-6 w-6 text-green-600" />
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">Email Support</h3>
                 <p className="text-sm text-slate-600 mb-3">Get detailed responses within hours</p>
-                <a href="mailto:visa@worldmaxxing.com" className="text-green-600 font-semibold hover:text-green-700">
-                  visa@worldmaxxing.com
+                <a href="mailto:visa@unitedevisa.com" className="text-green-600 font-semibold hover:text-green-700">
+                  visa@unitedevisa.com
                 </a>
               </div>
               
@@ -909,7 +909,7 @@ export default function AustraliaRequirementsPage() {
             </div>
             
             <div className="mt-8 p-6 bg-slate-50 rounded-xl">
-              <h3 className="text-lg font-semibold text-slate-800 mb-3">Why Travelers Choose Worldmaxxing Global Services</h3>
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">Why Travelers Choose United eVisa Services</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">

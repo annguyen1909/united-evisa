@@ -17,18 +17,18 @@ export default function CountryStructuredData({ country }: CountryStructuredData
     "@graph": [
       {
         "@type": "TravelAgency",
-        "@id": `https://worldmaxxing.com/destinations/${country.slug}#organization`,
-        "name": "Worldmaxxing Global Services",
-        "url": "https://worldmaxxing.com",
+        "@id": `https://unitedevisa.com/destinations/${country.slug}#organization`,
+        "name": "United eVisa Services",
+        "url": "https://unitedevisa.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://worldmaxxing.com/images/logo.png"
+          "url": "https://unitedevisa.com/images/logo.png"
         },
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+1 323 286 4541",
           "contactType": "customer service",
-          "email": "visa@worldmaxxing.com",
+          "email": "visa@unitedevisa.com",
           "availableLanguage": "English"
         },
         "address": {
@@ -42,14 +42,14 @@ export default function CountryStructuredData({ country }: CountryStructuredData
       },
       {
         "@type": "WebPage",
-        "@id": `https://worldmaxxing.com/destinations/${country.slug}#webpage`,
-        "url": `https://worldmaxxing.com/destinations/${country.slug}`,
+        "@id": `https://unitedevisa.com/destinations/${country.slug}#webpage`,
+        "url": `https://unitedevisa.com/destinations/${country.slug}`,
         "name": `${country.name} eVisa Requirements & Application`,
         "description": `Apply for ${country.name} eVisa online. Fast processing, 24/7 support, expert assistance.`,
         "inLanguage": "en-US",
         "isPartOf": {
           "@type": "WebSite",
-          "@id": "https://worldmaxxing.com#website"
+          "@id": "https://unitedevisa.com#website"
         },
         "breadcrumb": {
           "@type": "BreadcrumbList",
@@ -58,26 +58,26 @@ export default function CountryStructuredData({ country }: CountryStructuredData
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "https://worldmaxxing.com"
+              "item": "https://unitedevisa.com"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "Destinations",
-              "item": "https://worldmaxxing.com/destinations"
+              "item": "https://unitedevisa.com/destinations"
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": country.name,
-              "item": `https://worldmaxxing.com/destinations/${country.slug}`
+              "item": `https://unitedevisa.com/destinations/${country.slug}`
             }
           ]
         }
       },
       {
         "@type": "Place",
-        "@id": `https://worldmaxxing.com/destinations/${country.slug}#place`,
+        "@id": `https://unitedevisa.com/destinations/${country.slug}#place`,
         "name": country.name,
         "address": {
           "@type": "PostalAddress",
@@ -85,18 +85,18 @@ export default function CountryStructuredData({ country }: CountryStructuredData
         },
         "image": {
           "@type": "ImageObject",
-          "url": `https://worldmaxxing.com${country.imageUrl}`,
+          "url": `https://unitedevisa.com${country.imageUrl}`,
           "caption": `${country.name} destination for visa applications`
         }
       },
       // Service schema for each visa type
       ...country.visaTypes.map((visa, index) => ({
         "@type": "Service",
-        "@id": `https://worldmaxxing.com/destination/${country.slug}#service-${index}`,
+        "@id": `https://unitedevisa.com/destination/${country.slug}#service-${index}`,
         "name": `${country.name} ${visa.type} Visa`,
         "description": `Apply for ${country.name} ${visa.type} visa online. ${visa.entry || 'Single entry'} visa valid for ${visa.visaDuration || 30} days.`,
         "provider": {
-          "@id": `https://worldmaxxing.com/destination/${country.slug}#organization`
+          "@id": `https://unitedevisa.com/destination/${country.slug}#organization`
         },
         "areaServed": {
           "@type": "Place",
@@ -135,7 +135,7 @@ export default function CountryStructuredData({ country }: CountryStructuredData
       // FAQ Schema for common visa questions
       {
         "@type": "FAQPage",
-        "@id": `https://worldmaxxing.com/destinations/${country.slug}#faq`,
+        "@id": `https://unitedevisa.com/destinations/${country.slug}#faq`,
         "mainEntity": [
           {
             "@type": "Question",
@@ -166,7 +166,7 @@ export default function CountryStructuredData({ country }: CountryStructuredData
       // Review/Rating Schema
       {
         "@type": "AggregateRating",
-        "@id": `https://worldmaxxing.com/destinations/${country.slug}#rating`,
+        "@id": `https://unitedevisa.com/destinations/${country.slug}#rating`,
         "ratingValue": "4.8",
         "reviewCount": "500+",
         "bestRating": "5",

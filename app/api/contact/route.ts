@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
 
     // Send email to support team
     const emailResult = await sendEmail({
-      to: "visa@worldmaxxing.com",
+      to: "visa@unitedevisa.com",
       template: "contact-form",
       data: {
         customerName: name,

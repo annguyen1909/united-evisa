@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Gabon Visa Requirements & eVisa Application",
     description: "Complete Gabon visa requirements guide. Apply for Gabon eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/gabon",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/gabon",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/gabon/gabon-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/gabon/gabon-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/gabon",
+    canonical: "https://unitedevisa.com/requirements-posts/gabon",
   },
   robots: {
     index: true,

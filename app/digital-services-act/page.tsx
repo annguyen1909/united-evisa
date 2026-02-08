@@ -2,21 +2,21 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Digital Services Act Compliance | Worldmaxxing Global Services Immigration Assistance Service',
+  title: 'Digital Services Act Compliance | United eVisa Services Immigration Assistance Service',
   description:
-    'Learn about our compliance with the EU Digital Services Act (DSA) and your rights as a user of our Worldmaxxing Global Services Immigration Assistance Service.',
+    'Learn about our compliance with the EU Digital Services Act (DSA) and your rights as a user of our United eVisa Services Immigration Assistance Service.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/digital-services-act',
+    canonical: 'https://unitedevisa.com/digital-services-act',
   },
 };
 
 export default function DigitalServicesActPage() {
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white">
         <main className="flex-1">
           {/* Enhanced Header Section */}
-          <section className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 overflow-hidden">
+          <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-amber-700 overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-black bg-opacity-10"></div>
             <div className="absolute inset-0 opacity-30">
@@ -35,7 +35,7 @@ export default function DigitalServicesActPage() {
                   </svg>
                 </div>
                 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white mb-4 leading-tight">
                   Digital Services Act (DSA) 
                   <span className="block text-blue-200">Compliance</span>
                 </h1>
@@ -75,7 +75,7 @@ export default function DigitalServicesActPage() {
                 <div className="p-8">
                   <div className="prose prose-lg max-w-none">
                     <p className="text-gray-700 mb-6 leading-relaxed">
-                      Worldmaxxing Global Services Immigration Assistance Service ("we," "us," or "our") is
+                      United eVisa Services Immigration Assistance Service ("we," "us," or "our") is
                       committed to compliance with the European Union's Digital Services Act (DSA)
                       Regulation (EU) 2022/2065. This page explains how we comply with the DSA and
                       your rights as a user of our digital services.
@@ -91,7 +91,7 @@ export default function DigitalServicesActPage() {
 
               {/* Section 2: About DSA */}
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-green-50 to-blue-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">2</span>
@@ -445,10 +445,10 @@ export default function DigitalServicesActPage() {
                         <p className="text-gray-700 mb-3">
                           Email:{' '}
                           <a
-                            href="mailto:visa@worldmaxxing.com"
+                            href="mailto:visa@unitedevisa.com"
                             className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                           >
-                            visa@worldmaxxing.com
+                            visa@unitedevisa.com
                           </a>
                         </p>
                         <p className="text-gray-600 text-sm leading-relaxed">
@@ -476,7 +476,7 @@ export default function DigitalServicesActPage() {
 
               {/* Section 7: Dispute Resolution */}
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-cyan-50 to-teal-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-cyan-50 to-amber-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">7</span>
@@ -507,17 +507,17 @@ export default function DigitalServicesActPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@worldmaxxing.com"
+                              href="mailto:visa@unitedevisa.com"
                               className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                             >
-                              visa@worldmaxxing.com
+                              visa@unitedevisa.com
                             </a>
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
+                    <div className="bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0 w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
                           <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -561,9 +561,9 @@ export default function DigitalServicesActPage() {
 
               {/* Section 8: Annual Transparency Report */}
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">8</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Annual Transparency Report</h2>
@@ -576,37 +576,37 @@ export default function DigitalServicesActPage() {
                   </p>
                   <div className="grid md:grid-cols-2 gap-4 mb-6">
                     <div className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                      <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <span className="text-gray-700">Number of content moderation decisions</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                      <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <span className="text-gray-700">Types of illegal content removed</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                      <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <span className="text-gray-700">Average response times to user reports</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                      <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <span className="text-gray-700">Number of appeals and their outcomes</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                      <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <span className="text-gray-700">Measures taken to ensure service reliability</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                      <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <span className="text-gray-700">Complaints received and their resolution</span>
                     </div>
                   </div>
                   <p className="text-gray-700">
                     Our latest transparency report is available upon request. Please contact us at{' '}
                     <a
-                      href="mailto:visa@worldmaxxing.com"
+                      href="mailto:visa@unitedevisa.com"
                       className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                     >
-                      visa@worldmaxxing.com
+                      visa@unitedevisa.com
                     </a>
                     .
                   </p>
@@ -644,10 +644,10 @@ export default function DigitalServicesActPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@worldmaxxing.com"
+                              href="mailto:visa@unitedevisa.com"
                               className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                             >
-                              visa@worldmaxxing.com
+                              visa@unitedevisa.com
                             </a>
                           </p>
                           <p className="text-gray-700 text-sm">
@@ -669,14 +669,14 @@ export default function DigitalServicesActPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@worldmaxxing.com"
+                              href="mailto:visa@unitedevisa.com"
                               className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                             >
-                              visa@worldmaxxing.com
+                              visa@unitedevisa.com
                             </a>
                           </p>
                           <p className="text-gray-700 text-sm">
-                            Address: Worldmaxxing Global Services Immigration Assistance Service
+                            Address: United eVisa Services Immigration Assistance Service
                             <br />
                             1308 E Colorado Blvd
                             <br />

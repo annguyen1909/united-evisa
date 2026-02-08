@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     }
 
     const existingAccount = await prisma.account.findFirst({
-      where: { email, websiteCreatedAt: "Worldmaxxing Site" },
+      where: { email, websiteCreatedAt: "United eVisa Site" },
     })
 
     if (existingAccount) {
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         areaCode,
         phoneNumber: fullPhoneNumber, // Store concatenated phone number
         gender,
-        websiteCreatedAt: "Worldmaxxing Site",
+        websiteCreatedAt: "United eVisa Site",
       },
     })
 

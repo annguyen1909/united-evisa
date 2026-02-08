@@ -32,10 +32,10 @@ export default function InternalLinks({
     <div className="space-y-8">
       {/* Related Countries */}
       {showRandomCountries && (
-        <Card className="border-emerald-100">
+        <Card className="border-blue-100">
           <CardContent className="p-6">
             <div className="flex items-center gap-2 mb-4">
-              <Globe className="h-5 w-5 text-emerald-600" />
+              <Globe className="h-5 w-5 text-blue-600" />
               <h3 className="text-lg font-semibold text-slate-800">Other Popular Destinations</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -43,12 +43,12 @@ export default function InternalLinks({
                 <Link
                   key={country.slug}
                   href={`/destinations/${country.slug}`}
-                  className="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 transition-all group"
+                  className="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all group"
                 >
-                  <span className="text-sm font-medium text-slate-700 group-hover:text-emerald-700">
+                  <span className="text-sm font-medium text-slate-700 group-hover:text-blue-700">
                     {country.name}
                   </span>
-                  <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-emerald-600" />
+                  <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-blue-600" />
                 </Link>
               ))}
             </div>
@@ -139,12 +139,12 @@ export default function InternalLinks({
               )}
               <Link
                 href={`/apply?country=${currentCountry}`}
-                className="flex items-center justify-between p-3 rounded-lg border border-emerald-200 bg-emerald-50 hover:border-emerald-300 hover:bg-emerald-100 transition-all group"
+                className="flex items-center justify-between p-3 rounded-lg border border-blue-200 bg-blue-50 hover:border-blue-300 hover:bg-blue-100 transition-all group"
               >
-                <span className="text-sm font-medium text-emerald-700 group-hover:text-emerald-800">
+                <span className="text-sm font-medium text-blue-700 group-hover:text-blue-800">
                   Apply for Visa
                 </span>
-                <ArrowRight className="h-4 w-4 text-emerald-600 group-hover:text-emerald-700" />
+                <ArrowRight className="h-4 w-4 text-blue-600 group-hover:text-blue-700" />
               </Link>
             </div>
           </CardContent>

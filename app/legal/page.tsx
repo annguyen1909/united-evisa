@@ -8,18 +8,18 @@ export const metadata: Metadata = {
   keywords:
     'United eVisa legal terms, terms of service, legal agreement, visa services legal, immigration legal',
   alternates: {
-    canonical: 'https://worldmaxxing.com/legal',
+    canonical: 'https://unitedevisa.com/legal',
   },
 };
 
 export default function LegalPage() {
   return (
     <>
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white flex flex-col">
         <main className="flex-1">
           {/* Hero Section */}
-          <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/90 to-indigo-900/90"></div>
+          <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-900/90 via-blue-900/80 to-blue-900/90"></div>
             <div className="absolute inset-0">
               <div className="absolute inset-0 bg-gradient-to-br from-slate-800/20 via-blue-800/20 to-indigo-800/20" style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -34,7 +34,7 @@ export default function LegalPage() {
                     </svg>
                   </div>
                 </div>
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent">
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-amber-200 bg-clip-text text-transparent">
                   Legal Information
                 </h1>
                 <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -249,9 +249,9 @@ export default function LegalPage() {
 
               {/* Section 2: Eligibility */}
               <section id="eligibility" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-emerald-50 to-green-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-blue-50 to-green-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">2</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Eligibility & Authority</h2>
@@ -264,9 +264,9 @@ export default function LegalPage() {
                       binding contracts under applicable law.
                     </p>
                     
-                    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 mb-6">
-                      <h3 className="text-xl font-semibold text-emerald-900 mb-4 flex items-center">
-                        <svg className="w-6 h-6 text-emerald-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">
+                      <h3 className="text-xl font-semibold text-blue-900 mb-4 flex items-center">
+                        <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         By using our Services, you represent and warrant that you are:
@@ -274,22 +274,22 @@ export default function LegalPage() {
                       <div className="grid md:grid-cols-2 gap-4">
                         <div className="space-y-3">
                           <div className="flex items-start space-x-3">
-                            <span className="w-2 h-2 bg-emerald-600 rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-emerald-800 text-sm">At least eighteen (18) years of age</span>
+                            <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-blue-800 text-sm">At least eighteen (18) years of age</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <span className="w-2 h-2 bg-emerald-600 rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-emerald-800 text-sm">Able to form legally binding contracts under applicable law</span>
+                            <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-blue-800 text-sm">Able to form legally binding contracts under applicable law</span>
                           </div>
                         </div>
                         <div className="space-y-3">
                           <div className="flex items-start space-x-3">
-                            <span className="w-2 h-2 bg-emerald-600 rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-emerald-800 text-sm">Not barred from purchasing Services under applicable laws</span>
+                            <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-blue-800 text-sm">Not barred from purchasing Services under applicable laws</span>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <span className="w-2 h-2 bg-emerald-600 rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-emerald-800 text-sm">Legally eligible to apply for eVisas under immigration laws</span>
+                            <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-blue-800 text-sm">Legally eligible to apply for eVisas under immigration laws</span>
                           </div>
                         </div>
                       </div>
@@ -391,9 +391,9 @@ export default function LegalPage() {
 
               {/* Section 4: Availability */}
               <section id="availability" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-teal-50 to-cyan-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-amber-50 to-cyan-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">4</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Service Availability</h2>
@@ -623,28 +623,28 @@ export default function LegalPage() {
 
                     <div>
                       <h3 className="text-xl font-semibold mb-4 text-gray-900 flex items-center">
-                        <svg className="w-6 h-6 text-emerald-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                         </svg>
                         Legal Compliance
                       </h3>
                       <div className="space-y-3">
-                        <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-                          <ul className="space-y-2 text-emerald-800 text-sm">
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                          <ul className="space-y-2 text-blue-800 text-sm">
                             <li className="flex items-start">
-                              <span className="w-2 h-2 bg-emerald-600 rounded-full mr-3 mt-2"></span>
+                              <span className="w-2 h-2 bg-blue-600 rounded-full mr-3 mt-2"></span>
                               <span>To comply with court orders and applicable laws, rules and regulations</span>
                             </li>
                             <li className="flex items-start">
-                              <span className="w-2 h-2 bg-emerald-600 rounded-full mr-3 mt-2"></span>
+                              <span className="w-2 h-2 bg-blue-600 rounded-full mr-3 mt-2"></span>
                               <span>To comply with requests of law enforcement, including subpoena requests</span>
                             </li>
                             <li className="flex items-start">
-                              <span className="w-2 h-2 bg-emerald-600 rounded-full mr-3 mt-2"></span>
+                              <span className="w-2 h-2 bg-blue-600 rounded-full mr-3 mt-2"></span>
                               <span>To comply with government visa application requirements and regulations</span>
                             </li>
                             <li className="flex items-start">
-                              <span className="w-2 h-2 bg-emerald-600 rounded-full mr-3 mt-2"></span>
+                              <span className="w-2 h-2 bg-blue-600 rounded-full mr-3 mt-2"></span>
                               <span>To avoid any civil or criminal liability on the part of United eVisa Immigration Assistance Service</span>
                             </li>
                           </ul>
@@ -669,7 +669,7 @@ export default function LegalPage() {
 
               {/* Section 7: Third-Party */}
               <section id="third-party" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-cyan-50 to-teal-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-cyan-50 to-amber-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">7</span>
@@ -896,7 +896,7 @@ export default function LegalPage() {
 
               {/* Section 9: Fees */}
               <section id="fees" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-green-50 to-blue-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">9</span>
@@ -1264,9 +1264,9 @@ export default function LegalPage() {
 
               {/* Section 13: Compliance */}
               <section id="compliance" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">13</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Legal Compliance</h2>
@@ -1276,7 +1276,7 @@ export default function LegalPage() {
                   <div className="grid lg:grid-cols-2 gap-8 mb-8">
                     <div>
                       <h3 className="text-xl font-semibold mb-4 text-gray-900 flex items-center">
-                        <svg className="w-6 h-6 text-emerald-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                         </svg>
                         Applicable Laws
@@ -1288,7 +1288,7 @@ export default function LegalPage() {
 
                     <div>
                       <h3 className="text-xl font-semibold mb-4 text-gray-900 flex items-center">
-                        <svg className="w-6 h-6 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-amber-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     International Compliance
@@ -1297,25 +1297,25 @@ export default function LegalPage() {
                     We comply with applicable international laws and regulations, including:
                   </p>
                       <div className="space-y-2">
-                        <div className="flex items-center p-2 bg-teal-50 rounded text-xs">
-                          <span className="w-1.5 h-1.5 bg-teal-600 rounded-full mr-2"></span>
-                          <span className="text-teal-800">General Data Protection Regulation (GDPR)</span>
+                        <div className="flex items-center p-2 bg-amber-50 rounded text-xs">
+                          <span className="w-1.5 h-1.5 bg-amber-600 rounded-full mr-2"></span>
+                          <span className="text-amber-800">General Data Protection Regulation (GDPR)</span>
                         </div>
-                        <div className="flex items-center p-2 bg-teal-50 rounded text-xs">
-                          <span className="w-1.5 h-1.5 bg-teal-600 rounded-full mr-2"></span>
-                          <span className="text-teal-800">California Consumer Privacy Act (CCPA)</span>
+                        <div className="flex items-center p-2 bg-amber-50 rounded text-xs">
+                          <span className="w-1.5 h-1.5 bg-amber-600 rounded-full mr-2"></span>
+                          <span className="text-amber-800">California Consumer Privacy Act (CCPA)</span>
                         </div>
-                        <div className="flex items-center p-2 bg-teal-50 rounded text-xs">
-                          <span className="w-1.5 h-1.5 bg-teal-600 rounded-full mr-2"></span>
-                          <span className="text-teal-800">Digital Services Act (DSA)</span>
+                        <div className="flex items-center p-2 bg-amber-50 rounded text-xs">
+                          <span className="w-1.5 h-1.5 bg-amber-600 rounded-full mr-2"></span>
+                          <span className="text-amber-800">Digital Services Act (DSA)</span>
                         </div>
-                        <div className="flex items-center p-2 bg-teal-50 rounded text-xs">
-                          <span className="w-1.5 h-1.5 bg-teal-600 rounded-full mr-2"></span>
-                          <span className="text-teal-800">Anti-money laundering (AML) regulations</span>
+                        <div className="flex items-center p-2 bg-amber-50 rounded text-xs">
+                          <span className="w-1.5 h-1.5 bg-amber-600 rounded-full mr-2"></span>
+                          <span className="text-amber-800">Anti-money laundering (AML) regulations</span>
                         </div>
-                        <div className="flex items-center p-2 bg-teal-50 rounded text-xs">
-                          <span className="w-1.5 h-1.5 bg-teal-600 rounded-full mr-2"></span>
-                          <span className="text-teal-800">Know Your Customer (KYC) requirements</span>
+                        <div className="flex items-center p-2 bg-amber-50 rounded text-xs">
+                          <span className="w-1.5 h-1.5 bg-amber-600 rounded-full mr-2"></span>
+                          <span className="text-amber-800">Know Your Customer (KYC) requirements</span>
                         </div>
                       </div>
                     </div>

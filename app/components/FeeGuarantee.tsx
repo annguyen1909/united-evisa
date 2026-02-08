@@ -7,169 +7,125 @@ import Link from "next/link";
 
 export default function FeeGuarantee() {
   return (
-    <section className="w-full bg-gradient-to-br from-emerald-50 to-slate-50 py-16 px-4 sm:px-6 rounded-xl overflow-hidden relative">
-      <div className="max-w-6xl mx-auto">
-        {/* Background Elements */}
-
-        {/* Header */}
-        <div className="text-center relative mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-manrope font-semibold text-emerald-800 mb-3">
-            No rush fees. No hidden costs.
+    <section className="w-full bg-gradient-to-b from-white via-blue-50/50 to-white py-16 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-start">
+        <div>
+          <span className="inline-flex items-center rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
+            Transparent pricing
+          </span>
+          <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+            One simple service fee, no hidden add‑ons.
           </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-emerald-500 to-emerald-600 mx-auto mb-6 rounded-full"></div>
-          <p className="max-w-3xl mx-auto text-center text-emerald-700 text-lg mb-0 leading-relaxed">
-            Just one flat service fee of{" "}
-            <span className="font-bold text-xl">$59.99 per passenger</span>
+          <p className="mt-4 text-lg text-slate-600">
+            You only pay for what you need. Government fees vary by destination; our service fee is flat.
           </p>
+          <div className="mt-6 rounded-3xl border border-blue-100 bg-white p-6 shadow-sm">
+            <div className="text-sm text-slate-500">United Evisa service fee</div>
+            <div className="text-3xl font-semibold text-blue-700 mt-1">$59.99</div>
+            <div className="text-sm text-slate-500">per traveler</div>
+            <div className="mt-4 flex flex-col sm:flex-row gap-3">
+              <Link href="/pricing">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6">
+                  View pricing details
+                </Button>
+              </Link>
+              <Link href="/apply">
+                <Button variant="outline" className="border-blue-200 text-blue-700 rounded-full">
+                  Start application
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* Cards and Symbols */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-6 md:gap-3 text-center mb-16">
-          {/* Card 1 */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="bg-amber-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 h-full border border-slate-100 flex flex-col"
-          >
-            <div className="flex-1">
-              <div className="bg-white w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="text-xl font-bold text-amber-700">1</span>
-              </div>
-              <h3 className="text-lg font-bold text-slate-800 mb-3">
-                Government Fees
-              </h3>
-              <div className="h-1 w-12 bg-amber-200 mx-auto mb-4 rounded-full"></div>
-              <p className="text-slate-600 mb-6">
-                This fee covers the cost of your eVisa application, as required
-                by the government of your chosen destination.
-              </p>
-            </div>
-            <Link href="/destination" className="mt-auto">
-              <Button className="w-full bg-amber-600 hover:bg-amber-700 text-white">
-                Check Visa Fees
-              </Button>
-            </Link>
-          </motion.div>
-
-          {/* "+" Symbol */}
-          <div className="hidden md:flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-2xl font-bold text-amber-700">
-              +
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="bg-blue-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 h-full border border-slate-100 flex flex-col"
-          >
-            <div className="flex-1">
-              <div className="bg-white w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="text-xl font-bold text-blue-700">2</span>
-              </div>
-              <h3 className="text-lg font-bold text-slate-800 mb-3">
-                Our Service Fees
-              </h3>
-              <div className="h-1 w-12 bg-blue-200 mx-auto mb-4 rounded-full"></div>
-              <p className="text-slate-600 mb-6">
-                Enjoy 24/7 support, an 80% approval rate, and full eVisa
-                assistance — all for one flat, transparent fee.
-              </p>
-            </div>
-            <Button
-              variant="outline"
-              className="w-full border-blue-200 text-blue-700 hover:bg-blue-50"
+        <div className="grid gap-4 md:grid-cols-2">
+          {[
+            {
+              title: "Government fees",
+              description: "Official processing fees charged by the destination government.",
+              badge: "Paid to government",
+              accent: "amber",
+            },
+            {
+              title: "United Evisa fee",
+              description: "Document review, updates, and customer support included.",
+              badge: "$59.99 flat fee",
+              accent: "blue",
+            },
+            {
+              title: "Total clarity",
+              description: "No rush fees, no hidden charges — always transparent.",
+              badge: "No surprises",
+              accent: "blue",
+            },
+            {
+              title: "Fast processing",
+              description: "Typical processing in 3 working days after document submission.",
+              badge: "Quick turnaround",
+              accent: "blue",
+            },
+          ].map((card) => (
+            <motion.div
+              key={card.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="rounded-3xl border border-blue-100 bg-white p-5 shadow-sm"
             >
-              $59.99 per passenger
-            </Button>
-          </motion.div>
-
-          {/* "=" Symbol */}
-          <div className="hidden md:flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-2xl font-bold text-amber-700">
-              =
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="bg-emerald-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 h-full border border-emerald-100 flex flex-col"
-          >
-            <div className="flex-1">
-              <div className="bg-white w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5">
-                <span className="text-xl font-bold text-emerald-700">$</span>
+              <div
+                className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+                  card.accent === "amber"
+                    ? "bg-amber-100 text-amber-700"
+                    : "bg-blue-100 text-blue-700"
+                }`}
+              >
+                {card.badge}
               </div>
-              <h3 className="text-lg font-bold text-slate-800 mb-3">
-                Total Balance
-              </h3>
-              <div className="h-1 w-12 bg-emerald-200 mx-auto mb-4 rounded-full"></div>
-              <p className="text-slate-600 mb-6">
-                Flat-rate pricing with zero hidden fees — no extra charges for
-                urgency, transparency you can count on.
-              </p>
-            </div>
-            <Link href="/apply" className="mt-auto">
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                Apply Now
-              </Button>
-            </Link>
-          </motion.div>
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">{card.title}</h3>
+              <p className="mt-2 text-sm text-slate-600">{card.description}</p>
+            </motion.div>
+          ))}
         </div>
+      </div>
 
-        {/* Guarantee Banner */}
-        <div className="bg-white rounded-xl shadow-md p-8 text-center relative overflow-hidden border border-emerald-100">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-amber-500"></div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center mb-6 gap-4">
-            <div className="bg-emerald-100 p-3 rounded-full">
-              <Shield className="h-8 w-8 text-emerald-600" />
+      <div className="max-w-7xl mx-auto mt-12">
+        <div className="rounded-3xl border border-blue-100 bg-white p-8 shadow-sm">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="bg-blue-100 p-3 rounded-full">
+                <Shield className="h-7 w-7 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold text-slate-900">
+                  Rejected? We refund the service fee.
+                </h3>
+                <p className="text-sm text-slate-600 mt-2">
+                  Your satisfaction is guaranteed. Quick, no‑hassle refund for service fees.
+                </p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-manrope font-semibold text-slate-800">
-                Rejected? No worries — you get your service fee back.
-              </h2>
-            </div>
+            <Link href="/refund-policy">
+              <Button variant="outline" className="border-amber-200 text-amber-700 hover:bg-amber-50 rounded-full">
+                Read refund policy
+                <AlertCircle className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
           </div>
-
-          <h2 className="text-3xl font-extrabold text-emerald-700 mb-6">
-            Guaranteed!
-          </h2>
-
-          <div className="flex flex-wrap gap-6 justify-center mb-6">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-emerald-600" />
-              <span className="text-slate-700">
-                100% Satisfaction Guarantee
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-emerald-600" />
-              <span className="text-slate-700">No Questions Asked</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-emerald-600" />
-              <span className="text-slate-700">Quick Refund Process</span>
-            </div>
+          <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-600">
+            <span className="inline-flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-blue-600" />
+              100% satisfaction guarantee
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-blue-600" />
+              No questions asked
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-blue-600" />
+              Quick refund process
+            </span>
           </div>
-
-          <Link href="/refund-policy">
-            <Button
-              variant="outline"
-              className="border-amber-200 text-amber-700 hover:bg-amber-50"
-            >
-              Read our full refund policy
-              <AlertCircle className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
         </div>
       </div>
     </section>

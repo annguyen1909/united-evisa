@@ -20,10 +20,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `${country.name} Visa Entry Requirements: Official Nationality Matrix`,
         description: `Check ${country.name} visa eligibility and entry requirements for all nationalities. Interactive matrix with real-time status updates and max stay information.`,
         alternates: {
-            canonical: `https://worldmaxxing.com/destinations/${country.slug}/entry-requirements`,
+            canonical: `https://unitedevisa.com/destinations/${country.slug}/entry-requirements`,
         },
         openGraph: {
-            title: `${country.name} Visa Requirements | Worldmaxxing`,
+            title: `${country.name} Visa Requirements | United eVisa`,
             description: `Verify your ${country.name} visa eligibility instantly.`,
         }
     }
@@ -47,7 +47,7 @@ export default async function EntryRequirementsPage({ params }: PageProps) {
                     <div className="mb-12">
                         <Link
                             href={`/destinations/${country.slug}`}
-                            className="inline-flex items-center space-x-2 text-emerald-400 font-black text-xs uppercase tracking-[0.2em] group"
+                            className="inline-flex items-center space-x-2 text-blue-400 font-black text-xs uppercase tracking-[0.2em] group"
                         >
                             <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                             <span>Back to {country.name} Hub</span>
@@ -56,7 +56,7 @@ export default async function EntryRequirementsPage({ params }: PageProps) {
                     <div className="max-w-4xl space-y-6 text-white">
                         <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-none">
                             {country.name} <br />
-                            <span className="text-emerald-500">Eligibility Matrix.</span>
+                            <span className="text-blue-500">Eligibility Matrix.</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed max-w-2xl">
                             Real-time verification of visa requirements based on your passport origin and the latest {country.name} immigration protocols.
@@ -77,7 +77,7 @@ export default async function EntryRequirementsPage({ params }: PageProps) {
                         </p>
                         <div className="space-y-4 pt-4">
                             <div className="flex items-start space-x-4">
-                                <div className="bg-emerald-100 p-2 rounded-xl text-emerald-600">
+                                <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                 </div>
                                 <div className="text-sm">
@@ -92,7 +92,7 @@ export default async function EntryRequirementsPage({ params }: PageProps) {
                         <p className="text-slate-400 text-sm leading-relaxed mb-6">
                             Some nationalities are exempt for short stays (under 15-30 days). If your nationality is marked "Regulated Entry", you may still qualify for a traditional embassy visa. Contact our logistics desk for full entity review.
                         </p>
-                        <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 font-black py-6 h-auto rounded-2xl">
+                        <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 font-black py-6 h-auto rounded-2xl">
                             <Link href="/support">Request Expert Consultation</Link>
                         </Button>
                     </div>
@@ -101,7 +101,7 @@ export default async function EntryRequirementsPage({ params }: PageProps) {
 
             {/* Premium Footer Disclaimer */}
             <div className="container mx-auto px-4 py-12 text-center text-slate-400 text-xs font-bold uppercase tracking-widest border-t border-slate-200 mt-24">
-                © {new Date().getFullYear()} Worldmaxxing Global Services • Policy Feed v4.2.1
+                © {new Date().getFullYear()} United eVisa Services • Policy Feed v4.2.1
             </div>
         </div>
     )

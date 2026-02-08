@@ -1,24 +1,24 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Check Visa Requirements | eVisa Eligibility Tool | Worldmaxxing Global Services',
+  title: 'Check Visa Requirements | eVisa Eligibility Tool | United eVisa Services',
   description: 'Check visa requirements instantly for 50+ countries. Verify eligibility, processing times, and fees. Free visa requirement checker with real-time results for all nationalities.',
   keywords: 'visa requirements, visa eligibility checker, travel visa, eVisa requirements, visa tool, travel requirements',
   alternates: {
-    canonical: 'https://worldmaxxing.com/check-requirements',
+    canonical: 'https://unitedevisa.com/check-requirements',
   },
   openGraph: {
-    title: 'Check Visa Requirements | eVisa Eligibility Tool | Worldmaxxing Global Services',
+    title: 'Check Visa Requirements | eVisa Eligibility Tool | United eVisa Services',
     description: 'Check visa requirements instantly for 50+ countries. Verify eligibility, processing times, and fees with our free tool.',
-    url: 'https://worldmaxxing.com/check-requirements',
-    siteName: 'Worldmaxxing Global Services',
+    url: 'https://unitedevisa.com/check-requirements',
+    siteName: 'United eVisa Services',
     type: 'website',
     images: [
       {
         url: '/images/hero/check-requirements.jpg',
         width: 1200,
         height: 630,
-        alt: 'Visa Requirements Checker Tool - Worldmaxxing Global Services',
+        alt: 'Visa Requirements Checker Tool - United eVisa Services',
       }
     ],
   },

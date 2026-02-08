@@ -8,7 +8,7 @@ const zambia: Country = {
   flagUrl: '/images/country/zambia/zambia-square.png',
   imageUrl: '/images/country/zambia/zambia-bg.jpg',
   roundedFlagUrl: '/images/country/zambia/zambia-rounded.png',
-  description: `Apply for your Zambia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Zambia travel. Get your Zambia visa quickly with our expert assistance.`,
+  description: `Apply for your Zambia eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Zambia travel. Get your Zambia visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Zambia's incredible wildlife, stunning waterfalls, and vibrant culture. From Victoria Falls to South Luangwa National Park, Zambia is a nature lover's paradise.`,
   welcomeImgUrl: '/images/country/zambia/zambia-welcome.jpg',
   processingTime: {

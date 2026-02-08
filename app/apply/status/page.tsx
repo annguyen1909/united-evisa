@@ -72,11 +72,11 @@ function StatusContent() {
     // Modern Loading State
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 flex items-center justify-center">
                 <div className="text-center">
                     <div className="relative w-16 h-16 mx-auto mb-6">
                         <div className="absolute inset-0 rounded-full border-4 border-slate-200"></div>
-                        <div className="absolute inset-0 rounded-full border-4 border-emerald-600 border-t-transparent animate-spin"></div>
+                        <div className="absolute inset-0 rounded-full border-4 border-blue-600 border-t-transparent animate-spin"></div>
                     </div>
                     <div className="space-y-2">
                         <p className="text-lg font-semibold text-slate-700">Loading application status...</p>
@@ -90,25 +90,25 @@ function StatusContent() {
     // Modern Error State
     if (error) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-red-50 via-pink-50 to-rose-50 py-12">
+            <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 py-12">
                 <div className="max-w-2xl mx-auto px-4">
-                    <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-pink-500/5"></div>
+                    <Card className="bg-white/90 backdrop-blur-sm shadow-xl border border-blue-100/50 overflow-hidden rounded-xl">
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-amber-500/5"></div>
                         <CardHeader className="text-center pb-6 relative z-10">
                             <div className="flex justify-center mb-4">
-                                <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-pink-100 rounded-2xl flex items-center justify-center shadow-lg">
-                                    <AlertTriangle className="h-8 w-8 text-red-600" />
+                                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-amber-100 rounded-2xl flex items-center justify-center shadow-lg">
+                                    <AlertTriangle className="h-8 w-8 text-blue-600" />
                                 </div>
                             </div>
-                            <CardTitle className="text-2xl font-bold text-red-700">
+                            <CardTitle className="text-2xl font-bold text-blue-700">
                                 Unable to Load Application
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="text-center space-y-4 relative z-10">
-                            <p className="text-red-600 leading-relaxed">{error}</p>
+                            <p className="text-blue-600 leading-relaxed">{error}</p>
                             <Button 
                                 onClick={handleRefresh}
-                                className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-medium px-6 py-2 rounded-lg shadow-lg transition-all duration-200"
+                                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium px-6 py-2 rounded-lg shadow-lg transition-all duration-200"
                             >
                                 Try Again
                             </Button>
@@ -154,11 +154,11 @@ function StatusContent() {
 export default function StatusPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 flex items-center justify-center">
                 <div className="text-center">
                     <div className="relative w-16 h-16 mx-auto mb-6">
                         <div className="absolute inset-0 rounded-full border-4 border-slate-200"></div>
-                        <div className="absolute inset-0 rounded-full border-4 border-emerald-600 border-t-transparent animate-spin"></div>
+                        <div className="absolute inset-0 rounded-full border-4 border-blue-600 border-t-transparent animate-spin"></div>
                     </div>
                     <div className="space-y-2">
                         <p className="text-lg font-semibold text-slate-700">Loading application status...</p>

@@ -5,9 +5,9 @@ import { NextResponse } from 'next/server'
 export function middleware(req: NextRequest) {
   const host = req.headers.get('host') || ''
 
-  if (host === 'visa.worldmaxxing.com') {
+  if (host === 'visa.unitedevisa.com') {
     const url = req.nextUrl.clone()
-    url.host = 'worldmaxxing.com'
+    url.host = 'unitedevisa.com'
     // Preserve protocol and path/query automatically; use 308 to be explicit permanent redirect.
     return NextResponse.redirect(url, 308)
   }

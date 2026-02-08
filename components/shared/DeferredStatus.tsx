@@ -179,8 +179,8 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                         {/* Document Submission Methods */}
                         <div className="bg-slate-50/70 backdrop-blur-sm rounded-2xl p-8 border border-slate-200/50">
                             <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                <div className="p-2 bg-emerald-100 rounded-lg">
-                                    <Upload className="h-5 w-5 text-emerald-600" />
+                                <div className="p-2 bg-blue-100 rounded-lg">
+                                    <Upload className="h-5 w-5 text-blue-600" />
                                 </div>
                                 How to Submit Required Documents
                             </h3>
@@ -189,7 +189,7 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                                     {
                                         step: "1",
                                         title: "Email Submission (Recommended)",
-                                        description: `Send documents to visa@worldmaxxing.com with subject: "Deferred Application ${applicationData.applicationId}"`
+                                        description: `Send documents to visa@unitedevisa.com with subject: "Deferred Application ${applicationData.applicationId}"`
                                     },
                                     {
                                         step: "2", 
@@ -203,7 +203,7 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                                     }
                                 ].map((method, index) => (
                                     <div key={index} className="flex items-start gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 shadow-sm">
-                                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-amber-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
                                             <span className="text-white text-sm font-bold">{method.step}</span>
                                         </div>
                                         <div>
@@ -220,24 +220,24 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                             <h3 className="text-xl font-bold text-slate-800 mb-6">Need Assistance?</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                                 <div className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="p-3 bg-emerald-100 rounded-lg">
-                                        <Mail className="h-6 w-6 text-emerald-600" />
+                                    <div className="p-3 bg-blue-100 rounded-lg">
+                                        <Mail className="h-6 w-6 text-blue-600" />
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Email Support</p>
-                                        <a href={`mailto:visa@worldmaxxing.com?subject=Deferred Application ${applicationData.applicationId}`} 
-                                           className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors">
-                                            visa@worldmaxxing.com
+                                        <a href={`mailto:visa@unitedevisa.com?subject=Deferred Application ${applicationData.applicationId}`} 
+                                           className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors">
+                                            visa@unitedevisa.com
                                         </a>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="p-3 bg-emerald-100 rounded-lg">
-                                        <Phone className="h-6 w-6 text-emerald-600" />
+                                    <div className="p-3 bg-blue-100 rounded-lg">
+                                        <Phone className="h-6 w-6 text-blue-600" />
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Phone Support</p>
-                                        <a href="tel:+1-323-286-4541" className="text-emerald-600 hover:text-emerald-700 text-sm font-medium transition-colors">
+                                        <a href="tel:+1-323-286-4541" className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors">
                                             +1 323 286 4541
                                         </a>
                                     </div>
@@ -262,7 +262,7 @@ export default function DeferredStatus({ applicationData, onRefresh }: DeferredS
                                 Refresh Status
                             </Button>
                             <Link href="/list" className="flex-1">
-                                <Button className="w-full h-12 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
+                                <Button className="w-full h-12 bg-gradient-to-r from-blue-600 to-amber-600 hover:from-blue-700 hover:to-amber-700 text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
                                     View All Applications
                                 </Button>
                             </Link>

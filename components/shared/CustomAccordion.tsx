@@ -32,8 +32,8 @@ export default function CustomAccordion({ items, className }: CustomAccordionPro
             className={cn(
               "flex flex-col items-center gap-3 py-8 border border-slate-200 rounded-xl bg-white",
               "transition-all duration-300 hover:shadow-md relative group",
-              "hover:border-emerald-400",
-              openId === item.id && "ring-2 ring-emerald-600 border-emerald-600 shadow-lg bg-emerald-50"
+              "hover:border-blue-400",
+              openId === item.id && "ring-2 ring-blue-600 border-blue-600 shadow-lg bg-blue-50"
             )}
           >
             <div className="flex flex-col items-center gap-2">
@@ -42,7 +42,7 @@ export default function CustomAccordion({ items, className }: CustomAccordionPro
             <span 
               className={cn(
                 "absolute top-2 right-2 text-slate-400 p-1 rounded-full transition-colors",
-                openId === item.id ? "bg-emerald-100 text-emerald-600" : "group-hover:text-emerald-600"
+                openId === item.id ? "bg-blue-100 text-blue-600" : "group-hover:text-blue-600"
               )}
             >
               {openId === item.id ? (

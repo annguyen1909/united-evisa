@@ -26,13 +26,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: post.description || `Comprehensive visa requirements and application guide for ${post.country}. Learn about documents, fees, and processing times.`,
     keywords: `${post.title}, visa requirements, eVisa, travel, ${post.country}, ${post.country} visa application`,
     alternates: {
-      canonical: `https://worldmaxxing.com/requirements-posts/${slug}`,
+      canonical: `https://unitedevisa.com/requirements-posts/${slug}`,
     },
     openGraph: {
       title: `${post.title} | ${post.country} eVisa Requirements`,
       description: post.description || `Visa requirements and information for ${post.title}`,
-      url: `https://worldmaxxing.com/requirements-posts/${slug}`,
-      siteName: 'Worldmaxxing Global Services',
+      url: `https://unitedevisa.com/requirements-posts/${slug}`,
+      siteName: 'United eVisa Services',
       images: [
         {
           url: `/images/country/${post.country.toLowerCase()}/${post.country.toLowerCase()}-bg.jpg`,
@@ -61,14 +61,14 @@ export default async function RequirementsPostPage({ params }: PageProps) {
     notFound();
   }
 
-  const baseUrl = "https://worldmaxxing.com";
+  const baseUrl = "https://unitedevisa.com";
   const canonicalUrl = `${baseUrl}/requirements-posts/${slug}`;
   const imagePath =
     post.image || `/images/country/${post.country.toLowerCase()}/${post.country.toLowerCase()}-bg.jpg`;
   const imageUrl = imagePath.startsWith("http") ? imagePath : `${baseUrl}${imagePath}`;
   const publishedDate = post.updatedAt || new Date().toISOString();
   const modifiedDate = post.updatedAt || publishedDate;
-  const authorName = post.author || "Worldmaxxing Global Services";
+  const authorName = post.author || "United eVisa Services";
 
   const requirementsStructuredData = {
     "@context": "https://schema.org",
@@ -85,7 +85,7 @@ export default async function RequirementsPostPage({ params }: PageProps) {
       : { "@type": "Organization", "name": authorName },
     "publisher": {
       "@type": "Organization",
-      "name": "Worldmaxxing Global Services",
+      "name": "United eVisa Services",
       "logo": {
         "@type": "ImageObject",
         "url": `${baseUrl}/images/logo.png`

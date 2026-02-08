@@ -10,7 +10,7 @@ const cambodia: Country = {
   flagUrl: '/images/flags/square/cambodia.png',
   imageUrl: '/images/country/cambodia/cambodia-bg.jpg',
   roundedFlagUrl: '/images/flags/square/cambodia.png',
-  description: `Apply for your Cambodia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Cambodia travel. Get your Cambodia visa quickly with our expert assistance.`,
+  description: `Apply for your Cambodia eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Cambodia travel. Get your Cambodia visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Cambodia's ancient temples, lush landscapes, and vibrant cities. From the iconic Angkor Wat to the lively streets of Phnom Penh, Cambodia is a must-visit destination for travelers.`,
   welcomeImgUrl: '/images/country/kenya-welcome.jpg',
   processingTime: {

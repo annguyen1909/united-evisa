@@ -1,6 +1,6 @@
-const INDEXNOW_KEY = "057a73c889124177874c242f864bff9c";
-const HOST = "worldmaxxing.com";
-const KEY_LOCATION = `https://${HOST}/${INDEXNOW_KEY}.txt`;
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY || "";
+const HOST = "unitedevisa.com";
+const KEY_LOCATION = INDEXNOW_KEY ? `https://${HOST}/${INDEXNOW_KEY}.txt` : "";
 
 type IndexNowPayload = {
   urlList: string[];
@@ -15,6 +15,12 @@ export async function POST(req: Request) {
       return new Response(
         JSON.stringify({ ok: false, error: "urlList is required" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+    if (!INDEXNOW_KEY || !KEY_LOCATION) {
+      return new Response(
+        JSON.stringify({ ok: false, error: "IndexNow key is not configured" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
       );
     }
 

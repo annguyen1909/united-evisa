@@ -10,7 +10,7 @@ const djibouti: Country = {
   flagUrl: '/images/country/djibouti/djibouti-square.png',
   imageUrl: '/images/country/djibouti/djibouti-bg.jpg',
   roundedFlagUrl: '/images/country/djibouti/djibouti-rounded.png',
-  description: `Apply for your Djibouti eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Djibouti travel. Get your Djibouti visa quickly with our expert assistance.`,
+  description: `Apply for your Djibouti eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Djibouti travel. Get your Djibouti visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Djibouti's unique landscapes, from Lake Assal to volcanic formations and beautiful beaches. Experience the vibrant culture and warm hospitality of Djibouti.`,
   welcomeImgUrl: '/images/country/djibouti/djibouti-welcome.jpg',
   processingTime: {

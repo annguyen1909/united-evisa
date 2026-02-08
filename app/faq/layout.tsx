@@ -1,23 +1,23 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Frequently Asked Questions | Worldmaxxing Global Services',
+  title: 'Frequently Asked Questions | United eVisa Services',
   description: 'Find answers to common questions about eVisa applications, requirements, processing times, and travel tips for destinations worldwide.',
   keywords: 'FAQ, eVisa questions, visa help, travel FAQ, visa requirements',
   alternates: {
-    canonical: 'https://worldmaxxing.com/faq',
+    canonical: 'https://unitedevisa.com/faq',
   },
   openGraph: {
-    title: 'Frequently Asked Questions | Worldmaxxing Global Services',
+    title: 'Frequently Asked Questions | United eVisa Services',
     description: 'Find answers to common questions about eVisa applications, requirements, processing times, and travel tips.',
-    url: 'https://worldmaxxing.com/faq',
-    siteName: 'Worldmaxxing Global Services',
+    url: 'https://unitedevisa.com/faq',
+    siteName: 'United eVisa Services',
     images: [
       {
         url: '/images/hero/hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Worldmaxxing Global Services FAQ',
+        alt: 'United eVisa Services FAQ',
       }
     ],
     locale: 'en_US',

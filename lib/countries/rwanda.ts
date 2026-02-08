@@ -8,7 +8,7 @@ const rwanda: Country = {
   flagUrl: '/images/country/rwanda/rwanda-square.png',
   imageUrl: '/images/country/rwanda/rwanda-bg.jpg',
   roundedFlagUrl: '/images/country/rwanda/rwanda-rounded.png',
-  description: `Apply for your Rwanda eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Rwanda travel. Get your Rwanda visa quickly with our expert assistance.`,
+  description: `Apply for your Rwanda eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Rwanda travel. Get your Rwanda visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Rwanda's breathtaking landscapes, wildlife, and vibrant culture. From gorilla trekking in Volcanoes National Park to Kigali's modern city life, Rwanda is a must-visit destination.`,
   welcomeImgUrl: '/images/country/rwanda/rwanda-welcome.jpg',
   processingTime: {

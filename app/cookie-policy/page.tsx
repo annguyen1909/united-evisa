@@ -2,21 +2,21 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy - Worldmaxxing Global Services',
+  title: 'Cookie Policy - United eVisa Services',
   description:
-    'Learn about how we use cookies and similar technologies on our Worldmaxxing Global Services website to improve your experience and provide better services.',
+    'Learn about how we use cookies and similar technologies on our United eVisa Services website to improve your experience and provide better services.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/cookie-policy',
+    canonical: 'https://unitedevisa.com/cookie-policy',
   },
 };
 
 export default function CookiePolicyPage() {
   return (
     <>
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white flex flex-col">
         <main className="flex-1">
           {/* Hero Section */}
-          <div className="bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border-b">
+          <div className="bg-gradient-to-b from-blue-50 via-white to-amber-50 border-b border-blue-100">
             <div className="container mx-auto px-4 py-16">
               <div className="max-w-4xl mx-auto text-center">
                 <div className="flex justify-center mb-6">
@@ -34,10 +34,10 @@ export default function CookiePolicyPage() {
                     />
                   </svg>
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Cookie Policy</h1>
+                <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6">Cookie Policy</h1>
                 <p className="text-xl text-gray-800 mb-8 max-w-3xl mx-auto">
                   Understanding how we use cookies and similar technologies to enhance your 
-                  experience on our Worldmaxxing Global Services platform
+                  experience on our United eVisa Services platform
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                   <span>Last Updated: {new Date().toLocaleDateString()}</span>
@@ -132,8 +132,8 @@ export default function CookiePolicyPage() {
                     <h2 className="text-2xl font-bold text-gray-900">Introduction</h2>
                   </div>
                   <p className="text-gray-800 mb-4">
-                    This Cookie Policy explains how Worldmaxxing Global Services Immigration Assistance Service ("we," "us," or "our") 
-                    uses cookies and similar technologies when you visit our website at worldmaxxing.com (the "Website"). 
+                    This Cookie Policy explains how United eVisa Services Immigration Assistance Service ("we," "us," or "our") 
+                    uses cookies and similar technologies when you visit our website at unitedevisa.com (the "Website"). 
                     This policy should be read alongside our Privacy Policy, which explains how we collect, use, and 
                     protect your personal information.
                   </p>
@@ -706,8 +706,8 @@ export default function CookiePolicyPage() {
                           </svg>
                           <div>
                             <p className="font-medium text-gray-900">Email</p>
-                            <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 hover:underline">
-                              visa@worldmaxxing.com
+                            <a href="mailto:visa@unitedevisa.com" className="text-blue-600 hover:underline">
+                              visa@unitedevisa.com
                             </a>
                           </div>
                         </div>
@@ -785,7 +785,7 @@ export default function CookiePolicyPage() {
                   <div className="mt-6 p-4 bg-white rounded-lg border border-amber-200">
                     <p className="text-gray-800">
                       <strong>Last updated:</strong> {new Date().toLocaleDateString()} • 
-                      Questions? Contact us at <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 hover:underline">visa@worldmaxxing.com</a>
+                      Questions? Contact us at <a href="mailto:visa@unitedevisa.com" className="text-blue-600 hover:underline">visa@unitedevisa.com</a>
                     </p>
                   </div>
                 </div>

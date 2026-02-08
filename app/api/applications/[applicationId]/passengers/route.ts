@@ -71,7 +71,7 @@ export async function GET(
         where: {
           email_websiteCreatedAt: {
             email: session.user.email,
-            websiteCreatedAt: "Worldmaxxing Site"
+            websiteCreatedAt: "United eVisa Site"
           }
         },
         select: { id: true, fullName: true, email: true, phoneNumber: true, areaCode: true, gender: true },

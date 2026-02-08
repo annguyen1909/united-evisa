@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Armenia Visa Requirements & eVisa Application",
     description: "Complete Armenia visa requirements guide. Apply for Armenia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/armenia",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/armenia",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/armenia/armenia-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/armenia/armenia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/armenia",
+    canonical: "https://unitedevisa.com/requirements-posts/armenia",
   },
   robots: {
     index: true,

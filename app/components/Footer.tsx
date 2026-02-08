@@ -47,6 +47,8 @@ const defaultSections = [
             { name: "Privacy Policy", href: "/privacy" },
             { name: "Refund Policy", href: "/refund-policy" },
             { name: "Disclaimers", href: "/disclaimers" },
+            { name: "SMS Disclaimer", href: "/sms-disclaimer" },
+            { name: "SMS Preferences", href: "/sms-preferences" },
             { name: "Cookie Policy", href: "/cookie-policy" },
             { name: "Digital Services Act", href: "/digital-services-act" },
         ],
@@ -95,6 +97,8 @@ const defaultLegalLinks = [
     { name: "Refund Policy", href: "/refund-policy" },
     { name: "Legal Agreements", href: "/legal" },
     { name: "Disclaimers", href: "/disclaimers" },
+    { name: "SMS Disclaimer", href: "/sms-disclaimer" },
+    { name: "SMS Preferences", href: "/sms-preferences" },
     { name: "Cookie Policy", href: "/cookie-policy" },
     { name: "Digital Services Act", href: "/digital-services-act" },
 ];
@@ -103,7 +107,7 @@ export function Footer({
     sections = defaultSections,
     socialLinks = defaultSocialLinks,
     paymentLinks = defaultPaymentLinks,
-    copyright = "© 2025 Worldmaxxing Global Services. All rights reserved.",
+    copyright = "© 2025 United eVisa Services. All rights reserved.",
     legalLinks = defaultLegalLinks,
 }: FooterProps) {
     const [email, setEmail] = useState("");
@@ -117,15 +121,15 @@ export function Footer({
     };
 
     return (
-        <footer className="bg-slate-900 text-slate-300">
+        <footer className="bg-gradient-to-b from-blue-950 via-slate-950 to-slate-950 text-slate-300">
             {/* Newsletter Section */}
-            <div className="bg-emerald-800 py-10">
+            <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-amber-600 py-10">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                         <div className="md:max-w-md">
-                            <h3 className="text-white text-xl font-bold mb-2">Stay Updated</h3>
-                            <p className="text-emerald-100 text-sm">
-                                Subscribe to our newsletter for the latest visa news, travel updates and special offers.
+                            <h3 className="text-white text-xl font-bold mb-2">Travel alerts & visa updates</h3>
+                            <p className="text-blue-100 text-sm">
+                                Get fresh entry updates, processing tips, and destination highlights.
                             </p>
                         </div>
                         <form onSubmit={handleSubscribe} className="w-full md:w-auto flex gap-2">
@@ -134,13 +138,13 @@ export function Footer({
                                 <Input
                                     type="email"
                                     placeholder="Your email address"
-                                    className="pl-10 pr-3 py-2 bg-emerald-700 border-emerald-600 text-white placeholder:text-emerald-300 w-full md:min-w-[300px] focus:border-emerald-500 focus:ring-emerald-500"
+                                    className="pl-10 pr-3 py-2 bg-blue-700 border-blue-600 text-white placeholder:text-blue-300 w-full md:min-w-[300px] focus:border-blue-500 focus:ring-blue-500"
                                     required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
-                            <Button type="submit" className="bg-white text-emerald-800 hover:bg-emerald-50">
+                            <Button type="submit" className="bg-white text-blue-800 hover:bg-blue-50 rounded-full">
                                 Subscribe
                             </Button>
                         </form>
@@ -165,13 +169,12 @@ export function Footer({
                                             className="object-contain"
                                         />
                                     </div>
-                                    <div className="text-white text-xl font-bold">Worldmaxxing Global Services</div>
+                                    <div className="text-white text-xl font-bold">United Evisa</div>
                                 </div>
                             </Link>
-                            <p className="text-slate-400 mb-6 pr-8">
-                                Worldmaxxing Global Services is a leading global visa service provider, helping travelers
-                                secure visas quickly and efficiently for destinations worldwide. With our
-                                expert team and streamlined process, your visa application is in good hands.
+                            <p className="text-slate-300 mb-6 pr-8">
+                                United Evisa helps travelers apply with confidence through clear requirements,
+                                responsive support, and a modern, secure application flow.
                             </p>
                             <div className="flex gap-4">
                                 {socialLinks.map((social, idx) => (
@@ -179,7 +182,7 @@ export function Footer({
                                         key={idx}
                                         href={social.href}
                                         aria-label={social.label}
-                                        className="bg-slate-800 hover:bg-emerald-700 text-slate-300 hover:text-white p-2 rounded-full transition-colors"
+                                        className="bg-slate-900/60 hover:bg-blue-700 text-slate-200 hover:text-white p-2 rounded-full transition-colors"
                                     >
                                         {social.icon}
                                     </Link>
@@ -196,7 +199,7 @@ export function Footer({
                                         <li key={linkIdx}>
                                             <Link
                                                 href={link.href}
-                                                className="text-slate-400 hover:text-emerald-400 flex items-center text-sm transition-colors"
+                                                className="text-slate-400 hover:text-blue-400 flex items-center text-sm transition-colors"
                                             >
                                                 <ChevronRight className="h-3 w-3 mr-1" />
                                                 <span>{link.name}</span>
@@ -212,30 +215,30 @@ export function Footer({
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-slate-800 pt-8">
                         {/* Contact Info */}
                         <div>
-                            <h3 className="text-white text-lg font-semibold mb-4">Contact Us</h3>
+                                <h3 className="text-white text-lg font-semibold mb-4">Contact</h3>
                             <ul className="space-y-4">
                                 <li className="flex items-start gap-3">
-                                    <MapPin className="h-5 w-5 text-emerald-500 mt-0.5" />
+                                    <MapPin className="h-5 w-5 text-blue-500 mt-0.5" />
                                     <span className="text-slate-400 text-sm">
                                         1308 E Colorado Blvd, #2244, Pasadena, CA 91106
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">
-                                    <Phone className="h-5 w-5 text-emerald-500" />
+                                    <Phone className="h-5 w-5 text-blue-500" />
                                     <span className="text-slate-400 text-sm">
                                         +1 323 286 4541
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">
-                                    <Mail className="h-5 w-5 text-emerald-500" />
+                                    <Mail className="h-5 w-5 text-blue-500" />
                                     <span className="text-slate-400 text-sm">
-                                        visa@worldmaxxing.com
+                                        visa@unitedevisa.com
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">
-                                    <Globe className="h-5 w-5 text-emerald-500" />
+                                    <Globe className="h-5 w-5 text-blue-500" />
                                     <span className="text-slate-400 text-sm">
-                                        www.worldmaxxing.com
+                                        www.unitedevisa.com
                                     </span>
                                 </li>
                             </ul>

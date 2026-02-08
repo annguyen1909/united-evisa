@@ -64,43 +64,58 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="border-b border-slate-200 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4 py-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
-            <HelpCircle className="h-4 w-4" />
-            FAQ Center
+      <div className="border-b border-blue-100 bg-gradient-to-b from-blue-50 via-white to-white">
+        <div className="max-w-7xl mx-auto px-4 py-16 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm">
+              <HelpCircle className="h-4 w-4" />
+              United Evisa FAQ Center
+            </div>
+            <h1 className="mt-4 text-3xl md:text-4xl font-semibold text-slate-900">
+              Clear answers for every step of your visa journey
+            </h1>
+            <p className="mt-3 text-base md:text-lg text-slate-600 max-w-2xl">
+              Find quick, accurate answers about eligibility, documents, processing, and travel rules.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <Button size="lg" variant="outline" className="border-blue-200 text-blue-700 hover:bg-blue-50 rounded-full">
+                <Globe className="mr-2 h-4 w-4" />
+                Browse by Country
+              </Button>
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white rounded-full">
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Contact Support
+              </Button>
+            </div>
           </div>
-          <h1 className="mt-4 text-3xl md:text-4xl font-bold text-slate-900">
-            Frequently Asked Questions
-          </h1>
-          <p className="mt-3 text-base md:text-lg text-slate-600 max-w-2xl">
-            Clear answers to common questions about eVisa applications, requirements, and travel tips.
-          </p>
-          <p className="mt-2 text-sm text-slate-500 max-w-2xl">
-            Explore the Worldmaxxing Global Services FAQ library by country and visa topic.
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <Button size="lg" variant="outline" className="border-slate-200 text-slate-700 hover:bg-white">
-              <Globe className="mr-2 h-4 w-4" />
-              Browse by Country
-            </Button>
-            <Button size="lg" className="bg-emerald-700 hover:bg-emerald-800 text-white">
-              <MessageCircle className="mr-2 h-4 w-4" />
-              Contact Support
-            </Button>
+          <div className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-slate-900">Popular questions</h3>
+            <p className="text-sm text-slate-600 mt-2">
+              Choose a topic below or search by country.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {["Processing time", "Photo rules", "Multiple entry", "Payment", "Port of entry"].map((topic) => (
+                <Badge key={topic} variant="secondary" className="bg-blue-50 text-blue-700 border border-blue-100">
+                  {topic}
+                </Badge>
+              ))}
+            </div>
+            <div className="mt-6 rounded-2xl bg-blue-50 px-4 py-3 text-sm text-slate-700">
+              Need help fast? Chat with our support team 24/7.
+            </div>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 py-16">
         {/* Search Section */}
         <div className="mb-12" id="faq-section">
-          <Card className="shadow-sm border border-slate-200 rounded-2xl overflow-hidden">
+          <Card className="shadow-sm border border-blue-100 rounded-3xl overflow-hidden">
             <CardContent className="p-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-emerald-100 rounded-lg">
-                  <Search className="h-5 w-5 text-emerald-600" />
+                <div className="p-2 bg-blue-100 rounded-xl">
+                  <Search className="h-5 w-5 text-blue-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-slate-800">
                   Search FAQ by Country or Keyword
@@ -118,7 +133,7 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                   setCurrentPage(1);
                 }}
                 placeholder="Search by country, keyword, or visa type..."
-                className="w-full mb-8 px-4 py-3 rounded-lg border border-slate-200 focus:border-emerald-500 focus:ring-emerald-200 outline-none text-base text-slate-700 bg-slate-50"
+                className="w-full mb-8 px-4 py-3 rounded-full border border-slate-200 focus:border-blue-500 focus:ring-blue-200 outline-none text-base text-slate-700 bg-white"
                 aria-label="Search FAQs"
               />
               {filteredFaqs.length > 0 && (
@@ -142,7 +157,7 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {currentFaqs.map((faq) => (
                       <Link key={faq.slug} href={`/faq/${faq.slug}`} className="block group">
-                        <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm cursor-pointer">
+                        <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-500 border border-blue-100 bg-white cursor-pointer rounded-3xl">
                           {faq.image && (
                             <div className="relative h-48 overflow-hidden">
                               <Image
@@ -160,7 +175,7 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                             </div>
                           )}
                           <CardContent className="p-6">
-                            <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-emerald-600 transition-colors duration-300">
+                            <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
                               {faq.title}
                             </h3>
                             <p className="text-slate-600 text-sm mb-4 line-clamp-2">
@@ -170,7 +185,7 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                               <span className="text-xs text-slate-500">
                                 {faq.faqs.length} questions
                               </span>
-                              <div className="flex items-center gap-1 text-emerald-600 text-sm font-semibold group-hover:gap-2 transition-all duration-300">
+                              <div className="flex items-center gap-1 text-blue-600 text-sm font-semibold group-hover:gap-2 transition-all duration-300">
                                 View {faq.category} FAQ
                                 <ArrowRight className="h-3 w-3" />
                               </div>
@@ -202,8 +217,8 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
                             onClick={() => handlePageChange(page)}
                             className={`w-10 h-10 ${
                               currentPage === page 
-                                ? "bg-emerald-600 hover:bg-emerald-700 text-white" 
-                                : "hover:bg-emerald-50"
+                                ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                                : "hover:bg-blue-50"
                             }`}
                           >
                             {page}
@@ -230,11 +245,11 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
 
         {/* General Help Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <Card className="shadow-lg border-0 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl overflow-hidden">
+          <Card className="shadow-lg border-0 bg-gradient-to-r from-blue-50 to-amber-50 rounded-2xl overflow-hidden">
             <CardContent className="p-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-emerald-100 rounded-lg">
-                  <BookOpen className="h-5 w-5 text-emerald-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <BookOpen className="h-5 w-5 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-800">
                   Need More Help?
@@ -243,7 +258,7 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
               <p className="text-slate-600 mb-6">
                 Can't find what you're looking for? Our support team is here to help with your eVisa application.
               </p>
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
                 <MessageCircle className="mr-2 h-4 w-4" />
                 Contact Support
               </Button>

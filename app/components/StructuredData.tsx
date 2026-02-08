@@ -2,13 +2,13 @@ export default function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
-    "name": "Worldmaxxing Global Services",
+    "name": "United eVisa Services",
     "description": "Professional eVisa application services for 50+ countries worldwide. Fast processing, 24/7 support, and guaranteed approval.",
-    "url": "https://worldmaxxing.com",
-    "logo": "https://worldmaxxing.com/images/logo.png",
-    "image": "https://worldmaxxing.com/images/hero/hero.jpg",
+    "url": "https://unitedevisa.com",
+    "logo": "https://unitedevisa.com/images/logo.png",
+    "image": "https://unitedevisa.com/images/hero/hero.jpg",
     "telephone": "+1 323 286 4541",
-    "email": "support@worldmaxxing.com",
+    "email": "support@unitedevisa.com",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "US"

@@ -94,16 +94,20 @@ export default function DestinationClient() {
     <section className="w-full max-w-7xl mx-auto">
       {/* Page Title */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-emerald-800 mb-3">
-          Visa Destinations
+        <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
+          <Globe2 className="h-4 w-4" />
+          Explore destinations
+        </div>
+        <h2 className="mt-4 text-3xl md:text-4xl font-semibold text-slate-900">
+          Visa destinations worldwide
         </h2>
-        <p className="text-slate-600 max-w-3xl mx-auto">
-          Start your journey by applying for a visa with Worldmaxxing Global Services assistance
+        <p className="mt-3 text-slate-600 max-w-3xl mx-auto">
+          Find your destination, check requirements, and start a guided eVisa application.
         </p>
       </div>
 
       {/* Search and Filter Section */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 mb-10">
+      <div className="bg-white rounded-3xl shadow-sm border border-blue-100 p-5 mb-10">
         <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
           {/* Country Search Combobox */}
           <div className="w-full lg:w-2/5 xl:w-1/2">
@@ -111,7 +115,7 @@ export default function DestinationClient() {
               <PopoverTrigger asChild>
                 <button
                   ref={countryBtnRef}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg text-left bg-white hover:border-emerald-300 focus:border-emerald-500 flex items-center gap-2 transition-all shadow-sm"
+                  className="w-full px-4 py-3 border border-slate-200 rounded-full text-left bg-white hover:border-blue-300 focus:border-blue-500 flex items-center gap-2 transition-all shadow-sm"
                 >
                   <Search className="w-5 h-5 text-slate-400" />
                   <span className={selectedCountry ? "text-slate-900" : "text-slate-400"}>
@@ -159,7 +163,7 @@ export default function DestinationClient() {
                             className={cn(
                               "flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors",
                               selectedCountry === c.name
-                                ? "bg-emerald-50 text-emerald-700 font-medium"
+                                ? "bg-blue-50 text-blue-700 font-medium"
                                 : "hover:bg-slate-50"
                             )}
                           >
@@ -187,7 +191,7 @@ export default function DestinationClient() {
               <PopoverTrigger asChild>
                 <button
                   ref={regionBtnRef}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg text-left bg-white hover:border-emerald-300 focus:border-emerald-500 flex items-center gap-2 transition-all shadow-sm"
+                  className="w-full px-4 py-3 border border-slate-200 rounded-full text-left bg-white hover:border-blue-300 focus:border-blue-500 flex items-center gap-2 transition-all shadow-sm"
                 >
                   <Globe2 className="w-5 h-5 text-slate-400" />
                   <span className={region ? "text-slate-900" : "text-slate-400"}>
@@ -217,7 +221,7 @@ export default function DestinationClient() {
                       className={cn(
                         "px-3 py-2 rounded-md cursor-pointer transition-colors",
                         !region
-                          ? "bg-emerald-50 text-emerald-700 font-medium"
+                          ? "bg-blue-50 text-blue-700 font-medium"
                           : "hover:bg-slate-50"
                       )}
                     >
@@ -235,7 +239,7 @@ export default function DestinationClient() {
                           className={cn(
                             "px-3 py-2 rounded-md cursor-pointer transition-colors",
                             region === r
-                              ? "bg-emerald-50 text-emerald-700 font-medium"
+                              ? "bg-blue-50 text-blue-700 font-medium"
                               : "hover:bg-slate-50"
                           )}
                         >
@@ -270,12 +274,12 @@ export default function DestinationClient() {
       {/* Results Stats */}
       <div className="flex justify-between items-center mb-6">
         <p className="text-slate-600">
-          Showing <span className="font-medium text-emerald-700">{paginatedCountries.length}</span> of{" "}
-          <span className="font-medium text-emerald-700">{filteredCountries.length}</span> destinations
+          Showing <span className="font-medium text-blue-700">{paginatedCountries.length}</span> of{" "}
+          <span className="font-medium text-blue-700">{filteredCountries.length}</span> destinations
         </p>
 
         {region && (
-          <Badge variant="outline" className="bg-emerald-50 border-emerald-200 text-emerald-700 flex items-center gap-1">
+          <Badge variant="outline" className="bg-blue-50 border-blue-200 text-blue-700 flex items-center gap-1">
             <Globe2 className="h-3 w-3" />
             {region}
             <button
@@ -298,7 +302,7 @@ export default function DestinationClient() {
             transition={{ duration: 0.3, delay: index * 0.05 }}
           >
             <Card
-              className="overflow-hidden rounded-xl hover:shadow-md transition-all duration-300 border-slate-200 h-full flex flex-col"
+              className="overflow-hidden rounded-3xl hover:shadow-lg transition-all duration-300 border-blue-100 h-full flex flex-col"
             >
               <Link href={`/destinations/${country.slug}${page > 1 ? `?page=${page}` : ""}`} className="flex-grow">
                 <div className="relative h-40 overflow-hidden">
@@ -338,7 +342,7 @@ export default function DestinationClient() {
                 <Link href={`/apply?country=${country.slug}`} className="w-full">
                   <Button
                     variant="outline"
-                    className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
+                    className="w-full border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-800 rounded-full"
                   >
                     Apply for Visa
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -360,7 +364,7 @@ export default function DestinationClient() {
           <p className="text-slate-500 max-w-md mb-6">
             We couldn't find any destinations matching your criteria. Try adjusting your search or filters.
           </p>
-          <Button onClick={clearFilters} className="bg-emerald-700 hover:bg-emerald-800">
+          <Button onClick={clearFilters} className="bg-blue-700 hover:bg-blue-800">
             Clear Filters
           </Button>
         </div>
@@ -412,7 +416,7 @@ export default function DestinationClient() {
                   key={pageNum}
                   onClick={() => handlePageChange(pageNum)}
                   className={`relative inline-flex items-center px-4 py-2 text-sm font-medium border ${isCurrentPage
-                      ? "z-10 bg-emerald-700 text-white border-emerald-700"
+                      ? "z-10 bg-blue-700 text-white border-blue-700"
                       : "text-slate-700 bg-white border-slate-300 hover:bg-slate-50"
                     }`}
                 >

@@ -73,7 +73,7 @@ export function getAllRequirementsPosts(): RequirementsPost[] {
       faqs: (country as any).faqs || [], // Explicitly casting as faqs isn't in base type
       content: country.welcomeMessage || '',
       updatedAt: new Date().toISOString(),
-      author: 'Worldmaxxing Global Services',
+      author: 'United eVisa Services',
       reviewer: 'Visa Compliance Team',
     } as RequirementsPost));
   }
@@ -96,7 +96,7 @@ export function getAllRequirementsPosts(): RequirementsPost[] {
         slug,
         content,
         updatedAt,
-        author: (data as any).author || 'Worldmaxxing Global Services',
+        author: (data as any).author || 'United eVisa Services',
         reviewer: (data as any).reviewer || 'Visa Compliance Team',
         ...data,
       } as RequirementsPost;
@@ -139,7 +139,7 @@ export function getRequirementsPostBySlug(slug: string): RequirementsPost | null
           faqs: (country as any).faqs || [],
           content: country.welcomeMessage || '',
           updatedAt: new Date().toISOString(),
-          author: 'Worldmaxxing Global Services',
+          author: 'United eVisa Services',
           reviewer: 'Visa Compliance Team',
         } as RequirementsPost;
       }
@@ -157,7 +157,7 @@ export function getRequirementsPostBySlug(slug: string): RequirementsPost | null
       slug,
       content,
       updatedAt,
-      author: (data as any).author || 'Worldmaxxing Global Services',
+      author: (data as any).author || 'United eVisa Services',
       reviewer: (data as any).reviewer || 'Visa Compliance Team',
       ...data,
     } as RequirementsPost;

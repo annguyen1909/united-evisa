@@ -30,6 +30,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
       phoneNumber: formData.get("phoneNumber"),
       areaCode: formData.get("areaCode"),
       gender: formData.get("gender"),
+      smsOptIn: formData.get("smsOptIn") === "on",
     }
 
     try {
@@ -88,7 +89,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
       <Card className="overflow-hidden p-0 border-slate-200 shadow-sm">
         <CardContent className="grid p-0 md:grid-cols-2">
           <div className="relative hidden md:block h-full min-h-[650px]">
-            <div className="absolute inset-0 bg-emerald-600/20 z-10 backdrop-blur-[2px]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-600/20 via-blue-900/10 to-amber-500/20 z-10 backdrop-blur-[2px]" />
             <Image
               fill
               src="/images/auth/background.jpg"
@@ -97,9 +98,9 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
               priority
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8">
-              <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg text-center max-w-md">
-                <h2 className="text-2xl font-bold text-emerald-800 mb-2">Join Worldmaxxing Global Services</h2>
-                <p className="text-slate-700">Create an account to easily apply for visas and track your applications.</p>
+              <div className="bg-white/85 p-6 rounded-2xl backdrop-blur-sm shadow-lg text-center max-w-md">
+                <h2 className="text-2xl font-bold text-blue-800 mb-2">Welcome to United Evisa</h2>
+                <p className="text-slate-700">Create your account to manage applications, upload documents, and track updates.</p>
               </div>
             </div>
           </div>
@@ -107,8 +108,8 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
           <form onSubmit={handleSubmit} className="p-6 md:p-10 w-full">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center mb-2">
-                <h1 className="text-2xl font-bold text-slate-800">Create Your Account</h1>
-                <p className="text-slate-500 mt-1">Fill in your details to get started</p>
+                <h1 className="text-2xl font-bold text-slate-800">Create your United Evisa account</h1>
+                <p className="text-slate-500 mt-1">Get started in minutes with a secure profile</p>
               </div>
 
               {error && (
@@ -126,7 +127,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                     name="fullName" 
                     placeholder="Enter your full name" 
                     required 
-                    className="focus:ring-emerald-500"
+                    className="focus:ring-blue-500"
                   />
                 </div>
 
@@ -138,7 +139,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                     type="email" 
                     placeholder="Enter your email" 
                     required 
-                    className="focus:ring-emerald-500"
+                    className="focus:ring-blue-500"
                   />
                 </div>
 
@@ -149,7 +150,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                     name="password" 
                     type="password" 
                     required 
-                    className="focus:ring-emerald-500"
+                    className="focus:ring-blue-500"
                   />
                 </div>
 
@@ -162,7 +163,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                       placeholder="+84" 
                       defaultValue="+1" 
                       required 
-                      className="focus:ring-emerald-500"
+                      className="focus:ring-blue-500"
                     />
                   </div>
                   <div className="grid gap-2">
@@ -172,7 +173,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                       name="phoneNumber" 
                       placeholder="Enter phone number" 
                       required 
-                      className="focus:ring-emerald-500"
+                      className="focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -180,7 +181,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                 <div className="grid gap-2">
                   <Label htmlFor="gender" className="text-slate-700 font-medium">Gender *</Label>
                   <Select name="gender" required>
-                    <SelectTrigger className="focus:ring-emerald-500">
+                    <SelectTrigger className="focus:ring-blue-500">
                       <SelectValue placeholder="Select gender" />
                     </SelectTrigger>
                     <SelectContent>
@@ -190,9 +191,30 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
                   </Select>
                 </div>
 
+                <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+                  <label className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      name="smsOptIn"
+                      className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <span>
+                      I agree to receive SMS updates about my application. Msg &amp; data rates may
+                      apply. Reply STOP to opt out, HELP for help.{" "}
+                      <a href="/sms-disclaimer" className="text-blue-600 font-semibold hover:underline">
+                        SMS disclaimer
+                      </a>{" "}
+                      |{" "}
+                      <a href="/sms-preferences" className="text-blue-600 font-semibold hover:underline">
+                        SMS preferences
+                      </a>
+                    </span>
+                  </label>
+                </div>
+
                 <Button 
                   type="submit" 
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 mt-2" 
+                  className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white font-medium py-2.5 mt-2" 
                   disabled={loading}
                 >
                   {loading ? "Creating Account..." : "Create Account"}
@@ -200,7 +222,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
 
                 <div className="text-center text-slate-600 text-sm">
                   Already have an account?{" "}
-                  <a href="/login" className="text-emerald-600 font-medium hover:underline">
+                  <a href="/login" className="text-blue-600 font-medium hover:underline">
                     Sign in
                   </a>
                 </div>

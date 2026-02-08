@@ -23,14 +23,14 @@ export default function FaqAccordion({ faqs, destinationSlug }: FaqAccordionProp
           href={`/faq/${destinationSlug}/faq-${index + 1}`}
           className="block group"
         >
-          <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm cursor-pointer group-hover:bg-emerald-50/50">
+          <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm cursor-pointer group-hover:bg-blue-50/50">
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
-                <div className="flex items-center justify-center w-10 h-10 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold flex-shrink-0 group-hover:bg-emerald-200 transition-colors duration-300">
+                <div className="flex items-center justify-center w-10 h-10 bg-blue-100 text-blue-700 rounded-full text-sm font-bold flex-shrink-0 group-hover:bg-blue-200 transition-colors duration-300">
                   {index + 1}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-slate-800 mb-3 group-hover:text-emerald-700 transition-colors duration-300 line-clamp-2">
+                  <h3 className="text-lg font-semibold text-slate-800 mb-3 group-hover:text-blue-700 transition-colors duration-300 line-clamp-2">
                     {item.question}
                   </h3>
                   <p className="text-slate-600 text-sm mb-4 line-clamp-3">
@@ -47,7 +47,7 @@ export default function FaqAccordion({ faqs, destinationSlug }: FaqAccordionProp
                         <span>Detailed answer</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1 text-emerald-600 text-sm font-semibold group-hover:gap-2 transition-all duration-300">
+                    <div className="flex items-center gap-1 text-blue-600 text-sm font-semibold group-hover:gap-2 transition-all duration-300">
                       Read more
                       <ArrowRight className="h-4 w-4" />
                     </div>

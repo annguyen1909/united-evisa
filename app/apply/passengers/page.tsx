@@ -585,14 +585,14 @@ function PassengersContent() {
         : "---";
     const total = visa && typeof govFee === 'number' ? (govFee + serviceFee) : 0;
     orderSummary = (
-      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm sticky top-6">
-        <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-slate-100">
+      <div className="bg-white rounded-xl border border-blue-100/50 p-6 shadow-sm sticky top-6">
+        <h2 className="text-lg font-semibold text-center text-slate-800 mb-4 pb-2 border-b border-blue-50 bg-gradient-to-r from-blue-50/30 to-transparent -mx-6 px-6 py-2 rounded-t-xl">
           Order Summary
         </h2>
         <div className="space-y-4 text-sm">
           <div className="flex items-center justify-between">
             <span className="font-medium text-slate-700">Destination</span>
-            <span className="font-medium text-emerald-700">{destination}</span>
+            <span className="font-medium text-blue-600">{destination}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="font-medium text-slate-700">Type of Visa</span>
@@ -626,7 +626,7 @@ function PassengersContent() {
           <hr className="border-slate-100" />
           <div className="flex items-center justify-between pt-1">
             <span className="font-semibold text-base text-slate-800">Total</span>
-            <span className="font-bold text-lg text-emerald-700">
+            <span className="font-bold text-lg text-blue-600">
               {applicationData?.destination?.code?.toLowerCase() === "in" && passengers.length === 0
                 ? `${serviceFee.toFixed(2)}+`
                 : (visa && typeof govFee === 'number' ? `$${total.toFixed(2)}` : "---")}
@@ -639,9 +639,9 @@ function PassengersContent() {
   // Prevent editing passengers if payment is completed
   if (applicationData && (applicationData.paymentStatus === "Completed" || applicationData.paymentStatus === "Payment Completed")) {
     return (
-      <div className="min-h-screen bg-slate-50 pb-16">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 pb-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center min-h-[60vh]">
-          <div className="bg-green-50 border border-green-100 rounded-lg p-8 text-center">
+          <div className="bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 rounded-xl p-8 text-center shadow-sm">
             <div className="flex justify-center mb-4">
               <Check className="h-10 w-10 text-green-500" />
             </div>
@@ -650,7 +650,7 @@ function PassengersContent() {
               You have already completed this step and payment is completed for this application.
             </p>
             <Button
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 mt-2"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 mt-2 shadow-md"
               onClick={() => router.push(`/apply/payment?applicationId=${applicationId}`)}
             >
               Go to Payment Summary
@@ -663,14 +663,14 @@ function PassengersContent() {
 
   if (stepNotAllowed) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-8 text-center">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20">
+        <div className="bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 rounded-xl p-8 text-center shadow-sm">
           <h2 className="text-xl font-bold text-yellow-700 mb-2">Step Not Allowed</h2>
           <p className="text-yellow-600 mb-4">
             You cannot access this step until you have completed the previous step.
           </p>
           <Button
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 mt-2"
+            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 mt-2 shadow-md"
             onClick={() => router.push("/apply")}
           >
             Go Back to Start
@@ -681,7 +681,7 @@ function PassengersContent() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-6 text-center">
           Traveler Information
@@ -691,7 +691,7 @@ function PassengersContent() {
 
         {isLoading && !applicationData ? (
           <div className="flex flex-col items-center justify-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-emerald-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-200 border-t-blue-600"></div>
             <span className="mt-4 text-slate-600">Loading your application...</span>
           </div>
         ) : (
@@ -701,19 +701,19 @@ function PassengersContent() {
               {passengers.map((passenger, index) => (
                 <Card
                   key={index}
-                  className="bg-white overflow-hidden shadow-sm border border-slate-200"
+                  className="bg-white overflow-hidden shadow-sm border border-blue-100/50 rounded-xl"
                 >
-                  <div className="border-b border-slate-100">
+                  <div className="border-b border-blue-50 bg-gradient-to-r from-blue-50/50 to-transparent">
                     <div className="flex items-center p-5">
-                      <div className="bg-emerald-100 p-2 rounded-full mr-3">
-                        <Users className="h-5 w-5 text-emerald-700" />
+                      <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-full mr-3 shadow-sm">
+                        <Users className="h-5 w-5 text-white" />
                       </div>
                       <h3 className="text-lg font-medium text-slate-800">
                         Traveler {index + 1}
                       </h3>
                       {Object.keys(errors[index] || {}).length === 0 &&
                         Object.values(passenger).every(val => val !== "") && (
-                          <span className="ml-auto flex items-center text-xs bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full border border-emerald-100">
+                          <span className="ml-auto flex items-center text-xs bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-1 rounded-full shadow-sm">
                             <Check className="w-3 h-3 mr-1" /> Complete
                           </span>
                         )}
@@ -825,7 +825,7 @@ function PassengersContent() {
                           value={passenger.nationality}
                           onChange={(e) => updatePassenger(index, "nationality", e.target.value)}
                           className={cn(
-                            "w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-900",
+                            "w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900",
                             errors[index]?.nationality ? 'border-red-500' : 'border-slate-300'
                           )}
                         >
@@ -861,7 +861,7 @@ function PassengersContent() {
                 <Button
                   onClick={handleNextStep}
                   disabled={isLoading}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-8"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 shadow-md"
                 >
                   {isLoading ? (
                     <div className="flex items-center">
@@ -892,7 +892,7 @@ export default function PassengersPage() {
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600 mb-4"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
           <p className="text-slate-700 font-medium">Loading passengers...</p>
         </div>
       </div>

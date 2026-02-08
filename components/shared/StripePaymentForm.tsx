@@ -247,7 +247,7 @@ export default function CheckoutForm({ amount, applicationId }: { amount: number
       <Button
         type="submit"
         disabled={isLoading || !billingValid || !isCardComplete}
-        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isLoading ? (
           <div className="flex items-center justify-center">

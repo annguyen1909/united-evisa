@@ -29,7 +29,7 @@ const StatusMismatch: React.FC<StatusMismatchProps> = ({ expectedStatus, actualS
             </p>
             {children}
             <Link href="/list">
-              <Button className="bg-emerald-600 hover:bg-emerald-700">View All Applications</Button>
+              <Button className="bg-blue-600 hover:bg-blue-700">View All Applications</Button>
             </Link>
           </CardContent>
         </Card>

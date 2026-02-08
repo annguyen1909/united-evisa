@@ -98,8 +98,8 @@ export default function MobileOptimizedHero() {
         >
           {/* Live Activity Badge */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-4">
-            <Badge variant="secondary" className="bg-emerald-500/20 text-emerald-300 border-emerald-400/30 backdrop-blur-md px-3 py-1.5 text-xs sm:text-sm">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
+            <Badge variant="secondary" className="bg-blue-500/20 text-blue-300 border-blue-400/30 backdrop-blur-md px-3 py-1.5 text-xs sm:text-sm">
+              <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse" />
               Live: {recentApprovals} approvals this week
             </Badge>
             <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-400/30 backdrop-blur-md px-3 py-1.5 text-xs sm:text-sm">
@@ -118,7 +118,7 @@ export default function MobileOptimizedHero() {
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 lg:mb-6 leading-tight">
             Get Your{" "}
-            <span className="bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-amber-400 bg-clip-text text-transparent">
               eVisa
             </span>
             <br className="hidden sm:block" />
@@ -128,7 +128,7 @@ export default function MobileOptimizedHero() {
 
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-6 lg:mb-8 leading-relaxed px-2">
             Skip embassy visits. No paperwork hassles. 
-            <span className="block mt-2 text-emerald-300 font-semibold">
+            <span className="block mt-2 text-blue-300 font-semibold">
               99.5% approval rate • 50+ countries • 24/7 support
             </span>
           </p>
@@ -138,7 +138,7 @@ export default function MobileOptimizedHero() {
             <Link href="/apply" className="w-full sm:w-auto">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-8 py-4 sm:py-6 text-lg font-bold rounded-2xl shadow-2xl hover:shadow-emerald-500/25 transform hover:scale-105 transition-all duration-300 border-2 border-emerald-400/50 min-h-[56px]"
+                className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 sm:py-6 text-lg font-bold rounded-2xl shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300 border-2 border-blue-400/50 min-h-[56px]"
               >
                 <Smartphone className="mr-2 h-5 w-5" />
                 Start Application Now
@@ -148,11 +148,11 @@ export default function MobileOptimizedHero() {
             
             <div className="flex items-center gap-6 text-sm text-gray-300">
               <div className="flex items-center gap-1">
-                <CheckCheck className="h-4 w-4 text-emerald-400" />
+                <CheckCheck className="h-4 w-4 text-blue-400" />
                 <span>No hidden fees</span>
               </div>
               <div className="flex items-center gap-1">
-                <Shield className="h-4 w-4 text-emerald-400" />
+                <Shield className="h-4 w-4 text-blue-400" />
                 <span>Money-back guarantee</span>
               </div>
             </div>
@@ -168,7 +168,7 @@ export default function MobileOptimizedHero() {
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto">
             {[
-              { icon: Zap, title: "24h Processing", subtitle: "Express service", color: "emerald" },
+              { icon: Zap, title: "24h Processing", subtitle: "Express service", color: "blue" },
               { icon: Shield, title: "100% Secure", subtitle: "Bank-level safety", color: "blue" },
               { icon: Users, title: "24/7 Support", subtitle: "Expert assistance", color: "purple" },
               { icon: TrendingUp, title: "99.5% Success", subtitle: "Approval rate", color: "amber" },
@@ -203,7 +203,7 @@ export default function MobileOptimizedHero() {
           <Card className="bg-white/10 backdrop-blur-lg border-white/20 max-w-3xl mx-auto">
             <CardContent className="p-4 sm:p-6">
               <div className="flex items-center gap-2 mb-4">
-                <Award className="h-5 w-5 text-emerald-400" />
+                <Award className="h-5 w-5 text-blue-400" />
                 <h3 className="text-white text-lg font-bold">Simple 4-Step Process</h3>
               </div>
               
@@ -215,7 +215,7 @@ export default function MobileOptimizedHero() {
                   { step: "4", action: "Get eVisa", time: "24 hrs" },
                 ].map((process, index) => (
                   <div key={index} className="text-center">
-                    <div className="bg-emerald-500 text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm sm:text-base font-bold mx-auto mb-2">
+                    <div className="bg-blue-500 text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm sm:text-base font-bold mx-auto mb-2">
                       {process.step}
                     </div>
                     <p className="text-white text-xs sm:text-sm font-medium mb-1">{process.action}</p>
@@ -246,11 +246,11 @@ export default function MobileOptimizedHero() {
         >
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-gray-300">
             <div className="flex items-center gap-1">
-              <Globe className="h-4 w-4 text-emerald-400" />
+              <Globe className="h-4 w-4 text-blue-400" />
               <span>50+ Countries</span>
             </div>
             <div className="flex items-center gap-1">
-              <Users className="h-4 w-4 text-emerald-400" />
+              <Users className="h-4 w-4 text-blue-400" />
               <span>50,000+ Happy Travelers</span>
             </div>
             <div className="flex items-center gap-1">

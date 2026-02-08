@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Taiwan Visa Requirements & eVisa Application",
     description: "Complete Taiwan visa requirements guide. Apply for Taiwan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/taiwan",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/taiwan",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/taiwan/taiwan-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/taiwan/taiwan-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/taiwan",
+    canonical: "https://unitedevisa.com/requirements-posts/taiwan",
   },
   robots: {
     index: true,

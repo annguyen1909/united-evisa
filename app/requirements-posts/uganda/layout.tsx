@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Uganda Visa Requirements & eVisa Application",
     description: "Complete Uganda visa requirements guide. Apply for Uganda eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/uganda",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/uganda",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/uganda/uganda-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/uganda/uganda-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/uganda",
+    canonical: "https://unitedevisa.com/requirements-posts/uganda",
   },
   robots: {
     index: true,

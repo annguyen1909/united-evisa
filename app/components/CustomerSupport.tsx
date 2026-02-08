@@ -43,37 +43,36 @@ export default function CustomerSupport() {
   }
 
   return (
-    <section className="w-full max-w-6xl mx-auto py-12 px-4 sm:px-8 rounded-2xl shadow-lg bg-gradient-to-r from-emerald-50 to-amber-50 border border-amber-100/50">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.8fr_1fr] gap-10">
+    <section className="w-full bg-gradient-to-b from-white via-blue-50/40 to-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10">
         {/* Left: Main Content */}
         <div className="flex flex-col gap-8">
           {/* Header */}
           <div className="space-y-6">
-            <div className="flex items-center">
-              <div className="mr-4">
-                <span className="bg-amber-500 text-white font-bold text-lg px-3 py-1 rounded-lg shadow-sm">24/7</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope text-emerald-700">
-                Customer Support Center
-              </h2>
+            <div className="inline-flex items-center gap-3 rounded-full bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm w-fit">
+              <span className="bg-amber-500 text-white font-bold px-3 py-1 rounded-full text-xs">24/7</span>
+              Dedicated visa support
             </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope text-slate-900">
+              Talk to a real visa specialist, anytime.
+            </h2>
 
             <p className="text-slate-700 text-lg max-w-2xl">
-              Our visa experts are ready to assist you <span className="font-semibold text-emerald-700">anytime, anywhere</span>.
-              Get fast, personalized support through multiple channels - all designed to make your visa application process smooth and stress-free.
+              Get fast, personalized help through chat, phone, or email — designed to keep your
+              application moving with clarity and confidence.
             </p>
 
             <div className="flex flex-wrap gap-x-8 gap-y-3">
               <div className="flex items-center gap-2 text-slate-700">
-                <Globe className="h-5 w-5 text-emerald-600" />
+                <Globe className="h-5 w-5 text-blue-600" />
                 <span>Support in 40+ languages</span>
               </div>
               <div className="flex items-center gap-2 text-slate-700">
-                <Clock className="h-5 w-5 text-emerald-600" />
+                <Clock className="h-5 w-5 text-blue-600" />
                 <span>Response in <strong>under 1 hour</strong></span>
               </div>
               <div className="flex items-center gap-2 text-slate-700">
-                <Shield className="h-5 w-5 text-emerald-600" />
+                <Shield className="h-5 w-5 text-blue-600" />
                 <span>No additional support fees</span>
               </div>
             </div>
@@ -81,11 +80,11 @@ export default function CustomerSupport() {
 
           {/* Contact Options */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 transition-all duration-300 hover:shadow-md hover:border-emerald-200 flex flex-col">
+            <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col">
               <div>
                 <div className="flex items-center mb-4">
-                  <div className="bg-emerald-100 p-3 rounded-full mr-3">
-                    <PhoneCall className="h-5 w-5 text-emerald-700" />
+                  <div className="bg-blue-100 p-3 rounded-full mr-3">
+                    <PhoneCall className="h-5 w-5 text-blue-700" />
                   </div>
                   <h3 className="font-semibold text-slate-800">Call Support</h3>
                 </div>
@@ -95,14 +94,14 @@ export default function CustomerSupport() {
               </div>
               <div className="mt-auto flex flex-col gap-2 items-center">
                 <span className="text-xs text-slate-500">Available 24/7</span>
-                <Button variant="outline" size="sm" className="border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+                <Button variant="outline" size="sm" className="border-blue-200 text-blue-700 hover:bg-blue-50 rounded-full">
                   +1 323 286 4541
                 </Button>
               </div>
             </div>
 
             {/* Live Chat Option */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 transition-all duration-300 hover:shadow-md hover:border-emerald-200 flex flex-col">
+            <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col">
               <div>
                 <div className="flex items-center mb-4">
                   <div className="bg-blue-100 p-3 rounded-full mr-3">
@@ -116,14 +115,14 @@ export default function CustomerSupport() {
               </div>
               <div className="mt-auto flex flex-col gap-2 items-center">
                 <span className="text-xs text-slate-500">Response in minutes</span>
-                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white rounded-full">
                   Start Chat
                 </Button>
               </div>
             </div>
 
             {/* Email Option */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 transition-all duration-300 hover:shadow-md hover:border-emerald-200 flex flex-col">
+            <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col">
               <div>
                 <div className="flex items-center mb-4">
                   <div className="bg-amber-100 p-3 rounded-full mr-3">
@@ -137,15 +136,15 @@ export default function CustomerSupport() {
               </div>
               <div className="mt-auto flex flex-col gap-2 items-center">
                 <span className="text-xs text-slate-500">Reply within 1 hour</span>
-                <Button variant="outline" size="sm" className="border-amber-200 text-amber-700 hover:bg-amber-50">
-                                          visa@worldmaxxing.com
+                <Button variant="outline" size="sm" className="border-amber-200 text-amber-700 hover:bg-amber-50 rounded-full">
+                                          visa@unitedevisa.com
                 </Button>
               </div>
             </div>
           </div>
 
           {/* Testimonials */}
-          <div className="bg-white/70 rounded-xl p-5 border border-slate-200">
+          <div className="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm">
             <h3 className="text-slate-800 font-medium mb-3 flex items-center">
               <span className="text-amber-500 mr-2">★★★★★</span>
               Customer Satisfaction
@@ -166,15 +165,15 @@ export default function CustomerSupport() {
         {/* Right: Contact Form & FAQ */}
         <div className="flex flex-col gap-6">
           {/* Quick Contact Form */}
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <h3 className="font-bold text-lg text-emerald-700 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-3xl shadow-lg border border-blue-100 p-6">
+            <h3 className="font-bold text-lg text-blue-700 mb-4 flex items-center gap-2">
               <MessageSquare className="h-5 w-5" />
               Quick Contact
             </h3>
 
             {submitted ? (
-              <div className="bg-emerald-50 text-emerald-700 p-4 rounded-lg border border-emerald-100 text-center">
-                <svg className="mx-auto h-12 w-12 text-emerald-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="bg-blue-50 text-blue-700 p-4 rounded-lg border border-blue-100 text-center">
+                <svg className="mx-auto h-12 w-12 text-blue-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <p className="font-medium">Thank you for your message!</p>
@@ -193,7 +192,7 @@ export default function CustomerSupport() {
                     placeholder="Enter your name"
                     value={form.name}
                     onChange={handleChange}
-                    className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
+                    className="w-full border border-slate-200 rounded-xl p-3 text-sm focus:ring-blue-500 focus:border-blue-500"
                     required
                     suppressHydrationWarning
                   />
@@ -210,7 +209,7 @@ export default function CustomerSupport() {
                     placeholder="Enter your email"
                     value={form.email}
                     onChange={handleChange}
-                    className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
+                    className="w-full border border-slate-200 rounded-xl p-3 text-sm focus:ring-blue-500 focus:border-blue-500"
                     required
                     suppressHydrationWarning
                   />
@@ -226,7 +225,7 @@ export default function CustomerSupport() {
                     placeholder="How can we help you?"
                     value={form.message}
                     onChange={handleChange}
-                    className="w-full border border-slate-300 rounded-md p-2.5 text-sm focus:ring-emerald-500 focus:border-emerald-500"
+                    className="w-full border border-slate-200 rounded-xl p-3 text-sm focus:ring-blue-500 focus:border-blue-500"
                     rows={3}
                     required
                     suppressHydrationWarning
@@ -235,7 +234,7 @@ export default function CustomerSupport() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 rounded-md transition-colors"
+                  className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white font-medium py-2.5 rounded-full transition-colors"
                 >
                   Send Message
                 </Button>
@@ -244,8 +243,8 @@ export default function CustomerSupport() {
           </div>
 
           {/* FAQ */}
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <h3 className="font-bold text-lg text-emerald-700 mb-4">
+          <div className="bg-white rounded-3xl shadow-sm border border-blue-100 p-6">
+            <h3 className="font-bold text-lg text-blue-700 mb-4">
               Frequently Asked Questions
             </h3>
 

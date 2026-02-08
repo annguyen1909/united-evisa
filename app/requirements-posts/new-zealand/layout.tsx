@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "New Zealand Visa Requirements & eVisa Application",
     description: "Complete New Zealand visa requirements guide. Apply for New Zealand eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/new-zealand",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/new-zealand",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/new-zealand/new-zealand-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/new-zealand/new-zealand-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/new-zealand",
+    canonical: "https://unitedevisa.com/requirements-posts/new-zealand",
   },
   robots: {
     index: true,

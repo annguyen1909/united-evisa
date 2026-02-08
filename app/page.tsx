@@ -11,8 +11,8 @@ import PageSEO from "../components/shared/PageSEO";
 import InternalLinks from "../components/shared/InternalLinks";
 
 export const metadata: Metadata = {
-  title: "Fast & Secure eVisa Applications",
-  description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, UK, Saudi Arabia, and more. Start your visa application today.",
+  title: "United eVisa Services | Visa to Travel in Minutes",
+  description: "Apply for eVisas with United eVisa Services. Get expert guidance, real-time updates, and clear requirements for top destinations worldwide.",
   keywords: [
     "eVisa application",
     "online visa",
@@ -34,10 +34,10 @@ export const metadata: Metadata = {
     "visa application help"
   ].join(", "),
   openGraph: {
-    title: "Fast & Secure eVisa Applications",
-    description: "Apply for eVisas to 50+ countries. Fast processing options, 24/7 support, and clear guidance at every step.",
-    url: "https://worldmaxxing.com",
-    siteName: "Worldmaxxing Global Services",
+    title: "United eVisa Services | Visa to Travel in Minutes",
+    description: "Apply online with expert support and real-time updates. Clear eVisa requirements for popular destinations.",
+    url: "https://unitedevisa.com",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/hero/hero.jpg",
@@ -51,12 +51,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fast & Secure eVisa Applications",
-    description: "Apply for eVisas to 50+ countries. Fast processing options and 24/7 support.",
+    title: "United eVisa Services | Visa to Travel in Minutes",
+    description: "Apply online with expert support and real-time updates for eVisa requirements.",
     images: ["/images/hero/hero.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com",
+    canonical: "https://unitedevisa.com",
   },
   robots: {
     index: true,

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Uzbekistan Visa Requirements & eVisa Application",
     description: "Complete Uzbekistan visa requirements guide. Apply for Uzbekistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/uzbekistan",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/uzbekistan",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/uzbekistan/uzbekistan-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/uzbekistan/uzbekistan-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/uzbekistan",
+    canonical: "https://unitedevisa.com/requirements-posts/uzbekistan",
   },
   robots: {
     index: true,

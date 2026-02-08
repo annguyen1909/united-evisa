@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
       where: {
         email_websiteCreatedAt: {
           email: email,
-          websiteCreatedAt: "Worldmaxxing Site"
+          websiteCreatedAt: "United eVisa Site"
         }
       },
       select: { id: true },
@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
           areaCode: areaCode || "+1",
           phoneNumber: fullPhoneNumber,
           gender: gender || "Unknown",
-          websiteCreatedAt: "Worldmaxxing Site", // or your default value
+          websiteCreatedAt: "United eVisa Site", // or your default value
         },
         select: { id: true },
       });
@@ -127,7 +127,7 @@ export async function POST(req: NextRequest) {
 
     console.log('Apply route - Account ID being used:', account.id);
     console.log('Apply route - Account email:', email);
-    console.log('Apply route - Account websiteCreatedAt:', "Worldmaxxing Site");
+    console.log('Apply route - Account websiteCreatedAt:', "United eVisa Site");
     
     // Check if we should update an existing application
     if (updateExisting && existingApplicationId) {
@@ -340,7 +340,7 @@ export async function POST(req: NextRequest) {
     });
     console.log("Creating application with visaTypeId:", visaTypeId);
     
-    // Send notification email to visa@worldmaxxing.com
+    // Send notification email to visa@unitedevisa.com
     try {
       // Get destination and visa type details
       const destination = await prisma.destination.findUnique({
@@ -354,7 +354,7 @@ export async function POST(req: NextRequest) {
       });
       
       await sendEmail({
-        to: "visa@worldmaxxing.com",
+        to: "visa@unitedevisa.com",
         template: 'new-application-notification',
         data: { 
           applicationId: app.applicationId,

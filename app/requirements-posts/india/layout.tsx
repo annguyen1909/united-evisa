@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "India Visa Requirements & eVisa Application",
     description: "Complete India visa requirements guide. Apply for India eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/india",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/india",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/india/india-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/india/india-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/india",
+    canonical: "https://unitedevisa.com/requirements-posts/india",
   },
   robots: {
     index: true,

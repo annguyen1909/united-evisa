@@ -552,7 +552,7 @@ export default function CanadaRequirementsPage() {
         <section id="why-choose-us" className="mb-16">
           <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-2xl border border-red-200 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-              Why Choose Worldmaxxing Global Services for Your Canada Visa?
+              Why Choose United eVisa Services for Your Canada Visa?
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -724,9 +724,9 @@ export default function CanadaRequirementsPage() {
                 It's also recommended to have comprehensive travel insurance and be aware of local customs and safety guidelines.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Canada Visa Applications</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose United eVisa Services for Canada Visa Applications</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Canada visas with expertise in the Canadian visa process. 
+                United eVisa Services has been helping travelers obtain their Canada visas with expertise in the Canadian visa process. 
                 Our 80% approval rate and 24/7 customer support make us the preferred choice for thousands of travelers each year. 
                 We provide transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
               </p>
@@ -804,7 +804,7 @@ export default function CanadaRequirementsPage() {
                 </div>
                 <div className="mt-4 p-3 bg-red-100 rounded-lg">
                   <p className="text-xs text-red-800">
-                    <strong>Source:</strong> <a href="https://ircc.canada.ca" target="_blank" rel="noopener noreferrer" className="underline hover:text-red-900">ircc.canada.ca</a> & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> <a href="https://ircc.canada.ca" target="_blank" rel="noopener noreferrer" className="underline hover:text-red-900">ircc.canada.ca</a> & United eVisa Services processing data
                   </p>
                 </div>
               </div>
@@ -920,12 +920,12 @@ export default function CanadaRequirementsPage() {
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">Email Support</h3>
                 <p className="text-sm text-slate-600 mb-3">Get detailed responses within hours</p>
-                <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 font-semibold hover:text-blue-700">
-                  visa@worldmaxxing.com
+                <a href="mailto:visa@unitedevisa.com" className="text-blue-600 font-semibold hover:text-blue-700">
+                  visa@unitedevisa.com
                 </a>
               </div>
               
-              <div className="text-center p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl">
+              <div className="text-center p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="h-6 w-6 text-green-600" />
                 </div>
@@ -936,7 +936,7 @@ export default function CanadaRequirementsPage() {
             </div>
             
             <div className="mt-8 p-6 bg-slate-50 rounded-xl">
-              <h3 className="text-lg font-semibold text-slate-800 mb-3">Why Travelers Choose Worldmaxxing Global Services</h3>
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">Why Travelers Choose United eVisa Services</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">

@@ -15,48 +15,51 @@ export default function RecentRequirements() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="w-full bg-slate-50 py-12 border-y border-slate-200">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between gap-4 mb-6">
+    <section className="w-full bg-gradient-to-b from-blue-50/40 via-white to-white py-16 border-y border-blue-100">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900">
-              Latest requirements updates
+            <span className="inline-flex items-center rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
+              Requirements updates
+            </span>
+            <h2 className="mt-4 text-2xl sm:text-3xl font-semibold text-slate-900">
+              Recent country requirement updates
             </h2>
-            <p className="text-slate-600 mt-2">
-              Quick links to recently updated country requirements.
+            <p className="text-slate-600 mt-2 max-w-2xl">
+              Quick updates for destinations with changing entry rules.
             </p>
           </div>
           <Link
             href="/requirements-posts"
-            className="text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+            className="text-sm font-semibold text-blue-700 hover:text-blue-800"
           >
-            View all
+            View all updates
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/requirements-posts/${post.slug}`}
-              className="group rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow"
+              className="group rounded-3xl border border-blue-100 bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex gap-4"
             >
-              <div className="relative h-40 w-full overflow-hidden rounded-t-2xl bg-slate-100">
+              <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-2xl bg-slate-100">
                 <Image
                   src={post.image || "/images/hero/hero.jpg"}
                   alt={`${post.country} requirements`}
                   fill
-                  className="object-cover group-hover:scale-[1.02] transition-transform"
+                  className="object-cover"
                 />
               </div>
-              <div className="p-5">
-                <p className="text-xs uppercase tracking-wide text-slate-400">
+              <div className="min-w-0">
+                <p className="text-xs uppercase tracking-wide text-blue-500">
                   Requirements
                 </p>
-                <h3 className="text-lg font-semibold text-slate-900 mt-1">
+                <h3 className="text-base font-semibold text-slate-900 mt-1">
                   {post.country}
                 </h3>
-                <p className="text-sm text-slate-600 mt-2 line-clamp-2">
+                <p className="text-xs text-slate-500 mt-1 line-clamp-2">
                   {post.description}
                 </p>
               </div>
@@ -67,7 +70,7 @@ export default function RecentRequirements() {
         <div className="mt-6 text-sm text-slate-500">
           <Link
             href="/requirements-posts/rss.xml"
-            className="font-semibold text-emerald-700 hover:text-emerald-800"
+            className="font-semibold text-blue-700 hover:text-blue-800"
           >
             Subscribe via RSS
           </Link>

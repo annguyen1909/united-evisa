@@ -132,7 +132,7 @@ export default function BeninRequirementsPage() {
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
+        <div className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-amber-700 text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
@@ -152,7 +152,7 @@ export default function BeninRequirementsPage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                 Benin eVisa Requirements & Application Guide
               </h1>
-              <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
                 Complete guide to Benin eVisa requirements, application process, and travel information for your West African adventure
               </p>
             </div>
@@ -172,7 +172,7 @@ export default function BeninRequirementsPage() {
                 {/* Table of Contents */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-6 mb-8 shadow-lg">
           <h2 className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <FileText className="h-6 w-6 text-emerald-600" />
+            <FileText className="h-6 w-6 text-blue-600" />
             Table of Contents
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -193,7 +193,7 @@ export default function BeninRequirementsPage() {
                 onClick={() => scrollToSection(id)}
                 className={`flex items-center gap-3 p-3 rounded-lg text-left transition-all duration-200 ${
                   activeSection === id
-                    ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                    ? 'bg-blue-100 text-blue-700 border border-blue-200'
                     : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
                 }`}
               >
@@ -208,7 +208,7 @@ export default function BeninRequirementsPage() {
         <section id="overview" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Globe className="h-8 w-8 text-emerald-600" />
+              <Globe className="h-8 w-8 text-blue-600" />
               Benin Overview
             </h2>
             
@@ -249,9 +249,9 @@ export default function BeninRequirementsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-xl border border-emerald-100">
+              <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-xl border border-blue-100">
                 <div className="flex items-center gap-3 mb-3">
-                  <MapPin className="h-6 w-6 text-emerald-600" />
+                  <MapPin className="h-6 w-6 text-blue-600" />
                   <h4 className="font-semibold text-slate-800">Capital</h4>
                 </div>
                 <p className="text-slate-600">Porto-Novo</p>
@@ -280,24 +280,24 @@ export default function BeninRequirementsPage() {
         <section id="visa-types" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <FileText className="h-8 w-8 text-emerald-600" />
+              <FileText className="h-8 w-8 text-blue-600" />
               Available Visa Types
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {beninVisaTypes.map((visa, index) => (
                 <Card key={index} className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm">
-                  <div className="h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-500" />
+                  <div className="h-1 w-full bg-gradient-to-r from-blue-500 to-amber-500" />
                   <CardHeader className="pt-6 pb-4">
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-xl shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                      <div className="p-3 rounded-xl shadow-lg bg-gradient-to-r from-blue-500 to-amber-500 text-white">
                         <CheckCircle className="h-6 w-6" />
                       </div>
                       <div className="flex-1">
                         <CardTitle className="text-lg font-bold text-slate-800 mb-2">
                           {visa.name}
                         </CardTitle>
-                        <Badge variant="secondary" className="bg-emerald-100 text-emerald-700">
+                        <Badge variant="secondary" className="bg-blue-100 text-blue-700">
                           {visa.type}
                         </Badge>
                       </div>
@@ -324,7 +324,7 @@ export default function BeninRequirementsPage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-600">Government Fee:</span>
-                        <span className="text-sm font-bold text-emerald-600">${visa.govFee}</span>
+                        <span className="text-sm font-bold text-blue-600">${visa.govFee}</span>
                       </div>
                     </div>
 
@@ -342,7 +342,7 @@ export default function BeninRequirementsPage() {
 
                   <CardFooter className="pt-4 pb-6">
                     <Link href={`/apply?country=benin&type=${encodeURIComponent(visa.id)}`} className="w-full">
-                      <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
+                      <Button className="w-full bg-gradient-to-r from-blue-600 to-amber-600 hover:from-blue-700 hover:to-amber-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                         Apply for Benin eVisa
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
@@ -358,7 +358,7 @@ export default function BeninRequirementsPage() {
         <section id="requirements" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <CheckCircle className="h-8 w-8 text-emerald-600" />
+              <CheckCircle className="h-8 w-8 text-blue-600" />
               Visa Requirements
             </h2>
             
@@ -375,7 +375,7 @@ export default function BeninRequirementsPage() {
                     'Yellow fever vaccination certificate (required for all travelers)'
                   ].map((requirement, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-700">{requirement}</span>
                     </div>
                   ))}
@@ -407,7 +407,7 @@ export default function BeninRequirementsPage() {
         <section id="application" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Calendar className="h-8 w-8 text-emerald-600" />
+              <Calendar className="h-8 w-8 text-blue-600" />
               Application Process
             </h2>
             
@@ -440,10 +440,10 @@ export default function BeninRequirementsPage() {
               ].map(({ step, title, description, icon: Icon }) => (
                 <div key={step} className="text-center">
                   <div className="relative mb-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-amber-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
                       <Icon className="h-8 w-8 text-white" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       {step}
                     </div>
                   </div>
@@ -459,7 +459,7 @@ export default function BeninRequirementsPage() {
         <section id="fees" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <CreditCard className="h-8 w-8 text-emerald-600" />
+              <CreditCard className="h-8 w-8 text-blue-600" />
               Fees & Processing Times
             </h2>
             
@@ -478,7 +478,7 @@ export default function BeninRequirementsPage() {
                         <p className="text-sm text-slate-600">Duration: {visa.duration}</p>
                       </div>
                       <div className="text-right">
-                        <span className="text-lg font-bold text-emerald-600">{visa.fee}</span>
+                        <span className="text-lg font-bold text-blue-600">{visa.fee}</span>
                       </div>
                     </div>
                   ))}
@@ -488,9 +488,9 @@ export default function BeninRequirementsPage() {
               <div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Times</h3>
                 <div className="space-y-4">
-                  <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <div className="flex items-center gap-3 mb-2">
-                      <Clock className="h-5 w-5 text-emerald-600" />
+                      <Clock className="h-5 w-5 text-blue-600" />
                       <h4 className="font-semibold text-slate-800">Processing Time</h4>
                     </div>
                     <p className="text-slate-600">3 working days</p>
@@ -513,7 +513,7 @@ export default function BeninRequirementsPage() {
         <section id="travel-info" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <MapPin className="h-8 w-8 text-emerald-600" />
+              <MapPin className="h-8 w-8 text-blue-600" />
               Travel Information
             </h2>
             
@@ -521,7 +521,7 @@ export default function BeninRequirementsPage() {
               <div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Best Time to Visit</h3>
                 <div className="space-y-4">
-                  <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
+                  <div className="p-4 bg-gradient-to-r from-blue-50 to-amber-50 rounded-lg border border-blue-100">
                     <h4 className="font-semibold text-slate-800 mb-2">Sightseeing (November-March)</h4>
                     <p className="text-sm text-slate-600">Dry season ideal for exploring cities and cultural sites</p>
                   </div>
@@ -546,7 +546,7 @@ export default function BeninRequirementsPage() {
                     'Land borders with Togo, Nigeria, Burkina Faso, and Niger'
                   ].map((entry, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
-                      <MapPin className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                      <MapPin className="h-4 w-4 text-blue-600 flex-shrink-0" />
                       <span className="text-slate-700">{entry}</span>
                     </div>
                   ))}
@@ -560,7 +560,7 @@ export default function BeninRequirementsPage() {
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Globe className="h-8 w-8 text-emerald-600" />
+              <Globe className="h-8 w-8 text-blue-600" />
               Complete Benin Travel Guide & Visa Information
             </h2>
             
@@ -580,8 +580,8 @@ export default function BeninRequirementsPage() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-emerald-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Benin eVisa?</h4>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Who Needs a Benin eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li> International tourists visiting Benin for leisure</li>
                     <li> Travelers exploring historical sites and monuments</li>
@@ -625,8 +625,8 @@ export default function BeninRequirementsPage() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Historical Sites</h4>
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Historical Sites</h4>
                   <p className="text-sm text-slate-600">
                     Ouidah's UNESCO-listed slave route, Abomey royal palaces, and Ganvié stilt village offer world-class 
                     historical experiences and cultural heritage.
@@ -656,9 +656,9 @@ export default function BeninRequirementsPage() {
                 when traveling. It's also recommended to have travel insurance and be aware of local customs and safety guidelines.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Benin Visa Applications</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose United eVisa Services for Benin Visa Applications</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Benin visas since the eVisa system was introduced. 
+                United eVisa Services has been helping travelers obtain their Benin visas since the eVisa system was introduced. 
                 Our expertise in the Beninese visa process, combined with our 98% approval rate and 24/7 customer support, 
                 makes us the preferred choice for thousands of travelers each year. We provide transparent pricing with no 
                 hidden fees, ensuring you get the best value for your visa application.
@@ -671,73 +671,73 @@ export default function BeninRequirementsPage() {
         <section id="analytics" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <BarChart3 className="h-8 w-8 text-emerald-600" />
+              <BarChart3 className="h-8 w-8 text-blue-600" />
               Benin Visa Processing Insights & Travel Analytics
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Processing Time Trends */}
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
+              <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-6">
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">January</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '88%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.9 days</span>
+                      <span className="text-sm font-semibold text-blue-600">2.9 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">February</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '92%'}}></div>
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '92%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.7 days</span>
+                      <span className="text-sm font-semibold text-blue-600">2.7 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">March</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '95%'}}></div>
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '95%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.5 days</span>
+                      <span className="text-sm font-semibold text-blue-600">2.5 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">April</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '85%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">3.1 days</span>
+                      <span className="text-sm font-semibold text-blue-600">3.1 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">May</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '90%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">2.8 days</span>
+                      <span className="text-sm font-semibold text-blue-600">2.8 days</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">June</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 rounded-full" style={{width: '87%'}}></div>
+                      <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{width: '87%'}}></div>
                       </div>
-                      <span className="text-sm font-semibold text-emerald-600">3.0 days</span>
+                      <span className="text-sm font-semibold text-blue-600">3.0 days</span>
                     </div>
                   </div>
                 </div>
-                <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
-                  <p className="text-xs text-emerald-800">
-                    <strong>Source:</strong> Benin Immigration Department & Worldmaxxing Global Services processing data
+                <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+                  <p className="text-xs text-blue-800">
+                    <strong>Source:</strong> Benin Immigration Department & United eVisa Services processing data
                   </p>
                 </div>
               </div>
@@ -846,15 +846,15 @@ export default function BeninRequirementsPage() {
 
         {/* Why Choose Us Section */}
         <section id="why-choose-us" className="mb-16">
-          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-8 shadow-lg">
+          <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-2xl border border-blue-200 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-              Why Choose Worldmaxxing Global Services for Your Benin Visa?
+              Why Choose United eVisa Services for Your Benin Visa?
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <div className="text-center p-6 bg-white rounded-xl shadow-md">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="h-6 w-6 text-emerald-600" />
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-6 w-6 text-blue-600" />
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">No Urgent Fees</h3>
                 <p className="text-sm text-slate-600">We believe in transparent pricing. No hidden costs or urgent processing fees.</p>
@@ -893,13 +893,13 @@ export default function BeninRequirementsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/apply?country=benin">
-                  <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                     Apply for Benin eVisa
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="/check-requirements">
-                  <Button variant="outline" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 font-semibold py-3 px-8 rounded-xl">
+                  <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-xl">
                     Browse Other Countries
                   </Button>
                 </Link>
@@ -912,18 +912,18 @@ export default function BeninRequirementsPage() {
         <section id="contact" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Phone className="h-8 w-8 text-emerald-600" />
+              <Phone className="h-8 w-8 text-blue-600" />
               Need Help? Contact Our Expert Team
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="text-center p-6 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Phone className="h-6 w-6 text-emerald-600" />
+              <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Phone className="h-6 w-6 text-blue-600" />
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">24/7 Phone Support</h3>
                 <p className="text-sm text-slate-600 mb-3">Call us anytime for immediate assistance</p>
-                <a href="tel:+13232864541" className="text-emerald-600 font-semibold hover:text-emerald-700">
+                <a href="tel:+13232864541" className="text-blue-600 font-semibold hover:text-blue-700">
                   +1 323 286 4541
                 </a>
               </div>
@@ -934,12 +934,12 @@ export default function BeninRequirementsPage() {
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">Email Support</h3>
                 <p className="text-sm text-slate-600 mb-3">Get detailed responses within hours</p>
-                <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 font-semibold hover:text-blue-700">
-                  visa@worldmaxxing.com
+                <a href="mailto:visa@unitedevisa.com" className="text-blue-600 font-semibold hover:text-blue-700">
+                  visa@unitedevisa.com
                 </a>
               </div>
               
-              <div className="text-center p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl">
+              <div className="text-center p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="h-6 w-6 text-green-600" />
                 </div>
@@ -950,33 +950,33 @@ export default function BeninRequirementsPage() {
             </div>
             
             <div className="mt-8 p-6 bg-slate-50 rounded-xl">
-              <h3 className="text-lg font-semibold text-slate-800 mb-3">Why Travelers Choose Worldmaxxing Global Services</h3>
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">Why Travelers Choose United eVisa Services</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
                     <span>No hidden fees or urgent processing charges</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
                     <span>Expert guidance throughout the entire process</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
                     <span>Secure document handling and processing</span>
                   </li>
                 </ul>
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
                     <span>98% approval rate with our expert review</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
                     <span>24/7 customer support in multiple languages</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-emerald-600" />
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
                     <span>Fast processing with 3-day turnaround</span>
                   </li>
                 </ul>
@@ -989,14 +989,14 @@ export default function BeninRequirementsPage() {
         <section id="faq" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Users className="h-8 w-8 text-emerald-600" />
+              <Users className="h-8 w-8 text-blue-600" />
               Frequently Asked Questions
             </h2>
             
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left hover:text-emerald-600">
+                  <AccordionTrigger className="text-left hover:text-blue-600">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-slate-600 leading-relaxed">

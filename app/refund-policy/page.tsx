@@ -8,21 +8,21 @@ export const metadata: Metadata = {
   keywords:
     "eVisa refund policy, visa refund, money-back guarantee, immigration refund terms, United eVisa refunds",
   alternates: {
-    canonical: 'https://worldmaxxing.com/refund-policy',
+    canonical: 'https://unitedevisa.com/refund-policy',
   },
 };
 
 export default function RefundPolicyPage() {
   return (
     <>
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white flex flex-col">
         <main className="flex-1">
           {/* Hero Section */}
-          <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-green-900 text-white overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-emerald-900/90 to-green-900/90"></div>
+          <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-amber-700 text-white overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-900/90 via-blue-900/80 to-amber-700/90"></div>
             <div className="absolute inset-0">
               <div
-                className="absolute inset-0 bg-gradient-to-br from-slate-800/20 via-emerald-800/20 to-green-800/20"
+                className="absolute inset-0 bg-gradient-to-br from-slate-800/20 via-blue-800/20 to-green-800/20"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
                 }}
@@ -33,7 +33,7 @@ export default function RefundPolicyPage() {
                 <div className="flex justify-center mb-6">
                   <div className="p-3 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
                     <svg
-                      className="w-12 h-12 text-emerald-200"
+                      className="w-12 h-12 text-blue-200"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -47,14 +47,14 @@ export default function RefundPolicyPage() {
                     </svg>
                   </div>
                 </div>
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-emerald-100 to-green-200 bg-clip-text text-transparent font-manrope">
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-amber-200 bg-clip-text text-transparent font-manrope">
                   Refund Policy
                 </h1>
-                <p className="text-xl md:text-2xl text-emerald-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
                   Transparent and fair refund terms with our money-back
                   guarantee for visa rejections
                 </p>
-                <div className="flex flex-wrap justify-center gap-4 text-sm text-emerald-200 mb-8">
+                <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-200 mb-8">
                   <span>Last Updated: {new Date().toLocaleDateString()}</span>
                   <span>•</span>
                   <span>Version 2.0</span>
@@ -64,12 +64,12 @@ export default function RefundPolicyPage() {
 
                 {/* Money-Back Guarantee Banner */}
                 <div className="max-w-4xl mx-auto">
-                  <div className="bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-2xl p-8 text-left">
+                  <div className="bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-2xl p-8 text-left">
                     <div className="flex items-start space-x-4">
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-emerald-500/30 rounded-full flex items-center justify-center">
+                        <div className="w-12 h-12 bg-blue-500/30 rounded-full flex items-center justify-center">
                           <svg
-                            className="w-6 h-6 text-emerald-200"
+                            className="w-6 h-6 text-blue-200"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -84,10 +84,10 @@ export default function RefundPolicyPage() {
                         </div>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-emerald-100 mb-3">
+                        <h3 className="text-xl font-bold text-blue-100 mb-3">
                           OUR MONEY-BACK GUARANTEE
                         </h3>
-                        <p className="text-emerald-100 leading-relaxed">
+                        <p className="text-blue-100 leading-relaxed">
                           VISA REJECTED? GET A FULL REFUND OF YOUR SERVICE
                           FEES—GUARANTEED. We stand behind our services with a
                           comprehensive refund policy designed to protect your
@@ -107,9 +107,9 @@ export default function RefundPolicyPage() {
               <div className="max-w-4xl mx-auto space-y-8">
                 {/* Table of Contents */}
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gradient-to-r from-emerald-50 to-green-50 px-8 py-6 border-b border-gray-100">
+                  <div className="bg-gradient-to-r from-blue-50 to-green-50 px-8 py-6 border-b border-gray-100">
                     <h2 className="text-2xl font-bold text-gray-900 flex items-center font-manrope">
-                      <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center mr-3">
+                      <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
                         <svg
                           className="w-4 h-4 text-white"
                           fill="none"
@@ -132,11 +132,11 @@ export default function RefundPolicyPage() {
                       <div className="space-y-3">
                         <a
                           href="#guarantee"
-                          className="flex items-center p-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-300 group"
+                          className="flex items-center p-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 group"
                         >
-                          <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-emerald-200 transition-colors">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
                             <svg
-                              className="w-3 h-3 text-emerald-600"
+                              className="w-3 h-3 text-blue-600"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -153,7 +153,7 @@ export default function RefundPolicyPage() {
                         </a>
                         <a
                           href="#refundable"
-                          className="flex items-center p-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-300 group"
+                          className="flex items-center p-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 group"
                         >
                           <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors">
                             <svg
@@ -174,7 +174,7 @@ export default function RefundPolicyPage() {
                         </a>
                         <a
                           href="#non-refundable"
-                          className="flex items-center p-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-300 group"
+                          className="flex items-center p-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 group"
                         >
                           <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-red-200 transition-colors">
                             <svg
@@ -195,7 +195,7 @@ export default function RefundPolicyPage() {
                         </a>
                         <a
                           href="#process"
-                          className="flex items-center p-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-300 group"
+                          className="flex items-center p-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 group"
                         >
                           <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
                             <svg
@@ -218,7 +218,7 @@ export default function RefundPolicyPage() {
                       <div className="space-y-3">
                         <a
                           href="#conditions"
-                          className="flex items-center p-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-300 group"
+                          className="flex items-center p-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 group"
                         >
                           <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-orange-200 transition-colors">
                             <svg
@@ -239,7 +239,7 @@ export default function RefundPolicyPage() {
                         </a>
                         <a
                           href="#timeline"
-                          className="flex items-center p-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-300 group"
+                          className="flex items-center p-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 group"
                         >
                           <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-purple-200 transition-colors">
                             <svg
@@ -260,7 +260,7 @@ export default function RefundPolicyPage() {
                         </a>
                         <a
                           href="#contact"
-                          className="flex items-center p-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-300 group"
+                          className="flex items-center p-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 group"
                         >
                           <div className="w-6 h-6 bg-cyan-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-cyan-200 transition-colors">
                             <svg
@@ -281,7 +281,7 @@ export default function RefundPolicyPage() {
                         </a>
                         <a
                           href="#summary"
-                          className="flex items-center p-3 text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all duration-300 group"
+                          className="flex items-center p-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 group"
                         >
                           <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-indigo-200 transition-colors">
                             <svg
@@ -312,9 +312,9 @@ export default function RefundPolicyPage() {
                     id="guarantee"
                     className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
                   >
-                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 px-8 py-6 border-b border-gray-100">
+                    <div className="bg-gradient-to-r from-blue-50 to-green-50 px-8 py-6 border-b border-gray-100">
                       <div className="flex items-center space-x-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center">
+                        <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                           <svg
                             className="w-4 h-4 text-white"
                             fill="none"
@@ -347,10 +347,10 @@ export default function RefundPolicyPage() {
                         </p>
 
                         <div className="grid lg:grid-cols-2 gap-8 mb-8">
-                          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6">
-                            <h3 className="text-xl font-semibold text-emerald-700 mb-4 flex items-center">
+                          <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                            <h3 className="text-xl font-semibold text-blue-700 mb-4 flex items-center">
                               <svg
-                                className="w-6 h-6 mr-2 text-emerald-600"
+                                className="w-6 h-6 mr-2 text-blue-600"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -364,7 +364,7 @@ export default function RefundPolicyPage() {
                               </svg>
                               Refundable Scenarios
                             </h3>
-                            <ul className="space-y-2 text-emerald-800">
+                            <ul className="space-y-2 text-blue-800">
                               <li>✓ Service fees if visa is rejected</li>
                               <li>✓ Processing errors on our part</li>
                               <li>✓ Technical issues preventing processing</li>
@@ -400,8 +400,8 @@ export default function RefundPolicyPage() {
                           </div>
                         </div>
 
-                        <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 border border-emerald-200 rounded-xl p-6">
-                          <h4 className="font-semibold text-emerald-900 mb-3 flex items-center">
+                        <div className="bg-gradient-to-r from-blue-500/10 to-green-500/10 border border-blue-200 rounded-xl p-6">
+                          <h4 className="font-semibold text-blue-900 mb-3 flex items-center">
                             <svg
                               className="w-5 h-5 mr-2"
                               fill="none"
@@ -417,7 +417,7 @@ export default function RefundPolicyPage() {
                             </svg>
                             Our Promise to You
                           </h4>
-                          <p className="text-emerald-800 text-sm">
+                          <p className="text-blue-800 text-sm">
                             If your visa is rejected by immigration authorities,
                             we will refund 100% of our service fees—guaranteed.
                             This is our commitment to your success and
@@ -433,7 +433,7 @@ export default function RefundPolicyPage() {
                     id="refundable"
                     className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
                   >
-                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-8 py-6 border-b border-gray-100">
+                    <div className="bg-gradient-to-r from-green-50 to-blue-50 px-8 py-6 border-b border-gray-100">
                       <div className="flex items-center space-x-3">
                         <div className="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
                           <svg
@@ -783,10 +783,10 @@ export default function RefundPolicyPage() {
                             </div>
                             Processing Timeline
                           </h3>
-                          <div className="bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-xl p-6">
+                          <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-xl p-6">
                             <div className="flex items-center mb-4">
                               <svg
-                                className="w-8 h-8 text-emerald-600 mr-3"
+                                className="w-8 h-8 text-blue-600 mr-3"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -799,25 +799,25 @@ export default function RefundPolicyPage() {
                                 />
                               </svg>
                               <div>
-                                <h4 className="font-bold text-emerald-900">
+                                <h4 className="font-bold text-blue-900">
                                   Refund Processing Time
                                 </h4>
-                                <p className="text-emerald-800 text-sm">
+                                <p className="text-blue-800 text-sm">
                                   5-10 business days from approval
                                 </p>
                               </div>
                             </div>
-                            <ul className="space-y-2 text-emerald-700 text-sm">
+                            <ul className="space-y-2 text-blue-700 text-sm">
                               <li className="flex items-center">
-                                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>
+                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
                                 Original payment method
                               </li>
                               <li className="flex items-center">
-                                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>
+                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
                                 Bank processing may add extra time
                               </li>
                               <li className="flex items-center">
-                                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>
+                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
                                 Currency conversion fees may apply
                               </li>
                             </ul>
@@ -975,8 +975,8 @@ export default function RefundPolicyPage() {
                     </div>
                     <div className="p-8">
                       <div className="grid md:grid-cols-2 gap-8 mb-8">
-                        <div className="bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200 rounded-xl p-6">
-                          <h3 className="text-lg font-semibold text-emerald-900 mb-3 flex items-center">
+                        <div className="bg-gradient-to-br from-blue-50 to-green-50 border border-blue-200 rounded-xl p-6">
+                          <h3 className="text-lg font-semibold text-blue-900 mb-3 flex items-center">
                             <svg
                               className="w-5 h-5 mr-2"
                               fill="none"
@@ -992,10 +992,10 @@ export default function RefundPolicyPage() {
                             </svg>
                             Refund Requests
                           </h3>
-                          <p className="text-emerald-700 font-medium mb-2">
+                          <p className="text-blue-700 font-medium mb-2">
                             visa@unitedevisa.com
                           </p>
-                          <p className="text-sm text-emerald-600">
+                          <p className="text-sm text-blue-600">
                             For all refund inquiries and requests
                           </p>
                         </div>
@@ -1054,13 +1054,13 @@ export default function RefundPolicyPage() {
                   {/* Section 7: Policy Summary */}
                   <section
                     id="summary"
-                    className="bg-gradient-to-br from-emerald-50 via-green-50 to-blue-50 border border-emerald-200 rounded-2xl p-8"
+                    className="bg-gradient-to-br from-blue-50 via-green-50 to-blue-50 border border-blue-200 rounded-2xl p-8"
                   >
                     <div className="text-center">
                       <div className="flex justify-center mb-6">
-                        <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                           <svg
-                            className="w-6 h-6 text-emerald-600"
+                            className="w-6 h-6 text-blue-600"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -1078,8 +1078,8 @@ export default function RefundPolicyPage() {
                         Summary of Our Refund Policy
                       </h3>
                       <div className="grid lg:grid-cols-2 gap-8 text-left mb-8">
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-emerald-100">
-                          <h4 className="font-bold text-emerald-700 mb-4 flex items-center text-lg">
+                        <div className="bg-white rounded-xl p-6 shadow-sm border border-blue-100">
+                          <h4 className="font-bold text-blue-700 mb-4 flex items-center text-lg">
                             <svg
                               className="w-6 h-6 mr-2"
                               fill="none"
@@ -1097,19 +1097,19 @@ export default function RefundPolicyPage() {
                           </h4>
                           <ul className="space-y-2 text-gray-700">
                             <li className="flex items-center">
-                              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3"></span>
+                              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span>
                               Immigration authorities reject your visa
                             </li>
                             <li className="flex items-center">
-                              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3"></span>
+                              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span>
                               We make a processing error
                             </li>
                             <li className="flex items-center">
-                              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3"></span>
+                              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span>
                               Technical issues prevent processing
                             </li>
                             <li className="flex items-center">
-                              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3"></span>
+                              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span>
                               You change your mind (before processing begins)
                             </li>
                           </ul>
@@ -1151,14 +1151,14 @@ export default function RefundPolicyPage() {
                           </ul>
                         </div>
                       </div>
-                      <div className="bg-white rounded-xl p-6 shadow-lg border border-emerald-200">
+                      <div className="bg-white rounded-xl p-6 shadow-lg border border-blue-200">
                         <p className="text-gray-800 font-bold text-lg">
                           Our Promise: If your visa is rejected by immigration
                           authorities, we will refund 100% of our service
                           fees—guaranteed.
                         </p>
                       </div>
-                      <div className="flex items-center justify-center space-x-4 text-emerald-700 text-sm mt-6">
+                      <div className="flex items-center justify-center space-x-4 text-blue-700 text-sm mt-6">
                         <a
                           href="/legal"
                           className="hover:underline font-medium"
@@ -1180,7 +1180,7 @@ export default function RefundPolicyPage() {
                           Cookie Policy
                         </a>
                       </div>
-                      <p className="text-emerald-600 text-sm mt-4 font-medium">
+                      <p className="text-blue-600 text-sm mt-4 font-medium">
                         Last updated: {new Date().toLocaleDateString()} |
                         Version 2.0 | Money-Back Guarantee Policy
                       </p>

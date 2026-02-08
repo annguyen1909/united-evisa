@@ -10,7 +10,7 @@ const armenia: Country = {
   flagUrl: '/images/country/armenia/armenia-square.png',
   imageUrl: '/images/country/armenia/armenia-bg.jpg',
   roundedFlagUrl: '/images/country/armenia/armenia-rounded.png',
-  description: `Apply for your Armenia eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Armenia travel. Get your Armenia visa quickly with our expert assistance.`,
+  description: `Apply for your Armenia eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Armenia travel. Get your Armenia visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Armenia's rich history, breathtaking landscapes, and vibrant culture. From ancient monasteries to the lively capital Yerevan, Armenia is a must-visit destination for every traveler.`,
   welcomeImgUrl: '/images/country/armenia/armenia-welcome.jpg',
   processingTime: {

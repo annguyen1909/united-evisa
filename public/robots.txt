@@ -50,7 +50,7 @@ Allow: /favicon.ico
 Allow: /site.webmanifest
 
 # Sitemaps (Absolute host URLs)
-Sitemap: https://worldmaxxing.com/sitemap.xml
+Sitemap: https://unitedevisa.com/sitemap.xml
 
 # Notes:
 # - Avoid disallowing general site sections (e.g. /about, /list) unless they

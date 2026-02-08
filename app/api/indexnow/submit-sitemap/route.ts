@@ -1,6 +1,6 @@
-const INDEXNOW_KEY = "057a73c889124177874c242f864bff9c";
-const HOST = "worldmaxxing.com";
-const KEY_LOCATION = `https://${HOST}/${INDEXNOW_KEY}.txt`;
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY || "";
+const HOST = "unitedevisa.com";
+const KEY_LOCATION = INDEXNOW_KEY ? `https://${HOST}/${INDEXNOW_KEY}.txt` : "";
 const SITEMAP_URL = `https://${HOST}/sitemap.xml`;
 const MAX_URLS_PER_BATCH = 10000;
 
@@ -34,6 +34,12 @@ const submitBatch = async (urlList: string[]) => {
 
 export async function GET() {
   try {
+    if (!INDEXNOW_KEY || !KEY_LOCATION) {
+      return new Response(
+        JSON.stringify({ ok: false, error: "IndexNow key is not configured" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
     const sitemapRes = await fetch(SITEMAP_URL, { cache: "no-store" });
     if (!sitemapRes.ok) {
       return new Response(

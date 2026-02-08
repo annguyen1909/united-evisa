@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
       where: {
         email_websiteCreatedAt: {
           email: session.user.email,
-          websiteCreatedAt: "Worldmaxxing Site"
+          websiteCreatedAt: "United eVisa Site"
         }
       },
       select: { id: true },
@@ -108,7 +108,7 @@ export async function POST(
       where: {
         email_websiteCreatedAt: {
           email: session.user.email,
-          websiteCreatedAt: "Worldmaxxing Site"
+          websiteCreatedAt: "United eVisa Site"
         }
       },
       select: { id: true },

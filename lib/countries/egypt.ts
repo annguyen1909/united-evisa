@@ -10,7 +10,7 @@ const egypt: Country = {
   flagUrl: '/images/country/egypt/egypt-square.png',
   imageUrl: '/images/country/egypt/egypt-bg.jpg',
   roundedFlagUrl: '/images/country/egypt/egypt-rounded.png',
-  description: `Apply for your Egypt eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Egypt travel. Get your Egypt visa quickly with our expert assistance.`,
+  description: `Apply for your Egypt eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Egypt travel. Get your Egypt visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Egypt's ancient wonders, from the Pyramids of Giza to the Nile River. Discover vibrant cities, rich history, and unforgettable adventures in Egypt.`,
   welcomeImgUrl: '/images/country/egypt/egypt-welcome.jpg',
   processingTime: {

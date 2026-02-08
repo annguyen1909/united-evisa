@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `${country.name} Visa Rejection Risk: Common Denial Causes & Prevention`,
         description: `Expert analysis of ${country.name} visa rejection rates. Learn the top failure modes like MRZ mismatches and photo errors to secure your travel approval.`,
         alternates: {
-            canonical: `https://worldmaxxing.com/destinations/${country.slug}/rejection-risk`,
+            canonical: `https://unitedevisa.com/destinations/${country.slug}/rejection-risk`,
         },
         openGraph: {
-            title: `${country.name} Visa Risk Analysis | Worldmaxxing`,
+            title: `${country.name} Visa Risk Analysis | United eVisa`,
             description: `Statistical breakdown of ${country.name} visa denials.`,
         }
     }
@@ -46,7 +46,7 @@ export default async function RejectionRiskPage({ params }: PageProps) {
                     <div className="mb-12">
                         <Link
                             href={`/destinations/${country.slug}`}
-                            className="inline-flex items-center space-x-2 text-emerald-400 font-black text-xs uppercase tracking-[0.2em] group"
+                            className="inline-flex items-center space-x-2 text-blue-400 font-black text-xs uppercase tracking-[0.2em] group"
                         >
                             <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                             <span>Back to {country.name} Hub</span>
@@ -128,20 +128,20 @@ export default async function RejectionRiskPage({ params }: PageProps) {
 
                     {/* Solutions Sidebar */}
                     <div className="space-y-8">
-                        <div className="bg-emerald-600 text-white p-10 rounded-[40px] shadow-3xl shadow-emerald-600/20 space-y-8">
+                        <div className="bg-blue-600 text-white p-10 rounded-[40px] shadow-3xl shadow-blue-600/20 space-y-8">
                             <h3 className="text-2xl font-black tracking-tight leading-tight">Zero-Error Protection.</h3>
                             <ul className="space-y-6">
                                 <li className="flex items-start">
                                     <div className="bg-white/20 p-1.5 rounded-lg mr-4"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg></div>
-                                    <span className="text-sm font-bold text-emerald-50 leading-relaxed">Manual double-verification of all MRZ strings by consular experts.</span>
+                                    <span className="text-sm font-bold text-blue-50 leading-relaxed">Manual double-verification of all MRZ strings by consular experts.</span>
                                 </li>
                                 <li className="flex items-start">
                                     <div className="bg-white/20 p-1.5 rounded-lg mr-4"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg></div>
-                                    <span className="text-sm font-bold text-emerald-50 leading-relaxed">AI Photo Correction tool to meet exact {country.code.toUpperCase()} specs.</span>
+                                    <span className="text-sm font-bold text-blue-50 leading-relaxed">AI Photo Correction tool to meet exact {country.code.toUpperCase()} specs.</span>
                                 </li>
                             </ul>
                             <Link href={`/apply?country=${country.slug}`} className="block">
-                                <Button className="w-full bg-white text-emerald-600 hover:bg-emerald-50 font-black py-6 h-auto rounded-2xl shadow-xl border-none">
+                                <Button className="w-full bg-white text-blue-600 hover:bg-blue-50 font-black py-6 h-auto rounded-2xl shadow-xl border-none">
                                     Start Secure App
                                 </Button>
                             </Link>

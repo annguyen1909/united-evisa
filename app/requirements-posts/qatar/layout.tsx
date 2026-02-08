@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Qatar Visa Requirements & eVisa Application",
     description: "Complete Qatar visa requirements guide. Apply for Qatar eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/qatar",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/qatar",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/qatar/qatar-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/qatar/qatar-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/qatar",
+    canonical: "https://unitedevisa.com/requirements-posts/qatar",
   },
   robots: {
     index: true,

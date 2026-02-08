@@ -8,7 +8,7 @@ const sriLanka: Country = {
   flagUrl: '/images/country/sri-lanka/sri-lanka-square.png',
   imageUrl: '/images/country/sri-lanka/sri-lanka-bg.jpg',
   roundedFlagUrl: '/images/country/sri-lanka/sri-lanka-rounded.png',
-  description: `Apply for your Sri Lanka eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Sri Lanka travel. Get your Sri Lanka visa quickly with our expert assistance.`,
+  description: `Apply for your Sri Lanka eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Sri Lanka travel. Get your Sri Lanka visa quickly with our expert assistance.`,
   welcomeMessage: `Discover Sri Lanka's ancient temples, tea plantations, and beautiful beaches. From Sigiriya to the beaches of Galle, Sri Lanka is a paradise for travelers.`,
   welcomeImgUrl: '/images/country/sri-lanka/sri-lanka-welcome.jpg',
   processingTime: {

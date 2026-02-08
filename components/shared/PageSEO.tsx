@@ -24,18 +24,18 @@ export default function PageSEO({
       "@graph": [
         {
           "@type": "WebSite",
-          "@id": "https://worldmaxxing.com/#website",
-          "url": "https://worldmaxxing.com",
-          "name": "Worldmaxxing Global Services",
+          "@id": "https://unitedevisa.com/#website",
+          "url": "https://unitedevisa.com",
+          "name": "United eVisa Services",
           "description": "Fast and secure eVisa applications for travelers worldwide",
           "publisher": {
-            "@id": "https://worldmaxxing.com/#organization"
+            "@id": "https://unitedevisa.com/#organization"
           },
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://worldmaxxing.com/check-requirements?q={search_term_string}"
+              "urlTemplate": "https://unitedevisa.com/check-requirements?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
           }
@@ -54,18 +54,18 @@ export default function PageSEO({
 
       baseData["@graph"].push({
         "@type": "Service",
-        "@id": `https://worldmaxxing.com/destinations/${countrySlug}#service`,
+        "@id": `https://unitedevisa.com/destinations/${countrySlug}#service`,
         "name": `${countryName} eVisa Application Service`,
         "description": `Professional ${countryName} eVisa application assistance with fast processing and expert support`,
         "provider": {
-          "@id": "https://worldmaxxing.com/#organization"
+          "@id": "https://unitedevisa.com/#organization"
         },
         "areaServed": {
           "@type": "Country",
           "name": countryName
         },
         "serviceType": "Visa Application Service",
-        "url": `https://worldmaxxing.com/destinations/${countrySlug}`,
+        "url": `https://unitedevisa.com/destinations/${countrySlug}`,
         "offers": {
           "@type": "Offer",
           "priceCurrency": "USD",
@@ -73,7 +73,7 @@ export default function PageSEO({
           "priceValidUntil": "2025-12-31",
           "availability": "https://schema.org/InStock",
           "seller": {
-            "@id": "https://worldmaxxing.com/#organization"
+            "@id": "https://unitedevisa.com/#organization"
           }
         }
       });
@@ -85,19 +85,19 @@ export default function PageSEO({
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://worldmaxxing.com"
+            "item": "https://unitedevisa.com"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Destinations",
-            "item": "https://worldmaxxing.com/destinations"
+            "item": "https://unitedevisa.com/destinations"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": countryName,
-            "item": `https://worldmaxxing.com/destinations/${countrySlug}`
+            "item": `https://unitedevisa.com/destinations/${countrySlug}`
           }
         ]
       });
@@ -109,7 +109,7 @@ export default function PageSEO({
         "name": "eVisa Application Services",
         "description": "Fast, secure, and reliable eVisa application services for travelers worldwide",
         "provider": {
-          "@id": "https://worldmaxxing.com/#organization"
+          "@id": "https://unitedevisa.com/#organization"
         },
         "serviceType": "Travel Document Services",
         "hasOfferCatalog": {

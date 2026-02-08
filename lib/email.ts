@@ -18,7 +18,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
   }
 
   try {
-    const from = 'Worldmaxxing Global Services Support <visa@worldmaxxing.com>';
+    const from = 'United eVisa Services Support <visa@unitedevisa.com>';
     let subject = '';
     let html = '';
     let recipient = to;
@@ -57,7 +57,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
         const passengerCount = application.passengerCount || 1;
         const appUrl = process.env.NEXT_PUBLIC_API_URL || '';
 
-        subject = `Payment Confirmation for Your Worldmaxxing Global Services (ID: ${application.applicationId})`;
+        subject = `Payment Confirmation for Your United eVisa Services (ID: ${application.applicationId})`;
         html = `
           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
             <div style="background-color: #059669; color: white; padding: 20px; text-align: center;">
@@ -65,7 +65,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
             </div>
             <div style="padding: 20px;">
               <p>Dear ${contactName},</p>
-              <p>Thank you for your payment. Your application for the Worldmaxxing Global Services has been successfully submitted and is now being processed.</p>
+              <p>Thank you for your payment. Your application for the United eVisa Services has been successfully submitted and is now being processed.</p>
               
               <div style="background-color: #f9f9f9; border-radius: 8px; padding: 15px; margin: 20px 0;">
                 <h2 style="font-size: 18px; color: #059669; margin-top: 0;">Application Summary</h2>
@@ -102,7 +102,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
             </div>
             <div style="background-color: #f0f0f0; padding: 15px; font-size: 12px; text-align: center; color: #666;">
               <p>If you have any questions, please contact our 24/7 support.</p>
-              <p>&copy; ${new Date().getFullYear()} Worldmaxxing Global Services. All Rights Reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} United eVisa Services. All Rights Reserved.</p>
             </div>
           </div>
         `;
@@ -112,15 +112,15 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
       case 'welcome': {
         if (!recipient) throw new Error('Recipient is required for welcome email');
         const user = await prisma.account.findFirst({ where: { email: recipient } });
-        subject = 'Welcome to Worldmaxxing Global Services';
+        subject = 'Welcome to United eVisa Services';
         html = `
           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
             <div style="background-color: #059669; color: white; padding: 20px; text-align: center;">
-              <h1 style="margin: 0; font-size: 24px;">Welcome to Worldmaxxing Global Services!</h1>
+              <h1 style="margin: 0; font-size: 24px;">Welcome to United eVisa Services!</h1>
             </div>
             <div style="padding: 20px;">
               <p>Dear ${user?.fullName || 'Customer'},</p>
-              <p>Thank you for creating an account with Worldmaxxing Global Services. We're excited to help you with your visa application process.</p>
+              <p>Thank you for creating an account with United eVisa Services. We're excited to help you with your visa application process.</p>
               
               <div style="background-color: #f9f9f9; border-radius: 8px; padding: 15px; margin: 20px 0;">
                 <h2 style="font-size: 18px; color: #059669; margin-top: 0;">Get Started</h2>
@@ -132,10 +132,10 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
               </div>
               
               <p>If you need any assistance, please don't hesitate to contact our 24/7 support team.</p>
-              <p>Best regards,<br>Worldmaxxing Global Services Team</p>
+              <p>Best regards,<br>United eVisa Services Team</p>
             </div>
             <div style="background-color: #f0f0f0; padding: 15px; font-size: 12px; text-align: center; color: #666;">
-              <p>&copy; ${new Date().getFullYear()} Worldmaxxing Global Services. All Rights Reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} United eVisa Services. All Rights Reserved.</p>
             </div>
           </div>
         `;
@@ -145,7 +145,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
       case 'verify-email': {
         if (!recipient) throw new Error('Recipient is required for email verification');
         const user = await prisma.account.findFirst({ where: { email: recipient } });
-        subject = 'Verify Your Email - Worldmaxxing Global Services';
+        subject = 'Verify Your Email - United eVisa Services';
         html = `
           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
             <div style="background-color: #059669; color: white; padding: 20px; text-align: center;">
@@ -160,10 +160,10 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
                 </a>
               </div>
               <p>This link will expire in 24 hours.</p>
-              <p>Best regards,<br>Worldmaxxing Global Services Team</p>
+              <p>Best regards,<br>United eVisa Services Team</p>
             </div>
             <div style="background-color: #f0f0f0; padding: 15px; font-size: 12px; text-align: center; color: #666;">
-              <p>&copy; ${new Date().getFullYear()} Worldmaxxing Global Services. All Rights Reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} United eVisa Services. All Rights Reserved.</p>
             </div>
           </div>
         `;
@@ -173,7 +173,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
       case 'reset-password': {
         if (!recipient) throw new Error('Recipient is required for reset-password');
         const user = await prisma.account.findFirst({ where: { email: recipient } });
-        subject = 'Reset Your Password - Worldmaxxing Global Services';
+        subject = 'Reset Your Password - United eVisa Services';
         html = `
           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
             <div style="background-color: #059669; color: white; padding: 20px; text-align: center;">
@@ -193,10 +193,10 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
               </p>
               <p>This code will expire in 10 minutes.</p>
               <p>If you didn't request this, please ignore this email.</p>
-              <p>Best regards,<br>Worldmaxxing Global Services Team</p>
+              <p>Best regards,<br>United eVisa Services Team</p>
             </div>
             <div style="background-color: #f0f0f0; padding: 15px; font-size: 12px; text-align: center; color: #666;">
-              <p>&copy; ${new Date().getFullYear()} Worldmaxxing Global Services. All Rights Reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} United eVisa Services. All Rights Reserved.</p>
             </div>
           </div>
         `;
@@ -257,7 +257,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
               </div>
             </div>
             <div style="background-color: #f0f0f0; padding: 15px; font-size: 12px; text-align: center; color: #666;">
-              <p>&copy; ${new Date().getFullYear()} Worldmaxxing Global Services. All Rights Reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} United eVisa Services. All Rights Reserved.</p>
             </div>
           </div>
         `;
@@ -315,7 +315,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
               </div>
             </div>
             <div style="background-color: #f0f0f0; padding: 15px; font-size: 12px; text-align: center; color: #666;">
-              <p>&copy; ${new Date().getFullYear()} Worldmaxxing Global Services. All Rights Reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} United eVisa Services. All Rights Reserved.</p>
             </div>
           </div>
         `;
@@ -329,7 +329,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
           message: string;
         };
         
-        subject = 'Thank you for contacting Worldmaxxing Global Services';
+        subject = 'Thank you for contacting United eVisa Services';
         html = `
           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
             <div style="background-color: #059669; color: white; padding: 20px; text-align: center;">
@@ -337,7 +337,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
             </div>
             <div style="padding: 20px;">
               <p>Dear ${customerName},</p>
-              <p>Thank you for contacting Worldmaxxing Global Services. We have received your message and our support team will get back to you as soon as possible.</p>
+              <p>Thank you for contacting United eVisa Services. We have received your message and our support team will get back to you as soon as possible.</p>
               
               <div style="background-color: #f9f9f9; border-radius: 8px; padding: 15px; margin: 20px 0;">
                 <h2 style="font-size: 18px; color: #059669; margin-top: 0;">Your Message</h2>
@@ -356,10 +356,10 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
               </div>
               
               <p>If you have an urgent inquiry, please don't hesitate to call our 24/7 support team.</p>
-              <p>Best regards,<br>Worldmaxxing Global Services Support Team</p>
+              <p>Best regards,<br>United eVisa Services Support Team</p>
             </div>
             <div style="background-color: #f0f0f0; padding: 15px; font-size: 12px; text-align: center; color: #666;">
-              <p>&copy; ${new Date().getFullYear()} Worldmaxxing Global Services. All Rights Reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} United eVisa Services. All Rights Reserved.</p>
             </div>
           </div>
         `;
@@ -371,8 +371,8 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
         if (!recipient) {
           throw new Error(`No recipient email address provided for template: ${template}`);
         }
-        subject = 'Worldmaxxing Global Services Notification';
-        html = `<p>This is a default notification from Worldmaxxing Global Services.</p>`;
+        subject = 'United eVisa Services Notification';
+        html = `<p>This is a default notification from United eVisa Services.</p>`;
         break;
       }
     }

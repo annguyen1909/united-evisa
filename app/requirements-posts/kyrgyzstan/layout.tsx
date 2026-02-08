@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kyrgyzstan Visa Requirements & eVisa Application",
     description: "Complete Kyrgyzstan visa requirements guide. Apply for Kyrgyzstan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/kyrgyzstan",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/kyrgyzstan",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/kyrgyzstan/kyrgyzstan-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/kyrgyzstan/kyrgyzstan-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/kyrgyzstan",
+    canonical: "https://unitedevisa.com/requirements-posts/kyrgyzstan",
   },
   robots: {
     index: true,

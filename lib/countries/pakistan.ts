@@ -10,7 +10,7 @@ const pakistan: Country = {
   flagUrl: '/images/country/pakistan/pakistan-square.png',
   imageUrl: '/images/country/pakistan/pakistan-bg.jpg',
   roundedFlagUrl: '/images/country/pakistan/pakistan-rounded.png',
-  description: `Apply for your Pakistan eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Pakistan travel. Get your Pakistan visa quickly with our expert assistance.`,
+  description: `Apply for your Pakistan eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Pakistan travel. Get your Pakistan visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Pakistan's majestic mountains, ancient cities, and vibrant culture. From Lahore's heritage to the Karakoram Highway, Pakistan is an adventure traveler's dream.`,
   welcomeImgUrl: '/images/country/pakistan/pakistan-welcome.jpg',
   processingTime: {

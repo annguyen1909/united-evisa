@@ -20,10 +20,10 @@ export function generateSEOMeta({
   noindex = false,
   schema
 }: SEOMetaProps): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://worldmaxxing.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://unitedevisa.com'
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : undefined
 
-  const SITE_NAME = 'Worldmaxxing Global Services'
+  const SITE_NAME = 'United eVisa Services'
 
   function buildTitle(inputTitle: string) {
     if (!inputTitle) return SITE_NAME
@@ -88,7 +88,7 @@ export function generateSEOMeta({
       title: normalizedTitle,
       description,
       url: fullCanonical,
-      siteName: 'Worldmaxxing Global Services',
+      siteName: 'United eVisa Services',
       images: [
         {
           url: ogImage,
@@ -122,7 +122,7 @@ export function generateCountrySEO(country: any, pageType: 'destination' | 'requ
     '24/7 support',
     'guaranteed approval',
     'travel documents',
-    'Worldmaxxing'
+    'United eVisa'
   ]
 
   switch (pageType) {

@@ -14,6 +14,37 @@ import ResetPasswordForm from "./ResetPasswordForm"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 
+// Helper function to extract phone number without country code
+function extractPhoneNumber(fullPhoneNumber: string | null | undefined, countryCode: string | null | undefined): string {
+  if (!fullPhoneNumber) return "";
+  
+  // If country code is provided, try to remove it from the phone number
+  if (countryCode) {
+    // Remove the + sign and any spaces
+    const cleanCode = countryCode.replace(/\+/g, "").trim();
+    const cleanPhone = fullPhoneNumber.replace(/\s/g, "");
+    
+    // Check if phone number starts with the country code
+    if (cleanPhone.startsWith(cleanCode)) {
+      return cleanPhone.substring(cleanCode.length);
+    }
+    
+    // Check if phone number starts with + followed by country code
+    if (cleanPhone.startsWith(`+${cleanCode}`)) {
+      return cleanPhone.substring(cleanCode.length + 1);
+    }
+  }
+  
+  // If phone number starts with +, try to extract the number part
+  if (fullPhoneNumber.startsWith("+")) {
+    // Find the first digit after the + and country code
+    // This is a fallback if country code matching didn't work
+    return fullPhoneNumber.replace(/^\+?\d{1,4}/, "").trim();
+  }
+  
+  return fullPhoneNumber;
+}
+
 type Application = {
     id: string
     applicationId: string
@@ -38,6 +69,10 @@ interface ProfileClientProps {
 
 export default function ProfileClient({ user }: ProfileClientProps) {
     const [activeTab, setActiveTab] = useState("account")
+    
+    // Extract phone number without country code for display
+    const phoneNumber = extractPhoneNumber(user.phoneNumber, user.areaCode);
+    const countryCode = user.areaCode || "+1";
 
     const getStatusColor = (status: string) => {
         switch (status?.toLowerCase()) {
@@ -62,20 +97,20 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                     <div className="space-y-6">
                         {/* Profile Summary */}
                         <Card className="border-slate-200 overflow-hidden">
-                            <CardHeader className="bg-emerald-600 text-white p-6">
+                            <CardHeader className="bg-blue-600 text-white p-6">
                                 <div className="flex items-center justify-center mb-4">
                                     <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-white">
                                         <User size={40} />
                                     </div>
                                 </div>
                                 <CardTitle className="text-center">{user.fullName}</CardTitle>
-                                <CardDescription className="text-emerald-100 text-center">{user.email}</CardDescription>
+                                <CardDescription className="text-blue-100 text-center">{user.email}</CardDescription>
                             </CardHeader>
                             <CardContent className="p-4">
                                 <div className="text-sm space-y-3 text-slate-600">
                                     <div className="flex items-center gap-2">
                                         <Phone size={16} />
-                                        <span>{user.phoneNumber}</span>
+                                        <span>{countryCode} {phoneNumber}</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <Calendar size={16} />
@@ -91,21 +126,21 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                                 <nav>
                                     <button
                                         onClick={() => setActiveTab('account')}
-                                        className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'account' ? 'bg-emerald-50 text-emerald-700' : 'hover:bg-slate-50 text-slate-700'}`}
+                                        className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'account' ? 'bg-blue-50 text-blue-700' : 'hover:bg-slate-50 text-slate-700'}`}
                                     >
                                         <User size={18} />
                                         <span className="font-medium">Account Details</span>
                                     </button>
                                     <button
                                         onClick={() => setActiveTab('applications')}
-                                        className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'applications' ? 'bg-emerald-50 text-emerald-700' : 'hover:bg-slate-50 text-slate-700'}`}
+                                        className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'applications' ? 'bg-blue-50 text-blue-700' : 'hover:bg-slate-50 text-slate-700'}`}
                                     >
                                         <FileText size={18} />
                                         <span className="font-medium">My Applications</span>
                                     </button>
                                     <button
                                         onClick={() => setActiveTab('security')}
-                                        className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'security' ? 'bg-emerald-50 text-emerald-700' : 'hover:bg-slate-50 text-slate-700'}`}
+                                        className={`w-full flex items-center gap-3 p-4 text-left ${activeTab === 'security' ? 'bg-blue-50 text-blue-700' : 'hover:bg-slate-50 text-slate-700'}`}
                                     >
                                         <Key size={18} />
                                         <span className="font-medium">Security</span>
@@ -131,7 +166,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                             <Card className="border-slate-200">
                                 <CardHeader className="border-b border-slate-100 bg-slate-50/70 flex items-center justify-start p-4">
                                     <div className="flex items-center gap-2">
-                                        <User size={18} className="text-emerald-600" />
+                                        <User size={18} className="text-blue-600" />
                                         <CardTitle className="text-lg font-semibold text-slate-800">Account Information</CardTitle>
                                     </div>
                                 </CardHeader>
@@ -149,8 +184,12 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                                         </div>
                                         <div className="space-y-4">
                                             <div>
+                                                <h3 className="text-sm font-medium text-slate-500 mb-1">Country Code</h3>
+                                                <p className="text-slate-800 font-medium">{countryCode}</p>
+                                            </div>
+                                            <div>
                                                 <h3 className="text-sm font-medium text-slate-500 mb-1">Phone Number</h3>
-                                                <p className="text-slate-800 font-medium">{user.phoneNumber}</p>
+                                                <p className="text-slate-800 font-medium">{phoneNumber}</p>
                                             </div>
                                             <div>
                                                 <h3 className="text-sm font-medium text-slate-500 mb-1">Gender</h3>
@@ -175,7 +214,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                             <Card className="border-slate-200">
                                 <CardHeader className="border-b border-slate-100 bg-slate-50/70 flex items-center justify-start p-4">
                                     <div className="flex items-center gap-2">
-                                        <FileText size={18} className="text-emerald-600" />
+                                        <FileText size={18} className="text-blue-600" />
                                         <CardTitle className="text-lg font-semibold text-slate-800">Your Visa Applications</CardTitle>
                                     </div>
                                 </CardHeader>
@@ -187,7 +226,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                                             </div>
                                             <h3 className="text-lg font-medium text-slate-700">No applications yet</h3>
                                             <p className="text-slate-500 mt-1">You haven't submitted any visa applications</p>
-                                            <Button className="mt-4 bg-emerald-600 hover:bg-emerald-700" asChild>
+                                            <Button className="mt-4 bg-blue-600 hover:bg-blue-700" asChild>
                                                 <Link href="/apply">Apply for Visa</Link>
                                             </Button>
                                         </div>
@@ -220,7 +259,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                                                                     </Badge>
                                                                 </td>
                                                                 <td className="px-4 py-3 text-right">
-                                                                    <Button variant="ghost" size="sm" className="text-slate-500 hover:text-emerald-700">
+                                                                    <Button variant="ghost" size="sm" className="text-slate-500 hover:text-blue-700">
                                                                         <ChevronRight size={18} />
                                                                     </Button>
                                                                 </td>
@@ -232,7 +271,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
 
                                             {user.applications.length > 0 && (
                                                 <div className="flex justify-center">
-                                                    <Button variant="outline" className="text-emerald-600 border-emerald-200 hover:bg-emerald-50" asChild>
+                                                    <Button variant="outline" className="text-blue-600 border-blue-200 hover:bg-blue-50" asChild>
                                                         <Link href="/list">View All Applications</Link>
                                                     </Button>
                                                 </div>
@@ -247,7 +286,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                             <Card className="border-slate-200">
                                 <CardHeader className="border-b border-slate-100 bg-slate-50/70 flex items-center justify-start p-4">
                                     <div className="flex items-center gap-2">
-                                        <Key size={18} className="text-emerald-600" />
+                                        <Key size={18} className="text-blue-600" />
                                         <CardTitle className="text-lg font-semibold text-slate-800">
                                             Security Settings
                                         </CardTitle>
@@ -259,7 +298,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
 
                                     <div className="mt-8 pt-8 border-t border-slate-100">
                                         <h3 className="font-medium text-slate-800 mb-4 flex items-center gap-2">
-                                            <Shield size={18} className="text-emerald-600" />
+                                            <Shield size={18} className="text-blue-600" />
                                             Security Recommendations
                                         </h3>
                                         <div className="space-y-3">

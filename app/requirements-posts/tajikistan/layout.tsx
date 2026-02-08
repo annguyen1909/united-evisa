@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tajikistan Visa Requirements & eVisa Application",
     description: "Complete Tajikistan visa requirements guide. Apply for Tajikistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/tajikistan",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/tajikistan",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/tajikistan/tajikistan-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/tajikistan/tajikistan-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/tajikistan",
+    canonical: "https://unitedevisa.com/requirements-posts/tajikistan",
   },
   robots: {
     index: true,

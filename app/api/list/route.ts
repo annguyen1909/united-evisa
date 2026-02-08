@@ -9,10 +9,10 @@ export async function GET() {
   }
   
   console.log('List route - User email:', session.user.email);
-  console.log('List route - Looking for account with websiteCreatedAt:', "Worldmaxxing Site");
+  console.log('List route - Looking for account with websiteCreatedAt:', "United eVisa Site");
   
   const account = await prisma.account.findUnique({
-    where: { email_websiteCreatedAt: { email: session.user.email, websiteCreatedAt: "Worldmaxxing Site" } },
+    where: { email_websiteCreatedAt: { email: session.user.email, websiteCreatedAt: "United eVisa Site" } },
     select: { id: true },
   });
   

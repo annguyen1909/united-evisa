@@ -89,7 +89,7 @@ export default function PricingPage() {
         <div className="relative z-10 space-y-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-100 pb-4">
             <div>
-              <h3 className="font-semibold text-xl mb-2 text-emerald-700 flex items-center gap-2">
+              <h3 className="font-semibold text-xl mb-2 text-blue-700 flex items-center gap-2">
                 <Globe className="h-5 w-5" />
                 Government & Admin Fee to {country.name}
               </h3>
@@ -98,7 +98,7 @@ export default function PricingPage() {
               </p>
             </div>
             <Button
-              className="bg-emerald-600 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-emerald-700"
+              className="bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-700"
               onClick={() => alert(`Apply Now for ${country.name}`)}
             >
               Apply for {country.name}
@@ -146,11 +146,11 @@ export default function PricingPage() {
                   Service Overview
                 </h3>
                 <p className="text-slate-600">
-                  Our service fee is a fixed <span className="font-bold text-emerald-700">US$ 59.99</span> per customer, regardless of nationality or visa type.
+                  Our service fee is a fixed <span className="font-bold text-blue-700">US$ 59.99</span> per customer, regardless of nationality or visa type.
                 </p>
                 <p className="mt-1 text-slate-600">Processing time is 3 working days after receiving complete documents.</p>
               </div>
-              <div className="hidden md:block rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 font-semibold">
+              <div className="hidden md:block rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-700 font-semibold">
                 Fixed service fee
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function PricingPage() {
                   Tour & Group Support
                 </h3>
                 <p className="text-slate-600">
-                  You can apply for up to <span className="font-bold text-emerald-700">15 visas</span> in a single application.
+                  You can apply for up to <span className="font-bold text-blue-700">15 visas</span> in a single application.
                 </p>
                 <p className="text-slate-600 mt-1">
                   For groups larger than 15, contact support for dedicated assistance and pricing.
@@ -196,7 +196,7 @@ export default function PricingPage() {
           </div>
           <div className="flex justify-center pt-4">
             <Button
-              className="px-8 bg-emerald-600 text-white text-base font-semibold rounded-lg py-5 mt-4 hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-sm"
+              className="px-8 bg-blue-600 text-white text-base font-semibold rounded-lg py-5 mt-4 hover:bg-blue-700 transition-all flex items-center gap-2 shadow-sm"
               onClick={() => alert(`Apply Now for ${country.name}`)}
             >
               Apply for {country.name} eVisa <ArrowRight className="h-5 w-5" />
@@ -210,11 +210,13 @@ export default function PricingPage() {
   return (
     <main className="w-full mx-auto">
       {/* Hero Section */}
-      <section className="w-full bg-slate-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 py-16">
+      <section className="w-full bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900 text-white relative">
+        <div className="absolute -top-24 right-0 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-amber-500/20 blur-3xl" />
+        <div className="max-w-6xl mx-auto px-4 py-16 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-6">
-              <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Transparent pricing</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-amber-200">Transparent pricing</p>
               <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">
                 Visa fees, clearly explained
               </h1>
@@ -223,7 +225,7 @@ export default function PricingPage() {
                 and includes document review, updates, and secure delivery.
               </p>
               <p className="text-sm text-slate-300 max-w-2xl">
-                Worldmaxxing Global Services pricing covers official eVisa fees, processing timelines,
+                United eVisa Services pricing covers official eVisa fees, processing timelines,
                 and support so you can plan your total visa cost upfront.
               </p>
               <div className="flex flex-wrap gap-3 text-sm text-slate-200/90">
@@ -237,7 +239,7 @@ export default function PricingPage() {
                 ))}
               </div>
             </div>
-            <div className="bg-white text-slate-900 rounded-3xl p-8 shadow-lg">
+            <div className="bg-white text-slate-900 rounded-3xl p-8 shadow-lg border border-blue-100">
               <h2 className="text-xl font-semibold mb-4">Check your visa fees</h2>
               <p className="text-sm text-slate-600 mb-6">
                 Select a destination to see government fees and visa options.
@@ -250,7 +252,7 @@ export default function PricingPage() {
                 />
                 <button
                   onClick={handleCheckNow}
-                  className="bg-emerald-600 text-white px-6 py-2.5 rounded-lg hover:bg-emerald-700 transition shadow-sm flex items-center gap-2 whitespace-nowrap w-full sm:w-auto justify-center"
+                  className="bg-gradient-to-r from-blue-600 to-amber-500 text-white px-6 py-2.5 rounded-full hover:from-blue-700 hover:to-amber-600 transition shadow-sm flex items-center gap-2 whitespace-nowrap w-full sm:w-auto justify-center"
                 >
                   Check Fees <ArrowRight className="h-4 w-4" />
                 </button>
@@ -272,32 +274,41 @@ export default function PricingPage() {
 
       {/* How Pricing Works */}
       <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6">
-            <div className="h-10 w-10 rounded-full bg-emerald-50 flex items-center justify-center mb-4">
-              <Search className="h-5 w-5 text-emerald-600" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="rounded-3xl border border-blue-100 bg-white p-6">
+            <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+              <Search className="h-5 w-5 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold text-slate-900 mb-2">1. Choose destination</h3>
             <p className="text-sm text-slate-600">
               Pick a country to see the government fee and available visa types.
             </p>
           </div>
-          <div className="rounded-3xl border border-slate-200 bg-white p-6">
-            <div className="h-10 w-10 rounded-full bg-emerald-50 flex items-center justify-center mb-4">
-              <DollarSign className="h-5 w-5 text-emerald-600" />
+          <div className="rounded-3xl border border-blue-100 bg-white p-6">
+            <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+              <DollarSign className="h-5 w-5 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold text-slate-900 mb-2">2. Review fees</h3>
             <p className="text-sm text-slate-600">
               Government fees vary; our service fee is fixed for every applicant.
             </p>
           </div>
-          <div className="rounded-3xl border border-slate-200 bg-white p-6">
-            <div className="h-10 w-10 rounded-full bg-emerald-50 flex items-center justify-center mb-4">
-              <Clock className="h-5 w-5 text-emerald-600" />
+          <div className="rounded-3xl border border-blue-100 bg-white p-6">
+            <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+              <Clock className="h-5 w-5 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold text-slate-900 mb-2">3. Submit application</h3>
             <p className="text-sm text-slate-600">
               We review documents and keep you updated until your eVisa is issued.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-blue-100 bg-white p-6">
+            <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+              <CheckCircle className="h-5 w-5 text-blue-600" />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">4. Receive eVisa</h3>
+            <p className="text-sm text-slate-600">
+              Get your approved eVisa delivered securely via email within 3 working days.
             </p>
           </div>
         </div>
@@ -305,7 +316,7 @@ export default function PricingPage() {
 
       {/* Why Fees Differ */}
       <section className="max-w-6xl mx-auto px-4 pb-6">
-        <div className="rounded-3xl border border-slate-200 bg-white p-8">
+        <div className="rounded-3xl border border-blue-100 bg-white p-8">
           <h2 className="text-2xl font-semibold text-slate-900 mb-3">Why fees differ by country</h2>
           <p className="text-slate-600 text-sm mb-4">
             Government fees are set by each destination and can vary by visa type, entry length, and policy changes.
@@ -343,18 +354,18 @@ export default function PricingPage() {
             Select a destination below to view government fees and visa options.
           </p>
         </div>
-        <div className="rounded-3xl border border-slate-200 bg-white p-6">
+        <div className="rounded-3xl border border-blue-100 bg-white p-6">
           <CustomAccordion items={accordionItems} />
         </div>
       </section>
 
       {/* Pricing FAQ */}
       <section className="max-w-6xl mx-auto px-4 pb-12">
-        <div className="rounded-3xl border border-slate-200 bg-white p-8">
+        <div className="rounded-3xl border border-blue-100 bg-white p-8">
           <h2 className="text-2xl font-semibold text-slate-900 mb-6">Pricing FAQs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {pricingFaqs.map((faq) => (
-              <div key={faq.question} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <div key={faq.question} className="rounded-2xl border border-blue-100 bg-blue-50/40 p-5">
                 <h3 className="text-sm font-semibold text-slate-900 mb-2">{faq.question}</h3>
                 <p className="text-sm text-slate-600">{faq.answer}</p>
               </div>
@@ -365,18 +376,18 @@ export default function PricingPage() {
 
       {/* Trust badges */}
       <section className="max-w-6xl mx-auto px-4 pb-6">
-        <div className="rounded-3xl border border-slate-200 bg-white p-6">
+        <div className="rounded-3xl border border-blue-100 bg-white p-6">
           <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-600">
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-emerald-600" />
+              <CheckCircle className="h-4 w-4 text-blue-600" />
               Transparent fees, no hidden charges
             </div>
             <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              <ShieldCheck className="h-4 w-4 text-blue-600" />
               Secure payment and data protection
             </div>
             <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-emerald-600" />
+              <Clock className="h-4 w-4 text-blue-600" />
               Typical processing in 3 working days
             </div>
           </div>

@@ -27,7 +27,7 @@ export default function TopBanner() {
   if (status === "loading" || !isVisible) return null;
 
   return (
-    <div className="w-full bg-emerald-800 px-4 py-1.5 border-b border-emerald-700 max-md:hidden">
+    <div className="w-full bg-gradient-to-r from-blue-900 via-blue-800 to-amber-600 px-4 py-2 border-b border-blue-900/40 max-md:hidden">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="text-sm flex gap-8 text-white">
           <div className="flex items-center gap-1.5">
@@ -50,7 +50,7 @@ export default function TopBanner() {
 
         <div className="flex gap-3">
           <Link href="/list">
-            <Button variant="secondary" size="sm" className="bg-white text-emerald-800 hover:bg-amber-50 flex gap-1.5 h-8">
+            <Button variant="secondary" size="sm" className="bg-white text-blue-800 hover:bg-amber-50 flex gap-1.5 h-8 rounded-full">
               <ExternalLink className="h-3.5 w-3.5" />
               Check Visa Status
             </Button>
@@ -60,7 +60,7 @@ export default function TopBanner() {
             <Link href="/login">
               <Button 
                 size="sm"
-                className="bg-white/20 hover:bg-white/30 text-white h-8"
+                className="bg-white/20 hover:bg-white/30 text-white h-8 rounded-full"
               >
                 Log In
               </Button>

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "South Africa Visa Requirements & eVisa Application",
     description: "Complete South Africa visa requirements guide. Apply for South Africa eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/south-africa",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/south-africa",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/south-africa/south-africa-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/south-africa/south-africa-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/south-africa",
+    canonical: "https://unitedevisa.com/requirements-posts/south-africa",
   },
   robots: {
     index: true,

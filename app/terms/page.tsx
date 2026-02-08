@@ -4,19 +4,19 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
-    'Terms of Service Agreement for Worldmaxxing Global Services Immigration Assistance Service - Learn about eligibility, fees, responsibilities, and legal terms.',
+    'Terms of Service Agreement for United eVisa Services Immigration Assistance Service - Learn about eligibility, fees, responsibilities, and legal terms.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/terms',
+    canonical: 'https://unitedevisa.com/terms',
   },
 };
 
 export default function TermsPage() {
   return (
     <>
-      <div className="bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 min-h-screen">
+      <div className="bg-gradient-to-b from-blue-50/40 via-white to-white min-h-screen">
         <main className="flex-1">
           {/* Hero Header Section */}
-          <section className="relative w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-700 overflow-hidden">
+          <section className="relative w-full bg-gradient-to-b from-blue-900 via-blue-800 to-amber-600 overflow-hidden">
             <div className="absolute inset-0 bg-black opacity-10"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-indigo-500/20"></div>
             
@@ -44,7 +44,7 @@ export default function TermsPage() {
                   </div>
                 </div>
                 
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-white mb-6 leading-tight">
                   Terms of Service
                   <span className="block text-3xl md:text-4xl lg:text-5xl font-bold text-purple-100 mt-2">
                     Agreement
@@ -52,7 +52,7 @@ export default function TermsPage() {
                 </h1>
                 
                 <p className="text-xl md:text-2xl text-purple-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  Legal terms and conditions for using Worldmaxxing Global Services Immigration Assistance Services
+                  Legal terms and conditions for using United eVisa Services Immigration Assistance Services
                 </p>
                 
                 <div className="flex items-center justify-center space-x-4 text-purple-200">
@@ -99,10 +99,10 @@ export default function TermsPage() {
                 <div className="p-8">
                   <div className="prose prose-lg max-w-none">
                     <p className="text-gray-700 mb-6 leading-relaxed">
-                      This Worldmaxxing Global Services Immigration Assistance Service Agreement (this "Agreement") is entered into by and between 
-                      Worldmaxxing Global Services Immigration Assistance Service ("we," "us," or "our") and you, and is made effective as of 
+                      This United eVisa Services Immigration Assistance Service Agreement (this "Agreement") is entered into by and between 
+                      United eVisa Services Immigration Assistance Service ("we," "us," or "our") and you, and is made effective as of 
                       the date of your use of this website ("Site") or the date of electronic acceptance.
-                      This Agreement sets forth the general terms and conditions of your use of the Worldmaxxing Global Services Immigration Assistance Service (the "Services").
+                      This Agreement sets forth the general terms and conditions of your use of the United eVisa Services Immigration Assistance Service (the "Services").
                     </p>
                     <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-200">
                       <div className="flex items-start space-x-3">
@@ -280,7 +280,7 @@ export default function TermsPage() {
 
               {/* Fees and Payment Terms */}
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-green-50 to-blue-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">4</span>
@@ -397,9 +397,9 @@ export default function TermsPage() {
 
               {/* Our Responsibilities */}
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-teal-50 to-cyan-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-amber-50 to-cyan-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">5</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Our Responsibilities</h2>
@@ -593,8 +593,8 @@ export default function TermsPage() {
                           </svg>
                           <div>
                             <p className="font-medium text-gray-900">Email</p>
-                            <a href="mailto:visa@worldmaxxing.com" className="text-blue-600 hover:underline">
-                              visa@worldmaxxing.com
+                            <a href="mailto:visa@unitedevisa.com" className="text-blue-600 hover:underline">
+                              visa@unitedevisa.com
                             </a>
                           </div>
                         </div>
@@ -611,7 +611,7 @@ export default function TermsPage() {
                       </div>
                     </div>
                     
-                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
+                    <div className="bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 rounded-xl p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Customer Support</h3>
                       <div className="space-y-3">
                         <div className="flex items-center">
@@ -620,8 +620,8 @@ export default function TermsPage() {
                           </svg>
                           <div>
                             <p className="font-medium text-gray-900">24/7 Support</p>
-                            <a href="mailto:visa@worldmaxxing.com" className="text-green-600 hover:underline">
-                              visa@worldmaxxing.com
+                            <a href="mailto:visa@unitedevisa.com" className="text-green-600 hover:underline">
+                              visa@unitedevisa.com
                             </a>
                           </div>
                         </div>
@@ -633,7 +633,7 @@ export default function TermsPage() {
                           </svg>
                           <div>
                             <p className="font-medium text-gray-900">Address</p>
-                            <p className="text-gray-700 text-sm">Worldmaxxing Global Services Immigration Assistance Service</p>
+                            <p className="text-gray-700 text-sm">United eVisa Services Immigration Assistance Service</p>
                           </div>
                         </div>
                       </div>

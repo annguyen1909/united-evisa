@@ -6,9 +6,9 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Sign Up',
-  description: 'Create your Worldmaxxing Global Services account to start your visa application process.',
+  description: 'Create your United eVisa Services account to start your visa application process.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/signup',
+    canonical: 'https://unitedevisa.com/signup',
   },
   robots: {
     index: false,
@@ -30,12 +30,12 @@ export default async function SignupPage() {
     redirect("/profile") // or "/" or whatever page you want
   }
   return (
-    <div
-      className="bg-cover bg-center bg-no-repeat flex items-center justify-center p-6 md:p-10"
-      style={{ backgroundImage: "url('/images/auth/bigbackground.jpg')" }}
-    >
-      <div className="w-full max-w-sm md:max-w-4xl">
-        <SignupForm />
+    <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white flex items-center justify-center p-6 md:p-10">
+      <div className="relative w-full max-w-sm md:max-w-4xl">
+        <div className="absolute -inset-6 rounded-3xl bg-gradient-to-r from-blue-200/40 via-white to-amber-100/40 blur-2xl" />
+        <div className="relative">
+          <SignupForm />
+        </div>
       </div>
     </div>
   );

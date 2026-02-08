@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mongolia Visa Requirements & eVisa Application",
     description: "Complete Mongolia visa requirements guide. Apply for Mongolia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/mongolia",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/mongolia",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/mongolia/mongolia-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/mongolia/mongolia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/mongolia",
+    canonical: "https://unitedevisa.com/requirements-posts/mongolia",
   },
   robots: {
     index: true,

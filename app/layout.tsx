@@ -31,13 +31,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://worldmaxxing.com'),
+  metadataBase: new URL('https://unitedevisa.com'),
   title: {
     // Keep the canonical site name as the default title. Do not automatically append
     // the site name to page titles here — pages and generated layouts should supply
     // their own concise titles to avoid duplication (some pages already include
     // the site name). Template left as identity so page titles are used verbatim.
-    default: "Worldmaxxing Global Services",
+    default: "United eVisa Services",
     template: "%s"
   },
   description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, and more. Fast processing, 24/7 support, and guaranteed approval. Start your visa application today!",
@@ -45,12 +45,12 @@ export const metadata: Metadata = {
     "eVisa", "visa application", "online visa", "travel visa", "immigration services",
     "Kenya visa", "Canada visa", "Vietnam visa", "Australia visa", "UK visa",
     "Saudi Arabia visa", "fast visa processing", "24/7 visa support",
-    "Worldmaxxing Global Services", "visa requirements", "visa fees",
+    "United eVisa Services", "visa requirements", "visa fees",
     "tourist visa", "business visa", "visa on arrival", "electronic visa"
   ].join(", "),
-  authors: [{ name: "Worldmaxxing Global Services" }],
-  creator: "Worldmaxxing Global Services",
-  publisher: "Worldmaxxing Global Services",
+  authors: [{ name: "United eVisa Services" }],
+  creator: "United eVisa Services",
+  publisher: "United eVisa Services",
   formatDetection: {
     email: false,
     address: false,
@@ -59,30 +59,30 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://worldmaxxing.com",
-    title: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com",
+    title: "United eVisa Services",
     description: "Apply for eVisas to 50+ countries including Kenya, Canada, Vietnam, Australia, and more. Fast processing, 24/7 support, and guaranteed approval.",
-    siteName: "Worldmaxxing Global Services",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Worldmaxxing Global Services - Fast & Secure eVisa Applications to 50+ Countries",
+        alt: "United eVisa Services - Fast & Secure eVisa Applications to 50+ Countries",
         type: "image/png",
       },
       {
         url: "/images/hero/hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Worldmaxxing Global Services - eVisa Processing Center",
+        alt: "United eVisa Services - eVisa Processing Center",
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Worldmaxxing Global Services",
+    title: "United eVisa Services",
     description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval.",
     images: ["/images/og-image.png"],
     creator: "@worldmaxxing",
@@ -100,21 +100,21 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    "application-name": "Worldmaxxing Global Services",
+    "application-name": "United eVisa Services",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
-    "apple-mobile-web-app-title": "Worldmaxxing",
+    "apple-mobile-web-app-title": "United eVisa",
     "format-detection": "telephone=no",
     "mobile-web-app-capable": "yes",
     'og:image:width': '1200',
     'og:image:height': '630',
     'og:image:type': 'image/png',
-    'og:image:secure_url': 'https://worldmaxxing.com/images/og-image.png',
-    'twitter:image:alt': 'Worldmaxxing Global Services - Fast & Secure eVisa Applications to 50+ Countries',
-    'twitter:domain': 'worldmaxxing.com',
-    'twitter:url': 'https://worldmaxxing.com',
-    'theme-color': '#10b981',
-    'msapplication-TileColor': '#10b981',
+    'og:image:secure_url': 'https://unitedevisa.com/images/og-image.png',
+    'twitter:image:alt': 'United eVisa Services - Fast & Secure eVisa Applications to 50+ Countries',
+    'twitter:domain': 'unitedevisa.com',
+    'twitter:url': 'https://unitedevisa.com',
+    'theme-color': '#1d4ed8',
+    'msapplication-TileColor': '#1d4ed8',
     'msapplication-TileImage': '/favicon-192x192.png',
     "msapplication-config": "/browserconfig.xml",
     "msapplication-tap-highlight": "no",
@@ -148,9 +148,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Worldmaxxing Global Services",
-            "url": "https://worldmaxxing.com",
-            "logo": "https://worldmaxxing.com/images/logo.png",
+            "name": "United eVisa Services",
+            "url": "https://unitedevisa.com",
+            "logo": "https://unitedevisa.com/images/logo.png",
             "sameAs": [
               "https://www.facebook.com/yourpage",
               "https://twitter.com/yourhandle",
@@ -164,11 +164,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "TravelAgency",
-            "name": "Worldmaxxing Global Services",
-            "url": "https://worldmaxxing.com",
-            "logo": "https://worldmaxxing.com/images/logo.png",
+            "name": "United eVisa Services",
+            "url": "https://unitedevisa.com",
+            "logo": "https://unitedevisa.com/images/logo.png",
             "telephone": "+1 323 286 4541",
-            "email": "support@worldmaxxing.com",
+            "email": "support@unitedevisa.com",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "1308 E Colorado Blvd, #2244",

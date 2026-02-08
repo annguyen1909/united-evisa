@@ -9,7 +9,7 @@ const escapeXml = (value: string) =>
     .replace(/'/g, "&apos;");
 
 export async function GET() {
-  const baseUrl = "https://worldmaxxing.com";
+  const baseUrl = "https://unitedevisa.com";
   const posts = getAllPosts();
 
   const items = posts
@@ -37,7 +37,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0">
       <channel>
-        <title>Worldmaxxing Global Services Blog</title>
+        <title>United eVisa Services Blog</title>
         <link>${baseUrl}/blog</link>
         <description>Visa news, travel tips, and eVisa application guidance.</description>
         ${items}

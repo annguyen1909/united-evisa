@@ -120,7 +120,7 @@ export default function TanzaniaRequirementsPage() {
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 text-white overflow-hidden">
+        <div className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-amber-700 text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
@@ -138,9 +138,9 @@ export default function TanzaniaRequirementsPage() {
                 <span className="text-sm font-medium">Visa Requirements</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                Tanzania Visa <span className="text-emerald-200">Requirements</span>
+                Tanzania Visa <span className="text-blue-200">Requirements</span>
               </h1>
-              <p className="text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
                 Complete guide to Tanzania eVisa requirements, application process, and travel information for your East African safari adventure
               </p>
             </div>
@@ -160,7 +160,7 @@ export default function TanzaniaRequirementsPage() {
           {/* Table of Contents */}
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-6 mb-8 shadow-lg">
             <h2 className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-              <FileText className="h-6 w-6 text-emerald-600" />
+              <FileText className="h-6 w-6 text-blue-600" />
               Table of Contents
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -179,7 +179,7 @@ export default function TanzaniaRequirementsPage() {
                   onClick={() => scrollToSection(id)}
                   className={`flex items-center gap-3 p-3 rounded-lg text-left transition-all duration-200 ${
                     activeSection === id
-                      ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                      ? 'bg-blue-100 text-blue-700 border border-blue-200'
                       : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
                   }`}
                 >
@@ -194,7 +194,7 @@ export default function TanzaniaRequirementsPage() {
           <section id="overview" className="mb-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <Globe className="h-8 w-8 text-emerald-600" />
+                <Globe className="h-8 w-8 text-blue-600" />
                 Tanzania Overview
               </h2>
               
@@ -229,9 +229,9 @@ export default function TanzaniaRequirementsPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-xl border border-emerald-100">
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-xl border border-blue-100">
                   <div className="flex items-center gap-3 mb-3">
-                    <MapPin className="h-6 w-6 text-emerald-600" />
+                    <MapPin className="h-6 w-6 text-blue-600" />
                     <h4 className="font-semibold text-slate-800">Capital</h4>
                   </div>
                   <p className="text-slate-600">Dodoma</p>
@@ -260,24 +260,24 @@ export default function TanzaniaRequirementsPage() {
           <section id="visa-types" className="mb-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <FileText className="h-8 w-8 text-emerald-600" />
+                <FileText className="h-8 w-8 text-blue-600" />
                 Available Visa Types
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tanzaniaVisaTypes.map((visa, index) => (
                   <Card key={index} className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm">
-                    <div className="h-1 w-full bg-gradient-to-r from-emerald-500 to-teal-500" />
+                    <div className="h-1 w-full bg-gradient-to-r from-blue-500 to-amber-500" />
                     <CardHeader className="pt-6 pb-4">
                       <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-xl shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                        <div className="p-3 rounded-xl shadow-lg bg-gradient-to-r from-blue-500 to-amber-500 text-white">
                           <CheckCircle className="h-6 w-6" />
                         </div>
                         <div className="flex-1">
                           <CardTitle className="text-lg font-bold text-slate-800 mb-2">
                             {visa.name}
                           </CardTitle>
-                          <Badge variant="secondary" className="bg-emerald-100 text-emerald-700">
+                          <Badge variant="secondary" className="bg-blue-100 text-blue-700">
                             {visa.type}
                           </Badge>
                         </div>
@@ -304,7 +304,7 @@ export default function TanzaniaRequirementsPage() {
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-slate-600">Government Fee:</span>
-                          <span className="text-sm font-bold text-emerald-600">${visa.govFee} USD</span>
+                          <span className="text-sm font-bold text-blue-600">${visa.govFee} USD</span>
                         </div>
                       </div>
 
@@ -322,7 +322,7 @@ export default function TanzaniaRequirementsPage() {
 
                     <CardFooter className="pt-4 pb-6">
                       <Link href={`/apply?country=tanzania&type=${encodeURIComponent(visa.id)}`} className="w-full">
-                        <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <Button className="w-full bg-gradient-to-r from-blue-600 to-amber-600 hover:from-blue-700 hover:to-amber-700 text-white font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                           Apply for Tanzania eVisa
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
@@ -338,7 +338,7 @@ export default function TanzaniaRequirementsPage() {
           <section id="requirements" className="mb-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <CheckCircle className="h-8 w-8 text-emerald-600" />
+                <CheckCircle className="h-8 w-8 text-blue-600" />
                 Visa Requirements
               </h2>
               
@@ -355,7 +355,7 @@ export default function TanzaniaRequirementsPage() {
                       'Yellow fever vaccination certificate (required from endemic areas)'
                     ].map((requirement, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <span className="text-slate-700">{requirement}</span>
                       </div>
                     ))}
@@ -391,7 +391,7 @@ export default function TanzaniaRequirementsPage() {
           <section id="application" className="mb-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <Calendar className="h-8 w-8 text-emerald-600" />
+                <Calendar className="h-8 w-8 text-blue-600" />
                 Application Process
               </h2>
               
@@ -424,10 +424,10 @@ export default function TanzaniaRequirementsPage() {
                 ].map(({ step, title, description, icon: Icon }) => (
                   <div key={step} className="text-center">
                     <div className="relative mb-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                      <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-amber-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
                         <Icon className="h-8 w-8 text-white" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
                         {step}
                       </div>
                     </div>
@@ -443,7 +443,7 @@ export default function TanzaniaRequirementsPage() {
           <section id="fees" className="mb-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <CreditCard className="h-8 w-8 text-emerald-600" />
+                <CreditCard className="h-8 w-8 text-blue-600" />
                 Fees & Processing Times
               </h2>
               
@@ -458,7 +458,7 @@ export default function TanzaniaRequirementsPage() {
                           <p className="text-sm text-slate-600">{visa.entry} - Duration: {visa.visaDuration} days</p>
                         </div>
                         <div className="text-right">
-                          <span className="text-lg font-bold text-emerald-600">${visa.govFee} USD</span>
+                          <span className="text-lg font-bold text-blue-600">${visa.govFee} USD</span>
                         </div>
                       </div>
                     ))}
@@ -468,9 +468,9 @@ export default function TanzaniaRequirementsPage() {
                 <div>
                   <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Times</h3>
                   <div className="space-y-4">
-                    <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+                    <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                       <div className="flex items-center gap-3 mb-2">
-                        <Clock className="h-5 w-5 text-emerald-600" />
+                        <Clock className="h-5 w-5 text-blue-600" />
                         <h4 className="font-semibold text-slate-800">Standard Processing</h4>
                       </div>
                       <p className="text-slate-600">15 working days</p>
@@ -493,14 +493,14 @@ export default function TanzaniaRequirementsPage() {
           <section id="faq" className="mb-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <Users className="h-8 w-8 text-emerald-600" />
+                <Users className="h-8 w-8 text-blue-600" />
                 Frequently Asked Questions
               </h2>
               
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left hover:text-emerald-600">
+                    <AccordionTrigger className="text-left hover:text-blue-600">
                       {faq.question}
                     </AccordionTrigger>
                     <AccordionContent className="text-slate-600 leading-relaxed">
@@ -516,73 +516,73 @@ export default function TanzaniaRequirementsPage() {
           <section id="analytics" className="mb-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <BarChart3 className="h-8 w-8 text-emerald-600" />
+                <BarChart3 className="h-8 w-8 text-blue-600" />
                 Tanzania Visa Processing Insights & Travel Analytics
               </h2>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Processing Time Trends */}
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-6">
                   <h3 className="text-xl font-semibold text-slate-800 mb-4">Processing Time Trends</h3>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-slate-600">January</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '85%'}}></div>
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '85%'}}></div>
                         </div>
-                        <span className="text-sm font-semibold text-emerald-600">12.8 days</span>
+                        <span className="text-sm font-semibold text-blue-600">12.8 days</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-slate-600">February</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '88%'}}></div>
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '88%'}}></div>
                         </div>
-                        <span className="text-sm font-semibold text-emerald-600">13.2 days</span>
+                        <span className="text-sm font-semibold text-blue-600">13.2 days</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-slate-600">March</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '90%'}}></div>
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '90%'}}></div>
                         </div>
-                        <span className="text-sm font-semibold text-emerald-600">13.5 days</span>
+                        <span className="text-sm font-semibold text-blue-600">13.5 days</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-slate-600">April</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '82%'}}></div>
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '82%'}}></div>
                         </div>
-                        <span className="text-sm font-semibold text-emerald-600">12.3 days</span>
+                        <span className="text-sm font-semibold text-blue-600">12.3 days</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-slate-600">May</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '86%'}}></div>
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '86%'}}></div>
                         </div>
-                        <span className="text-sm font-semibold text-emerald-600">12.9 days</span>
+                        <span className="text-sm font-semibold text-blue-600">12.9 days</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-slate-600">June</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-24 h-3 bg-emerald-200 rounded-full overflow-hidden">
-                          <div className="h-full bg-emerald-500 rounded-full" style={{width: '89%'}}></div>
+                        <div className="w-24 h-3 bg-blue-200 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 rounded-full" style={{width: '89%'}}></div>
                         </div>
-                        <span className="text-sm font-semibold text-emerald-600">13.4 days</span>
+                        <span className="text-sm font-semibold text-blue-600">13.4 days</span>
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 p-3 bg-emerald-100 rounded-lg">
-                    <p className="text-xs text-emerald-800">
-                      <strong>Source:</strong> <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-900 underline">tanzaniaimmigration.com</a> and worldmaxxing processing data
+                  <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+                    <p className="text-xs text-blue-800">
+                      <strong>Source:</strong> <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 underline">tanzaniaimmigration.com</a> and worldmaxxing processing data
                     </p>
                   </div>
                 </div>
@@ -693,7 +693,7 @@ export default function TanzaniaRequirementsPage() {
           <section id="resources" className="mb-16">
             <div className="bg-gradient-to-r from-slate-50 to-gray-50 rounded-2xl border border-slate-200 p-8 shadow-lg">
               <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <Globe className="h-8 w-8 text-emerald-600" />
+                <Globe className="h-8 w-8 text-blue-600" />
                 Additional Tanzania Travel Resources
               </h2>
               
@@ -704,7 +704,7 @@ export default function TanzaniaRequirementsPage() {
                     Get the latest updates on Tanzania visa policies, entry requirements, and immigration procedures directly from official sources.
                   </p>
                   <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" 
-                     className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline">
+                     className="text-blue-600 hover:text-blue-700 font-medium text-sm underline">
                     Visit tanzaniaimmigration.com →
                   </a>
                 </div>
@@ -732,7 +732,7 @@ export default function TanzaniaRequirementsPage() {
                     Use our comprehensive visa checker and application platform for seamless travel planning across multiple destinations.
                   </p>
                   <Link href="/check-requirements" 
-                        className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline">
+                        className="text-blue-600 hover:text-blue-700 font-medium text-sm underline">
                     Check All Countries →
                   </Link>
                 </div>

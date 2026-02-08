@@ -2,19 +2,11 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { ArrowRight, MapPin } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { ArrowRight, MapPin, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-const isLargeScreen = typeof window !== "undefined" && window.innerWidth >= 1024;
 const destinations = [
   {
     name: "Sri Lanka",
@@ -50,106 +42,84 @@ const destinations = [
     image: "/images/country/cambodia/cambodia-bg.jpg",
     code: 'kh',
     tagline: "Kingdom of Wonder"
+  },
+  {
+    name: "Tanzania",
+    link: "tanzania",
+    image: "/images/country/tanzania/tanzania-bg.jpg",
+    code: 'tz',
+    tagline: "Land of Serenity"
   }
 ];
 
 export default function TopDestinationsCarousel() {
   return (
-    <section className="w-full bg-white pt-12 px-4 overflow-x-hidden">
+    <section className="w-full bg-gradient-to-b from-blue-50 via-white to-white pt-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope mb-4 text-emerald-700">
-            Top Destinations
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm">
+            <Sparkles className="h-4 w-4" />
+            Trending destinations
+          </div>
+          <h2 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope text-blue-800">
+            Discover where travelers are heading next
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">
-            Explore the most popular countries with fast and easy eVisa access — your next adventure starts here.
+          <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">
+            Explore top destinations with clear requirements and fast eVisa options.
           </p>
         </div>
 
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: !isLargeScreen,
-            }}
-            className="w-full overflow-hidden"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {destinations.map(({ name, link, image, code, tagline }) => (
-                <CarouselItem
-                  key={name}
-                  className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
-                >
-                  <Link href={`/destinations/${link}`}>
-                    <Card className="overflow-hidden rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full">
-                      {/* Image container with gradient overlay */}
-                      <div className="relative h-52">
-                        <Image
-                          src={image}
-                          alt={`${name} landscape`}
-                          width={500}
-                          height={300}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/80"></div>
-
-                        {/* Country name overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                          <div className="flex items-center gap-2">
-                            <Image
-                              src={`https://flagcdn.com/${code}.svg`}
-                              alt={`${name} flag`}
-                              width={24}
-                              height={16}
-                              className="w-6 h-4 rounded shadow-sm"
-                            />
-                            <h3 className="font-bold text-xl">{name}</h3>
-                          </div>
-                          {tagline && (
-                            <p className="text-sm text-white/80 mt-1">{tagline}</p>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Card content */}
-                      <CardContent className="p-4 bg-white">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center text-slate-600 text-sm">
-                            <MapPin className="w-4 h-4 text-emerald-600 mr-1" />
-                            <span>eVisa Available</span>
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 p-0 h-auto"
-                          >
-                            <span className="text-sm font-medium">Explore</span>
-                            <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="hidden md:block">
-              <CarouselPrevious className="left-2 top-10 bg-white/80 hover:bg-white border border-slate-200" />
-              <CarouselNext className="right-2 top-10 bg-white/80 hover:bg-white border border-slate-200" />
-            </div>
-          </Carousel>
-
-          <div className="mt-8 flex justify-center">
-            <Link href="/destination">
-              <Button
-                variant="outline"
-                className="group border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 rounded-full px-6"
-              >
-                <span>View All Destinations</span>
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {destinations.map(({ name, link, image, code, tagline }) => (
+            <Link key={name} href={`/destinations/${link}`} className="group">
+              <Card className="overflow-hidden rounded-3xl border border-blue-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                <div className="relative h-56">
+                  <Image
+                    src={image}
+                    alt={`${name} landscape`}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={`https://flagcdn.com/${code}.svg`}
+                        alt={`${name} flag`}
+                        width={28}
+                        height={20}
+                        className="w-7 h-5 rounded shadow-sm"
+                      />
+                      <h3 className="text-xl font-semibold">{name}</h3>
+                    </div>
+                    {tagline && <p className="text-sm text-white/80 mt-1">{tagline}</p>}
+                  </div>
+                </div>
+                <div className="flex items-center justify-between px-5 py-4">
+                  <div className="flex items-center gap-2 text-sm text-slate-600">
+                    <MapPin className="h-4 w-4 text-blue-600" />
+                    eVisa eligible
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-blue-700">
+                    Explore
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Card>
             </Link>
-          </div>
+          ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link href="/destinations">
+            <Button
+              variant="outline"
+              className="group border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300 rounded-full px-6"
+            >
+              <span>View All Destinations</span>
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

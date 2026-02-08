@@ -114,7 +114,7 @@ function CheckRequirementsContent() {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <div className="text-center">
-                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600 mb-4"></div>
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
                     <p className="text-slate-700 font-medium">Loading...</p>
                 </div>
             </div>
@@ -128,13 +128,13 @@ function CheckRequirementsContent() {
                 <CheckRequirementsStructuredData />
                 <div className="min-h-screen bg-white">
                     {/* Breadcrumb Navigation */}
-                    <div className="w-full bg-white border-b border-slate-200">
+                    <div className="w-full bg-white border-b border-blue-100">
                         <div className="max-w-6xl mx-auto px-4 py-3">
                             <BreadcrumbNavigation items={breadcrumbItems} />
                         </div>
                     </div>
                 {/* Header Section */}
-                <div className="relative border-b border-slate-200 bg-slate-50 overflow-hidden">
+                <div className="relative border-b border-blue-100 bg-gradient-to-b from-blue-50 via-white to-white overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
                         <div
                             style={{
@@ -148,11 +148,11 @@ function CheckRequirementsContent() {
                     </div>
                     <div className="relative max-w-6xl mx-auto px-4 py-16">
                         <div className="text-center">
-                            <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-6 text-emerald-700">
+                            <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 mb-6 text-blue-700 shadow-sm">
                                 <Globe className="h-4 w-4" />
                                 <span className="text-sm font-semibold">Visa Requirements</span>
                             </div>
-                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                            <h1 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
                                 Check visa requirements
                             </h1>
                             <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto">
@@ -166,8 +166,8 @@ function CheckRequirementsContent() {
                     {/* Check Eligibility Section */}
                     <div className="mb-12 z-0 relative">
                         <div className="text-center mb-8">
-                            <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-4 border border-emerald-100">
-                                <Globe className="h-4 w-4 text-emerald-600" />
+                            <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 mb-4 border border-blue-100 shadow-sm">
+                                <Globe className="h-4 w-4 text-blue-600" />
                                 <span className="text-sm font-medium text-slate-700">Quick Check</span>
                             </div>
                             <p className="text-slate-600">
@@ -176,7 +176,7 @@ function CheckRequirementsContent() {
                         </div>
                         <Suspense fallback={
                             <div className="w-full max-w-4xl mx-auto pt-0 px-4 sm:px-6">
-                                <div className="bg-white rounded-xl shadow-lg p-6 border border-slate-100 backdrop-blur-sm">
+                                <div className="bg-white rounded-3xl shadow-lg p-6 border border-blue-100 backdrop-blur-sm">
                                     <div className="text-center">
                                         <div className="animate-pulse">
                                             <div className="h-8 bg-slate-200 rounded mb-6"></div>
@@ -197,8 +197,8 @@ function CheckRequirementsContent() {
                     {/* All Destinations Grid */}
                     <div className="mb-12">
                         <div className="text-center mb-8">
-                            <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-4 border border-emerald-100">
-                                <Globe className="h-4 w-4 text-emerald-600" />
+                            <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 mb-4 border border-blue-100 shadow-sm">
+                                <Globe className="h-4 w-4 text-blue-600" />
                                 <span className="text-sm font-medium text-slate-700">All Destinations</span>
                             </div>
                             <h2 className="text-2xl font-bold text-slate-800 mb-2">
@@ -217,7 +217,7 @@ function CheckRequirementsContent() {
                                         placeholder="Search destinations..."
                                         value={searchTerm}
                                         onChange={(e) => handleSearchChange(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-slate-400"
+                                        className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 placeholder-slate-400"
                                     />
                                 </div>
                                 {searchTerm && (
@@ -234,7 +234,7 @@ function CheckRequirementsContent() {
                                     <Link
                                         key={country.code}
                                         href={`/requirements-posts/${country.slug || country.name.toLowerCase().replace(/\s+/g, '-')}`}
-                                        className="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-emerald-200 hover:shadow-sm transition-all duration-200"
+                                        className="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-blue-200 hover:shadow-sm transition-all duration-200"
                                     >
                                         <div className="text-center">
                                             <div className="relative mb-4">
@@ -244,11 +244,11 @@ function CheckRequirementsContent() {
                                                     className="w-16 h-16 rounded-lg border-2 border-white shadow-md object-cover bg-white mx-auto"
                                                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                                                 />
-                                                <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-600 rounded-full border-2 border-white flex items-center justify-center">
+                                                <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-600 rounded-full border-2 border-white flex items-center justify-center">
                                                     <ArrowRight className="h-3 w-3 text-white" />
                                                 </div>
                                             </div>
-                                            <h3 className="font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors">
+                                            <h3 className="font-semibold text-slate-800 group-hover:text-blue-700 transition-colors">
                                                 {country.name}
                                             </h3>
                                             <p className="text-xs text-slate-500 mt-1">
@@ -269,7 +269,7 @@ function CheckRequirementsContent() {
                                     <Button
                                         onClick={() => handleSearchChange('')}
                                         variant="outline"
-                                        className="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                                        className="border-blue-600 text-blue-600 hover:bg-blue-50"
                                     >
                                         Clear Search
                                     </Button>
@@ -281,7 +281,7 @@ function CheckRequirementsContent() {
                     {/* Help Section */}
                     <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-sm">
                         <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-xl bg-emerald-700 text-white shadow-sm">
+                            <div className="p-3 rounded-xl bg-blue-700 text-white shadow-sm">
                                 <BadgeInfo className="h-6 w-6" />
                             </div>
                             <div className="flex-1">
@@ -354,7 +354,7 @@ function CheckRequirementsContent() {
                 </div>
                 <div className="relative max-w-6xl mx-auto px-4 py-16">
                     <div className="text-center">
-                        <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-6 text-emerald-700">
+                        <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-2 mb-6 text-blue-700">
                             <Sparkles className="h-4 w-4" />
                             <span className="text-sm font-semibold">Visa Eligibility Check</span>
                         </div>
@@ -389,24 +389,24 @@ function CheckRequirementsContent() {
                                         className="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover bg-white"
                                         onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                                     />
-                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-600 rounded-full border-2 border-white"></div>
+                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-600 rounded-full border-2 border-white"></div>
                                 </div>
                                 <div>
-                                    <p className="text-xs text-emerald-600 font-semibold uppercase tracking-wide">From</p>
+                                    <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide">From</p>
                                     <p className="text-lg font-bold text-slate-800">{nationalityName}</p>
                                 </div>
                             </div>
 
                             {/* Arrow */}
                             <div className="hidden sm:flex items-center justify-center">
-                                <div className="bg-emerald-700 p-3 rounded-full shadow-sm">
+                                <div className="bg-blue-700 p-3 rounded-full shadow-sm">
                                     <ArrowLeftRight className="h-6 w-6 text-white" />
                                 </div>
                             </div>
 
                             {/* Arrow for mobile */}
                             <div className="flex sm:hidden items-center justify-center">
-                                <div className="bg-emerald-700 p-3 rounded-full shadow-sm rotate-90">
+                                <div className="bg-blue-700 p-3 rounded-full shadow-sm rotate-90">
                                     <ArrowLeftRight className="h-6 w-6 text-white" />
                                 </div>
                             </div>
@@ -420,10 +420,10 @@ function CheckRequirementsContent() {
                                         className="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover bg-white"
                                         onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                                     />
-                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-600 rounded-full border-2 border-white"></div>
+                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-600 rounded-full border-2 border-white"></div>
                                 </div>
                                 <div>
-                                    <p className="text-xs text-emerald-600 font-semibold uppercase tracking-wide">To</p>
+                                    <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide">To</p>
                                     <p className="text-lg font-bold text-slate-800">{destinationName}</p>
                                 </div>
                             </div>
@@ -434,11 +434,11 @@ function CheckRequirementsContent() {
                 {/* Results Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     {visaTypeResults.map((visa, index) => (
-                        <Card key={index} className={`overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 bg-white ${visa.isEligible ? 'ring-1 ring-emerald-200' : 'ring-1 ring-red-200'}`}>
-                            <div className={`h-1 w-full ${visa.isEligible ? 'bg-emerald-600' : 'bg-rose-500'}`} />
+                        <Card key={index} className={`overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 bg-white ${visa.isEligible ? 'ring-1 ring-blue-200' : 'ring-1 ring-red-200'}`}>
+                            <div className={`h-1 w-full ${visa.isEligible ? 'bg-blue-600' : 'bg-rose-500'}`} />
                             <CardHeader className="pt-8 pb-6">
                                 <div className="flex items-start gap-4">
-                                    <div className={`p-3 rounded-xl ${visa.isEligible ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
+                                    <div className={`p-3 rounded-xl ${visa.isEligible ? 'bg-blue-50 text-blue-700' : 'bg-rose-50 text-rose-700'}`}>
                                         {visa.isEligible ? (
                                             <CheckCircle className="h-6 w-6" />
                                         ) : (
@@ -449,7 +449,7 @@ function CheckRequirementsContent() {
                                         <CardTitle className="text-xl font-bold text-slate-800 mb-2">
                                             {visa.name}
                                         </CardTitle>
-                                        <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${visa.isEligible ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
+                                        <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${visa.isEligible ? 'bg-blue-50 text-blue-700' : 'bg-rose-50 text-rose-700'}`}>
                                             {visa.isEligible ? '✓ Eligible' : '✗ Not Eligible'}
                                         </div>
                                     </div>
@@ -464,7 +464,7 @@ function CheckRequirementsContent() {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
                                             <div className="flex items-center gap-2 mb-1">
-                                                <Calendar className="h-4 w-4 text-emerald-600" />
+                                                <Calendar className="h-4 w-4 text-blue-600" />
                                                 <span className="text-xs font-medium text-slate-600 uppercase tracking-wide">Duration</span>
                                             </div>
                                             <p className="text-sm font-semibold text-slate-800">{visa.visaDuration ? visa.visaDuration + ' days' : 'Not specified'}</p>
@@ -490,7 +490,11 @@ function CheckRequirementsContent() {
                                                 <CreditCard className="h-4 w-4 text-slate-600" />
                                                 <span className="text-xs font-medium text-slate-600 uppercase tracking-wide">Gov. Fee</span>
                                             </div>
-                                            <p className="text-sm font-bold text-emerald-600">${visa.govFee || "Varies"}</p>
+                                            <p className="text-sm font-bold text-blue-600">
+                                                {visa.govFee !== null && visa.govFee !== undefined
+                                                  ? `$${Number(visa.govFee).toFixed(2)}`
+                                                  : "Varies"}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -500,7 +504,7 @@ function CheckRequirementsContent() {
                                 {visa.isEligible ? (
                                     <Link href={`/apply?country=${destinationName.toLowerCase()}&type=${encodeURIComponent(visa.id)}&nationality=${nationalitySlug}`} className="w-full">
                                         <Button
-                                            className="w-full cursor-pointer bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 shadow-sm transition-all duration-200"
+                                            className="w-full cursor-pointer bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 shadow-sm transition-all duration-200"
                                         >
                                             Apply for {destinationName} eVisa
                                             <ArrowRight className="ml-2 h-5 w-5" />
@@ -523,7 +527,7 @@ function CheckRequirementsContent() {
                 {/* Helpful Information */}
                 <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 mb-12 shadow-sm">
                     <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-xl bg-emerald-700 text-white shadow-sm">
+                        <div className="p-3 rounded-xl bg-blue-700 text-white shadow-sm">
                             <BadgeInfo className="h-6 w-6" />
                         </div>
                         <div className="flex-1">
@@ -556,8 +560,8 @@ function CheckRequirementsContent() {
                 {/* Search Again Section */}
                 <div className="mb-12">
                     <div className="text-center mb-8">
-                        <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-4 border border-emerald-100">
-                            <Search className="h-4 w-4 text-emerald-600" />
+                        <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-2 mb-4 border border-blue-100">
+                            <Search className="h-4 w-4 text-blue-600" />
                             <span className="text-sm font-medium text-slate-700">Check Another Destination</span>
                         </div>
                         <h2 className="text-2xl font-bold text-slate-800 mb-2">
@@ -569,7 +573,7 @@ function CheckRequirementsContent() {
                     </div>
                     <div className="text-center">
                         <Link href="/check-requirements">
-                            <Button className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-8 rounded-xl shadow-sm transition-all duration-200">
+                            <Button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-xl shadow-sm transition-all duration-200">
                                 Browse All Destinations
                             </Button>
                         </Link>
@@ -579,7 +583,7 @@ function CheckRequirementsContent() {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                     <Link href="/apply">
-                        <Button className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-8 rounded-xl shadow-sm transition-all duration-200">
+                        <Button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-xl shadow-sm transition-all duration-200">
                             Start New Application
                         </Button>
                     </Link>
@@ -594,7 +598,7 @@ export default function CheckRequirementsPage() {
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <div className="text-center">
-                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600 mb-4"></div>
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
                     <p className="text-slate-700 font-medium">Loading...</p>
                 </div>
             </div>

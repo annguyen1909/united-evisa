@@ -21,39 +21,39 @@ export default function RequirementsPostStructuredData({
     "@graph": [
       {
         "@type": "Article",
-        "@id": `https://worldmaxxing.com/requirements-posts/${countrySlug}#article`,
+        "@id": `https://unitedevisa.com/requirements-posts/${countrySlug}#article`,
         "headline": `${country} eVisa Requirements & Application Guide 2024`,
         "description": `Complete ${country} visa requirements guide with step-by-step application process, fees, processing times, and expert tips.`,
         "image": {
           "@type": "ImageObject",
-          "url": `https://worldmaxxing.com/images/country/${countrySlug}/${countrySlug}-bg.jpg`,
+          "url": `https://unitedevisa.com/images/country/${countrySlug}/${countrySlug}-bg.jpg`,
           "width": 1200,
           "height": 630,
           "caption": `${country} eVisa requirements and application guide`
         },
         "author": {
           "@type": "Organization",
-          "name": "Worldmaxxing Global Services",
-          "url": "https://worldmaxxing.com",
+          "name": "United eVisa Services",
+          "url": "https://unitedevisa.com",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://worldmaxxing.com/images/logo.png"
+            "url": "https://unitedevisa.com/images/logo.png"
           }
         },
         "publisher": {
           "@type": "Organization",
-          "name": "Worldmaxxing Global Services",
-          "url": "https://worldmaxxing.com",
+          "name": "United eVisa Services",
+          "url": "https://unitedevisa.com",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://worldmaxxing.com/images/logo.png"
+            "url": "https://unitedevisa.com/images/logo.png"
           }
         },
         "datePublished": "2024-01-01T00:00:00Z",
         "dateModified": new Date().toISOString(),
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": `https://worldmaxxing.com/requirements-posts/${countrySlug}`
+          "@id": `https://unitedevisa.com/requirements-posts/${countrySlug}`
         },
         "inLanguage": "en-US",
         "articleSection": "Visa Requirements",
@@ -66,14 +66,14 @@ export default function RequirementsPostStructuredData({
       },
       {
         "@type": "WebPage", 
-        "@id": `https://worldmaxxing.com/requirements-posts/${countrySlug}#webpage`,
-        "url": `https://worldmaxxing.com/requirements-posts/${countrySlug}`,
+        "@id": `https://unitedevisa.com/requirements-posts/${countrySlug}#webpage`,
+        "url": `https://unitedevisa.com/requirements-posts/${countrySlug}`,
         "name": `${country} eVisa Requirements & Application Guide`,
         "description": `Complete ${country} visa requirements guide with step-by-step application process and expert tips.`,
         "inLanguage": "en-US",
         "isPartOf": {
           "@type": "WebSite",
-          "@id": "https://worldmaxxing.com#website"
+          "@id": "https://unitedevisa.com#website"
         },
         "breadcrumb": {
           "@type": "BreadcrumbList",
@@ -82,19 +82,19 @@ export default function RequirementsPostStructuredData({
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "https://worldmaxxing.com"
+              "item": "https://unitedevisa.com"
             },
             {
               "@type": "ListItem", 
               "position": 2,
               "name": "Check Visa Requirements",
-              "item": "https://worldmaxxing.com/check-requirements"
+              "item": "https://unitedevisa.com/check-requirements"
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": `${country} Requirements`,
-              "item": `https://worldmaxxing.com/requirements-posts/${countrySlug}`
+              "item": `https://unitedevisa.com/requirements-posts/${countrySlug}`
             }
           ]
         },
@@ -105,12 +105,12 @@ export default function RequirementsPostStructuredData({
       },
       {
         "@type": "HowTo",
-        "@id": `https://worldmaxxing.com/requirements-posts/${countrySlug}#howto`,
+        "@id": `https://unitedevisa.com/requirements-posts/${countrySlug}#howto`,
         "name": `How to Apply for ${country} eVisa Online`,
         "description": `Step-by-step guide to apply for ${country} eVisa online with fast processing and expert support.`,
         "image": {
           "@type": "ImageObject",
-          "url": `https://worldmaxxing.com/images/country/${countrySlug}/${countrySlug}-bg.jpg`
+          "url": `https://unitedevisa.com/images/country/${countrySlug}/${countrySlug}-bg.jpg`
         },
         "totalTime": "PT30M",
         "estimatedCost": {
@@ -123,7 +123,7 @@ export default function RequirementsPostStructuredData({
             "@type": "HowToStep",
             "name": "Complete Online Application",
             "text": `Fill out the ${country} eVisa application form with your personal and travel information`,
-            "url": `https://worldmaxxing.com/apply?country=${countrySlug}`
+            "url": `https://unitedevisa.com/apply?country=${countrySlug}`
           },
           {
             "@type": "HowToStep", 
@@ -144,7 +144,7 @@ export default function RequirementsPostStructuredData({
       },
       {
         "@type": "FAQPage",
-        "@id": `https://worldmaxxing.com/requirements-posts/${countrySlug}#faq`,
+        "@id": `https://unitedevisa.com/requirements-posts/${countrySlug}#faq`,
         "mainEntity": [
           {
             "@type": "Question",
@@ -174,18 +174,18 @@ export default function RequirementsPostStructuredData({
       },
       {
         "@type": "TravelAgency",
-        "@id": "https://worldmaxxing.com#organization",
-        "name": "Worldmaxxing Global Services",
-        "url": "https://worldmaxxing.com",
+        "@id": "https://unitedevisa.com#organization",
+        "name": "United eVisa Services",
+        "url": "https://unitedevisa.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://worldmaxxing.com/images/logo.png"
+          "url": "https://unitedevisa.com/images/logo.png"
         },
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+1 323 286 4541",
           "contactType": "customer service",
-          "email": "visa@worldmaxxing.com",
+          "email": "visa@unitedevisa.com",
           "availableLanguage": "English"
         },
         "address": {

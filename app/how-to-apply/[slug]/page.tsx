@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `How to Apply for ${country.name} eVisa | Step by Step Guide 2024`,
     description: `Complete step-by-step guide on how to apply for ${country.name} eVisa. Learn the application process, required documents, and get approved quickly.`,
     alternates: {
-      canonical: `https://worldmaxxing.com/how-to-apply/${slug}`,
+      canonical: `https://unitedevisa.com/how-to-apply/${slug}`,
     },
     keywords: [
       `how to apply ${country.name} visa`,
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: `How to Apply for ${country.name} eVisa - Official Step by Step Guide`,
       description: `Official step-by-step guide on how to apply for ${country.name} eVisa. Learn the exact application process and get approved quickly.`,
-      url: `https://worldmaxxing.com/how-to-apply/${slug}`,
+      url: `https://unitedevisa.com/how-to-apply/${slug}`,
       images: [
         {
           url: `/images/guides/${countrySlug}-application-guide.jpg`,
@@ -187,20 +187,20 @@ export default async function HowToApplyPage({ params }: PageProps) {
 
           {/* Hub Cross-Link (Spoke to Hub) */}
           <div className="max-w-4xl mx-auto mb-16">
-            <div className="bg-emerald-900 rounded-[32px] p-8 text-white shadow-2xl relative overflow-hidden group">
+            <div className="bg-blue-900 rounded-[32px] p-8 text-white shadow-2xl relative overflow-hidden group">
               <div className="absolute right-0 top-0 p-8 opacity-10 group-hover:rotate-12 transition-transform">
                 <ShieldCheck className="w-24 h-24" />
               </div>
               <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="flex-1">
-                  <span className="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] block mb-2">Expert Resource</span>
+                  <span className="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] block mb-2">Expert Resource</span>
                   <h3 className="text-2xl font-bold mb-2">Need More Details?</h3>
-                  <p className="text-emerald-100">
+                  <p className="text-blue-100">
                     Visit our comprehensive <strong>{country.name} Destination Hub</strong> for full entry requirements, rejection risk analysis, and local travel tips.
                   </p>
                 </div>
                 <Link href={`/destinations/${country.slug}`}>
-                  <Button className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all h-auto">
+                  <Button className="bg-blue-500 hover:bg-blue-400 text-white font-bold px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all h-auto">
                     Visit {country.name} Hub
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
@@ -212,7 +212,7 @@ export default async function HowToApplyPage({ params }: PageProps) {
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
             <div className="bg-white rounded-xl p-6 text-center shadow-lg border border-white">
-              <div className="text-3xl font-bold text-emerald-600 mb-2">24-72h</div>
+              <div className="text-3xl font-bold text-blue-600 mb-2">24-72h</div>
               <div className="text-slate-600 text-sm uppercase font-bold tracking-wider">Processing Time</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center shadow-lg border border-white">
@@ -238,22 +238,22 @@ export default async function HowToApplyPage({ params }: PageProps) {
             <div className="space-y-8">
               {steps.map((step, index) => (
                 <div key={index} className="bg-white rounded-3xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                  <div className="flex flex-col md:flex-row items-center border-l-8 border-emerald-500">
+                  <div className="flex flex-col md:flex-row items-center border-l-8 border-blue-500">
                     <div className="flex-shrink-0 p-8">
-                      <div className="w-20 h-20 bg-emerald-50 rounded-2/3 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-500">
+                      <div className="w-20 h-20 bg-blue-50 rounded-2/3 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-colors duration-500">
                         <span className="text-3xl font-bold">{step.number}</span>
                       </div>
                     </div>
                     <div className="flex-1 p-8">
                       <div className="flex items-center mb-4">
-                        <div className="text-emerald-600 mr-4 p-2 bg-emerald-50 rounded-lg">{step.icon}</div>
+                        <div className="text-blue-600 mr-4 p-2 bg-blue-50 rounded-lg">{step.icon}</div>
                         <h3 className="text-2xl font-bold text-slate-800">{step.title}</h3>
                       </div>
                       <p className="text-slate-600 mb-6 font-medium">{step.description}</p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {step.details.map((detail, detailIndex) => (
                           <div key={detailIndex} className="flex items-start gap-3">
-                            <CheckCircle className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                            <CheckCircle className="w-4 h-4 text-blue-500 mt-1 flex-shrink-0" />
                             <span className="text-slate-700 text-sm font-bold">{detail}</span>
                           </div>
                         ))}
@@ -284,14 +284,14 @@ export default async function HowToApplyPage({ params }: PageProps) {
                     "Proof of accommodation for entire stay"
                   ].map((doc, i) => (
                     <div key={i} className="flex items-center gap-4">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
                       <span className="text-slate-700 font-bold text-sm">{doc}</span>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="bg-slate-900 p-8 rounded-2xl text-white">
-                <h4 className="font-black text-emerald-400 mb-6 uppercase tracking-widest text-xs">Processing Information</h4>
+                <h4 className="font-black text-blue-400 mb-6 uppercase tracking-widest text-xs">Processing Information</h4>
                 <div className="space-y-4">
                   {[
                     { label: "Processing Time", value: "24-72 hours" },
@@ -301,7 +301,7 @@ export default async function HowToApplyPage({ params }: PageProps) {
                   ].map((info, i) => (
                     <div key={i} className="flex justify-between items-center border-b border-white/10 pb-2">
                       <span className="text-slate-400 text-sm font-bold">{info.label}</span>
-                      <span className={`font-black ${info.highlight ? 'text-emerald-400' : 'text-white'}`}>{info.value}</span>
+                      <span className={`font-black ${info.highlight ? 'text-blue-400' : 'text-white'}`}>{info.value}</span>
                     </div>
                   ))}
                 </div>
@@ -319,7 +319,7 @@ export default async function HowToApplyPage({ params }: PageProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href={`/apply?destination=${country.slug}`}>
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-lg px-12 py-8 rounded-2xl font-black h-auto shadow-2xl shadow-emerald-200">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-12 py-8 rounded-2xl font-black h-auto shadow-2xl shadow-blue-200">
                   Start Application
                   <ArrowRight className="ml-2 w-6 h-6" />
                 </Button>

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Australia Visa Requirements & eVisa Application",
     description: "Complete Australia visa requirements guide. Apply for Australia eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/australia",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/australia",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/australia/australia-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/australia/australia-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/australia",
+    canonical: "https://unitedevisa.com/requirements-posts/australia",
   },
   robots: {
     index: true,

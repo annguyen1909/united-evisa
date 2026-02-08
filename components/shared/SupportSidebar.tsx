@@ -82,8 +82,8 @@ export default function SupportSidebar() {
     return (
         <div className="space-y-6">
             {/* Contact Form */}
-            <Card className="rounded-xl overflow-hidden shadow-md border-slate-200">
-                <div className="bg-gradient-to-r from-emerald-700 to-emerald-800 text-white px-6 py-5">
+            <Card className="rounded-3xl overflow-hidden shadow-md border-blue-100">
+                <div className="bg-gradient-to-r from-blue-700 via-blue-800 to-amber-600 text-white px-6 py-5">
                     <div className="flex items-start gap-3">
                         <Mail className="w-6 h-6 mt-1" />
                         <div>
@@ -93,7 +93,7 @@ export default function SupportSidebar() {
                     </div>
                 </div>
                 <CardContent className="p-6 space-y-4">
-                    <div className="bg-emerald-50 text-emerald-800 text-sm p-3 rounded-md border border-emerald-100">
+                    <div className="bg-blue-50 text-blue-800 text-sm p-3 rounded-xl border border-blue-100">
                         Our visa experts are here to help you 24/7. Fill out the form below and we'll get back to you as soon as possible.
                     </div>
                     
@@ -124,7 +124,7 @@ export default function SupportSidebar() {
                                     value={formState.name}
                                     onChange={handleChange}
                                     required 
-                                    className="border-slate-200 focus:border-emerald-500"
+                                    className="border-slate-200 focus:border-blue-500 rounded-xl"
                                 />
                             </div>
                             
@@ -138,7 +138,7 @@ export default function SupportSidebar() {
                                     value={formState.email}
                                     onChange={handleChange}
                                     required 
-                                    className="border-slate-200 focus:border-emerald-500"
+                                    className="border-slate-200 focus:border-blue-500 rounded-xl"
                                 />
                             </div>
                             
@@ -152,7 +152,7 @@ export default function SupportSidebar() {
                                     value={formState.phone}
                                     onChange={handleChange}
                                     required 
-                                    className="border-slate-200 focus:border-emerald-500"
+                                    className="border-slate-200 focus:border-blue-500 rounded-xl"
                                 />
                             </div>
                             
@@ -166,14 +166,14 @@ export default function SupportSidebar() {
                                     value={formState.message}
                                     onChange={handleChange}
                                     required 
-                                    className="resize-none border-slate-200 focus:border-emerald-500"
+                                    className="resize-none border-slate-200 focus:border-blue-500 rounded-xl"
                                 />
                             </div>
                             
                             <Button 
                                 type="submit" 
                                 className={cn(
-                                    "w-full bg-emerald-700 hover:bg-emerald-800 transition-colors flex items-center justify-center gap-2",
+                                    "w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 transition-colors flex items-center justify-center gap-2 rounded-full",
                                     isSubmitting && "opacity-80 pointer-events-none"
                                 )}
                                 disabled={isSubmitting}
@@ -196,23 +196,23 @@ export default function SupportSidebar() {
             </Card>
 
             {/* Expert Info */}
-            <Card className="rounded-xl shadow-sm border-slate-200 overflow-hidden">
-                <div className="bg-slate-50 px-6 py-5 border-b border-slate-200">
-                    <div className="flex items-center gap-2 text-emerald-700 font-semibold">
+            <Card className="rounded-3xl shadow-sm border-blue-100 overflow-hidden">
+                <div className="bg-blue-50 px-6 py-5 border-b border-blue-100">
+                    <div className="flex items-center gap-2 text-blue-700 font-semibold">
                         <Sun className="w-5 h-5" />
                         <span>EXPERTS AVAILABLE 24/7</span>
                     </div>
                 </div>
                 <CardContent className="p-6 space-y-4">
                     <div className="flex items-center gap-3">
-                        <div className="bg-emerald-100 p-2 rounded-full">
-                            <Mail className="w-4 h-4 text-emerald-700" />
+                        <div className="bg-blue-100 p-2 rounded-full">
+                            <Mail className="w-4 h-4 text-blue-700" />
                         </div>
                         <a 
-                            href="mailto:visa@worldmaxxing.com" 
-                            className="text-emerald-700 hover:underline transition-colors"
+                            href="mailto:visa@unitedevisa.com" 
+                            className="text-blue-700 hover:underline transition-colors"
                         >
-                            visa@worldmaxxing.com
+                            visa@unitedevisa.com
                         </a>
                     </div>
                     
@@ -241,7 +241,7 @@ export default function SupportSidebar() {
                     <div className="pt-2">
                         <a 
                             href="#" 
-                            className="flex items-center text-emerald-700 hover:text-emerald-800 transition-colors text-sm font-medium"
+                            className="flex items-center text-blue-700 hover:text-blue-800 transition-colors text-sm font-medium"
                         >
                             <Globe className="w-4 h-4 mr-1.5" />
                             View worldwide phone support
@@ -252,10 +252,10 @@ export default function SupportSidebar() {
 
             {/* Confidence Checklist */}
             <Card className="rounded-xl shadow-sm border-slate-200 overflow-hidden">
-                <div className="bg-emerald-50 px-6 py-5 border-b border-emerald-100">
+                <div className="bg-blue-50 px-6 py-5 border-b border-blue-100">
                     <div className="flex items-center gap-2">
-                        <ShieldCheck className="w-5 h-5 text-emerald-700" />
-                        <h4 className="font-semibold text-emerald-800">APPLY WITH CONFIDENCE</h4>
+                        <ShieldCheck className="w-5 h-5 text-blue-700" />
+                        <h4 className="font-semibold text-blue-800">APPLY WITH CONFIDENCE</h4>
                     </div>
                 </div>
                 <CardContent className="p-6">
@@ -263,27 +263,27 @@ export default function SupportSidebar() {
                         {[
                             { 
                                 text: "Fast, secure, and reliable visa processing",
-                                icon: <Clock className="w-4 h-4 text-emerald-600" />
+                                icon: <Clock className="w-4 h-4 text-blue-600" />
                             },
                             { 
                                 text: "Safe online payment—no hidden fees",
-                                icon: <CreditCard className="w-4 h-4 text-emerald-600" />
+                                icon: <CreditCard className="w-4 h-4 text-blue-600" />
                             },
                             { 
                                 text: "Most visas approved within 3 working days",
-                                icon: <CheckCircle className="w-4 h-4 text-emerald-600" />
+                                icon: <CheckCircle className="w-4 h-4 text-blue-600" />
                             },
                             { 
                                 text: "All applications processed urgently—no extra rush fees",
-                                icon: <CheckCircle className="w-4 h-4 text-emerald-600" />
+                                icon: <CheckCircle className="w-4 h-4 text-blue-600" />
                             },
                             { 
                                 text: "Transparent pricing, no surprises",
-                                icon: <CheckCircle className="w-4 h-4 text-emerald-600" />
+                                icon: <CheckCircle className="w-4 h-4 text-blue-600" />
                             },
                             { 
                                 text: "100% Service Fees Returned if Rejected",
-                                icon: <ShieldCheck className="w-4 h-4 text-emerald-600" />,
+                                icon: <ShieldCheck className="w-4 h-4 text-blue-600" />,
                                 highlight: true
                             },
                         ].map((item, idx) => (
@@ -293,7 +293,7 @@ export default function SupportSidebar() {
                                 </div>
                                 <span className={cn(
                                     "text-slate-700",
-                                    item.highlight && "font-semibold text-emerald-800"
+                                    item.highlight && "font-semibold text-blue-800"
                                 )}>
                                     {item.text}
                                 </span>

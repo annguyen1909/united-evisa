@@ -70,37 +70,54 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
   return (
     <div className="relative w-full bg-white">
       {/* Hero section */}
-      <div className="relative w-full border-b border-slate-100 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4 py-16 sm:py-20">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
-            <Tag className="h-4 w-4" />
-            Info Center
-          </div>
-          <h1 className="mt-4 text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Travel insights, visa updates, and step-by-step guides
-          </h1>
-          <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl">
-            Practical, up-to-date articles to help you understand requirements, avoid mistakes,
-            and apply with confidence.
-          </p>
-          <p className="mt-2 text-sm text-slate-500 max-w-2xl">
-            This is the Worldmaxxing Global Services blog for eVisa requirements, travel tips, and
-            application guidance.
-          </p>
+      <div className="relative w-full border-b border-blue-100 bg-gradient-to-b from-blue-50 via-white to-white overflow-hidden">
+        <div className="absolute -top-24 right-0 h-64 w-64 rounded-full bg-blue-100/60 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-amber-100/60 blur-3xl" />
+        <div className="max-w-7xl mx-auto px-4 py-16 sm:py-20 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] relative">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm">
+              <Tag className="h-4 w-4" />
+              United Evisa Info Center
+            </div>
+            <h1 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight">
+              Travel insights, visa updates, and step‑by‑step guidance
+            </h1>
+            <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl">
+              Practical articles to help you understand requirements, avoid mistakes,
+              and apply with confidence.
+            </p>
 
-          {/* Search bar */}
-          <div className="mt-6 max-w-xl relative">
-            <Input
-              type="text"
-              placeholder="Search articles by keyword or country..."
-              value={query}
-              onChange={(e) => {
-                setQuery(e.target.value);
-                handlePageChange(1);
-              }}
-              className="pl-10 pr-4 h-12 rounded-full bg-white border border-slate-200 focus-visible:ring-emerald-500"
-            />
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+            {/* Search bar */}
+            <div className="mt-6 max-w-xl relative">
+              <Input
+                type="text"
+                placeholder="Search articles by country, visa type, or keyword..."
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  handlePageChange(1);
+                }}
+                className="pl-10 pr-4 h-12 rounded-full bg-white border border-slate-200 focus-visible:ring-blue-500"
+              />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-slate-900">Popular topics</h3>
+            <p className="text-sm text-slate-600 mt-2">
+              Short, clear guides for the destinations travelers ask about most.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {["eVisa basics", "Processing times", "Required documents", "Photo standards", "Entry rules"].map((topic) => (
+                <Badge key={topic} variant="secondary" className="bg-blue-50 text-blue-700 border border-blue-100">
+                  {topic}
+                </Badge>
+              ))}
+            </div>
+            <div className="mt-6 rounded-2xl bg-blue-50 px-4 py-3 text-sm text-slate-700">
+              New here? Start with our “eVisa basics” guide.
+            </div>
           </div>
         </div>
       </div>
@@ -146,7 +163,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                   href={`/blog/${post.slug}`}
                   className="group"
                 >
-                  <Card className="h-full hover:shadow-md transition-all duration-300 overflow-hidden border-slate-200 hover:border-emerald-200 bg-white">
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 overflow-hidden border-blue-100 hover:border-blue-200 bg-white rounded-3xl">
                     {/* Optional image */}
                     {post.image && (
                       <div className="w-full h-48 overflow-hidden">
@@ -168,7 +185,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                       )}
 
                       {/* Title */}
-                      <h3 className="text-lg font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors mb-2 line-clamp-2">
+                      <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-700 transition-colors mb-2 line-clamp-2">
                         {post.title}
                       </h3>
 
@@ -180,7 +197,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                       )}
 
                       {/* Read more link */}
-                      <div className="flex items-center text-emerald-600 text-sm font-medium group-hover:text-emerald-700">
+                      <div className="flex items-center text-blue-600 text-sm font-medium group-hover:text-blue-700">
                         Read {post.title}
                         <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -199,7 +216,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                 size="icon"
                 onClick={() => handlePageChange(Math.max(1, page - 1))}
                 disabled={page === 1}
-                className="rounded-full border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                className="rounded-full border-blue-200 text-blue-700 hover:bg-blue-50"
                 aria-label="Previous page"
               >
                 <svg
@@ -225,8 +242,8 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                     className={cn(
                       "rounded-full",
                       page === idx + 1
-                        ? "bg-emerald-700 hover:bg-emerald-800 text-white"
-                        : "bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
+                        ? "bg-blue-700 hover:bg-blue-800 text-white"
+                        : "bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
                     )}
                   >
                     {idx + 1}
@@ -242,8 +259,8 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                     className={cn(
                       "rounded-full",
                       page === 1
-                        ? "bg-emerald-700 hover:bg-emerald-800 text-white"
-                        : "bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
+                        ? "bg-blue-700 hover:bg-blue-800 text-white"
+                        : "bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
                     )}
                   >
                     1
@@ -256,7 +273,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                       variant="outline"
                       size="icon"
                       onClick={() => handlePageChange(page - 1)}
-                      className="rounded-full bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
+                      className="rounded-full bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
                     >
                       {page - 1}
                     </Button>
@@ -266,7 +283,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                     <Button
                       variant="default"
                       size="icon"
-                      className="rounded-full bg-emerald-700 hover:bg-emerald-800 text-white"
+                      className="rounded-full bg-blue-700 hover:bg-blue-800 text-white"
                     >
                       {page}
                     </Button>
@@ -277,7 +294,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                       variant="outline"
                       size="icon"
                       onClick={() => handlePageChange(page + 1)}
-                      className="rounded-full bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
+                      className="rounded-full bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
                     >
                       {page + 1}
                     </Button>
@@ -294,8 +311,8 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                     className={cn(
                       "rounded-full",
                       page === totalPages
-                        ? "bg-emerald-700 hover:bg-emerald-800 text-white"
-                        : "bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
+                        ? "bg-blue-700 hover:bg-blue-800 text-white"
+                        : "bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
                     )}
                   >
                     {totalPages}
@@ -308,7 +325,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                 size="icon"
                 onClick={() => handlePageChange(Math.min(totalPages, page + 1))}
                 disabled={page === totalPages}
-                className="rounded-full border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                className="rounded-full border-blue-200 text-blue-700 hover:bg-blue-50"
                 aria-label="Next page"
               >
                 <svg
@@ -331,7 +348,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
           {/* Popular Topics */}
           <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
             <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-              <Tag className="h-5 w-5 mr-2 text-emerald-600" />
+              <Tag className="h-5 w-5 mr-2 text-blue-600" />
               Popular Topics
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -340,7 +357,7 @@ export default function BlogSearch({ posts }: { posts: Post[] }) {
                 .map((tag) => (
                   <Badge
                     key={tag}
-                    className="bg-slate-100 hover:bg-emerald-100 text-slate-700 hover:text-emerald-700 cursor-pointer"
+                    className="bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 cursor-pointer"
                     onClick={() => {
                       setQuery(tag);
                       handlePageChange(1);

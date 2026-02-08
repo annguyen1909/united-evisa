@@ -5,12 +5,12 @@ import { COUNTRIES } from '@/lib/countries'
 import { getAllRequirementsPosts } from '@/lib/requirements-posts'
 
 export const metadata: Metadata = {
-  title: 'Visa Requirements by Country | Worldmaxxing Global Services',
+  title: 'Visa Requirements by Country | United eVisa Services',
   description: 'Browse visa requirements and documents by destination. Explore country-specific eVisa requirements, processing times, and application guidance.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/requirements-posts',
+    canonical: 'https://unitedevisa.com/requirements-posts',
     types: {
-      'application/rss+xml': 'https://worldmaxxing.com/requirements-posts/rss.xml',
+      'application/rss+xml': 'https://unitedevisa.com/requirements-posts/rss.xml',
     },
   },
   robots: {
@@ -50,7 +50,7 @@ export default function RequirementsIndexPage() {
               <h2 className="text-xl font-semibold text-slate-900">Recently updated requirements</h2>
               <Link
                 href="/requirements-posts/rss.xml"
-                className="text-sm font-medium text-emerald-700 hover:text-emerald-800"
+                className="text-sm font-medium text-blue-700 hover:text-blue-800"
               >
                 RSS feed
               </Link>
@@ -60,7 +60,7 @@ export default function RequirementsIndexPage() {
                 <Link
                   key={post.slug}
                   href={`/requirements-posts/${post.slug}`}
-                  className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 hover:border-emerald-200 hover:bg-white transition-colors"
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 hover:border-blue-200 hover:bg-white transition-colors"
                 >
                   <p className="text-sm font-semibold text-slate-900">{post.country}</p>
                   <p className="text-xs text-slate-500 mt-1">

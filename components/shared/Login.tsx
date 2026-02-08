@@ -52,7 +52,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
       <Card className="overflow-hidden p-0 border-slate-200 shadow-sm">
         <CardContent className="grid p-0 md:grid-cols-2">
           <div className="relative hidden md:block h-full min-h-[550px]">
-            <div className="absolute inset-0 bg-emerald-600/20 z-10 backdrop-blur-[2px]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-600/20 via-blue-900/10 to-amber-500/20 z-10 backdrop-blur-[2px]" />
             <Image
               fill
               src="/images/auth/background.jpg"
@@ -61,9 +61,9 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               priority
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20 p-8">
-              <div className="bg-white/80 p-6 rounded-xl backdrop-blur-sm shadow-lg text-center max-w-md">
-                <h2 className="text-2xl font-bold text-emerald-800 mb-2">Welcome to Worldmaxxing Global Services</h2>
-                <p className="text-slate-700">Access your account to manage your visa applications and track their status.</p>
+              <div className="bg-white/85 p-6 rounded-2xl backdrop-blur-sm shadow-lg text-center max-w-md">
+                <h2 className="text-2xl font-bold text-blue-800 mb-2">Welcome back to United Evisa</h2>
+                <p className="text-slate-700">Manage applications, upload documents, and see real‑time updates.</p>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="you@example.com"
-                    className="focus:ring-emerald-500"
+                    className="focus:ring-blue-500"
                   />
                 </div>
 
@@ -100,7 +100,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                     <Label htmlFor="password" className="text-slate-700 font-medium">Password *</Label>
                     <button
                       type="button"
-                      className="text-emerald-600 text-sm hover:text-emerald-700 hover:underline"
+                      className="text-blue-600 text-sm hover:text-blue-700 hover:underline"
                       onClick={handleForgotPassword}
                     >
                       Forgot password?
@@ -112,13 +112,13 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="focus:ring-emerald-500"
+                    className="focus:ring-blue-500"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 mt-2"
+                  className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white font-medium py-2.5 mt-2"
                   disabled={loading}
                 >
                   {loading ? (
@@ -133,7 +133,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
                 <div className="text-center text-slate-600 text-sm pt-2">
                   Don&apos;t have an account?{" "}
-                  <a href="/signup" className="text-emerald-600 font-medium hover:underline">
+                  <a href="/signup" className="text-blue-600 font-medium hover:underline">
                     Create account
                   </a>
                 </div>

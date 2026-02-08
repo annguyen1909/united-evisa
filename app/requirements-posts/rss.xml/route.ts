@@ -1,7 +1,7 @@
 import { getAllRequirementsPosts } from "@/lib/requirements-posts";
 
 export async function GET() {
-  const baseUrl = "https://worldmaxxing.com";
+  const baseUrl = "https://unitedevisa.com";
   const posts = getAllRequirementsPosts();
 
   const items = posts
@@ -29,7 +29,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0">
       <channel>
-        <title>Worldmaxxing Visa Requirements</title>
+        <title>United eVisa Visa Requirements</title>
         <link>${baseUrl}/requirements-posts</link>
         <description>Country-specific eVisa requirements, documents, and eligibility guidance.</description>
         ${items}

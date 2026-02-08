@@ -248,9 +248,9 @@ export default function KuwaitRequirementsPage() {
                 <p className="text-slate-600">Kuwait City</p>
               </div>
               
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-xl border border-emerald-100">
+              <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-xl border border-blue-100">
                 <div className="flex items-center gap-3 mb-3">
-                  <Globe className="h-6 w-6 text-emerald-600" />
+                  <Globe className="h-6 w-6 text-blue-600" />
                   <h4 className="font-semibold text-slate-800">Language</h4>
                 </div>
                 <p className="text-slate-600">Arabic & English</p>
@@ -502,7 +502,7 @@ export default function KuwaitRequirementsPage() {
         <section id="why-choose-us" className="mb-16">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-              Why Choose Worldmaxxing Global Services for Your Kuwait Visa?
+              Why Choose United eVisa Services for Your Kuwait Visa?
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -592,8 +592,8 @@ export default function KuwaitRequirementsPage() {
                     and architectural achievements.
                   </p>
                 </div>
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Cultural Heritage</h4>
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Cultural Heritage</h4>
                   <p className="text-sm text-slate-600">
                     The Grand Mosque, Kuwait National Museum, and traditional souks offer insights into Kuwait's rich 
                     cultural heritage and traditions.
@@ -615,7 +615,7 @@ export default function KuwaitRequirementsPage() {
         <section id="travel-guide" className="mb-16">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <Globe className="h-8 w-8 text-emerald-600" />
+              <Globe className="h-8 w-8 text-blue-600" />
               Complete Kuwait Travel Guide & Visa Information
             </h2>
             
@@ -637,8 +637,8 @@ export default function KuwaitRequirementsPage() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="bg-emerald-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Who Needs a Kuwait eVisa?</h4>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Who Needs a Kuwait eVisa?</h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li> International tourists visiting Kuwait for leisure</li>
                     <li> Business travelers and investors</li>
@@ -682,8 +682,8 @@ export default function KuwaitRequirementsPage() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-emerald-800 mb-2">Modern Architecture</h4>
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Modern Architecture</h4>
                   <p className="text-sm text-slate-600">
                     From the iconic Kuwait Towers to the Al Hamra Tower, from the Grand Mosque to modern shopping malls, 
                     Kuwait offers impressive architectural landmarks and contemporary urban experiences.
@@ -713,9 +713,9 @@ export default function KuwaitRequirementsPage() {
                 insurance and be aware of local customs and safety guidelines.
               </p>
               
-              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose Worldmaxxing Global Services for Kuwait Visa Applications</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Why Choose United eVisa Services for Kuwait Visa Applications</h3>
               <p className="text-slate-600 mb-4 leading-relaxed">
-                Worldmaxxing Global Services has been helping travelers obtain their Kuwait visas since the eVisa system 
+                United eVisa Services has been helping travelers obtain their Kuwait visas since the eVisa system 
                 was introduced. Our expertise in the Kuwait visa process, combined with our 98% approval rate and 24/7 
                 customer support, makes us the preferred choice for thousands of travelers each year. We provide 
                 transparent pricing with no hidden fees, ensuring you get the best value for your visa application.
@@ -767,13 +767,13 @@ export default function KuwaitRequirementsPage() {
                 </div>
                 <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                   <p className="text-xs text-blue-800">
-                    <strong>Source:</strong> Kuwait Immigration Department & Worldmaxxing Global Services processing data
+                    <strong>Source:</strong> Kuwait Immigration Department & United eVisa Services processing data
                   </p>
                 </div>
               </div>
               {/* Only show Visa Type Distribution if more than one visa type */}
               {/* {kuwaitVisaTypes.length > 1 && (
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
+              <div className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-6">
                 ...Visa Type Distribution code...
               </div>
               )} */}
@@ -813,7 +813,7 @@ export default function KuwaitRequirementsPage() {
               </div>
               <div className="mt-4 p-3 bg-purple-100 rounded-lg">
                 <p className="text-xs text-purple-800">
-                  <strong>Source:</strong> Kuwait Meteorological Department & Worldmaxxing Global Services travel data
+                  <strong>Source:</strong> Kuwait Meteorological Department & United eVisa Services travel data
                 </p>
               </div>
             </div>
@@ -846,8 +846,8 @@ export default function KuwaitRequirementsPage() {
                 </div>
                 <h3 className="font-semibold text-slate-800 mb-2">Email Support</h3>
                 <p className="text-sm text-slate-600 mb-3">Get detailed responses within hours</p>
-                <a href="mailto:visa@worldmaxxing.com" className="text-red-600 font-semibold hover:text-red-700">
-                  visa@worldmaxxing.com
+                <a href="mailto:visa@unitedevisa.com" className="text-red-600 font-semibold hover:text-red-700">
+                  visa@unitedevisa.com
                 </a>
               </div>
               

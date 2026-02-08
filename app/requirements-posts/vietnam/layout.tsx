@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Vietnam Visa Requirements & eVisa Application",
   description: "Complete Vietnam visa requirements guide. Apply for Vietnam eVisa online with fast processing, 24/7 support. Start your Vietnam visa application today.",
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/vietnam",
+    canonical: "https://unitedevisa.com/requirements-posts/vietnam",
   },
   keywords: [
     "Vietnam visa requirements",
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vietnam Visa Requirements & eVisa Application",
     description: "Complete Vietnam visa requirements guide. Apply for Vietnam eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/vietnam",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/vietnam",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/vietnam/vietnam-bg.jpg",

@@ -8,7 +8,7 @@ const tanzania: Country = {
   flagUrl: '/images/country/tanzania/tanzania-square.png',
   imageUrl: '/images/country/tanzania/tanzania-bg.jpg',
   roundedFlagUrl: '/images/country/tanzania/tanzania-rounded.png',
-  description: `Apply for your Tanzania eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Tanzania travel. Get your Tanzania visa quickly with our expert assistance.`,
+  description: `Apply for your Tanzania eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Tanzania travel. Get your Tanzania visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Tanzania's incredible wildlife, stunning landscapes, and vibrant culture. From the Serengeti to Zanzibar's beaches, Tanzania is an unforgettable destination for travelers.`,
   welcomeImgUrl: '/images/country/tanzania/tanzania-welcome.jpg',
   processingTime: {

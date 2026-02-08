@@ -458,7 +458,7 @@ const india: Country = {
   flagUrl: "/images/country/india/india-square.png",
   imageUrl: "/images/country/india/india-bg.jpg",
   roundedFlagUrl: "/images/country/india/india-rounded.png",
-  description: `Apply for your India eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for India travel. Get your India visa quickly with our expert assistance.`,
+  description: `Apply for your India eVisa online with United eVisa Services. Fast, secure, and convenient visa application for India travel. Get your India visa quickly with our expert assistance.`,
   welcomeMessage: `Discover India's incredible heritage, vibrant cities, and breathtaking landscapes. From the Taj Mahal to Kerala's backwaters, India offers unforgettable experiences for every traveler.`,
   welcomeImgUrl: "/images/country/india/india-welcome.jpg",
   processingTime: {

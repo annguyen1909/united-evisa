@@ -8,7 +8,7 @@ const vietnam: Country = {
   flagUrl: '/images/flags/square/vietnam.png',
   imageUrl: '/images/country/vietnam/vietnam-bg.jpg',
   roundedFlagUrl: '/images/flags/square/vietnam.png',
-  description: `Apply for your Vietnam eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Vietnam travel. Get your Vietnam visa quickly with our expert assistance.`,
+  description: `Apply for your Vietnam eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Vietnam travel. Get your Vietnam visa quickly with our expert assistance.`,
   welcomeMessage: `Explore Vietnam's stunning landscapes, vibrant cities, and rich culture. From Hanoi's old quarter to Halong Bay, Vietnam is a captivating destination for travelers.`,
   welcomeImgUrl: '/images/country/vietnam/vietnam-welcome.jpg',
   processingTime: {

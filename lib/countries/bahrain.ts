@@ -10,7 +10,7 @@ const bahrain: Country = {
   flagUrl: '/images/flags/square/bahrain.png',
   imageUrl: '/images/country/bahrain/bahrain-bg.jpg',
   roundedFlagUrl: '/images/flags/square/bahrain.png',
-  description: `Apply for your Bahrain eVisa online with Worldmaxxing Global Services. Fast, secure, and convenient visa application for Bahrain travel. Get your Bahrain visa quickly with our expert assistance.`,
+  description: `Apply for your Bahrain eVisa online with United eVisa Services. Fast, secure, and convenient visa application for Bahrain travel. Get your Bahrain visa quickly with our expert assistance.`,
   welcomeMessage: `Experience Bahrain's rich history, modern skyline, and vibrant culture. From ancient forts to luxury shopping and beautiful beaches, Bahrain is a top destination for travelers.`,
   welcomeImgUrl: '/images/country/bahrain/bahrain-welcome.jpg',
   processingTime: {

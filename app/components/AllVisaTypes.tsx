@@ -19,8 +19,8 @@ const visaTypes: VisaType[] = [
   {
     name: "TOURIST VISA",
     description:
-      "This type of visa is used for the purpose of travelling to a country. It is also the most popular visa type that we help our customers to apply for.",
-    color: "#10B981", // emerald-500
+      "For leisure travel, sightseeing, and short holidays. Ideal for first-time travelers who want a simple, guided application.",
+    color: "#2563EB",
     favorites: [
       { name: "Kenya", img: "https://hatscripts.github.io/circle-flags/flags/ke.svg" },
       { name: "Cambodia", img: "https://hatscripts.github.io/circle-flags/flags/kh.svg" },
@@ -31,8 +31,8 @@ const visaTypes: VisaType[] = [
   {
     name: "BUSINESS VISA",
     description:
-      "This visa is issued to travelers transiting through a country en route elsewhere. It's short-term, and many countries waive the need for it.",
-    color: "#3B82F6", // blue-500
+      "For business meetings, conferences, and market visits. Get document checks and clear guidance before submission.",
+    color: "#1D4ED8",
     favorites: [
       { name: "Azerbaijan", img: "https://hatscripts.github.io/circle-flags/flags/az.svg" },
       { name: "Bahrain", img: "https://hatscripts.github.io/circle-flags/flags/bh.svg" },
@@ -43,8 +43,8 @@ const visaTypes: VisaType[] = [
   {
     name: "TRANSIT VISA",
     description:
-      "Medical visa is used for travelers who want to be treated under the system of medicine of a country. It is used by just governments.",
-    color: "#F59E42", // orange-500
+      "For short stopovers and onward travel. We help confirm entry rules and timing to avoid last‑minute surprises.",
+    color: "#F59E0B",
     favorites: [
       { name: "Singapore", img: "https://hatscripts.github.io/circle-flags/flags/sg.svg" },
       { name: "Rwanda", img: "https://hatscripts.github.io/circle-flags/flags/rw.svg" },
@@ -55,8 +55,8 @@ const visaTypes: VisaType[] = [
   {
     name: "MEDICAL VISA",
     description:
-      "Issued for patients seeking treatment abroad, this visa helps you access world-class healthcare while ensuring compliance with local laws.",
-    color: "#0EA5E9", // yellow-200
+      "For treatment abroad with supporting documents. Our review helps reduce delays for medical travel.",
+    color: "#0EA5E9",
     favorites: [
       { name: "Thailand", img: "https://hatscripts.github.io/circle-flags/flags/th.svg" },
       { name: "Malaysia", img: "https://hatscripts.github.io/circle-flags/flags/my.svg" },
@@ -71,11 +71,11 @@ export default function AllVisaTypes() {
     <section className="w-full bg-white pt-6 pb-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope mb-6 text-emerald-700">
-            All eVisa Types. One Place.
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-manrope mb-6 text-blue-700">
+            All eVisa Types, One Modern Workflow
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-5xl mx-auto leading-relaxed">
-            Explore and apply for all available eVisa types in one convenient platform — fast, secure, and hassle-free.
+            Choose the right visa type with clear summaries, trusted support, and a streamlined application flow.
           </p>
         </div>
         
@@ -148,7 +148,7 @@ export default function AllVisaTypes() {
                     className="w-full py-3 font-semibold cursor-pointer text-white rounded-lg transition-all duration-300 hover:opacity-90 hover:shadow-lg transform group-hover:scale-105"
                     style={{ backgroundColor: color }}
                   >
-                    Apply Now
+                    Start {name.toLowerCase()} application
                   </Button>
                 </Link>
               </CardFooter>

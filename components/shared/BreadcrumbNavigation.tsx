@@ -22,7 +22,7 @@ export default function BreadcrumbNavigation({ items, className = "" }: Breadcru
         <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
           <Link 
             href="/" 
-            className="flex items-center hover:text-emerald-600 transition-colors"
+            className="flex items-center hover:text-blue-600 transition-colors"
             itemProp="item"
           >
             <Home className="h-4 w-4 mr-1" />
@@ -44,7 +44,7 @@ export default function BreadcrumbNavigation({ items, className = "" }: Breadcru
             {item.href ? (
               <Link 
                 href={item.href} 
-                className="hover:text-emerald-600 transition-colors"
+                className="hover:text-blue-600 transition-colors"
                 itemProp="item"
               >
                 <span itemProp="name">{item.label}</span>

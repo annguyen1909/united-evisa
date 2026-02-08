@@ -4,19 +4,19 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
-    'Learn how we collect, use, and protect your personal information when you use our Worldmaxxing Global Services Immigration Assistance Service.',
+    'Learn how we collect, use, and protect your personal information when you use our United eVisa Services Immigration Assistance Service.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/privacy',
+    canonical: 'https://unitedevisa.com/privacy',
   },
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50/40 via-white to-white">
         <main className="flex-1">
           {/* Enhanced Header Section */}
-          <section className="relative bg-gradient-to-r from-green-600 via-emerald-600 to-teal-700 overflow-hidden">
+          <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-amber-600 overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-black bg-opacity-10"></div>
             <div className="absolute inset-0 opacity-30">
@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
                   </svg>
                 </div>
                 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white mb-4 leading-tight">
                   Privacy
                   <span className="block text-green-200">Policy</span>
                 </h1>
@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
               
               {/* Section 1: Introduction */}
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-green-50 to-blue-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">1</span>
@@ -75,11 +75,11 @@ export default function PrivacyPolicyPage() {
                 <div className="p-8">
                   <div className="prose prose-lg max-w-none">
                     <p className="text-gray-700 mb-6 leading-relaxed">
-                      Worldmaxxing Global Services Immigration Assistance Service ("we," "us," or "our") is
+                      United eVisa Services Immigration Assistance Service ("we," "us," or "our") is
                       committed to protecting your privacy and ensuring the security of your personal
                       information. This Privacy Policy explains how we collect, use, disclose, and
-                      safeguard your information when you visit our website at worldmaxxing.com
-                      and use our Worldmaxxing Global Services Immigration Assistance.
+                      safeguard your information when you visit our website at unitedevisa.com
+                      and use our United eVisa Services Immigration Assistance.
                     </p>
                     <p className="text-gray-700 leading-relaxed">
                       By using our services, you consent to the collection and use of your information
@@ -166,9 +166,9 @@ export default function PrivacyPolicyPage() {
                     </div>
 
                     {/* Third Party Information */}
-                    <div className="border-l-4 border-emerald-500 pl-6">
+                    <div className="border-l-4 border-blue-500 pl-6">
                       <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                        <svg className="w-6 h-6 text-emerald-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         2.3 Information from Third Parties
@@ -178,19 +178,19 @@ export default function PrivacyPolicyPage() {
                       </p>
                       <div className="grid sm:grid-cols-2 gap-3">
                         <div className="flex items-start space-x-3">
-                          <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                          <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                           <span className="text-gray-700">Payment processors for transaction verification</span>
                         </div>
                         <div className="flex items-start space-x-3">
-                          <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                          <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                           <span className="text-gray-700">Government authorities for visa processing</span>
                         </div>
                         <div className="flex items-start space-x-3">
-                          <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                          <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                           <span className="text-gray-700">Analytics providers for website usage data</span>
                         </div>
                         <div className="flex items-start space-x-3">
-                          <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+                          <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                           <span className="text-gray-700">Social media platforms (if connected)</span>
                         </div>
                       </div>
@@ -404,9 +404,9 @@ export default function PrivacyPolicyPage() {
 
               {/* Your Rights Section */}
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-teal-50 to-cyan-50 px-8 py-6 border-b border-gray-100">
+                <div className="bg-gradient-to-r from-amber-50 to-cyan-50 px-8 py-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">6</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Your Privacy Rights</h2>
@@ -480,8 +480,8 @@ export default function PrivacyPolicyPage() {
                     </div>
                   </div>
 
-                  <div className="mt-6 p-4 bg-teal-50 rounded-lg">
-                    <p className="text-teal-800 text-sm">
+                  <div className="mt-6 p-4 bg-amber-50 rounded-lg">
+                    <p className="text-amber-800 text-sm">
                       To exercise these rights, please contact us using the information provided in the Contact section below.
                     </p>
                   </div>
@@ -579,10 +579,10 @@ export default function PrivacyPolicyPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@worldmaxxing.com"
+                              href="mailto:visa@unitedevisa.com"
                               className="text-green-600 hover:text-green-800 font-medium underline decoration-green-200 hover:decoration-green-400 transition-colors"
                             >
-                              visa@worldmaxxing.com
+                              visa@unitedevisa.com
                             </a>
                           </p>
                           <p className="text-gray-700 text-sm">
@@ -604,14 +604,14 @@ export default function PrivacyPolicyPage() {
                           <p className="text-gray-700 text-sm">
                             Email:{' '}
                             <a
-                              href="mailto:visa@worldmaxxing.com"
+                              href="mailto:visa@unitedevisa.com"
                               className="text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-200 hover:decoration-blue-400 transition-colors"
                             >
-                              visa@worldmaxxing.com
+                              visa@unitedevisa.com
                             </a>
                           </p>
                           <p className="text-gray-700 text-sm">
-                            Address: Worldmaxxing Global Services Immigration Assistance Service
+                            Address: United eVisa Services Immigration Assistance Service
                             <br />
                             1308 E Colorado Blvd
                             <br />
@@ -627,7 +627,7 @@ export default function PrivacyPolicyPage() {
               </div>
 
               {/* Important Notice */}
-              <div className="bg-gradient-to-r from-green-600 to-emerald-700 rounded-2xl shadow-xl border border-green-200 overflow-hidden">
+              <div className="bg-gradient-to-r from-green-600 to-blue-700 rounded-2xl shadow-xl border border-green-200 overflow-hidden">
                 <div className="p-8">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-black/30 bg-opacity-20 rounded-lg flex items-center justify-center">

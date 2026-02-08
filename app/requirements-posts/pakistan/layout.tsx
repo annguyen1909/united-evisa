@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pakistan Visa Requirements & eVisa Application",
     description: "Complete Pakistan visa requirements guide. Apply for Pakistan eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/pakistan",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/pakistan",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/pakistan/pakistan-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/pakistan/pakistan-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/pakistan",
+    canonical: "https://unitedevisa.com/requirements-posts/pakistan",
   },
   robots: {
     index: true,

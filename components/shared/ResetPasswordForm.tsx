@@ -38,7 +38,7 @@ export default function ResetPasswordForm() {
       case 1: return 'bg-red-500'
       case 2: return 'bg-orange-500'
       case 3: return 'bg-yellow-500'
-      case 4: return 'bg-emerald-500'
+      case 4: return 'bg-blue-500'
       case 5: return 'bg-green-600'
       default: return 'bg-slate-200'
     }
@@ -112,7 +112,7 @@ export default function ResetPasswordForm() {
           <span className="text-green-700">{success}</span>
         </div>
         <a href="/login">
-          <Button type="button" className="w-full bg-emerald-600 hover:bg-emerald-700 mt-2">
+          <Button type="button" className="w-full bg-blue-600 hover:bg-blue-700 mt-2">
             Back to Login
           </Button>
         </a>
@@ -145,7 +145,7 @@ export default function ResetPasswordForm() {
             onChange={e => setEmail(e.target.value)}
             required
             className={cn(
-              "focus:ring-emerald-500",
+              "focus:ring-blue-500",
               error && "border-red-500 focus:ring-red-500"
             )}
           />
@@ -158,7 +158,7 @@ export default function ResetPasswordForm() {
         </div>
         <Button
           type="submit"
-          className="bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
+          className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
           disabled={loading}
         >
           {loading ? "Sending..." : "Send OTP"}
@@ -191,7 +191,7 @@ export default function ResetPasswordForm() {
             value={otp}
             onChange={e => setOtp(e.target.value)}
             required
-            className="border-slate-200 focus:ring-emerald-500"
+            className="border-slate-200 focus:ring-blue-500"
             maxLength={6}
             pattern="[0-9]{6}"
             inputMode="numeric"
@@ -204,7 +204,7 @@ export default function ResetPasswordForm() {
             type="password"
             value={newPassword}
             onChange={e => setNewPassword(e.target.value)}
-            className="border-slate-200 focus:ring-emerald-500"
+            className="border-slate-200 focus:ring-blue-500"
           />
           {newPassword && (
             <div className="mt-1">
@@ -232,7 +232,7 @@ export default function ResetPasswordForm() {
             type="password"
             value={confirmPassword}
             onChange={e => setConfirmPassword(e.target.value)}
-            className={`border-slate-200 focus:ring-emerald-500 ${confirmPassword && newPassword !== confirmPassword ? 'border-red-300' : ''}`}
+            className={`border-slate-200 focus:ring-blue-500 ${confirmPassword && newPassword !== confirmPassword ? 'border-red-300' : ''}`}
           />
           {confirmPassword && newPassword !== confirmPassword && (
             <p className="text-xs text-red-600 mt-1">Passwords do not match</p>
@@ -240,7 +240,7 @@ export default function ResetPasswordForm() {
         </div>
         <Button
           type="submit"
-          className="bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
+          className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
           disabled={loading}
         >
           {loading ? "Resetting..." : "Reset Password"}

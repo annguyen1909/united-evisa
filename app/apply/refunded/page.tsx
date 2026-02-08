@@ -48,7 +48,7 @@ function RefundedContent() {
     // Loading State
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 flex items-center justify-center">
                 <div className="text-center">
                     <div className="relative w-16 h-16 mx-auto mb-6">
                         <div className="absolute inset-0 rounded-full border-4 border-slate-200"></div>
@@ -99,29 +99,29 @@ function RefundedContent() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 py-12">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-amber-50/20 py-12">
             <div className="max-w-2xl mx-auto px-4">
-                <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5 pointer-events-none"></div>
+                <Card className="bg-white/90 backdrop-blur-sm shadow-xl border border-blue-100/50 overflow-hidden rounded-xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-amber-500/5 pointer-events-none"></div>
                     <CardHeader className="text-center pb-8 pt-8 relative z-10">
                         <div className="flex justify-center mb-6">
                             <div className="relative">
-                                <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center shadow-lg">
+                                <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl flex items-center justify-center shadow-lg">
                                     <CheckCircle className="h-12 w-12 text-green-600" />
                                 </div>
-                                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-md">
+                                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center shadow-md">
                                     <DollarSign className="h-4 w-4 text-white" />
                                 </div>
                             </div>
                         </div>
-                        <CardTitle className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-3">
+                        <CardTitle className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
                             Refund Processed
                         </CardTitle>
                         <p className="text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
                             Your refund has been successfully processed. The amount will be credited back to your original payment method within 5-10 business days.
                         </p>
                         <div className="flex justify-center mt-4">
-                            <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white border-0 text-sm px-4 py-2 rounded-full font-medium shadow-lg">
+                            <Badge className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0 text-sm px-4 py-2 rounded-full font-medium shadow-lg">
                                 Status: Refunded
                             </Badge>
                         </div>
@@ -171,7 +171,7 @@ function RefundedContent() {
                         </div>
 
                         {/* Refund Information */}
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200/50 rounded-2xl p-8 shadow-sm">
+                        <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200/50 rounded-2xl p-8 shadow-sm">
                             <h3 className="text-xl font-bold text-green-800 mb-4 flex items-center gap-3">
                                 <div className="p-2 bg-green-100 rounded-lg">
                                     <DollarSign className="h-5 w-5 text-green-600" />
@@ -180,7 +180,7 @@ function RefundedContent() {
                             </h3>
                             <div className="space-y-4">
                                 <div className="flex items-start gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-green-200/50">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-blue-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
                                         1
                                     </div>
                                     <div>
@@ -193,7 +193,7 @@ function RefundedContent() {
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-green-200/50">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-blue-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
                                         2
                                     </div>
                                     <div>
@@ -206,7 +206,7 @@ function RefundedContent() {
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-green-200/50">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-blue-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-md">
                                         3
                                     </div>
                                     <div>
@@ -268,17 +268,17 @@ function RefundedContent() {
                                 Contact Our Support Team
                             </h3>
                             <div className="grid gap-4">
-                                <a href="mailto:visa@worldmaxxing.com" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">
+                                <a href="mailto:visa@unitedevisa.com" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">
                                     <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-md">
                                         <Mail className="h-6 w-6 text-white" />
                                     </div>
                                     <div>
                                         <p className="font-semibold text-slate-800">Email Support</p>
-                                        <p className="text-slate-700">visa@worldmaxxing.com</p>
+                                        <p className="text-slate-700">visa@unitedevisa.com</p>
                                     </div>
                                 </a>
                                 <a href="tel:+1-555-123-4567" className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 hover:bg-white transition-all duration-200 cursor-pointer">
-                                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-md">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center shadow-md">
                                         <Phone className="h-6 w-6 text-white" />
                                     </div>
                                     <div>
@@ -305,7 +305,7 @@ function RefundedContent() {
                                 className="flex-1 block cursor-pointer"
                                 style={{ textDecoration: 'none' }}
                             >
-                                <div className="w-full h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg flex items-center justify-center">
+                                <div className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg flex items-center justify-center">
                                     Apply for New Visa
                                 </div>
                             </a>
@@ -329,7 +329,7 @@ function RefundedContent() {
 export default function RefundedPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-blue-50 flex items-center justify-center">
                 <div className="text-center">
                     <div className="relative w-16 h-16 mx-auto mb-6">
                         <div className="absolute inset-0 rounded-full border-4 border-slate-200"></div>

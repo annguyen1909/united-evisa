@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Benin Visa Requirements & eVisa Application",
     description: "Complete Benin visa requirements guide. Apply for Benin eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/benin",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/benin",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/benin/benin-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/benin/benin-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/benin",
+    canonical: "https://unitedevisa.com/requirements-posts/benin",
   },
   robots: {
     index: true,

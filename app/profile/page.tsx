@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Profile',
-  description: 'View and manage your Worldmaxxing Global Services account and visa applications.',
+  description: 'View and manage your United eVisa Services account and visa applications.',
   alternates: {
-    canonical: 'https://worldmaxxing.com/profile',
+    canonical: 'https://unitedevisa.com/profile',
   },
   robots: {
     index: false,
@@ -36,7 +36,7 @@ export default async function ProfilePage() {
   const user = await prisma.account.findFirst({
     where: {
       email: session.user.email,
-      websiteCreatedAt: "Worldmaxxing Site", // ensure it's your site's user
+      websiteCreatedAt: "United eVisa Site", // ensure it's your site's user
     },
     select: {
       id: true,

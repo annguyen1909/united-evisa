@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Egypt Visa Requirements & eVisa Application",
     description: "Complete Egypt visa requirements guide. Apply for Egypt eVisa online with fast processing, 24/7 support. Tourist, business, and transit visas available.",
-    url: "https://worldmaxxing.com/requirements-posts/egypt",
-    siteName: "Worldmaxxing Global Services",
+    url: "https://unitedevisa.com/requirements-posts/egypt",
+    siteName: "United eVisa Services",
     images: [
       {
         url: "/images/country/egypt/egypt-bg.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/country/egypt/egypt-bg.jpg"],
   },
   alternates: {
-    canonical: "https://worldmaxxing.com/requirements-posts/egypt",
+    canonical: "https://unitedevisa.com/requirements-posts/egypt",
   },
   robots: {
     index: true,

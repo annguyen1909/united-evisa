@@ -51,7 +51,7 @@ export default function Hero() {
               </Button>
             </Link>
             <Link href="/check-requirements">
-              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-full px-6 py-5">
+              <Button variant="outline" className="border-white/30 text-black hover:bg-white/10 hover:text-white rounded-full px-6 py-5">
                 Check requirements
               </Button>
             </Link>

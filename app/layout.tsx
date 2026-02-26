@@ -85,8 +85,8 @@ export const metadata: Metadata = {
     title: "United eVisa Services",
     description: "Apply for eVisas to 50+ countries. Fast processing, 24/7 support, guaranteed approval.",
     images: ["/images/og-image.png"],
-    creator: "@worldmaxxing",
-    site: "@worldmaxxing",
+    creator: "@unitedevisa",
+    site: "@unitedevisa",
   },
   robots: {
     index: true,

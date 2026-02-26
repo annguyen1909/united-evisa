@@ -14,9 +14,9 @@ export default function StructuredData() {
       "addressCountry": "US"
     },
     "sameAs": [
-      "https://twitter.com/worldmaxxing",
-      "https://facebook.com/worldmaxxing",
-      "https://linkedin.com/company/worldmaxxing"
+      "https://twitter.com/unitedevisa",
+      "https://facebook.com/unitedevisa",
+      "https://linkedin.com/company/unitedevisa"
     ],
     "serviceType": [
       "eVisa Application",

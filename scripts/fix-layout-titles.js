@@ -16,16 +16,16 @@ files.forEach(file => {
   let s = fs.readFileSync(file, 'utf8')
 
   // Remove the site suffix from title lines (double and single quotes)
-  s = s.replace(/(title:\s*\")(.*?) \| Worldmaxxing Global Services(\")/g, '$1$2$3')
-  s = s.replace(/(title:\s*\')(.*?) \| Worldmaxxing Global Services(\')/g, '$1$2$3')
+  s = s.replace(/(title:\s*\")(.*?) \| United Evisa Global Services(\")/g, '$1$2$3')
+  s = s.replace(/(title:\s*\')(.*?) \| United Evisa Global Services(\')/g, '$1$2$3')
 
   // Remove from openGraph.title and twitter.title if present
-  s = s.replace(/(openGraph:\s*\{[\s\S]*?title:\s*\")(.*?) \| Worldmaxxing Global Services(\")/g, (m, a, b, c) => `${a}${b}${c}`)
-  s = s.replace(/(twitter:\s*\{[\s\S]*?title:\s*\")(.*?) \| Worldmaxxing Global Services(\")/g, (m, a, b, c) => `${a}${b}${c}`)
+  s = s.replace(/(openGraph:\s*\{[\s\S]*?title:\s*\")(.*?) \| United Evisa Global Services(\")/g, (m, a, b, c) => `${a}${b}${c}`)
+  s = s.replace(/(twitter:\s*\{[\s\S]*?title:\s*\")(.*?) \| United Evisa Global Services(\")/g, (m, a, b, c) => `${a}${b}${c}`)
 
-  // Remove alt suffix like ' - Worldmaxxing Global Services'
-  s = s.replace(/ - Worldmaxxing Global Services(\")/g, '$1')
-  s = s.replace(/ - Worldmaxxing Global Services(\')/g, '$1')
+  // Remove alt suffix like ' - United Evisa Global Services'
+  s = s.replace(/ - United Evisa Global Services(\")/g, '$1')
+  s = s.replace(/ - United Evisa Global Services(\')/g, '$1')
 
   fs.writeFileSync(file, s, 'utf8')
 })

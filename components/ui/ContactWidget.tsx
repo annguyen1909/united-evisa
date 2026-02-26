@@ -5,7 +5,7 @@ import Pusher from 'pusher-js';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-const SITE_ID = 'worldmaxxing-site';
+const SITE_ID = 'unitedevisa-site';
 
 interface Message {
   id: string;

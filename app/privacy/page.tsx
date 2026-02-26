@@ -265,7 +265,7 @@ export default function PrivacyPolicyPage() {
                         </li>
                         <li className="flex items-center space-x-2">
                           <span className="w-1 h-1 bg-green-600 rounded-full"></span>
-                          <span>Send updates</span>
+                          <span>Send updates, including email and (where you have opted in) SMS communications about your inquiries or applications</span>
                         </li>
                       </ul>
                     </div>
@@ -370,11 +370,58 @@ export default function PrivacyPolicyPage() {
                   </div>
                 </div>
 
+                {/* SMS Communications & Consent */}
+                <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">5</span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900">SMS Communications & Consent</h3>
+                  </div>
+                  <div className="space-y-3 text-sm text-gray-700">
+                    <p>
+                      If you optionally consent, we may send you informational SMS text messages related to your
+                      inquiries, application status, document requests, and support follow-ups. Message and data
+                      rates may apply, and messaging frequency may vary based on your activity.
+                    </p>
+                    <p>
+                      You may withdraw your consent at any time by replying <strong>STOP</strong> to any message.
+                      For assistance, reply <strong>HELP</strong> or contact our support team. SMS consent is not
+                      required to purchase our services, and you may always use government websites directly without
+                      our assistance.
+                    </p>
+                    <p>
+                      We treat your mobile phone number and SMS opt-in information as sensitive contact data. We do
+                      not sell, rent, or share your mobile opt-in or text message consent with third parties or
+                      affiliates for their own marketing purposes. Where necessary to deliver messages (for example,
+                      via an SMS gateway provider), we share only what is needed under agreements that require those
+                      providers to protect your information.
+                    </p>
+                    <p>
+                      For more details on how to manage your SMS preferences, please visit our{" "}
+                      <a
+                        href="/sms-preferences"
+                        className="text-blue-600 hover:text-blue-800 underline decoration-blue-200 hover:decoration-blue-400"
+                      >
+                        SMS Preferences
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        href="/sms-disclaimer"
+                        className="text-blue-600 hover:text-blue-800 underline decoration-blue-200 hover:decoration-blue-400"
+                      >
+                        SMS Disclaimer
+                      </a>{" "}
+                      pages.
+                    </p>
+                  </div>
+                </div>
+
                 {/* Data Security */}
                 <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                   <div className="flex items-center space-x-3 mb-6">
                     <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">5</span>
+                      <span className="text-white font-bold text-sm">6</span>
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Data Security</h3>
                   </div>

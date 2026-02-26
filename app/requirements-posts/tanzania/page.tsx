@@ -582,7 +582,7 @@ export default function TanzaniaRequirementsPage() {
                   </div>
                   <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                     <p className="text-xs text-blue-800">
-                      <strong>Source:</strong> <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 underline">tanzaniaimmigration.com</a> and worldmaxxing processing data
+                      <strong>Source:</strong> <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 underline">tanzaniaimmigration.com</a> and United eVisa Services processing data
                     </p>
                   </div>
                 </div>
@@ -621,7 +621,7 @@ export default function TanzaniaRequirementsPage() {
                   </div>
                   <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                     <p className="text-xs text-blue-800">
-                      <strong>Source:</strong> <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 underline">tanzaniaimmigration.com</a> and worldmaxxing processing data
+                      <strong>Source:</strong> <a href="https://tanzaniaimmigration.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900 underline">tanzaniaimmigration.com</a> and United eVisa Services processing data
                     </p>
                   </div>
                 </div>

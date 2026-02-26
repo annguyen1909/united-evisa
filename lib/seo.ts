@@ -105,8 +105,8 @@ export function generateSEOMeta({
       title: normalizedTitle,
       description,
       images: [ogImage],
-      creator: '@worldmaxxing',
-      site: '@worldmaxxing',
+      creator: '@unitedevisa',
+      site: '@unitedevisa',
     },
   }
 }

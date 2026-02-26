@@ -16,7 +16,7 @@ Your website is already configured to show thumbnails when shared! You just need
 2. Create custom design: 1200 x 630 pixels
 3. Use these elements:
    - Background: Gradient from #10b981 to #047857 (blue theme)
-   - Text 1: "🌍 Worldmaxxing Global Services" (48px, white, bold)
+   - Text 1: "🌍 United eVisa Services" (48px, white, bold)
    - Text 2: "Fast & Secure eVisa Applications" (64px, white, very bold)
    - Text 3: "Apply for eVisas to 50+ countries • Fast processing • 24/7 support" (32px, white)
    - Add a badge in top-right: "🚀 Get Started" with white border
@@ -66,7 +66,7 @@ images: [
     url: "/images/hero/hero.jpg",  // Use this instead
     width: 1200,
     height: 630,
-    alt: "Worldmaxxing Global Services - Fast eVisa Applications",
+    alt: "United eVisa Services - Fast eVisa Applications",
   },
 ],
 ```

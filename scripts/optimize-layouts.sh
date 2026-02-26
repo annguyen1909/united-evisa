@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: '${display_name} eVisa Requirements & Application Guide',
     description: 'Complete ${display_name} visa requirements guide with step-by-step application process and expert tips.',
     url: 'https://worldmaxxing.com/requirements-posts/${slug}',
-    siteName: 'Worldmaxxing Global Services',
+    siteName: 'United Evisa Global Services',
     type: 'article',
     images: [
       {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     publishedTime: new Date().toISOString(),
     modifiedTime: new Date().toISOString(),
-    authors: ['Worldmaxxing Global Services'],
+    authors: ['United Evisa Global Services'],
     section: 'Visa Requirements',
     tags: ['${display_name} visa', 'visa requirements', 'eVisa', 'travel documents', '${display_name} travel'],
   },

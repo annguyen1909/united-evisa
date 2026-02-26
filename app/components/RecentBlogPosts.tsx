@@ -35,9 +35,9 @@ export default function RecentBlogPosts() {
           {featured && (
             <Link
               href={`/blog/${featured.slug}`}
-              className="group rounded-3xl border border-blue-100 bg-white shadow-sm hover:shadow-lg transition-shadow overflow-hidden"
+              className="group rounded-3xl border border-blue-100 bg-white shadow-sm hover:shadow-lg transition-shadow overflow-hidden flex flex-col"
             >
-              <div className="relative h-64 w-full bg-slate-100">
+              <div className="relative w-full h-80 bg-slate-100">
                 <Image
                   src={featured.image || "/images/hero/hero.jpg"}
                   alt={featured.title}
@@ -45,22 +45,25 @@ export default function RecentBlogPosts() {
                   className="object-cover group-hover:scale-[1.02] transition-transform"
                 />
               </div>
-              <div className="p-6">
+              <div className="p-5 flex-1 flex flex-col">
                 <p className="text-xs uppercase tracking-wide text-blue-500">
                   {featured.category || "Guide"}
                 </p>
-                <h3 className="text-2xl font-semibold text-slate-900 mt-2">
+                <h3 className="text-xl font-semibold text-slate-900 mt-2 line-clamp-2">
                   {featured.title}
                 </h3>
-                <p className="text-sm text-slate-600 mt-3 line-clamp-3">
+                <p className="text-sm text-slate-600 mt-2 line-clamp-2 flex-1">
                   {featured.description}
                 </p>
+                <span className="mt-4 text-sm font-semibold text-blue-700 group-hover:text-blue-800">
+                  Read article →
+                </span>
               </div>
             </Link>
           )}
 
           <div className="grid gap-4">
-            {rest.map((post) => (
+            {rest.slice(0, 4).map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}

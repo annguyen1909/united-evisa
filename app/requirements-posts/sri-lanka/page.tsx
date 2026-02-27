@@ -136,7 +136,7 @@ export default function SriLankaRequirementsPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
-              src="/images/country/sri-lanka/sri-lanka-bg.jpg"
+              src="/images/country/sri-lanka/sri-lanka-bg.webp"
               alt="Sri Lanka eVisa requirements - beautiful South Asian destinations and landmarks for visa travelers"
               fill
               className="object-cover opacity-30"
@@ -236,7 +236,7 @@ export default function SriLankaRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/sri-lanka/sri-lanka-bg.jpg"
+                  src="/images/country/sri-lanka/sri-lanka-bg.webp"
                   alt="Sri Lanka Landscape"
                   width={600}
                   height={400}

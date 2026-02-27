@@ -124,7 +124,7 @@ export default function TanzaniaRequirementsPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
-              src="/images/country/tanzania/tanzania-bg.jpg"
+              src="/images/country/tanzania/tanzania-bg.webp"
               alt="Tanzania Wildlife"
               fill
               className="object-cover opacity-30"
@@ -216,7 +216,7 @@ export default function TanzaniaRequirementsPage() {
                 
                 <div className="relative">
                   <Image
-                    src="/images/country/tanzania/tanzania-bg.jpg"
+                    src="/images/country/tanzania/tanzania-bg.webp"
                     alt="Tanzania Wildlife"
                     width={600}
                     height={400}

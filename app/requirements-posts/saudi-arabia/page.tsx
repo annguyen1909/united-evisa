@@ -128,7 +128,7 @@ export default function SaudiArabiaRequirementsPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
-              src="/images/country/saudi-arabia/saudi-arabia-bg.jpg"
+              src="/images/country/saudi-arabia/saudi-arabia-bg.webp"
               alt="Saudi Arabia eVisa requirements - beautiful Middle Eastern destinations and landmarks for visa travelers"
               fill
               className="object-cover opacity-30"
@@ -222,7 +222,7 @@ export default function SaudiArabiaRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/saudi-arabia/saudi-arabia-bg.jpg"
+                  src="/images/country/saudi-arabia/saudi-arabia-bg.webp"
                   alt="Saudi Arabia Skyline"
                   width={600}
                   height={400}

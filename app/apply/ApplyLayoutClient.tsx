@@ -25,7 +25,7 @@ export default function ApplyLayoutClient({
     <div className="w-full mx-auto bg-gradient-to-b from-blue-50/40 via-white to-white">
       <div className="relative w-full h-56 md:h-72 flex items-center justify-center max-md:mb-0 overflow-hidden mb-6">
         <Image
-          src="/images/apply/apply-bg.jpg"
+          src="/images/apply/apply-bg.webp"
           alt="Apply background"
           fill
           className="object-cover object-center opacity-40"

@@ -155,13 +155,13 @@ export default function UgandaRequirementsPage() {
         <div className="relative bg-gradient-to-r from-black via-yellow-400 to-red-600 text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
-            <Image
-              src="/images/country/uganda/uganda-bg.jpg"
-              alt="Uganda eVisa requirements - beautiful East African destinations and landmarks for visa travelers"
-              fill
-              className="object-cover opacity-30"
-              priority
-            />
+          <Image
+            src="/images/country/uganda/uganda-bg.webp"
+            alt="Uganda eVisa requirements - beautiful East African destinations and landmarks for visa travelers"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
           </div>
           <div className="relative max-w-6xl mx-auto px-4 py-16">
             <div className="text-center">
@@ -254,13 +254,13 @@ export default function UgandaRequirementsPage() {
                 </div>
                 
                 <div className="relative">
-                  <Image
-                    src="/images/country/uganda/uganda-bg.jpg"
-                    alt="Uganda Landscape"
-                    width={600}
-                    height={400}
-                    className="rounded-xl shadow-lg"
-                  />
+                <Image
+                  src="/images/country/uganda/uganda-bg.webp"
+                  alt="Uganda Landscape"
+                  width={600}
+                  height={400}
+                  className="rounded-xl shadow-lg"
+                />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
                     <span className="text-sm font-semibold text-slate-800">🇺🇬 Uganda</span>
                   </div>

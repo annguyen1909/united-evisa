@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: 'https://unitedevisa.com/requirements-comparison',
     images: [
       {
-        url: '/images/hero/hero.jpg',
+        url: '/images/hero/hero.webp',
         width: 1200,
         height: 630,
         alt: 'eVisa requirements comparison',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: 'eVisa Requirements Comparison – Tanzania, Sri Lanka, India, Kenya, Indonesia',
     description:
       'Compare eVisa requirements, processing times, and entry rules for Tanzania, Sri Lanka, India, Kenya, and Indonesia.',
-    images: ['/images/hero/hero.jpg'],
+    images: ['/images/hero/hero.webp'],
   },
 }
 

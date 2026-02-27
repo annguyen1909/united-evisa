@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'United eVisa Services',
       images: [
         {
-          url: faq.image || '/images/hero/hero.jpg',
+          url: faq.image || '/images/hero/hero.webp',
           width: 1200,
           height: 630,
           alt: `${faq.title} - FAQ`,

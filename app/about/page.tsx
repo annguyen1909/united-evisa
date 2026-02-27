@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'United eVisa Services',
     images: [
       {
-        url: '/images/hero/hero.jpg',
+        url: '/images/hero/hero.webp',
         width: 1200,
         height: 630,
         alt: 'United eVisa Services - About Us',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'About Us - United eVisa Services',
     description: 'Trusted visa service provider helping travelers secure eVisas to 50+ countries worldwide.',
-    images: ['/images/hero/hero.jpg'],
+    images: ['/images/hero/hero.webp'],
   },
   alternates: {
     canonical: 'https://unitedevisa.com/about',
@@ -65,7 +65,7 @@ export default function AboutPage() {
         <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900 text-white py-20 lg:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0" style={{
-            backgroundImage: `url('/images/hero/hero.jpg')`,
+            backgroundImage: `url('/images/hero/hero.webp')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.15

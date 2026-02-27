@@ -6,7 +6,7 @@ export default function StructuredData() {
     "description": "Professional eVisa application services for 50+ countries worldwide. Fast processing, 24/7 support, and guaranteed approval.",
     "url": "https://unitedevisa.com",
     "logo": "https://unitedevisa.com/images/logo.png",
-    "image": "https://unitedevisa.com/images/hero/hero.jpg",
+    "image": "https://unitedevisa.com/images/hero/hero.webp",
     "telephone": "+1 323 286 4541",
     "email": "support@unitedevisa.com",
     "address": {

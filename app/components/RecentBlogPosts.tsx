@@ -39,7 +39,7 @@ export default function RecentBlogPosts() {
             >
               <div className="relative w-full h-80 bg-slate-100">
                 <Image
-                  src={featured.image || "/images/hero/hero.jpg"}
+                  src={featured.image || "/images/hero/hero.webp"}
                   alt={featured.title}
                   fill
                   className="object-cover group-hover:scale-[1.02] transition-transform"
@@ -71,7 +71,7 @@ export default function RecentBlogPosts() {
               >
                 <div className="relative h-20 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
                   <Image
-                    src={post.image || "/images/hero/hero.jpg"}
+                    src={post.image || "/images/hero/hero.webp"}
                     alt={post.title}
                     fill
                     className="object-cover group-hover:scale-[1.02] transition-transform"

@@ -176,7 +176,7 @@ export default function ZimbabweRequirementsPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0">
           <Image
-            src="/images/country/zimbabwe/zimbabwe-bg.jpg"
+            src="/images/country/zimbabwe/zimbabwe-bg.webp"
             alt="Zimbabwe Wildlife"
             fill
             className="object-cover opacity-30"
@@ -270,7 +270,7 @@ export default function ZimbabweRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/zimbabwe/zimbabwe-bg.jpg"
+                  src="/images/country/zimbabwe/zimbabwe-bg.webp"
                   alt="Zimbabwe Wildlife"
                   width={600}
                   height={400}

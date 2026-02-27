@@ -148,7 +148,7 @@ export default function TajikistanRequirementsPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
-              src="/images/country/tajikistan/tajikistan-bg.jpg"
+              src="/images/country/tajikistan/tajikistan-bg.webp"
               alt="Tajikistan eVisa requirements - beautiful Central Asian destinations and landmarks for visa travelers"
               fill
               className="object-cover opacity-30"
@@ -248,7 +248,7 @@ export default function TajikistanRequirementsPage() {
                 
                 <div className="relative">
                   <Image
-                    src="/images/country/tajikistan/tajikistan-bg.jpg"
+                    src="/images/country/tajikistan/tajikistan-bg.webp"
                     alt="Tajikistan Landscape"
                     width={600}
                     height={400}

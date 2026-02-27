@@ -124,7 +124,7 @@ export default function SaintHelenaRequirementsPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
-              src="/images/country/saint-helena/saint-helena-bg.jpg"
+              src="/images/country/saint-helena/saint-helena-bg.webp"
               alt="Saint Helena eVisa requirements - beautiful South Atlantic destinations and landmarks for visa travelers"
               fill
               className="object-cover opacity-30"

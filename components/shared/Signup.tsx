@@ -92,7 +92,7 @@ export default function SignupForm({ className, ...props }: React.ComponentProps
             <div className="absolute inset-0 bg-gradient-to-b from-blue-600/20 via-blue-900/10 to-amber-500/20 z-10 backdrop-blur-[2px]" />
             <Image
               fill
-              src="/images/auth/background.jpg"
+              src="/images/auth/background.webp"
               alt="Sign up image"
               className="absolute inset-0 object-cover"
               priority

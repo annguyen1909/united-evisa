@@ -144,7 +144,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'United eVisa Services',
       images: [
         {
-          url: '/images/hero/hero.jpg',
+          url: '/images/hero/hero.webp',
           width: 1200,
           height: 630,
           alt: `${post.title} - United eVisa Services Blog`,
@@ -160,7 +160,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: `${post.title} | United eVisa Services`,
       description: post.description || `Read about ${post.title} on United eVisa Services blog.`,
-      images: ['/images/hero/hero.jpg'],
+      images: ['/images/hero/hero.webp'],
     },
   };
 }
@@ -172,7 +172,7 @@ export default async function BlogDetail({ params }: Props) {
 
   const baseUrl = "https://unitedevisa.com";
   const canonicalUrl = `${baseUrl}/blog/${slug}`;
-  const imagePath = post.image || "/images/hero/hero.jpg";
+  const imagePath = post.image || "/images/hero/hero.webp";
   const imageUrl = imagePath.startsWith("http") ? imagePath : `${baseUrl}${imagePath}`;
   const publishedDate = post.date;
   const modifiedDate = post.updatedAt || post.date;

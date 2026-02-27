@@ -11,42 +11,42 @@ const destinations = [
   {
     name: "Sri Lanka",
     link: "sri-lanka",
-    image: "/images/country/sri-lanka/sri-lanka-bg.jpg",
+    image: "/images/country/sri-lanka/sri-lanka-bg.webp",
     code: 'lk',
     tagline: "Pearl of the Indian Ocean"
   },
   {
     name: "Vietnam",
     link: "vietnam",
-    image: "/images/country/vietnam/vietnam-bg.jpg",
+    image: "/images/country/vietnam/vietnam-bg.webp",
     code: 'vn',
     tagline: "Timeless Charm"
   },
   {
     name: "Kenya",
     link: "kenya",
-    image: "/images/country/kenya/kenya-bg.jpg",
+    image: "/images/country/kenya/kenya-bg.webp",
     code: 'ke',
     tagline: "Magical Wildlife Safaris"
   },
   {
     name: "Malaysia",
     link: "malaysia",
-    image: "/images/country/malaysia/malaysia-bg.jpg",
+    image: "/images/country/malaysia/malaysia-bg.webp",
     code: 'my',
     tagline: "Truly Asia"
   },
   {
     name: "Cambodia",
     link: "cambodia",
-    image: "/images/country/cambodia/cambodia-bg.jpg",
+    image: "/images/country/cambodia/cambodia-bg.webp",
     code: 'kh',
     tagline: "Kingdom of Wonder"
   },
   {
     name: "Tanzania",
     link: "tanzania",
-    image: "/images/country/tanzania/tanzania-bg.jpg",
+    image: "/images/country/tanzania/tanzania-bg.webp",
     code: 'tz',
     tagline: "Land of Serenity"
   }

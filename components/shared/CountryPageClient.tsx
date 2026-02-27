@@ -117,7 +117,7 @@ export default function CountryPageClient({ country }: { country: any }) {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(/images/country/${country.slug}/${country.slug}-bg.jpg)`,
+            backgroundImage: `url(/images/country/${country.slug}/${country.slug}-bg.webp)`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-blue-950/75 via-blue-900/50 to-blue-950/70" />

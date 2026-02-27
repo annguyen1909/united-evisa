@@ -307,7 +307,7 @@ export default function DestinationClient() {
               <Link href={`/destinations/${country.slug}${page > 1 ? `?page=${page}` : ""}`} className="flex-grow">
                 <div className="relative h-40 overflow-hidden">
                   <Image
-                    src={`/images/country/${country.slug}/${country.slug}-bg.jpg`}
+                    src={`/images/country/${country.slug}/${country.slug}-bg.webp`}
                     alt={`${country.name} background`}
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-700"

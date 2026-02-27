@@ -41,7 +41,7 @@ export default function EnhancedStructuredData({
     "alternateName": "United eVisa",
     "url": baseUrl,
     "logo": `${baseUrl}/images/logo.png`,
-    "image": `${baseUrl}/images/hero/hero.jpg`,
+    "image": `${baseUrl}/images/hero/hero.webp`,
     "description": "Professional eVisa application services for 50+ countries worldwide. Fast processing, 24/7 support, and guaranteed approval.",
     "telephone": "+1 323 286 4541",
     "email": "support@unitedevisa.com"

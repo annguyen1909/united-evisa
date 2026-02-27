@@ -132,7 +132,7 @@ export function generateCountrySEO(country: any, pageType: 'destination' | 'requ
         description: `Apply for your ${country.name} eVisa online. Fast processing in ${country.processingTime?.normal || '24-72 hours'}, expert support, and guaranteed approval. Start your ${country.name} visa application today!`,
         canonical: `/destination/${country.slug}`,
         keywords: [...baseKeywords, `${country.name} tourist visa`, `${country.name} business visa`],
-        ogImage: `/images/country/${country.slug}/${country.slug}-bg.jpg`,
+        ogImage: `/images/country/${country.slug}/${country.slug}-bg.webp`,
       })
 
     case 'requirements':

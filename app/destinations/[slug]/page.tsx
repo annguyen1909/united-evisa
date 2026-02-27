@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             title: `${country.name} eVisa Center | United eVisa`,
             description: `Official ${country.name} travel policy and visa application requirements.`,
             url: `https://unitedevisa.com/destinations/${country.slug}`,
-            images: country.imageUrl ? [country.imageUrl] : ['/images/hero/hero.jpg'],
+            images: country.imageUrl ? [country.imageUrl] : ['/images/hero/hero.webp'],
         }
     }
 }

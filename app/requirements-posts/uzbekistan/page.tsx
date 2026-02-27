@@ -188,7 +188,7 @@ export default function UzbekistanRequirementsPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0">
           <Image
-            src="/images/country/uzbekistan/uzbekistan-bg.jpg"
+            src="/images/country/uzbekistan/uzbekistan-bg.webp"
             alt="Uzbekistan Architecture"
             fill
             className="object-cover opacity-30"
@@ -282,7 +282,7 @@ export default function UzbekistanRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/uzbekistan/uzbekistan-bg.jpg"
+                  src="/images/country/uzbekistan/uzbekistan-bg.webp"
                   alt="Uzbekistan Architecture"
                   width={600}
                   height={400}

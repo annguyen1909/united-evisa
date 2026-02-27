@@ -55,7 +55,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
             <div className="absolute inset-0 bg-gradient-to-b from-blue-600/20 via-blue-900/10 to-amber-500/20 z-10 backdrop-blur-[2px]" />
             <Image
               fill
-              src="/images/auth/background.jpg"
+              src="/images/auth/background.webp"
               alt="Image"
               className="absolute inset-0 object-cover"
               priority

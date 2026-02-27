@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     siteName: 'United eVisa Services',
     images: [
       {
-        url: '/images/hero/hero.jpg',
+        url: '/images/hero/hero.webp',
         width: 1200,
         height: 630,
         alt: 'Visa Pricing',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Visa Pricing & Fees',
     description: 'View visa pricing and government fees for all countries. Transparent pricing with no hidden costs.',
-    images: ['/images/hero/hero.jpg'],
+    images: ['/images/hero/hero.webp'],
   },
 };
 

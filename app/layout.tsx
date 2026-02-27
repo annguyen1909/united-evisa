@@ -72,7 +72,7 @@ export const metadata: Metadata = {
         type: "image/png",
       },
       {
-        url: "/images/hero/hero.jpg",
+        url: "/images/hero/hero.webp",
         width: 1200,
         height: 630,
         alt: "United eVisa Services - eVisa Processing Center",

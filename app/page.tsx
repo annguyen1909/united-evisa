@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "United eVisa Services",
     images: [
       {
-        url: "/images/hero/hero.jpg",
+        url: "/images/hero/hero.webp",
         width: 1200,
         height: 630,
         alt: "eVisa Application Platform",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "United eVisa Services | Visa to Travel in Minutes",
     description: "Apply online with expert support and real-time updates for eVisa requirements.",
-    images: ["/images/hero/hero.jpg"],
+    images: ["/images/hero/hero.webp"],
   },
   alternates: {
     canonical: "https://unitedevisa.com",

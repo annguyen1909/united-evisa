@@ -124,7 +124,7 @@ export default function SouthAfricaRequirementsPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
-              src="/images/country/south-africa/south-africa-bg.jpg"
+              src="/images/country/south-africa/south-africa-bg.webp"
               alt="South Africa eVisa requirements - beautiful Southern African destinations and landmarks for visa travelers"
               fill
               className="object-cover opacity-30"
@@ -224,7 +224,7 @@ export default function SouthAfricaRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/south-africa/south-africa-bg.jpg"
+                  src="/images/country/south-africa/south-africa-bg.webp"
                   alt="South Africa Landscape"
                   width={600}
                   height={400}

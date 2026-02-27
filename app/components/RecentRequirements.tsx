@@ -46,7 +46,7 @@ export default function RecentRequirements() {
             >
               <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-2xl bg-slate-100">
                 <Image
-                  src={post.image || "/images/hero/hero.jpg"}
+                  src={post.image || "/images/hero/hero.webp"}
                   alt={`${post.country} requirements`}
                   fill
                   className="object-cover"

@@ -163,13 +163,13 @@ export default function UnitedKingdomRequirementsPage() {
         <div className="relative bg-gradient-to-r from-red-600 via-white to-blue-600 text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
-            <Image
-              src="/images/country/united-kingdom/united-kingdom-bg.jpg"
-              alt="United Kingdom eVisa requirements - beautiful European destinations and landmarks for visa travelers"
-              fill
-              className="object-cover opacity-30"
-              priority
-            />
+          <Image
+            src="/images/country/united-kingdom/united-kingdom-bg.webp"
+            alt="United Kingdom eVisa requirements - beautiful European destinations and landmarks for visa travelers"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
           </div>
           <div className="relative max-w-6xl mx-auto px-4 py-16">
             <div className="text-center">
@@ -257,13 +257,13 @@ export default function UnitedKingdomRequirementsPage() {
                 </div>
                 
                 <div className="relative">
-                  <Image
-                    src="/images/country/united-kingdom/united-kingdom-bg.jpg"
-                    alt="United Kingdom Skyline"
-                    width={600}
-                    height={400}
-                    className="rounded-xl shadow-lg"
-                  />
+                <Image
+                  src="/images/country/united-kingdom/united-kingdom-bg.webp"
+                  alt="United Kingdom Skyline"
+                  width={600}
+                  height={400}
+                  className="rounded-xl shadow-lg"
+                />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
                     <span className="text-sm font-semibold text-slate-800">🇬🇧 United Kingdom</span>
                   </div>

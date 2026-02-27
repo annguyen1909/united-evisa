@@ -164,7 +164,7 @@ export default function RwandaRequirementsPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
-              src="/images/country/rwanda/rwanda-bg.jpg"
+              src="/images/country/rwanda/rwanda-bg.webp"
               alt="Rwanda eVisa requirements - beautiful East African destinations and landmarks for visa travelers"
               fill
               className="object-cover opacity-30"
@@ -258,7 +258,7 @@ export default function RwandaRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/rwanda/rwanda-bg.jpg"
+                  src="/images/country/rwanda/rwanda-bg.webp"
                   alt="Rwanda Landscape"
                   width={600}
                   height={400}

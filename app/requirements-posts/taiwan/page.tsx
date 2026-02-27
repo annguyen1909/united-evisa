@@ -123,7 +123,7 @@ export default function TaiwanRequirementsPage() {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0">
             <Image
-              src="/images/country/taiwan/taiwan-bg.jpg"
+              src="/images/country/taiwan/taiwan-bg.webp"
               alt="Taiwan eVisa requirements - beautiful East Asian destinations and landmarks for visa travelers"
               fill
               className="object-cover opacity-30"
@@ -223,7 +223,7 @@ export default function TaiwanRequirementsPage() {
               
               <div className="relative">
                 <Image
-                  src="/images/country/taiwan/taiwan-bg.jpg"
+                  src="/images/country/taiwan/taiwan-bg.webp"
                   alt="Taiwan Skyline"
                   width={600}
                   height={400}

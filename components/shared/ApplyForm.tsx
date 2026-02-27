@@ -789,20 +789,43 @@ export default function ApplyForm({ user }: { user: any }) {
               Clear steps, secure payments, and real‑time updates as you move through the process.
             </p>
           </div>
-          <div className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm">
-            <div className="text-sm text-slate-500">What you need</div>
-            <ul className="mt-3 space-y-2 text-sm text-slate-700">
-              <li className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                Valid passport
+          <div className="relative rounded-3xl border border-blue-100/80 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/20 p-6 shadow-sm overflow-hidden">
+            <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-blue-100/40 blur-3xl" />
+            <div className="relative flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">
+                  Before you start
+                </p>
+                <h2 className="mt-1 text-lg font-semibold text-slate-900">
+                  What you need
+                </h2>
+                <p className="mt-1 text-xs text-slate-500">
+                  Have these details ready so you can finish in just a few minutes.
+                </p>
+              </div>
+              <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-blue-600/10 text-blue-600">
+                <CheckCircle className="h-5 w-5" />
+              </div>
+            </div>
+
+            <ul className="relative mt-4 space-y-2.5 text-sm text-slate-700">
+              <li className="flex items-center gap-3">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600/10 text-blue-600">
+                  <CheckCircle className="h-3 w-3" />
+                </span>
+                <span>Valid passport</span>
               </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                Travel dates
+              <li className="flex items-center gap-3">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600/10 text-blue-600">
+                  <CheckCircle className="h-3 w-3" />
+                </span>
+                <span>Travel dates</span>
               </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                Contact details
+              <li className="flex items-center gap-3">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600/10 text-blue-600">
+                  <CheckCircle className="h-3 w-3" />
+                </span>
+                <span>Contact details</span>
               </li>
             </ul>
           </div>

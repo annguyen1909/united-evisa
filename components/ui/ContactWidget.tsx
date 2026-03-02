@@ -157,94 +157,112 @@ export default function ContactWidget() {
   // Initialize Pusher
   useEffect(() => {
     if (sessionId) {
-      // Initialize Pusher with actual credentials from environment
-      const pusherInstance = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
-        cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
-      });
+      // Check if Pusher credentials are available
+      const pusherKey = process.env.NEXT_PUBLIC_PUSHER_KEY;
+      const pusherCluster = process.env.NEXT_PUBLIC_PUSHER_CLUSTER || 'us2'; // Default to 'us2' if not provided
+      
+      if (!pusherKey) {
+        console.warn('Pusher key is not configured. Real-time chat features will be limited.');
+        return;
+      }
 
-      // Subscribe to the session channel
-      const sessionChannel = pusherInstance.subscribe(`chat-session-${sessionId}`);
-
-      // Listen for new messages
-      sessionChannel.bind('message', (data: Message) => {
-        console.log('Received real-time message:', data);
-        setMessages((prev) => {
-          // Check if this is a message we sent (optimistic message)
-          const optimisticMessage = prev.find(
-            (msg) =>
-              msg.id.startsWith('temp-') &&
-              msg.content === data.content &&
-              msg.senderType === data.senderType &&
-              msg.senderId === data.senderId
-          );
-
-          if (optimisticMessage) {
-            console.log('Replacing optimistic message with real message:', data.id);
-            // Replace the optimistic message with the real one
-            return prev.map((msg) => (msg.id === optimisticMessage.id ? data : msg));
-          }
-
-          // Check if message already exists to prevent duplicates
-          const messageExists = prev.some((msg) => msg.id === data.id);
-          if (messageExists) {
-            console.log('Message already exists, skipping duplicate:', data.id);
-            return prev;
-          }
-
-          // Add new message
-          return [...prev, data];
+      try {
+        // Initialize Pusher with actual credentials from environment
+        const pusherInstance = new Pusher(pusherKey, {
+          cluster: pusherCluster,
         });
-      });
 
-      // Listen for typing events
-      sessionChannel.bind('typing', (data: TypingUser) => {
-        console.log('Typing event received:', data);
-        // Don't show for our own typing
-        if (data.senderId === email.trim()) return;
+        // Subscribe to the session channel
+        const sessionChannel = pusherInstance.subscribe(`chat-session-${sessionId}`);
 
-        setTypingUsers((prev) => ({
-          ...prev,
-          [data.senderId]: {
-            ...data,
-            timestamp: new Date(),
-          },
-        }));
-      });
+        // Listen for new messages
+        sessionChannel.bind('message', (data: Message) => {
+          console.log('Received real-time message:', data);
+          setMessages((prev) => {
+            // Check if this is a message we sent (optimistic message)
+            const optimisticMessage = prev.find(
+              (msg) =>
+                msg.id.startsWith('temp-') &&
+                msg.content === data.content &&
+                msg.senderType === data.senderType &&
+                msg.senderId === data.senderId
+            );
 
-      // Listen for stop typing events
-      sessionChannel.bind('stop-typing', (data: TypingUser) => {
-        console.log('Stop typing event received:', data);
-        // Don't handle our own stop typing
-        if (data.senderId === email.trim()) return;
+            if (optimisticMessage) {
+              console.log('Replacing optimistic message with real message:', data.id);
+              // Replace the optimistic message with the real one
+              return prev.map((msg) => (msg.id === optimisticMessage.id ? data : msg));
+            }
 
-        setTypingUsers((prev) => {
-          const newTypingUsers = { ...prev };
-          delete newTypingUsers[data.senderId];
-          return newTypingUsers;
+            // Check if message already exists to prevent duplicates
+            const messageExists = prev.some((msg) => msg.id === data.id);
+            if (messageExists) {
+              console.log('Message already exists, skipping duplicate:', data.id);
+              return prev;
+            }
+
+            // Add new message
+            return [...prev, data];
+          });
         });
-      });
 
-      // Listen for message delivery status
-      sessionChannel.bind('delivered', (data: { messageId: string }) => {
-        console.log('Message delivered:', data);
-        // You can update message delivery status here
-      });
+        // Listen for typing events
+        sessionChannel.bind('typing', (data: TypingUser) => {
+          console.log('Typing event received:', data);
+          // Don't show for our own typing
+          if (data.senderId === email.trim()) return;
 
-      // Listen for message read status
-      sessionChannel.bind('read', (data: { messageId: string }) => {
-        console.log('Message read:', data);
-        // You can update message read status here
-      });
+          setTypingUsers((prev) => ({
+            ...prev,
+            [data.senderId]: {
+              ...data,
+              timestamp: new Date(),
+            },
+          }));
+        });
 
-      // Cleanup function
-      return () => {
-        if (typingTimeoutRef.current) {
-          clearTimeout(typingTimeoutRef.current);
-        }
-        sessionChannel.unbind_all();
-        pusherInstance.unsubscribe(`chat-session-${sessionId}`);
-        pusherInstance.disconnect();
-      };
+        // Listen for stop typing events
+        sessionChannel.bind('stop-typing', (data: TypingUser) => {
+          console.log('Stop typing event received:', data);
+          // Don't handle our own stop typing
+          if (data.senderId === email.trim()) return;
+
+          setTypingUsers((prev) => {
+            const newTypingUsers = { ...prev };
+            delete newTypingUsers[data.senderId];
+            return newTypingUsers;
+          });
+        });
+
+        // Listen for message delivery status
+        sessionChannel.bind('delivered', (data: { messageId: string }) => {
+          console.log('Message delivered:', data);
+          // You can update message delivery status here
+        });
+
+        // Listen for message read status
+        sessionChannel.bind('read', (data: { messageId: string }) => {
+          console.log('Message read:', data);
+          // You can update message read status here
+        });
+
+        // Cleanup function
+        return () => {
+          if (typingTimeoutRef.current) {
+            clearTimeout(typingTimeoutRef.current);
+          }
+          try {
+            sessionChannel.unbind_all();
+            pusherInstance.unsubscribe(`chat-session-${sessionId}`);
+            pusherInstance.disconnect();
+          } catch (error) {
+            console.error('Error cleaning up Pusher connection:', error);
+          }
+        };
+      } catch (error) {
+        console.error('Error initializing Pusher:', error);
+        // Chat will still work without real-time updates
+      }
     }
   }, [sessionId, email]);
 

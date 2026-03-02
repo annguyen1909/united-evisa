@@ -66,15 +66,6 @@ export default function RecentRequirements() {
             </Link>
           ))}
         </div>
-
-        <div className="mt-6 text-sm text-slate-500">
-          <Link
-            href="/requirements-posts/rss.xml"
-            className="font-semibold text-blue-700 hover:text-blue-800"
-          >
-            Subscribe via RSS
-          </Link>
-        </div>
       </div>
     </section>
   );

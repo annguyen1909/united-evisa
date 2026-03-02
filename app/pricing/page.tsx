@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button";
 import FeeGuarantee from "../components/FeeGuarantee";
 import CustomerSupport from "../components/CustomerSupport";
 import { Country } from "@/lib/countries/type";
+import { indiaVisaFeeTable } from "@/lib/countries/india";
+import { getNationalityByCode } from "@/lib/nationalities";
 import { Search, ArrowRight, Globe, DollarSign, Clock, Users, CheckCircle, ShieldCheck } from "lucide-react";
 
 export default function PricingPage() {
@@ -54,6 +56,27 @@ export default function PricingPage() {
         "Yes. You can include up to 15 travelers in one application. For larger groups, contact support.",
     },
   ];
+
+  const formatUsd = (value: number | null | undefined) =>
+    typeof value === "number" ? `US$ ${value.toFixed(2)}` : "Not available";
+
+  const getFeeRange = (
+    feeKey:
+      | "30_days_tourist"
+      | "1_year_tourist"
+      | "5_years_tourist"
+      | "1_year_business"
+      | "other_visa"
+  ) => {
+    const values = indiaVisaFeeTable
+      .map((group) => group.govFee[feeKey])
+      .filter((fee): fee is number => typeof fee === "number");
+
+    if (!values.length) return "Not available";
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    return min === max ? `US$ ${min.toFixed(2)}` : `US$ ${min.toFixed(2)} - US$ ${max.toFixed(2)}`;
+  };
 
   function handleCheckNow() {
     const inputLower = searchCountry?.toLowerCase?.() || "";
@@ -105,7 +128,96 @@ export default function PricingPage() {
             </Button>
           </div>
 
-          {country.visaTypes?.length ? (
+          {country.slug === "india" ? (
+            <div className="space-y-6 mt-4">
+              <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-4 text-sm text-amber-900">
+                India eVisa government fees vary by applicant nationality. The table below shows
+                official fee ranges and group-level breakdown so you can verify costs before checkout.
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="min-w-full border border-slate-200 rounded-lg overflow-hidden text-sm">
+                  <thead className="bg-slate-50 text-slate-600">
+                    <tr>
+                      <th className="px-6 py-3 text-left font-semibold">Visa Type</th>
+                      <th className="px-6 py-3 text-left font-semibold">Entry / Validity</th>
+                      <th className="px-6 py-3 text-left font-semibold">Gov. Fee Range (USD)</th>
+                      <th className="px-6 py-3 text-left font-semibold">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-white">
+                      <td className="px-6 py-4 font-medium text-slate-800">Tourist eVisa (30 days)</td>
+                      <td className="px-6 py-4">Double entry / 30 days</td>
+                      <td className="px-6 py-4 font-semibold">{getFeeRange("30_days_tourist")}</td>
+                      <td className="px-6 py-4">Nationality-based government fee.</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-medium text-slate-800">Tourist eVisa (1 year)</td>
+                      <td className="px-6 py-4">Multiple entries / 1 year</td>
+                      <td className="px-6 py-4 font-semibold">{getFeeRange("1_year_tourist")}</td>
+                      <td className="px-6 py-4">Nationality-based government fee.</td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-6 py-4 font-medium text-slate-800">Tourist eVisa (5 years)</td>
+                      <td className="px-6 py-4">Multiple entries / 5 years</td>
+                      <td className="px-6 py-4 font-semibold">{getFeeRange("5_years_tourist")}</td>
+                      <td className="px-6 py-4">Not applicable for Sri Lanka and Canada.</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-medium text-slate-800">Business eVisa (1 year)</td>
+                      <td className="px-6 py-4">Multiple entries / 1 year</td>
+                      <td className="px-6 py-4 font-semibold">{getFeeRange("1_year_business")}</td>
+                      <td className="px-6 py-4">Nationality-based government fee.</td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-6 py-4 font-medium text-slate-800">
+                        Medical / Ayush / Conference / Student eVisa
+                      </td>
+                      <td className="px-6 py-4">Type-specific entry and validity</td>
+                      <td className="px-6 py-4 font-semibold">{getFeeRange("other_visa")}</td>
+                      <td className="px-6 py-4">Nationality-based government fee.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="min-w-full border border-slate-200 rounded-lg overflow-hidden text-sm">
+                  <thead className="bg-slate-50 text-slate-600">
+                    <tr>
+                      <th className="px-6 py-3 text-left font-semibold">Nationality Group</th>
+                      <th className="px-6 py-3 text-left font-semibold">30d Tourist</th>
+                      <th className="px-6 py-3 text-left font-semibold">1y Tourist</th>
+                      <th className="px-6 py-3 text-left font-semibold">5y Tourist</th>
+                      <th className="px-6 py-3 text-left font-semibold">1y Business</th>
+                      <th className="px-6 py-3 text-left font-semibold">Other eVisa</th>
+                      <th className="px-6 py-3 text-left font-semibold">Countries in group</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {indiaVisaFeeTable.map((group, index) => {
+                      const countryNames = group.countries
+                        .map((code) => getNationalityByCode(code)?.name || code)
+                        .join(", ");
+
+                      return (
+                        <tr key={group.name} className={index % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                          <td className="px-6 py-4 font-medium text-slate-800">{group.name}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee["30_days_tourist"])}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee["1_year_tourist"])}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee["5_years_tourist"])}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee["1_year_business"])}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee.other_visa)}</td>
+                          <td className="px-6 py-4 text-slate-600 min-w-[320px]">{countryNames}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : country.visaTypes?.length ? (
             <div className="overflow-x-auto mt-4">
               <table className="min-w-full border border-slate-200 rounded-lg overflow-hidden text-sm">
                 <thead className="bg-slate-50 text-slate-600">

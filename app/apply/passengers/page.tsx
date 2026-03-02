@@ -12,6 +12,7 @@ import moment from "moment";
 import { NATIONALITIES } from "@/lib/nationalities";
 import { COUNTRIES } from "@/lib/countries/index";
 import { calculateIndiaVisaFee } from "@/lib/countries/india";
+import { calculateUaeVisaFee } from "@/lib/countries/uae";
 
 import { Users, AlertCircle, Check } from "lucide-react";
 import {
@@ -524,13 +525,18 @@ function PassengersContent() {
       setIsLoading(false);
     }
   }
-  // Memoized govFee calculation for India, updates when passengers or visa change
+  // Memoized govFee calculation for nationality-based destinations, updates when passengers or visa change
   const govFee = useMemo(() => {
-    if (applicationData?.destination?.code?.toLowerCase() === "in" && visa && passengers.length > 0) {
+    const destinationCode = applicationData?.destination?.code?.toLowerCase();
+    const isNationalityBasedDestination = destinationCode === "in" || destinationCode === "ae";
+    if (isNationalityBasedDestination && visa && passengers.length > 0) {
       const canonicalId = visa.id.split('-group-')[0];
-      const fees = passengers.map((p) => calculateIndiaVisaFee(canonicalId, p.nationality));
+      const fees = passengers.map((p) => {
+        if (destinationCode === "in") return calculateIndiaVisaFee(canonicalId, p.nationality);
+        return calculateUaeVisaFee(canonicalId, p.nationality);
+      });
       const validFees = fees.filter((fee): fee is number => typeof fee === 'number' && !isNaN(fee));
-      console.log('[India govFee debug]', { canonicalId, passengers, fees, validFees });
+      console.log('[Nationality-based govFee debug]', { destinationCode, canonicalId, passengers, fees, validFees });
       if (validFees.length === 0) {
         return null;
       } else {
@@ -538,12 +544,12 @@ function PassengersContent() {
         return validFees.reduce((sum, fee) => sum + fee, 0);
       }
     } else {
-      console.log('[govFee debug] Not India or no visa/passengers', { 
+      console.log('[govFee debug] Not nationality-based destination or no visa/passengers', { 
         destination: applicationData?.destination, 
         visa, 
         passengers 
       });
-      // For non-India, multiply visa.fees by passenger count
+      // For non nationality-based destinations, multiply visa.fees by passenger count
       return typeof visa?.fees === 'number' ? visa.fees * passengers.length : null;
     }
   }, [applicationData?.destination, visa, passengers]);
@@ -614,7 +620,7 @@ function PassengersContent() {
           <div className="flex items-center justify-between">
             <span className="text-slate-600">Government Fee</span>
             <span className="text-slate-800">
-              {applicationData?.destination?.code?.toLowerCase() === "in" && passengers.length === 0
+              {["in", "ae"].includes(applicationData?.destination?.code?.toLowerCase() || "") && passengers.length === 0
                 ? "Pending nationality selection"
                 : (visa && typeof govFee === 'number' ? `$${govFee.toFixed(2)}` : "---")}
             </span>
@@ -627,7 +633,7 @@ function PassengersContent() {
           <div className="flex items-center justify-between pt-1">
             <span className="font-semibold text-base text-slate-800">Total</span>
             <span className="font-bold text-lg text-blue-600">
-              {applicationData?.destination?.code?.toLowerCase() === "in" && passengers.length === 0
+              {["in", "ae"].includes(applicationData?.destination?.code?.toLowerCase() || "") && passengers.length === 0
                 ? `${serviceFee.toFixed(2)}+`
                 : (visa && typeof govFee === 'number' ? `$${total.toFixed(2)}` : "---")}
             </span>

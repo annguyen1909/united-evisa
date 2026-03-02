@@ -136,15 +136,16 @@ function PaymentContent() {
     // Create payment intent with the database-sourced data
     async function createPaymentIntent(appId: string, total: number) {
         try {
-            // For India, only send applicationId (backend will use stored total)
+            // For nationality-based countries, only send applicationId (backend will use stored total)
             // For other countries, send both amount and applicationId
-            const isIndia = applicationData?.destination?.code?.toLowerCase() === 'in';
+            const destinationCode = applicationData?.destination?.code?.toLowerCase();
+            const isNationalityBasedCountry = destinationCode === "in" || destinationCode === "ae";
             
-            const requestBody = isIndia 
+            const requestBody = isNationalityBasedCountry 
                 ? { applicationId: appId }
                 : { amount: total, applicationId: appId };
             
-            console.log(`[Payment Intent] Creating payment intent for ${isIndia ? 'India' : 'Other'}:`, requestBody);
+            console.log(`[Payment Intent] Creating payment intent for ${isNationalityBasedCountry ? 'Nationality-based country' : 'Other'}:`, requestBody);
             
             const response = await fetch("/api/create-payment-intent", {
                 method: "POST",
@@ -174,16 +175,16 @@ function PaymentContent() {
         const serviceFee = FIXED_SERVICE_FEE * passenger;
         let govFee: number | null = null;
         
+        const isNationalityBasedCountry = ["in", "ae"].includes(country?.code?.toLowerCase() || "");
         // Log the calculated government and service fees on load
-        console.log('[OrderSummary] Calculated govFee:', govFee, 'serviceFee:', serviceFee, 'passenger:', passenger, 'passengersArr.length:', passengersArr.length, 'isIndia:', country?.code?.toLowerCase() === "in");
+        console.log('[OrderSummary] Calculated govFee:', govFee, 'serviceFee:', serviceFee, 'passenger:', passenger, 'passengersArr.length:', passengersArr.length, 'isNationalityBasedCountry:', isNationalityBasedCountry);
         
         const destination = country?.name ?? applicationData.destination?.name ?? "---";
         let visaName = visa?.name ?? applicationData.visaType?.name ?? "---";
         
         // Calculate government fee based on country
-        if (country?.code?.toLowerCase() === "in") {
-            // For India, use the stored total from the application and calculate govFee
-            // This is how the India repo works - we trust the stored total
+        if (isNationalityBasedCountry) {
+            // For nationality-based countries, use stored total and calculate govFee
             const storedTotal = applicationData.total;
             const passengerCount = applicationData.passengerCount || passengersArr.length || 1;
             const totalServiceFee = FIXED_SERVICE_FEE * passengerCount;
@@ -191,7 +192,7 @@ function PaymentContent() {
             if (typeof storedTotal === 'number' && storedTotal > 0) {
                 // Calculate govFee by subtracting service fee from total
                 govFee = storedTotal - totalServiceFee;
-                console.log('[India govFee] Using stored total calculation:', {
+                console.log('[Nationality-based govFee] Using stored total calculation:', {
                     storedTotal,
                     totalServiceFee,
                     calculatedGovFee: govFee,
@@ -199,13 +200,13 @@ function PaymentContent() {
                 });
             } else {
                 govFee = null;
-                console.log('[India govFee] No valid stored total found');
+                console.log('[Nationality-based govFee] No valid stored total found');
             }
         } else {
-            // For non-India, multiply visa.govFee by passenger count
+            // For non nationality-based countries, multiply visa.govFee by passenger count
             const passengerCount = applicationData.passengerCount || passengersArr.length || 1;
             govFee = typeof visa?.govFee === 'number' ? visa.govFee * passengerCount : null;
-            console.log('[Non-India govFee] Calculated:', govFee, 'for passenger count:', passengerCount);
+            console.log('[Non nationality-based govFee] Calculated:', govFee, 'for passenger count:', passengerCount);
         }
         const stayingStart = applicationData.stayingStart;
         const stayingEnd = applicationData.stayingEnd;
@@ -224,11 +225,11 @@ function PaymentContent() {
                 ? Math.floor(durationInMs / (1000 * 60 * 60 * 24))
                 : "---";
 
-        // For India, use canonical visa name for display
-        if (country?.code?.toLowerCase() === "in" && visa) {
+        // For nationality-based countries, use canonical visa name for display
+        if (isNationalityBasedCountry && visa) {
             const canonicalId = visa.id.split('-group-')[0];
-            const indiaConfig = COUNTRIES.find(c => c.code === 'in');
-            const canonicalVisa = indiaConfig?.visaTypes?.find(vt => vt.id === canonicalId);
+            const countryConfig = COUNTRIES.find(c => c.code === country?.code?.toLowerCase());
+            const canonicalVisa = countryConfig?.visaTypes?.find(vt => vt.id === canonicalId);
             if (canonicalVisa) {
                 visaName = canonicalVisa.name;
             }
@@ -236,8 +237,8 @@ function PaymentContent() {
 
         // Calculate total based on current govFee and serviceFee
         const total = (() => {
-            if (country?.code?.toLowerCase() === "in") {
-                // For India, calculate based on current govFee and serviceFee
+            if (isNationalityBasedCountry) {
+                // For nationality-based countries, calculate based on current govFee and serviceFee
                 if (govFee !== null && typeof govFee === 'number') {
                     return govFee + serviceFee;
                 } else {
@@ -245,13 +246,13 @@ function PaymentContent() {
                     return serviceFee;
                 }
             } else {
-                // For non-India, use the stored total or calculate
+                // For non nationality-based countries, use the stored total or calculate
                 return typeof applicationData.total === 'number' ? applicationData.total : (visa && typeof govFee === 'number' ? (govFee + serviceFee) : serviceFee);
             }
         })();
         
         console.log('[Total calculation]', { 
-            isIndia: country?.code?.toLowerCase() === "in",
+            isNationalityBasedCountry,
             govFee, 
             serviceFee, 
             calculatedTotal: total,
@@ -289,10 +290,9 @@ function PaymentContent() {
                         <span className="text-slate-600">Government Fee</span>
                         <span className="text-slate-800">
                           {(() => {
-                            const isIndia = country?.code?.toLowerCase() === "in";
                             const hasValidGovFee = govFee !== null && typeof govFee === 'number';
                             console.log('[GovFee Display Debug]', { 
-                              isIndia, 
+                              isNationalityBasedCountry, 
                               govFee, 
                               hasValidGovFee
                             });
@@ -309,10 +309,9 @@ function PaymentContent() {
                         <span className="font-semibold text-base text-slate-800">Total</span>
                         <span className="font-bold text-lg text-blue-600">
                           {(() => {
-                            const isIndia = country?.code?.toLowerCase() === "in";
                             const hasValidGovFee = govFee !== null && typeof govFee === 'number';
                             console.log('[Total Display Debug]', { 
-                              isIndia, 
+                              isNationalityBasedCountry, 
                               govFee, 
                               hasValidGovFee, 
                               serviceFee, 
@@ -339,10 +338,10 @@ function PaymentContent() {
         };
     }, [isLoading, clientSecret, applicationData]);
 
-    // Recalculate fees when application data changes (especially for India)
+    // Recalculate fees when application data changes (especially for nationality-based countries)
     useEffect(() => {
-        if (applicationData && country?.code?.toLowerCase() === "in") {
-            console.log('[Payment] Application data changed, recalculating fees for India');
+        if (applicationData && ["in", "ae"].includes(country?.code?.toLowerCase() || "")) {
+            console.log('[Payment] Application data changed, recalculating fees for nationality-based country');
             // Force re-render by updating trigger
             setRecalculateTrigger(prev => prev + 1);
         }

@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Combobox } from "@/components/ui/combobox";
 import { calculateIndiaVisaFee } from "@/lib/countries/india";
+import { calculateUaeVisaFee } from "@/lib/countries/uae";
 import { SERVICE_FEE } from '@/lib/constants';
 
 interface VisaFeeCalculatorProps {
@@ -64,9 +65,12 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
   // Calculate fees
   let totalAmount = 0;
   const serviceFee = Number(SERVICE_FEE || 59.99);
+  const isNationalityBasedFeeCountry =
+    selectedCountry?.code?.toLowerCase() === "in" ||
+    selectedCountry?.code?.toLowerCase() === "ae";
   
-  if (selectedCountry?.code?.toLowerCase() === "in" && visaType) {
-    // For India, calculate fee for each passenger based on their nationality
+  if (isNationalityBasedFeeCountry && visaType) {
+    // For countries with nationality-based fees (India, UAE), calculate per passenger
     const nationalitiesToUse = sameNationality ? 
       Array(numVisa).fill(nationality) : 
       passengerNationalities;
@@ -75,7 +79,10 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
       if (!passengerNationality) return total;
       const nationalityObj = NATIONALITIES.find(n => n.name === passengerNationality);
       const nationalityCode = nationalityObj ? nationalityObj.code : passengerNationality;
-      const govFee = calculateIndiaVisaFee(visaType.id, nationalityCode) || 0;
+      const govFee =
+        selectedCountry?.code?.toLowerCase() === "in"
+          ? calculateIndiaVisaFee(visaType.id, nationalityCode) || 0
+          : calculateUaeVisaFee(visaType.id, nationalityCode) || 0;
       return total + govFee + serviceFee;
     }, 0);
   } else {
@@ -86,8 +93,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
   }
 
   const handleApply = () => {
-    const isIndia = selectedCountry?.code?.toLowerCase() === "in";
-    const requiredNationalities = isIndia && !sameNationality ? 
+    const requiredNationalities = isNationalityBasedFeeCountry && !sameNationality ? 
       passengerNationalities : 
       [nationality];
     
@@ -99,7 +105,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
       country: selectedCountry.slug,
       type: visaType.name,
       num: numVisa.toString(),
-      nationality: isIndia && !sameNationality ? 
+      nationality: isNationalityBasedFeeCountry && !sameNationality ? 
         JSON.stringify(passengerNationalities) : 
         nationality,
     });
@@ -108,7 +114,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
       country: selectedCountry.code,
       type: visaType.name,
       num: numVisa.toString(),
-      nationality: isIndia && !sameNationality ? passengerNationalities : nationality,
+      nationality: isNationalityBasedFeeCountry && !sameNationality ? passengerNationalities : nationality,
       url
     });
     window.location.href = url;
@@ -212,8 +218,8 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                 Nationality <span className="text-red-500">*</span>
               </label>
               
-              {selectedCountry?.code?.toLowerCase() === "in" && numVisa > 1 ? (
-                // India with multiple passengers
+              {isNationalityBasedFeeCountry && numVisa > 1 ? (
+                // Nationality-based fee countries with multiple passengers
                 <div className="space-y-4">
                   {/* Same nationality checkbox */}
                   <div className="flex items-center space-x-2">
@@ -298,8 +304,8 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                 <div className="space-y-6">
                   {/* Individual Fees */}
                   <div className="space-y-4">
-                    {selectedCountry?.code?.toLowerCase() === "in" ? (
-                      // India fee breakdown - grouped by fee type
+                    {isNationalityBasedFeeCountry ? (
+                      // Nationality-based fee breakdown - grouped by fee type
                       <div className="space-y-4">
                         {(() => {
                           const nationalitiesToUse = sameNationality ? Array(numVisa).fill(nationality) : passengerNationalities;
@@ -319,7 +325,10 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                           const govFeeEntries = Object.entries(nationalityGroups).map(([passengerNationality, count]) => {
                             const nationalityObj = NATIONALITIES.find(n => n.name === passengerNationality);
                             const nationalityCode = nationalityObj ? nationalityObj.code : passengerNationality;
-                            const govFee = calculateIndiaVisaFee(visaType.id, nationalityCode) || 0;
+                            const govFee =
+                              selectedCountry?.code?.toLowerCase() === "in"
+                                ? calculateIndiaVisaFee(visaType.id, nationalityCode) || 0
+                                : calculateUaeVisaFee(visaType.id, nationalityCode) || 0;
                             const totalGovFee = govFee * count;
                             totalGovFees += totalGovFee;
                             
@@ -406,8 +415,7 @@ export default function VisaFeeCalculator({ selectedCountry }: VisaFeeCalculator
                     <Button
                       onClick={handleApply}
                       disabled={(() => {
-                        const isIndia = selectedCountry?.code?.toLowerCase() === "in";
-                        const requiredNationalities = isIndia && !sameNationality ? 
+                        const requiredNationalities = isNationalityBasedFeeCountry && !sameNationality ? 
                           passengerNationalities : 
                           [nationality];
                         const hasAllNationalities = requiredNationalities.every(n => n && n.trim() !== "");

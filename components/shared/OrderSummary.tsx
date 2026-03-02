@@ -4,6 +4,7 @@ import React from "react";
 import moment from "moment";
 import { COUNTRIES } from "@/lib/countries";
 import { calculateIndiaVisaFee } from "@/lib/countries/india";
+import { calculateUaeVisaFee } from "@/lib/countries/uae";
 
 const FIXED_SERVICE_FEE = 59.99;
 
@@ -62,6 +63,8 @@ export default function OrderSummary({
   let visaName = "---";
   const countryCode = applicationData?.destination?.code || selectedDestination?.code;
   const isIndia = countryCode?.toLowerCase() === "in";
+  const isUae = countryCode?.toLowerCase() === "ae";
+  const isNationalityBasedCountry = isIndia || isUae;
   if (step === "apply") {
     if (isIndia && selectedVisaType) {
       visaName = selectedVisaType.replace(/\s*-\s*Group\s*\d+$/, "");
@@ -161,29 +164,35 @@ export default function OrderSummary({
   React.useEffect(() => {
     if (step === "passengers") {
       const isIndia = selectedDestination?.code?.toLowerCase() === "in" || applicationData?.destination?.code?.toLowerCase() === "in";
-      if (isIndia && visa && passengers.length > 0) {
-        // India: Calculate based on passenger nationalities
+      const isUae = selectedDestination?.code?.toLowerCase() === "ae" || applicationData?.destination?.code?.toLowerCase() === "ae";
+      const isNationalityBased = isIndia || isUae;
+      if (isNationalityBased && visa && passengers.length > 0) {
+        // Nationality-based countries: calculate based on passenger nationalities
         const canonicalId = visa.id.split('-group-')[0];
-        const fees = passengers.map((p: any) => calculateIndiaVisaFee(canonicalId, p.nationality));
+        const fees = passengers.map((p: any) =>
+          isIndia
+            ? calculateIndiaVisaFee(canonicalId, p.nationality)
+            : calculateUaeVisaFee(canonicalId, p.nationality)
+        );
         const validFees = fees.filter((fee: any): fee is number => typeof fee === 'number' && !isNaN(fee));
         if (validFees.length > 0) {
           setGovFee(validFees.reduce((sum: number, fee: number) => sum + fee, 0));
         } else {
           setGovFee(null);
         }
-      } else if (!isIndia && visa?.govFee) {
+      } else if (!isNationalityBased && visa?.govFee) {
         setGovFee(visa.govFee * travelerCount);
-      } else if (!isIndia && visa?.fees) {
+      } else if (!isNationalityBased && visa?.fees) {
         setGovFee(visa.fees * travelerCount);
       } else {
         setGovFee(null);
       }
     }
-    // For payment step, recalculate govFee for India (and Taiwan) using serverTotal - serviceFee
+    // For payment step, recalculate govFee for nationality-based countries (and Taiwan) using serverTotal - serviceFee
     if (step === "payment") {
-      const isSpecial = isIndia || countryCode?.toLowerCase() === "tw";
+      const isSpecial = isNationalityBasedCountry || countryCode?.toLowerCase() === "tw";
       if (isSpecial && serverTotal !== null) {
-        // India/Taiwan: Use serverTotal - serviceFee
+        // Nationality-based countries/Taiwan: use serverTotal - serviceFee
         setGovFee(serverTotal - serviceFee);
       } else if (!isSpecial && typeof totalAmount === "number") {
         setGovFee(totalAmount - serviceFee);
@@ -269,7 +278,7 @@ export default function OrderSummary({
             <div className="flex items-center justify-between">
               <span className="text-slate-600">Government Fee</span>
               <span className="text-slate-800">
-                {step === "payment" && (isIndia || countryCode?.toLowerCase() === "tw") && serverTotal !== null
+                {step === "payment" && (isNationalityBasedCountry || countryCode?.toLowerCase() === "tw") && serverTotal !== null
                   ? `$${(serverTotal - serviceFee).toFixed(2)}`
                   : govFee !== null
                     ? `$${govFee.toFixed(2)}`
@@ -303,7 +312,7 @@ export default function OrderSummary({
             <div className="flex items-center justify-between">
               <span className="text-slate-600">Government Fee</span>
               <span className="text-slate-800">
-                {selectedDestination.code?.toLowerCase() === "in" 
+                {["in", "ae"].includes(selectedDestination.code?.toLowerCase() || "") 
                   ? "Pending nationality selection"
                   : (govFee !== null ? `$${govFee.toFixed(2)}` : "---")}
               </span>

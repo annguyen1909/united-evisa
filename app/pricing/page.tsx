@@ -11,6 +11,7 @@ import FeeGuarantee from "../components/FeeGuarantee";
 import CustomerSupport from "../components/CustomerSupport";
 import { Country } from "@/lib/countries/type";
 import { indiaVisaFeeTable } from "@/lib/countries/india";
+import { uaeVisaFeeTable } from "@/lib/countries/uae";
 import { getNationalityByCode } from "@/lib/nationalities";
 import { Search, ArrowRight, Globe, DollarSign, Clock, Users, CheckCircle, ShieldCheck } from "lucide-react";
 
@@ -69,6 +70,23 @@ export default function PricingPage() {
       | "other_visa"
   ) => {
     const values = indiaVisaFeeTable
+      .map((group) => group.govFee[feeKey])
+      .filter((fee): fee is number => typeof fee === "number");
+
+    if (!values.length) return "Not available";
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    return min === max ? `US$ ${min.toFixed(2)}` : `US$ ${min.toFixed(2)} - US$ ${max.toFixed(2)}`;
+  };
+
+  const getUaeFeeRange = (
+    feeKey:
+      | "30_days_single"
+      | "30_days_multiple"
+      | "60_days_single"
+      | "60_days_multiple"
+  ) => {
+    const values = uaeVisaFeeTable
       .map((group) => group.govFee[feeKey])
       .filter((fee): fee is number => typeof fee === "number");
 
@@ -209,6 +227,85 @@ export default function PricingPage() {
                           <td className="px-6 py-4">{formatUsd(group.govFee["5_years_tourist"])}</td>
                           <td className="px-6 py-4">{formatUsd(group.govFee["1_year_business"])}</td>
                           <td className="px-6 py-4">{formatUsd(group.govFee.other_visa)}</td>
+                          <td className="px-6 py-4 text-slate-600 min-w-[320px]">{countryNames}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : country.slug === "uae" ? (
+            <div className="space-y-6 mt-4">
+              <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-4 text-sm text-amber-900">
+                UAE eVisa government fees vary by applicant nationality. This table shows fee
+                ranges by visa category and the full nationality-group matrix used in checkout.
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="min-w-full border border-slate-200 rounded-lg overflow-hidden text-sm">
+                  <thead className="bg-slate-50 text-slate-600">
+                    <tr>
+                      <th className="px-6 py-3 text-left font-semibold">Visa Type</th>
+                      <th className="px-6 py-3 text-left font-semibold">Entry / Validity</th>
+                      <th className="px-6 py-3 text-left font-semibold">Gov. Fee Range (USD)</th>
+                      <th className="px-6 py-3 text-left font-semibold">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-white">
+                      <td className="px-6 py-4 font-medium text-slate-800">Tourist Visa (30 days, Single Entry)</td>
+                      <td className="px-6 py-4">Single entry / 30 days</td>
+                      <td className="px-6 py-4 font-semibold">{getUaeFeeRange("30_days_single")}</td>
+                      <td className="px-6 py-4">Nationality-based government fee.</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-medium text-slate-800">Tourist Visa (30 days, Multiple Entry)</td>
+                      <td className="px-6 py-4">Multiple entries / 30 days</td>
+                      <td className="px-6 py-4 font-semibold">{getUaeFeeRange("30_days_multiple")}</td>
+                      <td className="px-6 py-4">Nationality-based government fee.</td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-6 py-4 font-medium text-slate-800">Tourist Visa (60 days, Single Entry)</td>
+                      <td className="px-6 py-4">Single entry / 60 days</td>
+                      <td className="px-6 py-4 font-semibold">{getUaeFeeRange("60_days_single")}</td>
+                      <td className="px-6 py-4">Nationality-based government fee.</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-medium text-slate-800">Tourist Visa (60 days, Multiple Entry)</td>
+                      <td className="px-6 py-4">Multiple entries / 60 days</td>
+                      <td className="px-6 py-4 font-semibold">{getUaeFeeRange("60_days_multiple")}</td>
+                      <td className="px-6 py-4">Includes higher-fee groups and surcharge groups.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="min-w-full border border-slate-200 rounded-lg overflow-hidden text-sm">
+                  <thead className="bg-slate-50 text-slate-600">
+                    <tr>
+                      <th className="px-6 py-3 text-left font-semibold">Nationality Group</th>
+                      <th className="px-6 py-3 text-left font-semibold">30d Single</th>
+                      <th className="px-6 py-3 text-left font-semibold">30d Multiple</th>
+                      <th className="px-6 py-3 text-left font-semibold">60d Single</th>
+                      <th className="px-6 py-3 text-left font-semibold">60d Multiple</th>
+                      <th className="px-6 py-3 text-left font-semibold">Countries in group</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {uaeVisaFeeTable.map((group, index) => {
+                      const countryNames = group.countries
+                        .map((code) => getNationalityByCode(code)?.name || code)
+                        .join(", ");
+
+                      return (
+                        <tr key={group.name} className={index % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                          <td className="px-6 py-4 font-medium text-slate-800">{group.name}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee["30_days_single"])}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee["30_days_multiple"])}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee["60_days_single"])}</td>
+                          <td className="px-6 py-4">{formatUsd(group.govFee["60_days_multiple"])}</td>
                           <td className="px-6 py-4 text-slate-600 min-w-[320px]">{countryNames}</td>
                         </tr>
                       );

@@ -258,7 +258,7 @@ export default function FaqClient({ faqs, itemsPerPage = 6 }: FaqClientProps) {
               <p className="text-slate-600 mb-6">
                 Can't find what you're looking for? Our support team is here to help with your eVisa application.
               </p>
-              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                 <MessageCircle className="mr-2 h-4 w-4" />
                 Contact Support
               </Button>

@@ -220,7 +220,7 @@ export default async function FaqDetailPage({ params }: Props) {
               <p className="text-slate-600 text-sm mb-4">
                 Our expert team is available 24/7 to assist with your specific questions.
               </p>
-              <Button asChild className="w-full bg-blue-600 hover:bg-blue-700">
+              <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                 <Link href="/support">
                   Contact Support
                 </Link>
@@ -241,7 +241,7 @@ export default async function FaqDetailPage({ params }: Props) {
               <p className="text-slate-600 text-sm mb-4">
                 Start your visa application process with our secure platform.
               </p>
-              <Button asChild className="w-full bg-blue-700 hover:bg-blue-800">
+              <Button asChild className="w-full bg-blue-700 hover:bg-blue-800 text-white">
                 <Link href="/apply">
                   Apply Now
                 </Link>

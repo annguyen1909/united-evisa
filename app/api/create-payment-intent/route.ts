@@ -42,23 +42,24 @@ export async function POST(req: Request) {
       );
     }
 
-    // For India, always use the backend-calculated total
+    // For nationality-based countries, always use backend-calculated total
     // For other countries, use the frontend-provided amount if it's valid
     let finalAmount: number;
-    const isIndia = application.destination?.code?.toLowerCase() === 'in';
+    const destinationCode = application.destination?.code?.toLowerCase();
+    const isNationalityBasedCountry = destinationCode === 'in' || destinationCode === 'ae';
     
-    if (isIndia) {
-      // For India, always use the backend total (this is how India repo works)
+    if (isNationalityBasedCountry) {
+      // For nationality-based destinations (India/UAE), always use backend total
       finalAmount = application.total;
-      console.log(`[India Payment] Using backend-calculated total: $${finalAmount} for application ${applicationId}`);
+      console.log(`[Nationality-based Payment] Using backend-calculated total: $${finalAmount} for application ${applicationId}`);
     } else {
-      // For other countries, validate the frontend amount
+      // For other destinations, validate the frontend amount
       if (!amount || typeof amount !== "number") {
-        console.warn("Invalid amount received for non-India application:", amount);
+        console.warn("Invalid amount received for non-nationality-based application:", amount);
         return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
       }
       finalAmount = amount;
-      console.log(`[Non-India Payment] Using frontend-provided amount: $${finalAmount} for application ${applicationId}`);
+      console.log(`[Non nationality-based Payment] Using frontend-provided amount: $${finalAmount} for application ${applicationId}`);
     }
 
     // Prevent creating payment intent if payment is already completed
@@ -103,7 +104,7 @@ export async function POST(req: Request) {
         status: paymentIntent.status,
         type: 'PaymentIntent',
         title: 'Payment Intent Created',
-        description: `Payment intent created for ${account.email} (${isIndia ? 'India' : 'Other'})`,
+        description: `Payment intent created for ${account.email} (${isNationalityBasedCountry ? 'Nationality-based' : 'Other'})`,
         timestamp: new Date(paymentIntent.created * 1000),
         transactionId: paymentIntent.id,
       },

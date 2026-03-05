@@ -52,7 +52,7 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
         recipient = application.account.email;
         const contactName = application.account?.fullName || 'Customer';
         const governmentFee = application.visaType?.fees || 0;
-        const serviceFee = 25.00;
+        const serviceFee = 59.99;
         const total = application.total || 0;
         const passengerCount = application.passengerCount || 1;
         const appUrl = process.env.NEXT_PUBLIC_API_URL || '';

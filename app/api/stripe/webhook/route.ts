@@ -7,9 +7,36 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2025-05-28.basil",
 });
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+const LOG_SCOPE = "stripe-webhook";
+
+function redactEmail(email?: string | null): string {
+    if (!email || !email.includes("@")) return "redacted";
+    const [local, domain] = email.split("@");
+    const maskedLocal = local.length <= 2 ? `${local[0] || "*"}*` : `${local.slice(0, 2)}***`;
+    return `${maskedLocal}@${domain}`;
+}
+
+function redactName(name?: string | null): string {
+    if (!name) return "redacted";
+    const trimmed = name.trim();
+    if (!trimmed) return "redacted";
+    return `${trimmed[0]}***`;
+}
+
+function logInfo(event: string, meta: Record<string, unknown> = {}) {
+    console.log(JSON.stringify({ level: "info", scope: LOG_SCOPE, event, meta, ts: new Date().toISOString() }));
+}
+
+function logWarn(event: string, meta: Record<string, unknown> = {}) {
+    console.warn(JSON.stringify({ level: "warn", scope: LOG_SCOPE, event, meta, ts: new Date().toISOString() }));
+}
+
+function logError(event: string, meta: Record<string, unknown> = {}) {
+    console.error(JSON.stringify({ level: "error", scope: LOG_SCOPE, event, meta, ts: new Date().toISOString() }));
+}
 
 export async function POST(req: NextRequest) {
-    console.log("Stripe webhook endpoint called");
+    logInfo("webhook_received");
     const sig = req.headers.get("stripe-signature")!;
     const body = await req.text();
 
@@ -17,9 +44,9 @@ export async function POST(req: NextRequest) {
 
     try {
         event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
-        console.log("Stripe webhook event received:", event.type);
+        logInfo("event_verified", { eventType: event.type, eventId: event.id });
     } catch (err) {
-        console.error("Webhook signature verification failed.", err);
+        logError("signature_verification_failed", { message: err instanceof Error ? err.message : "unknown_error" });
         return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
     }
 
@@ -38,12 +65,12 @@ export async function POST(req: NextRequest) {
                 break;
             }
             default:
-                console.log(`Unhandled event type: ${event.type}`);
+                logInfo("event_unhandled", { eventType: event.type, eventId: event.id });
         }
 
         return NextResponse.json({ received: true });
     } catch (error) {
-        console.error('Error processing webhook:', error);
+        logError("event_processing_failed", { message: error instanceof Error ? error.message : "unknown_error" });
         return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
     } finally {
         await prisma.$disconnect();
@@ -54,7 +81,7 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
     const applicationId = paymentIntent.metadata.applicationId;
 
     if (!applicationId) {
-        console.error('Webhook Error: No applicationId found in payment intent metadata');
+        logError("missing_application_id_in_metadata", { paymentIntentId: paymentIntent.id });
         return;
     }
 
@@ -79,48 +106,67 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
         });
 
         if (!application) {
-            console.error(`Webhook Error: Application not found for applicationId: ${applicationId}`);
+            logError("application_not_found", { applicationId, paymentIntentId: paymentIntent.id });
             return;
         }
 
-        if (application.paymentStatus === 'Payment Completed') {
-            console.log(
-                `Webhook Info: Payment for application ${applicationId} has already been processed.`
-            );
-            return;
-        }
+        const alreadyCompleted = application.paymentStatus === 'Payment Completed';
 
-        await prisma.application.update({
-            where: { applicationId: applicationId },
-            data: {
-                status: 'Collecting Documents',
-                paymentStatus: 'Payment Completed',
-            },
-        });
-        console.log(
-            `Webhook Action: Updated application ${applicationId} status to 'Collecting Documents' and 'Payment Completed'.`
-        );
-
-        // Send admin notification only when payment is completed
-        try {
-            await sendEmail({
-                to: "visa@unitedevisa.com",
-                template: "new-application-notification",
+        if (!alreadyCompleted) {
+            await prisma.application.update({
+                where: { applicationId: applicationId },
                 data: {
-                    applicationId: application.applicationId,
-                    customerEmail: application.account?.email || "Unknown",
-                    customerName: application.account?.fullName || "Customer",
-                    destinationName: application.destination?.name || "Unknown",
-                    visaTypeName: application.visaType?.name || "Unknown",
-                    passengerCount: application.passengerCount || 1,
-                    total: application.total || 0,
-                    stayingStart: application.stayingStart ? application.stayingStart.toISOString() : new Date().toISOString(),
-                    stayingEnd: application.stayingEnd ? application.stayingEnd.toISOString() : new Date().toISOString(),
+                    status: 'Collecting Documents',
+                    paymentStatus: 'Payment Completed',
                 },
             });
-            console.log(`Webhook Action: Sent admin payment notification for application ${applicationId}.`);
-        } catch (emailError) {
-            console.error(`Webhook Error: Failed to send admin payment notification for ${applicationId}:`, emailError);
+            logInfo("application_marked_paid", { applicationId, paymentIntentId: paymentIntent.id });
+        } else {
+            logInfo("application_already_paid", { applicationId, paymentIntentId: paymentIntent.id });
+        }
+
+        // Send notifications only on first successful transition to paid
+        if (!alreadyCompleted) {
+            try {
+                await sendEmail({
+                    to: "visa@unitedevisa.com",
+                    template: "new-application-notification",
+                    data: {
+                        applicationId: application.applicationId,
+                        customerEmail: application.account?.email || "Unknown",
+                        customerName: application.account?.fullName || "Customer",
+                        destinationName: application.destination?.name || "Unknown",
+                        visaTypeName: application.visaType?.name || "Unknown",
+                        passengerCount: application.passengerCount || 1,
+                        total: application.total || 0,
+                        stayingStart: application.stayingStart ? application.stayingStart.toISOString() : new Date().toISOString(),
+                        stayingEnd: application.stayingEnd ? application.stayingEnd.toISOString() : new Date().toISOString(),
+                    },
+                });
+                logInfo("admin_notification_sent", { applicationId });
+            } catch (emailError) {
+                logError("admin_notification_failed", {
+                    applicationId,
+                    message: emailError instanceof Error ? emailError.message : "unknown_error",
+                });
+            }
+
+            try {
+                await sendEmail({
+                    template: "payment-confirmation",
+                    data: { applicationId: application.applicationId },
+                });
+                logInfo("customer_confirmation_sent", {
+                    applicationId,
+                    customerEmail: redactEmail(application.account?.email),
+                });
+            } catch (emailError) {
+                logError("customer_confirmation_failed", {
+                    applicationId,
+                    customerEmail: redactEmail(application.account?.email),
+                    message: emailError instanceof Error ? emailError.message : "unknown_error",
+                });
+            }
         }
 
         let cardType = 'Unknown';
@@ -137,9 +183,7 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             cardType = paymentMethod.card?.brand || 'Unknown';
         }
 
-        console.log(
-            `Webhook Info: Waiting for billing form data (CardHolder record) for application ${applicationId}...`
-        );
+        logInfo("cardholder_wait_started", { applicationId });
 
         let attempts = 0;
         const maxAttempts = 20;
@@ -153,9 +197,11 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 cardholderName = cardHolder.name;
                 billingAddress = cardHolder.address;
                 billingZipcode = cardHolder.zipcode;
-                console.log(
-                    `Webhook Info: Found CardHolder record with billing form data (attempt ${attempts + 1}): ${cardholderName}`
-                );
+                logInfo("cardholder_found", {
+                    applicationId,
+                    attempt: attempts + 1,
+                    cardholderName: redactName(cardholderName),
+                });
                 break;
             }
 
@@ -164,16 +210,21 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
         }
 
         if (!cardholderName) {
-            console.error(
-                `Webhook Error: No CardHolder record found after waiting 10 seconds for application ${applicationId}`
-            );
+            logWarn("cardholder_not_found_after_wait", { applicationId, waitMs: 10000 });
             cardholderName = 'Billing Form Data Missing';
             billingAddress = 'Billing Form Data Missing';
             billingZipcode = 'Billing Form Data Missing';
         }
 
-            await prisma.stripeActivity.create({
-                data: {
+            await prisma.stripeActivity.upsert({
+                where: { id: `payment_${paymentIntent.id}` },
+                update: {
+                    status: 'succeeded',
+                    amount: paymentIntent.amount / 100,
+                    description: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} - Made by ${redactName(cardholderName)}.`,
+                    timestamp: new Date(),
+                },
+                create: {
                 id: `payment_${paymentIntent.id}`,
                 applicationId: application.id,
                 type: 'Payment',
@@ -181,13 +232,11 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 amount: paymentIntent.amount / 100,
                 status: 'succeeded',
                 transactionId: `payment_${paymentIntent.id}`,
-                description: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} - Made by ${cardholderName}.`,
+                description: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} - Made by ${redactName(cardholderName)}.`,
                     timestamp: new Date(),
                 },
             });
-        console.log(
-            `Webhook Action: Created StripeActivity for successful payment on application ${applicationId}.`
-        );
+        logInfo("stripe_activity_upserted", { applicationId, paymentIntentId: paymentIntent.id });
 
         await prisma.cardHolder.upsert({
             where: { applicationId: application.id },
@@ -208,7 +257,7 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 applicationId: application.id,
                     },
                 });
-        console.log(`Webhook Action: Upserted CardHolder for application ${applicationId}.`);
+        logInfo("cardholder_upserted", { applicationId, cardType, cardLast4: `****${cardLast4}` });
 
         const passengers = await prisma.passenger.findMany({
             where: { applicationId: application.id },
@@ -247,8 +296,14 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             riskActivityDescription = 'System automatically passed Risk. Name matched.';
         }
 
-        const risk = await prisma.risk.create({
-            data: {
+        const risk = await prisma.risk.upsert({
+            where: { id: `risk_${application.id}` },
+            update: {
+                status: riskStatus,
+                updatedAt: new Date(),
+                lastUpdated: new Date(),
+            },
+            create: {
                 id: `risk_${application.id}`,
                 status: riskStatus,
                 applicationId: application.id,
@@ -258,8 +313,15 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             },
         });
 
-        await prisma.riskActivity.create({
-            data: {
+        await prisma.riskActivity.upsert({
+            where: { id: `risk_activity_${risk.id}` },
+            update: {
+                title: riskActivityTitle,
+                description: riskActivityDescription,
+                type: 'System',
+                timestamp: new Date(),
+            },
+            create: {
                 id: `risk_activity_${risk.id}`,
                 title: riskActivityTitle,
                 description: riskActivityDescription,
@@ -268,12 +330,14 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 timestamp: new Date(),
             },
         });
-        console.log(
-            `Webhook Action: Created RiskActivity for application ${applicationId} with status '${riskStatus}'.`
-        );
+        logInfo("risk_records_upserted", { applicationId, riskStatus });
 
     } catch (error) {
-        console.error('Error in handlePaymentSuccess:', error);
+        logError("handle_payment_success_failed", {
+            applicationId,
+            paymentIntentId: paymentIntent.id,
+            message: error instanceof Error ? error.message : "unknown_error",
+        });
     }
 }
 
@@ -281,13 +345,20 @@ async function handlePaymentFailure(paymentIntent: Stripe.PaymentIntent) {
     const applicationId = paymentIntent.metadata.applicationId;
 
     if (!applicationId) {
-        console.error('Webhook Error: No applicationId found in payment intent metadata');
+        logError("missing_application_id_in_failed_metadata", { paymentIntentId: paymentIntent.id });
         return;
     }
 
     try {
-        await prisma.stripeActivity.create({
-            data: {
+        await prisma.stripeActivity.upsert({
+            where: { id: `payment_failed_${paymentIntent.id}` },
+            update: {
+                amount: paymentIntent.amount / 100,
+                status: 'failed',
+                description: `Payment failed for application ${applicationId}`,
+                timestamp: new Date(),
+            },
+            create: {
                 id: `payment_failed_${paymentIntent.id}`,
                 applicationId: (await prisma.application.findUnique({
                     where: { applicationId },
@@ -303,8 +374,12 @@ async function handlePaymentFailure(paymentIntent: Stripe.PaymentIntent) {
             },
         });
 
-        console.log(`Webhook Action: Created StripeActivity for failed payment on application ${applicationId}.`);
+        logInfo("failed_payment_activity_upserted", { applicationId, paymentIntentId: paymentIntent.id });
     } catch (error) {
-        console.error('Error in handlePaymentFailure:', error);
+        logError("handle_payment_failure_failed", {
+            applicationId,
+            paymentIntentId: paymentIntent.id,
+            message: error instanceof Error ? error.message : "unknown_error",
+        });
     }
 }

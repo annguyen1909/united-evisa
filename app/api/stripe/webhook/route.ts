@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { prisma } from "@/lib/db";
+import { sendEmail } from "@/lib/email";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2025-05-28.basil",
@@ -64,6 +65,12 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 account: {
                     select: {
                         email: true,
+                        fullName: true,
+                    },
+                },
+                destination: {
+                    select: {
+                        name: true,
                     },
                 },
                 passengers: true,
@@ -93,6 +100,28 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
         console.log(
             `Webhook Action: Updated application ${applicationId} status to 'Collecting Documents' and 'Payment Completed'.`
         );
+
+        // Send admin notification only when payment is completed
+        try {
+            await sendEmail({
+                to: "visa@unitedevisa.com",
+                template: "new-application-notification",
+                data: {
+                    applicationId: application.applicationId,
+                    customerEmail: application.account?.email || "Unknown",
+                    customerName: application.account?.fullName || "Customer",
+                    destinationName: application.destination?.name || "Unknown",
+                    visaTypeName: application.visaType?.name || "Unknown",
+                    passengerCount: application.passengerCount || 1,
+                    total: application.total || 0,
+                    stayingStart: application.stayingStart ? application.stayingStart.toISOString() : new Date().toISOString(),
+                    stayingEnd: application.stayingEnd ? application.stayingEnd.toISOString() : new Date().toISOString(),
+                },
+            });
+            console.log(`Webhook Action: Sent admin payment notification for application ${applicationId}.`);
+        } catch (emailError) {
+            console.error(`Webhook Error: Failed to send admin payment notification for ${applicationId}:`, emailError);
+        }
 
         let cardType = 'Unknown';
         let cardLast4 = '****';

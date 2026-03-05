@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 // Remove static imports - we'll fetch from API
 // import { COUNTRIES } from "@/lib/countries";
 // import { Country } from "@/lib/countries/type";
@@ -1622,6 +1623,44 @@ export default function ApplyForm({ user }: { user: any }) {
               </div>
 
               {/* Important Visa Notes */}
+              <Alert className="border-blue-200 bg-blue-50/60">
+                <ShieldCheck className="h-4 w-4 text-blue-700" />
+                <AlertDescription className="text-sm text-slate-700 space-y-2">
+                  <p className="font-semibold text-slate-800">Before payment: what to expect</p>
+                  <ul className="space-y-1">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span>No hidden charges. Final total is shown before checkout.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span>Payments are processed securely by Stripe (PCI-compliant).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span>Service fee refund applies if your visa is rejected (terms apply).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Clock className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span>After submission, you will review passenger details before payment.</span>
+                    </li>
+                  </ul>
+                  <p className="text-xs text-slate-600">
+                    United eVisa is a private visa assistance service and is not a government website.
+                  </p>
+                  <p className="text-xs text-slate-600">
+                    Read{" "}
+                    <Link href="/terms" className="text-blue-700 hover:text-blue-800 underline">
+                      Terms of Service
+                    </Link>
+                    {" "}and{" "}
+                    <Link href="/refund-policy" className="text-blue-700 hover:text-blue-800 underline">
+                      Refund Policy
+                    </Link>
+                    .
+                  </p>
+                </AlertDescription>
+              </Alert>
             </div>
 
             {/* Contact Information */}

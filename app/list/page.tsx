@@ -15,7 +15,7 @@ interface Application {
   createdAt: string;
   updatedAt: string;
   total: number;
-  VisaType?: {
+  visaType?: {
     name: string;
     fees: number;
   };
@@ -321,7 +321,7 @@ export default function ApplicationsPage() {
                               <span>Visa Type</span>
                             </div>
                             <span className="font-medium text-slate-800">
-                              {application.VisaType?.name || 'eVisa'}
+                              {(application.visaType?.name ?? 'eVisa').replace(/\s*-\s*Group\s*\d+$/, '')}
                             </span>
                           </div>
                           

@@ -229,14 +229,14 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
           day: 'numeric' 
         });
         
-        subject = `New Application Submitted - ${applicationId}`;
+        subject = `New Paid Application - ${applicationId}`;
         html = `
           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
             <div style="background-color: #059669; color: white; padding: 20px; text-align: center;">
-              <h1 style="margin: 0; font-size: 24px;">New Application Submitted</h1>
+              <h1 style="margin: 0; font-size: 24px;">Payment Completed</h1>
             </div>
             <div style="padding: 20px;">
-              <p>A new application has been submitted and requires attention.</p>
+              <p>An application payment has been completed and is ready for document collection/review.</p>
               
               <div style="background-color: #f9f9f9; border-radius: 8px; padding: 15px; margin: 20px 0;">
                 <h2 style="font-size: 18px; color: #059669; margin-top: 0;">Application Details</h2>
@@ -248,12 +248,11 @@ export async function sendEmail({ to, template, data }: SendEmailProps) {
                 <p><strong>Travel Dates:</strong> ${startDate} - ${endDate}</p>
                 <p><strong>Passengers:</strong> ${passengerCount}</p>
                 <p><strong>Total Amount:</strong> $${total.toFixed(2)}</p>
-                <p><strong>Status:</strong> Lead Open</p>
+                <p><strong>Status:</strong> Payment Completed</p>
               </div>
               
               <div style="margin-top: 30px; text-align: center;">
-                <p><strong>Action Required:</strong> Customer needs to complete payment and document upload.</p>
-                <p>Please monitor this application for completion.</p>
+                <p><strong>Action Required:</strong> Start post-payment processing and monitor document upload.</p>
               </div>
             </div>
             <div style="background-color: #f0f0f0; padding: 15px; font-size: 12px; text-align: center; color: #666;">

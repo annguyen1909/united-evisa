@@ -92,7 +92,7 @@ export async function POST(req: Request) {
       currency: 'usd',
       receipt_email: account.email,
       metadata: { applicationId },
-      payment_method_types: ['card'],
+      automatic_payment_methods: { enabled: true },
     });
 
     // Record the Stripe activity when payment intent is created

@@ -86,13 +86,20 @@ function PaymentContent() {
             if (response.ok) {
                 const data = await response.json();
                 setApplicationData(data);
-                // Check if previous step is completed (customize this check as needed)
+                // If payment already completed, allow access so we show "Payment Already Completed" + link to documents
+                const paymentAlreadyCompleted =
+                    data.paymentStatus === 'Payment Completed' || data.paymentStatus === 'Completed' || data.status === 'Collecting Documents';
+                if (paymentAlreadyCompleted) {
+                    setStepNotAllowed(false);
+                    setIsLoading(false);
+                    return;
+                }
+                // Check if previous step is completed (passengers filled)
                 if (!data.passengers || !Array.isArray(data.passengers) || data.passengers.length === 0) {
                     setStepNotAllowed(true);
                     return;
                 }
-                
-                // Check if application status allows payment (like Sri Lanka)
+                // Check if application status allows payment
                 if (data.status !== 'Waiting for Payment' && data.status !== 'Lead Open') {
                     setStepNotAllowed(true);
                     return;

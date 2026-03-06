@@ -53,12 +53,27 @@ export async function POST(
     // Get the application
     const application = await prisma.application.findUnique({
       where: { applicationId },
-      select: { id: true },
+      select: { id: true, status: true, paymentStatus: true },
     });
 
     if (!application) {
       logError("application_not_found", { applicationId, paymentIntentId });
       return NextResponse.json({ error: "Application not found" }, { status: 404 });
+    }
+
+    // Update application status so confirmation/documents pages see payment completed immediately
+    // (Webhook also updates this; idempotent so no duplicate side effects.)
+    const alreadyPaid =
+      application.paymentStatus === "Payment Completed" || application.status === "Collecting Documents";
+    if (!alreadyPaid) {
+      await prisma.application.update({
+        where: { applicationId },
+        data: {
+          status: "Collecting Documents",
+          paymentStatus: "Payment Completed",
+        },
+      });
+      logInfo("application_marked_paid", { applicationId, paymentIntentId });
     }
 
     // Get card details from payment method

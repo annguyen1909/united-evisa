@@ -1,7 +1,7 @@
 ---
 title: "South Africa eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to South Africa eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your South Africa adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "South Africa"
 tags: ["South Africa eVisa", "South Africa visa application", "Cape Town visa", "Kruger visa", "South Africa travel", "South Africa tourism"]

@@ -1,7 +1,7 @@
 ---
 title: "eVisa Requirements Comparison Guide 2025: Complete Country-by-Country Guide"
 description: "Complete comparison of eVisa requirements for all countries in 2025. Compare documents, eligibility, costs, and application processes for worldwide destinations."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Visa Guides"
 tags: ["eVisa requirements", "Visa comparison", "Travel documents", "eVisa guide", "International travel", "Visa requirements comparison"]

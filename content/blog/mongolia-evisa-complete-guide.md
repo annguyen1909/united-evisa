@@ -1,7 +1,7 @@
 ---
 title: "Mongolia eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Mongolia eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Mongolia adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Mongolia"
 tags: ["Mongolia eVisa", "Mongolia visa application", "Ulaanbaatar visa", "Central Asia travel", "Mongolia tourism", "Gobi Desert visa"]

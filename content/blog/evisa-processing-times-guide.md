@@ -1,7 +1,7 @@
 ---
 title: "eVisa Processing Times Guide 2025: Complete Comparison for All Countries"
 description: "Complete guide to eVisa processing times worldwide in 2025. Compare processing times, learn about express and urgent options, and plan your travel accordingly."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Visa Guides"
 tags: ["eVisa processing times", "Visa processing", "Travel planning", "eVisa guide", "Visa application", "Processing times comparison"]

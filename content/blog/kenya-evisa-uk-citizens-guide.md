@@ -1,7 +1,7 @@
 ---
 title: "Kenya eVisa for UK Citizens 2025: Complete Guide, Requirements & Application"
 description: "Complete guide to Kenya eVisa for UK citizens in 2025. Learn eligibility, requirements, fees, processing times, step-by-step application process, and expert travel tips."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Kenya"
 tags: ["Kenya eVisa", "UK citizens", "Kenya visa UK", "Kenya travel UK", "Kenya tourism", "British citizens Kenya"]

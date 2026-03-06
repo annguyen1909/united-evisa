@@ -1,7 +1,7 @@
 ---
 title: "Turkey eVisa for US Citizens: Complete Application Guide 2025"
 description: "Complete guide for US citizens applying for Turkey eVisa in 2025. Learn requirements, processing times, costs, step-by-step application process, and travel tips for Turkey."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Turkey"
 tags: ["Turkey eVisa", "Turkey visa US citizens", "Turkey travel", "Istanbul visa", "Cappadocia visa", "Turkey tourism"]

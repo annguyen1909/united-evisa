@@ -1,7 +1,7 @@
 ---
 title: "Djibouti eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Djibouti eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Djibouti adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Djibouti"
 tags: ["Djibouti eVisa", "Djibouti visa application", "Djibouti travel", "East Africa visa", "Djibouti tourism", "Lake Assal visa"]

@@ -1,7 +1,7 @@
 ---
 title: "Malawi eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Malawi eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Malawi adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Malawi"
 tags: ["Malawi eVisa", "Malawi visa application", "Lake Malawi visa", "East Africa travel", "Malawi tourism", "Lilongwe visa"]

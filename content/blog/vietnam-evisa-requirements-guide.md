@@ -1,7 +1,7 @@
 ---
 title: "Vietnam eVisa Requirements Guide 2025: Complete Document Checklist & Application"
 description: "Complete guide to Vietnam eVisa requirements in 2025. Learn all required documents, eligibility criteria, application process, and expert tips for successful visa approval."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Vietnam"
 tags: ["Vietnam eVisa requirements", "Vietnam visa documents", "Vietnam visa application", "Vietnam travel", "Vietnam tourism", "Vietnam visa checklist"]

@@ -1,7 +1,7 @@
 ---
 title: "Vietnam eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Vietnam eVisa application in 2025. Learn requirements, fees, processing times, and step-by-step process. Get expert tips for your Vietnam adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Vietnam"
 tags: ["Vietnam eVisa", "Vietnam visa application", "Southeast Asia travel", "Vietnam tourism", "Vietnam business visa"]

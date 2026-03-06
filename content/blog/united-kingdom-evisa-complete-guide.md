@@ -1,7 +1,7 @@
 ---
 title: "United Kingdom eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to United Kingdom eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your UK adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "United Kingdom"
 tags: ["UK eVisa", "United Kingdom visa", "UK visa application", "London visa", "UK travel", "UK tourism"]

@@ -1,7 +1,7 @@
 ---
 title: "Uzbekistan eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Uzbekistan eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Uzbekistan adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Uzbekistan"
 tags: ["Uzbekistan eVisa", "Uzbekistan visa application", "Samarkand visa", "Silk Road visa", "Central Asia travel", "Uzbekistan tourism"]

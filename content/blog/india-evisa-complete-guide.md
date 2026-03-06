@@ -1,7 +1,7 @@
 ---
 title: "India eVisa Complete Guide 2025: Requirements, Application Process & Travel Tips"
 description: "Complete guide to India eVisa application in 2025. Learn requirements, fees, processing times, and step-by-step process. Get expert tips for your India adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "India"
 tags: ["India eVisa", "India visa application", "India travel", "South Asia visa", "India tourism", "India business visa"]

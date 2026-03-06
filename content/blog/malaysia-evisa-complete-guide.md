@@ -1,7 +1,7 @@
 ---
 title: "Malaysia eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Malaysia eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Malaysia adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Malaysia"
 tags: ["Malaysia eVisa", "Malaysia visa application", "Kuala Lumpur visa", "Southeast Asia travel", "Malaysia tourism", "Langkawi visa"]

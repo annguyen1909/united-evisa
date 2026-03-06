@@ -1,7 +1,7 @@
 ---
 title: "Kenya Tourist Visa Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Kenya tourist visa application in 2025. Learn requirements, documents, processing times, fees, and expert travel tips for your Kenya holiday."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Kenya"
 tags: ["Kenya tourist visa", "Kenya visa application", "Kenya travel", "Safari visa", "Kenya tourism", "Kenya holiday"]

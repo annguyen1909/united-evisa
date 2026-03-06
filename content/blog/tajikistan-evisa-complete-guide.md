@@ -1,7 +1,7 @@
 ---
 title: "Tajikistan eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Tajikistan eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Tajikistan adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Tajikistan"
 tags: ["Tajikistan eVisa", "Tajikistan visa application", "Pamir visa", "Central Asia travel", "Tajikistan tourism", "Dushanbe visa"]

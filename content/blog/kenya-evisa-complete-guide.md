@@ -1,7 +1,7 @@
 ---
 title: "Kenya eVisa Complete Guide 2025: Requirements, Application Process & Travel Tips"
 description: "Complete guide to Kenya eVisa application in 2025. Learn requirements, fees, processing times, and step-by-step application process. Get expert tips for your Kenya safari adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Kenya"
 tags: ["Kenya eVisa", "Kenya visa application", "Kenya travel", "East Africa visa", "safari visa", "Kenya ETA"]

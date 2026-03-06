@@ -1,7 +1,7 @@
 ---
 title: "Canada eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Canada eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Canada adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Canada"
 tags: ["Canada eVisa", "Canada visa application", "Canada travel", "North America visa", "Canada tourism", "eTA Canada"]

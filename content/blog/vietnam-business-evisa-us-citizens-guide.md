@@ -1,7 +1,7 @@
 ---
 title: "Vietnam Business eVisa for US Citizens 2025: Complete Guide, Requirements & Application"
 description: "Complete guide to Vietnam business eVisa for US citizens in 2025. Learn eligibility, requirements, fees, processing times, step-by-step application process, and expert travel tips."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Vietnam"
 tags: ["Vietnam business eVisa", "US citizens", "Vietnam business visa", "Vietnam travel", "Business travel", "American citizens Vietnam"]

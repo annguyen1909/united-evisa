@@ -1,7 +1,7 @@
 ---
 title: "Rwanda eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Rwanda eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Rwanda adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Rwanda"
 tags: ["Rwanda eVisa", "Rwanda visa application", "Gorilla trekking visa", "East Africa visa", "Rwanda tourism", "Kigali visa"]

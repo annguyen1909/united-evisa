@@ -1,7 +1,7 @@
 ---
 title: "Australia eVisa Complete Guide 2025: Requirements, Application & Travel Tips"
 description: "Complete guide to Australia eVisa application in 2025. Learn requirements, fees, processing times, step-by-step process, and expert travel tips for your Australia adventure."
-date: "2025-01-15"
+date: "2026-03-05"
 author: "United eVisa Services"
 category: "Australia"
 tags: ["Australia eVisa", "Australia visa application", "Australia travel", "Down Under visa", "Australia tourism", "Australia business visa"]

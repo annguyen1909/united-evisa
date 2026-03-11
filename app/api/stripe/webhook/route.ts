@@ -93,6 +93,7 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                     select: {
                         email: true,
                         fullName: true,
+                        websiteCreatedAt: true,
                     },
                 },
                 destination: {
@@ -125,8 +126,9 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             logInfo("application_already_paid", { applicationId, paymentIntentId: paymentIntent.id });
         }
 
-        // Send notifications only on first successful transition to paid
-        if (!alreadyCompleted) {
+        // Send United eVisa admin notification only when this application belongs to United eVisa site
+        const isUnitedEvisaSite = application.account?.websiteCreatedAt === "United eVisa Site";
+        if (!alreadyCompleted && isUnitedEvisaSite) {
             try {
                 await sendEmail({
                     to: "visa@unitedevisa.com",
@@ -150,22 +152,30 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                     message: emailError instanceof Error ? emailError.message : "unknown_error",
                 });
             }
+        } else if (!alreadyCompleted && !isUnitedEvisaSite) {
+            logInfo("admin_notification_skipped_other_site", { applicationId, site: application.account?.websiteCreatedAt ?? "unknown" });
+        }
 
-            try {
-                await sendEmail({
-                    template: "payment-confirmation",
-                    data: { applicationId: application.applicationId },
-                });
-                logInfo("customer_confirmation_sent", {
-                    applicationId,
-                    customerEmail: redactEmail(application.account?.email),
-                });
-            } catch (emailError) {
-                logError("customer_confirmation_failed", {
-                    applicationId,
-                    customerEmail: redactEmail(application.account?.email),
-                    message: emailError instanceof Error ? emailError.message : "unknown_error",
-                });
+            // Only send United eVisa payment-confirmation email for United eVisa applications
+            if (isUnitedEvisaSite) {
+                try {
+                    await sendEmail({
+                        template: "payment-confirmation",
+                        data: { applicationId: application.applicationId },
+                    });
+                    logInfo("customer_confirmation_sent", {
+                        applicationId,
+                        customerEmail: redactEmail(application.account?.email),
+                    });
+                } catch (emailError) {
+                    logError("customer_confirmation_failed", {
+                        applicationId,
+                        customerEmail: redactEmail(application.account?.email),
+                        message: emailError instanceof Error ? emailError.message : "unknown_error",
+                    });
+                }
+            } else {
+                logInfo("customer_confirmation_skipped_other_site", { applicationId, site: application.account?.websiteCreatedAt ?? "unknown" });
             }
         }
 

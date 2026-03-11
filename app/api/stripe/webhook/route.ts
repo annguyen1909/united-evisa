@@ -68,13 +68,12 @@ export async function POST(req: NextRequest) {
                 logInfo("event_unhandled", { eventType: event.type, eventId: event.id });
         }
 
-        return NextResponse.json({ received: true });
     } catch (error) {
         logError("event_processing_failed", { message: error instanceof Error ? error.message : "unknown_error" });
-        return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
     } finally {
         await prisma.$disconnect();
     }
+    return NextResponse.json({ received: true });
 }
 
 async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
@@ -111,6 +110,18 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             return;
         }
 
+        // Only process applications that belong to United eVisa site. Ignore others (e.g. Indonesia Local Site 2).
+        // Stripe sends all events to this URL when only one webhook endpoint is configured; we skip non–United-eVisa.
+        const isUnitedEvisaSite = application.account?.websiteCreatedAt === "United eVisa Site";
+        if (!isUnitedEvisaSite) {
+            logInfo("event_ignored_other_site", {
+                applicationId,
+                paymentIntentId: paymentIntent.id,
+                site: application.account?.websiteCreatedAt ?? "unknown",
+            });
+            return;
+        }
+
         const alreadyCompleted = application.paymentStatus === 'Payment Completed';
 
         if (!alreadyCompleted) {
@@ -126,40 +137,35 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             logInfo("application_already_paid", { applicationId, paymentIntentId: paymentIntent.id });
         }
 
-        // Send United eVisa admin notification only when this application belongs to United eVisa site
-        const isUnitedEvisaSite = application.account?.websiteCreatedAt === "United eVisa Site";
-        if (!alreadyCompleted && isUnitedEvisaSite) {
-            try {
-                await sendEmail({
-                    to: "visa@unitedevisa.com",
-                    template: "new-application-notification",
-                    data: {
-                        applicationId: application.applicationId,
-                        customerEmail: application.account?.email || "Unknown",
-                        customerName: application.account?.fullName || "Customer",
-                        destinationName: application.destination?.name || "Unknown",
-                        visaTypeName: application.visaType?.name || "Unknown",
-                        passengerCount: application.passengerCount || 1,
-                        total: application.total || 0,
-                        stayingStart: application.stayingStart ? application.stayingStart.toISOString() : new Date().toISOString(),
-                        stayingEnd: application.stayingEnd ? application.stayingEnd.toISOString() : new Date().toISOString(),
-                    },
-                });
-                logInfo("admin_notification_sent", { applicationId });
-            } catch (emailError) {
-                logError("admin_notification_failed", {
-                    applicationId,
-                    message: emailError instanceof Error ? emailError.message : "unknown_error",
-                });
-            }
-        } else if (!alreadyCompleted && !isUnitedEvisaSite) {
-            logInfo("admin_notification_skipped_other_site", {
-                applicationId,
-                site: application.account?.websiteCreatedAt ?? "unknown",
-            });
-        }
+        // Run admin email and rest of processing in parallel to reduce webhook response time (avoid Stripe timeout)
+        const adminEmailPromise =
+            !alreadyCompleted
+                ? sendEmail({
+                      to: "visa@unitedevisa.com",
+                      template: "new-application-notification",
+                      data: {
+                          applicationId: application.applicationId,
+                          customerEmail: application.account?.email || "Unknown",
+                          customerName: application.account?.fullName || "Customer",
+                          destinationName: application.destination?.name || "Unknown",
+                          visaTypeName: application.visaType?.name || "Unknown",
+                          passengerCount: application.passengerCount || 1,
+                          total: application.total || 0,
+                          stayingStart: application.stayingStart ? application.stayingStart.toISOString() : new Date().toISOString(),
+                          stayingEnd: application.stayingEnd ? application.stayingEnd.toISOString() : new Date().toISOString(),
+                      },
+                  }).then(
+                      () => logInfo("admin_notification_sent", { applicationId }),
+                      (emailError) =>
+                          logError("admin_notification_failed", {
+                              applicationId,
+                              message: emailError instanceof Error ? emailError.message : "unknown_error",
+                          })
+                  )
+                : Promise.resolve();
 
-        let cardType = 'Unknown';
+        const restPromise = (async () => {
+            let cardType = 'Unknown';
         let cardLast4 = '****';
         let cardholderName = '';
         let billingAddress = '';
@@ -321,7 +327,15 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             },
         });
         logInfo("risk_records_upserted", { applicationId, riskStatus });
+        })().catch((err) =>
+            logError("handle_payment_success_rest_failed", {
+                applicationId,
+                paymentIntentId: paymentIntent.id,
+                message: err instanceof Error ? err.message : "unknown_error",
+            })
+        );
 
+        await Promise.all([adminEmailPromise, restPromise]);
     } catch (error) {
         logError("handle_payment_success_failed", {
             applicationId,
@@ -336,6 +350,22 @@ async function handlePaymentFailure(paymentIntent: Stripe.PaymentIntent) {
 
     if (!applicationId) {
         logError("missing_application_id_in_failed_metadata", { paymentIntentId: paymentIntent.id });
+        return;
+    }
+
+    const application = await prisma.application.findUnique({
+        where: { applicationId },
+        include: {
+            account: { select: { websiteCreatedAt: true } },
+        },
+    });
+    if (application && application.account?.websiteCreatedAt !== "United eVisa Site") {
+        logInfo("event_ignored_other_site", {
+            applicationId,
+            paymentIntentId: paymentIntent.id,
+            site: application.account?.websiteCreatedAt ?? "unknown",
+            event: "payment_failed",
+        });
         return;
     }
 

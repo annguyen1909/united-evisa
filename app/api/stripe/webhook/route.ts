@@ -153,30 +153,10 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 });
             }
         } else if (!alreadyCompleted && !isUnitedEvisaSite) {
-            logInfo("admin_notification_skipped_other_site", { applicationId, site: application.account?.websiteCreatedAt ?? "unknown" });
-        }
-
-            // Only send United eVisa payment-confirmation email for United eVisa applications
-            if (isUnitedEvisaSite) {
-                try {
-                    await sendEmail({
-                        template: "payment-confirmation",
-                        data: { applicationId: application.applicationId },
-                    });
-                    logInfo("customer_confirmation_sent", {
-                        applicationId,
-                        customerEmail: redactEmail(application.account?.email),
-                    });
-                } catch (emailError) {
-                    logError("customer_confirmation_failed", {
-                        applicationId,
-                        customerEmail: redactEmail(application.account?.email),
-                        message: emailError instanceof Error ? emailError.message : "unknown_error",
-                    });
-                }
-            } else {
-                logInfo("customer_confirmation_skipped_other_site", { applicationId, site: application.account?.websiteCreatedAt ?? "unknown" });
-            }
+            logInfo("admin_notification_skipped_other_site", {
+                applicationId,
+                site: application.account?.websiteCreatedAt ?? "unknown",
+            });
         }
 
         let cardType = 'Unknown';
@@ -226,15 +206,15 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
             billingZipcode = 'Billing Form Data Missing';
         }
 
-            await prisma.stripeActivity.upsert({
-                where: { id: `payment_${paymentIntent.id}` },
-                update: {
-                    status: 'succeeded',
-                    amount: paymentIntent.amount / 100,
-                    description: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} - Made by ${redactName(cardholderName)}.`,
-                    timestamp: new Date(),
-                },
-                create: {
+        await prisma.stripeActivity.upsert({
+            where: { id: `payment_${paymentIntent.id}` },
+            update: {
+                status: 'succeeded',
+                amount: paymentIntent.amount / 100,
+                description: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} - Made by ${redactName(cardholderName)}.`,
+                timestamp: new Date(),
+            },
+            create: {
                 id: `payment_${paymentIntent.id}`,
                 applicationId: application.id,
                 type: 'Payment',
@@ -243,9 +223,9 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 status: 'succeeded',
                 transactionId: `payment_${paymentIntent.id}`,
                 description: `Payment of $${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} - Made by ${redactName(cardholderName)}.`,
-                    timestamp: new Date(),
-                },
-            });
+                timestamp: new Date(),
+            },
+        });
         logInfo("stripe_activity_upserted", { applicationId, paymentIntentId: paymentIntent.id });
 
         await prisma.cardHolder.upsert({
@@ -265,8 +245,8 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 address: billingAddress,
                 zipcode: billingZipcode,
                 applicationId: application.id,
-                    },
-                });
+            },
+        });
         logInfo("cardholder_upserted", { applicationId, cardType, cardLast4: `****${cardLast4}` });
 
         const passengers = await prisma.passenger.findMany({

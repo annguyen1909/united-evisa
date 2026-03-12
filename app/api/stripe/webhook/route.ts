@@ -334,8 +334,10 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
                 message: err instanceof Error ? err.message : "unknown_error",
             })
         );
-
-        await Promise.all([adminEmailPromise, restPromise]);
+        // Fire-and-forget long-running work so we can return a 2xx
+        // response to Stripe as fast as possible to avoid webhook timeouts.
+        void adminEmailPromise;
+        void restPromise;
     } catch (error) {
         logError("handle_payment_success_failed", {
             applicationId,
